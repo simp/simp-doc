@@ -1,0 +1,243 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE section [
+<!ENTITY % BOOK_ENTITIES SYSTEM "../../../SIMP_Documentation.ent">
+%BOOK_ENTITIES;
+]>
+<section id="sect-ug-SSH_Keys" >
+  <title id="sect-ug-SSH_Keys-title">SSH Keys with Puppet</title>
+  <para>
+    This section provides guidance on managing a local service
+    account, and propagating keys and sudo permissions for the
+    user via Puppet.
+  </para>
+  <section id="sect-ug-SSH_Keys-resource_setup">
+    <title>Resource Setup</title>
+    <para>
+      In cases where there is a need to SSH to a target
+      machine/VM as a local user, there are several items that need
+      to be addressed prior to experiencing a successful connection.
+      First, the group account must exist locally, as
+      well as the local user (belonging to the respective account).
+      PAM must allow the desired group access to the machine/VM,
+      and keys must be put in the correct directories to allow the
+      user access.
+    </para>
+    <para>
+      The below code is a template to make this happen, with
+      explanations of the generic variables included,
+      as well as 2048-bit
+      <xref linkend="ug-glossary-rsa-desc"
+            endterm="ug-rsa-term" /> key generation.
+    </para>
+    <example>
+      <title>Code to Set Up a Local User SSH Connection</title>
+      <indexterm>
+        <primary>Source</primary>
+        <secondary>Code to Set Up a Local User SSH Connection</secondary>
+      </indexterm>
+      <indexterm>
+        <primary>local User</primary>
+      </indexterm>
+      <indexterm>
+        <primary>user account</primary>
+      </indexterm>
+      <indexterm>
+        <primary>SSH Keys</primary>
+        <seealso>PAM</seealso>
+        <seealso>user accounts</seealso>
+        <seealso>LDAP</seealso>
+        <seealso>Examples</seealso>
+      </indexterm>
+      <programlisting language="Ruby">
+        class &lt;CLASS NAME&gt; {
+          include "ssh"
+
+          group { "&lt;GROUP NAME&gt;":
+            gid =&gt; "&lt;GROUP ID NUMBER&gt;",
+            allowdupe =&gt; false,
+            ensure =&gt; present,
+          }
+
+          user { "&lt;USER NAME&gt;":
+            uid =&gt; "&lt;USER ID NUMBER&gt;",
+            allowdupe =&gt; false,
+            ensure =&gt; present,
+            gid =&gt; "&lt;GROUP NAME&gt;",
+            home =&gt; "/srv/&lt;USER NAME&gt;",
+            managehome =&gt; true,
+            shell =&gt; "/bin/sh",
+            require =&gt; Group["&lt;GROUP NAME&gt;"]
+          }
+
+          file { "/srv/&lt;USER NAME&gt;/.ssh":
+            owner =&gt; "&lt;USER NAME&gt;",
+            group =&gt; "&lt;GROUP NAME&gt;",
+            mode =&gt; "700",
+            ensure =&gt; directory,
+          }
+
+          ssh_authorized_key { "&lt;USER NAME&gt;":
+            type =&gt; "ssh-rsa",
+            key =&gt; ssh_autokey( "&lt;USER NAME&gt;", "2048" ),
+            target =&gt;"/srv/&lt;USER NAME&gt;/.ssh/authorized_keys",
+            require =&gt; [
+              File["/srv/&lt;USER NAME&gt;/.ssh"],
+              User["&lt;USER NAME&gt;"]
+            ]
+          }
+
+          file { "/srv/&lt;USER NAME&gt;/.ssh/id_rsa":
+            mode =&gt; "600",
+            owner =&gt; "&lt;USER NAME&gt;",
+            group =&gt; "&lt;GROUP NAME&gt;",
+            source =&gt;"puppet://$puppet_server/site/ssh_autokeys/&lt;USER NAME&gt;",
+            require =&gt; Ssh_authorized_key["&lt;USER NAME&gt;"]
+          }
+
+          file { "/etc/ssh/local_keys/&lt;USER NAME&gt;":
+            ensure =&gt; present,
+            owner =&gt; "root",
+            group =&gt; "root",
+            mode =&gt; "644"
+            source =&gt;"puppet://$puppet_server/site/ssh_autokeys/&lt;USER NAME&gt;.pub",
+            require =&gt; Ssh_authorized_key["&lt;USER NAME&gt;"]
+          }
+
+          sudo::user_specification { "&lt;USER NAME&gt;":
+            user_list =&gt; ["&lt;USERN AME&gt;"],
+            host_list =&gt; "&lt;HOST&gt;",
+            runas =&gt; "&lt;RUN AS&gt;",
+            cmnd =&gt; ["&lt;COMMAND LIST&gt;"],
+            passwd =&gt; "false",
+            require =&gt; User["&lt;USER NAME&gt;"]
+          }
+
+          pam::access::manage { "Allow &lt;USER NAME&gt;":
+            users =&gt; &lt;USER NAME&gt;,
+            origins =&gt; ['ALL']
+          }
+        }
+      </programlisting>
+    </example>
+    <section id="sect-ug-SSH_Keys-resource_setup-variables">
+      <title>Variables</title>
+      <para>
+        The table below provides explanations of the variables
+        included in the template code in the previous section.
+      </para>
+      <table frame="all">
+        <title>Variable Explanations</title>
+        <tgroup cols="2" align="left" colsep="1" rowsep="1">
+          <colspec colnum="1" colname="c1" colwidth="*"/>
+          <colspec colnum="2" colname="c2" colwidth="2*"/>
+          <thead>
+            <row>
+              <entry>Variable</entry>
+              <entry>Explanation</entry>
+            </row>
+          </thead>
+          <tbody>
+            <row>
+              <entry>&lt;CLASS NAME&gt;</entry>
+              <entry>Descriptive name of class</entry>
+            </row>
+            <row>
+              <entry>&lt;COMMAND LIST&gt;</entry>
+              <entry>Commands that the local account is able to run</entry>
+            </row>
+            <row>
+              <entry>&lt;GROUP ID NUMBER&gt;</entry>
+              <entry>Numerical ID of the group to which the user belongs</entry>
+            </row>
+            <row>
+              <entry>&lt;GROUP NAME&gt;</entry>
+              <entry>Name of the local group to which the user belongs</entry>
+            </row>
+            <row>
+              <entry>&lt;HOST&gt;</entry>
+              <entry>Host on which the sudo commands apply</entry>
+            </row>
+            <row>
+              <entry>&lt;USER NAME&gt;</entry>
+              <entry>Name of the local service account user</entry>
+            </row>
+            <row>
+              <entry>&lt;USER ID NUMBER&gt;</entry>
+              <entry>Numerical ID of the user</entry>
+            </row>
+            <row>
+              <entry>&lt;RUN AS&gt;</entry>
+              <entry>User the local account is able to run the sudo
+              commands as</entry>
+            </row>
+		      </tbody>
+        </tgroup>
+      </table>
+    </section>
+  </section>
+  <section id="sect-ug-SSH_Keys-testing">
+    <title>Testing</title>
+    <para>
+      The table below lists the steps to test that the configuration
+      was applied correctly.
+    </para>
+    <table frame="all">
+        <title>Test the Configuration Procedure</title>
+        <tgroup cols="2" align="left" colsep="1" rowsep="1">
+          <colspec colnum="1" colname="c1" colwidth="*"/>
+          <colspec colnum="2" colname="c2" colwidth="8*"/>
+          <thead>
+            <row>
+              <entry>Step</entry>
+              <entry>Process/Action</entry>
+            </row>
+          </thead>
+          <tbody>
+            <row>
+              <entry><orderedlist><listitem><para/></listitem></orderedlist></entry>
+              <entry> Log on to a server that has the template code
+              configuration applied.</entry>
+            </row>
+            <row>
+              <entry><orderedlist continuation="continues"><listitem><para/></listitem></orderedlist></entry>
+              <entry>Type <emphasis role="bold">su -
+              <emphasis role="bold"><emphasis role="italic">&lt;USER NAME&gt;</emphasis></emphasis></emphasis></entry>
+            </row>
+            <row>
+              <entry><orderedlist continuation="continues"><listitem><para/></listitem></orderedlist></entry>
+              <entry>Type <emphasis role="bold">exec /usr/bin/ssh-agent /bin/bash</emphasis>
+              to ensure that ssh-agent has a shell running.
+              </entry>
+            </row>
+            <row>
+              <entry><orderedlist continuation="continues"><listitem><para/></listitem></orderedlist></entry>
+              <entry>Type <emphasis role="bold">/usr/bin/ssh-add</emphasis> to attach
+              the user's certificates.</entry>
+            </row>
+            <row>
+              <entry><orderedlist continuation="continues"><listitem><para/></listitem></orderedlist></entry>
+              <entry><para>Type <emphasis role="bold">/usr/bin/ssh-add -l</emphasis> to
+              double check that the user's certificates were added successfully.</para>
+              <para><emphasis role="bold">NOTE</emphasis>: This step is optional.</para>
+              </entry>
+            </row>
+            <row>
+              <entry><orderedlist continuation="continues"><listitem><para/></listitem></orderedlist></entry>
+              <entry>Type <emphasis role="bold">ssh
+              <emphasis role="bold"><emphasis role="italic">&lt;HOST&gt;</emphasis></emphasis></emphasis>
+              to SSH to a target machine that has the template code configuration applied.</entry>
+            </row>
+		    </tbody>
+        </tgroup>
+      </table>
+    <para>
+      If successful, the user should be authenticated and gain access to the
+      target machine without entering a password. If the user is prompted for
+      a password, check to see if the permissions are set up properly and that
+      the certificate keys are in the correct locations. In addition, check the
+      <emphasis role="italic">/etc/security/access.conf</emphasis> file
+      to ensure that it contains the user or user's group in an allow
+      statement. See access.conf(5) for details.
+    </para>
+  </section>
+</section>

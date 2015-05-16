@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE chapter [
+<!ENTITY % BOOK_ENTITIES SYSTEM "../SIMP_Documentation.ent">
+%BOOK_ENTITIES;
+]>
+
+<chapter id="ch-ug-FAQ">
+  <chapterinfo>
+    <title id="ch-ug-FAQ-title">SIMP FAQs</title>
+    <affiliation>
+      <orgname>SIMP Team</orgname>
+    </affiliation>
+  </chapterinfo>
+
+  <title>SIMP FAQs</title>
+  <para>
+    This chapter answers some of the frequently asked questions (FAQs) about SIMP.
+  </para>
+
+  <xi:include href="FAQs/Centralized_Logging.xml" xmlns:xi="http://www.w3.org/2001/XInclude" />
+  <xi:include href="FAQs/Changing_Puppet_Masters.xml" xmlns:xi="http://www.w3.org/2001/XInclude" />
+  <xi:include href="FAQs/DVD_Build.xml" xmlns:xi="http://www.w3.org/2001/XInclude" />
+  <xi:include href="FAQs/Exclude_Repositories.xml" xmlns:xi="http://www.w3.org/2001/XInclude" />
+  <xi:include href="FAQs/IPTables_NAT_Rules.xml" xmlns:xi="http://www.w3.org/2001/XInclude" />
+  <xi:include href="FAQs/Network_Build.xml" xmlns:xi="http://www.w3.org/2001/XInclude" />
+  <xi:include href="FAQs/Performing_One_Shot_Operations.xml" xmlns:xi="http://www.w3.org/2001/XInclude" />
+  <xi:include href="FAQs/Redundant_LDAP.xml" xmlns:xi="http://www.w3.org/2001/XInclude" />
+  <xi:include href="FAQs/SFTP_Restricted_Account.xml" xmlns:xi="http://www.w3.org/2001/XInclude" />
+  <xi:include href="FAQs/Ssh_keys.xml" xmlns:xi="http://www.w3.org/2001/XInclude" />
+  <xi:include href="FAQs/Local_User_Access/SSH_Keys.xml" xmlns:xi="http://www.w3.org/2001/XInclude" />
+
+</chapter>

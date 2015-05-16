@@ -1,0 +1,126 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!-- This document was created with Syntext Serna Free. -->
+<!DOCTYPE chapter [
+<!ENTITY % BOOK_ENTITIES SYSTEM "../SIMP_Documentation.ent">
+%BOOK_ENTITIES;]>
+
+<chapter id="ch-sc-System_Management">
+  <chapterinfo>
+    <title id="ch-sc-System_Management-title">Information System Management</title>
+    <affiliation>
+      <orgname>SIMP Team</orgname>
+    </affiliation>
+    <keywordset>
+      <keyword>SIMP</keyword>
+      <keyword>Security</keyword>
+      <keyword>Secure</keyword>
+      <keyword>Framework</keyword>
+      <keyword>Puppet</keyword>
+    </keywordset>
+  </chapterinfo>
+  <title>Information System Management</title>
+  <para>
+   This chapter contains SIMP security concepts that are related to the 
+   management security controls in 
+  <ulink url="http://csrc.nist.gov/publications/PubsSPs.html">NIST 800-53</ulink>.
+  </para>
+  <section id="Risk_Assessment">
+    <title>Risk Assessment</title>
+    <para>
+     This section describes the process of identifying risks within
+     a system.
+    </para>
+    <section id="SIMP_Risk_Assessment">
+      <title>SIMP Self Risk Assessment</title>
+      <para>
+       Risk can be found in any system. The SIMP team is constantly 
+       evaluating the system and the settings to minimize inherit risk. 
+       Most risks can be mitigated by processes and procedures at the 
+       implementation level. The following table describes the known 
+       areas in SIMP. [RA-1]
+      </para>
+      <para>
+      <table frame="all">
+          <title>SIMP Risk</title>
+          <tgroup cols="2">
+            <colspec colname="c1"/>
+            <colspec colname="c2"/>
+            <thead>
+              <row>
+                <entry>Risk</entry>
+                <entry>Possible Mitigations</entry>
+              </row>
+            </thead>
+            <tbody>
+              <row>
+                <entry><emphasis role="bold">Disabling Puppet:</emphasis>
+                This can cause the clients to be out of sync with the Puppet 
+                Master.</entry>
+                <entry>
+                  <para>
+                   SIMP attempts to force a break on any locks and restart 
+                   Puppet on all clients after a time of 4*runinterval (30 minutes 
+                   by default). Implementations should ensure that further steps 
+                   have not been taken to disable Puppet and should monitor their 
+                   logs. Administrators can use the <emphasis role="bold">puppetlast</emphasis> 
+                   command on the Puppet Master to detect servers that have not 
+                   checked in within a reasonable time period.
+                  </para>
+                </entry>
+              </row>
+              <row>
+                <entry>
+                <para>
+                 <emphasis role="bold">Out of Date Patches:</emphasis> SIMP 
+                 can be built with the RPMs from CentOS or Red Hat. Those RPMs 
+                 should be assumed out of date at the time a system is initially 
+                 installed (if using the SIMP DVD).
+                </para>
+                </entry>
+                <entry>
+                <para>
+                 Implementations should obtain the latest RPMs and apply 
+                 them in a reasonable manner.
+                </para>
+                <para>
+                 All SIMP systems will, by default, attempt to update 
+                 all packages using YUM nightly. Therefore, having an updated 
+                 repository will ensure that the systems are updated on a 
+                 regular basis.
+                </para>
+                </entry>
+              </row>
+              <row>
+                <entry><emphasis role="bold">Poor Account Management:</emphasis>  
+                SIMP security access control is based on users being created 
+                and managed over time. Giving shell access to unnecessary users allows 
+                them the opportunity to escalate privileges.</entry>
+                <entry>Use the default LDIFs and local user modules to ensure that
+                account settings remain restrictive. Ensure the system has policies 
+                and procedures in place to manage accounts. Finally, ensure that users 
+                are in appropriate groups with limited privileges.</entry>
+              </row>
+            </tbody>
+          </tgroup>
+        </table>
+      </para>
+    </section>
+    <section id="Vulnerability_Scanning">
+      <title>Vulnerability Scanning</title>
+      <para>
+       The SIMP development and security team performs regular vulnerability 
+       scanning of the product using commercial and open source tools. Results 
+       and mitigations for findings from those tools can be provided upon request. 
+       [CA-2, RA-5]
+      </para>
+    </section>
+  </section>
+  <section id="Assessment_Authorization">
+    <title>Security Assessment and Authorization</title>
+    <para>
+     Assessment and authorization varies by implementation. Implementations are 
+     encouraged to use documentation artifacts provided by the SIMP team to 
+     assist with assessment and authorization. [CA-2]
+    </para>
+  </section>
+</chapter>

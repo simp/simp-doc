@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE section [
+<!ENTITY % BOOK_ENTITIES SYSTEM "../SIMP_Documentation.ent">
+%BOOK_ENTITIES;
+]>
+<section>
+  <title> Backing up the Puppet Master</title> 
+  <para>
+  	 This section details all of the steps required for backing up the Puppet Master.
+  </para>
+  <note>
+    <para> SIMP, by default, provides two ways to back up data. They are BackupPC and Git. If there is a different preferred method the user may install it and configure it first. 
+    </para>
+  </note>
+  <table frame="all">
+    <title>SIMP Upgrade Process</title>
+    <tgroup cols="2" align="left" colsep="1" rowsep="1">
+      <colspec colnum="1" colname="c1" colwidth="*"/>
+      <colspec colnum="2" colname="c2" colwidth="8*"/>
+      <thead>
+        <row>
+          <entry>Step</entry>
+          <entry>Process/Action</entry>
+        </row>
+      </thead>
+      <tbody>
+        <row>
+          <entry> <orderedlist><listitem><para/></listitem></orderedlist> </entry>
+          <entry> Backup <emphasis role="italic">/var/lib/puppet/ssl</emphasis>
+          </entry>
+        </row>
+        <row>
+          <entry><orderedlist continuation="continues"><listitem><para/></listitem></orderedlist> </entry>
+          <entry> Backup <emphasis role="italic">/etc/puppet</emphasis></entry>
+        </row>
+        <row>
+          <entry><orderedlist continuation="continues"><listitem><para/></listitem></orderedlist> </entry>
+          <entry> Backup <emphasis role="italic">/srv/rsync</emphasis> 
+          </entry>
+        </row>
+        <row>
+          <entry><orderedlist continuation="continues"><listitem><para/></listitem></orderedlist> </entry>
+          <entry> <emphasis role="bold">Optional:</emphasis> Backup /srv/www
+          </entry>
+        </row>
+      </tbody>
+    </tgroup>
+  </table>
+</section> 

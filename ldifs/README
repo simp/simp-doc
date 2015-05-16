@@ -1,0 +1,18 @@
+Here you will find a collection of useful LDIF templates for working with a
+SIMP system.
+
+You should probably change the DN to your DN using the following command after
+copying them to a directory of your choice.
+
+sed -i 's/dc=your,dc=domain/dc=<your actual information>,dc=<etc...>/g' *.ldif
+
+You will then want to use some command string such as the following to make
+this all work (more details in the docs...'simp doc').
+
+Add:
+
+ldapadd -D cn=LDAPAdmin,ou=People,dc=your,dc=domain -H ldap://<your ldap server> -W -x -Z -f <ldif>
+
+Modify:
+
+ldapmodify -D cn=LDAPAdmin,ou=People,dc=your,dc=domain -H ldap://<your ldap server> -W -x -Z -f <ldif>

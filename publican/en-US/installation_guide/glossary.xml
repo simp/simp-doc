@@ -1,0 +1,290 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<glossary id="ig-glossary">
+  <title>Glossary of Terms</title>
+  <glossdiv>
+    <title>A</title>
+    <glossentry id="ig-aide">
+      <glossterm id="ig-aide-term">Advanced Intrusion Detection Environment (AIDE)</glossterm>
+      <acronym id="ig-aide-acronym">AIDE</acronym>
+      <glossdef>
+        <para id="ig-glossary-aide-desc">An intrusion detection system for
+        checking the integrity of files under Linux. AIDE can be used to help
+        track file integrity by comparing a snapshot of the system's
+        files prior to and after a suspected incident. It is maintained by Rami Lehti
+        and Pablo Virolainen.</para>
+      </glossdef>
+    </glossentry>
+  </glossdiv>
+  <glossdiv>
+    <title>C</title>
+    <glossentry id="ig-cpu">
+    <glossterm id="ig-cpu-term">Central Processing Unit (CPU)</glossterm>
+    <acronym id="ig-cpu-acronym">CPU</acronym>
+    <glossdef>
+      <para id="ig-glossary-cpu-desc">The hardware within a computer system that
+      carries out the instructions of a computer program by performing the basic
+      arithmetical, logical, and input/output operations of the system.</para>
+    </glossdef>
+    </glossentry>
+    <glossentry id="ig-centos">
+    <glossterm id="ig-centos-term">Community Enterprise Operating System (CentOS)</glossterm>
+    <acronym id="ig-centos-acronym">CentOS</acronym>
+    <glossdef>
+      <para id="ig-glossary-centos-desc">An Enterprise-grade Operating System
+      that is directly compatible with a prominent US Linux distribution.</para>
+    </glossdef>
+    </glossentry>
+  </glossdiv>
+  <glossdiv>
+    <title>D</title>
+    <glossentry id="ig-dns">
+      <glossterm id="ig-dns-term">Domain Name System (DNS)</glossterm>
+      <acronym id="ig-dns-acronym">DNS</acronym>
+      <glossdef>
+        <para id="ig-glossary-dns-desc">A database system that translates a
+        computer's fully qualified domain name into an IP address and the reverse.</para>
+      </glossdef>
+    </glossentry>
+    <glossentry id="ig-dhcp">
+      <glossterm id="ig-dhcp-term">Dynamic Host Configuration Protocol (DHCP)</glossterm>
+      <acronym id="ig-dhcp-acronym">DHCP</acronym>
+      <glossdef>
+        <para id="ig-glossary-dhcp-desc">A network protocol that enables a server
+        to assign an IP address to a computer automatically.</para>
+      </glossdef>
+    </glossentry>
+  </glossdiv>
+  <glossdiv>
+    <title>F</title>
+    <glossentry id="ig-fqdn">
+      <glossterm id="ig-fqdn-term">Fully Qualified Domain Name (FQDN)</glossterm>
+      <acronym id="ig-fqdn-acronym">FQDN</acronym>
+      <glossdef>
+        <para id="ig-glossary-fqdn-desc">A domain name that specifies its exact location
+        in the tree hierarchy of the Domain Name System (DNS). It specifies all domain
+        levels, including the top-level domain and the root zone. An FQDN is distinguished by
+        its unambiguity; it can only be interpreted one way.</para>
+      </glossdef>
+    </glossentry>
+  </glossdiv>
+  <glossdiv>
+    <title>H</title>
+    <glossentry id="ig-hdd">
+      <glossterm id="ig-hdd-term">Hard Disk Drive (HDD)</glossterm>
+      <acronym id="ig-hdd-acronym">HDD</acronym>
+      <glossdef>
+        <para id="ig-glossary-hdd-desc">A device for storing and retrieving
+        digital information, primarily computer data.</para>
+      </glossdef>
+    </glossentry>
+  </glossdiv>
+  <glossdiv>
+    <title>I</title>
+    <glossentry id="ig-iptables">
+      <glossterm id="ig-iptables-term">Internet Protocol Tables (IPtables)</glossterm>
+      <acronym id="ig-iptables-acronym">IPtables</acronym>
+      <glossdef>
+        <para id="ig-glossary-iptables-desc">A user space application that
+        provides an interface to the IPv4 firewall rules on modern Linux systems.</para>
+      </glossdef>
+    </glossentry>
+    <glossentry id="ig-ip6tables">
+      <glossterm id="ig-ip6tables-term">Internet Protocol 6 Tables (IP6tables)</glossterm>
+      <acronym id="ig-ip6tables-acronym">IP6tables</acronym>
+      <glossdef>
+        <para id="ig-glossary-ip6tables-desc">A user space application that provides
+        an interface to the IPv6 firewall rules on modern Linux systems.</para>
+      </glossdef>
+    </glossentry>
+  </glossdiv>
+  <glossdiv>
+    <title>L</title>
+    <glossentry id="ig-ldap">
+      <glossterm id="ig-ldap-term">Lightweight Directory Access Protocol (LDAP)</glossterm>
+      <acronym id="ig-ldap-acronym">LDAP</acronym>
+      <glossdef>
+        <para id="ig-glossary-ldap-desc">A protocol for querying and modifying
+        LDAP directory services including information such as names, addresses,
+        email, phone numbers, and other information from an online directory.</para>
+      </glossdef>
+    </glossentry>
+  </glossdiv>
+  <glossdiv>
+    <title>P</title>
+    <glossentry id="ig-pam">
+      <glossterm id="ig-pam-term">Pluggable Authentication Modules (PAM)</glossterm>
+      <acronym id="ig-pam-acronym">PAM</acronym>
+      <glossdef>
+        <para id="ig-glossary-pam-desc">A mechanism to integrate multiple low-level
+        authentication schemes into a high-level application programming interface (API).
+        It allows programs that rely on authentication to be written independent of
+        the underlying authentication scheme.</para>
+      </glossdef>
+    </glossentry>
+    <glossentry id="ig-pxe">
+      <glossterm id="ig-pxe-term">Preboot Execution Environment (PXE)</glossterm>
+      <acronym id="ig-pxe-acronym">PXE</acronym>
+      <glossdef>
+        <para id="ig-glossary-pxe-desc">An environment to boot computers using a
+        network interface independently of data storage devices (like hard disks) or
+        installed operating systems.</para>
+      </glossdef>
+    </glossentry>
+    <glossentry id="ig-pem">
+      <glossterm id="ig-pem-term">Privacy Enhanced Mail (PEM)</glossterm>
+      <acronym id="ig-pem-acronym">PEM</acronym>
+      <glossdef>
+        <para id="ig-glossary-pem-desc">An early standard for securing electronic mail.
+        This is the public-key of a specific certificate. This is also the format used
+        for Certificate Authority certificates.</para>
+      </glossdef>
+    </glossentry>
+    <glossentry id="ig-pki">
+      <glossterm id="ig-pki-term">Public Key Infrastructure (PKI)</glossterm>
+      <acronym id="ig-pki-acronym">PKI</acronym>
+      <glossdef>
+        <para id="ig-glossary-pki-desc">A security architecture that has been
+        introduced to provide an increased level of confidence for exchanging
+        information over an increasingly insecure Internet. PKI enables users of a
+        basically insecure public networks, such as the Internet, to securely
+        authenticate to systems and exchange data. The exchange of data is done by
+        using a combination of cryptographically bound public and private keys.</para>
+      </glossdef>
+    </glossentry>
+    <glossentry id="ig-puppet">
+      <glossterm id="ig-puppet-term">Puppet</glossterm>
+      <acronym/>
+      <glossdef>
+        <para id="ig-glossary-puppet-desc">An Open Source configuration management
+        tool written and maintained by <ulink url="http://www.puppetlabs.com">Puppet Labs</ulink>.
+        Written as a Ruby DSL, Puppet provides a declarative language that allows system
+        administrators to provide a consistently applied management infrastructure.
+        Users describes system resource and resource state either in the Puppet language.
+        Puppet discovers system specific information via facter and compiles Puppet manifests
+        into a system specific catalog containing resources and resource dependencies which
+        are applied to each client system.</para>
+      </glossdef>
+    </glossentry>
+  </glossdiv>
+  <glossdiv>
+    <title>R</title>
+    <glossentry id="ig-ram">
+      <glossterm id="ig-ram-term">Random Access Memory (RAM)</glossterm>
+      <acronym id="ig-ram-acronym">RAM</acronym>
+      <glossdef>
+        <para id="ig-glossary-ram-desc">A form of computer data storage. A random access
+        device allows stored data to be accessed in nearly the same amount of time for any
+        storage location, so data can be accessed quickly in any random order.</para>
+      </glossdef>
+    </glossentry>
+    <glossentry id="ig-red_hat">
+      <glossterm id="ig-red_hat-term">Red Hat</glossterm>
+      <acronym/>
+      <glossdef>
+        <para id="ig-glossary-red_hat-desc">A collection of many different software
+        programs, developed by Red Hat®, Inc. and other members of the Open Source community.
+        All software programs included in Red Hat®Linux® are GPG signed by Red Hat to indicate
+        that Red Hat supplied them.</para>
+        <glossseealso otherterm="ig-rhel">RHEL</glossseealso>
+      </glossdef>
+    </glossentry>
+    <glossentry id="ig-rhel">
+      <glossterm id="ig-rhel-term">Red Hat Enterprise Linux (RHEL)</glossterm>
+      <acronym id="ig-rhel-acronym">RHEL</acronym>
+      <glossdef>
+        <para id="ig-glossary-rhel-desc">A commercial Linux operating system produced
+        by Red Hat®, Inc. RHEL is designed to provide an Enterprise-ready Linux
+        distribution suitable to multiple target applications. </para>
+        <glossseealso otherterm="ig-red_hat">Red Hat Linux</glossseealso>
+      </glossdef>
+    </glossentry>
+    <glossentry id="ig-ruby">
+      <glossterm id ="ig-ruby-term">Ruby</glossterm>
+      <acronym/>
+      <glossdef>
+        <para id="ig-glossary-ruby-desc">A dynamic, reflective, general-purpose
+        object-oriented programming language that combines syntax inspired by Perl
+        with Smalltalk-like features. Ruby originated in Japan during the mid-1990s
+        and was first developed and designed by Yukihiro "Matz" Matsumoto.
+        It was influenced primarily by Perl, Smalltalk, Eiffel, and Lisp. Ruby supports
+        multiple programming paradigms, including functional, object oriented, imperative
+        and reflective. It also has a dynamic type system and automatic memory management;
+        it is therefore similar in varying respects to Smalltalk, Python, Perl, Lisp,
+        Dylan, Pike, and CLU.</para>
+      </glossdef>
+    </glossentry>
+  </glossdiv>
+  <glossdiv>
+    <title>S</title>
+    <glossentry id="ig-ssh">
+      <glossterm id="ig-ssh-term">Secure Shell (SSH)</glossterm>
+      <acronym id="ig-ssh-acronym">SSH</acronym>
+      <glossdef>
+        <para id="ig-glossary-ssh-desc">An application for secure data communication,
+        remote shell services, or command execution between networked computers. SSH
+        utilizes a server/client model for point-to-point secure communication.</para>
+      </glossdef>
+    </glossentry>
+    <glossentry id="ig-ssl">
+      <glossterm id="ig-ssl-term">Secure Sockets Layer (SSL)</glossterm>
+      <acronym id="ig-ssl-acronym">SSL</acronym>
+      <glossdef>
+        <para id="ig-glossary-ssl-desc">The standard security technology for using PKI
+        keys to provide a secure channel between two servers.</para>
+        <glossseealso otherterm="ig-tls">TLS</glossseealso>
+      </glossdef>
+    </glossentry>
+    <glossentry id="ig-simp">
+      <glossterm id="ig-simp-term">SIMP</glossterm>
+      <acronym id="ig-simp-acronym"/>
+      <glossdef>
+        <para id="ig-glossary-simp-desc">A security framework that sits on top of RHEL or CentOS.</para>
+      </glossdef>
+    </glossentry>
+  </glossdiv>
+  <glossdiv>
+    <title>T</title>
+    <glossentry id="ig-tls">
+      <glossterm id="ig-tls-term">Transport Layer Security (TLS)</glossterm>
+      <acronym id="ig-tls-acronym">TLS</acronym>
+      <glossdef>
+        <para id="ig-glossary-tls-desc">A cryptographic protocol that provides network
+        communications security. TLS and SSL encrypt the segments of network connections
+        above the Transport Layer, using asymmetric cryptography for privacy and a keyed
+        message authentication codes for message reliability.</para>
+        <glossseealso otherterm="ig-ssl">SSL</glossseealso>
+      </glossdef>
+    </glossentry>
+    <glossentry id="ig-tftp">
+      <glossterm id="ig-tftp-term">Trivial File Transfer Protocol (TFTP)</glossterm>
+      <acronym id="ig-tftp-acronym">TFTP</acronym>
+      <glossdef>
+        <para id="ig-glossary-tftp-desc">A file transfer protocol generally used for automated
+        transfer of configuration or boot files between machines in a local environment.</para>
+      </glossdef>
+    </glossentry>
+  </glossdiv>
+  <glossdiv>
+    <title>V</title>
+    <glossentry id="ig-vm">
+      <glossterm id="ig-vm-term">Virtual Machine (VM)</glossterm>
+      <acronym id="ig-vm-acronym">VM</acronym>
+      <glossdef>
+        <para id="ig-glossary-vm-desc">A completely isolated guest operating system
+        installation within a normal host operating system.</para>
+      </glossdef>
+    </glossentry>
+  </glossdiv>
+  <glossdiv>
+    <title>Y</title>
+    <glossentry id="ig-yum">
+      <glossterm id="ig-yum-term">Yellowdog Updater, Modified (YUM)</glossterm>
+      <acronym id="ig-yum-acronym">YUM</acronym>
+      <glossdef>
+        <para id="ig-glossary-yum-desc">A software installation tool for Linux.
+        It is a complete software management system that works with RPM files.
+        YUM is designed to be used over a network or the Internet.</para>
+      </glossdef>
+    </glossentry>
+  </glossdiv>
+</glossary>

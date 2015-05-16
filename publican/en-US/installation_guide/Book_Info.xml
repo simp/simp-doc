@@ -1,0 +1,35 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE bookinfo [
+<!ENTITY % BOOK_ENTITIES SYSTEM "../SIMP_Documentation.ent">
+%BOOK_ENTITIES;
+]>
+<bookinfo id='book-simp_installation_guide'>
+  <title>SIMP Installation Guide</title>
+  <subtitle>SIMP &SIMP_VERSION;-&SIMP_RELEASE; Supporting RHEL/CentOS &RHEL_VERSION;</subtitle>
+  <productname>SIMP</productname>
+  <productnumber>&SIMP_VERSION;</productnumber>
+  <edition>1.0</edition>
+  <pubsnumber>1</pubsnumber>
+  <releaseinfo>
+    This is the &SIMP_VERSION;-&SIMP_RELEASE; release of SIMP based on the &RHEL_VERSION; release of the
+    Community Enterprise Operating System (CentOS) and Red Hat Enterprise
+    Linux (RHEL).
+  </releaseinfo>
+  <abstract>
+    <para>
+      Continue on to the next page to learn more about the SIMP product.
+    </para>
+  </abstract>
+
+  <keywordset>
+    <keyword>SIMP</keyword>
+    <keyword>Security</keyword>
+    <keyword>Secure</keyword>
+    <keyword>Framework</keyword>
+    <keyword>Puppet</keyword>
+  </keywordset>
+
+  <xi:include href='../common/Legal_Notice.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
+  <xi:include href='../Author_Group.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
+</bookinfo>
+

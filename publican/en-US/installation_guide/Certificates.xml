@@ -1,0 +1,188 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE section [
+<!ENTITY % BOOK_ENTITIES SYSTEM "../SIMP_Documentation.ent">
+%BOOK_ENTITIES;
+]>
+<section id="sect-ig-Certificates">
+  <title id="sect-ig-Certificates-title">Apply Certificates</title>
+  <para>
+  This section provides guidance on obtaining official certificates and
+  generating a Fake CA.
+  </para>
+  <section id="sect-ig-Certificates-official">
+    <title>Obtaining Official Certificates</title>
+    <para>
+      All SIMP systems must have
+      <xref linkend="ig-glossary-pki-desc"
+            endterm="ig-pki-term" />
+      keypairs generated for the server.
+      These keys reside in the <emphasis role="italic">/etc/puppet/keydist</emphasis>
+      directory and are served to the clients over the Puppet protocol.
+    </para>
+    <note>
+      <para>
+        These keypairs are not the keys that the Puppet server uses
+        for its operation. Do not get the two confused.
+      </para>
+    </note>
+    <para>
+      The table below lists the steps to add any keys for the server
+      that were received from a proper CA to
+         <emphasis role="italic">/etc/puppet/keydist</emphasis>.
+    </para>
+    <table frame="all">
+        <title>Official Certificates Procedure</title>
+        <tgroup cols="2" align="left" colsep="1" rowsep="1">
+          <colspec colnum="1" colname="c1" colwidth="*"/>
+          <colspec colnum="2" colname="c2" colwidth="8*"/>
+          <thead>
+            <row>
+              <entry>Step</entry>
+              <entry>Process/Action</entry>
+            </row>
+          </thead>
+          <tbody>
+            <row>
+              <entry>1.</entry>
+              <entry>Type
+              <emphasis role="bold">mkdir /etc/puppet/keydist/<emphasis role="bold"><emphasis role="italic">&lt;Client System FQDN&gt;</emphasis></emphasis></emphasis>
+              </entry>
+            </row>
+            <row>
+              <entry>2.</entry>
+              <entry>Type <emphasis role="bold">mv <emphasis role="bold"><emphasis role="italic">&lt;Certificate
+              Directory&gt;</emphasis></emphasis>/<emphasis role="bold"><emphasis role="italic">&lt;FQDN&gt;</emphasis></emphasis>.[pem|pub]
+              /etc/puppet/keydist/<emphasis role="bold"><emphasis role="italic">&lt;FQDN&gt;</emphasis></emphasis>
+              </emphasis></entry>
+            </row>
+            <row>
+              <entry>3.</entry>
+              <entry>Type <emphasis role="bold">chown -R root.puppet /etc/puppet/keydist</emphasis></entry>
+            </row>
+            <row>
+              <entry>4.</entry>
+              <entry>Type <emphasis role="bold">chmod -R u=rwX,g=rX,o-rwx /etc/puppet/keydist</emphasis></entry>
+            </row>
+		      </tbody>
+        </tgroup>
+     </table>
+    <para>
+      The table below lists the steps to create and populate
+      the <emphasis role="italic">/etc/puppet/keydist/cacerts</emphasis> directory.
+    </para>
+    <table frame="all">
+        <title><emphasis role="italic">/etc/puppet/keydist/cacerts</emphasis> Directory Creation Procedure</title>
+        <tgroup cols="2" align="left" colsep="1" rowsep="1">
+          <colspec colnum="1" colname="c1" colwidth="*"/>
+          <colspec colnum="2" colname="c2" colwidth="8*"/>
+          <thead>
+            <row>
+              <entry>Step</entry>
+              <entry>Process/Action</entry>
+            </row>
+          </thead>
+          <tbody>
+            <row>
+              <entry>1.</entry>
+              <entry>Type <emphasis role="bold">cd /etc/puppet/keydist</emphasis></entry>
+            </row>
+            <row>
+              <entry>2.</entry>
+              <entry>Type <emphasis role="bold">mkdir cacerts</emphasis> and copy the root CA public
+              certificates into <emphasis role="italic">cacerts</emphasis> in
+              <xref linkend="ig-glossary-pem-desc"
+                    endterm="ig-pem-term" />
+              format (one per file).</entry>
+            </row>
+            <row>
+              <entry>3.</entry>
+              <entry>Type <emphasis role="bold">cd cacerts</emphasis></entry>
+            </row>
+            <row>
+              <entry>4.</entry>
+              <entry>Type <emphasis role="bold">for file in *.pem; do ln -s $file `openssl x509 -in $file -hash
+              -noout`.0; done</emphasis></entry>
+            </row>
+		    </tbody>
+        </tgroup>
+    </table>
+  </section>
+  <section id="sect-ig-Certificates-fake">
+    <title>Generating Fake CAs</title>
+    <para>
+      If server certificates have not or could not be obtained at the time of client
+      installation, the SIMP team provides a way to create them for the system so that
+      it will work until proper certificates are provided.
+    </para>
+    <note>
+    <para>This option should not be used for any operational system that can use
+      proper enterprise PKI certificates.
+    </para>
+    </note>
+    <para>
+      The table below lists the steps to generate the Fake CAs.
+    </para>
+   <table frame="all">
+        <title>Generating Fake CAs Procedure</title>
+        <tgroup cols="2" align="left" colsep="1" rowsep="1">
+          <colspec colnum="1" colname="c1" colwidth="*"/>
+          <colspec colnum="2" colname="c2" colwidth="8*"/>
+          <thead>
+            <row>
+              <entry>Step</entry>
+              <entry>Process/Action</entry>
+            </row>
+          </thead>
+          <tbody>
+            <row>
+              <entry>1.</entry>
+              <entry>Type <emphasis role="bold">cd /etc/puppet/Config/FakeCA</emphasis></entry>
+            </row>
+            <row>
+              <entry>2.</entry>
+              <entry>Type <emphasis role="bold">vi togen</emphasis></entry>
+            </row>
+            <row>
+              <entry>3.</entry>
+              <entry><para>Remove old entries from the file and add the
+              <xref linkend="ig-glossary-fqdn-desc"
+                    endterm="ig-fqdn-term" />
+              of the systems (one per line) for which certificates will be created.</para>
+              <para><emphasis role="bold">NOTE</emphasis>: To use alternate DNS names for the same system, separate the
+              names with commas and without spaces. For example, <emphasis role="bold">.name,alt.name1,alt.name2.</emphasis></para></entry>
+            </row>
+            <row>
+              <entry>4.</entry>
+              <entry><para>Type <emphasis role="bold">wc cacertkey</emphasis></para>
+              <para><emphasis role="bold">NOTE</emphasis>: Ensure that the <emphasis role="italic">cacertkey</emphasis>
+              file is not empty. If it is, enter text into the file; then save and close the file.</para></entry>
+            </row>
+            <row>
+              <entry>5.</entry>
+              <entry><para>Type <emphasis role="bold">./gencerts_nopass.sh auto</emphasis></para>
+              <para><emphasis role="bold">NOTE</emphasis>: To avoid using the default Fake
+              CA values, remove the <emphasis role="bold">auto</emphasis> statement from the
+              <emphasis role="bold">./gencerts_nopass.sh</emphasis> command.</para></entry>
+            </row>
+		    </tbody>
+        </tgroup>
+      </table>
+    <warning>
+      <para>
+        If the <emphasis role="italic">clean.sh</emphasis> command is run after the
+        certificates have been generated, the running system will break. To
+        troubleshoot certificate problems, see the section at the end of this chapter.
+      </para>
+    </warning>
+    <para>
+      If issues arise while generating keys, type <emphasis role="bold">cd /etc/puppet/Config/FakeCA</emphasis> to
+      navigate to the <emphasis role="italic">/etc/puppet/Config/FakeCA</emphasis> directory. Then, type
+      <emphasis role="bold">./clean.sh</emphasis> to start over.
+    </para>
+    <para>
+      After running the <emphasis role="italic">clean.sh</emphasis> script, type
+      <emphasis role="bold">./gencerts_nopass.sh</emphasis> to run the script again using the
+      previous procedure table.
+    </para>
+  </section>
+</section>
