@@ -1,6 +1,5 @@
 ## SIMP Documentation
 
-As with the SIMP Base repo, this repostiory is branch based until such time
-that we fully merge the branches.
+The Documentation repository for the 4.2.X version of SIMP.
 
-The master branch will, most likely, have nothing of value.
+This will house all information relevant to the RHEL/CentOS 6 compatible build.
