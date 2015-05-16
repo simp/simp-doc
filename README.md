@@ -1,5 +1,6 @@
-## Work in Progress
+## SIMP Documentation
 
-Please excuse us as we transition this code into the public domain.
+As with the SIMP Base repo, this repostiory is branch based until such time
+that we fully merge the branches.
 
-Downloads, discussion, and patches are still welcome!
+The master branch will, most likely, have nothing of value.
