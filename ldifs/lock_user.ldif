@@ -1,0 +1,9 @@
+dn: uid=<username>,ou=People,dc=your,dc=domain
+changetype: modify
+replace: pwdAccountLockedTime
+pwdAccountLockedTime: 000001010000Z
+-
+delete: sshPublicKey
+-
+replace: userPassword
+userPassword: !!

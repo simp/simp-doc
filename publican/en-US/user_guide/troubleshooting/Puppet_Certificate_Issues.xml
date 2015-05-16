@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE section [
+<!ENTITY % BOOK_ENTITIES SYSTEM "../../SIMP_Documentation.ent">
+%BOOK_ENTITIES;
+]>
+<section id="sect-ug-Puppet_Certificate_Issues">
+  <title id="sect-ug-Puppet_Certificate_Issues-title">Puppet Server Certificate Issues</title>
+     <para>
+      If Puppet has any certificate issues, regenerate the server CAs.
+      To do this, remove the contents of the <emphasis role="italic">ssl</emphasis>
+      folder and regenerate those <emphasis role="italic">.pem</emphasis> files.
+    </para>
+    <para>
+      The following table lists the steps to regenerate the server CAs:
+    </para>
+    <table frame="all">
+        <title>Regenerate the Server CAs</title>
+        <tgroup cols="2" align="left" colsep="1" rowsep="1">
+          <colspec colnum="1" colname="c1" colwidth="*"/>
+          <colspec colnum="2" colname="c2" colwidth="8*"/>
+          <thead>
+            <row>
+              <entry>Step</entry>
+              <entry>Process/Action</entry>
+            </row>
+          </thead>
+          <tbody>
+            <row>
+              <entry><orderedlist continuation="continues"><listitem><para/></listitem></orderedlist></entry>
+              <entry>Type <emphasis role="bold">service httpd stop</emphasis></entry>
+            </row>
+            <row>
+              <entry><orderedlist continuation="continues"><listitem><para/></listitem></orderedlist></entry>
+              <entry>Type <emphasis role="bold">rm -rf /var/lib/puppet/ssl</emphasis></entry>
+            </row>
+            <row>
+              <entry><orderedlist continuation="continues"><listitem><para/></listitem></orderedlist></entry>
+              <entry>Type <emphasis role="bold">puppet cert list --all</emphasis></entry>
+            </row>
+            <row>
+              <entry><orderedlist continuation="continues"><listitem><para/></listitem></orderedlist></entry>
+              <entry>Type <emphasis role="bold">puppet cert --generate
+              <emphasis role="bold"><emphasis role="italic">&lt;fqdn&gt;</emphasis></emphasis></emphasis></entry>
+            </row>
+            <row>
+              <entry><orderedlist continuation="continues"><listitem><para/></listitem></orderedlist></entry>
+              <entry>Type <emphasis role="bold">service httpd start</emphasis></entry>
+            </row>
+            <row>
+              <entry><orderedlist continuation="continues"><listitem><para/></listitem></orderedlist></entry>
+              <entry>Type <emphasis role="bold">puppet agent --test</emphasis></entry>
+            </row>
+		      </tbody>
+        </tgroup>
+      </table>
+    <para>
+      Type <emphasis role="bold">rm -rf /var/lib/puppet/ssl</emphasis> on the client to delete old certificates.
+    </para>
+  </section>

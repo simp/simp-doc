@@ -1,0 +1,3 @@
+dn: uid=<username>,ou=People,dc=your,dc=domain
+changetype: modify
+delete: pwdAccountLockedTime

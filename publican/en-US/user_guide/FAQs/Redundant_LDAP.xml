@@ -1,0 +1,221 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE section [
+<!ENTITY % BOOK_ENTITIES SYSTEM "../../SIMP_Documentation.ent">
+%BOOK_ENTITIES;
+]>
+<section id="sect-ug-Redundant_LDAP" >
+  <title id="sect-ug-Redundant_LDAP-title">Redundant LDAP</title>
+  <para>
+    This section describes how to set up redundant OpenLDAP
+    servers in SIMP.
+  </para>
+  <para>
+    The version of OpenLDAP in RHEL5 only supports
+    <emphasis role="italic">syncrepl</emphasis>.
+    Multi-master replication has been added in a more recent
+    version of OpenLDAP but is not currently supported in SIMP.
+    <emphasis role="italic">Syncrepl</emphasis>
+    is optimal for 
+    <xref linkend="ug-glossary-wan-desc"
+            endterm="ug-wan-term" />
+    situations and is the SIMP default.
+  </para>
+  <section id="sect-ug-Redundant_LDAP-master">
+    <title>Set up the Master</title>
+    <para>
+      If the standard
+      <emphasis role="italic">puppet_servers.pp</emphasis> file
+      in SIMP is being used, the user has a working master server.
+      If not, the following example demonstrates how to use the
+      SIMP <emphasis role="italic">openldap</emphasis> module to
+      create a server using the
+      <emphasis role="italic">puppet_servers.pp</emphasis> file .
+    </para>
+    <example>
+      <title>Code to Use an OpenLDAP Server</title>
+      <indexterm>
+        <primary>Source</primary>
+        <secondary>Code for Using an OpenLDAP Server</secondary>
+      </indexterm>
+      <indexterm>
+        <primary>openldap</primary>
+       <seealso>Source</seealso>
+      </indexterm>
+      <programlisting language="Ruby">
+        # These are some common variables.
+        # See /etc/puppet/manifests/vars.pp for the stock version.
+
+        $ldap_master = 'ldap://ldapmaster.your.domain'
+
+        class ldap_common {
+          include 'openldap::slapd_pki'
+
+          openldap::slapd::conf { 'default':
+            suffix =&gt; 'dc=your,dc=domain',
+            rootdn =&gt; 'dn=LDAPAdmin,ou=People,dc=your,dc=domain',
+            rootpw =&gt; '{SSHA}$klskf$asoghaagasgasgaggawawg',
+            tlsCertificateFile =&gt; "/etc/pki/public/${fqdn}.pub",
+            tlsCertificateKeyFile =&gt; "/etc/pki/private/${fqdn}.pem",
+            client_nets =&gt; [ '1.2.3.4/16' ]
+          }
+        }
+
+        class ldap_master inherits ldap_common {
+          include 'openldap::slapo::syncprov'
+
+          openldap::slapo::syncprov::conf { "default": }
+        }
+
+        node ldapmaster {
+          include 'ldap_master'
+        }
+      </programlisting>
+    </example>
+  </section>
+  <section id="sect-ug-Redundant_LDAP-Replicants">
+    <title id="sect-ug-Redundant_LDAP-Replicants-title">Set up the Replicated Servers</title>
+    <para>
+      Once the master is ready, LDAP slave nodes must be configured to
+      replicate data from the master. The example below shows an
+      the code that should be added to the slave node in Puppet. The 
+      actual order of which gets done first is irrelevant;
+      the replicated servers will attempt to contact the master until
+      they are successful.
+    </para>
+    <example>
+      <title>Code to Configure an LDAP Slave Node</title>
+      <indexterm>
+        <primary>Source</primary>
+        <secondary>Code to Configure an LDAP Slave Node</secondary>
+      </indexterm>
+      <indexterm>
+        <primary>replication</primary>
+        <seealso>Source</seealso>
+      </indexterm>
+      <programlisting language="Ruby">
+        class ldap_repl inherits ldap_common {
+          include 'openldap::slapd::syncrepl'
+
+          openldap::slapd::syncrepl::conf { "111":
+            provider =&gt; $ldap_master,
+            syncrepl_retry =&gt; '60 10 600 +',
+            searchbase =&gt; 'dc=your,dc=domain',
+            starttls =&gt; 'critical',
+            bindmethod =&gt; 'simple',
+            binddn =&gt; 'cn=LDAPSync,ou=People,dc=your,dc=domain',
+            credentials =&gt; '&lt;plain text password&gt;',
+            updateref =&gt; $ldap_master
+          }
+        }
+
+        node ldaprepl1 {
+          include "ldap_repl"
+        }
+
+        node ldaprepl2 {
+          include "ldap_repl"
+        }
+      </programlisting>
+    </example>
+  </section>
+  <section id="sect-ug-Redundant_LDAP-promoting">
+    <title>Promote a Slave Node</title>
+    <para>
+      Slave nodes can be promoted to act as the LDAP master node. 
+      To do this, change the node classifications of the
+      relevant hosts. The following example shows the promotion of
+      the <emphasis role="italic">ldaprepl1</emphasis> server to
+      the master server.
+    </para>
+    <example>
+      <title>Code to Promote a Slave Node</title>
+      <indexterm>
+        <primary>Source</primary>
+        <secondary>Promoting a Slave Node</secondary>
+      </indexterm>
+      <indexterm>
+        <primary>LDAP</primary>
+        <seealso>Source</seealso>
+      </indexterm>
+      <programlisting language="Ruby">
+        # Change the common ldap server variable to promote the slave node.
+
+        $ldap_master = 'ldap://ldaprepl1.your.domain'
+
+        node ldapmaster {
+          # include 'ldap_master'
+        }
+
+        node ldaprepl1 {
+          # include 'ldap_repl'
+          include 'ldap_master'
+        }
+      </programlisting>
+    </example>
+    <para>
+      After the next Puppet run on all hosts, <emphasis
+      role="italic">ldaprepl1</emphasis> will be promoted to the
+      master and all slave nodes will point to it.
+    </para>
+  </section>
+  <section id="sect-ug-Redundant_LDAP-Troubleshooting">
+    <title>Troubleshooting</title>
+     <para>
+      If the system is not replicating, it is possible
+      that another user has updated the
+      <emphasis role="italic">$ldap_sync_passwd</emphasis> and
+      <emphasis role="italic">$ldap_sync_hash</emphasis> entries
+      in the <emphasis role="italic">/etc/puppet/manifests/vars.pp</emphasis>
+      file without also updating the value in LDAP itself;
+      this is the most common issue reported by users.
+     </para>
+     <para>
+      Currently, SIMP cannot self-modify the LDAP database directly;
+      therefore, the LDAP Administrator needs to perform this action.
+      Refer to the
+      <xref linkend="ch-ug-User_Management"
+            endterm="ch-ug-User_Management-title"/>
+      chapter for more information on
+      manipulating entries in OpenLDAP.
+     </para>
+     <para>
+      The example below shows the changes necessary to update the
+      <emphasis role="italic">$ldap_sync</emphasis> information in LDAP.
+     </para>
+      <example>
+        <title>Code to Update <emphasis role="italic">$ldap_sync</emphasis> Information in LDAP</title>
+        <indexterm>
+          <primary>Examples</primary>
+          <secondary>Update <emphasis role="italic">$ldap_sync</emphasis> Information in LDAP</secondary>
+        </indexterm>
+        <indexterm>
+          <primary>LDAP</primary>
+         <seealso>Examples</seealso>
+        </indexterm>
+        <programlisting language="LDIF">
+        dn: cn=LDAPSync,ou=People,dc=your,dc=domain
+        changetype: modify
+        replace: userPassword
+        userPassword: &lt;Hash from $ldap_sync_hash&gt;
+        </programlisting>
+      </example>
+    <section id="sect-ug-Redundant_LDAP_Troubleshooting_Master_Node_Demotion">
+      <title>Master Node Demotion</title>
+       <para>
+        In the event that multiple master nodes have been set up, it may 
+        be necessary to demote one or more of them to slave instances. 
+        To do this, add the replication code shown in the previous section 
+        titled 
+        <xref
+        linkend="sect-ug-Redundant_LDAP-Replicants"
+        endterm="sect-ug-Redundant_LDAP-Replicants-title"/> 
+        to the manifest of the master node being demoted.
+       </para>
+       <para>
+        Once this is complete, manually remove the active database from the 
+        LDAP server being demoted and then run Puppet. The SIMP team is working
+        to enable SIMP to handle this transition automatically in the future.
+       </para>
+    </section>
+  </section>
+</section>

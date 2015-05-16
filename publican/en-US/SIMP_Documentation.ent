@@ -1,0 +1,12 @@
+<!-- The current document SIMP Version -->
+<!ENTITY SIMP_VERSION "5.1.0">
+<!-- The current document SIMP Release -->
+<!ENTITY SIMP_RELEASE "Alpha">
+<!-- The current document RHEL Versions -->
+<!ENTITY RHEL_VERSION "STUB_OS_VERSION">
+<!ENTITY RHEL_MAJOR_VERSION "STUB_OS_VERSION">
+<!ENTITY RHEL_MAJOR_MINOR_VERSION "STUB_OS_VERSION">
+<!-- The generic RHEL 5 Version -->
+<!ENTITY RHEL_5_VERSION "5.8">
+<!-- The generic RHEL 6 Version -->
+<!ENTITY RHEL_6_VERSION "6.3">

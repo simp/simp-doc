@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE section [
+<!ENTITY % BOOK_ENTITIES SYSTEM "../../SIMP_Documentation.ent">
+%BOOK_ENTITIES;
+]>
+<section id="sect-ug-SFTP_Restricted_Account" >
+  <title id="sect-ug-SFTP_Restricted_Account-title">SFTP Restricted Account</title>
+  <para>
+    This section describes the method for restricting an
+    account to
+    <xref linkend="ug-glossary-sftp-desc"
+          endterm="ug-sftp-term" /> access only.
+  </para>
+  <section id="sect-ug-SFTP_Restricted_Account-adduser">
+    <title>Add a User</title>
+    <para>
+      Create a user account based on the following example.
+    </para>
+    <example>
+      <title>Code to Create a User Account</title>
+      <indexterm>
+        <primary>Examples</primary>
+        <secondary>Create a User Account</secondary>
+      </indexterm>
+      <indexterm>
+        <primary>LDAP</primary>
+        <seealso>Examples</seealso>
+      </indexterm>
+      <programlisting>
+        user { "foo":
+          uid =&gt; &lt;UID&gt;,
+          gid =&gt; &lt;GID&gt;,
+          shell =&gt; &lt;Path to SFTP Server&gt;
+        }
+
+        On a SIMP system, shell would be:
+        "/usr/libexec/openssh/sftp-server"
+      </programlisting>
+    </example>
+  </section>
+  <section id="sect-ug-SFTP_Restricted_Account-modify">
+    <title>Modify <emphasis role="italic">/etc/shells</emphasis></title>
+    <para>
+      To modify <emphasis role="italic">/etc/shells</emphasis> to include
+      the shell information provided in the previous user account example,
+      add <emphasis role="italic">common::shells</emphasis> in Hiera,
+      and add <emphasis role="italic">/usr/libexec/openssh/sftp-server</emphasis>
+      to the list.
+    </para>
+  </section>
+</section>

@@ -1,0 +1,403 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE chapter [
+<!ENTITY % BOOK_ENTITIES SYSTEM "../SIMP_Documentation.ent">
+%BOOK_ENTITIES;
+]>
+<chapter id="ch-ig-SIMP_Server_Installation">
+  <chapterinfo>
+    <title id="ch-ig-SIMP_Server_Installation-title">SIMP Server Installation</title>
+    <affiliation>
+      <orgname>SIMP Team</orgname>
+    </affiliation>
+    <keywordset>
+      <keyword>Initial Configuration</keyword>
+      <keyword>simp config</keyword>
+      <keyword>Previous Configuration</keyword>
+    </keywordset>
+    <itermset>
+      <indexterm>
+        <primary>SIMP Configuration</primary>
+        <secondary>Initial</secondary>
+      </indexterm>
+      <indexterm>
+        <primary>SIMP Configuration</primary>
+        <secondary>loading previous</secondary>
+      </indexterm>
+      <indexterm>
+        <primary>SIMP Configuration</primary>
+        <secondary>current system settings</secondary>
+      </indexterm>
+      <indexterm>
+        <primary>SIMP Configuration</primary>
+        <secondary>after</secondary>
+      </indexterm>
+      <indexterm>
+        <primary>SIMP Configuration</primary>
+        <secondary>server keys</secondary>
+      </indexterm>
+      <indexterm>
+        <primary>SIMP Configuration</primary>
+        <secondary>bootstrap</secondary>
+      </indexterm>
+    </itermset>
+  </chapterinfo>
+  <title>SIMP Server Installation</title>
+  <para>
+    This chapter provides guidance on installing and configuring SIMP using
+    the <emphasis role="italic">simp config</emphasis> utility.
+  </para>
+  <section id="sect-ig-System_Requirements">
+    <title>System Requirements</title>
+    <para>
+      SIMP scales well, but how much depends on a number of factors, including
+      the number of nodes, the processor speed, the total memory, and the complexity
+      of the manifests. The following system requirements are recommended:
+    </para>
+    <para>
+      <itemizedlist>
+        <listitem><para><xref linkend="ig-glossary-cpu-desc"
+            endterm="ig-cpu-term" />: 2 Cores</para></listitem>
+        <listitem><para><xref linkend="ig-glossary-ram-desc"
+            endterm="ig-ram-term" />: 2 GB</para></listitem>
+        <listitem><para><xref linkend="ig-glossary-hdd-desc"
+            endterm="ig-hdd-term" />: 50 GB</para></listitem>
+      </itemizedlist>
+    </para>
+  </section>
+  <section id="sect-ig-Using_Simp_Config">
+    <title>Using the SIMP Utility</title>
+    <para>
+      The SIMP Utility does not assist users through the entire
+      configuration process; however, it does make the initial configuration
+      easier and more repeatable.
+    </para>
+    <important>
+    <para>
+      Correct time across all systems is important to the proper functioning
+      of SIMP and Puppet in general.
+    </para>
+    <para>
+      If a user has trouble connecting to the Puppet server and errors
+      regarding certificate validation appear, check the Puppet server
+      and client times to ensure they are synchronized.
+    </para>
+    </important>
+    <para>
+      Using the configuration script, the following
+      items are configured:
+    </para>
+    <itemizedlist mark="bullet">
+      <listitem><para>Grub password in <emphasis role="italic">/boot/grub/grub.conf
+      </emphasis></para></listitem>
+      <listitem><para>Basic network setup</para></listitem>
+      <listitem><para>Autosigning in <emphasis role="italic">/etc/puppet/autosign.conf
+      </emphasis></para></listitem>
+      <listitem><para>Fileserving in <emphasis role="italic">/etc/puppet/fileserver.conf
+      </emphasis></para></listitem>
+      <listitem><para>Puppet server and Certificate Authority (CA) information in <emphasis role="italic">/etc/puppet/puppet.conf
+      </emphasis></para></listitem>
+      <listitem><para><emphasis role="italic">/etc/puppet/hieradata/simp_def.yaml</emphasis></para></listitem>
+      <listitem><para>Server certificates for the puppet server itself (Fake CA)</para></listitem>
+      <listitem><para>Base YUM repositories</para></listitem>
+    </itemizedlist>
+    <warning>
+      <para>
+      Keep in mind as the installation process begins that Puppet does not
+      work well with capital letters in host names. Therefore, they should not
+      be used.
+      </para>
+    </warning>
+    <para>
+       Below is a table containing the default passwords found on a basic SIMP server.
+       <important>
+         <para>All default passwords should be changed during the initial configuration proceess.</para>
+       </important>
+
+       <table frame="all">
+         <title>SIMP Default Passwords</title>
+         <tgroup cols="2" align="left" colsep="1" rowsep="1">
+           <colspec colnum="1" colname="c1" colwidth="*"/>
+           <colspec colnum="2" colname="c2" colwidth="6"/>
+           <thead>
+             <row>
+               <entry>Utility</entry>
+               <entry>Password</entry>
+             </row>
+           </thead>
+           <tbody>
+             <row>
+               <entry><para>Grub</para></entry>
+               <entry><para>Initi@lGruubCredential$</para></entry>
+             </row>
+             <row>
+               <entry><para>Root User</para></entry>
+               <entry><para>Plea$e Ch@nge Th1s Immediately!</para></entry>
+             </row>
+             <row>
+               <entry><para>Simp User</para></entry>
+               <entry><para>CorrectHorseBatteryStaple</para></entry>
+             </row>
+           </tbody>
+         </tgroup>
+       </table>
+    </para>
+
+    <para>Below is a table containing sample variables and their corresponding values that apply
+    to this SIMP deployment. These variables and values will be helpful in illustrating how configuration
+    files are set up. Your values will obviously differ, depending on your installation environment.</para>
+
+    <para>
+       <table frame="all">
+         <title>Sample values for SIMP install</title>
+         <tgroup cols="2" align="left" colsep="1" rowsep="1">
+           <colspec colnum="1" colname="c1" colwidth="*"/>
+           <colspec colnum="2" colname="c2" colwidth="6"/>
+           <thead>
+             <row>
+               <entry>Variable name</entry>
+               <entry>Value</entry>
+             </row>
+           </thead>
+           <tbody>
+             <row>
+               <entry>Domain name</entry>
+               <entry>simp.net</entry>
+             </row>
+
+             <row>
+               <entry>Fully qualified name</entry>
+               <entry>puppet.simp.net</entry>
+             </row>
+
+             <row>
+               <entry>IP address</entry>
+               <entry>192.168.1.10</entry>
+             </row>
+
+             <row>
+               <entry>Gateway</entry>
+               <entry>192.168.1.1</entry>
+             </row>
+
+             <row>
+               <entry>DNS server</entry>
+               <entry>192.168.1.10</entry>
+             </row>
+
+             <row>
+               <entry>DNS search entry</entry>
+               <entry>simp.net</entry>
+             </row>
+
+             <row>
+               <entry>Kickstart server</entry>
+               <entry>192.168.1.10</entry>
+             </row>
+
+             <row>
+               <entry>Yum server</entry>
+               <entry>192.168.1.10</entry>
+             </row>
+
+             <row>
+               <entry>LDAP URI</entry>
+               <entry>ldap://puppet.simp.net</entry>
+             </row>
+
+             <row>
+               <entry>LDAP Base DN</entry>
+               <entry>[dc=simp,dc=net]</entry>
+             </row>
+
+             <row>
+               <entry>LDAP Root DN</entry>
+               <entry>[cn=LDAPAdmin,ou=People,dc=simp,dc=net]</entry>
+             </row>
+
+             <row>
+               <entry>LDAP Bind DN</entry>
+               <entry>[cn=hostAuth,ou=Hosts,dc=simp,dc=net]</entry>
+             </row>
+
+             <row>
+               <entry>LDAP Sync DN</entry>
+               <entry>[cn=LDAPSync,ou=People,dc=simp,dc=net]</entry>
+             </row>
+
+           </tbody>
+         </tgroup>
+       </table>
+    </para>
+
+  </section>
+
+<!--New section for Pre-setup-->
+
+<section id="sect-ig-Pre_Setup_SIMP_Server">
+    <title>Preparing the SIMP Server Environment</title>
+    <para>
+      The following table outlines the steps to prepare a system for SIMP installation.
+    </para>
+    <table frame="all">
+      <title>SIMP Pre-Install Procedures</title>
+      <tgroup cols="2" align="left" colsep="1" rowsep="1">
+        <colspec colnum="1" colname="c1" colwidth="*"/>
+        <colspec colnum="2" colname="c2" colwidth="6*"/>
+        <thead>
+          <row>
+            <entry>Step</entry>
+            <entry>Process/Action</entry>
+          </row>
+        </thead>
+        <tbody>
+          <row>
+            <entry><orderedlist><listitem><para/></listitem></orderedlist> </entry>
+            <entry>Boot the system and ensure the SIMP ISO is selected.
+            </entry>
+          </row>
+
+          <row>
+            <entry><orderedlist continuation="continues"><listitem><para/></listitem></orderedlist> </entry>
+            <entry>Press <emphasis role="bold">Enter</emphasis> to run the standard SIMP install, or choose from the customized options list.</entry>
+          </row>
+
+          <row>
+            <entry><orderedlist continuation="continues"><listitem><para/></listitem></orderedlist> </entry>
+            <entry>When the installation is complete, the system will restart automatically.</entry>
+          </row>
+
+          <row>
+            <entry><orderedlist continuation="continues"><listitem><para/></listitem></orderedlist> </entry>
+            <entry>Log on as <emphasis role="italic">root</emphasis> and type the default password
+            shown in <emphasis role="bold">Table 2.1. </emphasis>
+            </entry>
+          </row>
+
+          <row>
+            <entry><orderedlist continuation="continues"><listitem><para/></listitem></orderedlist> </entry>
+            <entry>Type the default password again when prompted for the (current) UNIX password.
+            <para>Type a new password when prompted for the New Password. Retype the password when prompted.</para></entry>
+          </row>
+
+        </tbody>
+      </tgroup>
+    </table>
+</section>
+
+<!--Existing section for SIMP Install-->
+
+  <section id="sect-ig-Install_SIMP_Server">
+    <title>Installing the SIMP Server</title>
+    <para>
+      The following table outlines the steps to install a SIMP server.
+    </para>
+    <table frame="all">
+      <title>SIMP Install Procedure</title>
+      <tgroup cols="2" align="left" colsep="1" rowsep="1">
+        <colspec colnum="1" colname="c1" colwidth="*"/>
+        <colspec colnum="2" colname="c2" colwidth="6*"/>
+        <thead>
+          <row>
+            <entry>Step</entry>
+            <entry>Process/Action</entry>
+          </row>
+        </thead>
+        <tbody>
+          <row>
+            <entry><orderedlist><listitem><para/></listitem></orderedlist> </entry>
+            <entry>Log on as <emphasis role="italic">simp</emphasis>and <emphasis role="bold">su -</emphasis> to gain root access.</entry>
+          </row>
+
+          <row>
+            <entry><orderedlist continuation="continues"><listitem><para/></listitem></orderedlist> </entry>
+            <entry><para>Type <emphasis role="bold">simp config</emphasis></para>
+            <para>Type <emphasis role="bold">simp config -a <emphasis role="bold"><emphasis role="italic">&lt;Config File&gt;</emphasis></emphasis></emphasis>
+              to load a previously generated configuration instead of generating the configuration from the script.
+              This is the option to run for systems that will be rebuilt often.</para>
+            <para>For a list of additional commands, type <emphasis role="bold">simp help</emphasis>.
+              Type <emphasis role="bold">simp help <emphasis role="bold"><emphasis role="italic">&lt;Command&gt;</emphasis></emphasis></emphasis>
+              for more information on a specific command.</para></entry>
+          </row>
+          <row>
+            <entry><orderedlist continuation="continues"><listitem><para/></listitem></orderedlist> </entry>
+            <entry>Configure the system as prompted.</entry>
+          </row>
+          <row>
+            <entry><orderedlist continuation="continues"><listitem><para/></listitem></orderedlist> </entry>
+            <entry><para>Type <emphasis role="bold">simp bootstrap</emphasis></para>
+              <para><emphasis role="bold">NOTE</emphasis>: If progress bars are of equal length and the bootstrap finishes quickly,
+               a problem has occured. This is most likely due to an error in SIMP configuration. Refer to the previous step and
+               make sure that all configuration options are correct.</para></entry>
+          </row>
+           <row>
+            <entry><orderedlist continuation="continues"><listitem><para/></listitem></orderedlist> </entry>
+            <entry>Type <emphasis role="bold">reboot</emphasis></entry>
+          </row>
+        </tbody>
+      </tgroup>
+    </table>
+  </section>
+
+<!--New section for SIMP Post Install-->
+
+<section id="sect-ig-Post_SIMP_Server">
+    <title>Performing Post-installation Setup on the SIMP Server</title>
+    <para>
+      The following table outlines the SIMP post-installation procedures.
+    </para>
+    <table frame="all">
+      <title>SIMP Post-Installation Procedure</title>
+      <tgroup cols="2" align="left" colsep="1" rowsep="1">
+        <colspec colnum="1" colname="c1" colwidth="*"/>
+        <colspec colnum="2" colname="c2" colwidth="6*"/>
+        <thead>
+          <row>
+            <entry>Step</entry>
+            <entry>Process/Action</entry>
+          </row>
+        </thead>
+        <tbody>
+
+          <row>
+            <entry><orderedlist><listitem><para/></listitem></orderedlist> </entry>
+            <entry>Log on as <emphasis role="italic">root</emphasis></entry>
+          </row>
+
+          <row>
+             <entry><orderedlist continuation="continues"><listitem><para/></listitem></orderedlist> </entry>
+             <entry>Run puppet for the first time. Errors will appear for DHCP. These can be safely ingored at this stage. Type:
+             <para><emphasis role="bold">puppet agent -t</emphasis></para>
+             </entry>
+          </row>
+
+          <row>
+            <entry><orderedlist continuation="continues"><listitem><para/></listitem></orderedlist> </entry>
+            <entry>Copy CentOS &RHEL_MAJOR_MINOR_VERSION; ISO(s) to the server and unpack using the unpack_dvd utility. This creates a new tree under /var/www/yum/CentOS. Execute:
+            <para><emphasis role="bold">unpack_dvd CentOS-&RHEL_MAJOR_MINOR_VERSION;-<emphasis role="italic">####</emphasis>-x86_64-Everything.iso</emphasis></para>
+            </entry>
+          </row>
+
+          <row>
+            <entry><orderedlist continuation="continues"><listitem><para/></listitem></orderedlist> </entry>
+            <entry>Update your system using yum. The updates applied will be dependent on what ISO you initially used. Execute:
+            <para><emphasis role="bold">yum clean all; yum makecache</emphasis></para>
+            </entry>
+          </row>
+
+          <row>
+             <entry><orderedlist continuation="continues"><listitem><para/></listitem></orderedlist> </entry>
+             <entry>Run puppet. Ignore the same DHCP errors.
+             <para><emphasis role="bold">puppet agent -t</emphasis></para>
+             </entry>
+          </row>
+
+           <row>
+            <entry><orderedlist continuation="continues"><listitem><para/></listitem></orderedlist> </entry>
+            <entry>Type <emphasis role="bold">reboot</emphasis></entry>
+          </row>
+
+        </tbody>
+      </tgroup>
+    </table>
+  </section>
+</chapter>

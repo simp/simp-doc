@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE chapter [
+<!ENTITY % BOOK_ENTITIES SYSTEM "../SIMP_Documentation.ent">
+%BOOK_ENTITIES;
+]>
+
+<chapter id="ch-ug-SIMP_Introduction">
+  <chapterinfo>
+    <title id="ch-ug-SIMP_Introduction-title">SIMP Introduction</title>
+    <affiliation>
+      <orgname>SIMP Team</orgname>
+    </affiliation>
+    <keywordset>
+      <keyword>SIMP</keyword>
+      <keyword>Security</keyword>
+      <keyword>Secure</keyword>
+      <keyword>Accredited</keyword>
+      <keyword>Framework</keyword>
+      <keyword>Puppet</keyword>
+    </keywordset>
+  </chapterinfo>
+  <title>Introduction</title>
+  <para>This guide will walk a user through the process of managing a
+      <xref linkend="ug-glossary-simp-desc"
+            endterm="ug-simp-term" />
+      system. This system includes, at a minimum, a SIMP server
+      with properly configured networking information and a working Puppet server.
+
+      Additionally, this document outlines the process of managing clients and users
+      associated with the SIMP system.</para>
+   <section id="sect-ug-level_of_knowledge">
+    <title>Level of Knowledge</title>
+    <para>
+      SIMP is designed for use by system administrators or users with a strong
+      background using Linux operating systems. The core applications that make
+      up SIMP and require prerequisite knowledge are:
+      </para>
+      <para>
+      <itemizedlist mark="bullet">
+        <listitem><para><xref linkend="ug-glossary-puppet-desc"
+            endterm="ug-puppet-term" /> - 2.7.13 or later</para></listitem>
+        <listitem><para><xref linkend="ug-glossary-dns-desc"
+            endterm="ug-dns-term" /> - BIND 9</para></listitem>
+        <listitem><para><xref linkend="ug-glossary-dhcp-desc"
+            endterm="ug-dhcp-term" /> - Internet Systems Consortium (ISC) DHCP</para></listitem>
+        <listitem><para><xref linkend="ug-glossary-ldap-desc"
+            endterm="ug-ldap-term" /> - OpenLDAP</para></listitem>
+        <listitem><para>RedHat Kickstart (including all tools behind it) - <xref linkend="ug-glossary-tftp-desc"
+            endterm="ug-tftp-term" />, PXELinux, etc.</para></listitem>
+        <listitem><para>Apache</para></listitem>
+        <listitem><para><xref linkend="ug-glossary-yum-desc"
+            endterm="ug-yum-term" /></para></listitem>
+        <listitem><para>Rsyslog Version 3</para></listitem>
+        <listitem><para><xref linkend="ug-glossary-iptables-desc"
+            endterm="ug-iptables-term" /> (Basic knowledge of the rules)</para></listitem>
+        <listitem><para>Auditd (Basic knowledge of the rules)</para></listitem>
+        <listitem><para><xref linkend="ug-glossary-aide-desc"
+            endterm="ug-aide-term" /> (Basic knowledge of the rules)</para></listitem>
+        <listitem><para>Basic X.509 Key Management</para></listitem>
+      </itemizedlist>
+    </para>
+    <para>
+      By itself, SIMP does as much initial setup and configuration of these tools
+      as possible. However, without at least some understanding, a user will be
+      unable to tailor a SIMP system to fit the desired environment. A general
+      understanding of how to control and manipulate these tools from the command
+      line interface (CLI) will be necessary, as SIMP does not come stock
+      with a graphical user interface (GUI).
+
+      Additionally, knowledge of scripting and
+      <xref linkend="ug-glossary-ruby-desc"
+            endterm="ug-ruby-term" /> programming will also help
+      to further customize a SIMP install. For example, in order to use
+      the advanced features of Puppet, some Ruby programming is required.
+    </para>
+  </section>
+   <section id="sect-ug-SIMP_defined">
+    <title>SIMP Defined</title>
+    <para>
+      SIMP is a continually managed minimal Linux framework compatible with
+      both <xref linkend="ug-glossary-rhel-desc"
+            endterm="ug-rhel-term" /> and
+           <xref linkend="ug-glossary-centos-desc"
+            endterm="ug-centos-term" />.
+
+      By maintaining and managing file-level and network configuration consistency,
+      SIMP addresses process degradation on an operating system level. SIMP uses
+      Puppet to provide multi-system consistency over time while augmenting the software
+      with tools like Capistrano for controlled application of one-time mass operations.
+    </para>
+  </section>
+</chapter>

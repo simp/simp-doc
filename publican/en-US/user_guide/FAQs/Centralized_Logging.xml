@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE section [
+<!ENTITY % BOOK_ENTITIES SYSTEM "../../../SIMP_Documentation.ent">
+%BOOK_ENTITIES;
+]>
+<section id="sect-ug-Centralized_Logging">
+  <title id="sect-ug-Centralized_Logging-title">Centralized Logging</title>
+  <para>
+    SIMP provides a pre-built set of classes within the
+    <emphasis role="italic">rsyslog</emphasis> module for
+    enabling centralized logging within the infrastructure.
+  </para>
+  <para>
+    After completing these steps, run Puppet on the server
+    and clients, or wait until after the next run to see logs
+    start to flow.
+  </para>
+  <section id="sect-ug-Centralized_Logging-Server">
+    <title>Enable the Server</title>
+    <para>
+     To enable the pre-built log server, add the following
+     example code to the designated logging node.
+    </para>
+    <example>
+      <title>Code to Enable the Server Logging</title>
+      <indexterm>
+        <primary>Source</primary>
+        <secondary>Code to Enable the Server Logging</secondary>
+      </indexterm>
+      <indexterm>
+        <primary>logging, server</primary>
+        <seealso>Examples</seealso>
+      </indexterm>
+      <programlisting language="Ruby">
+      classes :
+        - 'simp::rsyslog::stock'
+      </programlisting>
+    </example>
+  </section>
+  <section id="sect-ug-Centralized_Logging-Clients">
+    <title>Enable the Clients</title>
+    <para>
+      To have clients send data to the server, make the following
+      changes to the <emphasis role="italic">/etc/puppet/hieradata/simp_def.yaml
+      </emphasis> file.
+    </para>
+    <example>
+      <title>Code to Enable the Client Logging</title>
+      <indexterm>
+        <primary>Source</primary>
+        <secondary>Code to Enable the Client Logging</secondary>
+      </indexterm>
+      <indexterm>
+        <primary>logging, client</primary>
+        <seealso>Examples</seealso>
+      </indexterm>
+      <programlisting language="Ruby">
+      log_server="fqdn.of.your.log.server"
+      </programlisting>
+    </example>
+  </section>
+</section>

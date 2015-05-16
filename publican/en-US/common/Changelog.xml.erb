@@ -1,0 +1,30 @@
+<?xml version='1.0' encoding='utf-8' ?>
+<!DOCTYPE appendix PUBLIC "-//OASIS//DTD DocBook XML V4.5//EN" "http://www.oasis-open.org/docbook/xml/4.5/docbookx.dtd" [
+<!ENTITY % BOOK_ENTITIES SYSTEM "SIMP_Documentation.ent">
+%BOOK_ENTITIES;
+]>
+<%
+  # Turn the text into something Docbook-friendly.
+  t_changelog_out = '<literallayout>'
+  t_changelog_out << changelog_txt
+  t_changelog_out << "</literallayout>\n"
+-%>
+<!--<appendix id="appe-simp_docs-Changelog">-->
+<appendix>
+  <title>Changelog</title>
+  <simpara>
+    <revhistory>
+      <revision>
+        <revnumber><%= doc_product_number[:version] %>-<%= doc_product_number[:release] %></revnumber>
+        <date><%= Time.now.strftime("%a %b %d %Y") %></date>
+        <author>
+          <firstname>SIMP</firstname>
+          <surname>Team</surname>
+        </author>
+        <revdescription>
+<%= t_changelog_out %>
+        </revdescription>
+      </revision>
+    </revhistory>
+  </simpara>
+</appendix>

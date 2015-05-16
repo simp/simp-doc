@@ -1,0 +1,4 @@
+dn: cn=<groupname>,ou=Group,dc=your,dc=domain
+changetype: modify
+delete: memberUid
+memberUid: <username>

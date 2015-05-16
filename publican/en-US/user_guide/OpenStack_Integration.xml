@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE chapter [
+<!ENTITY % BOOK_ENTITIES SYSTEM "../SIMP_Documentation.ent">
+%BOOK_ENTITIES;
+]>
+<chapter id="ch-os-OpenStack_Integration">
+  <chapterinfo>
+    <title id="ch-os-OpenStack_Integration-title">OpenStack Integration</title>
+    <affiliation>
+      <orgname>SIMP Team</orgname>
+    </affiliation>
+    <keywordset>
+      <keyword>OpenStack In SIMP - IceHouse</keyword>
+      <keyword>Deployment</keyword>
+    </keywordset>
+    <itermset>
+      <indexterm>
+        <primary>OpenStack In SIMP - IceHouse</primary>
+      </indexterm>
+      <indexterm>
+        <primary>Deployment</primary>
+      </indexterm>
+    </itermset>
+  </chapterinfo>
+  <title>OpenStack Integration</title>
+  <para>
+    This chapter explains how to integrate OpenStack IceHouse in the SIMP environment.
+  </para>
+  <section>
+    <title>OpenStack In SIMP - IceHouse</title>
+      <para>
+        OpenStack is a collection of IaaS cloud computing services aimed at creating
+        a free and open source platform for cloud development and deployment.  It is
+        designed in a modular fasion, encompassing the following components:
+      </para>
+      <para>
+        <itemizedlist mark="bullet">
+          <listitem><para><emphasis role="bold">Cinder </emphasis>Block Storage Service</para></listitem>
+          <listitem><para><emphasis role="bold">Glance </emphasis>VM Image Service</para></listitem>
+          <listitem><para><emphasis role="bold">Keystone </emphasis>Identity Service</para></listitem>
+          <listitem><para><emphasis role="bold">Nova </emphasis>Compute Service</para></listitem>
+          <listitem><para><emphasis role="bold">Horizon </emphasis>Dashboard Service</para></listitem>
+          <listitem><para><emphasis role="bold">Neutron </emphasis>Networking Service</para></listitem>
+          <listitem><para><emphasis role="bold">Swift </emphasis>Object Storage Service</para></listitem>
+          <listitem><para><emphasis role="bold">Ceilometer </emphasis>Metrics</para></listitem>
+          <listitem><para><emphasis role="bold">Heat </emphasis>Templating</para></listitem>
+        </itemizedlist>
+      </para>
+      <para>
+        Integration of OpenStack into SIMP provides an easily scalable, secture cloud
+        infrastructure for the end user.  Currently, SIMP supports OpenStack IceHouse for 
+        CentOS 6.5, with the exception of Swift.
+      </para>
+      <para>
+       Each OpenStack module has been encapsulated into SIMP as a Puppet module, for
+       rapid deployment.  The following modules have been integrated into SIMP for
+       OpenStack support:<emphasis role="bold"> Puppetlabs Apache, Cinder, Glance, INIFile, Keystone,
+       MYSQL, Nova, Qpid, Horizon, Memcached, OpenVSwitch, Heat, Ceilometer, Neutron, and OpenStack.</emphasis>
+      </para>
+  </section>
+  <section>
+    <title>Deployment</title>
+      <para>
+        The premise of OpenStack deployment is to create a matrix of control and compute
+        nodes.  The control nodes retain all identity, network, database, and
+        communication services; compute nodes run virtualization services.
+      </para>
+      <para>
+        Each OpenStack SIMP puppet module provides, for itself, the necessary configuration
+        and security required to run inside SIMP.  All OpenStack modules are abstracted
+        inta a single module, called 'openstack'.  This module contains pre-loaded
+        configurations for OpenStack deployment, including the framework for basic control
+        and compute nodes.
+      </para>
+      <para>
+        Please note that each OpenStack puppet module (keystone, glance, cinder, nova, etc.)
+        can run independent of the supplied 'openstack' module and manifests.  That
+        means you, the end user, can opt to use the example manifests directly or not
+        at all.  Create your own manifests for specific site deployments.
+      </para>
+      <para>
+        To deploy, you must install the pupmod-puppetlabs-openstack module (which will chain-install all
+        dependencies).  /etc/puppet/modules/openstack/simp has example hieradata yaml files for compute
+        and control nodes.
+      </para>
+  </section>
+</chapter>

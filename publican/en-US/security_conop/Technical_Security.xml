@@ -1,0 +1,826 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!-- This document was created with Syntext Serna Free. --><!DOCTYPE chapter [
+<!ENTITY % BOOK_ENTITIES SYSTEM "../SIMP_Documentation.ent">
+%BOOK_ENTITIES;]>
+<chapter id="ch-sc-Technical_Security">
+  <chapterinfo>
+    <title id="ch-sc-Technical_Security-title">Technical Security</title>
+    <affiliation>
+      <orgname>SIMP Team</orgname>
+    </affiliation>
+    <keywordset>
+      <keyword>SIMP</keyword>
+      <keyword>Security</keyword>
+      <keyword>Secure</keyword>
+      <keyword>Framework</keyword>
+      <keyword>Puppet</keyword>
+    </keywordset>
+  </chapterinfo>
+  <title>Technical Security</title>
+  <para>
+   This chapter contains SIMP security concepts that are related
+   to the technical security controls described in
+   <emphasis role="italic">NIST 800-53</emphasis>.
+  </para>
+  <section id="sect-sc-IA">
+    <title>Identification and Authentication</title>
+    <para>
+     This section addresses the identification and authentication of
+     of users and devices.
+    </para>
+    <section id="sect-sc-User_IA">
+      <title>User Identification and Authentication</title>
+      <para>
+       Identification and authentication of system and service
+       users can occur at the system level or globally in the SIMP
+       architecture. While local accounts and groups can be created
+       manually, the SIMP team suggests adding users via the
+       <emphasis role="italic">/etc/puppet/localusers</emphasis>
+       file or by using the native Puppet user and group types. System
+       users can authenticate their access using Secure Shell (SSH) keys
+       or passwords. For more centralized control, identify and
+       authenticate users by using the Lightweight Directory Access
+       Protocol (LDAP). [IA-2]
+      </para>
+      <para>
+       The SIMP team recommends using LDAP as the primary source for
+       user management and provides a functional default OpenLDAP
+       configuration for this purpose. LDAP and Pluggable Authentication
+       Modules (PAM) work together closely and, with the default SIMP
+       configuration, the PAM settings are enforced on top of the LDAP
+       settings for two layers of control. Due to this partnership, items such as
+       account lockouts may need to be reset on both the local system and
+       the LDAP server. If the suggested settings in the SIMP-provided
+       default Lightweight Directory Interchange Formats (LDIF) are not
+       used, implementations must ensure that security is maintained through
+       manual procedures. Use of group accounts for users is strongly
+       discouraged. System services may need to have accounts, but all of
+       these should be managed by Puppet using the user and group native
+       types. [IA-2(5)].
+      </para>
+    </section>
+    <section id="sect-sc-Device_IA">
+      <title>Device Identification and Authentication</title>
+      <para>
+       Devices are identified by a Media Access Control (MAC) address prior
+       to receiving an IP address via the Dynamic Host Configuration Protocol
+       (DHCP). In the default SIMP architecture, IP addresses are fixed
+       mappings to their associated MAC address (i.e., not assigned dynamically).
+       There is no authentication for the binding of MAC addresses to IP
+       addresses due to the nature of the DHCP protocol.
+      </para>
+      <para>
+       Device authentication occurs through the mapping of the MAC to the IP through
+       the internally controlled DHCP and the mapping of the IP to the host name
+       through the internally controlled Domain Name System (DNS) service for each
+       individual Puppet client. After kickstart, each client system generates an
+       internal cryptographic identifier and communicates that information with the
+       Puppet server to be approved by an administrator at a later time. All further
+       communication between the Puppet server and the clients over the Puppet protocol
+       is encrypted subsequently and authenticated with this identifier. Automatic
+       approval can be set up in tightly controlled environments; however, this option
+       is not suggested for open environments. [IA-3, IA-3(3)]
+      </para>
+    </section>
+  </section>
+  <section id="sect-sc-Identifier_Management">
+    <title>Identifier Management</title>
+    <para>
+     Managing user identifiers (also known as user names) involves administrative
+     procedures that are unique for each implementation. Disabling unused
+     local accounts is the only control that SIMP can enforce technologically.
+     In this case, if an account has an expired password that has not been changed
+     35 days after expiration, the account will be disabled. If a user does not
+     have a password (e.g., he or she only authenticates with SSH keys), then there
+     is no inherent technological mechanism for enforcement due to the nature of
+     the software. [IA-4(e)]
+    </para>
+  </section>
+  <section id="sect-sc-Authenticator_Management">
+    <title>Authenticator Management</title>
+    <para>
+     Authenticators for users are passwords and/or SSH keys; the management
+     of each is implementation specific. SSH keys do not expire; therefore,
+     implementations must provide a procedure for removing invalid keys.
+     Removing public keys from LDAP is one practical solution.
+    </para>
+    <para>
+     When using passwords, local and LDAP passwords provided for users should
+     be set to change at first log on. This is the default in the SIMP-provided
+     LDIFs. Once a user attempts to change a password, the settings in PAM and
+     LDAP enforce complexity requirements. By default, SIMP requires 14-character
+     passwords with at least one character from three of the four designated categories
+     (i.e., upper case letters, lower case letters, numbers, or special characters),
+     and no more than three consecutive characters from each category. [IA-5, IA-5(1),
+     IA-5(4)] Password ageing and history is enforced through a combination of
+     PAM and LDAP. By default, the previous 24 passwords cannot be reused.
+     [IA-5(1)(e)]
+    </para>
+    <para>
+     There are a number of default passwords in SIMP that are required for
+     installation. Each implementation requires the user to change the default
+     passwords and protect the new passwords. In addition, there are embedded
+     passwords within the SIMP system that are used due to a lack of software-supported
+     alternatives.
+    </para>
+  </section>
+  <section id="sect-sc-Access_Control">
+    <title>Access Control</title>
+    <para>
+     This section describes the various levels of access control, including
+     account management, access enforcement, information flow enforcement,
+     separation of duties, least privilege, session controls, permitted actions
+     without identification and authentication, security attributes, and remote access.
+    </para>
+    <section id="sect-sc-Account_Management">
+      <title>Account Management</title>
+      <para>
+       Account management procedures should be created and maintained for each
+       implementation of SIMP. The procedures should include the information
+       listed in <emphasis role="italic">NIST 800-53</emphasis> control AC-2. SIMP
+       has the mechanisms in place to enforce most account management policies.
+       The mechanisms for account management have several default settings including:
+      </para>
+      <itemizedlist mark="bullet">
+        <listitem>
+          <para>
+           Central account management using OpenLDAP. [AC-2(1)]
+          </para>
+        </listitem>
+        <listitem>
+          <para>
+           Password expiration. Local accounts expire 35 days after password
+           expiration. [AC-2(3)]LDAP accounts do not expire automatically due to inactivity;
+           implementations should audit LDAP accounts regularly.
+          </para>
+        </listitem>
+        <listitem>
+          <para>
+           Auditing of administrative actions to capture local account creation
+           and modifications to LDAP accounts is done via the
+           <emphasis role="italic">/var/log/slapd_audit.log</emphasis> file for ldap
+           accounts and <emphasis role="italic">/var/log/audit.log</emphasis> for local accounts.
+           [AC-2(4)]
+          </para>
+        </listitem>
+        <listitem>
+          <para>
+           Shell session timeouts after 15 minutes of inactivity.
+           [AC-2(5)] This can be circumvented by running a command that opens an
+           endless pipe such as <emphasis role="bold">/bin/cat</emphasis>. However,
+           this command cannot be enforced more heavily due to the high likelihood of
+           breaking system applications. If the optional gnome module is used,
+           the GNOME screen saver will lock the screen after 15 minutes of inactivity.
+          </para>
+        </listitem>
+        <listitem>
+          <para>
+           Assignment of users into groups locally or centrally via LDAP. [AC-2(7)]
+           By default, SIMP will have an administrators groups that has the ability
+           to run <emphasis role="bold">sudosh</emphasis>. Implementations should
+           further define administrators or user groups and limit them with the Puppet
+           <emphasis role="italic">sudo</emphasis> class.
+          </para>
+        </listitem>
+      </itemizedlist>
+    </section>
+    <section id="sect-sc-Access_Enforcement">
+      <title>Access Enforcement</title>
+      <para>
+       SIMP uses the implementation of Discretionary Access Control (DAC) that
+       is native to Linux. Specific file permissions have been assigned based
+       on published security guidance for Red Hat, CentOS, and and UNIX.
+      </para>
+      <para>
+       Default permissions on files created by users are enforced with user file
+       access mask settings (using the <emphasis role="bold">umask</emphasis> command)
+       that allow only the owner to read and write to the file. Implementations may
+       further extend the access control in UNIX by restricting access to application
+       files or using the file Access Control List (ACL) commands
+       <emphasis role="bold">getfacl</emphasis> and <emphasis role="bold">setacl</emphasis>.
+       Users of SIMP should not change file permissions on operating system files as
+       it may decrease the overall security of the system. If a group needs access to
+       a particular file or directory, use the <emphasis role="bold">setfacl</emphasis>
+       command to allow the necessary access without lessening the permissions on the
+       system. [AC-3]
+      </para>
+    </section>
+    <section id="sect-sc-Flow_Enforcement">
+      <title>Information Flow Enforcement</title>
+      <para>
+       IPtables on each SIMP system is controlled by the IPtables Puppet module.
+       When developing a new module, the IPtables rules needed for an application
+       should be included with the module by calling the appropriate methods from
+       the IPtables module. The end result should be a running IPtables rule set
+       that includes the default SIMP rules and any rules needed for applications.
+       The default communications allowed are included in
+       <xref linkend="tb_sg_default_server_ports"/>
+       and <xref linkend="tb_sg_default_client_ports"/>. [AC-4]
+      </para>
+      <para>
+        <table frame="all" pgwide="1" id="tb_sg_default_server_ports">
+          <title>Default Server Ports</title>
+          <tgroup cols="6">
+            <colspec colname="c1" colwidth="1*"/>
+            <colspec colname="c2" colwidth="1*"/>
+            <colspec colname="c3" colwidth="1*"/>
+            <colspec colname="c4" colwidth="1*"/>
+            <colspec colname="c5" colwidth="1*"/>
+            <colspec colname="c6" colwidth="3*"/>
+            <thead>
+              <row>
+                <entry>Application</entry>
+                <entry>Direction</entry>
+                <entry>Protocol</entry>
+                <entry>Transport</entry>
+                <entry>Ports</entry>
+                <entry>Comment</entry>
+              </row>
+            </thead>
+            <tbody>
+              <row>
+                <entry>Puppet</entry>
+                <entry>Localhost</entry>
+                <entry>HTTP</entry>
+                <entry>TCP</entry>
+                <entry>8140</entry>
+                <entry>The port upon which the Puppet master listens
+                for client connections via Apache</entry>
+              </row>
+              <row>
+                <entry>Puppet CA</entry>
+                <entry>In</entry>
+                <entry>HTTPS</entry>
+                <entry>TCP</entry>
+                <entry>8141</entry>
+                <entry>This is used to ensure that Apache can verify all certificates
+                from external systems properly prior to allowing access to Puppet.</entry>
+              </row>
+              <row>
+                <entry>Apache/YUM</entry>
+                <entry>In</entry>
+                <entry>HTTP</entry>
+                <entry>TCP</entry>
+                <entry>80</entry>
+                <entry>This is used for YUM and is unencrypted, since YUM will not
+                work otherwise.</entry>
+              </row>
+              <row>
+                <entry>DHCPD</entry>
+                <entry>In</entry>
+                <entry>DHCP/BOOTP</entry>
+                <entry>TCP/UDP</entry>
+                <entry>546, 547</entry>
+                <entry>DHCP pooling is disabled by default and should only be used
+                if the implementation requires the use of this protocol.</entry>
+              </row>
+              <row>
+                <entry>TFTP</entry>
+                <entry>In</entry>
+                <entry>TFTP</entry>
+                <entry>TCP/UDP</entry>
+                <entry>69</entry>
+                <entry>This is used for kickstart. It could also be used to update
+                network devices. TFTP does not support encryption.</entry>
+              </row>
+              <row>
+                <entry>rsyslog</entry>
+                <entry>Out</entry>
+                <entry>syslog</entry>
+                <entry>TCP/UDP</entry>
+                <entry>6514</entry>
+                <entry>This is encrypted when communicating with a SIMP syslog server
+                (not installed by default).</entry>
+              </row>
+              <row>
+                <entry>named</entry>
+                <entry>In/Out</entry>
+                <entry>DNS</entry>
+                <entry>TCP/UDP</entry>
+                <entry>53</entry>
+                <entry>Inbound connections happen to the locally managed hosts. Outbound
+                connections happen to other domains per the normal operations of DNS.</entry>
+              </row>
+              <row>
+                <entry>NTPD</entry>
+                <entry>Out</entry>
+                <entry>NTP</entry>
+                <entry>TCP/UDP</entry>
+                <entry>123</entry>
+                <entry>Only connects to an external time source by default.</entry>
+              </row>
+              <row>
+                <entry>SSHD</entry>
+                <entry>In</entry>
+                <entry>SSH</entry>
+                <entry>TCP</entry>
+                <entry>22</entry>
+                <entry>SSH is always allowed from any source IP by default.</entry>
+              </row>
+              <row>
+                <entry>stunnel</entry>
+                <entry>In</entry>
+                <entry>TLS</entry>
+                <entry>TCP</entry>
+                <entry>8730</entry>
+                <entry>Stunnel is a protected connection for rsyncing configuration
+                files to Puppet clients.</entry>
+              </row>
+              <row>
+                <entry>rsync</entry>
+                <entry>Localhost</entry>
+                <entry>RSYNC</entry>
+                <entry>TCP</entry>
+                <entry>873</entry>
+                <entry>This accepts connections to the localhost and forwards through
+                Stunnel.</entry>
+              </row>
+              <row>
+                <entry>LDAP</entry>
+                <entry>In</entry>
+                <entry>LDAP</entry>
+                <entry>TCP</entry>
+                <entry>389</entry>
+                <entry>Connections are protected by bi-directional, authenticated
+                encryption.</entry>
+              </row>
+              <row>
+                <entry>LDAPS</entry>
+                <entry>In</entry>
+                <entry>LDAPS</entry>
+                <entry>TCP</entry>
+                <entry>636</entry>
+                <entry>Used for LDAP over SSL.</entry>
+              </row>
+            </tbody>
+          </tgroup>
+        </table>
+      </para>
+      <para>
+        <table frame="all" id="tb_sg_default_client_ports">
+          <title>Default Client Ports</title>
+          <tgroup cols="6">
+            <colspec colname="c1" colwidth="1*"/>
+            <colspec colname="c2" colwidth="1*"/>
+            <colspec colname="c3" colwidth="1*"/>
+            <colspec colname="c4" colwidth="1*"/>
+            <colspec colname="c5" colwidth="1*"/>
+            <colspec colname="c6" colwidth="3*"/>
+            <thead>
+              <row>
+                <entry>Application</entry>
+                <entry>Direction</entry>
+                <entry>Protocol</entry>
+                <entry>Transport</entry>
+                <entry>Ports</entry>
+                <entry>Comment</entry>
+              </row>
+            </thead>
+            <tbody>
+              <row>
+                <entry>Puppet</entry>
+                <entry>Out</entry>
+                <entry>HTTPS</entry>
+                <entry>TCP</entry>
+                <entry>8140</entry>
+                <entry>Communications to the Puppet server.</entry>
+              </row>
+              <row>
+                <entry>rsyslog</entry>
+                <entry>Out</entry>
+                <entry>syslog</entry>
+                <entry>TCP/UDP</entry>
+                <entry>6514</entry>
+                <entry>This is encrypted when communicating with a SIMP syslog server.</entry>
+              </row>
+              <row>
+                <entry>DNS Client</entry>
+                <entry>Out</entry>
+                <entry>DNS</entry>
+                <entry>TCP/UDP</entry>
+                <entry>53</entry>
+                <entry>Normal name resolution.</entry>
+              </row>
+              <row>
+                <entry>NTPD</entry>
+                <entry>Out</entry>
+                <entry>NTP</entry>
+                <entry>TCP/UDP</entry>
+                <entry>123</entry>
+                <entry>Only connects to an external time source by default.</entry>
+              </row>
+              <row>
+                <entry>SSHD</entry>
+                <entry>In</entry>
+                <entry>SSH</entry>
+                <entry>TCP</entry>
+                <entry>22</entry>
+                <entry>SSH is allowed from any source IP by default.</entry>
+              </row>
+              <row>
+                <entry>LDAP</entry>
+                <entry>Out</entry>
+                <entry>LDAP</entry>
+                <entry>TCP</entry>
+                <entry>389</entry>
+                <entry>Connections are protected by bi-directional authenticated encryption.</entry>
+              </row>
+            </tbody>
+          </tgroup>
+        </table>
+      </para>
+    </section>
+    <section id="sect-sc-Separation_Duties">
+      <title>Separation of Duties</title>
+      <para>
+       SIMP enforces separation of duties using account groups. Groups are
+       created with each implementation to separate roles or duties properly.
+       The SIMP team recommends that this management be done using posixGroups
+       in LDAP for full operating System support. [AC-5]
+      </para>
+    </section>
+    <section id="sect-sc-Least_Privilege">
+      <title>Least Privilege</title>
+      <para>
+       SIMP does not allow <emphasis role="italic">root</emphasis> to directly
+       SSH into a system. The <emphasis role="italic">root</emphasis> user must
+       be at a console (or at a virtual instance of the physical console) to log on.
+       Otherwise, users must log on as themselves and perform privileged commands using
+       <emphasis role="bold">sudo</emphasis> or <emphasis role="bold">sudosh</emphasis>.
+       [AC-6]
+      </para>
+      <para>
+       <emphasis role="italic">NIST 800-53</emphasis> least privilege security
+       controls give people access to objects only as needed. SIMP provides only the
+       needed software, services, and ports to allow the system to be functional and
+       scalable. The system then relies on a given implementation to perform proper
+       account management and user role assignments. [AC-6]
+      </para>
+    </section>
+    <section id="sect-sc-Session_Controls">
+      <title>Session Controls</title>
+      <para>
+       SIMP provides a number of security features for sessions. These features
+       include:
+      </para>
+      <para>
+      <itemizedlist mark="bullet">
+          <listitem>
+            <para>
+             Accounts are locked after five invalid log on attempts over a
+             15-minute period. The account is then locked for 15 minutes.
+             No administrator action is required to unlock an account. [AC-7]
+            </para>
+          </listitem>
+          <listitem>
+            <para>
+             System banners are presented to a user both before and after logging on.
+             The default banner should be customized for each implementation.
+             [AC-8]
+            </para>
+          </listitem>
+          <listitem>
+            <para>
+             After a successful log on, the date, time, and source of the last
+             log on is presented to the user. The number of failed log on attempts
+             since the last log on is also provided. [AC-9 and AC-9(1)]
+            </para>
+          </listitem>
+          <listitem>
+            <para>
+             A limit of 10 concurrent SSH sessions are allowed per user. This can
+             be further limited if an implementation decides it is set too high.
+             Given the way SSH is used in operational settings, this default value
+             is reasonable. [AC-10]
+            </para>
+          </listitem>
+          <listitem>
+            <para>
+             Session lock only applies if the <emphasis role="italic">windowmanager::gnome</emphasis>
+             module is used. Sessions lock automatically after 15 minutes of
+             inactivity. Users must authenticate their access with valid credentials
+             to reestablish a session. [AC-11]
+            </para>
+          </listitem>
+        </itemizedlist>
+      </para>
+    </section>
+    <section id="sect-sc-Actions_NO_IA">
+      <title>Permitted Actions without Identification and Authentication</title>
+      <para>
+       SIMP has a number of applications that do not require both identification
+       and authentication. These services are listed below along with an explanation
+       of why these aspects are not required. Implementations should include any
+       additional services that do require identification and/or authentication. [AC-14]
+      </para>
+      <para>
+        <table frame="all">
+          <title>Actions Without Identification and Authentication</title>
+          <tgroup cols="2">
+            <colspec colname="c1" colwidth="*"/>
+            <colspec colname="c2" colwidth="3*"/>
+            <thead>
+              <row>
+                <entry>Service/Application</entry>
+                <entry>Rationale</entry>
+              </row>
+            </thead>
+            <tbody>
+              <row>
+                <entry>TFTP</entry>
+                <entry>TFTP is a simple file transfer application that, in the SIMP
+                environment, does not allow for writing to the files being accessed.
+                This application is primarily used to support the Preboot Execution
+                Environment (PXE) booting of hosts and the updating of network devices.
+                There is no option to authenticate systems at this level by protocol
+                design. TFTP is limited to a user's local subnet using IPtables and
+                is enforced additionally with TCPWrappers.</entry>
+              </row>
+              <row>
+                <entry>DHCP</entry>
+                <entry>By default, system IP addresses are not pooled, but are rather
+                statically assigned to a client, which is identified by the MAC address.
+                DHCP is limited to the local subnet.</entry>
+              </row>
+              <row>
+                <entry>Apache/YUM</entry>
+                <entry>RPMs are stored in a directory for systems to use for both
+                kickstart and package updating. Sensitive information should never
+                be stored here. Apache/YUM is limited to the local subnet.</entry>
+              </row>
+              <row>
+                <entry>DNS</entry>
+                <entry>The DNS protocol does not require identification nor
+                authentication. DNS is limited to the local subnet.</entry>
+              </row>
+            </tbody>
+          </tgroup>
+        </table>
+      </para>
+    </section>
+    <section id="sect-sc-Security_Attributes ">
+      <title>Security Attributes</title>
+      <para>
+       SELinux is now available in SIMP.  SELinux is an implementation of mandatory access
+       control.  It can be set to enforcing mode during the SIMP configuration or turned
+       on at a later time.  All of the SIMP packaged modules have been designed to work
+       with SELinux set to enforcing.   [AC-16]
+      </para>
+    </section>
+    <section id="sect-sc-Remote_Access">
+      <title>Remote Access</title>
+      <para>
+       Remote access in SIMP is performed over SSH, specifically using the OpenSSH
+       software. OpenSSH provides both confidentiality and integrity of remote access
+       sessions. The SSH IPtables rules allow connections from any host. SSH relies
+       on other Linux mechanisms to provide identification and authentication of a
+       user. As discussed in the auditing section, user actions are audited with the
+       audit daemon and sudosh. [AC-17]
+      </para>
+    </section>
+  </section>
+  <section id="sect-sc-Comms_Protection">
+    <title>Systems and Communications Protection</title>
+    <para>
+     The following sections provide information regarding application partitioning,
+     shared resources, and various levels of protection for systems and communications.
+    </para>
+    <section id="sect-sc-User_App_Partitioning">
+      <title>User and Administration Application Separation (Application Partitioning)</title>
+      <para>
+       SIMP can be used in a variety of ways. The most common is a platform for
+       hosting other services or applications. In that case, there are only
+       administrative users present. Users with accounts will be considered as a type
+       of privileged user.
+      </para>
+      <para>
+       SIMP can also be used as a platform for workstations or general users
+       performing non-administrative activities. In both cases, general users with
+       accounts on an individual host are allowed access to the host using the
+       <emphasis role="italic">pam::access</emphasis> module, so long as
+       they have an account on the target host. No user may perform or have access
+       to administrative functions unless given sudo or sudosh privileges via Puppet.
+      </para>
+    </section>
+    <section id="sect-sc-Shared_Resources">
+      <title>Shared Resources</title>
+      <para>
+       There are several layers of access control that prevent the unauthorized
+       sharing of resources in SIMP. Account access, operating system DAC settings,
+       and the use of PKI collectively prevent resources from being shared in
+       ways that were not intended. [SC-4]
+      </para>
+    </section>
+    <section id="sect-sc-Denial_of_Service">
+      <title>Denial of Service Protection</title>
+      <para>
+       SIMP has limited ability to prevent or limit the effects of Denial of
+       Service (DoS) attacks. The primary measures in place are to drop
+       improperly formatted packets using IPtables and Kernel configurations such
+       as syncookies. [SC-5]
+      </para>
+    </section>
+    <section id="sect-sc-Boundary_Protection ">
+      <title>Boundary Protection</title>
+      <para>
+       SIMP does not provide boundary protection. [SC-7]
+      </para>
+    </section>
+    <section id="sect-sc-Transmission_Security ">
+      <title>Transmission Security</title>
+      <para>
+       SIMP traffic is protected with protocols that provide confidentiality and
+       integrity of data while in transit. The tables in
+       <xref linkend="sect-sc-Flow_Enforcement"/>
+       describe the protocols used to encrypt traffic and explain the protocols
+       that cannot be protected at the transmission layer. SSH, SSL, and TLS all
+       provide data transmission integrity and confidentiality. The software that
+       controls them on Red Hat and CentOS are OpenSSH and OpenSSL. The SIMP team
+       takes industry guidance into consideration when configuring these services.
+       For example, the list the cryptographic ciphers available is
+       limited to the highest ciphers that SIMP needs.  All others are removed.
+       [SC-8, SC-9, SC-23, SC-7]
+      </para>
+    </section>
+    <section id="sect-sc-SingleUser_Mode">
+      <title>Single User Mode</title>
+      <para>
+       SIMP systems have a password requirement for single user mode. In the event
+       maintenance needs to be performed at a system console, users must be in
+       possession of the <emphasis role="italic">root</emphasis> password before they
+       can be authenticated. Grub passwords are also set to prevent unauthorized
+       modifications to boot parameters. [SC-24]
+      </para>
+    </section>
+    <section id="sect-sc-PKI">
+      <title>PKI and Cryptography</title>
+      <para>
+       SIMP has two native certificate authorities. The first is known as Fake CA.
+       A local certificate authority is used to create properly formed server
+       certificates if an implementation does not have other means of
+       obtaining them. Many SIMP services require certificates; therefore, SIMP
+       provides this tool for testing or for situations where other certificates
+       are not available. The second certificate authority, Puppet CA, is built into
+       Puppet. Puppet creates, distributes, and manages certificates that are
+       specifically for Puppet. More information on the Puppet CA can be found in
+       the Puppet Labs
+       <ulink url="http://projects.puppetlabs.com/projects/1/wiki/certificates_and_security">
+       security documentation</ulink>. [SC-17, SC-13]
+      </para>
+      <warning>
+        <para>
+         Fake CA certificates should not be used in an operational setting.
+        </para>
+      </warning>
+    </section>
+    <section id="sect-sc-Mobile_Code">
+      <title>Mobile Code</title>
+      <para>
+       SIMP does not use mobile code; however, there are not any particular tools
+       that will prevent its use. [SC-18]
+      </para>
+    </section>
+    <section id="sect-sc-Information_at_Rest">
+      <title>Protection of Information at Rest</title>
+      <para>
+       There are no additional protections for information at rest beyond
+       operating system capabilities in SIMP. There are also no measures in place
+       to encrypt or sign data before transmission. Each implementation should
+       determine how to further protect information at rest. [SC-28]
+      </para>
+    </section>
+  </section>
+  <section id="sect-sc-Audit_Accountability">
+    <title>Audit and Accountability</title>
+    <para>This section discusses the content, storage, and protection of auditable
+    events.</para>
+    <section id="sect-sc-Auditable_Events">
+      <title>Auditable Events</title>
+      <para>
+       Auditd and rsyslog provide the foundation for SIMP auditing. Auditd performs
+       the majority of the security-related events; however, other Linux logs also
+       have security information in them, which are captured using rsyslog.
+      </para>
+      <para>
+       The default auditable events for SIMP were developed based on several industry
+       best practices including those from the SCAP Security Guide
+       and several government configuration guides. The suggested rules by those
+       guides were fine-tuned so the audit daemon would not fill logs with useless
+       records or reduce performance. These guides should be referenced for a detailed
+       explanation of why rules are applied. Additional justification can be found
+       in the comments of the SIMP audit rules found in the appendix of this guide. [AU-2]
+      </para>
+      <para>
+       The SIMP development team reviews every release of the major security guides for
+       updated auditable events suggestions. Each of those suggestions is reviewed
+       and applied if deemed applicable. [AU-2(3)] Privileged commands are audited as
+       part of the SIMP auditing configuration. This is accomplished by monitoring
+       <emphasis role="italic">sudo</emphasis> commands with auditd. Keystrokes for
+       administrators that use <emphasis role="bold">sudosh</emphasis> are also logged.
+       Each session can be replayed using <emphasis role="bold">sudosh-replay</emphasis>. [AU-2(4)]
+      </para>
+    </section>
+    <section id="sect-sc-Content_Audit_Records">
+      <title>Content of Audit Records</title>
+      <para>
+       Audit records capture the following information [AU-3]:
+      </para>
+      <itemizedlist mark="bullet">
+        <listitem>
+          <para>Date and Time</para>
+        </listitem>
+        <listitem>
+          <para>UID and GID of the user performing the action</para>
+        </listitem>
+        <listitem>
+          <para>Command</para>
+        </listitem>
+        <listitem>
+          <para>Event ID</para>
+        </listitem>
+        <listitem>
+          <para>Key</para>
+        </listitem>
+        <listitem>
+          <para>Node Hostname/IP Address</para>
+        </listitem>
+        <listitem>
+          <para>Login Session ID</para>
+        </listitem>
+        <listitem>
+          <para>Executable</para>
+        </listitem>
+      </itemizedlist>
+    </section>
+    <section id="sect-sc-Audit_Storage">
+      <title>Audit Storage</title>
+      <para>
+       Audit logs are stored locally on a separate partition in the
+       <emphasis role="italic">/var/log</emphasis> directory. The size of this
+       partition is configurable. Other default audit storage configurations include:
+      </para>
+      <itemizedlist mark="bullet">
+        <listitem>
+          <para>
+           A syslog log is written when the audit partition has 75MB free. (This
+           can be changed to e-mail, if e-mail infrastructure is in place.)
+           [AU-5(a), AU-5(1)]
+          </para>
+        </listitem>
+        <listitem>
+          <para>
+           The log file rotates once it reaches 30MB.
+          </para>
+        </listitem>
+      </itemizedlist>
+    </section>
+    <section id="sect-sc-Audit_Reduction">
+      <title>Audit Reduction and Response</title>
+      <para>
+       SIMP provides a means to capture the proper information for audit records
+       and stores them centrally. Each implementation must decide and document
+       how it reduces, analyzes, and responds to audit events. [AU-5]
+      </para>
+      <para>
+       Auditd, like all services in SIMP, is controlled by Puppet. Stopping the
+       service without disabling Puppet means the service will always be started
+       automatically during a Puppet run. The files that control the audit
+       configuration will also revert to their original state if changed manually
+       on a client node. In the event auditd fails, the system will continue to
+       operate. Several security guides have suggested that the system should shut
+       down if auditd fails for any reason. However, SIMP will not shut down, but
+       will provide an alert via syslog when this happens. [AU-5(1)]
+      </para>
+      <para>
+       SIMP also comes with an optional module for the Elasticsearch/Logstash/Kibana
+       (ELK) stack.  These three open source tools can be combined to parse, index,
+       and visualize logs.  There are also SIMP provided  dashboards for the
+       Kibana web interface.  Implementations can build their own dashboards to meet
+       local security or functional needs for log reduction and management. [AU-6]
+      </para>
+    </section>
+    <section id="sect-sc-Audit_Protection">
+      <title>Protection of Audit Information</title>
+      <para>
+       The primary means of protecting the audit logs is through the use of file
+       permissions. Audit records are stored in the <emphasis role="italic">/var/log</emphasis>
+       directory and can only be accessed by <emphasis role="italic">root</emphasis>.
+       Audit logs are rotated off daily if the implementation has not developed a way of
+       offloading the logs to another location where they can be backed up. Lastly, if
+       the <emphasis role="italic">rsyslog::stock::log_server</emphasis> module is implemented,
+       logs are transmitted to the log server over a TLS protected link.
+      </para>
+    </section>
+    <section id="sect-sc-Time_Sync">
+      <title>Time Synchronization</title>
+      <para>
+       Each SIMP client (including the Puppet Master) has NTPD enabled by default.
+       Part of the installation directs the clients to a time server. If no servers are
+       available, the SIMP clients can use the Puppet Master as the central time source.
+       Audit logs receive their time stamp from the local server&apos;s system clock;
+       therefore, the SIMP client must be connected to a central time source for time stamps
+       in audit logs to be accurate.
+      </para>
+    </section>
+  </section>
+</chapter>

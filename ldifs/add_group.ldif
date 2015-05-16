@@ -1,0 +1,6 @@
+dn: cn=<groupname>,ou=Group,dc=your,dc=domain
+objectClass: posixGroup
+objectClass: top
+cn: <groupname>
+gidNumber: <Unique GID number>
+description: "<Some useful group description>"

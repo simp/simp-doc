@@ -1,0 +1,7 @@
+# This also removes the user's associated group
+
+dn: cn=<username>,ou=Group,dc=your,dc=domain
+changeType: delete
+
+dn: uid=<username>,ou=People,dc=your,dc=domain
+changeType: delete
