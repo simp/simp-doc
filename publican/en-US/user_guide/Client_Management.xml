@@ -1,0 +1,470 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE chapter [
+<!ENTITY % BOOK_ENTITIES SYSTEM "../SIMP_Documentation.ent">
+%BOOK_ENTITIES;
+]>
+<chapter id="ch-ug-Client_Management">
+  <chapterinfo>
+    <title id="ch-ug-Client_Management-title">Client Management</title>
+    <affiliation>
+      <orgname>SIMP team</orgname>
+    </affiliation>
+    <keywordset>
+      <keyword>Installing SIMP client</keyword>
+      <keyword>Puppet Master Configuration</keyword>
+      <keyword>DHCP Configuration</keyword>
+      <keyword>DNS Configuration</keyword>
+      <keyword>PXE/TFTP Configuration</keyword>
+      <keyword>Kickstart Configuration</keyword>
+      <keyword>client Setup</keyword>
+    </keywordset>
+    <itermset>
+      <indexterm>
+        <primary>client</primary>
+        <secondary>install</secondary>
+      </indexterm>
+      <indexterm>
+        <primary>client</primary>
+        <secondary>setup</secondary>
+      </indexterm>
+      <indexterm>
+        <primary>client</primary>
+        <secondary>Puppet Master</secondary>
+      </indexterm>
+      <indexterm>
+        <primary>client</primary>
+        <secondary>DNS</secondary>
+      </indexterm>
+      <indexterm>
+        <primary>client</primary>
+        <secondary>DHCP</secondary>
+      </indexterm>
+      <indexterm>
+        <primary>client</primary>
+        <secondary>&gt;PXE/TFTP</secondary>
+      </indexterm>
+      <indexterm>
+        <primary>client</primary>
+        <secondary>Kickstart</secondary>
+      </indexterm>
+    </itermset>
+  </chapterinfo>
+  <title>Client Management</title>
+    <para>
+      This chapter provides guidance to install and configure SIMP clients
+      based on the standard SIMP system installed using the SIMP DVD.
+    </para>
+  <section id="sect-ug-Client_Management_Walkthrough-requirements">
+  <title>System Requirements</title>
+    <para>
+      Before installing clients, the system should consist of the following
+      minimum requirements:
+    </para>
+    <itemizedlist mark="bullet">
+      <listitem>
+        <para>Hardware/<xref linkend="ug-glossary-vm-desc"
+            endterm="ug-vm-term" />: Capable of running RHEL 6; 64-bit compatible</para>
+      </listitem>
+      <listitem>
+        <para>RAM: 512 MB</para>
+      </listitem>
+      <listitem>
+        <para>HDD: 5 GB</para>
+      </listitem>
+    </itemizedlist>
+  </section>
+  <section id="sect-ug-Client_Management_Walkthrough-puppetmaster">
+    <title>Configuring the Puppet Master</title>
+    <para>
+      Perform the following actions as <emphasis role="italic">root</emphasis> on the
+      Puppet Master system prior to attempting to install a client.
+    </para>
+  </section>
+  <section id="sect-ug-Client_Management_Walkthrough-DHCP">
+    <title>Configure DHCP</title>
+      <para>
+        The table below lists the steps to configure DHCP.
+      </para>
+    <table frame="all">
+      <title>DHCP Configuration Procedure</title>
+      <tgroup cols="2" align="left" colsep="1" rowsep="1">
+        <colspec colnum="1" colname="c1" colwidth="*"/>
+        <colspec colnum="2" colname="c2" colwidth="8*"/>
+        <thead>
+          <row>
+            <entry>Step</entry>
+            <entry>Process/Action</entry>
+          </row>
+        </thead>
+        <tbody>
+          <row>
+            <entry><orderedlist><listitem><para/></listitem></orderedlist></entry>
+            <entry>Log on as <emphasis role="italic">root</emphasis>.</entry>
+          </row>
+          <row>
+            <entry><orderedlist continuation="continues"><listitem><para/></listitem></orderedlist></entry>
+            <entry>
+              <para>Open the <emphasis role="italic">/srv/rsync/dhcpd/dhcpd.conf</emphasis>
+                file and edit it to suit the necessary environment.</para>
+              <para><emphasis role="bold">NOTE</emphasis>: Enter the hardware ethernet and
+                fixed-address for each client that will be kickstarted. An example dhcpd.conf is listed in the
+                Appendix, where 192.168.1.100 is the client targeted for PXE/provisioning. Be sure to substitute
+                in the actual values appropriate to your environment, including the ethernet address of
+                the target client.</para>
+            </entry>
+          </row>
+          <row>
+            <entry><orderedlist continuation="continues"><listitem><para/></listitem></orderedlist></entry>
+            <entry>Save and close the file.</entry>
+          </row>
+          <row>
+            <entry><orderedlist continuation="continues"><listitem><para/></listitem></orderedlist></entry>
+            <entry>Type <emphasis role="bold">puppet agent --test --tags dhcpd</emphasis>
+            on the Puppet Master to apply the changes.</entry>
+          </row>
+        </tbody>
+      </tgroup>
+    </table>
+  </section>
+  <section id="sect-ug-Client_Management_Walkthrough-DNS">
+    <title>Configure DNS</title>
+    <para>
+      Most static files are pulled over <emphasis role="italic">rsync</emphasis>
+      by Puppet in this implementation for network efficiency. Specific directories
+      of interest are noted in this section.
+    </para>
+    <para>
+      It is possible to use an existing DNS setup; however, the following
+      table lists the steps for a local setup.
+    </para>
+    <table frame="all">
+    <title>DNS Configuration Procedure</title>
+    <tgroup cols="2" align="left" colsep="1" rowsep="1">
+      <colspec colnum="1" colname="c1" colwidth="*"/>
+      <colspec colnum="2" colname="c2" colwidth="6*"/>
+      <thead>
+        <row>
+          <entry>Step</entry>
+          <entry>Process/Action</entry>
+        </row>
+      </thead>
+      <tbody>
+        <row>
+          <entry><orderedlist><listitem><para/></listitem></orderedlist></entry>
+          <entry>Type <emphasis role="bold">cd /srv/rsync/bind_dns</emphasis></entry>
+        </row>
+        <row>
+          <entry><orderedlist continuation="continues"><listitem><para/></listitem></orderedlist></entry>
+          <entry>
+            <para>Modify the <emphasis role="italic">named</emphasis> files to correctly
+              reflect the environment. At a minimum, the following files under
+              <emphasis role="italic">/srv/rsync/bind_dns/default</emphasis> should be
+              edited:</para>
+            <para>
+              <itemizedlist mark="bullet">
+                <listitem>
+                  <para><emphasis role="italic">named/etc/named.conf</emphasis></para>
+                </listitem>
+                <listitem>
+                  <para><emphasis role="italic">named/etc/zones/your.domain</emphasis></para>
+                </listitem>
+                <listitem>
+                  <para><emphasis role="italic">named/var/named/forward/your.domain.db</emphasis></para>
+                </listitem>
+                <listitem>
+                  <para><emphasis role="italic">named/var/named/reverse/0.0.10.db</emphasis></para>
+                </listitem>
+              </itemizedlist>
+            </para>
+            <para><emphasis role="bold">NOTE</emphasis>: For the <emphasis role="italic">named/var/named/forward/your.domain.db</emphasis>
+              and <emphasis role="italic">named/var/named/reverse/0.0.10.db</emphasis> files, add clients as needed. Make sure to rename both of these files to more appropriately match your system configuration.</para></entry>
+          </row>
+          <row>
+            <entry><orderedlist continuation="continues"><listitem><para/></listitem></orderedlist></entry>
+            <entry>At a minimum, review <emphasis role="bold">named/etc/named.conf</emphasis> and check/update the following:
+              <para>
+                <itemizedlist mark="bullet">
+                  <listitem>
+                    <para>Update the IP for allow-query and allow-recursion</para>
+                  </listitem>
+                  <listitem>
+                    <para>Delete any unnecessary zone stanzas (i.e. forwarding) if not necessary</para>
+                  </listitem>
+                  <listitem>
+                    <para>Substitute in the FQDN of your domain for all occurrances of <emphasis role="italic">your.domain</emphasis>
+                    </para>
+                  </listitem>
+                </itemizedlist>
+              </para>
+            </entry>
+          </row>
+          <row>
+            <entry><orderedlist continuation="continues"><listitem><para/></listitem></orderedlist></entry>
+            <entry>Type <emphasis role="bold">puppet agent --test --tags named</emphasis>
+              on the Puppet Master to apply the changes.
+	      <para>Validate DNS and ensure the /etc/resolv.conf is updated appropriately.</para>
+	    </entry>
+          </row>
+          <row>
+            <entry><orderedlist continuation="continues"><listitem><para/></listitem></orderedlist></entry>
+            <entry>If an error about the rndc.key appears when starting bind, copy the rndc.key to /etc then re-run the puppet command:
+              <para>cp -p /var/named/chroot/etc/rndc.key /etc/rndc.key</para>
+            </entry>
+          </row>
+        </tbody>
+      </tgroup>
+    </table>
+  </section>
+  <xi:include href="Certificates.xml" xmlns:xi="http://www.w3.org/2001/XInclude" />
+  <xi:include href="PXE_Boot.xml" xmlns:xi="http://www.w3.org/2001/XInclude" />
+  <section id="sect-ug-Client_Management_Walkthrough-kickstart">
+    <title>Configure the Kickstart</title>
+    <para> The table below lists the steps to configure the kickstart.</para>
+      <table frame="all">
+        <title>Kickstart Configuration Procedure</title>
+        <tgroup cols="2" align="left" colsep="1" rowsep="1">
+          <colspec colnum="1" colname="c1" colwidth="*"/>
+          <colspec colnum="2" colname="c2" colwidth="8*"/>
+          <thead>
+            <row>
+              <entry>Step</entry>
+              <entry>Process/Action</entry>
+            </row>
+          </thead>
+          <tbody>
+            <row>
+              <entry><orderedlist><listitem><para/></listitem></orderedlist></entry>
+              <entry>Locate the following files in the
+                <emphasis role="italic">/srv/www/ks</emphasis> directory:
+                <itemizedlist mark="opencircle">
+                  <listitem>
+                    <para>
+                      <emphasis role="italic">pupclient_x86_64.cfg</emphasis>
+                    </para>
+                  </listitem>
+                  <listitem>
+                    <para>
+                      <emphasis role="italic">puppet_x86_64.cfg</emphasis>
+                    </para>
+                  </listitem>
+                  <listitem>
+                    <para>
+                      <emphasis role="italic">diskdetect.sh</emphasis>
+                    </para>
+                  </listitem>
+                </itemizedlist>
+              </entry>
+            </row>
+            <row>
+              <entry><orderedlist continuation="continues"><listitem><para/></listitem></orderedlist></entry>
+              <entry><para>Open the applicable files and follow the instructions
+                provided within them to replace the variables.</para>
+                <para><emphasis role="bold">NOTE</emphasis>: The files that need to be
+                  edited vary based on the information entered in the Manifest section.
+                  Type <emphasis role="bold">sed -i 's/#KSSERVER#/<emphasis role="bold"><emphasis role="italic">&lt;Server
+                  IP Address&gt;</emphasis></emphasis>/g' *.cfg</emphasis> to set the IP address of the kickstart server.</para>
+                <para>NOTE: Use the <emphasis role="bold">grub-crypt --sha-256</emphasis> command to obtain a hashed value of
+                  the passwords that will be changed.</para>
+              </entry>
+            </row>
+            <row>
+              <entry><orderedlist continuation="continues"><listitem><para/></listitem></orderedlist></entry>
+              <entry>Type <emphasis role="bold">chown root.apache /srv/www/ks/*</emphasis>
+                to ensure that the ownership of all of the files is correct.</entry>
+            </row>
+            <row>
+              <entry><orderedlist continuation="continues"><listitem><para/></listitem></orderedlist></entry>
+              <entry>Type <emphasis role="bold">chmod 640 /srv/www/ks/*</emphasis> to change the
+                permissions so the owner can read and write the file and the group can read only.
+                When this is complete, the system is ready to kickstart the clients.
+              </entry>
+            </row>
+          </tbody>
+        </tgroup>
+      </table>
+    <para>
+      The <emphasis role="italic">diskdetect.sh*</emphasis> script is responsible
+      for detecting the first active disk and applying a disk configuration. Edit
+      this file to meet any necessary requirements or use this file as a
+      starting point for further work.
+    </para>
+  </section>
+  <section id="sect-ug-Client_Management_Walkthrough-ClientSetup">
+    <title>Setting Up the Client</title>
+    <para>
+      The table below lists the steps to PXE boot the system and set up the client.
+    </para>
+    <table frame="all">
+      <title>PXE Boot Procedure</title>
+      <tgroup cols="2" align="left" colsep="1" rowsep="1">
+        <colspec colnum="1" colname="c1" colwidth="*"/>
+        <colspec colnum="2" colname="c2" colwidth="8*"/>
+        <thead>
+          <row>
+            <entry>Step</entry>
+            <entry>Process/Action</entry>
+          </row>
+        </thead>
+        <tbody>
+          <row>
+            <entry><orderedlist><listitem><para/></listitem></orderedlist></entry>
+            <entry>Power up the system and navigate to the <emphasis role="bold">Other Options</emphasis> menu.</entry>
+          </row>
+          <row>
+            <entry><orderedlist continuation="continues"><listitem><para/></listitem></orderedlist></entry>
+            <entry>Select the <emphasis role="bold">BIOS Setup</emphasis> option.</entry>
+          </row>
+          <row>
+            <entry><orderedlist continuation="continues"><listitem><para/></listitem></orderedlist></entry>
+            <entry>Select <emphasis role="bold">Enable Onboard NIC</emphasis>.</entry>
+          </row>
+          <row>
+            <entry><orderedlist continuation="continues"><listitem><para/></listitem></orderedlist></entry>
+            <entry><para>Select <emphasis role="bold">Enabled with PXE</emphasis>.</para>
+            <para><emphasis role="bold">NOTE</emphasis>: If a virtualization option
+              is available, select that as well.</para></entry>
+          </row>
+          <row>
+            <entry><orderedlist continuation="continues"><listitem><para/></listitem></orderedlist></entry>
+            <entry><para>Save the new settings and close.</para>
+            <para><emphasis role="bold">NOTE</emphasis>: The system restarts.</para></entry>
+          </row>
+          <row>
+            <entry><orderedlist continuation="continues"><listitem><para/></listitem></orderedlist></entry>
+            <entry>As the system powers up again, navigate to the <emphasis role="bold">Other Options</emphasis> menu.</entry>
+          </row>
+           <row>
+            <entry><orderedlist continuation="continues"><listitem><para/></listitem></orderedlist></entry>
+            <entry><para>Select <emphasis role="bold">Onboard NIC</emphasis>.</para>
+            <para><emphasis role="bold">NOTE</emphasis>: The PXE boot of the system occurs and
+              CentOS or RHEL is installed.</para>
+            </entry>
+          </row>
+          <row>
+            <entry><orderedlist continuation="continues"><listitem><para/></listitem></orderedlist></entry>
+            <entry><para> Puppet will not autosign domains by default and waitforcert is enabled.  The client will
+              check in every 30 seconds for a signed cert. </para>
+            <para> Once the client installs, reboots, and begins to bootstrap, it will check in for the first
+              time.  You will be required to run <emphasis role="bold">puppet cert sign puppet.client.fqdn</emphasis>.</para></entry>
+          </row>
+        </tbody>
+      </tgroup>
+    </table>
+    <para>Upon successful deployment of a new CentOS or RHEL client, it is highly recommended that LDAP administrative accounts be created.
+      See Chapter 2 of the SIMP Users Guide for user management.</para>
+  </section>
+  <section id="sect-ug-Client_Management_Walkthrough-Troubleshooting">
+    <title>Troubleshooting Issues</title>
+    <para>
+      If the client has been kickstarted, but is not communicating with the
+      Puppet server, try the following options:
+    </para>
+    <itemizedlist mark="bullet">
+      <listitem>
+        <para>
+          Check the forward and reverse DNS entries on the
+          client and server; both must be correct.
+        </para>
+      </listitem>
+      <listitem>
+        <para>
+          Check the time on the systems. More than an hour's
+          difference will cause serious issues with certificates.
+        </para>
+      </listitem>
+      <listitem>
+        <para>
+          Remove <emphasis role="italic">/var/lib/puppet/ssl</emphasis>
+          on the client system; run <emphasis role="bold">puppet cert --clean
+          <emphasis role="bold"><emphasis role="italic">&lt;Client Host Name&gt;</emphasis></emphasis></emphasis>
+          on the Puppet server; and try again.
+        </para>
+      </listitem>
+    </itemizedlist>
+  </section>
+  <section id="sect-ug-Management-Certificates-troubleshooting">
+    <title>Troubleshoot Certificate Issues</title>
+    <para>
+      If host certificates do not appear to be working and the banner is not
+      getting rsync'd to the clients, ensure that all certificates verify
+      against the installed CA certificates.
+    </para>
+    <para>
+      The table below lists the steps to determine which certificates are working
+      and which are not.
+    </para>
+    <table frame="all">
+      <title>Certificate Verification Procedure</title>
+      <tgroup cols="2" align="left" colsep="1" rowsep="1">
+        <colspec colnum="1" colname="c1" colwidth="*"/>
+        <colspec colnum="2" colname="c2" colwidth="8*"/>
+        <thead>
+          <row>
+            <entry>Step</entry>
+            <entry>Process/Action</entry>
+          </row>
+        </thead>
+        <tbody>
+          <row>
+            <entry><orderedlist><listitem><para/></listitem></orderedlist></entry>
+            <entry>Type <emphasis role="bold">cd /etc/puppet/keydist;</emphasis></entry>
+          </row>
+          <row>
+            <entry><orderedlist continuation="continues"><listitem><para/></listitem></orderedlist></entry>
+            <entry>
+              <para>
+                Type <emphasis role="bold">find . -name "*<emphasis
+                    role="bold"><emphasis
+                      role="italic">&lt;Your.Domain&gt;</emphasis></emphasis>.pub"
+                  \-exec openssl verify -CApath cacerts {} \;</emphasis>
+              </para>
+              <para><emphasis role="bold">NOTE</emphasis>: The screen displays
+                <emphasis role="italic">./&lt;Host
+                  Name&gt;.&lt;Your.Domain&gt;/&lt;Host
+                  Name&gt;.&lt;Your.Domain&gt;.pub: OK</emphasis>
+              </para>
+              <para>
+                If anything other than OK appears for each host, analyze the
+                error and ensure that the CA certificates are correct.
+              </para>
+            </entry>
+          </row>
+        </tbody>
+     </tgroup>
+    </table>
+    <para>
+      If the TXT_DB error number 2 appears, revoke the certificate that is being regenerated.
+      The table below lists the steps to revoke the certificate.
+    </para>
+    <table frame="all">
+      <title>Revoke Certificate Procedure</title>
+      <tgroup cols="2" align="left" colsep="1" rowsep="1">
+        <colspec colnum="1" colname="c1" colwidth="*"/>
+        <colspec colnum="2" colname="c2" colwidth="8*"/>
+        <thead>
+          <row>
+            <entry>Step</entry>
+            <entry>Process/Action</entry>
+          </row>
+        </thead>
+        <tbody>
+          <row>
+            <entry><orderedlist><listitem><para/></listitem></orderedlist></entry>
+            <entry>Type <emphasis role="bold">cd /etc/puppet/keydist;</emphasis></entry>
+          </row>
+          <row>
+            <entry><orderedlist continuation="continues"><listitem><para/></listitem></orderedlist></entry>
+            <entry>
+              Type <emphasis role="bold">OPENSSL_CONF=default.cnf openssl ca
+                -revoke \../../keydist/<emphasis role="bold"><emphasis
+                    role="italic">&lt;Host to
+                    Revoke&gt;</emphasis></emphasis>/<emphasis
+                  role="bold"><emphasis role="italic">&lt;Host to
+                    Revoke&gt;</emphasis></emphasis>.pub</emphasis>
+            </entry>
+          </row>
+        </tbody>
+      </tgroup>
+    </table>
+  </section>
+</chapter>

@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE section [
+<!ENTITY % BOOK_ENTITIES SYSTEM "../../SIMP_Documentation.ent">
+%BOOK_ENTITIES;
+]>
+<section id="sect-ug-Services_Dying">
+  <title id="sect-ug-Services_Dying-title">My Services Are Dying!</title>
+  <para>
+    The following section describes how to mitigate issues relating to
+    destructive reasoning and avoiding destruction of the SIMP system.
+  </para>
+  <section id="sect-ug-Services_Dying-Destructive">
+    <title>Destructive Reasoning with <emphasis role="italic">svckill.rb</emphasis></title>
+    <para>
+      Most security guides that have been published on the
+      Internet strongly suggest disabling all services that are not
+      necessary for system operation. However, to list every possible
+      service that may be controlled by the chkconfig type on a given
+      system in a manifest would not be useful and would bloat the
+      memory space of the running Puppet process.
+    </para>
+    <para>
+      As an alternative solution, the SIMP Team implemented the
+      <emphasis role="italic">svckill.rb</emphasis> script that
+      runs with every Puppet run.
+    </para>
+    <para>
+      The <emphasis role="italic">svckill.rb</emphasis> script:
+    </para>
+      <itemizedlist mark='bullet'>
+        <listitem>
+          <para>
+            Collects a list of all services on the system.
+            These are the same services that the user sees after typing
+            <emphasis role="bold">chkconfig --list</emphasis>
+          </para>
+        </listitem>
+        <listitem>
+          <para>
+            Ignores certain critical services, including
+            Puppet, IPtables, and the network.
+          </para>
+        </listitem>
+        <listitem>
+          <para>
+            Collects a list of all services that are defined in
+            the manifests and modules.
+          </para>
+        </listitem>
+        <listitem>
+          <para>
+            Ensures that every service that is defined in the
+            manifests and modules is excluded from the list of
+            services to kill.
+          </para>
+        </listitem>
+        <listitem>
+          <para>
+            Kills and disables everything else.
+          </para>
+        </listitem>
+      </itemizedlist>
+    </section>
+  <section id="sect-ug-Services_Dying-AvoidDestruction">
+    <title>Avoiding Destruction</title>
+    <para>
+      If certain services should not be killed, declare them in the
+      node manifest space.
+    </para>
+    <note>
+    <para>
+    The key is to declare the services and not set them to any other option.
+    By adding them to the manifest, the <emphasis role="italic">svckill.rb</emphasis>
+    script will ignore them.
+    </para>
+    </note>
+    <para>
+    The example below demonstrates this action, assuming that the
+    <emphasis role="italic">keepmealive</emphasis> service is added to the
+    <emphasis role="italic">chkconfig</emphasis>.
+    </para>
+    <example>
+      <title>Code to Prevent a Service from Being Killed</title>
+      <indexterm>
+        <primary>Source</primary>
+        <secondary> preventing a service from being killed</secondary>
+      </indexterm>
+      <indexterm>
+        <primary>svckill.rb</primary>
+        <seealso>Source</seealso>
+      </indexterm>
+      <programlisting language="Ruby">
+       service { "keepmealive": }
+      </programlisting>
+    </example>
+  </section>
+</section>

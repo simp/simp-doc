@@ -1,0 +1,25 @@
+<?xml version='1.0' encoding='utf-8' ?>
+<!DOCTYPE book [
+<!ENTITY % BOOK_ENTITIES SYSTEM "../SIMP_Documentation.ent">
+%BOOK_ENTITIES;
+]>
+
+<book id="user_guide">
+  <xi:include href="Book_Info.xml" xmlns:xi="http://www.w3.org/2001/XInclude" />
+
+  <lot />
+  <xi:include href="Introduction.xml" xmlns:xi="http://www.w3.org/2001/XInclude" />
+  <xi:include href="User_Management.xml" xmlns:xi="http://www.w3.org/2001/XInclude" />
+  <xi:include href="Client_Management.xml" xmlns:xi="http://www.w3.org/2001/XInclude" />
+  <xi:include href="SIMP_Administration.xml" xmlns:xi="http://www.w3.org/2001/XInclude" />
+  <xi:include href="Managing_Workstation_Infrastructures.xml" xmlns:xi="http://www.w3.org/2001/XInclude" />
+  <xi:include href="Upgrading_SIMP.xml" xmlns:xi="http://www.w3.org/2001/XInclude" />
+  <xi:include href="OpenStack_Integration.xml" xmlns:xi="http://www.w3.org/2001/XInclude" />
+  <xi:include href="Logstash.xml" xmlns:xi="http://www.w3.org/2001/XInclude" />
+  <xi:include href="Troubleshooting.xml" xmlns:xi="http://www.w3.org/2001/XInclude" />
+  <xi:include href="FAQ.xml" xmlns:xi="http://www.w3.org/2001/XInclude" />
+  <xi:include href="../common/Changelog.xml" xmlns:xi="http://www.w3.org/2001/XInclude" />
+  <xi:include href="SIMP_Package_Data.xml" xmlns:xi="http://www.w3.org/2001/XInclude" />
+  <xi:include href="glossary.xml" xmlns:xi="http://www.w3.org/2001/XInclude" />
+  <index />
+</book>

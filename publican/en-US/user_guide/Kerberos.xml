@@ -1,0 +1,181 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE section [
+<!ENTITY % BOOK_ENTITIES SYSTEM "../SIMP_Documentation.ent">
+%BOOK_ENTITIES;
+]>
+<section id="sect-ug-Kerberos" >
+  <title id="sect-ug-Kerberos-title">Using Kerberos 5 in SIMP</title>
+  <para>
+    The <xref linkend="ug-glossary-kerberos-desc"
+            endterm="ug-kerberos-term" /> 
+    module helps an administrator obtain a working 
+    <xref linkend="ug-glossary-kdc-desc"
+            endterm="ug-kdc-term" /> 
+    setup and configure clients to use the KDC.
+  </para>
+  <important>
+    <para>
+      Given the highly sensitive nature of Kerberos passwords 
+      and tokens, this module does not store or use any passwords 
+      related to the Kerberos KDC.
+    </para>
+    <para>
+      Remember the passwords chosen for the Kerberos KDC. Puppet 
+      does not have the ability to retrieve forgotten passwords.
+    </para>
+  </important>
+  <para>
+    As a result of the nature of Kerberos, an administrator must run 
+    <emphasis role="bold">/usr/sbin/kdb5_util create -s</emphasis> on 
+    the KDC to set the principal administrator password and initialize 
+    the database.
+  </para>
+  <para>
+    The following sections provide instruction on how to get started 
+    with Kerberos 5. For more detailed information, review the official 
+    Red Hat documentation at
+    <emphasis role="italic">https://access.redhat.com/knowledge/docs/en-US/Red_Hat_Enterprise_Linux/6/html/Managing_Smart_Cards/Configuring_a_Kerberos_5_Server.html</emphasis>.
+  </para>
+  <section id="sect-ug-Kerberos-Creating_Principals">
+    <title id="sect-ug-Kerberos-Creating_Principals-title">Creating Principals</title>
+    <para>
+      Once all of the systems using Kerberos are properly configured, 
+      either via the <emphasis role="italic">krb::stock</emphasis> classes 
+      or otherwise, the administrator must register principals with the KDC.
+    </para>
+    <section id="sect-ug-Kerberos-Admin_Principal">
+      <title id="sect-ug-Kerberos-Admin_Principal-title">Create the Admin Principal</title>
+      <para>
+        The first principal to be registered is an admin principal that 
+        manages the environment, since it is in the admin group. This 
+        principal must be created on the KDC system.
+      </para>
+      <para>
+        Before creating the admin principal, the user must first create an 
+        appropriate 
+        <xref linkend="ug-glossary-acl-desc"
+            endterm="ug-acl-term" />. 
+        To accomplish this, add the following Puppet code to the site manifest
+        for the KDC system. If a custom implementation of Kerberos is being used, 
+        changes may need to be made to the code.
+      </para>
+      <example>
+        <title>Code for Creating an Admin Principal</title>
+        <indexterm>
+          <primary>Source</primary>
+          <secondary>Code for Creating an Admin Principal</secondary>
+        </indexterm>
+        <indexterm>
+          <primary>Kerberos</primary>
+          <seealso>Examples</seealso>
+        </indexterm>
+        <programlisting language="Ruby">
+        krb5_acl{ "${::domain}_admin":
+          principal       => "*/admin@${::domain}",
+          operation_mask  => '*'
+        }
+        </programlisting>
+      </example>
+      <para>The table below lists the steps to create an admin principal that is 
+      appropriate for common organizations. These steps should be accomplished
+      after creating the ACL by using the code provided in the previous example.</para>
+      <table frame="all">
+        <title>Creating the Admin Principal Procedure</title>
+        <tgroup cols="2" align="left" colsep="1" rowsep="1">
+          <colspec colnum="1" colname="c1" colwidth="*"/>
+          <colspec colnum="2" colname="c2" colwidth="8*"/>
+          <thead>
+            <row>
+              <entry>Step</entry>
+              <entry>Process/Action</entry>
+            </row>
+          </thead>
+          <tbody>
+            <row>
+              <entry><orderedlist><listitem><para/></listitem></orderedlist></entry>
+              <entry>After using the code from the previous example, 
+              run <emphasis role="bold">puppet agent -t</emphasis> to allow the 
+              changes to take effect.</entry>
+            </row>
+            <row>
+              <entry><orderedlist continuation="continues"><listitem><para/></listitem></orderedlist></entry>
+              <entry>
+                <para>To finish creating the principal, type
+                <emphasis role="bold">/usr/bin/kadmin.local -r 
+                <emphasis role="bold"><emphasis role="italic">&lt;Your.Domain&gt;</emphasis></emphasis>
+                 -q "addprinc <emphasis role="bold"><emphasis role="italic">&lt;User Name&gt;</emphasis></emphasis>/admin"</emphasis></para>
+         	    <para><emphasis role="bold">NOTE</emphasis>: By following this step, 
+         	    all features of the admin principal can be used remotely.</para>
+         	  </entry>
+            </row>
+            <row>
+              <entry><orderedlist continuation="continues"><listitem><para/></listitem></orderedlist></entry>
+              <entry>To load the principal, type <emphasis role="bold">/usr/bin/kinit 
+              <emphasis role="bold"><emphasis role="italic">&lt;User Name&gt;</emphasis></emphasis>/admin</emphasis></entry>
+            </row>
+		     </tbody>
+        </tgroup>
+      </table>
+    </section>
+    <section id="sect-ug-Kerberos-Host_Principal">
+      <title id="sect-ug-Kerberos-Host_Principal-title">Create the Host Principal(s)</title>
+      <para>
+        Once the admin principal has been created, host principals for each host
+        can be made. The table below lists the steps to complete this action.
+      </para>
+      <table frame="all">
+        <title>Creating Host Principals Procedure</title>
+        <tgroup cols="2" align="left" colsep="1" rowsep="1">
+          <colspec colnum="1" colname="c1" colwidth="*"/>
+          <colspec colnum="2" colname="c2" colwidth="8*"/>
+          <thead>
+            <row>
+              <entry>Step</entry>
+              <entry>Process/Action</entry>
+            </row>
+          </thead>
+          <tbody>
+            <row>
+              <entry><orderedlist><listitem><para/></listitem></orderedlist></entry>
+              <entry><para>On the KDC, generate a principal for each host in the environment by typing
+              <emphasis role="bold">/usr/sbin/kadmin.local -r 
+              <emphasis role="bold"><emphasis role="italic">&lt;Your.Domain&gt;</emphasis></emphasis>
+               -q 'addprinc -randkey host/<emphasis role="bold"><emphasis role="italic">&lt;FQDN&gt;</emphasis></emphasis>'</emphasis></para>
+               <para><emphasis role="bold">NOTE</emphasis>: To use much of the functionality of the host, the user must first 
+               ensure that each host has a keytab. SIMP uses the <emphasis role="italic">/etc/puppet/keydist</emphasis> 
+               directory for each host to distribute keytabs securely to the clients.</para>
+              </entry>
+            </row>
+            <row>
+              <entry><orderedlist continuation="continues"><listitem><para/></listitem></orderedlist></entry>
+              <entry>To create a keytab file for each of the above hosts, type
+              <emphasis role="bold">/usr/sbin/kadmin.local -r 
+              <emphasis role="bold"><emphasis role="italic">&lt;Your.Domain&gt;</emphasis></emphasis>
+               -q 'ktadd -k <emphasis role="bold"><emphasis role="italic">&lt;FQDN&gt;</emphasis></emphasis>.keytab host/<emphasis role="bold"><emphasis role="italic">&lt;FQDN&gt;</emphasis></emphasis>'</emphasis>
+         	  </entry>
+            </row>
+            <row>
+              <entry><orderedlist continuation="continues"><listitem><para/></listitem></orderedlist></entry>
+              <entry>Propagate all keytabs to the Puppet server by moving all of the resulting 
+              keytab files securely to the 
+              <emphasis role="italic">/etc/puppet/keydist/&lt;FQDN&gt;/keytabs</emphasis>
+              directory on the Puppet server, as appropriate for each file.</entry>
+            </row>
+            <row>
+              <entry><orderedlist continuation="continues"><listitem><para/></listitem></orderedlist></entry>
+              <entry><para>Update the node declarations to include <emphasis role="italic">krb::keytab</emphasis>.</para>
+              <para><emphasis role="bold">NOTE</emphasis>: Ensure that all keytab directories are readable by the 
+              group Puppet, but not globally.</para></entry>
+            </row>
+		     </tbody>
+        </tgroup>
+      </table>           
+      <para>
+        Once the Puppet Agent runs on the clients, the keytabs are copied to the
+        <emphasis role="italic">/etc/krb5_keytabs</emphasis> directory. The keytab 
+        matching the FQDN is set in place as the default keytab, 
+        <emphasis role="italic">/etc/krb5.keytab</emphasis>.
+      </para>
+    </section>
+  </section>
+</section>

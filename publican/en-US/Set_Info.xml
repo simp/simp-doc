@@ -1,0 +1,43 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE setinfo [
+<!ENTITY % BOOK_ENTITIES SYSTEM "SIMP_Documentation.ent">
+%BOOK_ENTITIES;
+]>
+<setinfo id='set-simp_docs-simp_docs'>
+  <title>User Documentation</title>
+  <subtitle>SIMP &SIMP_VERSION;-&SIMP_RELEASE; supporting RHEL/CentOS &RHEL_VERSION;</subtitle>
+  <productname>SIMP</productname>
+  <productnumber>&SIMP_VERSION;</productnumber>
+  <edition>1.0</edition>
+  <pubsnumber>1</pubsnumber>
+  <releaseinfo>
+    This is the &SIMP_VERSION;-&SIMP_RELEASE; release of the SIMP
+    product based on the &RHEL_VERSION; release of CentOS and Red Hat
+    Enterprise Linux (RHEL).
+  </releaseinfo>
+  <abstract>
+    <para>
+      SIMP is a minimized, security-focused, continually managed
+      operating system overlay compatible with RHEL and CentOS. Each
+      system is tailored to the hosted project's needs using Puppet.
+    </para>
+    <para>
+     Fundamentally, SIMP is a framework that is designed to be secure
+     from a practical point of view out of the box. As a framework,
+     SIMP is designed to be flexed to meet the needs of the end user.
+     If, for some reason, this is not possible, then this should be
+     reported to the developers as a bug.
+    </para>
+  </abstract>
+  <keywordset>
+    <keyword>SIMP</keyword>
+    <keyword>Security</keyword>
+    <keyword>Secure</keyword>
+    <keyword>Framework</keyword>
+    <keyword>Puppet</keyword>
+  </keywordset>
+
+  <xi:include href='common/Legal_Notice.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
+  <xi:include href='Author_Group.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
+</setinfo>
+
