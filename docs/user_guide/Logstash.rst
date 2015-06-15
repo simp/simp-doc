@@ -76,7 +76,7 @@ Logstash, SIMP, and Security
 
 The provided SIMP modules for Logstash, Elasticsearch, and Kibana have
 been built with connection security in mind. Overriding these settings
-could adversely effect the security of the logging infrastructure. The
+could adversely affect the security of the logging infrastructure. The
 following list describes the security features in place with the default
 SIMP module settings:
 
@@ -108,7 +108,7 @@ SIMP module settings:
     The Puppet modules for Logstash, Kibana, and Elasticsearch contain
     dozens of variables that may be manipulated. You should read each
     product's documentation and ensure you understand any setting that
-    is changed from the default SIMP values. Changes can effect both
+    is changed from the default SIMP values. Changes can affect both
     security and functionality of the system.
 
 Logstash Setup
@@ -179,7 +179,7 @@ large /var volume and 4GB of memory.
           classes:
             - 'logstash::simp'
             - 'kibana'
-              
+
 
 In the case of the Elasticsearch node setup below, it may be better to
 use a group match to pull your Hiera settings. To do this, you should
@@ -190,7 +190,7 @@ add the following to a file like /etc/puppet/manifests/nodegroups.pp
           if $trusted['certname'] =~ /es\d+\.your\.domain/ {
             $hostgroup = 'elasticsearch'
           }
-            
+
 
 Then, ensure that a file called 'elasticsearch.yaml' is present in the
 /etc/puppet/hieradata/hostgroups directory and contains the following
@@ -209,7 +209,7 @@ content.
 
           classes:
             - 'elasticsearch::simp'
-              
+
 
 Make sure you point your clients to the Logstash server by setting the
 'log\_server' variable to the fqdn of the Logstash server in hiera. This

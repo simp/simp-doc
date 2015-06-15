@@ -89,7 +89,7 @@ TFTP Examples
 
               tftpboot::assign_host { 'default': model => 'CentOS_RHEL_MAJOR_VERSION' }
             }
-            
+
 
 Next, add the tftpboot site manifest to your puppet server node via
 Hiera. If it does not already exist, create
@@ -104,7 +104,7 @@ TFTP Examples
             ---
             classes:
               - 'site::tftpboot'
-            
+
 
 After updating the above file, type **puppet agent -t --tags tftpboot**
 on the Puppet server.

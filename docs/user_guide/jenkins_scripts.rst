@@ -109,7 +109,7 @@ attempting to use the scripts below within Jenkins:
 
           # add alias
           echo "alias root='sudo sudosh'" >> /etc/bashrc
-                           
+
 
     **Note**
 
@@ -120,19 +120,19 @@ attempting to use the scripts below within Jenkins:
         ::
 
             sed -i 's/network --bootproto=static --ip=192.168.0.111 --netmask=255.255.255.0 --gateway=192.168.1.1 --nodns --hostname=puppet.change.me/network --bootproto=dhcp/g' ks/dvd/include/common_ks_base
-                       
+
 
     Prevent the system from forcing a root password change
         ::
 
             sed -i 's/chage -d 0 root;//g' ks/dvd/*.cfg
-                   
+
 
     Use simp-big by default instead of just simp
         ::
 
             sed -i 's/default simp$/default simp-big/g' isolinux/isolinux.cfg
-                       
+
 
 Create a VM
 -----------
@@ -210,7 +210,7 @@ String Parameters
 
     echo ""; echo "Virsh list:"
     virsh --connect qemu:///system list --all
-            
+
 
 Setup VM
 --------
@@ -231,14 +231,14 @@ Password Parameter
     #!/bin/bash
     Clears the ip from known_hosts.
     ssh-keygen -R ${vm_ip}
-           
+
 
 .. code-block:: Ruby
 
     require 'rubygems'
     require 'net/scp'
 
-    Net::SSH.start(ENV['vm_name'], 'root', :password => ENV['vm_pass'], 
+    Net::SSH.start(ENV['vm_name'], 'root', :password => ENV['vm_pass'],
     :auth_methods => "password", :encryption => "aes256-cbc") do |ssh|
      ssh.exec!("mkdir /root/.ssh") do|ch, stream, data|
        puts data
@@ -252,7 +252,7 @@ Password Parameter
     end
     puts "Copying over configuration files..."
 
-    Net::SCP.start(ENV['vm_name'], 'root', :password => ENV['vm_pass'], 
+    Net::SCP.start(ENV['vm_name'], 'root', :password => ENV['vm_pass'],
     :auth_methods => "password", :encryption => "aes256-cbc") do |scp|
       scp.upload!("/srv/info/jenkins.pub", "/root/.ssh/authorized_keys") do |ch, name|
       end
@@ -263,13 +263,13 @@ Password Parameter
         puts "Copied #{x.chomp} to VM."
       end
       scp.upload!("/srv/isos", "/srv/", :recursive => true) do |ch, name|
-      end  
+      end
       %x(ls /srv/isos).each do |x|
         puts "Copied #{x.chomp} to VM."
       end
     end
 
-    Net::SSH.start(ENV['vm_name'], 'root', :password => ENV['vm_pass'], 
+    Net::SSH.start(ENV['vm_name'], 'root', :password => ENV['vm_pass'],
     :auth_methods => "password", :encryption => "aes256-cbc") do |ssh|
       puts "simp config -a /srv/info/simp_conf.csv.#{ENV['vm_name']}"
       ssh.exec!("chmod -R 750 /srv/info/") do|ch, stream, data|
@@ -290,8 +290,8 @@ Password Parameter
       ssh.exec!("shutdown -r +1") do|ch, stream, data|
          puts data
       end
-    end 
-           
+    end
+
 
 .. code-block:: Bash
 
@@ -307,7 +307,7 @@ Password Parameter
 
     # The key will have changed after setup; remove again.
     ssh-keygen -R ${vm_ip}
-        
+
 
 .. code-block:: Ruby
 
@@ -315,7 +315,7 @@ Password Parameter
     require 'rubygems'
     require 'net/ssh'
 
-    Net::SSH.start(ENV['vm_name'], 'root', :password => ENV['vm_pass'], 
+    Net::SSH.start(ENV['vm_name'], 'root', :password => ENV['vm_pass'],
     :auth_methods => "password", :encryption => "aes256-cbc") do |ssh|
       puts "Configuring DHCP..."
       ssh.exec!("cat /srv/info/dhcpd.conf.#{ENV['vm_name']} > /var/simp/rsync/CentOS/RHEL_MAJOR_VERSION/dhcpd/dhcpd.conf") do |ch, stream, data|
@@ -326,7 +326,7 @@ Password Parameter
         puts data
       end
     end
-           
+
 
 .. code-block:: Ruby
 
@@ -334,7 +334,7 @@ Password Parameter
     require 'rubygems'
     require 'net/ssh'
 
-    Net::SSH.start(ENV['vm_name'], 'root', :password => ENV['vm_pass'], 
+    Net::SSH.start(ENV['vm_name'], 'root', :password => ENV['vm_pass'],
     :auth_methods => "password", :encryption => "aes256-cbc") do |ssh|
      puts "Renaming your.domain to simp.dev..."
      ssh.exec!("mv /var/simp/rsync/CentOS/RHEL_MAJOR_VERSION/domains/your.domain /var/simp/rsync/CentOS/RHEL_MAJOR_VERSION/domains/simp.dev") do |ch, stream, data| puts data
@@ -362,7 +362,7 @@ Password Parameter
      ssh.exec!("chmod 640 /var/simp/rsync/CentOS/RHEL_MAJOR_VERSION/domains/simp.dev/named/var/named/reverse/<reverseip>.db /var/simp/rsync/CentOS/RHEL_MAJOR_VERSION/domains/simp.dev/named/etc/zones/simp.dev /var/simp/rsync/CentOS/RHEL_MAJOR_VERSION/domains/simp.dev/named/etc/named.conf /var/simp/rsync/CentOS/RHEL_MAJOR_VERSION/domains/simp.dev/named/var/named/forward/simp.dev.db") do |ch, stream, data| puts data
      end
     end
-        
+
 
 .. code-block:: Bash
 
@@ -370,13 +370,13 @@ Password Parameter
     require 'rubygems'
     require 'net/ssh'
 
-    Net::SSH.start(ENV['vm_name'], 'root', :password => ENV['vm_pass'], 
+    Net::SSH.start(ENV['vm_name'], 'root', :password => ENV['vm_pass'],
     :auth_methods => "password", :encryption => "aes256-cbc") do |ssh|
      puts "Setting up server to be able to kickstart clients..."
      ssh.exec!("/srv/info/ksfiles.sh") do |ch, stream, data| puts data
      end
     end
-        
+
 
 Test Your Configuration
 ---------------------==
@@ -385,9 +385,9 @@ Test Your Configuration
 
     #!/bin/bash
     if [ `ps -ef | grep puppet | grep -v grep | grep -v Rack | wc -l` -gt 0 ]; then
-      echo "Waiting for current puppet run to complete..."; 
+      echo "Waiting for current puppet run to complete...";
     fi
-    while [ `ps -ef | grep puppet | grep -v grep | grep -v Rack | wc -l` -gt 0 ]; do 
+    while [ `ps -ef | grep puppet | grep -v grep | grep -v Rack | wc -l` -gt 0 ]; do
       sleep 5; done
     echo -e "\nPuppet Agent Run - First Pass"
     echo "-------------------------------"
@@ -399,10 +399,10 @@ Test Your Configuration
     puppet agent -t
     rtn2=${?}
     echo -n "Second Pass Return Code: ${rtn2}"
-    if [ ${rtn2} -eq 0 -o ${rtn2} -eq 2 ]; then 
-      echo " - Successful Puppet Run"; else return 1; 
+    if [ ${rtn2} -eq 0 -o ${rtn2} -eq 2 ]; then
+      echo " - Successful Puppet Run"; else return 1;
     fi
-        
+
 
 Test a Specific Module
 ---------------------=
@@ -416,11 +416,11 @@ String Parameters
     yum install -y pupmod-${test_mod}-test
 
     if [ ! -d ${WORKSPACE}/junit ]; then mkdir ${WORKSPACE}/junit; fi
-     
+
     if [ -f /usr/share/simp/tests/modules/${test_mod}/mit_tests/Rakefile ]; then
        echo "Testing ${test_mod}..."
        cd /usr/share/simp/tests/modules/${test_mod}/mit_tests
-       if [ ! -d ./results.xml ]; then 
+       if [ ! -d ./results.xml ]; then
          rm -f results.xml
          mkdir results.xml; chmod 755 results.xml; chgrp puppet results.xml
        fi
@@ -428,7 +428,7 @@ String Parameters
        cp /usr/share/simp/tests/modules/${test_mod}/mit_tests/results.xml/*.xml ${WORKSPACE}/junit/
        sleep 5
     fi
-        
+
 
 Create a Client VM
 ------------------

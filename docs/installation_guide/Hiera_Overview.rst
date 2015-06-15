@@ -26,7 +26,7 @@ Adding a Key/Value Pair to Hiera Examples
           ---
           classfoo::parameter_bar: "Woo"
           classfoo::parameter_baz: "Hoo"
-          
+
 
 You can then 'include classfoo' on any node, with parameter\_bar and
 parameter\_baz defaulting to Woo and Hoo, respectively.
@@ -89,7 +89,7 @@ Adding a Site Manifest Examples
 
             tftpboot::assign_host { 'default': model => 'CentOS_RHEL_MAJOR_VERSION' }
           }
-          
+
 
 Then, in */etc/puppet/hieradata/hosts/puppet.your.domain.yaml*
 
@@ -100,7 +100,7 @@ Adding TFTP Site to Hirea Examples
           ---
           classes:
             - 'site::tftpboot'
-          
+
 
 SIMP Hiera File Structure
 -------------------------

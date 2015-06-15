@@ -17,7 +17,7 @@ Example Sample Entries in vars.pp
 
            $puppet_server_hosts_mod = "puppet.$dns_domain|1.2.3.4 puppet2.$dns_domain|2.3.4.5"
            $puppet_servers = template('site/nat_ip_switch.erb')
-          
+
 
 Create a */etc/puppet/modules/site/templates/nat\_ip\_switch.erb* file
 with the content shown in the next example. Change the appropriate
@@ -62,7 +62,7 @@ Source Create the nat\_ip\_switch.erb
             end
             -%>
             <%= t_pupsrvs -%>
-          
+
 
 Run **puppet agent -t** on the client to receive the appropriately
 mapped NAT address of the Puppet server.

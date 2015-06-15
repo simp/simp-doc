@@ -16,7 +16,7 @@ Code Changes on Client to Switch Puppet Masters
             server = new.puppet.master.fqdn
             ca_server = new.puppet.master.fqdn
             ca_port = 8141
-            
+
 
 To remove all files and sub-directories in the */var/lib/puppet/ssl*
 directory, type **cd /var/lib/puppet/ssl**. Then type **rm -rf ./\***.

@@ -12,14 +12,14 @@ makes no representation about the suitability of the SIMP product for
 any purpose. It is provided "as is" without
 expressed or implied warranty. If SIMP is modified in any way, except
 for designed customization, identify the new copy as a variant of
-SIMP. 
+SIMP.
 
 Additional products are distributed
 as part of the SIMP suite, including but not limited to, Puppet,
 CentOS, and Red Hat Enterprise Linux (RHEL). By using SIMP, the user
 agrees to abide by the licenses for the included products,
 particularly the purchase of RHEL licenses if using the Red Hat
-version of SIMP. 
+version of SIMP.
 
 At this time,
 RHEL is the only product requiring payment for a commercial license in

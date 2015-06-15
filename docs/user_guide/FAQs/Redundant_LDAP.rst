@@ -47,7 +47,7 @@ Source Code for Using an OpenLDAP Server openldap
             node ldapmaster {
               include 'ldap_master'
             }
-          
+
 .. _Redundant_LDAP-Replicants:
 
 Set up the Replicated Servers
@@ -85,7 +85,7 @@ Source Code to Configure an LDAP Slave Node replication
             node ldaprepl2 {
               include "ldap_repl"
             }
-          
+
 
 Promote a Slave Node
 --------------------
@@ -111,7 +111,7 @@ Source Promoting a Slave Node LDAP
               # include 'ldap_repl'
               include 'ldap_master'
             }
-          
+
 
 After the next Puppet run on all hosts, *ldaprepl1* will be promoted to
 the master and all slave nodes will point to it.
@@ -139,7 +139,7 @@ Update $ldap\_sync Information in LDAP Examples
             changetype: modify
             replace: userPassword
             userPassword: <Hash from $ldap_sync_hash>
-            
+
 
 Master Node Demotion
 ~~~~~~~~~~~~~~~~~~~~
