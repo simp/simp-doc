@@ -267,7 +267,7 @@ prior to being able to run the SIMP Cucumber tests.
 Commands
 --------
 
-Depreciated commands mentioned in Puppet 2.7 upgrade are now completely
+Deprecated commands mentioned in Puppet 2.7 upgrade are now completely
 removed.
 
 Lock File
