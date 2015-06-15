@@ -51,7 +51,7 @@ Code for Creating an Admin Principal Kerberos
               principal       => "*/admin@${::domain}",
               operation_mask  => '*'
             }
-            
+
 
 The table below lists the steps to create an admin principal that is
 appropriate for common organizations. These steps should be accomplished

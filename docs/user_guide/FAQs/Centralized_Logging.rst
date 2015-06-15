@@ -19,7 +19,7 @@ Code to Enable the Server Logging Examples
 
           classes :
             - 'simp::rsyslog::stock'
-          
+
 
 Enable the Clients
 ------------------

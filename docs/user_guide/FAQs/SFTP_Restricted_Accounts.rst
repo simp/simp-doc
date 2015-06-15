@@ -21,7 +21,7 @@ Create a User Account Examples
 
             On a SIMP system, shell would be:
             "/usr/libexec/openssh/sftp-server"
-          
+
 
 Modify */etc/shells*
 --------------------

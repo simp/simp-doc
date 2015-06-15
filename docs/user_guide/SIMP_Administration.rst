@@ -117,7 +117,7 @@ Below is an example of how to change the expiration time from one year
             do
               sed -i 's/365/1825/' $file
             done
-            
+
 
 Puppet Certificates
 -------------------
@@ -166,7 +166,7 @@ To ensure that the system does not run more services than are required,
 the *svckill.rb* script has been implemented to stop any service that is
 not properly defined in the Puppet catalogue.
 
-To prevent services from stopping, refer to the instructions in the 
+To prevent services from stopping, refer to the instructions in the
 :ref:`Services_Dying` FAQ section.
 
 GUI

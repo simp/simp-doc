@@ -14,13 +14,13 @@ copies of the LDAP Data Interchange Format (.ldif) files can be found on
 the system in the */usr/share/doc/simp-<Version>/ldifs* directory.
 
 Users cannot have any extraneous spaces in .ldif files.
-   
+
 .. code-block:: bash
 
    Type `:set list` in vim to see hidden spaces at the end of lines.
 
    Type `sed -i 's/\\(^[[:graph:]]\*:\\)[[:space:]]\*\\
-   ([[:graph:]]\*\\) \\[[:space:]]\*$/\\1\\2/' file.ldif` 
+   ([[:graph:]]\*\\) \\[[:space:]]\*$/\\1\\2/' file.ldif`
    to strip out inappropriate characters.
 
 
@@ -73,7 +73,7 @@ Example ldif to add a user
            gidNumber: <User Primary GID>
            homeDirectory: /home/<User UID>
            userPassword: <Password Hash from slappasswd>
-           
+
 .. code-block:: bash
 
   Type `ldapadd -Z -x -W -D "cn=LDAPAdmin,ou=People,dc=your,dc=domain"
@@ -118,7 +118,7 @@ Example ldif example to add a user
            uidNumber: <User UID Number>
            gidNumber: <User Primary GID>
            homeDirectory: /home/<User UID>
-           
+
 
 .. code-block:: bash
 
@@ -144,7 +144,7 @@ Example ldif to remove a user
 
               dn: uid=<User UID>,ou=People,dc=example,dc=domain
               changeType: delete
-            
+
 .. code-block:: bash
 
   Type **ldapmodify -Z -x -W -D "cn=LDAPAdmin,ou=People,dc=your,dc=domain"
@@ -172,7 +172,7 @@ Example ldif to change password
            changetype: modify
            replace: userPassword
            userPassword: <Hash from slappasswd>
-           
+
 .. code-block:: bash
 
   Type `ldapmodify -Z -x -W -D "cn=LDAPAdmin,ou=People,dc=your,dc=domain"
@@ -195,7 +195,7 @@ Example ldif to add a group
            cn: <Group Name>
            gidNumber: <GID>
            description: "Some Descriptive Text"
-           
+
 .. code-block:: bash
 
   Type `ldapadd -Z -x -W -D "cn=LDAPAdmin,ou=People,dc=your,dc=domain"
@@ -214,7 +214,7 @@ Example ldif to remove a group
 
            dn: cn=<Group Name>,ou=Group,dc=your,dc=domain
            changetype: delete
-           
+
 .. code-block:: bash
 
   Type `ldapmodify -Z -x -W -D "cn=LDAPAdmin,ou=People,dc=your,dc=domain"
@@ -238,7 +238,7 @@ Example ldif to add to a group
            memberUid: <UID2>
            ...
            memberUid: <UIDX>
-           
+
 .. code-block:: bash
 
   Type `ldapmodify -Z -x -W -D "cn=LDAPAdmin,ou=People,dc=your,dc=domain"
@@ -262,7 +262,7 @@ Example ldif to remove an user from a group
            memberUid: <UID2>
            ...
            memberUid: <UIDX>
-           
+
 .. code-block:: bash
 
   Type `ldapmodify -Z -x -W -D "cn=LDAPAdmin,ou=People,dc=your,dc=domain"
@@ -283,7 +283,7 @@ Example ldif to update SSH public key
            changetype: modify
            replace: sshPublicKey
            sshPublicKey: <User OpenSSH Public Key>
-           
+
 .. code-block:: bash
 
   Type `ldapmodify -Z -x -W -D "cn=LDAPAdmin,ou=People,dc=your,dc=domain"
@@ -307,7 +307,7 @@ Example ldif to reset user's shadowLastChange
            -
            replace: shadowLastChange
            shadowLastChange: 10000
-           
+
 .. code-block:: bash
 
   Type `ldapmodify -Z -x -W -D "cn=LDAPAdmin,ou=People,dc=your,dc=domain"
@@ -317,7 +317,7 @@ Example ldif to reset user's shadowLastChange
 
     The **ldapmodify** command is only effective when using the
     *ppolicy* overlay. In addition, the user's *shadowLastChange* must
-    be changed to a value prior to the expiration date to force a 
+    be changed to a value prior to the expiration date to force a
     :term:`Pluggable Authentication Modules (PAM)` reset.
 
 Unlocking an LDAP Account
@@ -334,7 +334,7 @@ Example ldif to Unlock LDAP Account
            dn: uid=<User UID>,ou=People,dc=your,dc=domain
            changetype: modify
            delete: pwdAccountLockedTime
-           
+
 .. code-block:: bash
 
   Type `ldapmodify -Z -x -W -D "cn=LDAPAdmin,ou=People,dc=your,dc=domain"

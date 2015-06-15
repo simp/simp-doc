@@ -63,7 +63,7 @@ user workstation.
               ]: ensure => 'latest'
               }
             }
-                
+
 
 Graphical Desktop Setup
 -----------------------
@@ -90,7 +90,7 @@ desktop on a user workstation.
                 ensure => 'latest'
               }
             }
-                
+
 
 Workstation Repositories
 ------------------------
@@ -105,7 +105,7 @@ repositories.
               # Whatever local yumrepo statements you need for installing
               # your packages and keeping your systems up to date
             }
-                
+
 
 Virtualization on User Workstations
 -----------------------------------
@@ -151,7 +151,7 @@ on a user workstation.
 
               package { 'virt-manager': ensure => 'latest' }
             }
-                
+
 
 Network File System
 -------------------
@@ -183,7 +183,7 @@ Below is an example manifest called
             Target     => ‘share’
             }
             }
-                
+
 
 Setting up a Printer Environment
 --------------------------------
@@ -213,7 +213,7 @@ print client.
               package { 'cups-pk-helper': ensure => 'latest' }
               package { 'system-config-printer': ensure => 'present' }
             }
-                
+
 
 Setting up a Print Server
 ~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -238,7 +238,7 @@ print server.
                 require    => Package['cups']
               }
             }
-                
+
 
 VNC
 ===
@@ -327,7 +327,7 @@ VNC Server node
               - 'windowmanager::gnome'
               - 'mozilla::firefox'
               - 'vnc::server'
-                
+
 
 VNC client node
 
@@ -338,7 +338,7 @@ VNC client node
               - 'windowmanager::gnome'
               - 'mozilla::firefox'
               - 'vnc::client'
-                
+
 
 Run the Server
 ~~~~~~~~~~~~~~

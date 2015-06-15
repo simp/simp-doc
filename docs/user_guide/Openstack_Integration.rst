@@ -9,7 +9,7 @@ OpenStack In SIMP - IceHouse
 
 OpenStack is a collection of IaaS cloud computing services aimed at
 creating a free and open source platform for cloud development and
-deployment. It is designed in a modular fasion, encompassing the
+deployment. It is designed in a modular fashion, encompassing the
 following components:
 
 -  **Cinder**\ Block Storage Service

@@ -49,7 +49,7 @@ Break Out Security Settings from the Application
 
               include "secure_config"
             }
-            
+
 
 By entering this information, the user can ensure that all nodes that
 are built have the advanced security class applied to them if they are
@@ -113,7 +113,7 @@ Remove Security Module from Site Files
                  }
                }
              }
-            
+
 
 By using the example, the :term:`Network File System (NFS)` service will be enabled if, and only if, the
 *$security\_override\_enable\_nfs* variable is set to the value
@@ -142,7 +142,7 @@ Set All Security Default Site Settings Examples
               $security_override_enable_nfs = "true"
               include "site::security_override"
             }
-            
+
 
 These steps for overriding the security module can be applied as needed
 to any of the base modules.

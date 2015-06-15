@@ -184,7 +184,7 @@ called bar.yaml:
 .. code-block:: Ruby
 
                 extdata2hiera -i foo.csv -o bar.yaml
-              
+
 
 The second example shows how to convert an Extdata csv simp\_def file
 called simp\_def.csv into a Hiera yaml file called simp\_def.yaml.
@@ -192,7 +192,7 @@ called simp\_def.csv into a Hiera yaml file called simp\_def.yaml.
 .. code-block:: Ruby
 
                 simpdef2hiera --in simp_def.csv --out simp_def.yaml
-              
+
 
 Puppet will automatically retrieve class parameters from Hiera, using
 lookup keys like myclass::parameter\_one. Puppet classes can optionally
@@ -223,7 +223,7 @@ manifests and can finally properly separate your data from your code.
             # /etc/puppet/hieradata/default.yaml
             ---
             foo::param1: 'custom1'
-            
+
 
 The second is similar to the old Extdata way, and looks like the
 following:
@@ -231,7 +231,7 @@ following:
 .. code-block:: Ruby
 
             $var = hiera("some_hiera_variable", "default_value")
-            
+
 
 The following is from the Puppet Labs documentation, and explains the
 reason for switching to Hiera.
@@ -256,18 +256,10 @@ All scope functions must take arguments in array form. For example in
 scope.function\_bracketize(l) %> becomes <%=
 scope.function\_bracketize([l]) %>.
 
-Cucumber Tests
---------------
-
-Since the installation of Puppet 3.X now requires rubygem-hiera to not
-be installed, any existing Cucumber tests will no longer be able to run
-with the ruby-gem hiera dependency. This dependency must be removed
-prior to being able to run the SIMP Cucumber tests.
-
 Commands
 --------
 
-Depreciated commands mentioned in Puppet 2.7 upgrade are now completely
+Deprecated commands mentioned in Puppet 2.7 upgrade are now completely
 removed.
 
 Lock File
