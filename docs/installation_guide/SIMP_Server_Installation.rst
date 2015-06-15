@@ -36,7 +36,7 @@ repeatable.
 
 Using the configuration script, the following items are configured:
 
-**NOTE** this needs updated for the new puppetserver settings 
+**NOTE** this needs updated for the new puppetserver settings
 which includes Puppet Environments
 
 -  Grub password in */boot/grub/grub.conf*
@@ -151,7 +151,7 @@ The following table outlines the steps to install a SIMP server.
 +--------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 | Step   | Process/Action                                                                                                                                                                                                                                              |
 +========+=============================================================================================================================================================================================================================================================+
-| 1.     | Log on as *simp*\ and **su -** to gain root access.                                                                                                                                                                                                         |
+| 1.     | Log on as *simp* and **su -** to gain root access.                                                                                                                                                                                                         |
 +--------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 | 2.     | Type **simp config**                                                                                                                                                                                                                                        |
 |        |                                                                                                                                                                                                                                                             |
@@ -163,7 +163,7 @@ The following table outlines the steps to install a SIMP server.
 +--------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 | 4.     | Type **simp bootstrap**                                                                                                                                                                                                                                     |
 |        |                                                                                                                                                                                                                                                             |
-|        | **NOTE**: If progress bars are of equal length and the bootstrap finishes quickly, a problem has occured. This is most likely due to an error in SIMP configuration. Refer to the previous step and make sure that all configuration options are correct.   |
+|        | **NOTE**: If progress bars are of equal length and the bootstrap finishes quickly, a problem has occurred. This is most likely due to an error in SIMP configuration. Refer to the previous step and make sure that all configuration options are correct.   |
 +--------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 | 5.     | Type **reboot**                                                                                                                                                                                                                                             |
 +--------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+

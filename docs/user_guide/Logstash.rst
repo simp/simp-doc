@@ -76,7 +76,7 @@ Logstash, SIMP, and Security
 
 The provided SIMP modules for Logstash, Elasticsearch, and Kibana have
 been built with connection security in mind. Overriding these settings
-could adversely effect the security of the logging infrastructure. The
+could adversely affect the security of the logging infrastructure. The
 following list describes the security features in place with the default
 SIMP module settings:
 
@@ -108,7 +108,7 @@ SIMP module settings:
     The Puppet modules for Logstash, Kibana, and Elasticsearch contain
     dozens of variables that may be manipulated. You should read each
     product's documentation and ensure you understand any setting that
-    is changed from the default SIMP values. Changes can effect both
+    is changed from the default SIMP values. Changes can affect both
     security and functionality of the system.
 
 Logstash Setup
