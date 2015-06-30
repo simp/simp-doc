@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "9ad9bd40_fcd7a0bd",
+        "filename": "docs/user_guide/Upgrading_SIMP.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 265,
+      "author": {
+        "id": 1005143
+      },
+      "writtenOn": "2015-06-30T05:17:32Z",
+      "side": 0,
+      "message": "Content note: these no longer exist.",
+      "range": {
+        "startLine": 265,
+        "startChar": 31,
+        "endLine": 265,
+        "endChar": 50
+      },
+      "revId": "6de090c5e735efe891229a34466e9b679bec8f76",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735",
+      "unresolved": false
+    }
+  ]
+}

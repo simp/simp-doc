@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "9ad9bd40_dc01fc3a",
+        "filename": "docs/installation_guide/SIMP_Server_Installation.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 39,
+      "author": {
+        "id": 1005143
+      },
+      "writtenOn": "2015-06-30T05:17:32Z",
+      "side": 1,
+      "message": "trailing whitespace; we should sed this out of exisitence.",
+      "range": {
+        "startLine": 39,
+        "startChar": 61,
+        "endLine": 39,
+        "endChar": 62
+      },
+      "revId": "101a40f3d28b509d5082de27710f75ee212f15c3",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9ad9bd40_3ce2e89f",
+        "filename": "docs/user_guide/Upgrading_SIMP.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 187,
+      "author": {
+        "id": 1005143
+      },
+      "writtenOn": "2015-06-30T05:17:32Z",
+      "side": 1,
+      "message": "oh noes, trailing whitespace! We can script removing this.",
+      "range": {
+        "startLine": 187,
+        "startChar": 0,
+        "endLine": 187,
+        "endChar": 14
+      },
+      "revId": "101a40f3d28b509d5082de27710f75ee212f15c3",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735",
+      "unresolved": false
+    }
+  ]
+}
