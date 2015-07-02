@@ -1,0 +1,78 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "9ad9bd40_f3b501ce",
+        "filename": ".travis.yml",
+        "patchSetId": 1
+      },
+      "lineNbr": 6,
+      "author": {
+        "id": 1005143
+      },
+      "writtenOn": "2015-07-02T14:52:35Z",
+      "side": 1,
+      "message": "Was this meant for the \"sphinx-build\" line under \"script:\"?",
+      "range": {
+        "startLine": 6,
+        "startChar": 25,
+        "endLine": 6,
+        "endChar": 38
+      },
+      "revId": "228335b81f59a0b691e87a3cc578059a07a9dcc6",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9ad9bd40_93b675db",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 1005143
+      },
+      "writtenOn": "2015-07-02T14:52:35Z",
+      "side": 1,
+      "message": "The Gerrit-Id should be the final line in the commit message.",
+      "revId": "228335b81f59a0b691e87a3cc578059a07a9dcc6",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9ad9bd40_b3bb79c3",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 14,
+      "author": {
+        "id": 1005143
+      },
+      "writtenOn": "2015-07-02T14:52:35Z",
+      "side": 1,
+      "message": "Each line of commit details should be a maximum of 72 chars and sit between the topic line [begins with \"(SIMP-\"] and the Jira directives [begin with \"SIMP-* #\u003ccommand\u003e\"].",
+      "revId": "228335b81f59a0b691e87a3cc578059a07a9dcc6",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9ad9bd40_73c1f12d",
+        "filename": "docs/installation_guide/Hiera_Overview.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 29,
+      "author": {
+        "id": 1005143
+      },
+      "writtenOn": "2015-07-02T14:52:35Z",
+      "side": 1,
+      "message": "yaaass!",
+      "revId": "228335b81f59a0b691e87a3cc578059a07a9dcc6",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735",
+      "unresolved": false
+    }
+  ]
+}
