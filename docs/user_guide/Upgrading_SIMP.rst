@@ -12,7 +12,7 @@ The following process should be followed before upgrade.
 +--------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 | Step   | Process/Action                                                                                                                                                                                                                                                                     |
 +========+====================================================================================================================================================================================================================================================================================+
-| 1.     | Run **puppet agent --disable** to disable puppet.                                                                                                                                                                                                                                  |
+| 1.     | Run ``puppet agent --disable`` to disable puppet.                                                                                                                                                                                                                                  |
 |        | **Note:** If you think you will need more than 4 hours to complete this task, also disable puppet in root's crontab.                                                                                                                                                               |
 +--------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 | 2.     | You may wish to block all communications with agents while updating the server. This is not required but could spare you some headaches if something doesn't work properly.                                                                                                        |
@@ -116,7 +116,7 @@ Migration Script Execution
 |        |           /usr/local/bin/unpack_dvd SIMP_Update.iso                                                                |
 |        |                                                                                                                    |
 +--------+--------------------------------------------------------------------------------------------------------------------+
-| 5.     | Run the migration script (this may take some time, do NOT, hit CTRL-C!)                                            |
+| 5.     | Run the migration script (this may take some time, do NOT hit CTRL-C!)                                             |
 |        |                                                                                                                    |
 |        | .. code-block:: Bash                                                                                               |
 |        |                                                                                                                    |

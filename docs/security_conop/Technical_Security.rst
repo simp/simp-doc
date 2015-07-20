@@ -7,7 +7,7 @@ technical security controls described in *NIST 800-53*.
 Identification and Authentication
 ---------------------------------
 
-This section addresses the identification and authentication of of users
+This section addresses the identification and authentication of users
 and devices.
 
 User Identification and Authentication
@@ -144,7 +144,7 @@ Access Enforcement
 
 SIMP uses the implementation of Discretionary Access Control (DAC) that
 is native to Linux. Specific file permissions have been assigned based
-on published security guidance for Red Hat, CentOS, and and UNIX.
+on published security guidance for Red Hat, CentOS, and UNIX.
 
 Default permissions on files created by users are enforced with user
 file access mask settings (using the **umask** command) that allow only

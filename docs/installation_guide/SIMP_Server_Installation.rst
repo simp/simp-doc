@@ -50,7 +50,12 @@ which includes Puppet Environments
 -  Puppet server and Certificate Authority (CA) information in
    */etc/puppet/puppet.conf*
 
--  */etc/puppet/hieradata/simp\_def.yaml*
+.. only:: not simp_4
+
+  -  */etc/puppet/environments/simp/hieradata/simp\_def.yaml*
+.. only:: simp_4
+
+  -  */etc/puppet/hieradata/simp\_def.yaml*
 
 -  Server certificates for the puppet server itself (Fake CA)
 
@@ -181,18 +186,18 @@ The following table outlines the SIMP post-installation procedures.
 | 1.     | Log on as *root*                                                                                                                                                     |
 +--------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 | 2.     | Run puppet for the first time. Errors will appear for DHCP. These can be safely ingored at this stage. Type:                                                         |
-|        | **puppet agent -t**                                                                                                                                                  |
+|        | ``puppet agent -t``                                                                                                                                                  |
 +--------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 | 3.     | Copy CentOS RHEL\_MAJOR\_MINOR\_VERSION ISO(s) to the server and unpack using the unpack\_dvd utility. This creates a new tree under /var/www/yum/CentOS. Execute:   |
-|        | **unpack\_dvd CentOS-RHEL\_MAJOR\_MINOR\_VERSION-\ *####*-x86\_64-Everything.iso**                                                                                   |
+|        | ``unpack\_dvd CentOS-RHEL\_MAJOR\_MINOR\_VERSION-\ *####*-x86\_64-Everything.iso``                                                                                   |
 +--------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 | 4.     | Update your system using yum. The updates applied will be dependent on what ISO you initially used. Execute:                                                         |
-|        | **yum clean all; yum makecache**                                                                                                                                     |
+|        | ``yum clean all; yum makecache``                                                                                                                                     |
 +--------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 | 5.     | Run puppet. Ignore the same DHCP errors.                                                                                                                             |
-|        | **puppet agent -t**                                                                                                                                                  |
+|        | ``puppet agent -t``                                                                                                                                                  |
 +--------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-| 6.     | Type **reboot**                                                                                                                                                      |
+| 6.     | Type ``reboot``                                                                                                                                                      |
 +--------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 
 Table: SIMP Post-Installation Procedure

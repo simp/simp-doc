@@ -64,9 +64,9 @@ Source Create the nat\_ip\_switch.erb
             <%= t_pupsrvs -%>
 
 
-Run **puppet agent -t** on the client to receive the appropriately
+Run ``puppet agent -t`` on the client to receive the appropriately
 mapped NAT address of the Puppet server.
 
 If the user cannot connect to the NAT'd Puppet server, change the values
 in the */etc/hosts* directory to the correct values and try running
-**puppet agent -t** again.
+``puppet agent -t`` again.

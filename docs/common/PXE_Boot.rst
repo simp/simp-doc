@@ -13,7 +13,13 @@ appropriate repository created under the */var/www/yum* directory.
 
 Once the model is ready, the default SIMP settings provide access to the
 user's trusted subnets as defined in the
-*/etc/puppet/hieradata/simp\_def.yaml* directory.
+.. only:: not simp_4
+
+  */etc/puppet/environments/simp/hieradata/simp\_def.yaml* directory.
+
+.. only:: simp_4
+
+  */etc/puppet/hieradata/simp\_def.yaml* directory.
 
 The *pupclient\_x86\_64.cfg* file in the */var/www/ks;* directory is
 used as an example in the following sections.
@@ -68,7 +74,7 @@ Manifest
 
 Assuming that the Puppet server is being used, create and add the
 following example code to a site manifest,
-*/etc/puppet/modules/site/manifests/tftpboot.pp*. Keep in mind that the
+*/etc/puppet/environment/simp/modules/site/manifests/tftpboot.pp*. Keep in mind that the
 code varies based on the model being kickstarted.
 
 Source Code for Setting Up TFTP on Puppet Server
@@ -93,7 +99,17 @@ TFTP Examples
 
 Next, add the tftpboot site manifest to your puppet server node via
 Hiera. If it does not already exist, create
-*/etc/puppet/hieradata/hosts/your.server.fqdn.yaml*. Add the following
+
+
+.. only:: not simp_4
+
+  */etc/puppet/environments/simp/hieradata/hosts/your.server.fqdn.yaml*. Add the following
+
+
+.. only:: simp_4
+
+  */etc/puppet/hieradata/hosts/your.server.fqdn.yaml*. Add the following
+
 example code to that yaml file.
 
 Source Adding TFTP Site Manifest to Hiera
@@ -106,5 +122,5 @@ TFTP Examples
               - 'site::tftpboot'
 
 
-After updating the above file, type **puppet agent -t --tags tftpboot**
+After updating the above file, type ``puppet agent -t --tags tftpboot``
 on the Puppet server.

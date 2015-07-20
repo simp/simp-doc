@@ -61,7 +61,7 @@ example.
 +--------+---------------------------------------------------------------------------------------------------------------------------------+
 | Step   | Process/Action                                                                                                                  |
 +========+=================================================================================================================================+
-| 1.     | After using the code from the previous example, run **puppet agent -t** to allow the changes to take effect.                    |
+| 1.     | After using the code from the previous example, run ``puppet agent -t`` to allow the changes to take effect.                    |
 +--------+---------------------------------------------------------------------------------------------------------------------------------+
 | 2.     | To finish creating the principal, type **/usr/bin/kadmin.local -r ***<Your.Domain>*** -q "addprinc ***<User Name>***/admin"**   |
 |        |                                                                                                                                 |
