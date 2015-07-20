@@ -116,7 +116,7 @@ on a user workstation.
 
 .. code-block:: Ruby
 
-            # We allow users to run Vms on their workstations.
+            # We allow users to run VMs on their workstations.
             # If you don't want this, just don't include this class.
             # If this is installed, VM creation and management is still limited by PolicyKit
 

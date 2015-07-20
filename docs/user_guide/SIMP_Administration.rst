@@ -84,7 +84,7 @@ lifespan of the certificates:
     **Note**
 
     This assumes that the user has generated Certificates with the
-    FakeCA provided by SIMP. If offical certificates are being used,
+    FakeCA provided by SIMP. If official certificates are being used,
     these settings must be changed within the official CA, not on the
     SIMP system.
 

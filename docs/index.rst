@@ -2,14 +2,14 @@
 
 Welcome to SIMP's documentation!
 ================================
-.. only:: not simp_4_2_0
+.. only:: not simp_4
 
   This is the 5.1.0  release of the SIMP
   product based on the 7.1 release of CentOS and Red Hat
   Enterprise Linux (RHEL).
 
 
-.. only:: simp_4_2_0
+.. only:: simp_4
 
   This is the 4.2.0 release of the SIMP
   product based on the 6.6 release of CentOS and Red Hat

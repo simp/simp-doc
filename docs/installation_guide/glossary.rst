@@ -82,9 +82,9 @@ Glossary of Terms
 	    DSL, Puppet provides a declarative language that allows system
 	    administrators to provide a consistently applied management
 	    infrastructure. Users describes system resource and resource state
-	    either in the Puppet language. Puppet discovers system specific
+	    in the Puppet language. Puppet discovers system specific
 	    information via facter and compiles Puppet manifests into a system
-	    specific catalog containing resources and resource dependencies
+	    specific catalog containing resources and resource dependencies,
 	    which are applied to each client system.
 
 	Random Access Memory (RAM)

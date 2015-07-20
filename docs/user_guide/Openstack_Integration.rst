@@ -30,7 +30,7 @@ following components:
 
 -  **Heat**\ Templating
 
-Integration of OpenStack into SIMP provides an easily scalable, secture
+Integration of OpenStack into SIMP provides an easily scalable, secure
 cloud infrastructure for the end user. Currently, SIMP supports
 OpenStack IceHouse for CentOS 6.5, with the exception of Swift.
 
@@ -49,7 +49,7 @@ and communication services; compute nodes run virtualization services.
 
 Each OpenStack SIMP puppet module provides, for itself, the necessary
 configuration and security required to run inside SIMP. All OpenStack
-modules are abstracted inta a single module, called 'openstack'. This
+modules are abstracted into a single module, called 'openstack'. This
 module contains pre-loaded configurations for OpenStack deployment,
 including the framework for basic control and compute nodes.
 

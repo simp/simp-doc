@@ -8,10 +8,10 @@ Contents:
 .. toctree::
   :glob:
 
-  Introduction
+  ../common/Introduction
   User_Management
-  Client_Management
-  PXE_Boot
+  ../common/Client_Management
+  ../common/PXE_Boot
   Maximum_Nodes
   Certificates
   SIMP_Administration
@@ -27,3 +27,4 @@ Contents:
   SIMP_Package_Data
   ../common/Changelog
   glossary
+  ../common/File_Samples

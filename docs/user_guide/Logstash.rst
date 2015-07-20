@@ -85,17 +85,17 @@ SIMP module settings:
     The native (Java) Elasticsearch connections are not encrypted! This
     will be remedied in the future as sufficient methods are found.
 
--  **User Name and Password Protection for Kibana:**\ The Kibana web can
+-  **User Name and Password Protection for Kibana:**\  The Kibana web can
    be exposed to a defined list of hosts. If you are connecting to
    Kibana from anything other than the localhost, a user name and
    password is required for authentication. Both LDAP and local database
    users are supported.
 
--  **Syslog over Stunnel:**\ The default behavior in SIMP is to encrypt
+-  **Syslog over Stunnel:**\  The default behavior in SIMP is to encrypt
    syslog traffic over Stunnel. This remains the case with Logstash.
    Unencrypted traffic is also supported for network devices.
 
--  **Limiting Web Actions:**\ The Kibana module restricts what HTTP
+-  **Limiting Web Actions:**\  The Kibana module restricts what HTTP
    commands a user can perform on the Elasticsearch data store. Full
    POST action must be given to the Logstash nodes and some nodes may
    require DELETE capabilities. Logstash hosts should be tightly
@@ -193,7 +193,14 @@ add the following to a file like /etc/puppet/manifests/nodegroups.pp
 
 
 Then, ensure that a file called 'elasticsearch.yaml' is present in the
-/etc/puppet/hieradata/hostgroups directory and contains the following
+.. only:: not simp_4
+
+  /etc/puppet/environments/simp/hieradata/hostgroups directory and contains the following
+
+.. only:: simp_4
+
+  /etc/puppet/hieradata/hostgroups directory and contains the following
+
 content.
 
 .. code-block:: Ruby

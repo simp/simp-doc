@@ -125,7 +125,7 @@ attempting to use the scripts below within Jenkins:
     Prevent the system from forcing a root password change
         ::
 
-            sed -i 's/chage -d 0 root;//g' ks/dvd/*.cfg
+            sed -i 's/change -d 0 root;//g' ks/dvd/*.cfg
 
 
     Use simp-big by default instead of just simp
@@ -278,7 +278,7 @@ Password Parameter
       ssh.exec!("simp config -a /srv/info/simp_conf.csv.#{ENV['vm_name']}") do|ch, stream, data|
         puts data
       end
-      puts "Bootstraping..."
+      puts "Bootstrapping..."
       ssh.exec!("simp bootstrap -v --no-track") do|ch, stream, data|
         puts data
       end

@@ -251,7 +251,7 @@ To remove users from a group, add the following information to the
 */root/ldifs/<.ldif File>* file. Replace the information below within <
 > with the installed system's information.
 
-Example ldif to remove an user from a group
+Example ldif to remove a user from a group
 
 .. code-block:: Ruby
 

@@ -10,17 +10,17 @@ The following table lists the steps to regenerate the server CAs:
 +--------+------------------------------------------------+
 | Step   | Process/Action                                 |
 +========+================================================+
-| 1.     | Type **service httpd stop**                    |
+| 1.     | Type ``service httpd stop``                    |
 +--------+------------------------------------------------+
-| 2.     | Type **rm -rf /var/lib/puppet/ssl**            |
+| 2.     | Type ``rm -rf /var/lib/puppet/ssl``            |
 +--------+------------------------------------------------+
-| 3.     | Type **puppet cert list --all**                |
+| 3.     | Type ``puppet cert list --all``                |
 +--------+------------------------------------------------+
-| 4.     | Type **puppet cert --generate ***<fqdn>*****   |
+| 4.     | Type ``puppet cert --generate ***<fqdn>***``   |
 +--------+------------------------------------------------+
-| 5.     | Type **service httpd start**                   |
+| 5.     | Type ``service httpd start``                   |
 +--------+------------------------------------------------+
-| 6.     | Type **puppet agent --test**                   |
+| 6.     | Type ``puppet agent --test``                   |
 +--------+------------------------------------------------+
 
 Table: Regenerate the Server CAs

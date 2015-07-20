@@ -65,14 +65,38 @@ Assigning Defined Types to Nodes
 
 Defined types do not have the ability to receive parameters via Hiera in
 the traditional sense. To include a defined type on a node, one could
-use creat\_resources, but this is messy and discouraged. Instead, make a
+use create\_resources, but this is messy and discouraged. Instead, make a
 site class, */etc/puppet/modules/site/manifests/my\_site.pp*. For
 example, to include tftpboot linux\_model and assign\_host on your
 puppet server, puppet.your.domain:
 
 Adding a Site Manifest Examples
 
-.. code-block:: Ruby
+.. only:: not simp_4
+
+  .. code-block:: Ruby
+
+          # in /etc/puppet/environments/simp/modules/site/manifests/tftpboot.pp
+          # Set KSSERVER statically or use Hiera for lookup
+
+          class site::tftpboot {
+            include 'tftpboot'
+
+            tftpboot::linux_model { 'CentOS_RHEL_MAJOR_VERSION':
+              kernel => 'centosRHEL_MAJOR_VERSION_x86_64/vmlinuz',
+              initrd => 'centosRHEL_MAJOR_VERSION_x86_64/initrd.img',
+              ks     => "http://KSSERVER/ks/pupclient_x86_64.cfg",
+              extra  => 'ipappend 2'
+            }
+
+            tftpboot::assign_host { 'default': model => 'CentOS_RHEL_MAJOR_VERSION' }
+          }
+
+  Then, in */etc/puppetenvironments/simp/hieradata/hosts/puppet.your.domain.yaml*
+
+.. only:: simp_4
+
+  .. code-block:: Ruby
 
           # in /etc/puppet/modules/site/manifests/tftpboot.pp
           # Set KSSERVER statically or use Hiera for lookup
@@ -90,10 +114,9 @@ Adding a Site Manifest Examples
             tftpboot::assign_host { 'default': model => 'CentOS_RHEL_MAJOR_VERSION' }
           }
 
+  Then, in */etc/puppet/hieradata/hosts/puppet.your.domain.yaml*
 
-Then, in */etc/puppet/hieradata/hosts/puppet.your.domain.yaml*
-
-Adding TFTP Site to Hirea Examples
+Adding TFTP Site to Hiera Examples
 
 .. code-block:: XML
 
@@ -108,21 +131,41 @@ SIMP Hiera File Structure
 */etc/puppet/hiera.yaml* Hiera's config file, used to control the
 hierarchy of your backends.
 
-*/etc/puppet/hieradata/* Default location of the yaml files which
-contain your node data
+.. only:: not simp_4
 
-*/etc/puppet/hieradata/simp\_classes.yaml* The list of default classes
-to include on any SIMP system.
+  */etc/puppet/environments/simp/hieradata/* Default location of the yaml files which
+  contain your node data
 
-*/etc/puppet/hieradata/simp\_def.yaml* Contains the variables needed to
-configure a working SIMP system. Modified by simp-config.
+  */etc/puppet/environments/simp/hieradata/simp\_classes.yaml* The list of default classes
+  to include on any SIMP system.
 
-*/etc/puppet/hieradata/hosts/* By populating this directory with with
-some.host.name.yaml file, you can assign parameters to host
-some.host.name
+  */etc/puppet/environments/simp/hieradata/simp\_def.yaml* Contains the variables needed to
+  configure a working SIMP system. Modified by simp-config.
 
-*/etc/puppet/hieradata/domains/* Same principal as hosts, but domain
-names.
+  */etc/puppet/environments/simp/hieradata/hosts/* By populating this directory with
+  some.host.name.yaml file, you can assign parameters to host
+  some.host.name
+
+  */etc/puppet/environments/simp/hieradata/domains/* Same principal as hosts, but domain
+  names.
+
+.. only:: simp_4
+
+  */etc/puppet/hieradata/* Default location of the yaml files which
+  contain your node data
+
+  */etc/puppet/hieradata/simp\_classes.yaml* The list of default classes
+  to include on any SIMP system.
+
+  */etc/puppet/hieradata/simp\_def.yaml* Contains the variables needed to
+  configure a working SIMP system. Modified by simp-config.
+
+  */etc/puppet/hieradata/hosts/* By populating this directory with
+  some.host.name.yaml file, you can assign parameters to host
+  some.host.name
+
+  */etc/puppet/hieradata/domains/* Same principal as hosts, but domain
+  names.
 
 */etc/puppet/manifests/* Contains site.pp and all other node manifests.
 BE CAREFUL when modifying this directory, site.pp contains your globals.

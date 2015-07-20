@@ -28,4 +28,4 @@ the SIMP infrastructure.
 Contact
 =======
 
-If you have questions please contant the SIMP team. simp@simp.org
+If you have questions please contact the SIMP team. simp@simp.org
