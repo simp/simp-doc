@@ -7,7 +7,7 @@ Master.
     **Note**
 
     SIMP, by default, provides two ways to back up data. They are
-    BackupPC and Git. If there is a different preferred method the user
+    BackupPC and Git. If there is a different preferred method, the user
     may install it and configure it first.
 
     **Warning**

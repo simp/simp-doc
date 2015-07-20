@@ -122,9 +122,9 @@ Glossary of Terms
 	      DSL, Puppet provides a declarative language that allows system
 	      administrators to provide a consistently applied management
 	      infrastructure. Users describes system resource and resource state
-	      either in the Puppet language. Puppet discovers system specific
+	      in the Puppet language. Puppet discovers system specific
 	      information via facter and compiles Puppet manifests into a system
-	      specific catalog containing resources and resource dependencies
+	      specific catalog containing resources and resource dependencies,
 	      which are applied to each client system.
 
 	Random Access Memory (RAM)
@@ -136,7 +136,7 @@ Glossary of Terms
 	Red Hat
 	    A collection of many different software programs, developed by Red
 	    Hat®, Inc. and other members of the Open Source community. All
-	    software programs included in Red Hat®nux® are GPG signed by Red Hat
+	    software programs included in Red Hat® Linux® are GPG signed by Red Hat
 	    to indicate that Red Hat supplied them.
 
 	    See also RHEL.
@@ -144,7 +144,7 @@ Glossary of Terms
 	Red Hat Enterprise Linux (RHEL)
 	    A commercial Linux operating system produced by Red Hat®, Inc. RHEL
 	    is designed to provide an Enterprise-ready Linux distribution
-	    suitable to multiple taret applications.
+	    suitable to multiple target applications.
 
 	    See also Red Hat Linux.
 

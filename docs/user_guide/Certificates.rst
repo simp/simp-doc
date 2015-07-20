@@ -96,7 +96,7 @@ Table: Generating Fake CAs Procedure
 
 If issues arise while generating keys, type **cd
 /etc/puppet/Config/FakeCA** to navigate to the
-*/etc/puppet/Config/FakeCA* directory. Then, type **./clean.sh** to
+*/etc/puppet/Config/FakeCA* directory, then type **./clean.sh** to
 start over.
 
 After running the *clean.sh* script, type **./gencerts\_nopass.sh** to
