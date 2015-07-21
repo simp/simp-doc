@@ -1,0 +1,135 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "9ad9bd40_f35cbdef",
+        "filename": "builderrors",
+        "patchSetId": 1
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 1005143
+      },
+      "writtenOn": "2015-07-21T00:12:24Z",
+      "side": 1,
+      "message": "This file should be removed and placed in .gitignore",
+      "revId": "71305cb4dd9e8185db96685aeb13f3a7d8b2566e",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9ad9bd40_536d6997",
+        "filename": "docs/installation_guide/Certificates.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 1005143
+      },
+      "writtenOn": "2015-07-21T00:12:24Z",
+      "side": 1,
+      "message": "Delete trailing whitespace",
+      "range": {
+        "startLine": 12,
+        "startChar": 101,
+        "endLine": 12,
+        "endChar": 102
+      },
+      "revId": "71305cb4dd9e8185db96685aeb13f3a7d8b2566e",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9ad9bd40_7368ad87",
+        "filename": "docs/sample/named.conf",
+        "patchSetId": 1
+      },
+      "lineNbr": 22,
+      "author": {
+        "id": 1005143
+      },
+      "writtenOn": "2015-07-21T00:12:24Z",
+      "side": 1,
+      "message": "trailing whitespace",
+      "revId": "71305cb4dd9e8185db96685aeb13f3a7d8b2566e",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9ad9bd40_930611cd",
+        "filename": "docs/sample/pupclient_x86_64.cfg",
+        "patchSetId": 1
+      },
+      "lineNbr": 34,
+      "author": {
+        "id": 1005143
+      },
+      "writtenOn": "2015-07-21T00:12:24Z",
+      "side": 1,
+      "message": "trailing whitespace",
+      "revId": "71305cb4dd9e8185db96685aeb13f3a7d8b2566e",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9ad9bd40_b30955df",
+        "filename": "docs/sample/pupclient_x86_64.cfg",
+        "patchSetId": 1
+      },
+      "lineNbr": 129,
+      "author": {
+        "id": 1005143
+      },
+      "writtenOn": "2015-07-21T00:12:24Z",
+      "side": 1,
+      "message": "trailing whitespace",
+      "range": {
+        "startLine": 129,
+        "startChar": 57,
+        "endLine": 129,
+        "endChar": 58
+      },
+      "revId": "71305cb4dd9e8185db96685aeb13f3a7d8b2566e",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9ad9bd40_d3109903",
+        "filename": "docs/sample/pupclient_x86_64.cfg",
+        "patchSetId": 1
+      },
+      "lineNbr": 131,
+      "author": {
+        "id": 1005143
+      },
+      "writtenOn": "2015-07-21T00:12:24Z",
+      "side": 1,
+      "message": "trailing whitespace",
+      "revId": "71305cb4dd9e8185db96685aeb13f3a7d8b2566e",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9ad9bd40_f313dd0a",
+        "filename": "docs/sample/simp_conf.yaml",
+        "patchSetId": 1
+      },
+      "lineNbr": 44,
+      "author": {
+        "id": 1005143
+      },
+      "writtenOn": "2015-07-21T00:12:24Z",
+      "side": 1,
+      "message": "trailing whitespace",
+      "revId": "71305cb4dd9e8185db96685aeb13f3a7d8b2566e",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735",
+      "unresolved": false
+    }
+  ]
+}

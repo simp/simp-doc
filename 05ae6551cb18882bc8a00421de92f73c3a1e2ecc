@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "9ad9bd40_d3ac19a3",
+        "filename": "docs/security_conop/Technical_Security.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 147,
+      "author": {
+        "id": 1005143
+      },
+      "writtenOn": "2015-07-21T00:12:24Z",
+      "side": 0,
+      "message": "nice catch",
+      "range": {
+        "startLine": 147,
+        "startChar": 56,
+        "endLine": 147,
+        "endChar": 59
+      },
+      "revId": "05ae6551cb18882bc8a00421de92f73c3a1e2ecc",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735",
+      "unresolved": false
+    }
+  ]
+}
