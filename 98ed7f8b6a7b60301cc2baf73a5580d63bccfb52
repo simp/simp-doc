@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "9ad9bd40_4e803fc0",
+        "filename": "docs/common/Introduction.rst",
+        "patchSetId": 2
+      },
+      "lineNbr": 17,
+      "author": {
+        "id": 1005143
+      },
+      "writtenOn": "2015-07-23T19:28:10Z",
+      "side": 1,
+      "message": "3.7",
+      "range": {
+        "startLine": 17,
+        "startChar": 19,
+        "endLine": 17,
+        "endChar": 25
+      },
+      "revId": "98ed7f8b6a7b60301cc2baf73a5580d63bccfb52",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735",
+      "unresolved": false
+    }
+  ]
+}
