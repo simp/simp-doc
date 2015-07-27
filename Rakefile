@@ -24,7 +24,7 @@ class DocPkg < Simp::Rake::Pkg
       Rake::Task['rdoc:build'].invoke
     end
 
-    Rake::Task['publican:build'].invoke(@spec_file)
+#    Rake::Task['publican:build'].invoke(@spec_file)
 
     super
   end
