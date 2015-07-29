@@ -290,4 +290,10 @@ texinfo_documents = [
 
 
 # Example configuration for intersphinx: refer to the Python standard library.
-intersphinx_mapping = {'https://docs.python.org/': None}
+#intersphinx_mapping = {'https://docs.python.org/': None}
+
+# PDF 
+#extensions = ['sphinx.ext.autodoc','rst2pdf.pdfbuilder']
+
+# tag
+tags.add('simp_5')

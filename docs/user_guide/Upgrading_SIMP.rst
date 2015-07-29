@@ -89,82 +89,82 @@ The migration script will perform the following actions on your system:
 Migration Script Execution
 --------------------------
 
-+--------+--------------------------------------------------------------------------------------------------------------------+
-| Step   | Process/Action                                                                                                     |
-+========+====================================================================================================================+
-| 1.     | Copy the new SIMP ISO onto your system. For the purposes of these instructions, we will refer to this is           |
-|        | SIMP\_Update.iso. Please ensure that you are in the directory with the ISO prior to proceeding.                    |
-+--------+--------------------------------------------------------------------------------------------------------------------+
-| 2.     | Extract the new **simp-utils** package using the following command.                                                |
-|        |                                                                                                                    |
-|        | .. code-block:: Bash                                                                                               |
-|        |                                                                                                                    |
-|        |isoinfo -i SIMP_Update.iso -R -x `isoinfo -i SIMP_Update.iso -Rf | grep noarch/simp-utils` > simp-utils-update.rpm  |
-|        |                                                                                                                    |
-+--------+--------------------------------------------------------------------------------------------------------------------+
-| 3.     | Install the new **simp-utils** RPM.                                                                                |
-|        |                                                                                                                    |
-|        | .. code-block:: Bash                                                                                               |
-|        |                                                                                                                    |
-|        |           yum -y localupdate simp-utils*.rpm                                                                       |
-|        |                                                                                                                    |
-+--------+--------------------------------------------------------------------------------------------------------------------+
-| 4.     | Unpack the DVD onto the system.                                                                                    |
-|        |                                                                                                                    |
-|        | .. code-block:: Bash                                                                                               |
-|        |                                                                                                                    |
-|        |           /usr/local/bin/unpack_dvd SIMP_Update.iso                                                                |
-|        |                                                                                                                    |
-+--------+--------------------------------------------------------------------------------------------------------------------+
-| 5.     | Run the migration script (this may take some time, do NOT hit CTRL-C!)                                             |
-|        |                                                                                                                    |
-|        | .. code-block:: Bash                                                                                               |
-|        |                                                                                                                    |
-|        |           /usr/share/simp/upgrade_script/migrate_to_environments                                                   |
-|        |                                                                                                                    |
-+--------+--------------------------------------------------------------------------------------------------------------------+
-| 6.     | Run the puppet agent.                                                                                              |
-|        |                                                                                                                    |
-|        | .. code-block:: Bash                                                                                               |
-|        |                                                                                                                    |
-|        |           puppet agent -t                                                                                          |
-|        |                                                                                                                    |
-+--------+--------------------------------------------------------------------------------------------------------------------+
-| 7.     | Stop the new puppetserver service (it may not be running).                                                         |
-|        |                                                                                                                    |
-|        | .. code-block:: Bash                                                                                               |
-|        |                                                                                                                    |
-|        |           service puppetserver stop                                                                                |
-|        |                                                                                                                    |
-+--------+--------------------------------------------------------------------------------------------------------------------+
-| 8.     | Remove any left over PID files                                                                                     |
-|        |                                                                                                                    |
-|        | .. code-block:: Bash                                                                                               |
-|        |                                                                                                                    |
-|        |           rm /var/run/puppetserver/puppetserver                                                                    |
-|        |                                                                                                                    |
-+--------+--------------------------------------------------------------------------------------------------------------------+
-| 9.     | Kill any running *puppet master* processes                                                                         |
-|        |                                                                                                                    |
-|        | .. code-block:: Bash                                                                                               |
-|        |                                                                                                                    |
-|        |           pkill -f 'puppet master'                                                                                 |
-|        |                                                                                                                    |
-+--------+--------------------------------------------------------------------------------------------------------------------+
-| 10.    | Wait for 10 seconds to let things finalize if necessary                                                            |
-|        |                                                                                                                    |
-|        | .. code-block:: Bash                                                                                               |
-|        |                                                                                                                    |
-|        |           sleep 10                                                                                                 |
-|        |                                                                                                                    |
-+--------+--------------------------------------------------------------------------------------------------------------------+
-| 11.    | Start the new Puppet Server                                                                                        |
-|        |                                                                                                                    |
-|        | .. code-block:: Bash                                                                                               |
-|        |                                                                                                                    |
-|        |           service puppetserver start                                                                               |
-|        |                                                                                                                    |
-+--------+--------------------------------------------------------------------------------------------------------------------+
++--------+-------------------------------------------------------------------------------------------------------------------------------+
+| Step   | Process/Action                                                                                                                |
++========+===============================================================================================================================+
+| 1.     | Copy the new SIMP ISO onto your system. For the purposes of these instructions, we will refer to this is                      |
+|        | SIMP\_Update.iso. Please ensure that you are in the directory with the ISO prior to proceeding.                               |
++--------+-------------------------------------------------------------------------------------------------------------------------------+
+| 2.     | Extract the new **simp-utils** package using the following command.                                                           |
+|        |                                                                                                                               |
+|        | .. code-block:: Bash                                                                                                          |
+|        |                                                                                                                               |
+|        |           isoinfo -i SIMP_Update.iso -R -x `isoinfo -i SIMP_Update.iso -Rf | grep noarch/simp-utils` > simp-utils-update.rpm  |
+|        |                                                                                                                               |
++--------+-------------------------------------------------------------------------------------------------------------------------------+
+| 3.     | Install the new **simp-utils** RPM.                                                                                           |
+|        |                                                                                                                               |
+|        | .. code-block:: Bash                                                                                                          |
+|        |                                                                                                                               |
+|        |           yum -y localupdate simp-utils*.rpm                                                                                  |
+|        |                                                                                                                               |
++--------+-------------------------------------------------------------------------------------------------------------------------------+
+| 4.     | Unpack the DVD onto the system.                                                                                               |
+|        |                                                                                                                               |
+|        | .. code-block:: Bash                                                                                                          |
+|        |                                                                                                                               |
+|        |           /usr/local/bin/unpack_dvd SIMP_Update.iso                                                                           |
+|        |                                                                                                                               |
++--------+-------------------------------------------------------------------------------------------------------------------------------+
+| 5.     | Run the migration script (this may take some time, do NOT hit CTRL-C!)                                                        |
+|        |                                                                                                                               |
+|        | .. code-block:: Bash                                                                                                          |
+|        |                                                                                                                               |
+|        |           /usr/share/simp/upgrade_script/migrate_to_environments                                                              |
+|        |                                                                                                                               |
++--------+-------------------------------------------------------------------------------------------------------------------------------+
+| 6.     | Run the puppet agent.                                                                                                         |
+|        |                                                                                                                               |
+|        | .. code-block:: Bash                                                                                                          |
+|        |                                                                                                                               |
+|        |           puppet agent -t                                                                                                     |
+|        |                                                                                                                               |
++--------+-------------------------------------------------------------------------------------------------------------------------------+
+| 7.     | Stop the new puppetserver service (it may not be running).                                                                    |
+|        |                                                                                                                               |
+|        | .. code-block:: Bash                                                                                                          |
+|        |                                                                                                                               |
+|        |           service puppetserver stop                                                                                           |
+|        |                                                                                                                               |
++--------+-------------------------------------------------------------------------------------------------------------------------------+
+| 8.     | Remove any left over PID files                                                                                                |
+|        |                                                                                                                               |
+|        | .. code-block:: Bash                                                                                                          |
+|        |                                                                                                                               |
+|        |           rm /var/run/puppetserver/puppetserver                                                                               |
+|        |                                                                                                                               |
++--------+-------------------------------------------------------------------------------------------------------------------------------+
+| 9.     | Kill any running *puppet master* processes                                                                                    |
+|        |                                                                                                                               |
+|        | .. code-block:: Bash                                                                                                          |
+|        |                                                                                                                               |
+|        |           pkill -f 'puppet master'                                                                                            |
+|        |                                                                                                                               |
++--------+-------------------------------------------------------------------------------------------------------------------------------+
+| 10.    | Wait for 10 seconds to let things finalize if necessary                                                                       |
+|        |                                                                                                                               |
+|        | .. code-block:: Bash                                                                                                          |
+|        |                                                                                                                               |
+|        |           sleep 10                                                                                                            |
+|        |                                                                                                                               |
++--------+-------------------------------------------------------------------------------------------------------------------------------+
+| 11.    | Start the new Puppet Server                                                                                                   |
+|        |                                                                                                                               |
+|        | .. code-block:: Bash                                                                                                          |
+|        |                                                                                                                               |
+|        |           service puppetserver start                                                                                          |
+|        |                                                                                                                               |
++--------+-------------------------------------------------------------------------------------------------------------------------------+
 
 Table: Executing the Migration Script
 

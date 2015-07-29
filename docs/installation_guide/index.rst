@@ -14,4 +14,3 @@ Contents:
   ../common/Changelog
   glossary
   ../common/File_Samples
-

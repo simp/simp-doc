@@ -67,6 +67,10 @@ which includes Puppet Environments
     work well with capital letters in host names. Therefore, they should
     not be used.
 
+
+SIMP Default Passwords and Settings
+-----------------------------------
+
 Below is a table containing the default passwords found on a basic SIMP
 server.
 
@@ -74,6 +78,7 @@ server.
 
     All default passwords should be changed during the initial
     configuration proceess.
+
 
 +-------------+-----------------------------------+
 | Utility     | Password                          |
@@ -124,6 +129,7 @@ environment.
 +------------------------+-------------------------------------------+
 
 Table: Sample values for SIMP install
+
 
 Preparing the SIMP Server Environment
 -------------------------------------

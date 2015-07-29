@@ -38,8 +38,8 @@ Contents:
 .. toctree::
   :maxdepth: 1
 
-  User Guide <user_guide/index>
   Installation Guide <installation_guide/index>
+  User Guide <user_guide/index>
   Security Concept of Operations <security_conop/index>
   license
   help
