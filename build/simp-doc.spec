@@ -1,17 +1,17 @@
-%define publican_lang en-US
+%define simp_major_version 5
 
 Summary: SIMP Documentation
 Name: simp-doc
 Version: 5.1.0
-Release: Alpha
+Release: Beta2
 License: Apache License, Version 2.0
 Group: Documentation
 Source: %{name}-%{version}-%{release}.tar.gz
 Buildroot: %{_tmppath}/%{name}-%{version}-%{release}-buildroot
 Buildarch: noarch
 Requires: links
-BuildRequires: publican >= 2.1
-
+BuildRequires: sphinx >= 1.2
+BuildRequires: python-sphinx >= 0
 Prefix: /usr/share/doc/simp-%{version}
 
 %description
@@ -25,14 +25,12 @@ command 'simp doc'. Alternatively, a PDF is provided in
 %setup
 
 %build
-cd publican
-publican build --formats=html,html-single,pdf --langs=%{publican_lang}
-cd -
+sphinx-build    -n -t simp_%{simp_major_version} -b html       -d sphinx_cache docs %{simp_major_version}/html
+sphinx-build -E -n -t simp_%{simp_major_version} -b singlehtml -d sphinx_cache docs %{simp_major_version}/html-single
 
 %install
 mkdir -p %{buildroot}%{prefix}
-src_dirs="changelogs Changelog.txt examples ldifs html upgrade_utils"
-
+src_dirs="changelogs Changelog.txt ldifs html"
 for dir in $src_dirs; do
   if [ -e $dir ]; then
     cp -r $dir %{buildroot}%{prefix}
@@ -40,10 +38,9 @@ for dir in $src_dirs; do
 done
 
 # Publican Material
-mkdir -p %{buildroot}%{prefix}/html/users_guide
-cp -r "build_docs/%{publican_lang}/html" %{buildroot}%{prefix}/html/users_guide
-cp -r "build_docs/%{publican_lang}/html-single" %{buildroot}%{prefix}/html/users_guide
-cp -r "build_docs/%{publican_lang}/pdf" %{buildroot}%{prefix}
+mkdir -p %{buildroot}%{prefix}/html
+cp -r "%{simp_major_version}/html"        %{buildroot}%{prefix}/html
+cp -r "%{simp_major_version}/html-single" %{buildroot}%{prefix}/html-single
 
 chmod -R u=rwX,g=rX,o=rX %{buildroot}%{prefix}
 
@@ -62,6 +59,14 @@ chmod -R u=rwX,g=rX,o=rX %{buildroot}%{prefix}
 # Post uninstall stuff
 
 %changelog
+* Fri Jul 31 2015 Judy Johnson <judy.johnson@onyxpoint.com> - 5.1.0-Beta2
+- ReStructured Text!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+- !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+- !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+- !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+- !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+- And things.
+
 * Wed Mar 11 2015 Trevor Vaughan <tvaughan@onyxpoint.com> - 5.1.0-Alpha
 - Added text to cover the move to the new Puppet Server and the migration to
   Environments.
@@ -86,5 +91,5 @@ chmod -R u=rwX,g=rX,o=rX %{buildroot}%{prefix}
 - Added a script for converting LDAP users to InetOrgPerson entries
   and updated the LDIFs to account for such.
 
-* Fri Nov 25 2013 Trevor Vaughan <tvaughan@onyxpoint.com> - 4.1.0-Alpha2
+* Mon Nov 25 2013 Trevor Vaughan <tvaughan@onyxpoint.com> - 4.1.0-Alpha2
 - First release of 4.1.0-Alpha2

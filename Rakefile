@@ -11,8 +11,6 @@ class DocPkg < Simp::Rake::Pkg
           rm(short_name)
         end
       end
-
-      Rake::Task['rdoc:clean'].invoke
     end
   end
 
@@ -20,12 +18,6 @@ class DocPkg < Simp::Rake::Pkg
     # First, we need to assemble the documentation.
     # This doesn't work properly under Ruby >= 1.9 and leaves cruft in the directories
     # We can try again when 'puppet strings' hits the ground
-    if Gem::Version.new(RUBY_VERSION) < Gem::Version.new('1.9')
-      Rake::Task['rdoc:build'].invoke
-    end
-
-#    Rake::Task['publican:build'].invoke(@spec_file)
-
     super
   end
 
