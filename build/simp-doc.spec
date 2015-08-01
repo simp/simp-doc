@@ -1,65 +1,56 @@
-%define publican_lang en-US
+%define simp_major_version 4
 
 Summary: SIMP Documentation
 Name: simp-doc
-Version: 4.1.0
-Release: 1
+Version: 4.2.0
+Release: Beta2
 License: Apache License, Version 2.0
 Group: Documentation
 Source: %{name}-%{version}-%{release}.tar.gz
 Buildroot: %{_tmppath}/%{name}-%{version}-%{release}-buildroot
 Buildarch: noarch
 Requires: links
-BuildRequires: publican >= 2.1
-BuildRequires: ruby
-
-Prefix:"/usr/share/doc/simp-%{version}"
+BuildRequires: sphinx >= 1.2
+BuildRequires: python-sphinx >= 0
+Prefix: /usr/share/doc/simp-%{version}
 
 %description
 Documentation for SIMP %{version}-%{release}
 
 You can access the documentation on a text-based system using the
 command 'simp doc'. Alternatively, a PDF is provided in
-/usr/share/doc/simp-%{version}/pdf.
+%{prefix}/pdf
 
 %prep
 %setup
 
 %build
-cd publican
-os_version=`ruby -e 'if File.read("/etc/redhat-release") =~ /(\d+(:?\.\d+)?)/ then puts $1 end'`
-if [ ! -z "$os_version" ]; then
-  find . -type f -exec sed -i "s/STUB_OS_VERSION/$os_version/" {} \;
-fi
-
-publican build --formats=html,html-single,pdf --langs=%{publican_lang}
-cd -
+sphinx-build    -n -t simp_%{simp_major_version} -b html       -d sphinx_cache docs html
+sphinx-build -E -n -t simp_%{simp_major_version} -b singlehtml -d sphinx_cache docs html-single
 
 %install
-mkdir -p %{buildroot}/usr/share/doc/simp-%{version}
-src_dirs="changelogs Changelog.txt examples ldifs html upgrade_utils"
-
+mkdir -p %{buildroot}%{prefix}
+src_dirs="changelogs Changelog*.rst ldifs html"
 for dir in $src_dirs; do
   if [ -e $dir ]; then
-    cp -r $dir %{buildroot}/usr/share/doc/simp-%{version}
+    cp -r $dir %{buildroot}%{prefix}
   fi
 done
 
 # Publican Material
-mkdir -p %{buildroot}/usr/share/doc/simp-%{version}/html/users_guide
-cp -r "build_docs/%{publican_lang}/html" %{buildroot}/usr/share/doc/simp-%{version}/html/users_guide
-cp -r "build_docs/%{publican_lang}/html-single" %{buildroot}/usr/share/doc/simp-%{version}/html/users_guide
-cp -r "build_docs/%{publican_lang}/pdf" %{buildroot}/usr/share/doc/simp-%{version}
+mkdir -p %{buildroot}%{prefix}/html
+cp -r "html/"        %{buildroot}%{prefix}/html/
+cp -r "html-single/" %{buildroot}%{prefix}/html-single/
 
-chmod -R u=rwX,g=rX,o=rX %{buildroot}/usr/share/doc/simp-%{version}
+chmod -R u=rwX,g=rX,o=rX %{buildroot}%{prefix}
 
 %clean
 [ "%{buildroot}" != "/" ] && rm -rf %{buildroot}
 
 %files
 %defattr(-,root,root,-)
-%docdir /usr/share/doc/simp-%{version}
-/usr/share/doc/simp-%{version}
+%docdir %{prefix}
+%{prefix}
 
 %post
 # Post install stuff
@@ -68,6 +59,14 @@ chmod -R u=rwX,g=rX,o=rX %{buildroot}/usr/share/doc/simp-%{version}
 # Post uninstall stuff
 
 %changelog
+* Fri Jul 31 2015 Judy Johnson <judy.johnson@onyxpoint.com> - 4.2.0-Beta2
+- Converted docs from Publican to ReStructured Text.
+
+* Wed Mar 11 2015 Trevor Vaughan <tvaughan@onyxpoint.com> - 4.2.0-Alpha
+- Added text to cover the move to the new Puppet Server and the migration to
+  Environments.
+- Removed some old material.
+
 * Sat Dec 20 2014 Trevor Vaughan <tvaughan@onyxpoint.com> - 4.1.0-1
 - Final release of 4.1.0-1
 
@@ -98,5 +97,6 @@ chmod -R u=rwX,g=rX,o=rX %{buildroot}/usr/share/doc/simp-%{version}
 - Added a script for converting LDAP users to InetOrgPerson entries
   and updated the LDIFs to account for such.
 
-* Fri Nov 25 2013 Trevor Vaughan <tvaughan@onyxpoint.com> - 4.1.0-Alpha2
+* Mon Nov 25 2013 Trevor Vaughan <tvaughan@onyxpoint.com> - 4.1.0-Alpha2
 - First release of 4.1.0-Alpha2
+
