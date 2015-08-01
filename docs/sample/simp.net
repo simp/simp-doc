@@ -1,0 +1,9 @@
+zone "simp.net" IN {
+	type master;
+	file "forward/simp.net.db";
+};
+
+zone "122.168.192.in-addr.arpa" IN {
+	type master;
+	file "reverse/122.168.192.db";
+};
