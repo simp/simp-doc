@@ -58,6 +58,17 @@ appropriate for common organizations. These steps should be accomplished
 after creating the ACL by using the code provided in the previous
 example.
 
++--------+---------------------------------------------------------------------------------------------------------------------------------+
+| Step   | Process/Action                                                                                                                  |
++========+=================================================================================================================================+
+| 1.     | After using the code from the previous example, run ``puppet agent -t`` to allow the changes to take effect.                    |
++--------+---------------------------------------------------------------------------------------------------------------------------------+
+| 2.     | To finish creating the principal, type **/usr/bin/kadmin.local -r ***<Your.Domain>*** -q "addprinc ***<User Name>***/admin"**   |
+|        |                                                                                                                                 |
+|        | **NOTE**: By following this step, all features of the admin principal can be used remotely.                                     |
++--------+---------------------------------------------------------------------------------------------------------------------------------+
+| 3.     | To load the principal, type **/usr/bin/kinit ***<User Name>***/admin**                                                          |
++--------+---------------------------------------------------------------------------------------------------------------------------------+
 
 Table: Creating the Admin Principal Procedure
 

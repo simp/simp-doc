@@ -80,6 +80,15 @@ server.
     configuration proceess.
 
 
++-------------+-----------------------------------+
+| Utility     | Password                          |
++=============+===================================+
+| Grub        | Initi@lGruubCredential$           |
++-------------+-----------------------------------+
+| Root User   | Plea$e Ch@nge Th1s Immediately!   |
++-------------+-----------------------------------+
+| Simp User   | CorrectHorseBatteryStaple         |
++-------------+-----------------------------------+
 
 Table: SIMP Default Passwords
 
@@ -89,46 +98,35 @@ will be helpful in illustrating how configuration files are set up. Your
 values will obviously differ, depending on your installation
 environment.
 
-.. list-table::
-   :widths: 13 35
-   :header-rows: 2
-
-   * - Utility
-     - Password
-   * - Grub
-     - Initi@lGruubCredential$
-   * - Root User
-     - Plea$e Ch@nge Th1s Immediately!
-   * - Simp User
-     - CorrectHorseBatteryStaple
-   * - Variable name
-     - Value
-   * - Domain name
-     - simp.net
-   * - Fully qualified name
-     - puppet.simp.net
-   * - IP address
-     - 192.168.1.10
-   * - Gateway
-     - 192.168.1.1
-   * - DNS server
-     - 192.168.1.10
-   * - DNS search entry
-     - simp.net
-   * - Kickstart server
-     - 192.168.1.10
-   * - Yum server
-     - 192.168.1.10
-   * - LDAP URI
-     - ldap://puppet.simp.net
-   * - LDAP Base DN
-     - [dc=simp,dc=net]
-   * - LDAP Root DN
-     - [cn=LDAPAdmin,ou=People,dc=simp,dc=net]
-   * - LDAP Bind DN
-     - [cn=hostAuth,ou=Hosts,dc=simp,dc=net]
-   * - LDAP Sync DN
-     - [cn=LDAPSync,ou=People,dc=simp,dc=net]
++------------------------+-------------------------------------------+
+| Variable name          | Value                                     |
++========================+===========================================+
+| Domain name            | simp.net                                  |
++------------------------+-------------------------------------------+
+| Fully qualified name   | puppet.simp.net                           |
++------------------------+-------------------------------------------+
+| IP address             | 192.168.1.10                              |
++------------------------+-------------------------------------------+
+| Gateway                | 192.168.1.1                               |
++------------------------+-------------------------------------------+
+| DNS server             | 192.168.1.10                              |
++------------------------+-------------------------------------------+
+| DNS search entry       | simp.net                                  |
++------------------------+-------------------------------------------+
+| Kickstart server       | 192.168.1.10                              |
++------------------------+-------------------------------------------+
+| Yum server             | 192.168.1.10                              |
++------------------------+-------------------------------------------+
+| LDAP URI               | ldap://puppet.simp.net                    |
++------------------------+-------------------------------------------+
+| LDAP Base DN           | [dc=simp,dc=net]                          |
++------------------------+-------------------------------------------+
+| LDAP Root DN           | [cn=LDAPAdmin,ou=People,dc=simp,dc=net]   |
++------------------------+-------------------------------------------+
+| LDAP Bind DN           | [cn=hostAuth,ou=Hosts,dc=simp,dc=net]     |
++------------------------+-------------------------------------------+
+| LDAP Sync DN           | [cn=LDAPSync,ou=People,dc=simp,dc=net]    |
++------------------------+-------------------------------------------+
 
 Table: Sample values for SIMP install
 
@@ -139,6 +137,20 @@ Preparing the SIMP Server Environment
 The following table outlines the steps to prepare a system for SIMP
 installation.
 
++--------+-------------------------------------------------------------------------------------------------+
+| Step   | Process/Action                                                                                  |
++========+=================================================================================================+
+| 1.     | Boot the system and ensure the SIMP ISO is selected.                                            |
++--------+-------------------------------------------------------------------------------------------------+
+| 2.     | Press **Enter** to run the standard SIMP install, or choose from the customized options list.   |
++--------+-------------------------------------------------------------------------------------------------+
+| 3.     | When the installation is complete, the system will restart automatically.                       |
++--------+-------------------------------------------------------------------------------------------------+
+| 4.     | Log on as *root* and type the default password shown in **Table 2.1.**                          |
++--------+-------------------------------------------------------------------------------------------------+
+| 5.     | Type the default password again when prompted for the (current) UNIX password.                  |
+|        | Type a new password when prompted for the New Password. Retype the password when prompted.      |
++--------+-------------------------------------------------------------------------------------------------+
 
 Table: SIMP Pre-Install Procedures
 
@@ -147,48 +159,25 @@ Installing the SIMP Server
 
 The following table outlines the steps to install a SIMP server.
 
-.. list-table::
-   :widths: 8 97
-   :header-rows: 2
-
-   * - Step
-     - Process/Action
-   * - 1.
-     - Boot the system and ensure the SIMP ISO is selected.
-   * - 2.
-     - Press **Enter** to run the standard SIMP install, or choose from the customized options list.
-   * - 3.
-     - When the installation is complete, the system will restart automatically.
-   * - 4.
-     - Log on as *root* and type the default password shown in **Table 2.1.**
-   * - 5.
-     - Type the default password again when prompted for the (current) UNIX password.
-   * - 
-     - Type a new password when prompted for the New Password. Retype the password when prompted.
-   * - Step
-     - Process/Action
-   * - 1.
-     - Log on as *simp* and **su -** to gain root access.
-   * - 2.
-     - Type **simp config**
-   * - 
-     - 
-   * - 
-     - Type **simp config -a ***<Config File>***** to load a previously generated configuration instead of generating the configuration from the script. This is the option to run for systems that will be rebuilt often.
-   * - 
-     - 
-   * - 
-     - For a list of additional commands, type **simp help**. Type **simp help ***<Command>***** for more information on a specific command.
-   * - 3.
-     - Configure the system as prompted.
-   * - 4.
-     - Type **simp bootstrap**
-   * - 
-     - 
-   * - 
-     - **NOTE**: If progress bars are of equal length and the bootstrap finishes quickly, a problem has occurred. This is most likely due to an error in SIMP configuration. Refer to the previous step and make sure that all configuration options are correct.
-   * - 5.
-     - Type **reboot**
++--------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| Step   | Process/Action                                                                                                                                                                                                                                              |
++========+=============================================================================================================================================================================================================================================================+
+| 1.     | Log on as *simp* and **su -** to gain root access.                                                                                                                                                                                                          |
++--------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| 2.     | Type **simp config**                                                                                                                                                                                                                                        |
+|        |                                                                                                                                                                                                                                                             |
+|        | Type **simp config -a ***<Config File>***** to load a previously generated configuration instead of generating the configuration from the script. This is the option to run for systems that will be rebuilt often.                                         |
+|        |                                                                                                                                                                                                                                                             |
+|        | For a list of additional commands, type **simp help**. Type **simp help ***<Command>***** for more information on a specific command.                                                                                                                       |
++--------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| 3.     | Configure the system as prompted.                                                                                                                                                                                                                           |
++--------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| 4.     | Type **simp bootstrap**                                                                                                                                                                                                                                     |
+|        |                                                                                                                                                                                                                                                             |
+|        | **NOTE**: If progress bars are of equal length and the bootstrap finishes quickly, a problem has occurred. This is most likely due to an error in SIMP configuration. Refer to the previous step and make sure that all configuration options are correct.  |
++--------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| 5.     | Type **reboot**                                                                                                                                                                                                                                             |
++--------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 
 Table: SIMP Install Procedure
 
@@ -197,31 +186,24 @@ Performing Post-installation Setup on the SIMP Server
 
 The following table outlines the SIMP post-installation procedures.
 
-.. list-table::
-   :widths: 8 166
-   :header-rows: 1
-
-   * - Step
-     - Process/Action
-   * - 1.
-     - Log on as *root*
-   * - 2.
-     - Run puppet for the first time. Errors will appear for DHCP. These can be safely ingored at this stage. Type:
-   * - 
-     - ``puppet agent -t``
-   * - 3.
-     - Copy CentOS RHEL\_MAJOR\_MINOR\_VERSION ISO(s) to the server and unpack using the unpack\_dvd utility. This creates a new tree under /var/www/yum/CentOS. Execute:
-   * - 
-     - ``unpack\_dvd CentOS-RHEL\_MAJOR\_MINOR\_VERSION-\ *####*-x86\_64-Everything.iso``
-   * - 4.
-     - Update your system using yum. The updates applied will be dependent on what ISO you initially used. Execute:
-   * - 
-     - ``yum clean all; yum makecache``
-   * - 5.
-     - Run puppet. Ignore the same DHCP errors.
-   * - 
-     - ``puppet agent -t``
-   * - 6.
-     - Type ``reboot``
++--------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| Step   | Process/Action                                                                                                                                                       |
++========+======================================================================================================================================================================+
+| 1.     | Log on as *root*                                                                                                                                                     |
++--------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| 2.     | Run puppet for the first time. Errors will appear for DHCP. These can be safely ingored at this stage. Type:                                                         |
+|        | ``puppet agent -t``                                                                                                                                                  |
++--------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| 3.     | Copy CentOS RHEL\_MAJOR\_MINOR\_VERSION ISO(s) to the server and unpack using the unpack\_dvd utility. This creates a new tree under /var/www/yum/CentOS. Execute:   |
+|        | ``unpack\_dvd CentOS-RHEL\_MAJOR\_MINOR\_VERSION-\ *####*-x86\_64-Everything.iso``                                                                                   |
++--------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| 4.     | Update your system using yum. The updates applied will be dependent on what ISO you initially used. Execute:                                                         |
+|        | ``yum clean all; yum makecache``                                                                                                                                     |
++--------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| 5.     | Run puppet. Ignore the same DHCP errors.                                                                                                                             |
+|        | ``puppet agent -t``                                                                                                                                                  |
++--------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| 6.     | Type ``reboot``                                                                                                                                                      |
++--------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 
 Table: SIMP Post-Installation Procedure

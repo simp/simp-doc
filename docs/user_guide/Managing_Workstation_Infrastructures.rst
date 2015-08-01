@@ -260,6 +260,21 @@ in Hiera for the node.
 The default VNC setup that comes with SIMP can only be used over SSH and
 includes three default settings:
 
++-----------------------+----------------------------+
+| Setting Type          | Setting Details            |
++=======================+============================+
+| **Standard**          | Port: 5901                 |
+|                       |                            |
+|                       | Resolution: 1024x768@16    |
++-----------------------+----------------------------+
+| **Low Resolution**    | Port: 5902                 |
+|                       |                            |
+|                       | Resolution: 800x600@16     |
++-----------------------+----------------------------+
+| **High Resolution**   | Port: 5903                 |
+|                       |                            |
+|                       | Resolution: 1280x1024@16   |
++-----------------------+----------------------------+
 
 Table: VNC Default Settings
 
@@ -349,6 +364,17 @@ Set up a tunnel from the client (vclnt), through the proxy server
 (proxy), to the server (vserv). The table below lists the steps to set
 up the tunnel.
 
++--------+-----------------------------------------------------------------------------------------------------------------------------+
+| Step   | Process/Action                                                                                                              |
++========+=============================================================================================================================+
+| 1.     | On the workstation, type **ssh -l vuser -L 590\ ***<Port Number>***:localhost:590***<Port Number>***\ proxy.your.domain**   |
+|        |                                                                                                                             |
+|        | **NOTE**: This command takes the user to the proxy.                                                                         |
++--------+-----------------------------------------------------------------------------------------------------------------------------+
+| 2.     | On the proxy, type **ssh -l vuser -L 590\ ***<Port Number>***:localhost:590***<Port Number>***\ vserv.your.domain**         |
+|        |                                                                                                                             |
+|        | **NOTE**: This command takes the user to the VNC server.                                                                    |
++--------+-----------------------------------------------------------------------------------------------------------------------------+
 
 Table: Set Up SSH Tunnel Procedure
 

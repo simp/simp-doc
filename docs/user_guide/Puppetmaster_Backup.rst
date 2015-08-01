@@ -16,19 +16,16 @@ Master.
     The SIMP team is currently evaluating other options for an inbuilt
     backup system.
 
-.. list-table::
-   :widths: 8 48
-   :header-rows: 1
-
-   * - Step
-     - Process/Action
-   * - 1.
-     - Backup */var/lib/puppet/ssl*
-   * - 1.
-     - Backup */etc/puppet*
-   * - 1.
-     - Backup */srv/rsync* and/or */var/simp/rsync*
-   * - 1.
-     - **Optional:** Backup /var/www
++--------+------------------------------------------------+
+| Step   | Process/Action                                 |
++========+================================================+
+| 1.     | Backup */var/lib/puppet/ssl*                   |
++--------+------------------------------------------------+
+| 1.     | Backup */etc/puppet*                           |
++--------+------------------------------------------------+
+| 1.     | Backup */srv/rsync* and/or */var/simp/rsync*   |
++--------+------------------------------------------------+
+| 1.     | **Optional:** Backup /var/www                  |
++--------+------------------------------------------------+
 
 Table: SIMP Upgrade Process

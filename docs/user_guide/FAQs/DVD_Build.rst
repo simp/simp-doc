@@ -19,6 +19,29 @@ Starting from the directory with the ISO, complete the steps outlined
 below. These steps are based on an example ISO of
 *rhel-server-5.8-x86\_64-dvd.iso*.
 
++--------+-----------------------------------------------------------------------------------------+
+| Step   | Process/Action                                                                          |
++========+=========================================================================================+
+| 1.     | Type **for file in \`isoinfo -Rf -i rhel-server-5.8-x86\_64-dvd.iso \| tac\`; \\**      |
+|        |                                                                                         |
+|        | **do mkdir -p RHEL5.8-xi6\_64\`dirname $file\`; \\**                                    |
+|        |                                                                                         |
+|        | **isoinfo -R -x $file -i rhel-server-5.8-x86\_64-dvd.iso > RHEL5.8-x86\_64$file; \\**   |
+|        |                                                                                         |
+|        | **done**                                                                                |
++--------+-----------------------------------------------------------------------------------------+
+| 1.     | Type **tar -C RHEL5.8-x86\_64 -xzf ***<SIMP tarball>*****                               |
++--------+-----------------------------------------------------------------------------------------+
+| 1.     | Type **mkisofs -o SIMP-5.8-\ ***<SIMP Version>***-x86\_64.iso \\**                      |
+|        |                                                                                         |
+|        | **-b isolinux/isolinux.bin -c boot.cat \\**                                             |
+|        |                                                                                         |
+|        | **-no-emul-boot -boot-load-size 4 \\**                                                  |
+|        |                                                                                         |
+|        | **-boot-info-table \\**                                                                 |
+|        |                                                                                         |
+|        | **-R -m TRANS.TBL -uid 0 -gid 0 RHEL5.8-x86\_64**                                       |
++--------+-----------------------------------------------------------------------------------------+
 
 Table: Build a SIMP DVD Procedure
 

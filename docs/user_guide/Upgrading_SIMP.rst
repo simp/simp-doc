@@ -9,44 +9,27 @@ Pre-Upgrade Recommendations
 
 The following process should be followed before upgrade.
 
-.. list-table::
-   :widths: 8 276
-   :header-rows: 1
-
-   * - Step
-     - Process/Action
-   * - 1.
-     - Run ``puppet agent --disable`` to disable puppet.
-   * - 
-     - **Note:** If you think you will need more than 4 hours to complete this task, also disable puppet in root's crontab.
-   * - 2.
-     - You may wish to block all communications with agents while updating the server. This is not required but could spare you some headaches if something doesn't work properly.
-   * - 
-     - 
-   * - 
-     - The simplest way to do this is to set the catalog retrieval capability to 127.0.0.1 in /etc/puppet/auth.conf as shown below.
-   * - 
-     - 
-   * - 
-     - .. code-block:: bash
-   * - 
-     - 
-   * - 
-     - path ~ ^/catalog/([^/]+)$
-   * - 
-     - method find
-   * - 
-     - # Uncomment this when complete and delete the other entries
-   * - 
-     - #allow $1
-   * - 
-     - allow 127.0.0.1
-   * - 
-     - 
-   * - 
-     - 
-   * - 
-     - Using the syntax above, you can add fully qualified domain names, one at a time, to the 'allow' list and only those hosts will be able to retrieve their catalog from the running server. 127.0.0.1 serves as a placeholder so that no host can actually retrieve their catalog.
++--------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| Step   | Process/Action                                                                                                                                                                                                                                                                     |
++========+====================================================================================================================================================================================================================================================================================+
+| 1.     | Run ``puppet agent --disable`` to disable puppet.                                                                                                                                                                                                                                  |
+|        | **Note:** If you think you will need more than 4 hours to complete this task, also disable puppet in root's crontab.                                                                                                                                                               |
++--------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| 2.     | You may wish to block all communications with agents while updating the server. This is not required but could spare you some headaches if something doesn't work properly.                                                                                                        |
+|        |                                                                                                                                                                                                                                                                                    |
+|        | The simplest way to do this is to set the catalog retrieval capability to 127.0.0.1 in /etc/puppet/auth.conf as shown below.                                                                                                                                                       |
+|        |                                                                                                                                                                                                                                                                                    |
+|        | .. code-block:: Bash                                                                                                                                                                                                                                                               |
+|        |                                                                                                                                                                                                                                                                                    |
+|        |           path ~ ^/catalog/([^/]+)$                                                                                                                                                                                                                                                |
+|        |           method find                                                                                                                                                                                                                                                              |
+|        |           # Uncomment this when complete and delete the other entries                                                                                                                                                                                                              |
+|        |           #allow $1                                                                                                                                                                                                                                                                |
+|        |           allow 127.0.0.1                                                                                                                                                                                                                                                          |
+|        |                                                                                                                                                                                                                                                                                    |
+|        |                                                                                                                                                                                                                                                                                    |
+|        | Using the syntax above, you can add fully qualified domain names, one at a time, to the 'allow' list and only those hosts will be able to retrieve their catalog from the running server. 127.0.0.1 serves as a placeholder so that no host can actually retrieve their catalog.   |
++--------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 
 Table: SIMP Pre Upgrade
 
@@ -106,6 +89,82 @@ The migration script will perform the following actions on your system:
 Migration Script Execution
 --------------------------
 
++--------+-------------------------------------------------------------------------------------------------------------------------------+
+| Step   | Process/Action                                                                                                                |
++========+===============================================================================================================================+
+| 1.     | Copy the new SIMP ISO onto your system. For the purposes of these instructions, we will refer to this is                      |
+|        | SIMP\_Update.iso. Please ensure that you are in the directory with the ISO prior to proceeding.                               |
++--------+-------------------------------------------------------------------------------------------------------------------------------+
+| 2.     | Extract the new **simp-utils** package using the following command.                                                           |
+|        |                                                                                                                               |
+|        | .. code-block:: Bash                                                                                                          |
+|        |                                                                                                                               |
+|        |           isoinfo -i SIMP_Update.iso -R -x `isoinfo -i SIMP_Update.iso -Rf | grep noarch/simp-utils` > simp-utils-update.rpm  |
+|        |                                                                                                                               |
++--------+-------------------------------------------------------------------------------------------------------------------------------+
+| 3.     | Install the new **simp-utils** RPM.                                                                                           |
+|        |                                                                                                                               |
+|        | .. code-block:: Bash                                                                                                          |
+|        |                                                                                                                               |
+|        |           yum -y localupdate simp-utils*.rpm                                                                                  |
+|        |                                                                                                                               |
++--------+-------------------------------------------------------------------------------------------------------------------------------+
+| 4.     | Unpack the DVD onto the system.                                                                                               |
+|        |                                                                                                                               |
+|        | .. code-block:: Bash                                                                                                          |
+|        |                                                                                                                               |
+|        |           /usr/local/bin/unpack_dvd SIMP_Update.iso                                                                           |
+|        |                                                                                                                               |
++--------+-------------------------------------------------------------------------------------------------------------------------------+
+| 5.     | Run the migration script (this may take some time, do NOT hit CTRL-C!)                                                        |
+|        |                                                                                                                               |
+|        | .. code-block:: Bash                                                                                                          |
+|        |                                                                                                                               |
+|        |           /usr/share/simp/upgrade_script/migrate_to_environments                                                              |
+|        |                                                                                                                               |
++--------+-------------------------------------------------------------------------------------------------------------------------------+
+| 6.     | Run the puppet agent.                                                                                                         |
+|        |                                                                                                                               |
+|        | .. code-block:: Bash                                                                                                          |
+|        |                                                                                                                               |
+|        |           puppet agent -t                                                                                                     |
+|        |                                                                                                                               |
++--------+-------------------------------------------------------------------------------------------------------------------------------+
+| 7.     | Stop the new puppetserver service (it may not be running).                                                                    |
+|        |                                                                                                                               |
+|        | .. code-block:: Bash                                                                                                          |
+|        |                                                                                                                               |
+|        |           service puppetserver stop                                                                                           |
+|        |                                                                                                                               |
++--------+-------------------------------------------------------------------------------------------------------------------------------+
+| 8.     | Remove any left over PID files                                                                                                |
+|        |                                                                                                                               |
+|        | .. code-block:: Bash                                                                                                          |
+|        |                                                                                                                               |
+|        |           rm /var/run/puppetserver/puppetserver                                                                               |
+|        |                                                                                                                               |
++--------+-------------------------------------------------------------------------------------------------------------------------------+
+| 9.     | Kill any running *puppet master* processes                                                                                    |
+|        |                                                                                                                               |
+|        | .. code-block:: Bash                                                                                                          |
+|        |                                                                                                                               |
+|        |           pkill -f 'puppet master'                                                                                            |
+|        |                                                                                                                               |
++--------+-------------------------------------------------------------------------------------------------------------------------------+
+| 10.    | Wait for 10 seconds to let things finalize if necessary                                                                       |
+|        |                                                                                                                               |
+|        | .. code-block:: Bash                                                                                                          |
+|        |                                                                                                                               |
+|        |           sleep 10                                                                                                            |
+|        |                                                                                                                               |
++--------+-------------------------------------------------------------------------------------------------------------------------------+
+| 11.    | Start the new Puppet Server                                                                                                   |
+|        |                                                                                                                               |
+|        | .. code-block:: Bash                                                                                                          |
+|        |                                                                                                                               |
+|        |           service puppetserver start                                                                                          |
+|        |                                                                                                                               |
++--------+-------------------------------------------------------------------------------------------------------------------------------+
 
 Table: Executing the Migration Script
 

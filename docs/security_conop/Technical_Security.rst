@@ -175,12 +175,99 @@ included in :ref:`default_server_ports` and :ref:`default_client_ports`. [AC-4]
 Default Server Ports
 ~~~~~~~~~~~~~~~~~~~~
 
++-------------+-----------+------------+-----------+-----------+-----------------------------+
+| Application | Direction | Protocol   | Transport | Ports     | Comment                     |
++=============+===========+============+===========+===========+=============================+
+| Puppet      | Localhost | HTTP       | TCP       | 8140      | The port upon which the     |
+|             |           |            |           |           | Puppet master listens for   |
+|             |           |            |           |           | client connections via      |
+|             |           |            |           |           | Apache                      |
++-------------+-----------+------------+-----------+-----------+-----------------------------+
+| Puppet CA   | In        | HTTPS      | TCP       | 8141      | This is used to ensure that |
+|             |           |            |           |           | Apache can verify all       |
+|             |           |            |           |           | certificates from external  |
+|             |           |            |           |           | systems properly prior to   |
+|             |           |            |           |           | allowing access to Puppet.  |
++-------------+-----------+------------+-----------+-----------+-----------------------------+
+| Apache/YUM  | In        | HTTP       | TCP       | 80        | This is used for YUM and is |
+|             |           |            |           |           | unencrypted, since YUM will |
+|             |           |            |           |           | not work otherwise.         |
++-------------+-----------+------------+-----------+-----------+-----------------------------+
+| DHCPD       | In        | DHCP/BOOTP | TCP/UDP   | 546, 547  | DHCP pooling is disabled by |
+|             |           |            |           |           | default and should only be  |
+|             |           |            |           |           | used if the implementation  |
+|             |           |            |           |           | requires the use of this    |
+|             |           |            |           |           | protocol.                   |
++-------------+-----------+------------+-----------+-----------+-----------------------------+
+| TFTP        | In        | TFTP       | TCP/UDP   | 69        | This is used for kickstart. |
+|             |           |            |           |           | It could also be used to    |
+|             |           |            |           |           | update network devices.     |
+|             |           |            |           |           | TFTP does not support       |
+|             |           |            |           |           | encryption.                 |
++-------------+-----------+------------+-----------+-----------+-----------------------------+
+| rsyslog     | Out       | syslog     | TCP/UDP   | 6514      | This is encrypted when      |
+|             |           |            |           |           | communicating with a SIMP   |
+|             |           |            |           |           | syslog server (not          |
+|             |           |            |           |           | installed by default).      |
++-------------+-----------+------------+-----------+-----------+-----------------------------+
+| named       | In/Out    | DNS        | TCP/UDP   | 53        | Inbound connections happen  |
+|             |           |            |           |           | to the locally managed      |
+|             |           |            |           |           | hosts. Outbound connections |
+|             |           |            |           |           | happen to other domains per |
+|             |           |            |           |           | the normal operations of    |
+|             |           |            |           |           | DNS.                        |
++-------------+-----------+------------+-----------+-----------+-----------------------------+
+| NTPD        | Out       | NTP        | TCP/UDP   | 123       | Only connects to an         |
+|             |           |            |           |           | external time source by     |
+|             |           |            |           |           | default.                    |
++-------------+-----------+------------+-----------+-----------+-----------------------------+
+| SSHD        | In        | SSH        | TCP       | 22        | SSH is always allowed from  |
+|             |           |            |           |           | any source IP by default.   |
++-------------+-----------+------------+-----------+-----------+-----------------------------+
+| stunnel     | In        | TLS        | TCP       | 8730      | Stunnel is a protected      |
+|             |           |            |           |           | connection for rsyncing     |
+|             |           |            |           |           | configuration files to      |
+|             |           |            |           |           | Puppet clients.             |
++-------------+-----------+------------+-----------+-----------+-----------------------------+
+| rsync       | Localhost | RSYNC      | TCP       | 873       | This accepts connections to |
+|             |           |            |           |           | the localhost and forwards  |
+|             |           |            |           |           | through Stunnel.            |
++-------------+-----------+------------+-----------+-----------+-----------------------------+
+| LDAP        | In        | LDAP       | TCP       | 389       | Connections are protected   |
+|             |           |            |           |           | by bi-directional,          |
+|             |           |            |           |           | authenticated encryption.   |
++-------------+-----------+------------+-----------+-----------+-----------------------------+
+| LDAPS       | In        | LDAPS      | TCP       | 636       | Used for LDAP over SSL.     |
++-------------+-----------+------------+-----------+-----------+-----------------------------+
 
 .. _default_client_ports:
 
 Default Client Ports
 ~~~~~~~~~~~~~~~~~~~~
 
++-------------+-----------+-----------+-----------+-----------+-----------------------------+
+| Application | Direction | Protocol  | Transport | Ports     | Comment                     |
++=============+===========+===========+===========+===========+=============================+
+| Puppet      | Out       | HTTPS     | TCP       | 8140      | Communications to the       |
+|             |           |           |           |           | Puppet server.              |
++-------------+-----------+-----------+-----------+-----------+-----------------------------+
+| rsyslog     | Out       | syslog    | TCP/UDP   | 6514      | This is encrypted when      |
+|             |           |           |           |           | communicating with a SIMP   |
+|             |           |           |           |           | syslog server.              |
++-------------+-----------+-----------+-----------+-----------+-----------------------------+
+| DNS Client  | Out       | DNS       | TCP/UDP   | 53        | Normal name resolution.     |
++-------------+-----------+-----------+-----------+-----------+-----------------------------+
+| NTPD        | Out       | NTP       | TCP/UDP   | 123       | Only connects to an         |
+|             |           |           |           |           | external time source by     |
+|             |           |           |           |           | default.                    |
++-------------+-----------+-----------+-----------+-----------+-----------------------------+
+| SSHD        | In        | SSH       | TCP       | 22        | SSH is allowed from any     |
+|             |           |           |           |           | source IP by default.       |
++-------------+-----------+-----------+-----------+-----------+-----------------------------+
+| LDAP        | Out       | LDAP      | TCP       | 389       | Connections are protected   |
+|             |           |           |           |           | by bi-directional           |
+|             |           |           |           |           | authenticated encryption.   |
++-------------+-----------+-----------+-----------+-----------+-----------------------------+
 
 
 Separation of Duties
@@ -242,6 +329,17 @@ with an explanation of why these aspects are not required.
 Implementations should include any additional services that do require
 identification and/or authentication. [AC-14]
 
++-----------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| Service/Application   | Rationale                                                                                                                                                                                                                                                                                                                                                                                                                                                           |
++=======================+=====================================================================================================================================================================================================================================================================================================================================================================================================================================================================+
+| TFTP                  | TFTP is a simple file transfer application that, in the SIMP environment, does not allow for writing to the files being accessed. This application is primarily used to support the Preboot Execution Environment (PXE) booting of hosts and the updating of network devices. There is no option to authenticate systems at this level by protocol design. TFTP is limited to a user's local subnet using IPtables and is enforced additionally with TCPWrappers.   |
++-----------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| DHCP                  | By default, system IP addresses are not pooled, but are rather statically assigned to a client, which is identified by the MAC address. DHCP is limited to the local subnet.                                                                                                                                                                                                                                                                                        |
++-----------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| Apache/YUM            | RPMs are stored in a directory for systems to use for both kickstart and package updating. Sensitive information should never be stored here. Apache/YUM is limited to the local subnet.                                                                                                                                                                                                                                                                            |
++-----------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| DNS                   | The DNS protocol does not require identification nor authentication. DNS is limited to the local subnet.                                                                                                                                                                                                                                                                                                                                                            |
++-----------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 
 Table: Actions Without Identification and Authentication
 

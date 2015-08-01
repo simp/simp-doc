@@ -97,28 +97,25 @@ Variables
 The table below provides explanations of the variables included in the
 template code in the previous section.
 
-.. list-table::
-   :widths: 21 62
-   :header-rows: 1
-
-   * - Variable
-     - Explanation
-   * - <CLASS NAME>
-     - Descriptive name of class
-   * - <COMMAND LIST>
-     - Commands that the local account is able to run
-   * - <GROUP ID NUMBER>
-     - Numerical ID of the group to which the user belongs
-   * - <GROUP NAME>
-     - Name of the local group to which the user belongs
-   * - <HOST>
-     - Host on which the sudo commands apply
-   * - <USER NAME>
-     - Name of the local service account user
-   * - <USER ID NUMBER>
-     - Numerical ID of the user
-   * - <RUN AS>
-     - User the local account is able to run the sudo commands as
++---------------------+--------------------------------------------------------------+
+| Variable            | Explanation                                                  |
++=====================+==============================================================+
+| <CLASS NAME>        | Descriptive name of class                                    |
++---------------------+--------------------------------------------------------------+
+| <COMMAND LIST>      | Commands that the local account is able to run               |
++---------------------+--------------------------------------------------------------+
+| <GROUP ID NUMBER>   | Numerical ID of the group to which the user belongs          |
++---------------------+--------------------------------------------------------------+
+| <GROUP NAME>        | Name of the local group to which the user belongs            |
++---------------------+--------------------------------------------------------------+
+| <HOST>              | Host on which the sudo commands apply                        |
++---------------------+--------------------------------------------------------------+
+| <USER NAME>         | Name of the local service account user                       |
++---------------------+--------------------------------------------------------------+
+| <USER ID NUMBER>    | Numerical ID of the user                                     |
++---------------------+--------------------------------------------------------------+
+| <RUN AS>            | User the local account is able to run the sudo commands as   |
++---------------------+--------------------------------------------------------------+
 
 Table: Variable Explanations
 
@@ -128,28 +125,23 @@ Testing
 The table below lists the steps to test that the configuration was
 applied correctly.
 
-.. list-table::
-   :widths: 8 106
-   :header-rows: 1
-
-   * - Step
-     - Process/Action
-   * - 1.
-     - Log on to a server that has the template code configuration applied.
-   * - 2.
-     - Type **su - ***<USER NAME>*****
-   * - 3.
-     - Type **exec /usr/bin/ssh-agent /bin/bash** to ensure that ssh-agent has a shell running.
-   * - 4.
-     - Type **/usr/bin/ssh-add** to attach the user's certificates.
-   * - 5.
-     - Type **/usr/bin/ssh-add -l** to double check that the user's certificates were added successfully.
-   * - 
-     - 
-   * - 
-     - **NOTE**: This step is optional.
-   * - 6.
-     - Type **ssh ***<HOST>***** to SSH to a target machine that has the template code configuration applied.
++--------+----------------------------------------------------------------------------------------------------------+
+| Step   | Process/Action                                                                                           |
++========+==========================================================================================================+
+| 1.     | Log on to a server that has the template code configuration applied.                                     |
++--------+----------------------------------------------------------------------------------------------------------+
+| 2.     | Type **su - ***<USER NAME>*****                                                                          |
++--------+----------------------------------------------------------------------------------------------------------+
+| 3.     | Type **exec /usr/bin/ssh-agent /bin/bash** to ensure that ssh-agent has a shell running.                 |
++--------+----------------------------------------------------------------------------------------------------------+
+| 4.     | Type **/usr/bin/ssh-add** to attach the user's certificates.                                             |
++--------+----------------------------------------------------------------------------------------------------------+
+| 5.     | Type **/usr/bin/ssh-add -l** to double check that the user's certificates were added successfully.       |
+|        |                                                                                                          |
+|        | **NOTE**: This step is optional.                                                                         |
++--------+----------------------------------------------------------------------------------------------------------+
+| 6.     | Type **ssh ***<HOST>***** to SSH to a target machine that has the template code configuration applied.   |
++--------+----------------------------------------------------------------------------------------------------------+
 
 Table: Test the Configuration Procedure
 

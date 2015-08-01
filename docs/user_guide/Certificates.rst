@@ -21,40 +21,34 @@ clients over the Puppet protocol.
 The table below lists the steps to add any keys for the server that were
 received from a proper CA to */etc/puppet/keydist*.
 
-.. list-table::
-   :widths: 8 102
-   :header-rows: 1
-
-   * - Step
-     - Process/Action
-   * - 1.
-     - Type **mkdir /etc/puppet/keydist/***<Client System FQDN>*****
-   * - 2.
-     - Type **mv ***<Certificate Directory>***/***<FQDN>***.[pem\|pub] /etc/puppet/keydist/***<FQDN>*****
-   * - 3.
-     - Type **chown -R root.puppet /etc/puppet/keydist**
-   * - 4.
-     - Type **chmod -R u=rwX,g=rX,o-rwx /etc/puppet/keydist**
++--------+------------------------------------------------------------------------------------------------------+
+| Step   | Process/Action                                                                                       |
++========+======================================================================================================+
+| 1.     | Type **mkdir /etc/puppet/keydist/***<Client System FQDN>*****                                        |
++--------+------------------------------------------------------------------------------------------------------+
+| 2.     | Type **mv ***<Certificate Directory>***/***<FQDN>***.[pem\|pub] /etc/puppet/keydist/***<FQDN>*****   |
++--------+------------------------------------------------------------------------------------------------------+
+| 3.     | Type **chown -R root.puppet /etc/puppet/keydist**                                                    |
++--------+------------------------------------------------------------------------------------------------------+
+| 4.     | Type **chmod -R u=rwX,g=rX,o-rwx /etc/puppet/keydist**                                               |
++--------+------------------------------------------------------------------------------------------------------+
 
 Table: Official Certificates Procedure
 
 The table below lists the steps to create and populate the
 */etc/puppet/keydist/cacerts* directory.
 
-.. list-table::
-   :widths: 8 142
-   :header-rows: 1
-
-   * - Step
-     - Process/Action
-   * - 1.
-     - Type **cd /etc/puppet/keydist**
-   * - 2.
-     - Type **mkdir cacerts** and copy the root CA public certificates into *cacerts* in :term:`Privacy Enhanced Mail (PEM)` format (one per file).
-   * - 3.
-     - Type **cd cacerts**
-   * - 4.
-     - Type **for file in \*.pem; do ln -s $file \`openssl x509 -in $file -hash -noout\`.0; done**
++--------+----------------------------------------------------------------------------------------------------------------------------------------------+
+| Step   | Process/Action                                                                                                                               |
++========+==============================================================================================================================================+
+| 1.     | Type **cd /etc/puppet/keydist**                                                                                                              |
++--------+----------------------------------------------------------------------------------------------------------------------------------------------+
+| 2.     | Type **mkdir cacerts** and copy the root CA public certificates into *cacerts* in :term:`Privacy Enhanced Mail (PEM)` format (one per file). |
++--------+----------------------------------------------------------------------------------------------------------------------------------------------+
+| 3.     | Type **cd cacerts**                                                                                                                          |
++--------+----------------------------------------------------------------------------------------------------------------------------------------------+
+| 4.     | Type **for file in \*.pem; do ln -s $file \`openssl x509 -in $file -hash -noout\`.0; done**                                                  |
++--------+----------------------------------------------------------------------------------------------------------------------------------------------+
 
 Table: */etc/puppet/keydist/cacerts* Directory Creation Procedure
 
@@ -72,6 +66,25 @@ system so that it will work until proper certificates are provided.
 
 The table below lists the steps to generate the Fake CAs.
 
++--------+--------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| Step   | Process/Action                                                                                                                                               |
++========+==============================================================================================================================================================+
+| 1.     | Type **cd /etc/puppet/Config/FakeCA**                                                                                                                        |
++--------+--------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| 2.     | Type **vi togen**                                                                                                                                            |
++--------+--------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| 3.     | Remove old entries from the file and add the :term:`Fully Qualified Domain Name (FQDN)` of the systems (one per line) for which certificates will be created.|
+|        |                                                                                                                                                              |
+|        | **NOTE**: To use alternate DNS names for the same system, separate the names with commas and without spaces. For example, **.name,alt.name1,alt.name2.**     |
++--------+--------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| 4.     | Type **wc cacertkey**                                                                                                                                        |
+|        |                                                                                                                                                              |
+|        | **NOTE**: Ensure that the *cacertkey* file is not empty. If it is, enter text into the file; then save and close the file.                                   |
++--------+--------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| 5.     | Type **./gencerts\_nopass.sh auto**                                                                                                                          |
+|        |                                                                                                                                                              |
+|        | **NOTE**: To avoid using the default Fake CA values, remove the **auto** statement from the **./gencerts\_nopass.sh** command.                               |
++--------+--------------------------------------------------------------------------------------------------------------------------------------------------------------+
 
 Table: Generating Fake CAs Procedure
 
