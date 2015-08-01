@@ -35,17 +35,29 @@ end
 
 DocPkg.new( File.dirname( __FILE__ ) ) do |t|
   # Not sure this is right
-  t.clean_list << "#{t.base_dir}/build_docs"
-  t.clean_list << "#{t.base_dir}/html/user_guide/*"
+  t.clean_list << "#{t.base_dir}/html"
   t.clean_list << "#{t.base_dir}/pdf"
+  t.clean_list << "#{t.base_dir}/sphinx_cache"
 
   t.exclude_list << 'dist'
-  t.exclude_list << 'build_docs'
-
   # Need to ignore any generated files from ERB's.
   #t.ignore_changes_list += find_erb_files.map{|x| x = "#{File.dirname(x)}/#{File.basename(x,'.erb')}".sub(/^\.\//,'')}
 
   Dir.glob('build/rake_helpers/*.rake').each do |helper|
     load helper
+  end
+end
+
+
+namespace :docs do
+  desc 'build HTML docs'
+  task :html do
+    extra_args = ''
+    ### TODO: decide how we want this task to work
+    ### version = File.open('build/simp-doc.spec','r').readlines.select{|x| x =~ /^%define simp_major_version/}.first.chomp.split(' ').last
+    ### extra_args = "-t simp_#{version}" if version
+    cmd = "sphinx-build -E -n #{extra_args} -b html -d sphinx_cache docs html"
+    puts "== #{cmd}"
+    %x(#{cmd} > /dev/null)
   end
 end

@@ -5,7 +5,6 @@ The Documentation repository for the 5.1.X version of SIMP.
 This repository will house information relevant to the EL7 (RHEL/CentOS) build.
 
 # NOTE: THIS REPOSITORY IS IN A TRANSITIONAL STATE
-We are migrating from [publican](https://fedorahosted.org/publican/) to [reStructuredText](http://docutils.sourceforge.net/docs/ref/rst/restructuredtext.html).  
 
 ### NOTES
 * The `Rakefile` currently builds the publican documentation (deprecated).
@@ -14,5 +13,5 @@ We are migrating from [publican](https://fedorahosted.org/publican/) to [reStruc
 ### TODO
 - [X] TravisCI tests
 - [X] Port Publican documentation to rst
-- [ ] Remove Publican documentation
+- [X] Remove Publican documentation
 - [ ] update & vet documentation against current SIMP version

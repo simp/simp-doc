@@ -25,12 +25,12 @@ command 'simp doc'. Alternatively, a PDF is provided in
 %setup
 
 %build
-sphinx-build    -n -t simp_%{simp_major_version} -b html       -d sphinx_cache docs %{simp_major_version}/html
-sphinx-build -E -n -t simp_%{simp_major_version} -b singlehtml -d sphinx_cache docs %{simp_major_version}/html-single
+sphinx-build    -n -t simp_%{simp_major_version} -b html       -d sphinx_cache docs html
+sphinx-build -E -n -t simp_%{simp_major_version} -b singlehtml -d sphinx_cache docs html-single
 
 %install
 mkdir -p %{buildroot}%{prefix}
-src_dirs="changelogs Changelog.txt ldifs html"
+src_dirs="changelogs Changelog*.rst ldifs html"
 for dir in $src_dirs; do
   if [ -e $dir ]; then
     cp -r $dir %{buildroot}%{prefix}
@@ -39,8 +39,8 @@ done
 
 # Publican Material
 mkdir -p %{buildroot}%{prefix}/html
-cp -r "%{simp_major_version}/html"        %{buildroot}%{prefix}/html
-cp -r "%{simp_major_version}/html-single" %{buildroot}%{prefix}/html-single
+cp -r "html/"        %{buildroot}%{prefix}/html/
+cp -r "html-single/" %{buildroot}%{prefix}/html-single/
 
 chmod -R u=rwX,g=rX,o=rX %{buildroot}%{prefix}
 
@@ -60,12 +60,7 @@ chmod -R u=rwX,g=rX,o=rX %{buildroot}%{prefix}
 
 %changelog
 * Fri Jul 31 2015 Judy Johnson <judy.johnson@onyxpoint.com> - 5.1.0-Beta2
-- ReStructured Text!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-- !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-- !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-- !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-- !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-- And things.
+- Converted docs from Publican to ReStructured Text.
 
 * Wed Mar 11 2015 Trevor Vaughan <tvaughan@onyxpoint.com> - 5.1.0-Alpha
 - Added text to cover the move to the new Puppet Server and the migration to
@@ -76,7 +71,8 @@ chmod -R u=rwX,g=rX,o=rX %{buildroot}%{prefix}
 - Update the changelog for 5.0.0-2
 
 * Mon Dec 08 2014 Kendall Moore <kmoore@keywcorp.com> - 5.0.0-1
-- No longer suggest grub-crypt to encrpy passwords and instead use a simple ruby script.
+- No longer suggest grub-crypt to encrypt passwords and instead use a simple
+  ruby script.
 
 * Tue Nov 25 2014 Trevor Vaughan <tvaughan@onyxpoint.com> - 5.0.0-0
 - Final release of 5.0.0
