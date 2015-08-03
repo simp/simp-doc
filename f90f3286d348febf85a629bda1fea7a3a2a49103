@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "9ad9bd40_3fddba42",
+        "filename": "docs/conf.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 128,
+      "author": {
+        "id": 1005143
+      },
+      "writtenOn": "2015-08-03T17:52:39Z",
+      "side": 1,
+      "message": "The default generates page titles without the \u003cversion\u003e",
+      "revId": "f90f3286d348febf85a629bda1fea7a3a2a49103",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9ad9bd40_5fe0bef9",
+        "filename": "docs/conf.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 299,
+      "author": {
+        "id": 1005143
+      },
+      "writtenOn": "2015-08-03T17:52:39Z",
+      "side": 1,
+      "message": "It would be better to infer this from the \u0027version\u0027 variable (See SIMP-344)",
+      "range": {
+        "startLine": 299,
+        "startChar": 15,
+        "endLine": 299,
+        "endChar": 16
+      },
+      "revId": "f90f3286d348febf85a629bda1fea7a3a2a49103",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735",
+      "unresolved": false
+    }
+  ]
+}
