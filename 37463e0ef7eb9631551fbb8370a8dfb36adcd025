@@ -22,6 +22,40 @@
       "revId": "37463e0ef7eb9631551fbb8370a8dfb36adcd025",
       "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9ad9bd40_241f736d",
+        "filename": "build/package_metadata.yaml",
+        "patchSetId": 1
+      },
+      "lineNbr": 5,
+      "author": {
+        "id": 1005143
+      },
+      "writtenOn": "2015-08-03T16:56:29Z",
+      "side": 1,
+      "message": "wrong for 4.2.0-Beta2",
+      "revId": "37463e0ef7eb9631551fbb8370a8dfb36adcd025",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9ad9bd40_9f116654",
+        "filename": "docs/conf.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 128,
+      "author": {
+        "id": 1005143
+      },
+      "writtenOn": "2015-08-03T16:56:29Z",
+      "side": 1,
+      "message": "This results in the major version being omitted from page titles.",
+      "revId": "37463e0ef7eb9631551fbb8370a8dfb36adcd025",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735",
+      "unresolved": false
     }
   ]
 }
