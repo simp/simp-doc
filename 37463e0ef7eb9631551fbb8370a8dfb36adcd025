@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "9ad9bd40_4409d72a",
+        "filename": ".travis.yml",
+        "patchSetId": 1
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1005143
+      },
+      "writtenOn": "2015-08-03T12:26:46Z",
+      "side": 1,
+      "message": "whitespace",
+      "range": {
+        "startLine": 7,
+        "startChar": 7,
+        "endLine": 7,
+        "endChar": 8
+      },
+      "revId": "37463e0ef7eb9631551fbb8370a8dfb36adcd025",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735",
+      "unresolved": false
+    }
+  ]
+}
