@@ -86,6 +86,7 @@ DocPkg.new( File.dirname( __FILE__ ) ) do |t|
   end
 end
 
+
 namespace :docs do
   desc 'build HTML docs'
   task :html do
