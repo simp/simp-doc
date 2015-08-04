@@ -147,7 +147,7 @@ Logstash Module Recommended SIMP Setup
 The following example manifest can be applied to a single host with a
 large /var volume and 4GB of memory.
 
-.. code-block:: Ruby
+.. code-block:: ruby
 
           ---
           # Add these settings to only your Logstash node.
@@ -185,7 +185,7 @@ In the case of the Elasticsearch node setup below, it may be better to
 use a group match to pull your Hiera settings. To do this, you should
 add the following to a file like /etc/puppet/manifests/nodegroups.pp
 
-.. code-block:: Ruby
+.. code-block:: ruby
 
           if $trusted['certname'] =~ /es\d+\.your\.domain/ {
             $hostgroup = 'elasticsearch'
@@ -203,7 +203,7 @@ Then, ensure that a file called 'elasticsearch.yaml' is present in the
 
 content.
 
-.. code-block:: Ruby
+.. code-block:: ruby
 
           ---
           # All nodes running elasticsearch in your cluster should use

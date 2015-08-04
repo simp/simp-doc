@@ -1,5 +1,3 @@
-.. _Certificates:
-
 Apply Certificates
 ==================
 

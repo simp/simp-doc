@@ -12,7 +12,7 @@ System Requirements
 Before installing clients, the system should consist of the following
 minimum requirements:
 
--  Hardware/:term:`Virtual Machine` : Capable of running RHEL 6 or 7 ; 64-bit compatible
+-  Hardware/:term:`Virtual Machine (VM)` : Capable of running RHEL 6 or 7 ; 64-bit compatible
 
 -  RAM: 512 MB
 

@@ -52,6 +52,6 @@ The example below demonstrates this action, assuming that the
 
 preventing a service from being killed by svckill.rb
 
-.. code-block:: Ruby
+.. code-block:: ruby
 
            service { "keepmealive": }

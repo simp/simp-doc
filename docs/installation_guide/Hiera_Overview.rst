@@ -21,7 +21,7 @@ file, say default.yaml, as such:
 
 Adding a Key/Value Pair to Hiera Examples
 
-.. code-block:: XML
+.. code-block:: xml
 
           ---
           classfoo::parameter_bar: "Woo"
@@ -74,7 +74,7 @@ Adding a Site Manifest Examples
 
 .. only:: not simp_4
 
-  .. code-block:: Ruby
+  .. code-block:: ruby
 
           # in /etc/puppet/environments/simp/modules/site/manifests/tftpboot.pp
           # Set KSSERVER statically or use Hiera for lookup
@@ -96,7 +96,7 @@ Adding a Site Manifest Examples
 
 .. only:: simp_4
 
-  .. code-block:: Ruby
+  .. code-block:: ruby
 
           # in /etc/puppet/modules/site/manifests/tftpboot.pp
           # Set KSSERVER statically or use Hiera for lookup
@@ -118,7 +118,7 @@ Adding a Site Manifest Examples
 
 Adding TFTP Site to Hiera Examples
 
-.. code-block:: XML
+.. code-block:: xml
 
           ---
           classes:

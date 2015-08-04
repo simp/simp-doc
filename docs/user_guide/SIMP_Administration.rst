@@ -111,7 +111,7 @@ will have a config file containing all of its details in
 Below is an example of how to change the expiration time from one year
 (the default) to five years for any newly created certificate.
 
-.. code-block:: Bash
+.. code-block:: bash
 
             for file in $(grep -rl 365 /etc/puppet/Config/FakeCA/)
             do

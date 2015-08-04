@@ -184,9 +184,11 @@ Fixed Bugs
     even if you didn't want to use it. This has been fixed.
   - Made the password policy overlay align with the latest SIMP build of
     the plugin.
-    - This means that you *must* have version
-      simp-ppolicy-check-password-2.4.39-0 or later available to the system
-      being configured.
+
+    -  This means that you *must* have version
+       simp-ppolicy-check-password-2.4.39-0 or later available to the system
+       being configured.
+
   - Change the call to the *rsyslog* init script to the *service* command to
     seamlessly support both RHEL6 and RHEL7.
   - Fixed reported bugs in syncrepl.pp.

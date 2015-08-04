@@ -45,7 +45,7 @@ need to be made to the code.
 
 Code for Creating an Admin Principal Kerberos
 
-.. code-block:: Ruby
+.. code-block:: ruby
 
             krb5_acl{ "${::domain}_admin":
               principal       => "*/admin@${::domain}",

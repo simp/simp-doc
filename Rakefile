@@ -60,4 +60,13 @@ namespace :docs do
     puts "== #{cmd}"
     %x(#{cmd} > /dev/null)
   end
+
+
+  desc 'build HTML docs (single page)'
+  task :singlehtml do
+    extra_args = ''
+    cmd = "sphinx-build -E -n #{extra_args} -b singlehtml -d sphinx_cache docs html-single"
+    puts "== #{cmd}"
+    %x(#{cmd} > /dev/null)
+  end
 end

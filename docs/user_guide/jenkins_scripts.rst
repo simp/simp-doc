@@ -63,7 +63,7 @@ attempting to use the scripts below within Jenkins:
    -  ksfiles.sh - a script that configures the config files in
       /var/www/ks;
 
-      .. code-block:: Bash
+      .. code-block:: bash
 
           ip=<ipaddress>
           dist=<distribution>
@@ -149,7 +149,7 @@ String Parameters
 
 -  build\_dir - The directory where your SIMP ISO is stored
 
-.. code-block:: Bash
+.. code-block:: bash
 
     #!/bin/bash
     cd ${build_dir}/SIMP-${simp_ver}
@@ -226,14 +226,14 @@ Password Parameter
 
 -  vm\_pass - The password for root
 
-.. code-block:: Bash
+.. code-block:: bash
 
     #!/bin/bash
     Clears the ip from known_hosts.
     ssh-keygen -R ${vm_ip}
 
 
-.. code-block:: Ruby
+.. code-block:: ruby
 
     require 'rubygems'
     require 'net/scp'
@@ -293,7 +293,7 @@ Password Parameter
     end
 
 
-.. code-block:: Bash
+.. code-block:: bash
 
     #!/bin/bash
     virsh --connect qemu:///system destroy ${vm_name}
@@ -309,7 +309,7 @@ Password Parameter
     ssh-keygen -R ${vm_ip}
 
 
-.. code-block:: Ruby
+.. code-block:: ruby
 
     # DHCP Setup
     require 'rubygems'
@@ -328,7 +328,7 @@ Password Parameter
     end
 
 
-.. code-block:: Ruby
+.. code-block:: ruby
 
     # DNS Setup
     require 'rubygems'
@@ -364,7 +364,7 @@ Password Parameter
     end
 
 
-.. code-block:: Bash
+.. code-block:: bash
 
     # Setup Kickstart
     require 'rubygems'
@@ -381,7 +381,7 @@ Password Parameter
 Test Your Configuration
 ---------------------==
 
-.. code-block:: Bash
+.. code-block:: bash
 
     #!/bin/bash
     if [ `ps -ef | grep puppet | grep -v grep | grep -v Rack | wc -l` -gt 0 ]; then
@@ -411,7 +411,7 @@ String Parameters
 
 -  test\_mod - The name of the module you wish to test
 
-.. code-block:: Bash
+.. code-block:: bash
 
     yum install -y pupmod-${test_mod}-test
 
@@ -444,7 +444,7 @@ String Parameters
    entry that was placed in the dhcp.conf that was created on your
    server VM
 
-.. code-block:: Bash
+.. code-block:: bash
 
     #!/bin/bash
     d1=`date`

@@ -19,7 +19,7 @@ The following process should be followed before upgrade.
 |        |                                                                                                                                                                                                                                                                                    |
 |        | The simplest way to do this is to set the catalog retrieval capability to 127.0.0.1 in /etc/puppet/auth.conf as shown below.                                                                                                                                                       |
 |        |                                                                                                                                                                                                                                                                                    |
-|        | .. code-block:: Bash                                                                                                                                                                                                                                                               |
+|        | .. code-block:: bash                                                                                                                                                                                                                                                               |
 |        |                                                                                                                                                                                                                                                                                    |
 |        |           path ~ ^/catalog/([^/]+)$                                                                                                                                                                                                                                                |
 |        |           method find                                                                                                                                                                                                                                                              |
@@ -97,70 +97,70 @@ Migration Script Execution
 +--------+-------------------------------------------------------------------------------------------------------------------------------+
 | 2.     | Extract the new **simp-utils** package using the following command.                                                           |
 |        |                                                                                                                               |
-|        | .. code-block:: Bash                                                                                                          |
+|        | .. code-block:: bash                                                                                                          |
 |        |                                                                                                                               |
 |        |           isoinfo -i SIMP_Update.iso -R -x `isoinfo -i SIMP_Update.iso -Rf | grep noarch/simp-utils` > simp-utils-update.rpm  |
 |        |                                                                                                                               |
 +--------+-------------------------------------------------------------------------------------------------------------------------------+
 | 3.     | Install the new **simp-utils** RPM.                                                                                           |
 |        |                                                                                                                               |
-|        | .. code-block:: Bash                                                                                                          |
+|        | .. code-block:: bash                                                                                                          |
 |        |                                                                                                                               |
 |        |           yum -y localupdate simp-utils*.rpm                                                                                  |
 |        |                                                                                                                               |
 +--------+-------------------------------------------------------------------------------------------------------------------------------+
 | 4.     | Unpack the DVD onto the system.                                                                                               |
 |        |                                                                                                                               |
-|        | .. code-block:: Bash                                                                                                          |
+|        | .. code-block:: bash                                                                                                          |
 |        |                                                                                                                               |
 |        |           /usr/local/bin/unpack_dvd SIMP_Update.iso                                                                           |
 |        |                                                                                                                               |
 +--------+-------------------------------------------------------------------------------------------------------------------------------+
 | 5.     | Run the migration script (this may take some time, do NOT hit CTRL-C!)                                                        |
 |        |                                                                                                                               |
-|        | .. code-block:: Bash                                                                                                          |
+|        | .. code-block:: bash                                                                                                          |
 |        |                                                                                                                               |
 |        |           /usr/share/simp/upgrade_script/migrate_to_environments                                                              |
 |        |                                                                                                                               |
 +--------+-------------------------------------------------------------------------------------------------------------------------------+
 | 6.     | Run the puppet agent.                                                                                                         |
 |        |                                                                                                                               |
-|        | .. code-block:: Bash                                                                                                          |
+|        | .. code-block:: bash                                                                                                          |
 |        |                                                                                                                               |
 |        |           puppet agent -t                                                                                                     |
 |        |                                                                                                                               |
 +--------+-------------------------------------------------------------------------------------------------------------------------------+
 | 7.     | Stop the new puppetserver service (it may not be running).                                                                    |
 |        |                                                                                                                               |
-|        | .. code-block:: Bash                                                                                                          |
+|        | .. code-block:: bash                                                                                                          |
 |        |                                                                                                                               |
 |        |           service puppetserver stop                                                                                           |
 |        |                                                                                                                               |
 +--------+-------------------------------------------------------------------------------------------------------------------------------+
 | 8.     | Remove any left over PID files                                                                                                |
 |        |                                                                                                                               |
-|        | .. code-block:: Bash                                                                                                          |
+|        | .. code-block:: bash                                                                                                          |
 |        |                                                                                                                               |
 |        |           rm /var/run/puppetserver/puppetserver                                                                               |
 |        |                                                                                                                               |
 +--------+-------------------------------------------------------------------------------------------------------------------------------+
 | 9.     | Kill any running *puppet master* processes                                                                                    |
 |        |                                                                                                                               |
-|        | .. code-block:: Bash                                                                                                          |
+|        | .. code-block:: bash                                                                                                          |
 |        |                                                                                                                               |
 |        |           pkill -f 'puppet master'                                                                                            |
 |        |                                                                                                                               |
 +--------+-------------------------------------------------------------------------------------------------------------------------------+
 | 10.    | Wait for 10 seconds to let things finalize if necessary                                                                       |
 |        |                                                                                                                               |
-|        | .. code-block:: Bash                                                                                                          |
+|        | .. code-block:: bash                                                                                                          |
 |        |                                                                                                                               |
 |        |           sleep 10                                                                                                            |
 |        |                                                                                                                               |
 +--------+-------------------------------------------------------------------------------------------------------------------------------+
 | 11.    | Start the new Puppet Server                                                                                                   |
 |        |                                                                                                                               |
-|        | .. code-block:: Bash                                                                                                          |
+|        | .. code-block:: bash                                                                                                          |
 |        |                                                                                                                               |
 |        |           service puppetserver start                                                                                          |
 |        |                                                                                                                               |
@@ -181,7 +181,7 @@ generic csv files and simp\_def.csv to yaml. The first example shows how
 to convert an Extdata csv file called foo.csv into a Hiera yaml file
 called bar.yaml:
 
-.. code-block:: Ruby
+.. code-block:: ruby
 
                 extdata2hiera -i foo.csv -o bar.yaml
 
@@ -189,7 +189,7 @@ called bar.yaml:
 The second example shows how to convert an Extdata csv simp\_def file
 called simp\_def.csv into a Hiera yaml file called simp\_def.yaml.
 
-.. code-block:: Ruby
+.. code-block:: ruby
 
                 simpdef2hiera --in simp_def.csv --out simp_def.yaml
 
@@ -212,7 +212,7 @@ manifests and can finally properly separate your data from your code.
     For more information on the lookup functions, see
     http://docs.puppetlabs.com/hiera/1/puppet.html#hiera-lookup-functions.
 
-.. code-block:: Ruby
+.. code-block:: ruby
 
             # Some class file in scope...
             class foo (
@@ -228,7 +228,7 @@ manifests and can finally properly separate your data from your code.
 The second is similar to the old Extdata way, and looks like the
 following:
 
-.. code-block:: Ruby
+.. code-block:: ruby
 
             $var = hiera("some_hiera_variable", "default_value")
 
