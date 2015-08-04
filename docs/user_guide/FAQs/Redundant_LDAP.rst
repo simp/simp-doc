@@ -18,7 +18,7 @@ using the *puppet\_servers.pp* file .
 
 Source Code for Using an OpenLDAP Server openldap
 
-.. code-block:: Ruby
+.. code-block:: ruby
 
             # These are some common variables.
             # See /etc/puppet/manifests/vars.pp for the stock version.
@@ -61,7 +61,7 @@ contact the master until they are successful.
 
 Source Code to Configure an LDAP Slave Node replication
 
-.. code-block:: Ruby
+.. code-block:: ruby
 
             class ldap_repl inherits ldap_common {
               include 'openldap::slapd::syncrepl'
@@ -97,7 +97,7 @@ server.
 
 Source Promoting a Slave Node LDAP
 
-.. code-block:: Ruby
+.. code-block:: ruby
 
             # Change the common ldap server variable to promote the slave node.
 
@@ -133,7 +133,7 @@ The example below shows the changes necessary to update the
 
 Update $ldap\_sync Information in LDAP Examples
 
-.. code-block:: Ruby
+.. code-block:: ruby
 
             dn: cn=LDAPSync,ou=People,dc=your,dc=domain
             changetype: modify

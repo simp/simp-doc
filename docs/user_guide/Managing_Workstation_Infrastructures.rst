@@ -20,7 +20,7 @@ Below is an example manifest called
 */etc/puppet/modules/site/manifests/workstation.pp* for setting up a
 user workstation.
 
-.. code-block:: Ruby
+.. code-block:: ruby
 
             class site::workstation {
               include 'site::gui'
@@ -72,7 +72,7 @@ Below is an example manifest called
 */etc/puppet/modules/site/manifests/gui.pp* for setting up a graphical
 desktop on a user workstation.
 
-.. code-block:: Ruby
+.. code-block:: ruby
 
             class site::gui {
               include 'xwindows::gdm'
@@ -99,7 +99,7 @@ Below is an example manifest called
 */etc/puppet/modules/site/manifests/repos.pp* for setting up workstation
 repositories.
 
-.. code-block:: Ruby
+.. code-block:: ruby
 
             class site::repos {
               # Whatever local yumrepo statements you need for installing
@@ -114,7 +114,7 @@ Below is an example manifest called
 */etc/puppet/modules/site/manifests/virt.pp* for allowing virtualization
 on a user workstation.
 
-.. code-block:: Ruby
+.. code-block:: ruby
 
             # We allow users to run VMs on their workstations.
             # If you don't want this, just don't include this class.
@@ -159,7 +159,7 @@ Network File System
 Below is an example manifest called
 */etc/puppet/modules/site/automount.pp* for Network File System setup.
 
-.. code-block:: Ruby
+.. code-block:: ruby
 
             #If you are not using NFS, you do not need to include this.
 
@@ -197,7 +197,7 @@ Below is an example manifest called
 */etc/puppet/modules/site/manifests/print/client.pp* for setting up a
 print client.
 
-.. code-block:: Ruby
+.. code-block:: ruby
 
             class site::print::client inherits site::print::server {
               polkit::local_authority { 'print_support':
@@ -222,7 +222,7 @@ Below is an example manifest called
 */etc/puppet/modules/site/manifests/print/server.pp* for setting up a
 print server.
 
-.. code-block:: Ruby
+.. code-block:: ruby
 
             class site::print::server {
 
@@ -320,7 +320,7 @@ a VNC server and vclnt to act as a client.
 
 VNC Server node
 
-.. code-block:: Ruby
+.. code-block:: ruby
 
             # vserv.your.domain.yaml
             classes:
@@ -331,7 +331,7 @@ VNC Server node
 
 VNC client node
 
-.. code-block:: Ruby
+.. code-block:: ruby
 
             # vclnt.your.domain.yaml
             classes:

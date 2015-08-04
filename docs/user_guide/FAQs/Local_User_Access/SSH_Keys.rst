@@ -19,7 +19,7 @@ the generic variables included, as well as 2048-bit :term:`RSA` key generation.
 
 Code to Set Up a Local User SSH Connection Examples
 
-.. code-block:: Ruby
+.. code-block:: ruby
 
             class <CLASS NAME> {
               include "ssh"

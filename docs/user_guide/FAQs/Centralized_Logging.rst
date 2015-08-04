@@ -15,7 +15,7 @@ the designated logging node.
 
 Code to Enable the Server Logging Examples
 
-.. code-block:: Ruby
+.. code-block:: ruby
 
           classes :
             - 'simp::rsyslog::stock'
@@ -29,6 +29,6 @@ the */etc/puppet/hieradata/simp\_def.yaml* file.
 
 Code to Enable the Client Logging Examples
 
-.. code-block:: Ruby
+.. code-block:: ruby
 
           log_server="fqdn.of.your.log.server"

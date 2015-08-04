@@ -25,7 +25,7 @@ below in the *site.pp* or imported file.
 
 Break Out Security Settings from the Application
 
-.. code-block:: Ruby
+.. code-block:: ruby
 
             class base_config {
 
@@ -98,7 +98,7 @@ changed.
 
 Remove Security Module from Site Files
 
-.. code-block:: Bash
+.. code-block:: bash
 
             class site::security_override inherits sec::advanced
             {
@@ -132,7 +132,7 @@ file.
 
 Set All Security Default Site Settings Examples
 
-.. code-block:: Ruby
+.. code-block:: ruby
 
             node clientfqdn {
 

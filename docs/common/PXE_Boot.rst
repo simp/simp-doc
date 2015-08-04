@@ -80,7 +80,7 @@ code varies based on the model being kickstarted.
 Source Code for Setting Up TFTP on Puppet Server
 TFTP Examples
 
-.. code-block:: Ruby
+.. code-block:: ruby
 
             # Set KSSERVER statically or use Hiera for lookup
             class site::tftpboot {
@@ -115,7 +115,7 @@ example code to that yaml file.
 Source Adding TFTP Site Manifest to Hiera
 TFTP Examples
 
-.. code-block:: XML
+.. code-block:: xml
 
             ---
             classes:

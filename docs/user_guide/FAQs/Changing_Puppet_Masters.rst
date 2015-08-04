@@ -11,7 +11,7 @@ Enter the following changes into the */etc/puppet/puppet.conf* file.
 
 Code Changes on Client to Switch Puppet Masters
 
-.. code-block:: Ruby
+.. code-block:: ruby
 
             server = new.puppet.master.fqdn
             ca_server = new.puppet.master.fqdn

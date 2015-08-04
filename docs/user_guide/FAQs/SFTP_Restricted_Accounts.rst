@@ -11,7 +11,7 @@ Create a user account based on the following example.
 
 Create a User Account Examples
 
-.. code-block:: Ruby
+.. code-block:: ruby
 
             user { "foo":
               uid => <UID>,

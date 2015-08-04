@@ -17,7 +17,7 @@ The example below shows an IPtable NAT rule.
 
 Example of an IPtable NAT Rule
 
-.. code-block:: Ruby
+.. code-block:: ruby
 
               iptables::add_rules { "nat_global":
                  table => "nat",

@@ -4,6 +4,8 @@ Troubleshooting SIMP
 This chapter provides guidance on how to troubleshoot common problems
 that occur when installing and using SIMP.
 
-:doc:`troubleshooting/My_Services_Are_Dying`
+.. toctree::
+  :maxdepth: 2
 
-:doc:`troubleshooting/Puppet_Certificate_Issues`
+  troubleshooting/My_Services_Are_Dying
+  troubleshooting/Puppet_Certificate_Issues

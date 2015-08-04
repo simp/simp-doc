@@ -13,7 +13,7 @@ The entries in *vars.pp* should look like the following example.
 
 Example Sample Entries in vars.pp
 
-.. code-block:: Ruby
+.. code-block:: ruby
 
            $puppet_server_hosts_mod = "puppet.$dns_domain|1.2.3.4 puppet2.$dns_domain|2.3.4.5"
            $puppet_servers = template('site/nat_ip_switch.erb')
@@ -30,7 +30,7 @@ portions of the content to meet the needs of the user environment.
 
 Source Create the nat\_ip\_switch.erb
 
-.. code-block:: Ruby
+.. code-block:: ruby
 
             <%
             # Edit this variable to provide the IP address mappings.

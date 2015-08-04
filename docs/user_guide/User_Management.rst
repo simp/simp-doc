@@ -52,7 +52,7 @@ with the installed system's information.
 
 Example ldif to add a user
 
-.. code-block:: Ruby
+.. code-block:: ruby
 
            dn: uid=<User UID>,ou=People,dc=your,dc=domain
            uid: <User UID>
@@ -103,7 +103,7 @@ with the installed system's information.
 
 Example ldif example to add a user
 
-.. code-block:: Ruby
+.. code-block:: ruby
 
            dn: uid=<User UID>,ou=People,dc=your,dc=domain
            uid: <User UID>
@@ -137,7 +137,7 @@ installed system's information.
 
 Example ldif to remove a user
 
-.. code-block:: Ruby
+.. code-block:: ruby
 
               dn: cn=<User UID>,ou=Group,dc=example,dc=domain
               changeType: delete
@@ -166,7 +166,7 @@ To change a password, add the following information to the
 
 Example ldif to change password
 
-.. code-block:: Ruby
+.. code-block:: ruby
 
            dn: uid=<User UID>,ou=People,dc=your,dc=domain
            changetype: modify
@@ -187,7 +187,7 @@ system's information.
 
 Example ldif to add a group
 
-.. code-block:: Ruby
+.. code-block:: ruby
 
            dn: cn=<Group Name>,ou=Group,dc=your,dc=domain
            objectClass: posixGroup
@@ -210,7 +210,7 @@ To remove a group, add the following information to the
 
 Example ldif to remove a group
 
-.. code-block:: Ruby
+.. code-block:: ruby
 
            dn: cn=<Group Name>,ou=Group,dc=your,dc=domain
            changetype: delete
@@ -229,7 +229,7 @@ To add users to a group, add the following information to the
 
 Example ldif to add to a group
 
-.. code-block:: Ruby
+.. code-block:: ruby
 
            dn: cn=<Group Name>,ou=Group,dc=your,dc=domain
            changetype: modify
@@ -253,7 +253,7 @@ To remove users from a group, add the following information to the
 
 Example ldif to remove a user from a group
 
-.. code-block:: Ruby
+.. code-block:: ruby
 
            dn: cn=<Group Name>,ou=Group,dc=your,dc=domain
            changetype: modify
@@ -277,7 +277,7 @@ To update an SSH public key, add the following information to the
 
 Example ldif to update SSH public key
 
-.. code-block:: Ruby
+.. code-block:: ruby
 
            dn: uid=<User UID>,ou=People,dc=your,dc=domain
            changetype: modify
@@ -298,7 +298,7 @@ To force a password reset, add the following information to the
 
 Example ldif to reset user's shadowLastChange
 
-.. code-block:: Ruby
+.. code-block:: ruby
 
            dn: uid=<User UID>,ou=People,dc=your,dc=domain
            changetype: modify
@@ -329,7 +329,7 @@ To unlock an LDAP account, add the following information to the
 
 Example ldif to Unlock LDAP Account
 
-.. code-block:: Ruby
+.. code-block:: ruby
 
            dn: uid=<User UID>,ou=People,dc=your,dc=domain
            changetype: modify
@@ -346,7 +346,7 @@ Example ldif to Unlock LDAP Account
     *ppolicy* overlay.
 
 Troubleshooting Issues
-======================
+----------------------
 
 If a user's password is changed in LDAP or the user changes it shortly
 after its initial setup, the "Password too young to change" error may
