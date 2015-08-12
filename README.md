@@ -2,7 +2,7 @@
 
 The Documentation repository for the 4.2.X version of SIMP.
 
-This repository will house information relevant to the EL7 (RHEL/CentOS) build.
+This repository will house information relevant to the EL6 (RHEL/CentOS) build.
 
 # NOTE: THIS REPOSITORY IS IN A TRANSITIONAL STATE
 

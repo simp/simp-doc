@@ -3,6 +3,21 @@
 require 'simp/rake'
 
 class DocPkg < Simp::Rake::Pkg
+  # We need to inject the SCL Python repos for RHEL6 here if necessary
+  def mock_pre_check(chroot, *args)
+    mock_cmd = super(chroot, *args)
+
+    rh_version = %x(#{mock_cmd} -r #{chroot} -q --chroot 'cat /etc/redhat-release | cut -f3 -d" " | cut -f1 -d"."').chomp
+
+    if rh_version.to_i == 6
+      %x(#{mock_cmd} -q -r #{chroot} --install 'https://www.softwarecollections.org/en/scls/rhscl/python27/epel-6-x86_64/download/rhscl-python27-epel-6-x86_64.noarch.rpm')
+      %x(#{mock_cmd} -q -r #{chroot} --chroot 'rpmdb --rebuilddb')
+      %x(#{mock_cmd} -q -r #{chroot} --chroot 'yum install -y python27')
+    end
+
+    mock_cmd
+  end
+
   def define_clean
     task :clean do
       find_erb_files.each do |erb|
@@ -36,6 +51,7 @@ end
 DocPkg.new( File.dirname( __FILE__ ) ) do |t|
   # Not sure this is right
   t.clean_list << "#{t.base_dir}/html"
+  t.clean_list << "#{t.base_dir}/html-single"
   t.clean_list << "#{t.base_dir}/pdf"
   t.clean_list << "#{t.base_dir}/sphinx_cache"
 
@@ -47,7 +63,6 @@ DocPkg.new( File.dirname( __FILE__ ) ) do |t|
     load helper
   end
 end
-
 
 namespace :docs do
   desc 'build HTML docs'
@@ -61,11 +76,18 @@ namespace :docs do
     %x(#{cmd} > /dev/null)
   end
 
-
   desc 'build HTML docs (single page)'
   task :singlehtml do
     extra_args = ''
     cmd = "sphinx-build -E -n #{extra_args} -b singlehtml -d sphinx_cache docs html-single"
+    puts "== #{cmd}"
+    %x(#{cmd} > /dev/null)
+  end
+
+  desc 'build PDF docs (SLOW)'
+  task :pdf do
+    extra_args = ''
+    cmd = "sphinx-build -E -n #{extra_args} -b pdf -d sphinx_cache docs pdf"
     puts "== #{cmd}"
     %x(#{cmd} > /dev/null)
   end
