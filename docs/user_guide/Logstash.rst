@@ -240,4 +240,4 @@ place to start. You should also visit the main `Logstash
 page <http://logstash.net/>`__ to see demonstrations and read their tips
 for searching logs.
 
-.. image:: ../images/Logstash.svg
+.. image:: ../images/Logstash.png

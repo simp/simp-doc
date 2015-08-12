@@ -33,6 +33,7 @@ extensions = [
     'sphinx.ext.autodoc',
     'sphinx.ext.intersphinx',
     'sphinx.ext.todo',
+    'rst2pdf.pdfbuilder',
 #    'sphinxcontrib.fulltoc',
 ]
 
@@ -296,6 +297,14 @@ texinfo_documents = [
 
 # PDF
 #extensions = ['sphinx.ext.autodoc','rst2pdf.pdfbuilder']
+pdf_documents = [
+    (master_doc, u'SIMP_Documentation',u'SIMP Documentation', u'SIMP'),
+]
+
+pdf_language = "en_US"
+pdf_fit_background_mode = "scale"
+pdf_compressed = True
+pdf_stylesheets = ['sphinx','kerning','letter']
 
 # tag
 tags.add('simp_%s' % version.split('.')[0])
