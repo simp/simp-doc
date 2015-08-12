@@ -1,5 +1,8 @@
+%if 0%{?el6}
 %define simp_major_version 4
+%else
 %define simp_major_version 5
+%endif
 
 Summary: SIMP Documentation
 Name: simp-doc
@@ -11,47 +14,57 @@ Source: %{name}-%{version}-%{release}.tar.gz
 Buildroot: %{_tmppath}/%{name}-%{version}-%{release}-buildroot
 Buildarch: noarch
 Requires: links
-BuildRequires: sphinx >= 1.2
-BuildRequires: python-sphinx >= 0
-Prefix: /usr/share/doc/simp-%{version}
+%if 0%{?el6}
+BuildRequires: scl-utils
+BuildRequires: python27
+%endif
+BuildRequires: python-pip
+BuildRequires: python-virtualenv
 
 %description
 Documentation for SIMP %{version}-%{release}
 
 You can access the documentation on a text-based system using the
-command 'simp doc'. Alternatively, a PDF is provided in
-%{prefix}/pdf
+command 'simp doc'.
+
+Alternatively, you can read the docs at https://simp.readthedocs.org
 
 %prep
-%setup
+%setup -q
 
 %build
-sphinx-build    -n -t simp_%{simp_major_version} -b html       -d sphinx_cache docs html
+# We need the latest version of sphinx and rst2pdf
+# Make sure we play nice with our neighbors...
+
+%if 0%{?el6}
+# We can't use the normal SCL commands in mock so we do this manually!
+source /opt/rh/python27/enable
+%endif
+
+virtualenv venv
+source venv/bin/activate
+pip install --upgrade sphinx
+pip install --upgrade rst2pdf
+
+sphinx-build -E -n -t simp_%{simp_major_version} -b html       -d sphinx_cache docs html
 sphinx-build -E -n -t simp_%{simp_major_version} -b singlehtml -d sphinx_cache docs html-single
+sphinx-build -E -n -t simp_%{simp_major_version} -b pdf        -d sphinx_cache docs pdf
+
+if [ ! -d changelogs ]; then
+  mkdir changelogs
+fi
+
+mv pdf/SIMP_Documentation.pdf pdf/SIMP-%{version}-%{release}.pdf
 
 %install
-mkdir -p %{buildroot}%{prefix}
-src_dirs="changelogs Changelog*.rst ldifs html"
-for dir in $src_dirs; do
-  if [ -e $dir ]; then
-    cp -r $dir %{buildroot}%{prefix}
-  fi
-done
-
-# Publican Material
-mkdir -p %{buildroot}%{prefix}/html
-cp -r "html/"        %{buildroot}%{prefix}/html/
-cp -r "html-single/" %{buildroot}%{prefix}/html-single/
-
-chmod -R u=rwX,g=rX,o=rX %{buildroot}%{prefix}
+# Just the Docs...
 
 %clean
 [ "%{buildroot}" != "/" ] && rm -rf %{buildroot}
 
 %files
-%defattr(-,root,root,-)
-%docdir %{prefix}
-%{prefix}
+%defattr(0644,root,root,0755)
+%doc Changelog.rst html html-single pdf ldifs
 
 %post
 # Post install stuff
@@ -60,6 +73,9 @@ chmod -R u=rwX,g=rX,o=rX %{buildroot}%{prefix}
 # Post uninstall stuff
 
 %changelog
+* Tue Aug 11 2015 Trevor Vaughan <tvaughan@onyxpoint.com> - 4.2.0-Beta2
+- Updated the spec file to properly build the docs.
+
 * Fri Jul 31 2015 Judy Johnson <judy.johnson@onyxpoint.com> - 4.2.0-Beta2
 - Converted docs from Publican to ReStructured Text.
 
