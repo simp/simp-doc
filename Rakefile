@@ -99,6 +99,7 @@ namespace :docs do
     %x(#{cmd} > /dev/null)
   end
 
+
   desc 'build HTML docs (single page)'
   task :singlehtml do
     extra_args = ''
