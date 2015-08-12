@@ -24,4 +24,3 @@ This is a sample zones (e.g. your.domain) file
 This is a sample kickstart (e.g. pupclient_x86_64.cfg) file
 
   .. literalinclude:: ../sample/pupclient_x86_64.cfg
-

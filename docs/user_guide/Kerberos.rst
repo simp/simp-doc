@@ -58,17 +58,6 @@ appropriate for common organizations. These steps should be accomplished
 after creating the ACL by using the code provided in the previous
 example.
 
-+--------+---------------------------------------------------------------------------------------------------------------------------------+
-| Step   | Process/Action                                                                                                                  |
-+========+=================================================================================================================================+
-| 1.     | After using the code from the previous example, run ``puppet agent -t`` to allow the changes to take effect.                    |
-+--------+---------------------------------------------------------------------------------------------------------------------------------+
-| 2.     | To finish creating the principal, type **/usr/bin/kadmin.local -r ***<Your.Domain>*** -q "addprinc ***<User Name>***/admin"**   |
-|        |                                                                                                                                 |
-|        | **NOTE**: By following this step, all features of the admin principal can be used remotely.                                     |
-+--------+---------------------------------------------------------------------------------------------------------------------------------+
-| 3.     | To load the principal, type **/usr/bin/kinit ***<User Name>***/admin**                                                          |
-+--------+---------------------------------------------------------------------------------------------------------------------------------+
 
 Table: Creating the Admin Principal Procedure
 
@@ -78,21 +67,6 @@ Create the Host Principal(s)
 Once the admin principal has been created, host principals for each host
 can be made. The table below lists the steps to complete this action.
 
-+--------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-| Step   | Process/Action                                                                                                                                                                                                               |
-+========+==============================================================================================================================================================================================================================+
-| 1.     | On the KDC, generate a principal for each host in the environment by typing **/usr/sbin/kadmin.local -r ***<Your.Domain>*** -q 'addprinc -randkey host/\ ***<FQDN>***'**                                                     |
-|        |                                                                                                                                                                                                                              |
-|        | **NOTE**: To use much of the functionality of the host, the user must first ensure that each host has a keytab. SIMP uses the */etc/puppet/keydist* directory for each host to distribute keytabs securely to the clients.   |
-+--------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-| 2.     | To create a keytab file for each of the above hosts, type **/usr/sbin/kadmin.local -r ***<Your.Domain>*** -q 'ktadd -k ***<FQDN>***.keytab host/\ ***<FQDN>***'**                                                            |
-+--------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-| 3.     | Propagate all keytabs to the Puppet server by moving all of the resulting keytab files securely to the */etc/puppet/keydist/<FQDN>/keytabs* directory on the Puppet server, as appropriate for each file.                    |
-+--------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-| 4.     | Update the node declarations to include *krb::keytab*.                                                                                                                                                                       |
-|        |                                                                                                                                                                                                                              |
-|        | **NOTE**: Ensure that all keytab directories are readable by the group Puppet, but not globally.                                                                                                                             |
-+--------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 
 Table: Creating Host Principals Procedure
 
