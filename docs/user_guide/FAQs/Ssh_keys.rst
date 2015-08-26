@@ -14,5 +14,5 @@ See the ? chapter for more information on user management in LDAP.
 Without LDAP
 ------------
 
-If LDAP is not being used, use the */etc/ssh/local\_keys* directory for
+If LDAP is not being used, use the ``/etc/ssh/local_keys`` directory for
 all user keys.

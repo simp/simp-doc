@@ -5,7 +5,7 @@ Legal Notice
 This material may only be distributed
 subject to the terms and conditions set forth in the GNU Free
 Documentation License (GFDL), V1.2 or later (the latest version is
-available at "http://www.gnu.org/licenses/fdl.txt
+available at `the GNU website <http://www.gnu.org/licenses/fdl.txt>`_.
 
 The SIMP Development Team
 makes no representation about the suitability of the SIMP product for

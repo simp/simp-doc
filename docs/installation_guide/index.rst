@@ -5,12 +5,12 @@ Contents:
 
 .. toctree::
 
-  ../common/Introduction
+  Introduction
   SIMP_Server_Installation
-  ../common/Client_Management
+  Client_Management
   Hiera_Overview
   Certificates
-  ../common/PXE_Boot
-  ../common/Changelog
+  PXE_Boot
+  Changelog
   glossary
-  ../common/File_Samples
+  File_Samples

@@ -111,27 +111,26 @@ attempting to use the scripts below within Jenkins:
           echo "alias root='sudo sudosh'" >> /etc/bashrc
 
 
-    **Note**
+    .. note::
+      The followilng modifications were made to ISO the before using it to
+      create a VM:
 
-    The followilng modifications were made to ISO the before using it to
-    create a VM:
+      Change the bootprotocol to dhcp
+          ::
 
-    Change the bootprotocol to dhcp
-        ::
-
-            sed -i 's/network --bootproto=static --ip=192.168.0.111 --netmask=255.255.255.0 --gateway=192.168.1.1 --nodns --hostname=puppet.change.me/network --bootproto=dhcp/g' ks/dvd/include/common_ks_base
-
-
-    Prevent the system from forcing a root password change
-        ::
-
-            sed -i 's/change -d 0 root;//g' ks/dvd/*.cfg
+              sed -i 's/network --bootproto=static --ip=192.168.0.111 --netmask=255.255.255.0 --gateway=192.168.1.1 --nodns --hostname=puppet.change.me/network --bootproto=dhcp/g' ks/dvd/include/common_ks_base
 
 
-    Use simp-big by default instead of just simp
-        ::
+      Prevent the system from forcing a root password change
+          ::
 
-            sed -i 's/default simp$/default simp-big/g' isolinux/isolinux.cfg
+              sed -i 's/change -d 0 root;//g' ks/dvd/*.cfg
+
+
+      Use simp-big by default instead of just simp
+          ::
+
+              sed -i 's/default simp$/default simp-big/g' isolinux/isolinux.cfg
 
 
 Create a VM
@@ -139,15 +138,15 @@ Create a VM
 
 String Parameters
 
--  simp\_ver - The version of SIMP (2.0.X, 4.0.X, etc.)
+-  **simp\_ver:** The version of SIMP (2.0.X, 4.0.X, etc.)
 
--  os\_dist - The operating system distribution (CentOS or RedHat)
+-  **os\_dist:** The operating system distribution (CentOS or RedHat)
 
--  vm\_name - The name of the VM you will be creating
+-  **vm\_name:** The name of the VM you will be creating
 
--  vm\_mac - The MAC address of the VM you will be creating
+-  **vm\_mac:** The MAC address of the VM you will be creating
 
--  build\_dir - The directory where your SIMP ISO is stored
+-  **build\_dir:** The directory where your SIMP ISO is stored
 
 .. code-block:: bash
 
@@ -217,14 +216,14 @@ Setup VM
 
 String Parameters
 
--  vm\_name - The name of the vm that was created using the previous
+-  **vm\_name:** The name of the vm that was created using the previous
    script
 
--  vm\_ip - IP address of the VM that was just created
+-  **vm\_ip:** IP address of the VM that was just created
 
 Password Parameter
 
--  vm\_pass - The password for root
+-  **vm\_pass:** The password for root
 
 .. code-block:: bash
 
@@ -364,7 +363,7 @@ Password Parameter
     end
 
 
-.. code-block:: bash
+.. code-block:: ruby
 
     # Setup Kickstart
     require 'rubygems'
@@ -379,7 +378,7 @@ Password Parameter
 
 
 Test Your Configuration
----------------------==
+-----------------------
 
 .. code-block:: bash
 
@@ -405,11 +404,11 @@ Test Your Configuration
 
 
 Test a Specific Module
----------------------=
+----------------------
 
 String Parameters
 
--  test\_mod - The name of the module you wish to test
+-  **test\_mod:** The name of the module you wish to test
 
 .. code-block:: bash
 
@@ -435,14 +434,11 @@ Create a Client VM
 
 String Parameters
 
--  simp\_ver - The version of simp that the client will have loaded on
-   it (2.0.X, 4.0.X, etc.)
+- **simp\_ver:** The version of simp that the client will have loaded on it (2.0.X, 4.0.X, etc.)
 
-   cli\_name - The name of the client VM you want to create
+- **cli\_name:** The name of the client VM you want to create
 
-   cli\_mac - The MAC address of the client VM, this should match an
-   entry that was placed in the dhcp.conf that was created on your
-   server VM
+- **cli\_mac:** The MAC address of the client VM, this should match an entry that was placed in the dhcp.conf that was created on your server VM
 
 .. code-block:: bash
 

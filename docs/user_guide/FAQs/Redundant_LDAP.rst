@@ -11,42 +11,42 @@ and is the SIMP default.
 Set up the Master
 -----------------
 
-If the standard *puppet\_servers.pp* file in SIMP is being used, the
+If the standard ``puppet_servers.pp`` file in SIMP is being used, the
 user has a working master server. If not, the following example
 demonstrates how to use the SIMP *openldap* module to create a server
-using the *puppet\_servers.pp* file .
+using the ``puppet_servers.pp`` file .
 
 Source Code for Using an OpenLDAP Server openldap
 
 .. code-block:: ruby
 
-            # These are some common variables.
-            # See /etc/puppet/manifests/vars.pp for the stock version.
+  # These are some common variables.
+  # See /etc/puppet/manifests/vars.pp for the stock version.
 
-            $ldap_master = 'ldap://ldapmaster.your.domain'
+  $ldap_master = 'ldap://ldapmaster.your.domain'
 
-            class ldap_common {
-              include 'openldap::slapd_pki'
+  class ldap_common {
+    include 'openldap::slapd_pki'
 
-              openldap::slapd::conf { 'default':
-                suffix => 'dc=your,dc=domain',
-                rootdn => 'dn=LDAPAdmin,ou=People,dc=your,dc=domain',
-                rootpw => '{SSHA}$klskf$asoghaagasgasgaggawawg',
-                tlsCertificateFile => "/etc/pki/public/${fqdn}.pub",
-                tlsCertificateKeyFile => "/etc/pki/private/${fqdn}.pem",
-                client_nets => [ '1.2.3.4/16' ]
-              }
-            }
+    openldap::slapd::conf { 'default':
+      suffix => 'dc=your,dc=domain',
+      rootdn => 'dn=LDAPAdmin,ou=People,dc=your,dc=domain',
+      rootpw => '{SSHA}$klskf$asoghaagasgasgaggawawg',
+      tlsCertificateFile => "/etc/pki/public/${fqdn}.pub",
+      tlsCertificateKeyFile => "/etc/pki/private/${fqdn}.pem",
+      client_nets => [ '1.2.3.4/16' ]
+    }
+  }
 
-            class ldap_master inherits ldap_common {
-              include 'openldap::slapo::syncprov'
+  class ldap_master inherits ldap_common {
+    include 'openldap::slapo::syncprov'
 
-              openldap::slapo::syncprov::conf { "default": }
-            }
+    openldap::slapo::syncprov::conf { "default": }
+  }
 
-            node ldapmaster {
-              include 'ldap_master'
-            }
+  node ldapmaster {
+    include 'ldap_master'
+  }
 
 .. _Redundant_LDAP-Replicants:
 
@@ -63,28 +63,28 @@ Source Code to Configure an LDAP Slave Node replication
 
 .. code-block:: ruby
 
-            class ldap_repl inherits ldap_common {
-              include 'openldap::slapd::syncrepl'
+  class ldap_repl inherits ldap_common {
+    include 'openldap::slapd::syncrepl'
 
-              openldap::slapd::syncrepl::conf { "111":
-                provider => $ldap_master,
-                syncrepl_retry => '60 10 600 +',
-                searchbase => 'dc=your,dc=domain',
-                starttls => 'critical',
-                bindmethod => 'simple',
-                binddn => 'cn=LDAPSync,ou=People,dc=your,dc=domain',
-                credentials => '<plain text password>',
-                updateref => $ldap_master
-              }
-            }
+    openldap::slapd::syncrepl::conf { "111":
+      provider => $ldap_master,
+      syncrepl_retry => '60 10 600 +',
+      searchbase => 'dc=your,dc=domain',
+      starttls => 'critical',
+      bindmethod => 'simple',
+      binddn => 'cn=LDAPSync,ou=People,dc=your,dc=domain',
+      credentials => '<plain text password>',
+      updateref => $ldap_master
+    }
+  }
 
-            node ldaprepl1 {
-              include "ldap_repl"
-            }
+  node ldaprepl1 {
+    include "ldap_repl"
+  }
 
-            node ldaprepl2 {
-              include "ldap_repl"
-            }
+  node ldaprepl2 {
+    include "ldap_repl"
+  }
 
 
 Promote a Slave Node
@@ -99,18 +99,18 @@ Source Promoting a Slave Node LDAP
 
 .. code-block:: ruby
 
-            # Change the common ldap server variable to promote the slave node.
+  # Change the common ldap server variable to promote the slave node.
 
-            $ldap_master = 'ldap://ldaprepl1.your.domain'
+  $ldap_master = 'ldap://ldaprepl1.your.domain'
 
-            node ldapmaster {
-              # include 'ldap_master'
-            }
+  node ldapmaster {
+    # include 'ldap_master'
+  }
 
-            node ldaprepl1 {
-              # include 'ldap_repl'
-              include 'ldap_master'
-            }
+  node ldaprepl1 {
+    # include 'ldap_repl'
+    include 'ldap_master'
+  }
 
 
 After the next Puppet run on all hosts, *ldaprepl1* will be promoted to
@@ -120,8 +120,8 @@ Troubleshooting
 ---------------
 
 If the system is not replicating, it is possible that another user has
-updated the *$ldap\_sync\_passwd* and *$ldap\_sync\_hash* entries in the
-*/etc/puppet/manifests/vars.pp* file without also updating the value in
+updated the ``$ldap_sync_passwd`` and ``$ldap_sync_hash`` entries in the
+``/etc/puppet/manifests/vars.pp`` file without also updating the value in
 LDAP itself; this is the most common issue reported by users.
 
 Currently, SIMP cannot self-modify the LDAP database directly;
@@ -129,16 +129,16 @@ therefore, the LDAP Administrator needs to perform this action. Refer to
 the :ref:`User_Management` chapter for more information on manipulating entries in OpenLDAP.
 
 The example below shows the changes necessary to update the
-*$ldap\_sync* information in LDAP.
+``$ldap_sync`` information in LDAP.
 
-Update $ldap\_sync Information in LDAP Examples
+Update ``$ldap_sync`` Information in LDAP Examples
 
 .. code-block:: ruby
 
-            dn: cn=LDAPSync,ou=People,dc=your,dc=domain
-            changetype: modify
-            replace: userPassword
-            userPassword: <Hash from $ldap_sync_hash>
+  dn: cn=LDAPSync,ou=People,dc=your,dc=domain
+  changetype: modify
+  replace: userPassword
+  userPassword: <Hash from $ldap_sync_hash>
 
 
 Master Node Demotion
