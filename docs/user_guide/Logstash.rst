@@ -12,19 +12,19 @@ a means for SIMP implementations to have logs and events collected,
 searched, and forwarded (filtered or unfiltered) to another host. SIMP
 comes with three separate but related modules. The modules are:
 
--  **Logstash:**\ Installs the RPMs and configuration needed for log
+-  **Logstash:** Installs the RPMs and configuration needed for log
    inputs, filters, and outputs.
 
--  **Kibana:**\ Installs the RPMs and configuration needed for the
+-  **Kibana:**  Installs the RPMs and configuration needed for the
    Kibana 3 web interface.
 
--  **Elasticsearch:**\ Installs the RPMs and configuration needed for
+-  **Elasticsearch:**  Installs the RPMs and configuration needed for
    Elasticsearch.
 
-    **Warning**
+.. warning::
 
     The Logstash class is incompatible with the SIMP
-    rsyslog::stock::server class! You cannot enable both of them on the
+    ``rsyslog::stock::server`` class! You cannot enable both of them on the
     same sever.
 
 Logstash Architecture
@@ -58,7 +58,7 @@ direct your hosts to forward logs to your Logstash server. In a default
 SIMP configuration, this can be done by setting the $log\_server
 variable in hiera.
 
-    **Note**
+.. note::
 
     SIMP does **NOT** apply any filters to the logs by default.
 
@@ -80,22 +80,22 @@ could adversely affect the security of the logging infrastructure. The
 following list describes the security features in place with the default
 SIMP module settings:
 
-    **Warning**
+.. warning::
 
     The native (Java) Elasticsearch connections are not encrypted! This
     will be remedied in the future as sufficient methods are found.
 
--  **User Name and Password Protection for Kibana:**\  The Kibana web can
+-  **User Name and Password Protection for Kibana:**  The Kibana web can
    be exposed to a defined list of hosts. If you are connecting to
    Kibana from anything other than the localhost, a user name and
    password is required for authentication. Both LDAP and local database
    users are supported.
 
--  **Syslog over Stunnel:**\  The default behavior in SIMP is to encrypt
+-  **Syslog over Stunnel:**  The default behavior in SIMP is to encrypt
    syslog traffic over Stunnel. This remains the case with Logstash.
    Unencrypted traffic is also supported for network devices.
 
--  **Limiting Web Actions:**\  The Kibana module restricts what HTTP
+-  **Limiting Web Actions:**  The Kibana module restricts what HTTP
    commands a user can perform on the Elasticsearch data store. Full
    POST action must be given to the Logstash nodes and some nodes may
    require DELETE capabilities. Logstash hosts should be tightly
@@ -103,7 +103,7 @@ SIMP module settings:
    Elasticsearch with carefully crafted commands. This is one reason
    that we use syslog on the local hosts.
 
-    **Important**
+.. important::
 
     The Puppet modules for Logstash, Kibana, and Elasticsearch contain
     dozens of variables that may be manipulated. You should read each
@@ -121,21 +121,21 @@ The storage requirements for Logstash and Elasticsearch vary depending
 on how long you plan on keeping logs. If you use the settings in ?, then
 your logs are not being filtered and are being sent to Elasticsearch.
 When using Elasticsearch, the logs are formatted for Elasticsearch and
-stored in /var/elasticsearch. You can also configure how many days of
+stored in ``/var/elasticsearch``. You can also configure how many days of
 data you wish to keep in Elasticsearch (keep\_days => '99'). Therefore,
-you should ensure you have enough space on /var to keep your defined
+you should ensure you have enough space on ``/var`` to keep your defined
 number of days worth of logs.
 
 As you grow your Elasticsearch cluster to handle increasing log loads,
 you will want to ensure that your keep\_days is set to handle your
 entire cluster appropriately.
 
-    **Note**
+.. note::
 
     You should have at least 4G of memory available on any Elasticsearch
     node.
 
-    **Important**
+.. important::
 
     You should NOT install Logstash, Elasticsearch, nor Kibana on your
     Puppet master. There will likely be conflicts with Apache and
@@ -147,38 +147,38 @@ Logstash Module Recommended SIMP Setup
 The following example manifest can be applied to a single host with a
 large /var volume and 4GB of memory.
 
-.. code-block:: ruby
+.. code-block:: yaml
 
-          ---
-          # Add these settings to only your Logstash node.
+  ---
+  # Add these settings to only your Logstash node.
 
-          apache::ssl::sslverifyclient: %{hiera('kibana::ssl_verify_client')}
+  apache::ssl::sslverifyclient: %{hiera('kibana::ssl_verify_client')}
 
-          kibana::redirect_web_root: true
-          kibana::ssl_allowroot: %{hiera('client_nets')}
-          kibana::ssl_verify_client: 'none'
-          # You can add more groups under ldap_groups if you want others
-          # to be able to access your Kibana instance.
-          #
-          # Remember, whitespace matters!
-          #
-          kibana::method_acl:
-            'method':
-              'ldap':
-                'enable': true
-            'limits':
-              'users':
-                'valid-user': 'defaults'
-              'ldap_groups':
-                'cn=administrators,ou=Group,dc=your,dc=domain': 'defaults'
+  kibana::redirect_web_root: true
+  kibana::ssl_allowroot: %{hiera('client_nets')}
+  kibana::ssl_verify_client: 'none'
+  # You can add more groups under ldap_groups if you want others
+  # to be able to access your Kibana instance.
+  #
+  # Remember, whitespace matters!
+  #
+  kibana::method_acl:
+    'method':
+      'ldap':
+        'enable': true
+    'limits':
+      'users':
+        'valid-user': 'defaults'
+      'ldap_groups':
+        'cn=administrators,ou=Group,dc=your,dc=domain': 'defaults'
 
-          logstash::simp::keep_days: '30'
+  logstash::simp::keep_days: '30'
 
-          elasticsearch::simp::manage_httpd: 'conf'
+  elasticsearch::simp::manage_httpd: 'conf'
 
-          classes:
-            - 'logstash::simp'
-            - 'kibana'
+  classes:
+    - 'logstash::simp'
+    - 'kibana'
 
 
 In the case of the Elasticsearch node setup below, it may be better to
@@ -187,23 +187,23 @@ add the following to a file like /etc/puppet/manifests/nodegroups.pp
 
 .. code-block:: ruby
 
-          if $trusted['certname'] =~ /es\d+\.your\.domain/ {
-            $hostgroup = 'elasticsearch'
-          }
+  if $trusted['certname'] =~ /es\d+\.your\.domain/ {
+    $hostgroup = 'elasticsearch'
+  }
 
 
 Then, ensure that a file called 'elasticsearch.yaml' is present in the
 .. only:: not simp_4
 
-  /etc/puppet/environments/simp/hieradata/hostgroups directory and contains the following
+  ``/etc/puppet/environments/simp/hieradata/hostgroups/`` directory and contains the following
 
 .. only:: simp_4
 
-  /etc/puppet/hieradata/hostgroups directory and contains the following
+  ``/etc/puppet/hieradata/hostgroups/`` directory and contains the following
 
 content.
 
-.. code-block:: ruby
+.. code-block:: yaml
 
           ---
           # All nodes running elasticsearch in your cluster should use
@@ -219,7 +219,7 @@ content.
 
 
 Make sure you point your clients to the Logstash server by setting the
-'log\_server' variable to the fqdn of the Logstash server in hiera. This
+``log_server`` variable to the fqdn of the Logstash server in hiera. This
 is further covered in ?.
 
 Using LogStash and ElasticSearch

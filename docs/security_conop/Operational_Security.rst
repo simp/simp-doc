@@ -18,7 +18,7 @@ SIMP baselines include configuration settings and Puppet modules.
 Currently, baselines are maintained for both Red
 Hat/CentOS 6.x, and Red Hat/CentOS 7.x. Each configuration item that is
 managed by a Puppet module has an RPM installed on the Puppet Master in
-the form of *pupmod-name-x.x.x-x*. This process allows for one main SIMP
+the form of ``pupmod-name-x.x.x-x``. This process allows for one main SIMP
 baseline to be maintained and modules to be upgraded easily. An overall
 SIMP RPM is also installed on the Puppet Master, which denotes the
 version number of SIMP that is installed. [CM-2, CM-2(2), CM-2(3), CM-6]
@@ -81,13 +81,13 @@ Malicious Code Protection
 For most environments, SIMP will use ClamAV to protect against malicious
 code. Rsync is used to push out new definitions, which should be updated
 by the local administrator regularly. SIMP also comes with a
-*mcafee:uvscan* module that manages an installation of uvscan, if it is
-preferred. The module can configure *.dat* file updates to occur over
+``mcafee::uvscan`` module that manages an installation of uvscan, if it is
+preferred. The module can configure ``.dat`` file updates to occur over
 rsync.
 
 Both the ClamAV and McAfee modules provide a method to run a scan via
 cron on a customer scheduled basis. [SI-3] SIMP also comes with the
-*chkrootkit* tool to check for *rootkits*. The tool runs as a cron job
+``chkrootkit`` tool to check for *rootkits*. The tool runs as a cron job
 and places its output into syslog. [SI-3]
 
 Software and Information Integrity
@@ -116,7 +116,7 @@ Remote maintenance can be performed on SIMP using SSH. Local maintenance
 can be performed at the console or via serial port (if available). SSH
 sessions are tracked and logged using the security features built into
 SIMP. Console access requires someone to have access to the physical (or
-virtual) console along with the *root* password. Auditing of those
+virtual) console along with the ``root`` password. Auditing of those
 actions also occurs in accordance with the configured audit policy. It
 is up to the implementation to decide how to distribute authentication
 information for remote maintenance. [MA-4, MA-4(1), MA-6]
@@ -140,6 +140,6 @@ implementation's contingency plan.
 System Backup
 -------------
 
-SIMP comes with a module called *backuppc*. This module provides a base
+SIMP comes with a module called ``backuppc``. This module provides a base
 configuration of the `BackupPC <http://backuppc.sourceforge.net/>`__
 software and allows Puppet servers and clients to perform backups.

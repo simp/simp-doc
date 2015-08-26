@@ -17,59 +17,59 @@ User Workstation Setup
 ----------------------
 
 Below is an example manifest called
-*/etc/puppet/modules/site/manifests/workstation.pp* for setting up a
+``/etc/puppet/modules/site/manifests/workstation.pp`` for setting up a
 user workstation.
 
 .. code-block:: ruby
 
-            class site::workstation {
-              include 'site::gui'
-              include 'site::repos'
-              include 'site::virt'
-              include 'site::automount'
-              include 'site::print::client'
+  class site::workstation {
+    include 'site::gui'
+    include 'site::repos'
+    include 'site::virt'
+    include 'site::automount'
+    include 'site::print::client'
 
-              # Make sure everyone can log into all nodes.
-              # If you want to change this, simply remove this line and add
-              # individual entries to your nodes as appropriate
-              pam::access::manage { "Allow Users":
-                comment => 'Allow all users in the "users" group to access the system from anywhere.',
-                users   => '(users)',
-                origins => ['ALL']
-              }
+    # Make sure everyone can log into all nodes.
+    # If you want to change this, simply remove this line and add
+    # individual entries to your nodes as appropriate
+    pam::access::manage { "Allow Users":
+      comment => 'Allow all users in the "users" group to access the system from anywhere.',
+      users   => '(users)',
+      origins => ['ALL']
+    }
 
-              # General Use Packages
-              package { [
-                'pidgin',
-                'git',
-                'control-center-extra',
-                'gconf-editor',
-                'evince',
-                'libreoffice-writer',
-                'libreoffice-xsltfilter',
-                'libreoffice-calc',
-                'libreoffice-impress',
-                'libreoffice-emailmerge',
-                'libreoffice-base',
-                'libreoffice-math',
-                'libreoffice-pdfimport',
-                'bluefish',
-                'gnome-media',
-                'pulseaudio',
-                'file-roller',
-                'inkscape',
-                'gedit-plugins',
-                'planner'
-              ]: ensure => 'latest'
-              }
-            }
+    # General Use Packages
+    package { [
+      'pidgin',
+      'git',
+      'control-center-extra',
+      'gconf-editor',
+      'evince',
+      'libreoffice-writer',
+      'libreoffice-xsltfilter',
+      'libreoffice-calc',
+      'libreoffice-impress',
+      'libreoffice-emailmerge',
+      'libreoffice-base',
+      'libreoffice-math',
+      'libreoffice-pdfimport',
+      'bluefish',
+      'gnome-media',
+      'pulseaudio',
+      'file-roller',
+      'inkscape',
+      'gedit-plugins',
+      'planner'
+    ]: ensure => 'latest'
+    }
+  }
 
 
 Graphical Desktop Setup
 -----------------------
 
 Below is an example manifest called
-*/etc/puppet/modules/site/manifests/gui.pp* for setting up a graphical
+``/etc/puppet/modules/site/manifests/gui.pp`` for setting up a graphical
 desktop on a user workstation.
 
 .. code-block:: ruby
@@ -96,7 +96,7 @@ Workstation Repositories
 ------------------------
 
 Below is an example manifest called
-*/etc/puppet/modules/site/manifests/repos.pp* for setting up workstation
+``/etc/puppet/modules/site/manifests/repos.pp`` for setting up workstation
 repositories.
 
 .. code-block:: ruby
@@ -111,7 +111,7 @@ Virtualization on User Workstations
 -----------------------------------
 
 Below is an example manifest called
-*/etc/puppet/modules/site/manifests/virt.pp* for allowing virtualization
+``/etc/puppet/modules/site/manifests/virt.pp`` for allowing virtualization
 on a user workstation.
 
 .. code-block:: ruby
@@ -157,7 +157,7 @@ Network File System
 -------------------
 
 Below is an example manifest called
-*/etc/puppet/modules/site/automount.pp* for Network File System setup.
+``/etc/puppet/modules/site/automount.pp`` for Network File System setup.
 
 .. code-block:: ruby
 
@@ -194,7 +194,7 @@ Setting up a Print Client
 ~~~~~~~~~~~~~~~~~~~~~~~~~
 
 Below is an example manifest called
-*/etc/puppet/modules/site/manifests/print/client.pp* for setting up a
+``/etc/puppet/modules/site/manifests/print/client.pp`` for setting up a
 print client.
 
 .. code-block:: ruby
@@ -219,14 +219,14 @@ Setting up a Print Server
 ~~~~~~~~~~~~~~~~~~~~~~~~~
 
 Below is an example manifest called
-*/etc/puppet/modules/site/manifests/print/server.pp* for setting up a
+``/etc/puppet/modules/site/manifests/print/server.pp`` for setting up a
 print server.
 
 .. code-block:: ruby
 
             class site::print::server {
 
-              # Note, this is *not * set up for being a central print server.
+              # Note, this is *not* set up for being a central print server.
               # You'll need to add the appropriate IPTables rules for that to work.
               package { 'cups': ensure => 'latest' }
 
@@ -249,35 +249,50 @@ through the standard setup or a proxy.
 VNC Standard Setup
 ------------------
 
-    **Note**
+.. note::
 
-    You must have the **pupmod-vnc** RPM installed to use VNC on your
+    You must have the ``pupmod-vnc`` RPM installed to use VNC on your
     system!
 
-To enable remote access via VNC on the system, include **vnc::server**
+To enable remote access via VNC on the system, include ``vnc::server``
 in Hiera for the node.
 
 The default VNC setup that comes with SIMP can only be used over SSH and
 includes three default settings:
 
++---------------+------------------------------------+
+|Setting Type   |Setting Details                     |
++===============+====================================+
+|Standard       | Port: 5901                         |
+|               |                                    |
+|               | Resolution: 1024x768@16            |
++---------------+------------------------------------+
+|Low Resolution | Port: 5902                         |
+|               |                                    |
+|               | Resolution: 800x600@16             |
++---------------+------------------------------------+
+|High Resolution| Port: 5903                         |
+|               |                                    |
+|               | Resolution: 1280x1024@16           |
++---------------+------------------------------------+
 
 Table: VNC Default Settings
 
 To connect to any of these settings, SSH into the system running the VNC
-server and provide a tunnel to *127.0.0.1:<VNC Port>*. Refer to the SSH
+server and provide a tunnel to ``127.0.0.1:<VNC Port>``. Refer to the SSH
 client's documentation for specific instructions.
 
 To set up additional VNC port settings, refer to the code in
-*`/etc/puppet/modules/vnc/manifests/server.pp <file:///etc/puppet/modules/vnc/manifests/server.pp>`__*
+```/etc/puppet/modules/vnc/manifests/server.pp <file:///etc/puppet/modules/vnc/manifests/server.pp>`__``
 for examples.
 
-    **Important**
+.. important::
 
     Multiple users can log on to the same system at the same time with
     no adverse effects; however, none of these sessions are persistent.
 
-    To maintain a persistent VNC session, use the **vncserver**
-    application on the remote host. Type **man vncserver** to reference
+    To maintain a persistent VNC session, use the ``vncserver``
+    application on the remote host. Type ``man vncserver`` to reference
     the manual for additional details.
 
 VNC Through a Proxy
@@ -286,59 +301,58 @@ VNC Through a Proxy
 The section describes the process to VNC through a proxy. This setup
 provides the user with a persistent VNC session.
 
-    **Important**
+.. important::
 
     In order for this setup to work, the system must have a VNC server
-    (*vserver.your.domain*), a VNC client (*vclnt.your.domain*), and a
-    proxy (*proxy.your.domain*). A *vuser* account must also be set up
-    as the account being used for the VNC. The *vuser* is a common user
+    (``vserver.your.domain``), a VNC client (``vclnt.your.domain``), and a
+    proxy (``proxy.your.domain``). A ``vuser`` account must also be set up
+    as the account being used for the VNC. The ``vuser`` is a common user
     that has access to the server, client, and proxy.
 
 Modify Puppet
 ~~~~~~~~~~~~~
 
 If definitions for the machines involved in the VNC do not already exist
-in Hiera, create an */etc/puppet/hieradata/hosts/vserv.your.domain.yaml*
+in Hiera, create an ``/etc/puppet/hieradata/hosts/vserv.your.domain.yaml``
 file. In the client hosts file, modify or create the entries shown in
 the examples below. These additional modules will allow vserv to act as
 a VNC server and vclnt to act as a client.
 
 VNC Server node
 
-.. code-block:: ruby
+.. code-block:: yaml
 
-            # vserv.your.domain.yaml
-            classes:
-              - 'windowmanager::gnome'
-              - 'mozilla::firefox'
-              - 'vnc::server'
+  # vserv.your.domain.yaml
+  classes:
+    - 'windowmanager::gnome'
+    - 'mozilla::firefox'
+    - 'vnc::server'
 
 
 VNC client node
 
-.. code-block:: ruby
+.. code-block:: yaml
 
-            # vclnt.your.domain.yaml
-            classes:
-              - 'windowmanager::gnome'
-              - 'mozilla::firefox'
-              - 'vnc::client'
+  # vclnt.your.domain.yaml
+  classes:
+    - 'windowmanager::gnome'
+    - 'mozilla::firefox'
+    - 'vnc::client'
 
 
 Run the Server
 ~~~~~~~~~~~~~~
 
-As *vuser* on *vserv.your.domain*, type **vncserver**.
+As ``vuser`` on ``vserv.your.domain``, type ``vncserver``.
 
 The output should mirror the following:
 
-*New 'vserv.your.domain:<Port Number> (vuser)' desktop is
-vserv.your.domain:<Port Number>*
+  New 'vserv.your.domain:<Port Number> (vuser)' desktop is vserv.your.domain:<Port Number>
 
-*Starting applications specified in /home/vuser/.vnc/xstartup Log file
-is /home/vuser/.vnc/vserv.your.domain:<Port Number>.log*
+Starting applications specified in ``/home/vuser/.vnc/xstartup`` Log file
+is ``/home/vuser/.vnc/vserv.your.domain:<Port Number>.log``
 
-    **Note**
+.. note::
 
     Remember the port number; it will be needed to set up an SSH tunnel.
 
@@ -350,9 +364,17 @@ Set up a tunnel from the client (vclnt), through the proxy server
 up the tunnel.
 
 
+1. On the workstation, type ssh -l vuser -L 590***<Port Number>*:localhost:590***<Port Number>***proxy.your.domain**
+
+  .. note:: This command takes the user to the proxy.
+
+2. On the proxy, type ssh -l vuser -L 590***<Port Number>*:localhost:590***<Port Number>***vserv.your.domain**
+
+  .. note:: This command takes the user to the VNC server.
+
 Table: Set Up SSH Tunnel Procedure
 
-    **Note**
+.. note::
 
     The port number in 590\ *<Port Number>* is the same port number as
     previously described. For example, if the *<Port Number>* was 6,
@@ -361,14 +383,14 @@ Table: Set Up SSH Tunnel Procedure
 Set Up Clients
 ~~~~~~~~~~~~~~
 
-On *vclnt.your.domain*, type **vncviewer localhost:590\ ***<Port
-Number>***** to open the Remote Desktop viewer.
+On ``vclnt.your.domain``, type ``vncviewer localhost:590\ ***<Port
+Number>***`` to open the Remote Desktop viewer.
 
 Troubleshooting VNC Issues
 ~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 If nothing appears in the terminal window, X may have crashed. To
-determine if this is the case, type **ps -ef \| grep XKeepsCrashing**
+determine if this is the case, type ``ps -ef | grep XKeepsCrashing``
 
 If any matches result, stop the process associated with the command and
-try to restart *vncviewer* on *vclnt.your.domain*.
+try to restart ``vncviewer`` on ``vclnt.your.domain``.
