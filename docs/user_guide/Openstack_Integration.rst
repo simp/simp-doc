@@ -12,23 +12,23 @@ creating a free and open source platform for cloud development and
 deployment. It is designed in a modular fashion, encompassing the
 following components:
 
--  **Cinder**\ Block Storage Service
+-  **Cinder**: Block Storage Service
 
--  **Glance**\ VM Image Service
+-  **Glance**: VM Image Service
 
--  **Keystone**\ Identity Service
+-  **Keystone**: Identity Service
 
--  **Nova**\ Compute Service
+-  **Nova**: Compute Service
 
--  **Horizon**\ Dashboard Service
+-  **Horizon**: Dashboard Service
 
--  **Neutron**\ Networking Service
+-  **Neutron**: Networking Service
 
--  **Swift**\ Object Storage Service
+-  **Swift**: Object Storage Service
 
--  **Ceilometer**\ Metrics
+-  **Ceilometer**: Metrics
 
--  **Heat**\ Templating
+-  **Heat**: Templating
 
 Integration of OpenStack into SIMP provides an easily scalable, secure
 cloud infrastructure for the end user. Currently, SIMP supports
@@ -36,9 +36,23 @@ OpenStack IceHouse for CentOS 6.5, with the exception of Swift.
 
 Each OpenStack module has been encapsulated into SIMP as a Puppet
 module, for rapid deployment. The following modules have been integrated
-into SIMP for OpenStack support:\ **Puppetlabs Apache, Cinder, Glance,
-INIFile, Keystone, MYSQL, Nova, Qpid, Horizon, Memcached, OpenVSwitch,
-Heat, Ceilometer, Neutron, and OpenStack.**
+into SIMP for OpenStack support:
+
+* Puppetlabs Apache
+* Cinder
+* Glance
+* INIFile
+* Keystone
+* MYSQL
+* Nova
+* Qpid
+* Horizon
+* Memcached
+* OpenVSwitch
+* Heat
+* Ceilometer
+* Neutron
+* OpenStack
 
 Deployment
 ----------
@@ -59,7 +73,7 @@ manifests. That means you, the end user, can opt to use the example
 manifests directly or not at all. Create your own manifests for specific
 site deployments.
 
-To deploy, you must install the pupmod-puppetlabs-openstack module
+To deploy, you must install the ``pupmod-puppetlabs-openstack`` module
 (which will chain-install all dependencies).
-/etc/puppet/modules/openstack/simp has example hieradata yaml files for
+``/etc/puppet/modules/openstack/simp`` has example hieradata yaml files for
 compute and control nodes.
