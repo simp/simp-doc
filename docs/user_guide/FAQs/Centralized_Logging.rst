@@ -15,20 +15,20 @@ the designated logging node.
 
 Code to Enable the Server Logging Examples
 
-.. code-block:: ruby
+.. code-block:: yaml
 
-          classes :
-            - 'simp::rsyslog::stock'
+  classes :
+    - 'simp::rsyslog::stock'
 
 
 Enable the Clients
 ------------------
 
 To have clients send data to the server, make the following changes to
-the */etc/puppet/hieradata/simp\_def.yaml* file.
+the ``/etc/puppet/hieradata/simp_def.yaml`` file.
 
-Code to Enable the Client Logging Examples
+Code to Enable the Client Logging Examples:
 
 .. code-block:: ruby
 
-          log_server="fqdn.of.your.log.server"
+  log_server="fqdn.of.your.log.server"

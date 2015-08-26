@@ -73,21 +73,21 @@ Expectations
 Before you begin, please be aware that the following actions will take place as
 a result of the migration script:
 
-* The *puppet-server* RPM will be removed
+* The ``puppet-server`` RPM will be removed
 
-* The *puppetserver* RPM will be installed (no, that's not a typo)
+* The ``puppetserver`` RPM will be installed (no, that's not a typo)
 
-* **ALL** SIMP Puppet code will be migrated into a new *simp* environment
+* **ALL** SIMP Puppet code will be migrated into a new ``simp`` environment
 
-  * This will be located at */etc/puppet/environments/simp*
+  * This will be located at ``/etc/puppet/environments/simp``
 
 * A backup of your running environment will be made available at
-  */etc/puppet/environments/pre_migration.simp*
+  ``/etc/puppet/environments/pre_migration.simp``
 
-  * You will find timestamped directories under the *pre_migration.simp*
+  * You will find timestamped directories under the ``pre_migration.simp``
     directory that correspond to runs of the migration script
 
-  * Your old files will be in a *backup_data* directory and will be linked to a
+  * Your old files will be in a ``backup_data`` directory and will be linked to a
     local bare Git repository in the same space
 
 The upgrade steps will also have you install PuppetDB. PuppetDB is installed by
@@ -103,7 +103,7 @@ RPM Updates
 -----------
 
 Numerous RPMs were updated in the creation of this release. Several were
-included due to our use of *repoclosure* to ensure that RPM dependencies are met
+included due to our use of ``repoclosure`` to ensure that RPM dependencies are met
 when releasing a DVD.
 
 * This version upgrades Facter to 2.4.
@@ -113,7 +113,7 @@ Fixed Bugs
 
 * pupmod-aide
 
-  - Change the call to the *rsyslog* init script to the *service* command to
+  - Change the call to the ``rsyslog`` init script to the ``service`` command to
     seamlessly support both RHEL6 and RHEL7.
 
 * pupmod-apache
@@ -129,21 +129,21 @@ Fixed Bugs
 
 * pupmod-clamav
 
-  - Change the call to the *rsyslog* init script to the *service* command to
+  - Change the call to the ``rsyslog`` init script to the ``service`` command to
     seamlessly support both RHEL6 and RHEL7.
 
 * pupmod-common
 
   - We no longer supply crontab or anacrontab in global_etcd.
   - Remove dynamic_swappiness cron job if a static value is set.
-  - Ensure that the *passgen()* function fails on invalid scenarios. This
+  - Ensure that the ``passgen()`` function fails on invalid scenarios. This
     prevents the accidental cration of empty passwords.
-  - Allow the value *2* to be used for *rp_filter* in *common::sysctl*.
+  - Allow the value *2* to be used for ``rp_filter`` in ``common::sysctl``.
   - Added ability to return remote ip addrs.
 
 * pupmod-dhcp
 
-  - Change the call to the *rsyslog* init script to the *service* command to
+  - Change the call to the ``rsyslog`` init script to the ``service`` command to
     seamlessly support both RHEL6 and RHEL7.
 
 * pupmod-iptables
@@ -169,7 +169,7 @@ Fixed Bugs
 
 * pupmod-nfs
 
-  - Updated the *mountd* port to be *20048* by default for SELinux issues in
+  - Updated the ``mountd`` port to be ``20048`` by default for SELinux issues in
     RHEL7.
 
 * pupmod-ntp
@@ -188,15 +188,15 @@ Fixed Bugs
       simp-ppolicy-check-password-2.4.39-0 or later available to the system
       being configured.
 
-  - Change the call to the *rsyslog* init script to the *service* command to
+  - Change the call to the ``rsyslog`` init script to the ``service`` command to
     seamlessly support both RHEL6 and RHEL7.
   - Fixed reported bugs in syncrepl.pp.
 
 * pupmod-openscap
 
-  - Change the call to the *rsyslog* init script to the *service* command to
+  - Change the call to the ``rsyslog`` init script to the ``service`` command to
     seamlessly support both RHEL6 and RHEL7.
-  - Changed default ssg base path to /usr/share/xml/scap/ssg/content
+  - Changed default ssg base path to ``/usr/share/xml/scap/ssg/content``
 
 * pupmod-rsync
 
@@ -208,17 +208,17 @@ Fixed Bugs
   - Added explicit cases for FIPS and non-FIPS mode (as well as reasonable
     default cases for RHEL7 and below).
   - Updated to use the new augeasproviders module dependencies.
-  - Added a function *ssh_format_host_entry_for_sorting()* that will properly
+  - Added a function ``ssh_format_host_entry_for_sorting()`` that will properly
     sort SSH *Host* entries for inclusion with concat.
 
 * pupmod-stunnel
 
-  - Had a variable **options** in *stunnel.erb* that should have been scoped as
+  - Had a variable **options** in ``stunnel.erb`` that should have been scoped as
     **@options**.
 
 * pupmod-sudosh
 
-  - Change the call to the *rsyslog* init script to the *service* command to
+  - Change the call to the ``rsyslog`` init script to the ``service`` command to
     seamlessly support both RHEL6 and RHEL7.
 
 * pupmod-sysctl
@@ -228,7 +228,7 @@ Fixed Bugs
 
 * pupmod-tftpboot
 
-  - Purging of non-Puppet-managed items in *pxelinux.cfg* is now optional.
+  - Purging of non-Puppet-managed items in ``pxelinux.cfg`` is now optional.
 
 * pupmod-simp-tpm
 
@@ -316,7 +316,7 @@ New Features
 
 * pupmod-richardc-datacat
 
-  - Incorporated the *richardc/datacat* module into the core for user convenience.
+  - Incorporated the ``richardc/datacat`` module into the core for user convenience.
 
 * pupmod-freeradius
 
@@ -370,7 +370,7 @@ New Features
 * simp config
 
   - simp config was rewritten to allow for new features and flexibilty.
-  - Now provided as a Ruby gem "simp-cli".
+  - Now provided as a Ruby gem ``simp-cli``.
 
 * pupmod-simp-logstash
 
