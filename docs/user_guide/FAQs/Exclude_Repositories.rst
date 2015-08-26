@@ -12,15 +12,15 @@ repositories from nightly YUM updates.
 Methodology
 -----------
 
-The *common::yum\_schedule::repos* and *common::yum\_schedule::disable*
+The ``common::yum_schedule::repos`` and ``common::yum_schedule::disable``
 variables in the pupmod-common module control which repositories are
 enabled for nightly updating. Both variables must be specified in array
 format.
 
-*common::yum\_schedule::repos* is used to specify an array of
+``common::yum_schedule::repos`` is used to specify an array of
 repositories from which updates are provided; no other repositories will
 be used.
 
-*common::yum\_schedule::disable* is used to specify an array of
+``common::yum_schedule::disable`` is used to specify an array of
 repositories from which updates are not provided; all other repositories
 will be used.
