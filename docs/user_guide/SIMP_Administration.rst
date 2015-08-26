@@ -4,7 +4,7 @@ SIMP Administration
 This chapter provides basic guidance on how to administer a SIMP
 environment.
 
-    **Warning**
+.. warning::
 
     While working with the system, keep in mind that Puppet does not
     work well with capital letters in host names. Therefore, they should
@@ -23,10 +23,10 @@ YUM repositories than it is to manage individual package minutia for
 every single package on every system.
 
 The general technique is to put packages that all systems will receive
-into the *Updates* repository provided with SIMP. Any packages that will
+into the ``Updates`` repository provided with SIMP. Any packages that will
 only go to specific system sets will then be placed into adjunct
-repositories under */var/www/yum* and the user will point specific
-systems at those repositories using the *yumrepo* Puppet type. Any
+repositories under ``/var/www/yum`` and the user will point specific
+systems at those repositories using the ``yumrepo`` Puppet type. Any
 common packages can be symlinked or hard linked between repositories for
 maximum space utilization.
 
@@ -34,12 +34,12 @@ Sudosh
 ------
 
 By default, a SIMP system uses :term:`Sudosh` to enable logging of sudo sessions to
-*Rsyslog*. To open a sudo session as *root* (or any other user), type
-**su -** as simp, or **sudo sudosh** as anyone else, instead of **sudo
-su**.
+``Rsyslog``. To open a sudo session as ``root`` (or any other user), type
+``su -`` as simp, or ``sudo sudosh`` as anyone else, instead of ``sudo
+su``.
 
-The logs are stored in */var/log/sudosh.log*. Sessions can be replayed
-by typing **sudosh-syslog-replay**.
+The logs are stored in ``/var/log/sudosh.log``. Sessions can be replayed
+by typing ``sudosh-syslog-replay``.
 
 User Accounts
 -------------
@@ -57,11 +57,11 @@ conventions set on the system, use the native Puppet user and group
 types.
 
 To have a user that does not expire, look at the
-*/etc/puppet/localusers* file to enable these users across the systems.
+``/etc/puppet/localusers`` file to enable these users across the systems.
 The comments in the file provide instructions on generating entries for
 the desired systems. It is hoped that future versions of Puppet will
 support the modification of password expiration values via the native
-types and that the *localusers* file will be retired.
+types and that the ``localusers`` file will be retired.
 
 Certificate Management
 ----------------------
@@ -76,33 +76,33 @@ Server Certificates
 
 Server certificates are the standard PKI certificates assigned either by
 an official CA or generated using the FakeCA utility offered by SIMP.
-They can be found in the */etc/pki/* directory of both the client and
+They can be found in the ``/etc/pki/`` directory of both the client and
 server systems. These certificates are set to expire annually. To change
 this, edit the following files with the number of days for the desired
 lifespan of the certificates:
 
-    **Note**
+.. note::
 
     This assumes that the user has generated Certificates with the
     FakeCA provided by SIMP. If official certificates are being used,
     these settings must be changed within the official CA, not on the
     SIMP system.
 
--  */etc/puppet/Config/FakeCA/CA*
+-  ``/etc/puppet/Config/FakeCA/CA``
 
--  */etc/puppet/Config/FakeCA/ca.cnf*
+-  ``/etc/puppet/Config/FakeCA/ca.cnf``
 
--  */etc/puppet/Config/FakeCA/default\_altnames.cnf*
+-  ``/etc/puppet/Config/FakeCA/default\_altnames.cnf``
 
--  */etc/puppet/Config/FakeCA/default.cnf*
+-  ``/etc/puppet/Config/FakeCA/default.cnf``
 
--  */etc/puppet/Config/FakeCA/user.cnf*
+-  ``/etc/puppet/Config/FakeCA/user.cnf``
 
 In addition, any certificates that have already been created and signed
 will have a config file containing all of its details in
-*/etc/puppet/Config/FakeCA/output/conf/*.
+``/etc/puppet/Config/FakeCA/output/conf/``.
 
-    **Important**
+.. important::
 
     Editing any entries in the above mentioned config files will not
     affect the existing certificates. To make changes to an existing
@@ -113,10 +113,10 @@ Below is an example of how to change the expiration time from one year
 
 .. code-block:: bash
 
-            for file in $(grep -rl 365 /etc/puppet/Config/FakeCA/)
-            do
-              sed -i 's/365/1825/' $file
-            done
+  for file in $(grep -rl 365 /etc/puppet/Config/FakeCA/)
+  do
+    sed -i 's/365/1825/' $file
+  done
 
 
 Puppet Certificates
@@ -124,18 +124,18 @@ Puppet Certificates
 
 Puppet certificates are issued and maintained strictly within Puppet.
 They are different from the server certificates and should be managed
-with the **puppet cert** tool. For the complete documentation on the
-**puppet cert** tool, visit the `Puppet Labs cert
+with the ``puppet cert`` tool. For the complete documentation on the
+``puppet cert`` tool, visit the `Puppet Labs cert
 manual <http://docs.puppetlabs.com/man/cert.html>`__ detailing its
 capabilities. On a SIMP system, these certificates are located in the
-*/var/lib/puppet/ssl/* directory and are set to expire every five years.
+``/var/lib/puppet/ssl/`` directory and are set to expire every five years.
 
 Applications
 ------------
 
 This section describes how to add services to the servers. To perform
 this action, it is important to understand how to use IPtables and what
-the *svckill.rb* script does on the system.
+the ``svckill.rb`` script does on the system.
 
 IPTables
 --------
@@ -152,7 +152,7 @@ the system will deny access to all ports except port 22 to allow for
 recovery via SSH.
 
 There are many examples of how to use the IPtables module in the source
-code; the Apache module at */etc/puppet/modules/apache* is a
+code; the Apache module at ``/etc/puppet/modules/apache`` is a
 particularly good example. In addition, look at the definitions in the
 IPtables module to understand their purpose and choose the best option.
 Refer to the `IPtables page of the Developers
@@ -163,7 +163,7 @@ svckill.rb
 ----------
 
 To ensure that the system does not run more services than are required,
-the *svckill.rb* script has been implemented to stop any service that is
+the ``svckill.rb`` script has been implemented to stop any service that is
 not properly defined in the Puppet catalogue.
 
 To prevent services from stopping, refer to the instructions in the

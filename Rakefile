@@ -46,8 +46,6 @@ class DocPkg < Simp::Rake::Pkg
           rm(short_name)
         end
       end
-
-      Rake::Task['rdoc:clean'].invoke
     end
   end
 
@@ -72,8 +70,8 @@ end
 
 DocPkg.new( File.dirname( __FILE__ ) ) do |t|
   # Not sure this is right
-  t.clean_list << "#{t.base_dir}/build_docs"
-  t.clean_list << "#{t.base_dir}/html/user_guide/*"
+  t.clean_list << "#{t.base_dir}/html"
+  t.clean_list << "#{t.base_dir}/html-single"
   t.clean_list << "#{t.base_dir}/pdf"
   t.clean_list << "#{t.base_dir}/sphinx_cache"
 
@@ -86,7 +84,6 @@ DocPkg.new( File.dirname( __FILE__ ) ) do |t|
   end
 end
 
-
 namespace :docs do
   desc 'build HTML docs'
   task :html do
@@ -98,7 +95,6 @@ namespace :docs do
     puts "== #{cmd}"
     %x(#{cmd} > /dev/null)
   end
-
 
   desc 'build HTML docs (single page)'
   task :singlehtml do
