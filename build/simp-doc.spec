@@ -20,6 +20,13 @@ BuildRequires: python27
 %endif
 BuildRequires: python-pip
 BuildRequires: python-virtualenv
+BuildRequires: fontconfig
+BuildRequires: dejavu-sans-fonts
+BuildRequires: dejavu-sans-mono-fonts
+BuildRequires: dejavu-serif-fonts
+BuildRequires: dejavu-fonts-common
+BuildRequires: libjpeg-devel
+BuildRequires: zlib-devel
 
 %description
 Documentation for SIMP %{version}-%{release}
@@ -45,16 +52,28 @@ virtualenv venv
 source venv/bin/activate
 pip install --upgrade sphinx
 pip install --upgrade rst2pdf
+pip install --upgrade pillow
+pip install --upgrade svglib
 
 sphinx-build -E -n -t simp_%{simp_major_version} -b html       -d sphinx_cache docs html
 sphinx-build -E -n -t simp_%{simp_major_version} -b singlehtml -d sphinx_cache docs html-single
+
+# Rst2pdf is currently broken on references so we have to remove them.
+# This should be removed when this bug is fixed.
+find docs -name "*.rst" -exec sed -i 's/:ref://g' {} \;
+
 sphinx-build -E -n -t simp_%{simp_major_version} -b pdf        -d sphinx_cache docs pdf
+
+if [ ! -s pdf/SIMP_Documentation.pdf ]; then
+  echo "ERROR: Could not generate PDF"
+  exit 1
+else
+  mv pdf/SIMP_Documentation.pdf pdf/SIMP-%{version}-%{release}.pdf
+fi
 
 if [ ! -d changelogs ]; then
   mkdir changelogs
 fi
-
-mv pdf/SIMP_Documentation.pdf pdf/SIMP-%{version}-%{release}.pdf
 
 %install
 # Just the Docs...
