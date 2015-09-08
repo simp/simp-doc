@@ -17,17 +17,16 @@ The table below lists the steps to use PSSH.
 
 Table: Use PSSH Procedure
 
-    **Note**
+.. note::
 
-    There is no manual page provided with PSSH; type **pssh --help** for
+    There is no manual page provided with PSSH; type ``pssh --help`` for
     further explanation.
 
 Other SSH Options
 ~~~~~~~~~~~~~~~~~
 
-Using the *-f* option forces :term:`TTY` for SSH, which allows the user to run
+Using the ``-f`` option forces :term:`TTY` for SSH, which allows the user to run
 sudo commands via PSSH.
 
 Using the *-OStrictHostKeyChecking=no* option connects the user to the
-target servers via SSH even if there is an issue with
-*~/.ssh/known\_hosts*.
+target servers via SSH even if there is an issue with ``~/.ssh/known_hosts``.
