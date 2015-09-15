@@ -18,7 +18,6 @@ Contents:
   Puppetmaster_Backup
   Managing_Workstation_Infrastructures
   Upgrading_SIMP
-  Openstack_Integration
   Logstash
   Kerberos
   jenkins_scripts
