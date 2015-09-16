@@ -11,7 +11,7 @@ SIMP SCTM Technical Controls
 ----------------------------
 
 .. list-table::
-   :widths: 14 97 40 784
+   :widths: 20 40 20 80
    :header-rows: 1
 
    * - Control ID
