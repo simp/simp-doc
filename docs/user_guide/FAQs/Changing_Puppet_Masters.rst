@@ -13,13 +13,13 @@ Code Changes on Client to Switch Puppet Masters
 
 .. code-block:: ruby
 
-            server = new.puppet.master.fqdn
-            ca_server = new.puppet.master.fqdn
-            ca_port = 8141
+  server = new.puppet.master.fqdn
+  ca_server = new.puppet.master.fqdn
+  ca_port = 8141
 
 
-To remove all files and sub-directories in the */var/lib/puppet/ssl*
-directory, type **cd /var/lib/puppet/ssl**. Then type **rm -rf ./\***.
+To remove all files and sub-directories in the ``/var/lib/puppet/ssl``
+directory, type ``cd /var/lib/puppet/ssl``. Then type ``rm -rf ./*``.
 
 Assuming the new Puppet Master has been set up to properly accept the
 client, type ``puppet agent --test`` to run a full Puppet run while
@@ -33,8 +33,7 @@ properly.
 On the Old Puppet Master
 ------------------------
 
-Remove or comment out all items for the client node in the
-*/etc/puppet/hieradata/hosts* space.
+Remove or comment out all items for the client node in the ``/etc/puppet/hieradata/hosts`` space.
 
-To run *puppet agent* in *noop* mode to ensure that there are no
+To run ``puppet agent`` in *noop* mode to ensure that there are no
 inadvertent errors, type ``puppet agent --test --noop``.

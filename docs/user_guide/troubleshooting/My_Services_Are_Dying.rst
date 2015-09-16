@@ -22,7 +22,7 @@ script that runs with every Puppet run.
 The *svckill.rb* script:
 
 -  Collects a list of all services on the system. These are the same
-   services that the user sees after typing **chkconfig --list**
+   services that the user sees after typing ``chkconfig --list``
 
 -  Ignores certain critical services, including Puppet, IPtables, and
    the network.
@@ -41,7 +41,7 @@ Avoiding Destruction
 If certain services should not be killed, declare them in the node
 manifest space.
 
-    **Note**
+.. note::
 
     The key is to declare the services and not set them to any other
     option. By adding them to the manifest, the *svckill.rb* script will
@@ -54,4 +54,4 @@ preventing a service from being killed by svckill.rb
 
 .. code-block:: ruby
 
-           service { "keepmealive": }
+ service { "keepmealive": }
