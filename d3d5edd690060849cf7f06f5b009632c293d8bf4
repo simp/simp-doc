@@ -1,0 +1,385 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "1ae5cdf2_61ad8988",
+        "filename": "README.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 5,
+      "author": {
+        "id": 1005143
+      },
+      "writtenOn": "2015-09-16T04:10:27Z",
+      "side": 1,
+      "message": "Doesn\u0027t EL6 \u003d\u003d SIMP 4.2.X?",
+      "range": {
+        "startLine": 5,
+        "startChar": 57,
+        "endLine": 5,
+        "endChar": 58
+      },
+      "revId": "d3d5edd690060849cf7f06f5b009632c293d8bf4",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "1ae5cdf2_81aa956e",
+        "filename": "README.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 1005143
+      },
+      "writtenOn": "2015-09-16T04:10:27Z",
+      "side": 1,
+      "message": "lies.",
+      "range": {
+        "startLine": 10,
+        "startChar": 0,
+        "endLine": 10,
+        "endChar": 74
+      },
+      "revId": "d3d5edd690060849cf7f06f5b009632c293d8bf4",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "1ae5cdf2_c1bbbdc2",
+        "filename": "docs/common/Client_Management.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 62,
+      "author": {
+        "id": 1005143
+      },
+      "writtenOn": "2015-09-16T04:10:27Z",
+      "side": 1,
+      "message": "Should this be a converted \".. list-table::\" like the \"Configure DHCP\" section?",
+      "revId": "d3d5edd690060849cf7f06f5b009632c293d8bf4",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "1ae5cdf2_81c1b530",
+        "filename": "docs/common/Client_Management.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 70,
+      "author": {
+        "id": 1005143
+      },
+      "writtenOn": "2015-09-16T04:10:27Z",
+      "side": 1,
+      "message": "Should there be a list-table here to replace the deleted table markup?",
+      "revId": "d3d5edd690060849cf7f06f5b009632c293d8bf4",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "1ae5cdf2_a1ddd116",
+        "filename": "docs/common/Client_Management.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 84,
+      "author": {
+        "id": 1005143
+      },
+      "writtenOn": "2015-09-16T04:10:27Z",
+      "side": 1,
+      "message": "Should there be a list-table here to replace the deleted table markup?",
+      "revId": "d3d5edd690060849cf7f06f5b009632c293d8bf4",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "1ae5cdf2_e1e7d9e2",
+        "filename": "docs/common/Client_Management.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 117,
+      "author": {
+        "id": 1005143
+      },
+      "writtenOn": "2015-09-16T04:10:27Z",
+      "side": 1,
+      "message": "Should there be a list-table here to replace the deleted table markup?",
+      "revId": "d3d5edd690060849cf7f06f5b009632c293d8bf4",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "1ae5cdf2_01eda5c3",
+        "filename": "docs/common/Client_Management.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 124,
+      "author": {
+        "id": 1005143
+      },
+      "writtenOn": "2015-09-16T04:10:27Z",
+      "side": 1,
+      "message": "Should there be a list-table here to replace the deleted table markup?",
+      "revId": "d3d5edd690060849cf7f06f5b009632c293d8bf4",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "1ae5cdf2_41cecd5b",
+        "filename": "docs/installation_guide/SIMP_Server_Installation.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 84,
+      "author": {
+        "id": 1005143
+      },
+      "writtenOn": "2015-09-16T04:10:27Z",
+      "side": 1,
+      "message": "It looks like the \"SIMP Default Passwords\" table that was here got merged into the next table.  If that\u0027s the case, remove the rest of the content, which now refers to a table that doesn\u0027t exist.",
+      "range": {
+        "startLine": 74,
+        "startChar": 0,
+        "endLine": 84,
+        "endChar": 29
+      },
+      "revId": "d3d5edd690060849cf7f06f5b009632c293d8bf4",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "1ae5cdf2_e1b0b9df",
+        "filename": "docs/security_conop/Appendix_SCTM.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 24,
+      "author": {
+        "id": 1005143
+      },
+      "writtenOn": "2015-09-16T04:10:27Z",
+      "side": 1,
+      "message": "doh, trailing whitespaces",
+      "range": {
+        "startLine": 24,
+        "startChar": 6,
+        "endLine": 24,
+        "endChar": 7
+      },
+      "revId": "d3d5edd690060849cf7f06f5b009632c293d8bf4",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "1ae5cdf2_01b685d9",
+        "filename": "docs/security_conop/System_Management.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 1005143
+      },
+      "writtenOn": "2015-09-16T04:10:27Z",
+      "side": 1,
+      "message": "Should there be a list-table here to replace the deleted table markup?",
+      "revId": "d3d5edd690060849cf7f06f5b009632c293d8bf4",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "1ae5cdf2_21caa14f",
+        "filename": "docs/security_conop/Technical_Security.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 177,
+      "author": {
+        "id": 1005143
+      },
+      "writtenOn": "2015-09-16T04:10:27Z",
+      "side": 1,
+      "message": "Should there be content here?",
+      "revId": "d3d5edd690060849cf7f06f5b009632c293d8bf4",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "1ae5cdf2_41c7ad45",
+        "filename": "docs/security_conop/Technical_Security.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 244,
+      "author": {
+        "id": 1005143
+      },
+      "writtenOn": "2015-09-16T04:10:27Z",
+      "side": 1,
+      "message": "Should there be a converted table/list here?",
+      "revId": "d3d5edd690060849cf7f06f5b009632c293d8bf4",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "1ae5cdf2_61dbc91b",
+        "filename": "docs/user_guide/FAQs/DVD_Build.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 1005143
+      },
+      "writtenOn": "2015-09-16T04:10:27Z",
+      "side": 1,
+      "message": "Should there be content here?",
+      "revId": "d3d5edd690060849cf7f06f5b009632c293d8bf4",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "1ae5cdf2_81d8d51e",
+        "filename": "docs/user_guide/FAQs/Local_User_Access/SSH_Keys.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 92,
+      "author": {
+        "id": 1005143
+      },
+      "writtenOn": "2015-09-16T04:10:27Z",
+      "side": 1,
+      "message": "doh, trailing whitespace",
+      "revId": "d3d5edd690060849cf7f06f5b009632c293d8bf4",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "1ae5cdf2_a104f17e",
+        "filename": "docs/user_guide/FAQs/Network_Build.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 47,
+      "author": {
+        "id": 1005143
+      },
+      "writtenOn": "2015-09-16T04:10:27Z",
+      "side": 1,
+      "message": "Should there be content here?",
+      "revId": "d3d5edd690060849cf7f06f5b009632c293d8bf4",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "1ae5cdf2_c109fd96",
+        "filename": "docs/user_guide/FAQs/Override_Security_Module.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 70,
+      "author": {
+        "id": 1005143
+      },
+      "writtenOn": "2015-09-16T04:10:27Z",
+      "side": 1,
+      "message": "Should there be content here?",
+      "revId": "d3d5edd690060849cf7f06f5b009632c293d8bf4",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "1ae5cdf2_e1fef96a",
+        "filename": "docs/user_guide/FAQs/Performing_One_Shot_Operations.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 16,
+      "author": {
+        "id": 1005143
+      },
+      "writtenOn": "2015-09-16T04:10:27Z",
+      "side": 1,
+      "message": "Should there be content here?",
+      "revId": "d3d5edd690060849cf7f06f5b009632c293d8bf4",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "1ae5cdf2_0104c579",
+        "filename": "docs/user_guide/Kerberos.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 60,
+      "author": {
+        "id": 1005143
+      },
+      "writtenOn": "2015-09-16T04:10:27Z",
+      "side": 1,
+      "message": "Should there be content here?",
+      "revId": "d3d5edd690060849cf7f06f5b009632c293d8bf4",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "1ae5cdf2_21f8e17b",
+        "filename": "docs/user_guide/Managing_Workstation_Infrastructures.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 262,
+      "author": {
+        "id": 1005143
+      },
+      "writtenOn": "2015-09-16T04:10:27Z",
+      "side": 1,
+      "message": "Should there be content here?",
+      "revId": "d3d5edd690060849cf7f06f5b009632c293d8bf4",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "1ae5cdf2_41f5ed81",
+        "filename": "docs/user_guide/Managing_Workstation_Infrastructures.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 351,
+      "author": {
+        "id": 1005143
+      },
+      "writtenOn": "2015-09-16T04:10:27Z",
+      "side": 1,
+      "message": "Should there be content here?",
+      "revId": "d3d5edd690060849cf7f06f5b009632c293d8bf4",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "1ae5cdf2_61f2e99b",
+        "filename": "docs/user_guide/Upgrading_SIMP.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 108,
+      "author": {
+        "id": 1005143
+      },
+      "writtenOn": "2015-09-16T04:10:27Z",
+      "side": 1,
+      "message": "Should there be content here?",
+      "revId": "d3d5edd690060849cf7f06f5b009632c293d8bf4",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735",
+      "unresolved": false
+    }
+  ]
+}
