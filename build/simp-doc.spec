@@ -7,7 +7,7 @@
 Summary: SIMP Documentation
 Name: simp-doc
 Version: 5.1.0
-Release: Beta2
+Release: RC1
 License: Apache License, Version 2.0
 Group: Documentation
 Source: %{name}-%{version}-%{release}.tar.gz
@@ -87,6 +87,9 @@ mv pdf/SIMP_Documentation.pdf pdf/SIMP-%{version}-%{release}.pdf
 # Post uninstall stuff
 
 %changelog
+* Tue Sep 15 2015 Nick Markowski <nmarkowski@keywcorp.com> - 5.1.0-RC1
+- Removed OpenStack docs.
+
 * Tue Aug 11 2015 Trevor Vaughan <tvaughan@onyxpoint.com> - 5.1.0-Beta2
 - Updated the spec file to properly build the docs.
 
