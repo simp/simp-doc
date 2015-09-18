@@ -43,7 +43,7 @@ in the following sections.
 Adding Users With a Password
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-To add a user to the system, :term:`Secure Shell (SSH)` to the LDAP server and use the
+To add a user to the system, :term:`Secure Shell` (SSH) to the LDAP server and use the
 ``slappasswd`` command to generate a password hash for a user.
 
 Create a ``/root/ldifs`` directory and add the following information to
@@ -338,7 +338,7 @@ Type:
     The ``ldapmodify`` command is only effective when using the
     *ppolicy* overlay. In addition, the user's *shadowLastChange* must
     be changed to a value prior to the expiration date to force a
-    :term:`Pluggable Authentication Modules (PAM)` reset.
+    :term:`Pluggable Authentication Modules` (PAM) reset.
 
 Unlocking an LDAP Account
 ~~~~~~~~~~~~~~~~~~~~~~~~~

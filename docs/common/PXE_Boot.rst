@@ -1,7 +1,7 @@
 Configure the PXE Boot
 ======================
 
-In order to :term:`Preboot Execution Environment (PXE)` boot clients, a copy of the ISOs for all versions of RHEL
+In order to :term:`Preboot Execution Environment` (PXE) boot clients, a copy of the ISOs for all versions of RHEL
 being kickstarted is required.
 
 Setting Up the Kickstart

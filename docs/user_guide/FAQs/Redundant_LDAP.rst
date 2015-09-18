@@ -5,7 +5,7 @@ This section describes how to set up redundant OpenLDAP servers in SIMP.
 
 The version of OpenLDAP in RHEL5 only supports *syncrepl*. Multi-master
 replication has been added in a more recent version of OpenLDAP but is
-not currently supported in SIMP. *Syncrepl* is optimal for :term:`Wide Area Network (WAN)` situations
+not currently supported in SIMP. *Syncrepl* is optimal for :term:`Wide Area Network` (WAN) situations
 and is the SIMP default.
 
 Set up the Master

@@ -1,8 +1,6 @@
 SIMP User Guide
 ================================
 
-
-
 Contents:
 
 .. toctree::
@@ -24,5 +22,5 @@ Contents:
   FAQ
   SIMP_Package_Data
   Changelog
-  glossary
+  glossary <../common/glossary.rst>
   File_Samples

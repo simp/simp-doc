@@ -7,7 +7,7 @@ generating a Fake CA.
 Obtaining Official Certificates
 -------------------------------
 
-All SIMP systems must have :term:`Public Key Infrastructure (PKI)` keypairs generated for the server.
+All SIMP systems must have :term:`Public Key Infrastructure` (PKI) keypairs generated for the server.
 
 .. only:: not simp_4
 
@@ -59,14 +59,14 @@ Table: Official Certificates Procedure
   The table below lists the steps to create and populate the ``/etc/puppet/keydist/cacerts`` directory.
 
   1. Type ``cd /etc/puppet/environments/simp/modules/pki/files/keydist``
-  2. Type ``mkdir cacerts`` and copy the root CA public certificates into ``cacerts`` in :term:`Privacy Enhanced Mail (PEM)` format (one per file).
+  2. Type ``mkdir cacerts`` and copy the root CA public certificates into ``cacerts`` in :term:`Privacy Enhanced Mail` (PEM) format (one per file).
   3. Type ``cd cacerts``
   4. Type ``for file in *.pem; do ln -s $file `openssl x509 -in $file -hash -noout`.0; done``
 
 .. only:: not simp_4
 
   1. Type ``cd /etc/puppet/keydist``
-  2. Type ``mkdir cacerts`` and copy the root CA public certificates into ``cacerts`` in :term:`Privacy Enhanced Mail (PEM)` format (one per file).
+  2. Type ``mkdir cacerts`` and copy the root CA public certificates into ``cacerts`` in :term:`Privacy Enhanced Mail` (PEM) format (one per file).
   3. Type ``cd cacerts``
   4. Type ``for file in *.pem; do ln -s $file `openssl x509 -in $file -hash -noout`.0; done``
 
@@ -88,7 +88,7 @@ The instructions below lists the steps to generate the Fake CAs.
 
 1. Type ``cd /etc/puppet/environments/simp/FakeCA``
 2. Type ``vi togen``
-3. Remove old entries from the file and add the :term:`Fully Qualified Domain Name (FQDN)` of the systems (one per line) for which certificates will be created.
+3. Remove old entries from the file and add the :term:`Fully Qualified Domain Name` (FQDN) of the systems (one per line) for which certificates will be created.
 
   .. note:: To use alternate DNS names for the same system, separate the names with commas and without spaces. For example, ``.name,alt.name1,alt.name2.``
 

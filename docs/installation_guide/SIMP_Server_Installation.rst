@@ -12,11 +12,11 @@ the number of nodes, the processor speed, the total memory, and the
 complexity of the manifests. The following minimal system requirements are
 recommended:
 
--  :term:`Central Processing Unit (CPU)` : 2 Cores
+-  :term:`Central Processing Unit` (CPU) : 2 Cores
 
--  :term:`Random Access Memory (RAM)` :  2.2 GB
+-  :term:`Random Access Memory` (RAM) :  2.2 GB
 
--  :term:`Hard Disk Drive (HDD)` : 50 GB
+-  :term:`Hard Disk Drive` (HDD) : 50 GB
 
 Using the SIMP Utility
 ----------------------

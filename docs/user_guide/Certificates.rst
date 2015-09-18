@@ -9,7 +9,7 @@ generating a Fake CA.
 Obtaining Official Certificates
 -------------------------------
 
-All SIMP systems must have :term:`Public Key Infrastructure (PKI)` keypairs generated for the server. These
+All SIMP systems must have :term:`Public Key Infrastructure` (PKI) keypairs generated for the server. These
 keys reside in the ``/etc/puppet/keydist`` directory and are served to the
 clients over the Puppet protocol.
 
@@ -31,7 +31,7 @@ The table below lists the steps to create and populate the
 ``/etc/puppet/keydist/cacerts`` directory.
 
 1. Type ``cd /etc/puppet/keydist``
-2. Type ``mkdir cacerts`` and copy the root CA public certificates into *cacerts* in :term:`Privacy Enhanced Mail (PEM)` format (one per file).
+2. Type ``mkdir cacerts`` and copy the root CA public certificates into *cacerts* in :term:`Privacy Enhanced Mail` (PEM) format (one per file).
 3. Type ``cd cacerts``
 4. Type ``for file in *.pem; do ln -s $file `openssl x509 -in $file -hash -noout`.0; done``
 
