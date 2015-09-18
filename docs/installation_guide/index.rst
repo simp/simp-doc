@@ -12,5 +12,5 @@ Contents:
   Certificates
   PXE_Boot
   Changelog
-  glossary
+  glossary <../common/glossary.rst>
   File_Samples
