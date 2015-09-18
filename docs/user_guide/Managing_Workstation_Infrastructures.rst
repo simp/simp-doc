@@ -243,7 +243,7 @@ print server.
 VNC
 ===
 
-:term:`Virtual Network Computing (VNC)` is a tool that is used to manage desktops and workstations remotely
+:term:`Virtual Network Computing` (VNC) is a tool that is used to manage desktops and workstations remotely
 through the standard setup or a proxy.
 
 VNC Standard Setup

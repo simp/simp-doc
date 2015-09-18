@@ -8,9 +8,9 @@ Contents:
   Introduction
   SIMP_Server_Installation
   Client_Management
-  Hiera_Overview
   Certificates
   PXE_Boot
-  Changelog
-  glossary
+  Hiera_Overview
+  Changelog <../common/Changelog.rst>
+  Glossary <../common/Glossary.rst>
   File_Samples

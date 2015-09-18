@@ -1,5 +1,5 @@
 ================
-SIMP 5.1.0-Beta
+SIMP 5.1.0-RC1
 ================
 
 ---------
@@ -16,10 +16,10 @@ Changelog
 
   PageBreak
 
-SIMP 5.1.0-Beta
+SIMP 5.1.0-RC1
 ================
 
-**Package**: 5.1.0-Beta
+**Package**: 5.1.0-RC1
 
 This release is known to work with:
 
@@ -28,10 +28,29 @@ This release is known to work with:
 
 Significant Updates
 -------------------
+* FIPS Mode is now enabled by default!
+
+  + This is a SIGNIFICANT change and may impact many of your running
+    applications that use encryption.
+  + If you are upgrading, do **NOT** enable FIPS mode without extensive
+    testing as it may cause various applications to not function properly any
+    longer.
+
 * The rsyslog module has been completely rewritten to support rsyslog 7.4.
-  This is a breaking change from previous releaases and will require active
+  This is a breaking change from previous releases and will require active
   updates to existing systems.  All modules with rsyslog integration ave been
   updated to accommodate this change:
+
+  + Critical Variable Changes
+
+    - The global *rsyslog::log_server_list* variable is now set to send to
+      **all** of the servers in the Array by default.
+
+      * This variable defaults to the global *log_servers* Array in Hiera.
+
+    - There is a new variable *rsyslog::failover_log_servers* which is an Array
+      of failover log servers to be used for your system. These will be tried,
+      in order, until successful messages can be sent.
 
     - aide
     - apache
@@ -43,16 +62,20 @@ Significant Updates
     - simp
     - sudosh
 
-* In RHEL6, we updated the OpenLDAP password policy overlay to not conflict
-  with the upcoming 6.7 update. However, this will require you to update your
-  LDAP server schema *manually* with the attached LDIF. Additionally, there was
-  a bug in previous versions of SIMP that can be fixed by running this LDIF as
-  is in RHEL7 and replacing simp_check_password.so with check_password.so in
-  RHEL6.
+* There was a bug in previous versions of SIMP that require the following LDIF
+  to be run manually on the systems to correct the password policy checking.
 
+  dn: cn=default,ou=pwpolicies,dc=your,dc=domain
+  changetype: modify
+  replace: pwdCheckModule
+  pwdCheckModule: simp_check_password.so
+  -
+  dn: cn=noExpire_noLockout,ou=pwpolicies,dc=your,dc=domain
+  changetype: modify
+  replace: pwdCheckModule
+  pwdCheckModule: simp_check_password.so
 
 * The Electrical and SIMP modules for elasticsearch have been combined.
-
 
 Upgrade Guidance
 ----------------
@@ -61,7 +84,7 @@ Fully detailed upgrade guidance can be found in the **Upgrading SIMP** portion
 of the *User's Guide*.
 
 .. WARNING::
-  You must have at least **2GB** of **free** RAM on your system to upgrade to
+  You must have at least **2.2GB** of **free** RAM on your system to upgrade to
   this release.
 
 .. NOTE::
@@ -119,13 +142,12 @@ Fixed Bugs
 
 * pupmod-apache
 
+  - Removed all reliance on 'lsb*' facts since some environments do now wish to
+    install the prerequisites for those facts to run.
   - Remove the apache_version fact and simply use the version controls built
     into the Apache configuration language.
   - Update all custom functions to properly scope definitions.
   - Ensure that mod_ldap is installed in SIMP >= 5.0.
-
-* pupmod-simp-apache
-
   - Prevent apache from restarting after downloading a CRL.
 
 * pupmod-clamav
@@ -147,13 +169,7 @@ Fixed Bugs
   - Change the call to the *rsyslog* init script to the *service* command to
     seamlessly support both RHEL6 and RHEL7.
 
-* pupmod-iptables
-
-  - Fixed a bug that would cause issues with Ruby 1.8.7.
-  - Fixed DNS resolution in IPv6.
-  - Prevent IPv6 ::1 spoofed addresses by default.
-
-* pupmod-simp-elasticsearch
+* pupmod-elasticsearch
 
   - Ensured that Elasticsearch works properly with the new version of Apache.
   - Removed our default ES tuning since the default works better for LogStash.
@@ -163,6 +179,12 @@ Fixed Bugs
 
   - Fixed sysv.rb to explicitly require puppet/util/selinux, which caused
     puppet describe to have errors.
+
+* pupmod-iptables
+
+  - Fixed a bug that would cause issues with Ruby 1.8.7.
+  - Fixed DNS resolution in IPv6.
+  - Prevent IPv6 ::1 spoofed addresses by default.
 
 * pupmod-simp-logstash
 
@@ -184,9 +206,11 @@ Fixed Bugs
     even if you didn't want to use it. This has been fixed.
   - Made the password policy overlay align with the latest SIMP build of
     the plugin.
-    - This means that you *must* have version
+
+    + This means that you *must* have version
       simp-ppolicy-check-password-2.4.39-0 or later available to the system
       being configured.
+
   - Change the call to the *rsyslog* init script to the *service* command to
     seamlessly support both RHEL6 and RHEL7.
   - Fixed reported bugs in syncrepl.pp.
@@ -215,6 +239,11 @@ Fixed Bugs
   - Had a variable **options** in *stunnel.erb* that should have been scoped as
     **@options**.
 
+* pupmod-sudo
+
+   - Removed all reliance on the 'lsb*' facts since some users do not wish too
+     install the prerequisite RPMs for LSB compliance.
+
 * pupmod-sudosh
 
   - Change the call to the *rsyslog* init script to the *service* command to
@@ -233,9 +262,10 @@ Fixed Bugs
 
   - IMA is disabled by default.
 
-* simp-utils
+* simp-util
 
   - Fixed the targets of unpack_dvd.
+  - Added a **use_fips** boolean to *simp config*
 
 * pupmod-xinetd
 
@@ -248,9 +278,12 @@ Fixed Bugs
 
 * DVD
 
-  - A default IP is no longer provided when booting from the ISO; simp config
-    will set the network properly.
+  - NetworkManager-wait-online is now set by default in the ISO supplied
+    kickstart images. Without ths, it is possible for the 'runpppet' script to
+    attempt to run prior to the network being initialized.
 
+  - A default IP is no longer provided when booting from the ISO; *simp config*
+    will set the network properly.
 
 New Features
 ------------
@@ -327,6 +360,17 @@ New Features
 
   - Updated to version 1.2.0.
 
+* pupmod-simp-kibana
+
+  - Add Kibana dashboards to the Kibana module.
+  - Allows users to apply default SIMP kibana Dashboards.
+
+* pupmod-simp-logstash
+
+  - Integrated SIMP and Electrical Logstash modules.
+  - Changes the existing Logstash module to allow users to apply default SIMP
+    filters.
+
 * pupmod-pki
 
   - Now generate a system RSA public key against the passed private key.
@@ -340,13 +384,40 @@ New Features
 
   - New import of the Puppet Labs PuppetDB module.
 
+* pupmod-simp-rsyslog
+
+   - Module has been rewritten to support rsyslog 7.4.
+
+* pupmod-simp-simp
+
+    - Set the SELinux Boolean 'use_nfs_home_dirs' to 'on' if a remote NFS
+      server is used for home directories.
+    - The 'runpuppet' script was modified to run 'fixfiles' on systems prior to
+      the final puppet runs since RHEL7, in some cases, does not appear to
+      honor the '/.autorelabel' file.
+
 * pupmod-puppetlabs-stdlib
 
   - Updated to version 4.5.1.
 
+* pupmod-sysctl
+
+  - Moved the configuration file updates from sysctl.conf to
+    sysctl.d/20-simp.conf to use the latest update mechanisms.
+
 * pupmod-tftpboot
 
   - Updated to use native packages and pull as muchs possible.
+
+* simp-rsync
+
+  - Content has been restructured to eliminate licensing conflicts.
+  - ClamAV has been refactored into a separate (GPL) package.
+
+* simp-utils
+
+  - simp config was rewritten to allow for new features and flexibility.
+  - Now provided as a Ruby gem "simp-cli".
 
 * Mcollective
 
@@ -365,31 +436,6 @@ New Features
     agent deployments with a single puppet master.
   - Uses Environments by default, this allows for tools such as r10K.
     Production environment is a link to simp by default.
-
-* simp config
-
-  - simp config was rewritten to allow for new features and flexibilty.
-  - Now provided as a Ruby gem "simp-cli".
-
-* pupmod-simp-logstash
-
-  - Integrated SIMP and Electrical Logstash modules.
-  - Changes the existing Logstash module to allow users to apply default SIMP
-    filters.
-
-* simp-rsync
-
-  - Content has been restructured to eliminate licensing conflicts.
-  - ClamAV has been refactored into a separate (GPL) package.
-
-* pupmod-simp-rsyslog
-
-   - Module has been rewritten to support rsyslog 7.4.
-
-* pupmod-simp-kibana
-
-  - Add Kibana dashboards to the Kibana module.
-  - Allows users to apply default SIMP kibana Dashboards.
 
 * Facter 2.4
 
