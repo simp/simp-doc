@@ -2,7 +2,7 @@ SFTP Restricted Account
 =======================
 
 This section describes the method for restricting an account to
-:term:`SSH File Transfer Protocol (SFTP)` access only.
+:term:`SSH File Transfer Protocol` (SFTP) access only.
 
 Add a User
 ----------

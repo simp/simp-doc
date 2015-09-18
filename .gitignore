@@ -1,5 +1,6 @@
 rst/_build
 docs/_build
+docs/*/Changelog.rst
 _build_v5
 _build_v4
 .sw[pnoqst]
