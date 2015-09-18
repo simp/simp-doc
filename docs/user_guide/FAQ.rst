@@ -14,7 +14,6 @@ SIMP.
   FAQs/IPTables_NAT_Rules
   FAQs/Local_User_Access/SSH_Keys
   FAQs/Network_Build
-  FAQs/Override_Security_Module
   FAQs/Performing_One_Shot_Operations
   FAQs/Puppet_Server_NAT
   FAQs/Redundant_LDAP
