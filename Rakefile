@@ -74,6 +74,7 @@ DocPkg.new( File.dirname( __FILE__ ) ) do |t|
   t.clean_list << "#{t.base_dir}/html-single"
   t.clean_list << "#{t.base_dir}/pdf"
   t.clean_list << "#{t.base_dir}/sphinx_cache"
+  t.clean_list << "#{t.base_dir}/docs/*/Changelog.rst"
 
   t.exclude_list << 'dist'
   # Need to ignore any generated files from ERB's.

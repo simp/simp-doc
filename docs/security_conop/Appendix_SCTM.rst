@@ -21,7 +21,7 @@ SIMP SCTM Technical Controls
    * - AC-1
      - Access Control Policy and Procedures
      - Access Control
-     - 
+     -
    * - AC-2(1)
      - Account Management (Control Enhancement)
      - Access Control
@@ -29,7 +29,7 @@ SIMP SCTM Technical Controls
    * - AC-2(2)
      - Account Management (Control Enhancement)
      - Access Control
-     - 
+     -
    * - AC-2(3)
      - Account Management (Control Enhancement)
      - Access Control
@@ -45,7 +45,7 @@ SIMP SCTM Technical Controls
    * - AC-2(6)
      - Account Management (Control Enhancement)
      - Access Control
-     - 
+     -
    * - AC-2(7)
      - Account Management (Control Enhancement)
      - Access Control
@@ -53,11 +53,11 @@ SIMP SCTM Technical Controls
    * - AC-3
      - Access Enforcement
      - Access Control
-     - 
+     -
    * - AC-3(2)
      - Access Enforcement (Control Enhancement)
      - Access Control
-     - 
+     -
    * - AC-3(3)
      - Access Enforcement (Control Enhancement)
      - Access Control
@@ -73,7 +73,7 @@ SIMP SCTM Technical Controls
    * - AC-3(6)
      - Access Enforcement (Control Enhancement)
      - Access Control
-     - 
+     -
    * - AC-4(1)
      - Information Flow Enforcement (Control Enhancement)
      - Access Control
@@ -81,71 +81,71 @@ SIMP SCTM Technical Controls
    * - AC-4(2)
      - Information Flow Enforcement (Control Enhancement)
      - Access Control
-     - 
+     -
    * - AC-4(3)
      - Information Flow Enforcement (Control Enhancement)
      - Access Control
-     - 
+     -
    * - AC-4(4)
      - Information Flow Enforcement (Control Enhancement)
      - Access Control
-     - 
+     -
    * - AC-4(5)
      - Information Flow Enforcement (Control Enhancement)
      - Access Control
-     - 
+     -
    * - AC-4(6)
      - Information Flow Enforcement (Control Enhancement)
      - Access Control
-     - 
+     -
    * - AC-4(7)
      - Information Flow Enforcement (Control Enhancement)
      - Access Control
-     - 
+     -
    * - AC-4(8)
      - Information Flow Enforcement (Control Enhancement)
      - Access Control
-     - 
+     -
    * - AC-4(9)
      - Information Flow Enforcement (Control Enhancement)
      - Access Control
-     - 
+     -
    * - AC-4(10)
      - Information Flow Enforcement (Control Enhancement)
      - Access Control
-     - 
+     -
    * - AC-4(11)
      - Information Flow Enforcement (Control Enhancement)
      - Access Control
-     - 
+     -
    * - AC-4(12)
      - Information Flow Enforcement (Control Enhancement)
      - Access Control
-     - 
+     -
    * - AC-4(13)
      - Information Flow Enforcement (Control Enhancement)
      - Access Control
-     - 
+     -
    * - AC-4(14)
      - Information Flow Enforcement (Control Enhancement)
      - Access Control
-     - 
+     -
    * - AC-4(15)
      - Information Flow Enforcement (Control Enhancement)
      - Access Control
-     - 
+     -
    * - AC-4(16)
      - Information Flow Enforcement (Control Enhancement)
      - Access Control
-     - 
+     -
    * - AC-4(17)
      - Information Flow Enforcement (Control Enhancement)
      - Access Control
-     - 
+     -
    * - AC-5
      - Separation of Duties
      - Access Control
-     - 
+     -
    * - AC-6
      - Least Privilege
      - Access Control
@@ -161,19 +161,19 @@ SIMP SCTM Technical Controls
    * - AC-6(3)
      - Least Privilege (Control Enhancement)
      - Access Control
-     - 
+     -
    * - AC-6(4)
      - Least Privilege (Control Enhancement)
      - Access Control
-     - 
+     -
    * - AC-6(5)
      - Least Privilege (Control Enhancement)
      - Access Control
-     - 
+     -
    * - AC-6(6)
      - Least Privilege (Control Enhancement)
      - Access Control
-     - 
+     -
    * - AC-7
      - Unsuccessful Login Attempts
      - Access Control
@@ -185,7 +185,7 @@ SIMP SCTM Technical Controls
    * - AC-7(2)
      - Unsuccessful Login Attempts (Control Enhancement)
      - Access Control
-     - 
+     -
    * - AC-8
      - System Use Notification
      - Access Control
@@ -205,7 +205,7 @@ SIMP SCTM Technical Controls
    * - AC-9(3)
      - Previous Logon (Access) Notification (Control Enhancement)
      - Access Control
-     - 
+     -
    * - AC-10
      - Concurrent Session Control
      - Access Control
@@ -229,15 +229,15 @@ SIMP SCTM Technical Controls
    * - AC-16(1)
      - Security Attributes (Control Enhancement)
      - Access Control
-     - 
+     -
    * - AC-16(2)
      - Security Attributes (Control Enhancement)
      - Access Control
-     - 
+     -
    * - AC-16(3)
      - Security Attributes (Control Enhancement)
      - Access Control
-     - 
+     -
    * - AC-16(4)
      - Security Attributes (Control Enhancement)
      - Access Control
@@ -245,10 +245,10 @@ SIMP SCTM Technical Controls
    * - AC-16(5)
      - Security Attributes (Control Enhancement)
      - Access Control
-     - 
+     -
    * - AC-17
      - Remote Access
-     - 
+     -
      - By default, external connections are not allowed with the exception of SSH. This is documented in the SIMP user manual. Implementations have the ability to override this with the understanding that puppet controls Iptables.
    * - AC-17(1)
      - Remote Access (Control Enhancement)
@@ -261,7 +261,7 @@ SIMP SCTM Technical Controls
    * - AC-17(3)
      - Remote Access (Control Enhancement)
      - Access Control
-     - 
+     -
    * - AC-17(4)
      - Remote Access (Control Enhancement)
      - Access Control
@@ -273,11 +273,11 @@ SIMP SCTM Technical Controls
    * - AC-17(6)
      - Remote Access (Control Enhancement)
      - Access Control
-     - 
+     -
    * - AC-17(7)
      - Remote Access (Control Enhancement)
      - Access Control
-     - 
+     -
    * - AC-17(8)
      - Remote Access (Control Enhancement)
      - Access Control
@@ -285,75 +285,75 @@ SIMP SCTM Technical Controls
    * - AC-18
      - Wireless Access
      - Access Control
-     - 
+     -
    * - AC-18(1)
      - Wireless Access (Control Enhancement)
      - Access Control
-     - 
+     -
    * - AC-18(2)
      - Wireless Access (Control Enhancement)
      - Access Control
-     - 
+     -
    * - AC-18(3)
      - Wireless Access (Control Enhancement)
      - Access Control
-     - 
+     -
    * - AC-18(4)
      - Wireless Access (Control Enhancement)
      - Access Control
-     - 
+     -
    * - AC-18(5)
      - Wireless Access (Control Enhancement)
      - Access Control
-     - 
+     -
    * - AC-19
      - Access Control for Mobile Devices
      - Access Control
-     - 
+     -
    * - AC-19(1)
      - Access Control for Mobile Devices (Control Enhancement)
      - Access Control
-     - 
+     -
    * - AC-19(2)
      - Access Control for Mobile Devices (Control Enhancement)
      - Access Control
-     - 
+     -
    * - AC-19(3)
      - Access Control for Mobile Devices (Control Enhancement)
      - Access Control
-     - 
+     -
    * - AC-19(4)
      - Access Control for Mobile Devices (Control Enhancement)
      - Access Control
-     - 
+     -
    * - AC-20
      - Use of External Information Systems
      - Access Control
-     - 
+     -
    * - AC-20(1)
      - Use of External Information Systems (Control Enhancement)
      - Access Control
-     - 
+     -
    * - AC-20(2)
      - Use of External Information Systems (Control Enhancement)
      - Access Control
-     - 
+     -
    * - AC-21
      - User-Based Collaboration and Information Sharing
      - Access Control
-     - 
+     -
    * - AC-21(1)
      - User-Based Collaboration and Information Sharing (Control Enhancement)
      - Access Control
-     - 
+     -
    * - AC-22
      - Publicly Accessible Content
      - Access Control
-     - 
+     -
    * - AU-1
      - Audit and Accountability Policy and Procedures
      - Audit and Accountability
-     - 
+     -
    * - AU-2
      - Auditable Events
      - Audit and Accountability
@@ -393,11 +393,11 @@ SIMP SCTM Technical Controls
    * - AU-5(2)
      - Response to Audit Processing Failures (Control Enhancement)
      - Audit and Accountability
-     - 
+     -
    * - AU-5(3)
      - Response to Audit Processing Failures (Control Enhancement)
      - Audit and Accountability
-     - 
+     -
    * - AU-5(4)
      - Response to Audit Processing Failures (Control Enhancement)
      - Audit and Accountability
@@ -405,11 +405,11 @@ SIMP SCTM Technical Controls
    * - AU-6
      - Audit Review, Analysis, and Reporting
      - Audit and Accountability
-     - 
+     -
    * - AU-6(1)
      - Audit Review, Analysis, and Reporting (Control Enhancement)
      - Audit and Accountability
-     - 
+     -
    * - AU-6(3)
      - Audit Review, Analysis, and Reporting (Control Enhancement)
      - Audit and Accountability
@@ -425,19 +425,19 @@ SIMP SCTM Technical Controls
    * - AU-6(6)
      - Audit Review, Analysis, and Reporting (Control Enhancement)
      - Audit and Accountability
-     - 
+     -
    * - AU-6(7)
      - Audit Review, Analysis, and Reporting (Control Enhancement)
      - Audit and Accountability
-     - 
+     -
    * - AU-6(9)
      - Audit Review, Analysis, and Reporting (Control Enhancement)
      - Audit and Accountability
-     - 
+     -
    * - AU-7
      - Audit Reduction and Report Generation
      - Audit and Accountability
-     - 
+     -
    * - AU-7(1)
      - Audit Reduction and Report Generation (Control Enhancement)
      - Audit and Accountability
@@ -457,51 +457,51 @@ SIMP SCTM Technical Controls
    * - AU-9(1)
      - Protection of Audit Information (Control Enhancement)
      - Audit and Accountability
-     - 
+     -
    * - AU-9(2)
      - Protection of Audit Information (Control Enhancement)
      - Audit and Accountability
-     - 
+     -
    * - AU-9(3)
      - Protection of Audit Information (Control Enhancement)
      - Audit and Accountability
-     - 
+     -
    * - AU-9(4)
      - Protection of Audit Information (Control Enhancement)
      - Audit and Accountability
-     - 
+     -
    * - AU-10
      - Non-repudiation
      - Audit and Accountability
-     - 
+     -
    * - AU-10(1)
      - Non-repudiation (Control Enhancement)
      - Audit and Accountability
-     - 
+     -
    * - AU-10(2)
      - Non-repudiation (Control Enhancement)
      - Audit and Accountability
-     - 
+     -
    * - AU-10(3)
      - Non-repudiation (Control Enhancement)
      - Audit and Accountability
-     - 
+     -
    * - AU-10(4)
      - Non-repudiation (Control Enhancement)
      - Audit and Accountability
-     - 
+     -
    * - AU-10(5)
      - Non-repudiation (Control Enhancement)
      - Audit and Accountability
-     - 
+     -
    * - AU-12(1)
      - Audit Generation (Control Enhancement)
      - Audit and Accountability
-     - 
+     -
    * - AU-11
      - Audit Record Retention
      - Audit and Accountability
-     - 
+     -
    * - AU-12
      - Audit Generation
      - Audit and Accountability
@@ -517,11 +517,11 @@ SIMP SCTM Technical Controls
    * - AU-13
      - Monitoring For Information Disclosure
      - Audit and Accountability
-     - 
+     -
    * - AU-14
      - Session Audit
      - Audit and Accountability
-     - 
+     -
    * - AU-14(1)
      - Session Audit (Control Enhancement)
      - Audit and Accountability
@@ -529,35 +529,35 @@ SIMP SCTM Technical Controls
    * - IA-1
      - Identification and Authentication Policy and Procedures
      - Identification and Authentication
-     - 
+     -
    * - IA-2(1)
      - User Identification and Authentication (Organizational Users) (Control Enhancement)
      - Identification and Authentication
-     - 
+     -
    * - IA-2(2)
      - User Identification and Authentication (Organizational Users) (Control Enhancement)
      - Identification and Authentication
-     - 
+     -
    * - IA-2(3)
      - User Identification and Authentication (Organizational Users) (Control Enhancement)
      - Identification and Authentication
-     - 
+     -
    * - IA-2(4)
      - User Identification and Authentication (Organizational Users) (Control Enhancement)
      - Identification and Authentication
-     - 
+     -
    * - IA-2(5)
      - User Identification and Authentication (Organizational Users) (Control Enhancement)
      - Identification and Authentication
-     - 
+     -
    * - IA-2(6)
      - User Identification and Authentication (Organizational Users) (Control Enhancement)
      - Identification and Authentication
-     - 
+     -
    * - IA-2(7)
      - User Identification and Authentication (Organizational Users) (Control Enhancement)
      - Identification and Authentication
-     - 
+     -
    * - IA-2(8)
      - User Identification and Authentication (Organizational Users) (Control Enhancement)
      - Identification and Authentication
@@ -573,11 +573,11 @@ SIMP SCTM Technical Controls
    * - IA-3(1)
      - Device Identification and Authentication (Control Enhancement)
      - Identification and Authentication
-     - 
+     -
    * - IA-3(2)
      - Device Identification and Authentication (Control Enhancement)
      - Identification and Authentication
-     - 
+     -
    * - IA-3(3)
      - Device Identification and Authentication (Control Enhancement)
      - Identification and Authentication
@@ -589,23 +589,23 @@ SIMP SCTM Technical Controls
    * - IA-4(1)
      - Identifier Management (Control Enhancement)
      - Identification and Authentication
-     - 
+     -
    * - IA-4(2)
      - Identifier Management (Control Enhancement)
      - Identification and Authentication
-     - 
+     -
    * - IA-4(3)
      - Identifier Management (Control Enhancement)
      - Identification and Authentication
-     - 
+     -
    * - IA-4(4)
      - Identifier Management (Control Enhancement)
      - Identification and Authentication
-     - 
+     -
    * - IA-4(5)
      - Identifier Management (Control Enhancement)
      - Identification and Authentication
-     - 
+     -
    * - IA-5
      - Authenticator Management
      - Identification and Authentication
@@ -621,7 +621,7 @@ SIMP SCTM Technical Controls
    * - IA-5(3)
      - Authenticator Management (Control Enhancement)
      - Identification and Authentication
-     - 
+     -
    * - IA-5(4)
      - Authenticator Management (Control Enhancement)
      - Identification and Authentication
@@ -641,7 +641,7 @@ SIMP SCTM Technical Controls
    * - IA-5(8)
      - Authenticator Management (Control Enhancement)
      - Identification and Authentication
-     - 
+     -
    * - IA-6
      - Authenticator Feedback
      - Identification and Authentication
@@ -653,11 +653,11 @@ SIMP SCTM Technical Controls
    * - IA-8
      - Identification and Authentication (Non-Organizational Users)
      - Identification and Authentication
-     - 
+     -
    * - SC-1
      - System and Communications Protection Policy and Procedures
      - System and Communications Protection
-     - 
+     -
    * - SC-2
      - Application Partitioning
      - System and Communications Protection
@@ -673,23 +673,23 @@ SIMP SCTM Technical Controls
    * - SC-3(1)
      - Security Function Isolation (Control Enhancement)
      - System and Communications Protection
-     - 
+     -
    * - SC-3(2)
      - Security Function Isolation (Control Enhancement)
      - System and Communications Protection
-     - 
+     -
    * - SC-3(3)
      - Security Function Isolation (Control Enhancement)
      - System and Communications Protection
-     - 
+     -
    * - SC-3(4)
      - Security Function Isolation (Control Enhancement)
      - System and Communications Protection
-     - 
+     -
    * - SC-3(5)
      - Security Function Isolation (Control Enhancement)
      - System and Communications Protection
-     - 
+     -
    * - SC-4
      - Information In Shared Resources
      - System and Communications Protection
@@ -697,23 +697,23 @@ SIMP SCTM Technical Controls
    * - SC-4(1)
      - Information In Shared Resources (Control Enhancement)
      - System and Communications Protection
-     - 
+     -
    * - SC-5
      - Denial of Service Protection
      - System and Communications Protection
-     - 
+     -
    * - SC-5(1)
      - Denial of Service Protection (Control Enhancement)
      - System and Communications Protection
-     - 
+     -
    * - SC-5(2)
      - Denial of Service Protection (Control Enhancement)
      - System and Communications Protection
-     - 
+     -
    * - SC-6
      - Resource Priority
      - System and Communications Protection
-     - 
+     -
    * - SC-7
      - Boundary Protection
      - System and Communications Protection
@@ -721,19 +721,19 @@ SIMP SCTM Technical Controls
    * - SC-7(1)
      - Boundary Protection (Control Enhancement)
      - System and Communications Protection
-     - 
+     -
    * - SC-7(2)
      - Boundary Protection (Control Enhancement)
      - System and Communications Protection
-     - 
+     -
    * - SC-7(3)
      - Boundary Protection (Control Enhancement)
      - System and Communications Protection
-     - 
+     -
    * - SC-7(4)
      - Boundary Protection (Control Enhancement)
      - System and Communications Protection
-     - 
+     -
    * - SC-7(5)
      - Boundary Protection (Control Enhancement)
      - System and Communications Protection
@@ -741,27 +741,27 @@ SIMP SCTM Technical Controls
    * - SC-7(6)
      - Boundary Protection (Control Enhancement)
      - System and Communications Protection
-     - 
+     -
    * - SC-7(7)
      - Boundary Protection (Control Enhancement)
      - System and Communications Protection
-     - 
+     -
    * - SC-7(8)
      - Boundary Protection (Control Enhancement)
      - System and Communications Protection
-     - 
+     -
    * - SC-7(9)
      - Boundary Protection (Control Enhancement)
      - System and Communications Protection
-     - 
+     -
    * - SC-7(10)
      - Boundary Protection (Control Enhancement)
      - System and Communications Protection
-     - 
+     -
    * - SC-7(11)
      - Boundary Protection (Control Enhancement)
      - System and Communications Protection
-     - 
+     -
    * - SC-7(12)
      - Boundary Protection (Control Enhancement)
      - System and Communications Protection
@@ -769,27 +769,27 @@ SIMP SCTM Technical Controls
    * - SC-7(13)
      - Boundary Protection (Control Enhancement)
      - System and Communications Protection
-     - 
+     -
    * - SC-7(14)
      - Boundary Protection (Control Enhancement)
      - System and Communications Protection
-     - 
+     -
    * - SC-7(15)
      - Boundary Protection (Control Enhancement)
      - System and Communications Protection
-     - 
+     -
    * - SC-7(16)
      - Boundary Protection (Control Enhancement)
      - System and Communications Protection
-     - 
+     -
    * - SC-7(17)
      - Boundary Protection (Control Enhancement)
      - System and Communications Protection
-     - 
+     -
    * - SC-7(18)
      - Boundary Protection (Control Enhancement)
      - System and Communications Protection
-     - 
+     -
    * - SC-8
      - Transmission Integrity
      - System and Communications Protection
@@ -801,7 +801,7 @@ SIMP SCTM Technical Controls
    * - SC-8(2)
      - Transmission Integrity (Control Enhancement)
      - System and Communications Protection
-     - 
+     -
    * - SC-9
      - Transmission Confidentiality
      - System and Communications Protection
@@ -813,15 +813,15 @@ SIMP SCTM Technical Controls
    * - SC-9(2)
      - Transmission Confidentiality (Control Enhancement)
      - System and Communications Protection
-     - 
+     -
    * - SC-10
      - Network Disconnect
      - System and Communications Protection
-     - 
+     -
    * - SC-11
      - Trusted Path
      - System and Communications Protection
-     - 
+     -
    * - SC-12
      - Cryptographic Key Establishment and Management
      - System and Communications Protection
@@ -829,71 +829,71 @@ SIMP SCTM Technical Controls
    * - SC-12(1)
      - Cryptographic Key Establishment and Management (Control Enhancement)
      - System and Communications Protection
-     - 
+     -
    * - SC-12(2)
      - Cryptographic Key Establishment and Management (Control Enhancement)
      - System and Communications Protection
-     - 
+     -
    * - SC-12(3)
      - Cryptographic Key Establishment and Management (Control Enhancement)
      - System and Communications Protection
-     - 
+     -
    * - SC-12(4)
      - Cryptographic Key Establishment and Management (Control Enhancement)
      - System and Communications Protection
-     - 
+     -
    * - SC-12(5)
      - Cryptographic Key Establishment and Management (Control Enhancement)
      - System and Communications Protection
-     - 
+     -
    * - SC-13
      - Use of Cryptography
-     - 
+     -
      - The forms of cryptography used are applied through SSH, SSL, and TLS. RedHat FIPs mode enabling is on the near term horizon for SIMP. Once enabled, it will be documented here and should allow implemtations to further explain how this control is being met. There are several unencrypted protocols used on the puppet server (Apache/YUM, DHCPD, TFTP, and DNS). The Security Concepts docucment provides additional details on default services/protocols that are used.
    * - SC-13(1)
      - Use of Cryptography (Control Enhancement)
-     - 
+     -
      - The forms of cryptography used are applied through SSH, SSL, and TLS. There are several unencrypted protocols used on the puppet server (Apache/YUM, DHCPD, TFTP, and DNS) that are documented in the Security Concepts document.
    * - SC-13(2)
      - Use of Cryptography (Control Enhancement)
-     - 
+     -
      - The forms of cryptography used are applied through SSH, SSL, and TLS. There are several unencrypted protocols used on the puppet server (Apache/YUM, DHCPD, TFTP, and DNS) that are documented in the Security Concepts document.
    * - SC-13(3)
      - Use of Cryptography (Control Enhancement)
-     - 
-     - 
+     -
+     -
    * - SC-13(4)
      - Use of Cryptography (Control Enhancement)
-     - 
-     - 
+     -
+     -
    * - SC-14
      - Public Access Protections
      - System and Communications Protection
-     - 
+     -
    * - SC-15
      - Collaborative Computing Devices
      - System and Communications Protection
-     - 
+     -
    * - SC-15(1)
      - Collaborative Computing Devices (Control Enhancement)
      - System and Communications Protection
-     - 
+     -
    * - SC-15(2)
      - Collaborative Computing Devices (Control Enhancement)
      - System and Communications Protection
-     - 
+     -
    * - SC-15(3)
      - Collaborative Computing Devices (Control Enhancement)
      - System and Communications Protection
-     - 
+     -
    * - SC-16
      - Transmission of Security Attributes
      - System and Communications Protection
-     - 
+     -
    * - SC-16(1)
      - Transmission of Security Attributes (Control Enhancement)
      - System and Communications Protection
-     - 
+     -
    * - SC-17
      - Public Key Infrastructure Certificates
      - System and Communications Protection
@@ -901,47 +901,47 @@ SIMP SCTM Technical Controls
    * - SC-18
      - Mobile Code
      - System and Communications Protection
-     - 
+     -
    * - SC-18(1)
      - Mobile Code (Control Enhancement)
      - System and Communications Protection
-     - 
+     -
    * - SC-18(2)
      - Mobile Code (Control Enhancement)
      - System and Communications Protection
-     - 
+     -
    * - SC-18(3)
      - Mobile Code (Control Enhancement)
      - System and Communications Protection
-     - 
+     -
    * - SC-18(4)
      - Mobile Code (Control Enhancement)
      - System and Communications Protection
-     - 
+     -
    * - SC-19
      - Voice Over Internet Protocol
      - System and Communications Protection
-     - 
+     -
    * - SC-20
      - Secure Name /Address Resolution Service (Authoritative Source)
      - System and Communications Protection
-     - 
+     -
    * - SC-20(1)
      - Secure Name /Address Resolution Service (Authoritative Source) (Control Enhancement)
      - System and Communications Protection
-     - 
+     -
    * - SC-21
      - Secure Name /Address Resolution Service (Recursive or Caching Resolver)
      - System and Communications Protection
-     - 
+     -
    * - SC-21(1)
      - Secure Name /Address Resolution Service (Recursive or Caching Resolver) (Control Enhancement)
      - System and Communications Protection
-     - 
+     -
    * - SC-22
      - Architecture and Provisioning for Name/Address Resolution Service
      - System and Communications Protection
-     - 
+     -
    * - SC-23
      - Session Authenticity
      - System and Communications Protection
@@ -953,7 +953,7 @@ SIMP SCTM Technical Controls
    * - SC-23(2)
      - Session Authenticity (Control Enhancement)
      - System and Communications Protection
-     - 
+     -
    * - SC-23(3)
      - Session Authenticity (Control Enhancement)
      - System and Communications Protection
@@ -961,7 +961,7 @@ SIMP SCTM Technical Controls
    * - SC-23(4)
      - Session Authenticity (Control Enhancement)
      - System and Communications Protection
-     - 
+     -
    * - SC-24
      - Fail in Known State
      - System and Communications Protection
@@ -969,19 +969,19 @@ SIMP SCTM Technical Controls
    * - SC-25
      - Thin Nodes
      - System and Communications Protection
-     - 
+     -
    * - SC-26
      - Honeypots
      - System and Communications Protection
-     - 
+     -
    * - SC-26(1)
      - Honeypots (Control Enhancement)
      - System and Communications Protection
-     - 
+     -
    * - SC-27
      - Operating System-Independent Applications
      - System and Communications Protection
-     - 
+     -
    * - SC-28
      - Protection of Information at Rest
      - System and Communications Protection
@@ -989,51 +989,51 @@ SIMP SCTM Technical Controls
    * - SC-28
      - Protection of Information at Rest (Control Enhancement)
      - System and Communications Protection
-     - 
+     -
    * - SC-29
      - Heterogeneity
      - System and Communications Protection
-     - 
+     -
    * - SC-30
      - Virtualization Techniques
      - System and Communications Protection
-     - 
+     -
    * - SC-30(1)
      - Virtualization Techniques (Control Enhancement)
      - System and Communications Protection
-     - 
+     -
    * - SC-30(2)
      - Virtualization Techniques (Control Enhancement)
      - System and Communications Protection
-     - 
+     -
    * - SC-31
      - Covert Channel Analysis
      - System and Communications Protection
-     - 
+     -
    * - SC-31(1)
      - Covert Channel Analysis (Control Enhancement)
      - System and Communications Protection
-     - 
+     -
    * - SC-32
      - Information System Partitioning
      - System and Communications Protection
-     - 
+     -
    * - SC-33
      - Transmission Preparation Integrity
      - System and Communications Protection
-     - 
+     -
    * - SC-34
      - Non-modifiable Executable Programs
      - System and Communications Protection
-     - 
+     -
    * - SC-34(1)
      - Non-modifiable Executable Programs (Control Enhancement)
      - System and Communications Protection
-     - 
+     -
    * - SC-34(2)
      - Non-modifiable Executable Programs (Control Enhancement)
      - System and Communications Protection
-     - 
+     -
 
 Table: SIMP SCTM
 
@@ -1057,35 +1057,35 @@ SIMP SCTM Management Controls
    * - AT-1
      - Security Awareness and Training Policy and Procedures
      - Awareness and Training
-     - 
+     -
    * - AT-2(1)
      - Security Awareness (Control Enhancement)
      - Awareness and Training
-     - 
+     -
    * - AT-3
      - Security Training
      - Awareness and Training
-     - 
+     -
    * - AT-3(1)
      - Security Training (Control Enhancement)
      - Awareness and Training
-     - 
+     -
    * - AT-3(2)
      - Security Training (Control Enhancement)
      - Awareness and Training
-     - 
+     -
    * - AT-4
      - Security Training Records
      - Awareness and Training
-     - 
+     -
    * - AT-5
      - Contacts with Security Groups and Associations
      - Awareness and Training
-     - 
+     -
    * - CM-1
      - Configuration Management Policy and Procedures
      - Configuration Management
-     - 
+     -
    * - CM-2
      - Baseline Configuration
      - Configuration Management
@@ -1093,7 +1093,7 @@ SIMP SCTM Management Controls
    * - CM-2(1)
      - Baseline Configuration (Control Enhancement)
      - Configuration Management
-     - 
+     -
    * - CM-2(2)
      - Baseline Configuration (Control Enhancement)
      - Configuration Management
@@ -1105,7 +1105,7 @@ SIMP SCTM Management Controls
    * - CM-2(4)
      - Baseline Configuration (Control Enhancement)
      - Configuration Management
-     - 
+     -
    * - CM-2(5)
      - Baseline Configuration (Control Enhancement)
      - Configuration Management
@@ -1117,15 +1117,15 @@ SIMP SCTM Management Controls
    * - CM-3
      - Configuration Change Control
      - Configuration Management
-     - 
+     -
    * - CM-3(1)
      - Configuration Change Control (Control Enhancement)
      - Configuration Management
-     - 
+     -
    * - CM-3(2)
      - Configuration Change Control (Control Enhancement)
      - Configuration Management
-     - 
+     -
    * - CM-3(3)
      - Configuration Change Control (Control Enhancement)
      - Configuration Management
@@ -1133,7 +1133,7 @@ SIMP SCTM Management Controls
    * - CM-3(4)
      - Configuration Change Control (Control Enhancement)
      - Configuration Management
-     - 
+     -
    * - CM-4
      - Security Impact Analysis
      - Configuration Management
@@ -1141,11 +1141,11 @@ SIMP SCTM Management Controls
    * - CM-4(1)
      - Security Impact Analysis (Control Enhancement)
      - Configuration Management
-     - 
+     -
    * - CM-4(2)
      - Security Impact Analysis (Control Enhancement)
      - Configuration Management
-     - 
+     -
    * - CM-5
      - Access Restrictions for Change
      - Configuration Management
@@ -1157,7 +1157,7 @@ SIMP SCTM Management Controls
    * - CM-5(2)
      - Access Restrictions for Change (Control Enhancement)
      - Configuration Management
-     - 
+     -
    * - CM-5(3)
      - Access Restrictions for Change (Control Enhancement)
      - Configuration Management
@@ -1165,15 +1165,15 @@ SIMP SCTM Management Controls
    * - CM-5(4)
      - Access Restrictions for Change (Control Enhancement)
      - Configuration Management
-     - 
+     -
    * - CM-5(5)
      - Access Restrictions for Change (Control Enhancement)
      - Configuration Management
-     - 
+     -
    * - CM-5(6)
      - Access Restrictions for Change (Control Enhancement)
      - Configuration Management
-     - 
+     -
    * - CM-5(7)
      - Access Restrictions for Change (Control Enhancement)
      - Configuration Management
@@ -1201,7 +1201,7 @@ SIMP SCTM Management Controls
    * - CM-7(1)
      - Least Functionality (Control Enhancement)
      - Configuration Management
-     - 
+     -
    * - CM-7(2)
      - Least Functionality (Control Enhancement)
      - Configuration Management
@@ -1213,11 +1213,11 @@ SIMP SCTM Management Controls
    * - CM-8
      - Information System Component Inventory
      - Configuration Management
-     - 
+     -
    * - CM-8(1)
      - Information System Component Inventory (Control Enhancement)
      - Configuration Management
-     - 
+     -
    * - CM-8(2)
      - Information System Component Inventory (Control Enhancement)
      - Configuration Management
@@ -1225,147 +1225,147 @@ SIMP SCTM Management Controls
    * - CM-8(3)
      - Information System Component Inventory (Control Enhancement)
      - Configuration Management
-     - 
+     -
    * - CM-8(4)
      - Information System Component Inventory (Control Enhancement)
      - Configuration Management
-     - 
+     -
    * - CM-8(5)
      - Information System Component Inventory (Control Enhancement)
      - Configuration Management
-     - 
+     -
    * - CM-8(6)
      - Information System Component Inventory (Control Enhancement)
      - Configuration Management
-     - 
+     -
    * - CM-9
      - Configuration Management Plan
      - Configuration Management
-     - 
+     -
    * - CM-9(1)
      - Configuration Management Plan (Control Enhancement)
      - Configuration Management
-     - 
+     -
    * - CP-1
      - Contingency Planning Policy and Procedures
      - Contingency Planning
-     - 
+     -
    * - CP-2
      - Contingency Plan
      - Contingency Planning
-     - 
+     -
    * - CP-2(1)
      - Contingency Plan (Control Enhancement)
      - Contingency Planning
-     - 
+     -
    * - CP-2(2)
      - Contingency Plan (Control Enhancement)
      - Contingency Planning
-     - 
+     -
    * - CP-2(3)
      - Contingency Plan (Control Enhancement)
      - Contingency Planning
-     - 
+     -
    * - CP-2(4)
      - Contingency Plan (Control Enhancement)
      - Contingency Planning
-     - 
+     -
    * - CP-2(5)
      - Contingency Plan (Control Enhancement)
      - Contingency Planning
-     - 
+     -
    * - CP-2(6)
      - Contingency Plan (Control Enhancement)
      - Contingency Planning
-     - 
+     -
    * - CP-3
      - Contingency Training
      - Contingency Planning
-     - 
+     -
    * - CP-3(1)
      - Contingency Training (Control Enhancement)
      - Contingency Planning
-     - 
+     -
    * - CP-3(2)
      - Contingency Training (Control Enhancement)
      - Contingency Planning
-     - 
+     -
    * - CP-4
      - Contingency Plan Testing and Exercises
      - Contingency Planning
-     - 
+     -
    * - CP-4(1)
      - Contingency Plan Testing and Exercises (Control Enhancement)
      - Contingency Planning
-     - 
+     -
    * - CP-4(2)
      - Contingency Plan Testing and Exercises (Control Enhancement)
      - Contingency Planning
-     - 
+     -
    * - CP-4(3)
      - Contingency Plan Testing and Exercises (Control Enhancement)
      - Contingency Planning
-     - 
+     -
    * - CP-6
      - Alternate Storage Site
      - Contingency Planning
-     - 
+     -
    * - CP-6(1)
      - Alternate Storage Site (Control Enhancement)
      - Contingency Planning
-     - 
+     -
    * - CP-6(2)
      - Alternate Storage Site (Control Enhancement)
      - Contingency Planning
-     - 
+     -
    * - CP-6(3)
      - Alternate Storage Site (Control Enhancement)
      - Contingency Planning
-     - 
+     -
    * - CP-7
      - Alternate Processing Site
      - Contingency Planning
-     - 
+     -
    * - CP-7(1)
      - Alternate Processing Site (Control Enhancement)
      - Contingency Planning
-     - 
+     -
    * - CP-7(2)
      - Alternate Processing Site (Control Enhancement)
      - Contingency Planning
-     - 
+     -
    * - CP-7(3)
      - Alternate Processing Site (Control Enhancement)
      - Contingency Planning
-     - 
+     -
    * - CP-7(4)
      - Alternate Processing Site (Control Enhancement)
      - Contingency Planning
-     - 
+     -
    * - CP-7(5)
      - Alternate Processing Site (Control Enhancement)
      - Contingency Planning
-     - 
+     -
    * - CP-8
      - Telecommunications Services
      - Contingency Planning
-     - 
+     -
    * - CP-8(1)
      - Telecommunications Services (Control Enhancement)
      - Contingency Planning
-     - 
+     -
    * - CP-8(2)
      - Telecommunications Services (Control Enhancement)
      - Contingency Planning
-     - 
+     -
    * - CP-8(3)
      - Telecommunications Services (Control Enhancement)
      - Contingency Planning
-     - 
+     -
    * - CP-8(4)
      - Telecommunications Services (Control Enhancement)
      - Contingency Planning
-     - 
+     -
    * - CP-9
      - Information System Backup
      - Contingency Planning
@@ -1373,23 +1373,23 @@ SIMP SCTM Management Controls
    * - CP-9(1)
      - Information System Backup (Control Enhancement)
      - Contingency Planning
-     - 
+     -
    * - CP-9(2)
      - Information System Backup (Control Enhancement)
      - Contingency Planning
-     - 
+     -
    * - CP-9(3)
      - Information System Backup (Control Enhancement)
      - Contingency Planning
-     - 
+     -
    * - CP-9(5)
      - Information System Backup (Control Enhancement)
      - Contingency Planning
-     - 
+     -
    * - CP-9(6)
      - Information System Backup (Control Enhancement)
      - Contingency Planning
-     - 
+     -
    * - CP-10
      - Information System Recovery and Reconstitution
      - Contingency Planning
@@ -1397,59 +1397,59 @@ SIMP SCTM Management Controls
    * - CP-10(1)
      - Information System Recovery and Reconstitution (Control Enhancement)
      - Contingency Planning
-     - 
+     -
    * - CP-10(2)
      - Information System Recovery and Reconstitution (Control Enhancement)
      - Contingency Planning
-     - 
+     -
    * - CP-10(3)
      - Information System Recovery and Reconstitution (Control Enhancement)
      - Contingency Planning
-     - 
+     -
    * - CP-10(4)
      - Information System Recovery and Reconstitution (Control Enhancement)
      - Contingency Planning
-     - 
+     -
    * - CP-10(5)
      - Information System Recovery and Reconstitution (Control Enhancement)
      - Contingency Planning
-     - 
+     -
    * - CP-10(6)
      - Information System Recovery and Reconstitution (Control Enhancement)
      - Contingency Planning
-     - 
+     -
    * - IR-1
      - Incident Response Policy and Procedures
      - Incident Response
-     - 
+     -
    * - IR-2
      - Incident Response Training
      - Incident Response
-     - 
+     -
    * - IR-2(1)
      - Incident Response Training (Control Enhancement)
      - Incident Response
-     - 
+     -
    * - IR-2(2)
      - Incident Response Training (Control Enhancement)
      - Incident Response
-     - 
+     -
    * - IR-3
      - Incident Response Testing and Exercises
      - Incident Response
-     - 
+     -
    * - IR-3(1)
      - Incident Response Testing and Exercises (Control Enhancement)
      - Incident Response
-     - 
+     -
    * - IR-4
      - Incident Handling
      - Incident Response
-     - 
+     -
    * - IR-4(1)
      - Incident Handling (Control Enhancement)
      - Incident Response
-     - 
+     -
    * - IR-4(2)
      - Incident Handling (Control Enhancement)
      - Incident Response
@@ -1457,83 +1457,83 @@ SIMP SCTM Management Controls
    * - IR-4(3)
      - Incident Handling (Control Enhancement)
      - Incident Response
-     - 
+     -
    * - IR-4(4)
      - Incident Handling (Control Enhancement)
      - Incident Response
-     - 
+     -
    * - IR-4(5)
      - Incident Handling (Control Enhancement)
      - Incident Response
-     - 
+     -
    * - IR-5
      - Incident Monitoring
      - Incident Response
-     - 
+     -
    * - IR-5(1)
      - Incident Monitoring (Control Enhancement)
      - Incident Response
-     - 
+     -
    * - IR-6
      - Incident Reporting
      - Incident Response
-     - 
+     -
    * - IR-6(1)
      - Incident Reporting (Control Enhancement)
      - Incident Response
-     - 
+     -
    * - IR-6(2)
      - Incident Reporting (Control Enhancement)
      - Incident Response
-     - 
+     -
    * - IR-7
      - Incident Response Assistance
      - Incident Response
-     - 
+     -
    * - IR-7(1)
      - Incident Response Assistance (Control Enhancement)
      - Incident Response
-     - 
+     -
    * - IR-8
      - Incident Response Plan
      - Incident Response
-     - 
+     -
    * - MA-1
      - System Maintenance Policy and Procedures
      - Maintenance
-     - 
+     -
    * - MA-2
      - Controlled Maintenance
      - Maintenance
-     - 
+     -
    * - MA-2(1)
      - Controlled Maintenance (Control Enhancement)
      - Maintenance
-     - 
+     -
    * - MA-2(2)
      - Controlled Maintenance (Control Enhancement)
      - Maintenance
-     - 
+     -
    * - MA-3
      - Maintenance Tools
      - Maintenance
-     - 
+     -
    * - MA-3(1)
      - Maintenance Tools (Control Enhancement)
      - Maintenance
-     - 
+     -
    * - MA-3(2)
      - Maintenance Tools (Control Enhancement)
      - Maintenance
-     - 
+     -
    * - MA-3(3)
      - Maintenance Tools (Control Enhancement)
      - Maintenance
-     - 
+     -
    * - MA-3(4)
      - Maintenance Tools (Control Enhancement)
      - Maintenance
-     - 
+     -
    * - MA-4
      - Non-Local Maintenance
      - Maintenance
@@ -1545,19 +1545,19 @@ SIMP SCTM Management Controls
    * - MA-4(2)
      - Non-Local Maintenance (Control Enhancement)
      - Maintenance
-     - 
+     -
    * - MA-4(3)
      - Non-Local Maintenance (Control Enhancement)
      - Maintenance
-     - 
+     -
    * - MA-4(4)
      - Non-Local Maintenance (Control Enhancement)
      - Maintenance
-     - 
+     -
    * - MA-4(5)
      - Non-Local Maintenance (Control Enhancement)
      - Maintenance
-     - 
+     -
    * - MA-4(6)
      - Non-Local Maintenance (Control Enhancement)
      - Maintenance
@@ -1565,295 +1565,295 @@ SIMP SCTM Management Controls
    * - MA-4(7)
      - Non-Local Maintenance (Control Enhancement)
      - Maintenance
-     - 
+     -
    * - MA-5
      - Maintenance Personnel
      - Maintenance
-     - 
+     -
    * - MA-5(1)
      - Maintenance Personnel (Control Enhancement)
      - Maintenance
-     - 
+     -
    * - MA-5(2)
      - Maintenance Personnel (Control Enhancement)
      - Maintenance
-     - 
+     -
    * - MA-5(3)
      - Maintenance Personnel (Control Enhancement)
      - Maintenance
-     - 
+     -
    * - MA-5(4)
      - Maintenance Personnel (Control Enhancement)
      - Maintenance
-     - 
+     -
    * - MA-6
      - Timely Maintenance
      - Maintenance
-     - 
+     -
    * - MP-1
      - Media Protection Policy and Procedures
      - Media Protection
-     - 
+     -
    * - MP-2
      - Media Access
      - Media Protection
-     - 
+     -
    * - MP-2(1)
      - Media Access (Control Enhancement)
      - Media Protection
-     - 
+     -
    * - MP-2(2)
      - Media Access (Control Enhancement)
      - Media Protection
-     - 
+     -
    * - MP-4
      - Media Storage
      - Media Protection
-     - 
+     -
    * - MP-5
      - Media Transport
      - Media Protection
-     - 
+     -
    * - MP-5(1)
      - Media Transport (Control Enhancement)
      - Media Protection
-     - 
+     -
    * - MP-5(2)
      - Media Transport (Control Enhancement)
      - Media Protection
-     - 
+     -
    * - MP-5(3)
      - Media Transport (Control Enhancement)
      - Media Protection
-     - 
+     -
    * - MP-5(4)
      - Media Transport (Control Enhancement)
      - Media Protection
-     - 
+     -
    * - MP-6
      - Media Sanitization
      - Media Protection
-     - 
+     -
    * - MP-6(1)
      - Media Sanitization (Control Enhancement)
      - Media Protection
-     - 
+     -
    * - MP-6(2)
      - Media Sanitization (Control Enhancement)
      - Media Protection
-     - 
+     -
    * - MP-6(3)
      - Media Sanitization (Control Enhancement)
      - Media Protection
-     - 
+     -
    * - MP-6(4)
      - Media Sanitization (Control Enhancement)
      - Media Protection
-     - 
+     -
    * - MP-6(5)
      - Media Sanitization (Control Enhancement)
      - Media Protection
-     - 
+     -
    * - MP-6(6)
      - Media Sanitization (Control Enhancement)
      - Media Protection
-     - 
+     -
    * - PE-1
      - Physical and Environmental Protection Policy and Procedures
      - Physical and Environmental Protection
-     - 
+     -
    * - PE-2
      - Physical Access Authorizations
      - Physical and Environmental Protection
-     - 
+     -
    * - PE-2(1)
      - Physical Access Authorizations (Control Enhancement)
      - Physical and Environmental Protection
-     - 
+     -
    * - PE-2(2)
      - Physical Access Authorizations (Control Enhancement)
      - Physical and Environmental Protection
-     - 
+     -
    * - PE-2(3)
      - Physical Access Authorizations (Control Enhancement)
      - Physical and Environmental Protection
-     - 
+     -
    * - PE-3
      - Physical Access Control
      - Physical and Environmental Protection
-     - 
+     -
    * - PE-3(1)
      - Physical Access Control (Control Enhancement)
      - Physical and Environmental Protection
-     - 
+     -
    * - PE-3(2)
      - Physical Access Control (Control Enhancement)
      - Physical and Environmental Protection
-     - 
+     -
    * - PE-3(3)
      - Physical Access Control (Control Enhancement)
      - Physical and Environmental Protection
-     - 
+     -
    * - PE-3(4)
      - Physical Access Control (Control Enhancement)
      - Physical and Environmental Protection
-     - 
+     -
    * - PE-3(5)
      - Physical Access Control (Control Enhancement)
      - Physical and Environmental Protection
-     - 
+     -
    * - PE-3(6)
      - Physical Access Control (Control Enhancement)
      - Physical and Environmental Protection
-     - 
+     -
    * - PE-4
      - Access Control for Transmission Medium
      - Physical and Environmental Protection
-     - 
+     -
    * - PE-5
      - Access Control for Output Devices
      - Physical and Environmental Protection
-     - 
+     -
    * - PE-6
      - Monitoring Physical Access
      - Physical and Environmental Protection
-     - 
+     -
    * - PE-6(1)
      - Monitoring Physical Access (Control Enhancement)
      - Physical and Environmental Protection
-     - 
+     -
    * - PE-6(2)
      - Monitoring Physical Access (Control Enhancement)
      - Physical and Environmental Protection
-     - 
+     -
    * - PE-7
      - Visitor Control
      - Physical and Environmental Protection
-     - 
+     -
    * - PE-7(1)
      - Visitor Control (Control Enhancement)
      - Physical and Environmental Protection
-     - 
+     -
    * - PE-7(2)
      - Visitor Control (Control Enhancement)
      - Physical and Environmental Protection
-     - 
+     -
    * - PE-8
      - Access Records
      - Physical and Environmental Protection
-     - 
+     -
    * - PE-8(1)
      - Access Records (Control Enhancement)
      - Physical and Environmental Protection
-     - 
+     -
    * - PE-8(2)
      - Access Records (Control Enhancement)
      - Physical and Environmental Protection
-     - 
+     -
    * - PE-9
      - Power Equipment and Power Cabling
      - Physical and Environmental Protection
-     - 
+     -
    * - PE-9(1)
      - Power Equipment and Power Cabling (Control Enhancement)
      - Physical and Environmental Protection
-     - 
+     -
    * - PE-9(2)
      - Power Equipment and Power Cabling (Control Enhancement)
      - Physical and Environmental Protection
-     - 
+     -
    * - PE-10
      - Emergency Shutoff
      - Physical and Environmental Protection
-     - 
+     -
    * - PE-10(1)
      - Emergency Shutoff (Control Enhancement)
      - Physical and Environmental Protection
-     - 
+     -
    * - PE-11
      - Emergence Power
      - Physical and Environmental Protection
-     - 
+     -
    * - PE-11(1)
      - Emergence Power (Control Enhancement)
      - Physical and Environmental Protection
-     - 
+     -
    * - PE-11(2)
      - Emergence Power (Control Enhancement)
      - Physical and Environmental Protection
-     - 
+     -
    * - PE-12
      - Emergency Lighting
      - Physical and Environmental Protection
-     - 
+     -
    * - PE-12(1)
      - Emergency Lighting (Control Enhancement)
      - Physical and Environmental Protection
-     - 
+     -
    * - PE-13
      - Fire Protection
      - Physical and Environmental Protection
-     - 
+     -
    * - PE-13(1)
      - Fire Protection (Control Enhancement)
      - Physical and Environmental Protection
-     - 
+     -
    * - PE-13(2)
      - Fire Protection (Control Enhancement)
      - Physical and Environmental Protection
-     - 
+     -
    * - PE-13(3)
      - Fire Protection (Control Enhancement)
      - Physical and Environmental Protection
-     - 
+     -
    * - PE-13(4)
      - Fire Protection (Control Enhancement)
      - Physical and Environmental Protection
-     - 
+     -
    * - PE-14
      - Temperature and Humidity Controls
      - Physical and Environmental Protection
-     - 
+     -
    * - PE-14(1)
      - Temperature and Humidity Controls (Control Enhancement)
      - Physical and Environmental Protection
-     - 
+     -
    * - PE-14(2)
      - Temperature and Humidity Controls (Control Enhancement)
      - Physical and Environmental Protection
-     - 
+     -
    * - PE-15
      - Water Damage Protection
      - Physical and Environmental Protection
-     - 
+     -
    * - PE-15(1)
      - Water Damage Protection (Control Enhancement)
      - Physical and Environmental Protection
-     - 
+     -
    * - PE-16
      - Delivery and Removal
      - Physical and Environmental Protection
-     - 
+     -
    * - PE-17
      - Alternate Work Site
      - Physical and Environmental Protection
-     - 
+     -
    * - PE-18
      - Location of Information System Components
      - Physical and Environmental Protection
-     - 
+     -
    * - PE-18(1)
      - Location of Information System Components (Control Enhancement)
      - Physical and Environmental Protection
-     - 
+     -
    * - PE-19
      - Information Leakage
      - Physical and Environmental Protection
-     - 
+     -
    * - SI-1
      - System and Information Integrity Policy and Procedures
      - System and Information Integrity
-     - 
+     -
    * - SI-2(1)
      - Flaw Remediation (Control Enhancement)
      - System and Information Integrity
@@ -1861,11 +1861,11 @@ SIMP SCTM Management Controls
    * - SI-2(2)
      - Flaw Remediation (Control Enhancement)
      - System and Information Integrity
-     - 
+     -
    * - SI-2(3)
      - Flaw Remediation (Control Enhancement)
      - System and Information Integrity
-     - 
+     -
    * - SI-2(4)
      - Flaw Remediation (Control Enhancement)
      - System and Information Integrity
@@ -1881,95 +1881,95 @@ SIMP SCTM Management Controls
    * - SI-3(2)
      - Malicious Code Protection (Control Enhancement)
      - System and Information Integrity
-     - 
+     -
    * - SI-3(3)
      - Malicious Code Protection (Control Enhancement)
      - System and Information Integrity
-     - 
+     -
    * - SI-3(4)
      - Malicious Code Protection (Control Enhancement)
      - System and Information Integrity
-     - 
+     -
    * - SI-3(5)
      - Malicious Code Protection (Control Enhancement)
      - System and Information Integrity
-     - 
+     -
    * - SI-3(6)
      - Malicious Code Protection (Control Enhancement)
      - System and Information Integrity
-     - 
+     -
    * - SI-4
      - Information System Monitoring Tools and Techniques
      - System and Information Integrity
-     - 
+     -
    * - SI-4(1)
      - Information System Monitoring Tools and Techniques (Control Enhancement)
      - System and Information Integrity
-     - 
+     -
    * - SI-4(2)
      - Information System Monitoring Tools and Techniques (Control Enhancement)
      - System and Information Integrity
-     - 
+     -
    * - SI-4(3)
      - Information System Monitoring Tools and Techniques (Control Enhancement)
      - System and Information Integrity
-     - 
+     -
    * - SI-4(4)
      - Information System Monitoring Tools and Techniques (Control Enhancement)
      - System and Information Integrity
-     - 
+     -
    * - SI-4(5)
      - Information System Monitoring Tools and Techniques (Control Enhancement)
      - System and Information Integrity
-     - 
+     -
    * - SI-4(6)
      - Information System Monitoring Tools and Techniques (Control Enhancement)
      - System and Information Integrity
-     - 
+     -
    * - SI-4(7)
      - Information System Monitoring Tools and Techniques (Control Enhancement)
      - System and Information Integrity
-     - 
+     -
    * - SI-4(8)
      - Information System Monitoring Tools and Techniques (Control Enhancement)
      - System and Information Integrity
-     - 
+     -
    * - SI-4(9)
      - Information System Monitoring Tools and Techniques (Control Enhancement)
      - System and Information Integrity
-     - 
+     -
    * - SI-4(10)
      - Information System Monitoring Tools and Techniques (Control Enhancement)
      - System and Information Integrity
-     - 
+     -
    * - SI-4(11)
      - Information System Monitoring Tools and Techniques (Control Enhancement)
      - System and Information Integrity
-     - 
+     -
    * - SI-4(12)
      - Information System Monitoring Tools and Techniques (Control Enhancement)
      - System and Information Integrity
-     - 
+     -
    * - SI-4(13)
      - Information System Monitoring Tools and Techniques (Control Enhancement)
      - System and Information Integrity
-     - 
+     -
    * - SI-4(14)
      - Information System Monitoring Tools and Techniques (Control Enhancement)
      - System and Information Integrity
-     - 
+     -
    * - SI-4(15)
      - Information System Monitoring Tools and Techniques (Control Enhancement)
      - System and Information Integrity
-     - 
+     -
    * - SI-4(16)
      - Information System Monitoring Tools and Techniques (Control Enhancement)
      - System and Information Integrity
-     - 
+     -
    * - SI-4(17)
      - Information System Monitoring Tools and Techniques (Control Enhancement)
      - System and Information Integrity
-     - 
+     -
    * - SI-5
      - System Alerts, Advisories, and Directives
      - System and Information Integrity
@@ -1977,7 +1977,7 @@ SIMP SCTM Management Controls
    * - SI-5(1)
      - System Alerts, Advisories, and Directives (Control Enhancement)
      - System and Information Integrity
-     - 
+     -
    * - SI-6
      - Security Functionality Verification
      - System and Information Integrity
@@ -2005,7 +2005,7 @@ SIMP SCTM Management Controls
    * - SI-7(2)
      - Software and Information Integrity (Control Enhancement)
      - System and Information Integrity
-     - 
+     -
    * - SI-7(3)
      - Software and Information Integrity (Control Enhancement)
      - System and Information Integrity
@@ -2013,51 +2013,51 @@ SIMP SCTM Management Controls
    * - SI-7(4)
      - Software and Information Integrity (Control Enhancement)
      - System and Information Integrity
-     - 
+     -
    * - SI-8
      - Spam Protection
      - System and Information Integrity
-     - 
+     -
    * - SI-8(1)
      - Spam Protection (Control Enhancement)
      - System and Information Integrity
-     - 
+     -
    * - SI-8(2)
      - Spam Protection (Control Enhancement)
      - System and Information Integrity
-     - 
+     -
    * - SI-9
      - Information Input Restrictions
      - System and Information Integrity
-     - 
+     -
    * - SI-10
      - Information Input Validation
      - System and Information Integrity
-     - 
+     -
    * - SI-11
      - Error Handling
      - System and Information Integrity
-     - 
+     -
    * - SI-13
      - Predictable Failure Prevention
      - System and Information Integrity
-     - 
+     -
    * - SI-13(1)
      - Predictable Failure Prevention (Control Enhancement)
      - System and Information Integrity
-     - 
+     -
    * - SI-13(2)
      - Predictable Failure Prevention (Control Enhancement)
      - System and Information Integrity
-     - 
+     -
    * - SI-13(3)
      - Predictable Failure Prevention (Control Enhancement)
      - System and Information Integrity
-     - 
+     -
    * - SI-13(4)
      - Predictable Failure Prevention (Control Enhancement)
      - System and Information Integrity
-     - 
+     -
    * - Control ID
      - Control Name
      - Control Family
@@ -2069,55 +2069,55 @@ SIMP SCTM Management Controls
    * - CA-1
      - Security Assessment and Authorization Policies
      - Security Assessment and Authorization
-     - 
+     -
    * - CA-2
      - Security Assessments
      - Security Assessment and Authorization
-     - 
+     -
    * - CA-2(1)
      - Security Assessments (Control Enhancement)
      - Security Assessment and Authorization
-     - 
+     -
    * - CA-2(2)
      - Security Assessments (Control Enhancement)
      - Security Assessment and Authorization
-     - 
+     -
    * - CA-3
      - Information System Connections
      - Security Assessment and Authorization
-     - 
+     -
    * - CA-3(1)
      - Information System Connections (Control Enhancement)
      - Security Assessment and Authorization
-     - 
+     -
    * - CA-3(2)
      - Information System Connections (Control Enhancement)
      - Security Assessment and Authorization
-     - 
+     -
    * - CA-5
      - Plan of Action and Milestones
      - Security Assessment and Authorization
-     - 
+     -
    * - CA-5(1)
      - Plan of Action and Milestones (Control Enhancement)
      - Security Assessment and Authorization
-     - 
+     -
    * - CA-6
      - Security Authorization
      - Security Assessment and Authorization
-     - 
+     -
    * - CA-7
      - Continuous Monitoring
      - Security Assessment and Authorization
-     - 
+     -
    * - CA-7(1)
      - Continuous Monitoring (Control Enhancement)
      - Security Assessment and Authorization
-     - 
+     -
    * - CA-7(2)
      - Continuous Monitoring (Control Enhancement)
      - Security Assessment and Authorization
-     - 
+     -
    * - Pl-1
      - Security Planning Policy and Procedures
      - Planning
@@ -2133,47 +2133,47 @@ SIMP SCTM Management Controls
    * - PL-2(2)
      - System Security Plan (Control Enhancement)
      - Planning
-     - 
+     -
    * - PL-4
      - Rules of Behavior
      - Planning
-     - 
+     -
    * - PL-4(1)
      - Rules of Behavior (Control Enhancement)
      - Planning
-     - 
+     -
    * - PL-5
      - Privacy Impact Assessment
      - Planning
-     - 
+     -
    * - PL-6
      - Security-Related Activity Planning
      - Planning
-     - 
+     -
    * - PS-1
      - Personnel Security Policy and Procedures
      - Planning
-     - 
+     -
    * - PS-2
      - Position Categorization
      - Planning
-     - 
+     -
    * - PS-3(2)
      - Personnel Screening (Control Enhancement)
      - Planning
-     - 
+     -
    * - RA-1
      - Risk Assessment Policy and Procedures
      - Risk Assessment
-     - 
+     -
    * - RA-2
      - Security Categorization
      - Risk Assessment
-     - 
+     -
    * - RA-3
      - Risk Assessment
      - Risk Assessment
-     - 
+     -
    * - RA-5
      - Vulnerability Scanning
      - Risk Assessment
@@ -2201,7 +2201,7 @@ SIMP SCTM Management Controls
    * - RA-5(6)
      - Vulnerability Scanning (Control Enhancement)
      - Risk Assessment
-     - 
+     -
    * - RA-5(7)
      - Vulnerability Scanning (Control Enhancement)
      - Risk Assessment
@@ -2209,174 +2209,174 @@ SIMP SCTM Management Controls
    * - RA-5(8)
      - Vulnerability Scanning (Control Enhancement)
      - Risk Assessment
-     - 
+     -
    * - RA-5(9)
      - Vulnerability Scanning (Control Enhancement)
      - Risk Assessment
-     - 
+     -
    * - SA-1
      - System and Services Acquisition Policy and Procedures
      - System and Service Acquisition
-     - 
+     -
    * - SA-2
      - Allocation of Resources
      - System and Service Acquisition
-     - 
+     -
    * - SA-3
      - Life Cycle Support
      - System and Service Acquisition
-     - 
+     -
    * - SA-4
      - Acquisitions
      - System and Service Acquisition
-     - 
+     -
    * - SA-4(1)
      - Acquisitions (Control Enhancement)
      - System and Service Acquisition
-     - 
+     -
    * - SA-4(2)
      - Acquisitions (Control Enhancement)
      - System and Service Acquisition
-     - 
+     -
    * - SA-4(3)
      - Acquisitions (Control Enhancement)
      - System and Service Acquisition
-     - 
+     -
    * - SA-4(4)
      - Acquisitions (Control Enhancement)
      - System and Service Acquisition
-     - 
+     -
    * - SA-4(5)
      - Acquisitions (Control Enhancement)
      - System and Service Acquisition
-     - 
+     -
    * - SA-4(6)
      - Acquisitions (Control Enhancement)
      - System and Service Acquisition
-     - 
+     -
    * - SA-4(7)
      - Acquisitions (Control Enhancement)
      - System and Service Acquisition
-     - 
+     -
    * - SA-5
      - Information System Documentation
      - System and Service Acquisition
-     - 
+     -
    * - SA-5(1)
      - Information System Documentation (Control Enhancement)
      - System and Service Acquisition
-     - 
+     -
    * - SA-5(2)
      - Information System Documentation (Control Enhancement)
      - System and Service Acquisition
-     - 
+     -
    * - SA-5(3)
      - Information System Documentation (Control Enhancement)
      - System and Service Acquisition
-     - 
+     -
    * - SA-5(4)
      - Information System Documentation (Control Enhancement)
      - System and Service Acquisition
-     - 
+     -
    * - SA-5(5)
      - Information System Documentation (Control Enhancement)
      - System and Service Acquisition
-     - 
+     -
    * - SA-6
      - Software Usage Restrictions
      - System and Service Acquisition
-     - 
+     -
    * - SA-6 (1)
      - Software Usage Restrictions
      - System and Service Acquisition
-     - 
+     -
    * - SA-7
      - User Installed Software
      - System and Service Acquisition
-     - 
+     -
    * - SA-8
      - Security Engineering Principles
      - System and Service Acquisition
-     - 
+     -
    * - SA-9
      - External Information System Services
      - System and Service Acquisition
-     - 
+     -
    * - SA-9(1)
      - External Information System Services (Control Enhancement)
      - System and Service Acquisition
-     - 
+     -
    * - SA-10
      - Developer Configuration Management
      - System and Service Acquisition
-     - 
+     -
    * - SA-10(1)
      - Developer Configuration Management (Control Enhancement)
      - System and Service Acquisition
-     - 
+     -
    * - SA-10(2)
      - Developer Configuration Management (Control Enhancement)
      - System and Service Acquisition
-     - 
+     -
    * - SA-11
      - Developer Security Testing
      - System and Service Acquisition
-     - 
+     -
    * - SA-11(1)
      - Developer Security Testing (Control Enhancement)
      - System and Service Acquisition
-     - 
+     -
    * - SA-11(2)
      - Developer Security Testing (Control Enhancement)
      - System and Service Acquisition
-     - 
+     -
    * - SA-11(3)
      - Developer Security Testing (Control Enhancement)
      - System and Service Acquisition
-     - 
+     -
    * - SA-12
      - Supply Chain Protection
      - System and Service Acquisition
-     - 
+     -
    * - SA-12(1)
      - Supply Chain Protection (Control Enhancement)
      - System and Service Acquisition
-     - 
+     -
    * - SA-12(2)
      - Supply Chain Protection (Control Enhancement)
      - System and Service Acquisition
-     - 
+     -
    * - SA-12(3)
      - Supply Chain Protection (Control Enhancement)
      - System and Service Acquisition
-     - 
+     -
    * - SA-12(4)
      - Supply Chain Protection (Control Enhancement)
      - System and Service Acquisition
-     - 
+     -
    * - SA-12(5)
      - Supply Chain Protection (Control Enhancement)
      - System and Service Acquisition
-     - 
+     -
    * - SA-12(6)
      - Supply Chain Protection (Control Enhancement)
      - System and Service Acquisition
-     - 
+     -
    * - SA-12(7)
      - Supply Chain Protection (Control Enhancement)
      - System and Service Acquisition
-     - 
+     -
    * - SA-13
      - Trustworthiness
      - System and Service Acquisition
-     - 
+     -
    * - SA-14
      - Critical Information System Components
      - System and Service Acquisition
-     - 
+     -
    * - SA-14(1)
      - Critical Information System Components (Control Enhancement)
      - System and Service Acquisition
-     - 
+     -
 
 Table: Management Controls

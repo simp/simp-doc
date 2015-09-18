@@ -1,8 +1,8 @@
 Using Kerberos 5 in SIMP
 ========================
 
-The :term:`Kerberos (Krb5)` module helps an administrator obtain a
-working :term:`Key Distribution Center (KDC)` setup and configure
+The :term:`Kerberos` module helps an administrator obtain a
+working :term:`Key Distribution Center` (KDC) setup and configure
 clients to use the KDC.
 
 .. important::
@@ -38,7 +38,7 @@ the environment, since it is in the admin group. This principal must be
 created on the KDC system.
 
 Before creating the admin principal, the user must first create an
-:term:`Access Control List (ACL)`. To accomplish this,
+:term:`Access Control List` (ACL). To accomplish this,
 add the following Puppet code to the site manifest for the KDC system.
 If a custom implementation of Kerberos is being used, changes may
 need to be made to the code.

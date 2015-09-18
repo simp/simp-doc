@@ -1,8 +1,6 @@
 SIMP User Guide
 ================================
 
-
-
 Contents:
 
 .. toctree::
@@ -11,9 +9,9 @@ Contents:
   Introduction
   User_Management
   Client_Management
+  Certificates
   PXE_Boot
   Maximum_Nodes
-  Certificates
   SIMP_Administration
   Puppetmaster_Backup
   Managing_Workstation_Infrastructures
@@ -23,6 +21,6 @@ Contents:
   Troubleshooting
   FAQ
   SIMP_Package_Data
-  Changelog
-  glossary
+  Changelog <../common/Changelog.rst>
+  Glossary <../common/Glossary.rst>
   File_Samples
