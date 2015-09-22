@@ -7,7 +7,7 @@
 Summary: SIMP Documentation
 Name: simp-doc
 Version: 4.2.0
-Release: Beta2
+Release: RC1
 License: Apache License, Version 2.0
 Group: Documentation
 Source: %{name}-%{version}-%{release}.tar.gz
@@ -92,6 +92,9 @@ fi
 # Post uninstall stuff
 
 %changelog
+* Tue Sep 22 2015 Trevor Vaughan <tvaughan@onyxpoint.com> - 4.2.0-RC1
+- Updated the release materials for 4.2.0-RC1
+
 * Tue Aug 11 2015 Trevor Vaughan <tvaughan@onyxpoint.com> - 4.2.0-Beta2
 - Updated the spec file to properly build the docs.
 
