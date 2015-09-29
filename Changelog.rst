@@ -52,6 +52,8 @@ Significant Updates
       of failover log servers to be used for your system. These will be tried,
       in order, until successful messages can be sent.
 
+  + Updated Modules:
+
     - aide
     - apache
     - auditd
