@@ -97,18 +97,18 @@ Variables
 The table below provides explanations of the variables included in the
 template code in the previous section.
 
-================= ==========================================================
-Variable          Explanation
-================= ==========================================================
-<CLASS NAME>      Descriptive name of class
-<COMMAND LIST>    Commands that the local account is able to run
-<GROUP ID NUMBER> Numerical ID of the group to which the user belongs
-<GROUP NAME>      Name of the local group to which the user belongs
-<HOST>            Host on which the sudo commands apply
-<USER NAME>       Name of the local service account user
-<USER ID NUMBER>  Numerical ID of the user
-<RUN AS>          User the local account is able to run the sudo commands as
-================= ==========================================================
+=================== ==========================================================
+Variable            Explanation
+=================== ==========================================================
+<CLASS NAME>        Descriptive name of class
+<COMMAND LIST>      Commands that the local account is able to run
+<GROUP ID NUMBER>   Numerical ID of the group to which the user belongs
+<GROUP NAME>        Name of the local group to which the user belongs
+<HOST>              Host on which the sudo commands apply
+<USER NAME>         Name of the local service account user
+<USER ID NUMBER>    Numerical ID of the user
+<RUN AS>            User the local account is able to run the sudo commands as
+=================== ==========================================================
 
 Table: Variable Explanations
 
