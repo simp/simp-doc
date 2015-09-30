@@ -11,7 +11,7 @@ SIMP SCTM Technical Controls
 ----------------------------
 
 .. list-table::
-   :widths: 20 40 20 80
+   :widths: 12 20 13 55
    :header-rows: 1
 
    * - Control ID
@@ -1040,6 +1040,10 @@ Table: SIMP SCTM
 SIMP SCTM Operational Controls
 ------------------------------
 
+.. csv-table::
+  :file: Appendix_SCTM_op_ctrls.csv
+  :header: "Control ID","Control Name","Control Family","SIMP Implementation Method"
+  :widths: 15 18 17 50
 
 Table: SIMP SCTM
 
@@ -1047,8 +1051,8 @@ SIMP SCTM Management Controls
 -----------------------------
 
 .. list-table::
-   :widths: 14 76 41 713
-   :header-rows: 2
+   :widths: 15 18 17 50
+   :header-rows: 1
 
    * - Control ID
      - Control Name
