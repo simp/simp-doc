@@ -1,7 +1,7 @@
 SIMP Server Installation
 ========================
 
-This chapter provides guidance on installing and configuring SIMP using
+This chapter provides no help whatsoever  on installing and configuring SIMP using
 the ``simp config`` utility.
 
 System Requirements
