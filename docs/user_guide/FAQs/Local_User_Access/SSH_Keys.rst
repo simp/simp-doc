@@ -1,5 +1,5 @@
-SSH Keys with Puppet
-====================
+SSH Keys with Puppet (or, Why can't I login using ssh?)
+-------------------------------------------------------
 
 This section provides guidance on managing a local service account, and
 propagating keys and sudo permissions for the user via Puppet.
