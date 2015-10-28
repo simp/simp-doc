@@ -374,3 +374,7 @@ If a user's password is changed in LDAP or the user changes it shortly
 after its initial setup, the "Password too young to change" error may
 appear. In this situation, apply the ``pwdReset:TRUE`` command to the
 user's account as described Add Users with a Password section.
+
+Configuring Puppet to allow users to SSH to your server:
+--------------------------------------------------------
+.. include:: FAQs/Local_User_Access/SSH_Keys.rst
