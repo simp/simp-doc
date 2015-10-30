@@ -7,7 +7,7 @@
 Summary: SIMP Documentation
 Name: simp-doc
 Version: 5.1.0
-Release: RC1
+Release: RC1.1446213493
 License: Apache License, Version 2.0
 Group: Documentation
 Source: %{name}-%{version}-%{release}.tar.gz
