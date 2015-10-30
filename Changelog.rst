@@ -1,5 +1,5 @@
 ================
-SIMP 5.1.0-RC1
+SIMP 5.1.0-RC1.1446213493
 ================
 
 ---------
@@ -25,6 +25,24 @@ This release is known to work with:
 
   * RHEL 7.0 and 7.1 x86_64
   * CentOS 7.0 x86_64 (1406 and 1503)
+
+Manual Changes Requred
+----------------------
+
+* Bugs in the common::secure_mountpoints class
+
+  ..note:: This only affects you if you did not have a separate partition for /tmp!
+
+  + There were issues in the secure_mountpoints class that caused /tmp and
+    /var/tmp to be mounted against the root filesystem. While the new code
+    addresses this, it cannot determine if your system has been modified
+    incorrectly in the past.
+
+  + To fix the issue, you need to do the following:
+    - Unmount /var/tmp (may take multiple unmounts)
+    - Unmount /tmp (may take multiple unmounts)
+    - Remove the 'bind' entries for /tmp and /var/tmp from /etc/fstab
+    - Run **puppet** with the new code in place
 
 Significant Updates
 -------------------
@@ -157,6 +175,8 @@ Fixed Bugs
 
 * pupmod-common
 
+  - Fixed the secure_mountpoints code so that it no longer incorrectly bind
+    mounts /tmp or /var/tmp.
   - We no longer supply crontab or anacrontab in global_etcd.
   - Remove dynamic_swappiness cron job if a static value is set.
   - Ensure that the *passgen()* function fails on invalid scenarios. This
