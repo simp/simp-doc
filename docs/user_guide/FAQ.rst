@@ -12,10 +12,9 @@ SIMP.
   FAQs/DVD_Build
   FAQs/Exclude_Repositories
   FAQs/IPTables_NAT_Rules
-  FAQs/Local_User_Access/SSH_Keys
   FAQs/Network_Build
   FAQs/Performing_One_Shot_Operations
   FAQs/Puppet_Server_NAT
   FAQs/Redundant_LDAP
   FAQs/SFTP_Restricted_Accounts
-  FAQs/Ssh_keys
+  FAQs/SSH_Keys
