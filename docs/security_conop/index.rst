@@ -17,3 +17,9 @@ Contents:
   Operational_Security
   System_Management
   Appendices
+
+Indices and tables
+------------------
+
+* :ref:`genindex`
+* :ref:`search`

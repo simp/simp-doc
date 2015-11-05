@@ -24,3 +24,9 @@ Contents:
   Changelog <../common/Changelog.rst>
   Glossary <../common/Glossary.rst>
   File_Samples
+
+Indices and tables
+------------------
+
+* :ref:`genindex`
+* :ref:`search`

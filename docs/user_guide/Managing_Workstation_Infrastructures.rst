@@ -16,9 +16,9 @@ workstation environment.
 User Workstation Setup
 ----------------------
 
-Below is an example manifest called
-``/etc/puppet/modules/site/manifests/workstation.pp`` for setting up a
-user workstation.
+Below is an example class,
+``/etc/puppet/modules/site/manifests/workstation.pp``, that could be used to
+set up a user workstation.
 
 .. code-block:: ruby
 
