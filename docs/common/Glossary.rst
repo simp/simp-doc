@@ -64,6 +64,19 @@ Glossary of Terms
       A network protocol that enables a server to automatically assign an IP
       address to a computer.
 
+   ENC
+   External Node Classifier
+      An arbitrary script or application which can tell :term:`Puppet` which
+      classes a node should have. It can replace or work in concert with the
+      node definitions in the main site manifest (site.pp).
+
+      The `Puppet Enterprise Console
+      <https://docs.puppetlabs.com/pe/latest/console_accessing.html>`__ and
+      `The Foreman <http://theforeman.org/>`__ are two examples of External
+      Node Classifiers.
+
+      Source: `External Node Classifiers <https://docs.puppetlabs.com/guides/external_nodes.html>`__
+
    FQDN
    Fully Qualified Domain Name
       A domain name that specifies its exact location in the tree hierarchy of
@@ -84,6 +97,13 @@ Glossary of Terms
    Hard Disk Drive
       A device for storing and retrieving digital information, primarily
       computer data.
+
+   Hiera
+      A key/value lookup tool for configuration data, built to make
+      :term:`Puppet` better and let you set node-specific data without
+      repeating yourself.
+
+      Source: `Hiera Overview <http://docs.puppetlabs.com/hiera/latest/>`__
 
    IPTables
    Internet Protocol Tables
@@ -195,7 +215,7 @@ Glossary of Terms
       suitable to multiple target applications.
 
    RPM
-   Resource Package Manager
+   RPM Package Manager
       A package management system. The name RPM is associated with the .rpm
       file format, files in this format, software packaged in such files, and
       the package manager itself. RPM was developed primarily for GNU/Linux
@@ -218,6 +238,10 @@ Glossary of Terms
       and reflective. It also has a dynamic type system and automatic memory
       management; it is therefore similar in varying respects to Smalltalk,
       Python, Perl, Lisp, Dylan, Pike, and CLU.
+
+   Service Account
+      An account that is not for use by a human user but which still requires
+      login access to a host.
 
    SSH
    Secure Shell
