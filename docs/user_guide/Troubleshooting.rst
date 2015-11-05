@@ -1,11 +1,12 @@
-Troubleshooting SIMP
-====================
+Troubleshooting Common Issues
+=============================
 
-This chapter provides guidance on how to troubleshoot common problems
-that occur when installing and using SIMP.
+How to troubleshoot common problems that occur when installing and using SIMP.
 
 .. toctree::
   :maxdepth: 2
 
-  troubleshooting/My_Services_Are_Dying
-  troubleshooting/Puppet_Certificate_Issues
+  Troubleshooting/My_Services_Are_Dying
+  Troubleshooting/Why_Cant_I_Login
+  Troubleshooting/PKI_Validation
+  Troubleshooting/Puppet_Certificate_Issues
