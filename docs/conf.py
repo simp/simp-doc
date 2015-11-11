@@ -69,7 +69,7 @@ extensions = [
     'sphinx.ext.autodoc',
     'sphinx.ext.intersphinx',
     'sphinx.ext.todo',
-    'rst2pdf.pdfbuilder',
+#    'rst2pdf.pdfbuilder',
 #    'sphinxcontrib.fulltoc',
 ]
 

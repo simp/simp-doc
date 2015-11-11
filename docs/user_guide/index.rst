@@ -10,7 +10,6 @@ Contents:
   User_Management
   Client_Management
   Certificates
-  PXE_Boot
   Maximum_Nodes
   SIMP_Administration
   Puppetmaster_Backup
