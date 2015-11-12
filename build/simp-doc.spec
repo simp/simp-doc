@@ -7,7 +7,7 @@
 Summary: SIMP Documentation
 Name: simp-doc
 Version: 4.2.0
-Release: RC1.1446214631
+Release: 0
 License: Apache License, Version 2.0
 Group: Documentation
 Source: %{name}-%{version}-%{release}.tar.gz
@@ -92,6 +92,9 @@ fi
 # Post uninstall stuff
 
 %changelog
+* Wed Nov 11 2015 Trevor Vaughan <tvaughan@onyxpoint.com> - 4.2.0-0
+- Updated the default passwords to be easier overall
+
 * Tue Sep 22 2015 Trevor Vaughan <tvaughan@onyxpoint.com> - 4.2.0-RC1
 - Updated the release materials for 4.2.0-RC1
 
@@ -115,10 +118,10 @@ fi
 * Mon Sep 08 2014 Trevor Vaughan <tvaughan@onyxpoint.com> - 4.1.0-RC3
 - Updated the changelog to add the RC3 changes.
 
-* Thu Aug 06 2014 Trevor Vaughan <tvaughan@onyxpoint.com> - 4.1.0-RC2
+* Wed Aug 06 2014 Trevor Vaughan <tvaughan@onyxpoint.com> - 4.1.0-RC2
 - Updated the changelog to refelct the changes in RC2.
 
-* Wed Jul 08 2014 Nick Markowski <nmarkowski@keywcorp.com> - 4.1.0-RC1
+* Tue Jul 08 2014 Nick Markowski <nmarkowski@keywcorp.com> - 4.1.0-RC1
 - Updated the user guide to reflect changes in the installation guide, primarily
   due to Hiera.
 
