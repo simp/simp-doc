@@ -86,9 +86,9 @@ environment.
 ========= ========
 Utility   Password
 ========= ========
-Grub      Initi@lGruubCredential$
-Root User Plea$e Ch@nge Th1s Immediately!
-Simp User CorrectHorseBatteryStaple
+Grub      GrubPassword
+Root User RootPassword
+Simp User UserPassword
 ========= ========
 
 ==================== =====
@@ -142,7 +142,7 @@ Performing Post-installation Setup on the SIMP Server
 
 1. Log on as ``root``
 2. Run puppet for the first time. Errors will appear for DHCP. These can be safely ingored at this stage. Type: ``puppet agent -t``
-3. Copy CentOS RHEL\_MAJOR\_MINOR\_VERSION ISO(s) to the server and unpack using the ``unpack_dvd`` utility. This creates a new tree under ``/var/www/yum/CentOS``. Execute: ``unpack_dvd CentOS-RHEL_MAJOR_MINOR_VERSION- *####*-x86_64-Everything.iso``
+3. Copy CentOS RHEL\_MAJOR\_MINOR\_VERSION ISO(s) to the server and unpack using the ``unpack_dvd`` utility. This creates a new tree under ``/srv/www/yum/CentOS``. Execute: ``unpack_dvd CentOS-RHEL_MAJOR_MINOR_VERSION- *####*-x86_64-Everything.iso``
 4. Update your system using yum. The updates applied will be dependent on what ISO you initially used. Execute: ``yum clean all; yum makecache``
 5. Run puppet. Ignore the same DHCP errors: ``puppet agent -t``
 6. Type ``reboot``

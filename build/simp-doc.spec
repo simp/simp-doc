@@ -92,6 +92,9 @@ fi
 # Post uninstall stuff
 
 %changelog
+* Wed Nov 11 2015 Trevor Vaughan <tvaughan@onyxpoint.com> - 4.2.0-0
+- Updated the default passwords to be easier overall
+
 * Tue Sep 22 2015 Trevor Vaughan <tvaughan@onyxpoint.com> - 4.2.0-RC1
 - Updated the release materials for 4.2.0-RC1
 
