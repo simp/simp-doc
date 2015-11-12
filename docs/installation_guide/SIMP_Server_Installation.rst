@@ -86,9 +86,9 @@ environment.
 ========= ========
 Utility   Password
 ========= ========
-Grub      Initi@lGruubCredential$
-Root User Plea$e Ch@nge Th1s Immediately!
-Simp User CorrectHorseBatteryStaple
+Grub      GrubPassword
+Root User RootPassword
+Simp User UserPassword
 ========= ========
 
 ==================== =====

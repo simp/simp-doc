@@ -87,6 +87,9 @@ mv pdf/SIMP_Documentation.pdf pdf/SIMP-%{version}-%{release}.pdf
 # Post uninstall stuff
 
 %changelog
+* Wed Nov 11 2015 Trevor Vaughan <tvaughan@onyxpoint.com> - 5.1.0-0
+- Updated the default passwords to be easier overall
+
 * Tue Sep 22 2015 Trevor Vaughan <tvaughan@onyxpoint.com> - 5.1.0-RC1
 - Preparing for the 5.1.0-RC1 release.
 
