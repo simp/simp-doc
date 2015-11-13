@@ -1,5 +1,5 @@
 =========================
-SIMP 5.1.0-RC1.1446213493
+SIMP 5.1.0-0
 =========================
 
 ---------
@@ -16,33 +16,74 @@ Changelog
 
   PageBreak
 
-SIMP 5.1.0-RC1
-================
+SIMP 5.1.0-0
 
-**Package**: 5.1.0-RC1
+**Package**: 5.1.0-0
 
 This release is known to work with:
 
   * RHEL 7.0 and 7.1 x86_64
   * CentOS 7.0 x86_64 (1406 and 1503)
 
+.. warning::
+  The default system passwords have changed! Please see the User's Guide for details.
+
 Manual Changes Requred
 ----------------------
 
-* Bugs in the common::secure_mountpoints class
+* Bugs in the `simplib::secure_mountpoints` class (formerly
+  `common::secure_mountpoints`)
 
-  ..note:: This only affects you if you did not have a separate partition for /tmp!
+.. note::
+    This only affects you if you did not have a separate partition for /tmp!
 
-  + There were issues in the secure_mountpoints class that caused /tmp and
-    /var/tmp to be mounted against the root filesystem. While the new code
-    addresses this, it cannot determine if your system has been modified
-    incorrectly in the past.
++ There were issues in the secure_mountpoints class that caused /tmp and
+  /var/tmp to be mounted against the root filesystem. While the new code
+  addresses this, it cannot determine if your system has been modified
+  incorrectly in the past.
 
-  + To fix the issue, you need to do the following:
-    - Unmount /var/tmp (may take multiple unmounts)
-    - Unmount /tmp (may take multiple unmounts)
-    - Remove the 'bind' entries for /tmp and /var/tmp from /etc/fstab
-    - Run **puppet** with the new code in place
++ To fix the issue, you need to do the following:
+  - Unmount /var/tmp (may take multiple unmounts)
+  - Unmount /tmp (may take multiple unmounts)
+  - Remove the 'bind' entries for /tmp and /var/tmp from /etc/fstab
+  - Run **puppet** with the new code in place
+
+Deprecations
+------------
+
+* simp-hiera
+
+  The `simp-hiera` RPM has been replaced by the upstream `hiera` package from
+  Puppet Labs. The original simp-hiera fork had been maintained due to a need
+  that the 'alias()' function now serves. Please run the `hiera_upgrade` script
+  to convert your existing SIMP environment. You may also set the environment
+  variable `HIERA_UPGRADE` to a path of your choice to update any other
+  hieradata that you may have on your system.
+
+* pupmod-simp-common
+
+  The `::common` namespace has been deprecated in favor of the new `::simplib`
+  namespace. This removes a commonly conflicting module name from the SIMP
+  ecosystem.
+
+  All code was migrated.
+
+* pupmod-simp-functions
+
+  The `::functions` namespace has been deprecated in favor of the new
+  `::simplib` namespace. This removes a commonly conflicting module name from
+  the SIMP ecosystem.
+
+  The following items were not migrated:
+
+    + append_if_no_such_line  => Use simp_file_line{}
+    + delete_lines            => Use augeas{}
+    + init_mod_nice           => Use init_ulimit{}
+    + init_mod_open_files     => Use init_ulimit{}
+    + line                    => Use augeas{}
+    + prepend_if_no_such_line => Use simp_file_line{}
+    + renice                  => No replacement, was not correct
+    + replace_line            => Use augeas{}
 
 Significant Updates
 -------------------
@@ -150,7 +191,8 @@ included due to our use of *repoclosure* to ensure that RPM dependencies are met
 when releasing a DVD.
 
 * This version include the latest RedHat 7.1 and CentOS 7.0 (1503) RPMs.
-* This version upgrades Facter to 2.4.
+* Facter upgraded to 2.4.
+* PuppetDB upgraded to 2.3.8-1
 
 Fixed Bugs
 ----------
@@ -175,7 +217,8 @@ Fixed Bugs
   - Change the call to the *rsyslog* init script to the *service* command to
     seamlessly support both RHEL6 and RHEL7.
 
-* pupmod-common
+* pupmod-common => Deprecated - Replaced by pupmod-simplib!
+* pupmod-simplib
 
   - Fixed the secure_mountpoints code so that it no longer incorrectly bind
     mounts /tmp or /var/tmp.
@@ -183,7 +226,7 @@ Fixed Bugs
   - Remove dynamic_swappiness cron job if a static value is set.
   - Ensure that the *passgen()* function fails on invalid scenarios. This
     prevents the accidental cration of empty passwords.
-  - Allow the value *2* to be used for *rp_filter* in *common::sysctl*.
+  - Allow the value *2* to be used for ``rp_filter`` in ``simplib::sysctl``.
   - Added ability to return remote ip addrs.
 
 * pupmod-dhcp
@@ -236,6 +279,8 @@ Fixed Bugs
   - Change the call to the *rsyslog* init script to the *service* command to
     seamlessly support both RHEL6 and RHEL7.
   - Fixed reported bugs in syncrepl.pp.
+  - Removed all reliance on the 'lsb*' facts since some users do not
+    wish to install the prerequisite RPMs for LSB compliance.
 
 * pupmod-openscap
 
@@ -243,9 +288,26 @@ Fixed Bugs
     seamlessly support both RHEL6 and RHEL7.
   - Changed default ssg base path to /usr/share/xml/scap/ssg/content
 
+* pupmod-pam
+
+  - Removed all reliance on the 'lsb*' facts since some users do not
+    wish to install the prerequisite RPMs for LSB compliance.
+
+* pupmod-pki
+
+  - Now allow directories in the cacerts directories. This previously
+    caused failures that needed to be manually addressed on each node.
+
 * pupmod-rsync
 
   - Fixed provider to run with --dry-run when puppet is run with a --noop.
+
+* pupmod-simp
+
+  - Ensure that SSSD is used by default on EL7+ systems since nscd and
+    nslcd have functionality issues.
+  - Removed all reliance on the 'lsb*' facts since some users do not
+    wish to install the prerequisite RPMs for LSB compliance.
 
 * pupmod-ssh
 
@@ -263,7 +325,7 @@ Fixed Bugs
 
 * pupmod-sudo
 
-   - Removed all reliance on the 'lsb*' facts since some users do not wish too
+   - Removed all reliance on the 'lsb*' facts since some users do not wish to
      install the prerequisite RPMs for LSB compliance.
 
 * pupmod-sudosh
@@ -284,6 +346,15 @@ Fixed Bugs
 
   - IMA is disabled by default.
 
+* simp-gpgkeys
+
+  - Ensure that the keys are set in the correct locations for the target
+    SIMP distribution.
+
+* simp-rsync
+
+  - Removed spurious install messages.
+
 * simp-util
 
   - Fixed the targets of unpack_dvd.
@@ -298,6 +369,15 @@ Fixed Bugs
 
   - Removed banners that broke some vnc clients.
 
+* simp-cli
+
+  - `simp config -a ANSWERFILE` fails when an item has no answer
+  - `simp config -A ANSWERFILE` prompts when an an item has no answer
+  - The misleading `--help` documentation for `-ff` has been removed
+  - The Config::Item `use_fips` now echoes its command unless `@silent`
+  - The `simp doc` command path to the documentation has been corrected.
+  - General usability improvements.
+
 * DVD
 
   - NetworkManager-wait-online is now set by default in the ISO supplied
@@ -307,8 +387,16 @@ Fixed Bugs
   - A default IP is no longer provided when booting from the ISO; *simp config*
     will set the network properly.
 
+  - The default kickstart no longer attempts to chkconfig any services
+    in the %post section.
+
 New Features
 ------------
+
+* pupmod-auditd
+
+  - Completely overhauled the module with a focus on better acceptance
+    testing and format compliance.
 
 * pupmod-augeasproviders
 
@@ -364,9 +452,21 @@ New Features
 
   - Imported 2.1.3 to support the Augeasproviders stack.
 
-* pupmod-common
+* pupmod-augeasproviders
+
+  - This was updated to 2.1.3.
+  - The update to 2.1.3 caused the addition of all of the
+    pupmod-augeasproviders modules below.
+
+* pupmod-cgroups
+
+  - Added acceptance tests.
+
+* pupmod-common => Deprecated - Replaced by pupmod-simplib!
+* pupmod-simplib
 
   - Created parse_hosts function.
+  - Added full tests for evaluating the ability to toggle FIPS mode.
 
 * pupmod-richardc-datacat
 
@@ -381,6 +481,10 @@ New Features
 * pupmod-puppetlabs-inifile
 
   - Updated to version 1.2.0.
+
+* pupmod-puppetlabs-puppetdb
+
+  - Updated to version TODO
 
 * pupmod-simp-kibana
 
@@ -431,6 +535,14 @@ New Features
 
   - Updated to use native packages and pull as muchs possible.
 
+* simp-doc
+
+  - Updated tables across the board to be more readable.
+  - Updated documentation relating to user management and user key
+    management using SSH.
+  - Rebranded the documentation and updated the color scheme.
+  - Updated the default system passwords.
+
 * simp-rsync
 
   - Content has been restructured to eliminate licensing conflicts.
@@ -477,13 +589,8 @@ New Features
 Known Bugs
 ----------
 
-  * Setting pwdReset to 'true' in LDAP does not force a user to reset their
-    password like it is supposed to. This works with FreeIPA and we are
-    looking to move to support that system in the future.
   * SSSD is currently broken and will allow logins via SSH even if your password
-    has expired. This has been noted by Red Hat and is in the pipeline. Their
-    suggestion it to move to FreeIPA from OpenLDAP. We are looking to do this
-    in the future.
+    has expired. This has been noted by Red Hat and is in the pipeline.
   * If you are running libvirtd, when svckill runs it will always attempt to
     kill dnsmasq unless you are deliberately trying to run the dnsmasq
     service.  This does *not* actually kill the service but is, instead, an

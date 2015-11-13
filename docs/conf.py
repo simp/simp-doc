@@ -42,7 +42,7 @@ epilog = []
 version = '5.1'
 
 # The full version, including alpha/beta/rc tags.
-release = '0-RC1'
+release = '0'
 
 full_version = ".".join([version, release])
 epilog.append('.. |simp_version| replace:: %s' % full_version)
