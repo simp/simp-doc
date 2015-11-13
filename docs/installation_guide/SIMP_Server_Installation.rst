@@ -34,30 +34,6 @@ repeatable.
     regarding certificate validation appear, check the Puppet server and
     client times to ensure they are synchronized.
 
-Using the configuration script, the following items are configured:
-
-.. note::
-
-  This needs updated for the new puppetserver settings
-  which includes Puppet Environments
-
--  Grub password in ``/boot/grub/grub.conf``
--  Basic network setup
--  Autosigning in ``*/etc/puppet/autosign.conf``
--  Fileserving in ``*/etc/puppet/fileserver.conf``
--  Puppet server and Certificate Authority (CA) information in ``/etc/puppet/puppet.conf``
-
-.. only:: not simp_4
-
-  -  ``/etc/puppet/environments/simp/hieradata/simp_def.yaml``
-
-.. only:: simp_4
-
-  -  ``/etc/puppet/hieradata/simp_def.yaml``
-
--  Server certificates for the puppet server itself (Fake CA)
--  Base YUM repositories
-
 ..  warning::
     Keep in mind as the installation process begins that Puppet does not
     work well with capital letters in host names. Therefore, they should
@@ -77,12 +53,6 @@ server.
 
 Table: SIMP Default Passwords
 
-Below is a table containing sample variables and their corresponding
-values that apply to this SIMP deployment. These variables and values
-will be helpful in illustrating how configuration files are set up. Your
-values will obviously differ, depending on your installation
-environment.
-
 ========= ========
 Utility   Password
 ========= ========
@@ -91,25 +61,8 @@ Root User RootPassword
 Simp User UserPassword
 ========= ========
 
-==================== =====
-Variable name        Value
-==================== =====
-Domain name          simp.net
-Fully qualified name puppet.simp.net
-IP address           192.168.1.10
-Gateway              192.168.1.1
-DNS server           192.168.1.10
-DNS search entry     simp.net
-Kickstart server     192.168.1.10
-Yum server           192.168.1.10
-LDAP URI             ldap://puppet.simp.net
-LDAP Base DN         [dc=simp,dc=net]
-LDAP Root DN         [cn=LDAPAdmin,ou=People,dc=simp,dc=net]
-LDAP Bind DN         [cn=hostAuth,ou=Hosts,dc=simp,dc=net]
-LDAP Sync DN         [cn=LDAPSync,ou=People,dc=simp,dc=net]
-==================== =====
-
-Table: Sample values for SIMP install
+A table of settings that can be changed/defined during installation is located in Appendix B, :ref:`List of Installation Variables`.
+Review this if you are unfamiliar with SIMP.  
 
 Preparing the SIMP Server Environment
 -------------------------------------
@@ -124,16 +77,24 @@ Preparing the SIMP Server Environment
 Installing the SIMP Server
 --------------------------
 
+..  warning::
+    Keep in mind as the installation process begins that Puppet does not
+    work well with capital letters in host names. Therefore, they should
+    not be used.
+
 1. Log on as ``simp`` and run ``su -`` to gain root access.
 2. Type ``simp config``
 
   a. Type ``simp config -a <Config File>`` to load a previously generated configuration instead of generating the configuration from the script. This is the option to run for systems that will be rebuilt often.
   b. For a list of additional commands, type ``simp help``. Type ``simp help ***<Command>***`` for more information on a specific command.
+  c.  A list of the variables that are set and more details are contained in :ref:`List of Installation Variables`.
+
+.. note:: Once simp config has been run, a simp config file with all your settings is saved in /root/.simp/simp_conf.yaml
 
 3. Configure the system as prompted.
 4. Type ``simp bootstrap``
 
-  .. note:: If progress bars are of equal length and the bootstrap finishes quickly, a problem has occurred. This is most likely due to an error in SIMP configuration. Refer to the previous step and make sure that all configuration options are correct.
+.. note:: If progress bars are of equal length and the bootstrap finishes quickly, a problem has occurred. This is most likely due to an error in SIMP configuration. Refer to the previous step and make sure that all configuration options are correct.
 
 5. Type ``reboot``
 
