@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "7ac7a964_fa714878",
+        "filename": "build/simp-doc.spec",
+        "patchSetId": 1
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 1005143
+      },
+      "writtenOn": "2015-11-13T00:49:12Z",
+      "side": 1,
+      "message": "Should be \"0\" to match the %changelog message.",
+      "range": {
+        "startLine": 10,
+        "startChar": 9,
+        "endLine": 10,
+        "endChar": 23
+      },
+      "revId": "2eb0f07ecae09777bd198c4e170fba95dd9f5068",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735",
+      "unresolved": false
+    }
+  ]
+}
