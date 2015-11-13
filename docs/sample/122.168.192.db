@@ -1,9 +1,0 @@
-$TTL	86400
-@		IN SOA	simp.net. sample.simp.net. (
-					2015061101
-					1h		; refresh
-					15m		; retry
-					1w		; expiry
-					1d )		; minimum
-		IN NS	sample.simp.net.
-15	IN	PTR	sample.simp.net.
