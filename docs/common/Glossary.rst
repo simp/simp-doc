@@ -29,6 +29,15 @@ Glossary of Terms
       options that the admin may wish to customize.  They are found in the
       auditd.conf file.
 
+   BIOS
+   Basic Input/Output System
+
+      A type of firmware used to perform hardware initialization during
+      the booting process (power-on startup) on IBM PC compatible
+      computers.
+
+      Source: `Wikipedia: BIOS <https://en.wikipedia.org/wiki/BIOS>`__
+
    CentOS
    Community Enterprise Operating System
       An Enterprise-grade Operating System that is mostly compatible with a
@@ -80,6 +89,17 @@ Glossary of Terms
 
       Source: `External Node Classifiers <https://docs.puppetlabs.com/guides/external_nodes.html>`__
 
+   FIPS
+   Federal Information Processing Standard
+      Federal Information Processing Standards (FIPS) Publications are
+      standards issued by NIST after approval by the Secretary of
+      Commerce pursuant to the Federal Information Security Management
+      Act (FISMA)
+
+      The particular standard of note in SIMP is `FIPS 140-2 <http://csrc.nist.gov/publications/fips/fips140-2/fips1402.pdf>`__
+
+      Source: `FIPS Publications <http://csrc.nist.gov/publications/PubsFIPS.html>`__
+
    FQDN
    Fully Qualified Domain Name
       A domain name that specifies its exact location in the tree hierarchy of
@@ -108,6 +128,15 @@ Glossary of Terms
 
       Source: `Hiera Overview <http://docs.puppetlabs.com/hiera/latest/>`__
 
+   IP
+   IP Address
+   Internet Protocol Address
+      A numerical label assigned to each device (e.g., computer,
+      printer) participating in a computer network that uses the
+      Internet Protocol for communication.
+
+      Source: `Wikipedia: IP Address <https://en.wikipedia.org/wiki/IP_address>`__
+
    IPTables
    Internet Protocol Tables
       A user space application that provides an interface to the IPv4 firewall
@@ -134,6 +163,15 @@ Glossary of Terms
       A protocol for querying and modifying LDAP directory services including
       information such as names, addresses, email, phone numbers, and other
       information from an online directory.
+
+   MAC
+   MAC Address
+   Media Access Control
+   Media Access Control Address
+      A unique identifier assigned to network interfaces for
+      communications on the physical network segment.
+
+      Source: `<Wikipedia: MAC address <https://en.wikipedia.org/wiki/MAC_address>`__
 
    NAT
    Network Address Translation

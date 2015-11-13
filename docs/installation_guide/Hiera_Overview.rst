@@ -1,3 +1,6 @@
+
+.. _Hiera:
+
 Hiera Overview
 ==============
 

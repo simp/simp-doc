@@ -9,10 +9,10 @@ Contents:
   SIMP_Server_Installation
   Client_Management
   Certificates
-  PXE_Boot
   Hiera_Overview
   Changelog <../common/Changelog.rst>
   Glossary <../common/Glossary.rst>
+  Installation_Miscellaney
 
 Indices and tables
 ------------------
