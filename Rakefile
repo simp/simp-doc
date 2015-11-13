@@ -1,6 +1,8 @@
 #!/usr/bin/rake -T
 
 require 'simp/rake'
+require 'yaml'
+require 'find'
 
 class DocPkg < Simp::Rake::Pkg
   # We need to inject the SCL Python repos for RHEL6 here if necessary
@@ -85,7 +87,113 @@ DocPkg.new( File.dirname( __FILE__ ) ) do |t|
   end
 end
 
+def process_rpm_yaml(rel)
+  fail("Must pass release to 'process_rpm_yaml'") unless rel
+
+  rpm_data = Dir.glob("../../build/yum_data/SIMP*#{rel}*/packages.yaml")
+
+  data = ['Not Found,Unknown']
+  unless rpm_data.empty?
+    data = YAML.load_file(rpm_data.sort_by{|filename| File.mtime(filename)}.last)
+    data = data.values.map{|x| x = x[:rpm_name] + ',' + x[:source]}
+  end
+
+  fh = File.open(File.join('docs','security_conop','RPM_Lists',%(#{rel}.csv)),'w')
+  fh.puts(data.join("\n"))
+  fh.sync
+  fh.close
+end
+
 namespace :docs do
+  namespace :rpm do
+    desc 'Update the RPM lists'
+    task :external do
+      ['RHEL','CentOS'].each do |rel|
+        process_rpm_yaml(rel)
+      end
+    end
+
+    desc 'Update the SIMP RPM list'
+    task :simp do
+      simp_version = Simp::RPM.get_info('build/simp-doc.spec')[:version]
+      default_data = ['Unknown,Unknown,Unknown']
+      collected_data = []
+
+      if File.directory?('../../src/build')
+        default_metadata = YAML.load_file('../../src/build/package_metadata_defaults.yaml')
+
+        Find.find('../../') do |path|
+          path_basename = File.basename(path)
+
+          # Ignore hidden directories
+          unless path_basename == '..'
+            Find.prune if path_basename[0].chr == '.'
+          end
+
+          # Ignore spec tests
+          Find.prune if path_basename == 'spec'
+
+          # Only Directories
+          Find.prune unless File.directory?(path)
+          # Ignore symlinks (this may be redundant on some systems)
+          Find.prune if File.symlink?(path)
+
+          build_dir = File.join(path,'build')
+          if File.directory?(build_dir)
+            Dir.chdir(path) do
+              # Update the metadata for this RPM
+              rpm_metadata = default_metadata.dup
+              if File.exist?('build/package_metadata.yaml')
+                rpm_metadata.merge!(YAML.load_file('build/package_metadata.yaml'))
+              end
+
+              valid_rpm = false
+              Array(rpm_metadata['valid_versions']).each do |version_regex|
+                if Regexp.new("^#{version_regex}$").match(simp_version)
+                  valid_rpm = true
+                  break
+                end
+              end
+
+              if valid_rpm
+                # Use the real RPMs if we have them
+                rpms = Dir.glob('dist/*.rpm')
+                rpms.delete_if{|x| x =~ /\.src\.rpm$/}
+                if rpms.empty?
+                  Dir.glob('build/*.spec').each do |rpm_spec|
+                    pkginfo = Simp::RPM.get_info(rpm_spec)
+                    pkginfo[:metadata] = rpm_metadata
+                    collected_data << pkginfo
+                  end
+                else
+                  rpms.each do |rpm|
+                    pkginfo = Simp::RPM.get_info(rpm)
+                    pkginfo[:metadata] = rpm_metadata
+                    collected_data << pkginfo
+                  end
+                end
+              end
+            end
+          end
+        end
+      end
+
+      if collected_data.empty?
+        collected_data = default_data
+      else
+        # Create the necessary CSV format
+        collected_data.sort_by!{|x| x[:name]}
+        collected_data.map!{|x| x = [x[:name],x[:full_version],!x[:metadata]['optional']].join(',')}
+      end
+
+      fh = File.open(File.join('docs','user_guide','SIMP_RPM_List.csv'),'w')
+      # Highlight those items that are always there
+      fh.puts(collected_data.join("\n").gsub(',true',',**true**'))
+      fh.sync
+      fh.close
+    end
+  end
+
   desc 'build HTML docs'
   task :html do
     extra_args = ''
