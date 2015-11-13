@@ -13,7 +13,6 @@ Contents:
   Hiera_Overview
   Changelog <../common/Changelog.rst>
   Glossary <../common/Glossary.rst>
-  File_Samples
 
 Indices and tables
 ------------------
