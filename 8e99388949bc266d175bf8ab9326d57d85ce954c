@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "7ac7a964_b5f36109",
+        "filename": "docs/conf.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 45,
+      "author": {
+        "id": 1005143
+      },
+      "writtenOn": "2015-11-13T08:50:41Z",
+      "side": 1,
+      "message": "Assuming this should be \"0\" by now.",
+      "revId": "8e99388949bc266d175bf8ab9326d57d85ce954c",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735",
+      "unresolved": false
+    }
+  ]
+}
