@@ -34,6 +34,9 @@ Glossary of Terms
       An Enterprise-grade Operating System that is mostly compatible with a
       prominent Linux distribution.
 
+   CA
+   Certificate Authority
+      An entity that issues :term:`X.509` digital certificates.
 
    CLI
    Command Line Interface

@@ -23,7 +23,6 @@ Contents:
   SIMP_Package_Data
   Changelog <../common/Changelog.rst>
   Glossary <../common/Glossary.rst>
-  File_Samples
 
 Indices and tables
 ------------------
