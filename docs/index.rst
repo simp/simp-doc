@@ -17,6 +17,7 @@ Contents:
 .. toctree::
   :maxdepth: 1
 
+  Changelog <common/Changelog.rst>
   Installation Guide <installation_guide/index>
   User Guide <user_guide/index>
   Security Concept of Operations <security_conop/index>
