@@ -14,8 +14,15 @@ code, .rst-content tt, .rst-content code {
 
 /*
  * === SIMP-specific styling ===
- *
- * menu text colors
+*/
+ 
+/* link colors
+ * -------------------------------------------------------------------------- */
+a         { color: #336633; }
+a:visited { color: #80b980; }
+a:hover   { color: #29b929; }
+
+/* menu text colors
  * -------------------------------------------------------------------------- */
 .wy-menu-vertical li.on a, .wy-menu-vertical li.current>a {
   color: #003300;
