@@ -112,4 +112,11 @@ namespace :docs do
     puts "== #{cmd}"
     %x(#{cmd} > /dev/null)
   end
+
+  desc 'run a local web server to view HTML docs on http://localhost:5000'
+  task :server, [:port] do |_t, args|
+    port = args.to_hash.fetch(:port, 5000)
+    puts "running web server on http://localhost:#{port}"
+    %x(ruby -run -e httpd html/ -p #{port})
+ end
 end
