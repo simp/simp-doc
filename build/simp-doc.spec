@@ -54,6 +54,7 @@ pip install --upgrade sphinx
 pip install --upgrade rst2pdf
 pip install --upgrade pillow
 pip install --upgrade svglib
+pip install --upgrade sphinxcontrib-findanything
 
 sphinx-build -E -n -t simp_%{simp_major_version} -b html       -d sphinx_cache docs html
 sphinx-build -E -n -t simp_%{simp_major_version} -b singlehtml -d sphinx_cache docs html-single
