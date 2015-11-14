@@ -69,8 +69,17 @@ extensions = [
     'sphinx.ext.autodoc',
     'sphinx.ext.intersphinx',
     'sphinx.ext.todo',
-#    'rst2pdf.pdfbuilder',
-#    'sphinxcontrib.fulltoc',
+    # To use this, you need to make the necessary variable available in setup
+    # using the 'add_config_value' function.
+    #
+    # Example:
+    #   def setup(app):
+    #     app.add_config_value('releaselevel', '', 'env') # The third value must always be 'env'
+    #
+    # Usage:
+    #   .. ifconfig:: releaselevel in ('alpha', 'beta', 'rc')
+    'sphinx.ext.ifconfig',
+    'rst2pdf.pdfbuilder'
 ]
 
 # Add any paths that contain templates here, relative to this directory.
@@ -331,7 +340,6 @@ texinfo_documents = [
 #intersphinx_mapping = {'https://docs.python.org/': None}
 
 # PDF
-#extensions = ['sphinx.ext.autodoc','rst2pdf.pdfbuilder']
 pdf_documents = [
     (master_doc, u'SIMP_Documentation',u'SIMP Documentation', u'SIMP'),
 ]
