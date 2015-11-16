@@ -66,6 +66,11 @@ Deprecations
   namespace. This removes a commonly conflicting module name from the SIMP
   ecosystem.
 
+  You will need to run the `migrate_to_simplib` script to update all of the
+  relevant files. This script will only migrate items in the existing SIMP
+  environment. You may also set the environment variable `UPGRADE_PATHS` to run
+  the script on multiple external paths.
+
   All code was migrated.
 
 * pupmod-simp-functions
@@ -73,6 +78,11 @@ Deprecations
   The `::functions` namespace has been deprecated in favor of the new
   `::simplib` namespace. This removes a commonly conflicting module name from
   the SIMP ecosystem.
+
+  You will need to run the `migrate_to_simplib` script to update all of the
+  relevant files. This script will only migrate items in the existing SIMP
+  environment. You may also set the environment variable `UPGRADE_PATHS` to run
+  the script on multiple external paths.
 
   The following items were not migrated:
 
