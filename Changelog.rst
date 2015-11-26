@@ -599,6 +599,8 @@ New Features
 Known Bugs
 ----------
 
+  * There is a symlink that is created at /etc/puppet/environments/simp/simp
+    which should not be in place. This is being tracked as SIMP-661
   * SSSD is currently broken and will allow logins via SSH even if your password
     has expired. This has been noted by Red Hat and is in the pipeline.
   * If you are running libvirtd, when svckill runs it will always attempt to
