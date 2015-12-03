@@ -41,6 +41,7 @@ table lists the steps for a local setup.
 .. only:: not simp_4
 
   1. Navigate to ``/var/simp/rsync/OSTYPE/MAJORRELEASE/bind_dns``
+
 2. Modify the named files to correctly reflect the environment. At a
    minimum, the following files under ``/srv/rsync/bind_dns/default``
    should be edited:

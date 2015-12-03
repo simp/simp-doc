@@ -17,7 +17,7 @@ Setting Parameters
 ------------------
 
 **Automatic Lookup** You can now safely declare any class on any node
-with 'include', even if the class is parametized. Before Hiera, this was
+with 'include', even if the class is parameterized. Before Hiera, this was
 not possible. Puppet will automatically retrieve class parameters from
 Hiera using keys. Add a key with a value pair to an appropriate yaml
 file, say default.yaml, as such:
@@ -35,7 +35,7 @@ You can then 'include classfoo' on any node, with parameter\_bar and
 parameter\_baz defaulting to Woo and Hoo, respectively.
 
 **Lookup Functions** You are not required to set up your hierarchy for
-automatic variable lookup. Using three functionts, you can query Hiera
+automatic variable lookup. Using three functions, you can query Hiera
 for any key.
 
 The first is ``hiera``. This uses standard priority lookup and can
@@ -43,7 +43,7 @@ retrieve values of any data type from Hiera. If no key is found, a
 default should be included. ``$myvar = hiera('parameter_bar', 'Woo')``
 
 The second is ``hiera_array``. This uses an array merge lookup. It
-retrieves all array values for a given key througout the entire
+retrieves all array values for a given key throughout the entire
 hierarchy and flattens them into a single array.
 
 The third is ``hiera_hash``. This uses a hash merge lookup. It retrieves

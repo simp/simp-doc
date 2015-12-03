@@ -1,7 +1,7 @@
 Glossary of Terms
 =================
 
-.. note:: Many terms here have been reproduced from various locations across the Internet and are governed by the licenses surrounding the source material. Please see the reference links for specifics on usage and reproducability.
+.. note:: Many terms here have been reproduced from various locations across the Internet and are governed by the licenses surrounding the source material. Please see the reference links for specifics on usage and reproducibility.
 
 .. glossary::
    :sorted:
@@ -287,7 +287,7 @@ Glossary of Terms
    SSH
    Secure Shell
       An application for secure data communication, remote shell services, or
-      command execution between networked computers. SSH utilitizes a
+      command execution between networked computers. SSH utilizes a
       server/client model for point-to-point secure communication.
 
    SSL

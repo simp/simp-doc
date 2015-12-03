@@ -357,7 +357,7 @@ SIMP SCTM Technical Controls
    * - AU-2
      - Auditable Events
      - Audit and Accountability
-     - a. SIMP audit rules were built by using idustry best practices gathered over the years. The heaviest reliance has been on the SCAP-Security Guide (SSG). SIMP aims for a balance between performance and operational needs so the settings are rarely an exact match from these guides. The list of events that audited are by auditd can be found in appendix of the Security Concepts document. b. Implementation Specific c. Rational is for audit setting is provided in SSG. d. Threat information is specific to the implementation. Auditd and syslog facility can always be fine tuned for each implementation.
+     - a. SIMP audit rules were built by using industry best practices gathered over the years. The heaviest reliance has been on the SCAP-Security Guide (SSG). SIMP aims for a balance between performance and operational needs so the settings are rarely an exact match from these guides. The list of events that audited are by auditd can be found in appendix of the Security Concepts document. b. Implementation Specific c. Rational is for audit setting is provided in SSG. d. Threat information is specific to the implementation. Auditd and syslog facility can always be fine tuned for each implementation.
    * - AU-2(3)
      - Auditable Events (Control Enhancement)
      - Audit and Accountability
@@ -381,7 +381,7 @@ SIMP SCTM Technical Controls
    * - AU-4
      - Audit Storage Capacity
      - Audit and Accountability
-     - The audit partition is configured as a separation partition from the system files, reducing the likelihood of audit interfering with system operations. Implementaions can change this but it's highly discouraged.
+     - The audit partition is configured as a separation partition from the system files, reducing the likelihood of audit interfering with system operations. Implementations can change this but it's highly discouraged.
    * - AU-5
      - Response to Audit Processing Failures
      - Audit and Accountability
@@ -505,7 +505,11 @@ SIMP SCTM Technical Controls
    * - AU-12
      - Audit Generation
      - Audit and Accountability
-     - a. Auditd provides the audit generation capability and is running on all SIMP systems by default.b. The audit.rules files configures events that are audited. c. The audit.rules applies the list of audit rules defined in SIMP Security Concepts document.
+
+     - a. Auditd provides the audit generation capability and is running on all SIMP systems by default.
+     - b. The audit.rules files configures events that are audited. 
+     - c. The audit.rules applies the list of audit rules defined in SIMP Security Concepts document.
+
    * - AU-12(1)
      - Audit Generation (Control Enhancement)
      - Audit and Accountability
@@ -613,7 +617,12 @@ SIMP SCTM Technical Controls
    * - IA-5(1)
      - Authenticator Management (Control Enhancement)
      - Identification and Authentication
-     - a. Authenticator strength is enforced using pam\_crack\_lib.so. This works for user defined passwords on local and LDAP accounts. Administrators can bypass PAM and set weak passwords in LDAP. Under normal circumstances, users would be forced to change their password at login, at which point pam enforced complexity. b. Not enforced c. Hashed passwords are built into linux (/etc/shadow and /etc/pam.d/system-auth pam\_unix.so). LDAP password changed by users are done through pam before getting placed in LDAP. Manual LDAP password are created using the slapasswd command.d. Password minimum and maximum lifetimes are enforced through /etc/login.defs and ldap. e. By default, the previous 24 passwords can not be reused.
+
+     - a. Authenticator strength is enforced using pam\_crack\_lib.so. This works for user defined passwords on local and LDAP accounts. Administrators can bypass PAM and set weak passwords in LDAP. Under normal circumstances, users would be forced to change their password at login, at which point pam enforced complexity. 
+     - b. Not enforced 
+     - c. Hashed passwords are built into linux (/etc/shadow and /etc/pam.d/system-auth pam\_unix.so). LDAP password changed by users are done through pam before getting placed in LDAP. Manual LDAP password are created using the slapasswd command.
+     - d. Password minimum and maximum lifetimes are enforced through /etc/login.defs and ldap. e. By default, the previous 24 passwords can not be reused.
+
    * - IA-5(2)
      - Authenticator Management (Control Enhancement)
      - Identification and Authentication
@@ -1545,7 +1554,7 @@ SIMP SCTM Management Controls
    * - MA-4(1)
      - Non-Local Maintenance (Control Enhancement)
      - Maintenance
-     - Remote maintenance can be performed on SIMP using SSH or direct console access. SSH sessions are tracked and logged using the security features built into SIMP. Console access requires someone to have access to the physical (or virtual) console along with the root password. Audting of those actions also occurs in accordance with the configured audit policy. It's up to the implementation to decide how to distribute authentication information for remote maintenance
+     - Remote maintenance can be performed on SIMP using SSH or direct console access. SSH sessions are tracked and logged using the security features built into SIMP. Console access requires someone to have access to the physical (or virtual) console along with the root password. Auditing of those actions also occurs in accordance with the configured audit policy. It's up to the implementation to decide how to distribute authentication information for remote maintenance
    * - MA-4(2)
      - Non-Local Maintenance (Control Enhancement)
      - Maintenance
@@ -1877,7 +1886,7 @@ SIMP SCTM Management Controls
    * - SI-3
      - Malicious Code Protection
      - System and Information Integrity
-     - SIMP has modules available for mcafee and ClamAV. The ClamAV. Implementations need need to provide their own version of the mcafee software for the module to work. That module comes with the ability to sync dat updates to clients via rsync. The modulde does NOT specify how often and what files systems should be scanned. SIMP also implements the open source tool chkrootkit that comes installed by default.
+     - SIMP has modules available for mcafee and ClamAV. The ClamAV. Implementations need need to provide their own version of the mcafee software for the module to work. That module comes with the ability to sync dat updates to clients via rsync. The module does NOT specify how often and what files systems should be scanned. SIMP also implements the open source tool chkrootkit that comes installed by default.
    * - SI-3(1)
      - Malicious Code Protection (Control Enhancement)
      - System and Information Integrity
