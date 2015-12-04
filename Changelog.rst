@@ -1,5 +1,5 @@
 =========================
-SIMP 5.1.0-0
+SIMP 5.1.0-1
 =========================
 
 ---------
@@ -27,6 +27,9 @@ This release is known to work with:
 
 .. warning::
   The default system passwords have changed! Please see the User's Guide for details.
+
+.. note::
+  This is a point release update that was missing some corrected documentation as well as the migration from common -> simplib in simp-bootstrap.
 
 Manual Changes Requred
 ----------------------
