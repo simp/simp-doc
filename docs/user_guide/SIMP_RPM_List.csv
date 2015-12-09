@@ -81,7 +81,7 @@ rubygem-simp-cli,1.0.10-0.el7,**true**
 rubygem-simp-cli-doc,1.0.10-0.el7,**true**
 simp,5.1.0-RC1.1446834077,**true**
 simp-bootstrap,5.2.1-1,**true**
-simp-doc,5.1.0-0,**true**
+simp-doc,5.1.0-2,**true**
 simp-gpgkeys,2.0.0-3.el7,**true**
 simp-rsync,5.1.0-2.el7,**true**
 simp-rsync-clamav,5.1.0-2.el7,**true**

@@ -1,5 +1,5 @@
 =========================
-SIMP 5.1.0-1
+SIMP 5.1.0-2
 =========================
 
 ---------
@@ -16,9 +16,9 @@ Changelog
 
   PageBreak
 
-SIMP 5.1.0-0
+SIMP 5.1.0-2
 
-**Package**: 5.1.0-0
+**Package**: 5.1.0-2
 
 This release is known to work with:
 
