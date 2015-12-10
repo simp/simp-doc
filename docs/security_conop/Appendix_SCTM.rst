@@ -1234,7 +1234,7 @@ SIMP SCTM Management Controls
    * - CM-8(2)
      - Information System Component Inventory (Control Enhancement)
      - Configuration Management
-     - To the extent possible, puppet tracks clients that are within it's control. It's not meant to be a true inventory mechanism.
+     - To the extent possible, puppet tracks clients that are within its control. It's not meant to be a true inventory mechanism.
    * - CM-8(3)
      - Information System Component Inventory (Control Enhancement)
      - Configuration Management
@@ -2010,7 +2010,7 @@ SIMP SCTM Management Controls
    * - SI-7
      - Software and Information Integrity
      - System and Information Integrity
-     - SIMP comes with AIDE installed. Puppet also serves the purpose of checking the integrity of files. During each client run, a change in file integrity means the file needs to be restored to it's original state.
+     - SIMP comes with AIDE installed. Puppet also serves the purpose of checking the integrity of files. During each client run, a change in file integrity means the file needs to be restored to its original state.
    * - SI-7(1)
      - Software and Information Integrity (Control Enhancement)
      - System and Information Integrity
@@ -2194,11 +2194,11 @@ SIMP SCTM Management Controls
    * - RA-5(1)
      - Vulnerability Scanning (Control Enhancement)
      - Risk Assessment
-     - SCAP-Security-Guide is the two primary tool used to check for suspected configuration errors. Puppet also continues to protect clients against unwanted changes.
+     - SCAP-Security-Guide is the primary tool used to check for suspected configuration errors. Puppet also continues to protect clients against unwanted changes.
    * - RA-5(2)
      - Vulnerability Scanning (Control Enhancement)
      - Risk Assessment
-     - SCAP-Security-Guide is the two primary tool used to check for suspected configuration errors. Puppet also continues to protect clients against unwanted changes.
+     - SCAP-Security-Guide is the primary tool used to check for suspected configuration errors. Puppet also continues to protect clients against unwanted changes.
    * - RA-5(3)
      - Vulnerability Scanning (Control Enhancement)
      - Risk Assessment
