@@ -16,11 +16,6 @@ This section describes how to configure the kickstart server.
     A.  ``pupclient_x86_64.cfg``
     B.  ``diskdetect.sh``
 2. Open each of the files and follow the instructions provided within them to replace the variables. You need to know the IP Addresses of the YUM, Kickstart, and TFTPserver. (They default to the simp server in simp config).  
-    A. ``pupclient_x86_64.cfg``:   
-        1.) Note: #KSSERVER# should be replaced with Kickstart Server IP not Yum IP.  (They are the same if you used the defaults.)
-        2.) In the URL line use the YUMSERVER ip not the Kickstart server IP. (Although on a default SIMP system the YUM and kicktart server are the same server so it is not a problem.)
-        3.) Use the commands in the top of the file in the comments section to generate the password hashes.  
-    B. ``diskdetect.sh``:  The ``diskdetect.sh`` script is responsible for detecting the first active disk and applying a disk configuration. Edit this file to meet any necessary requirements or use this file as a starting point for further work. It will work as is for most systems as long as your disk device names are in the list.
 3. Type ``chown root.apache /var/www/ks/*`` to ensure that all files are owned by ``root`` and in the ``apache`` group.
 4. Type ``chmod 640 /var/www/ks/*`` to change the permissions so the owner can read and write the file and the ``apache`` group can only read. 
 
