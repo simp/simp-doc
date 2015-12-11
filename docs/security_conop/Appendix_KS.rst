@@ -16,7 +16,7 @@ Default Puppet Master Kickstart file (contains default RPMs)
     # Replace the following strings in this file
     # #BOOTPASS# - Your hashed bootloader password
     # #ROOTPASS# - Your hashed root password
-    # #KSSERVER# - The IP address of your YUM server
+    # #KSSERVER# - The IP address of your Kickstart server
     # #YUMSERVER# - The IP address of your YUM server
     # #LINUXDIST# - The LINUX Distribution you are kickstarting
     #        - Current CASE SENSITIVE options: RedHat CentOS
@@ -41,7 +41,7 @@ Default Puppet Master Kickstart file (contains default RPMs)
     text
     keyboard us
     lang en_US
-    url --url http://#KSSERVER#/yum/#LINUXDIST#/7/x86_64
+    url --url http://#YUMSERVER#/yum/#LINUXDIST#/7/x86_64
 
     %include /tmp/part-include
 

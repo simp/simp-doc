@@ -4,7 +4,7 @@ Puppet Server Behind a NAT
 This section provides guidance for when the Puppet server is behind a
 NAT but is managing hosts outside the NAT.
 
-To resolve this issue, open the ``/etc/puppet/manifests/vars.pp`` file and
+To resolve this issue, open the ``/etc/puppet/environments/simp/manifests/vars.pp`` file and
 rename the ``puppet_servers`` variable to
 ``puppet_server_hosts_mod``. Then, create a new ``$puppet_servers``
 variable and point it to ``template('site/nat_ip_switch.erb')``.
@@ -19,7 +19,7 @@ Example Sample Entries in ``vars.pp``
   $puppet_servers = template('site/nat_ip_switch.erb')
 
 
-Create a ``/etc/puppet/modules/site/templates/nat_ip_switch.erb`` file
+Create a ``/etc/puppet/environments/simp/modules/site/templates/nat_ip_switch.erb`` file
 with the content shown in the next example. Change the appropriate
 portions of the content to meet the needs of the user environment.
 
