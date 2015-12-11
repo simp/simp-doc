@@ -21,7 +21,6 @@ Source Code for Using an OpenLDAP Server openldap
 .. code-block:: ruby
 
   # These are some common variables.
-  # See /etc/puppet/manifests/vars.pp for the stock version.
 
   $ldap_master = 'ldap://ldapmaster.your.domain'
 
@@ -121,7 +120,7 @@ Troubleshooting
 
 If the system is not replicating, it is possible that another user has
 updated the ``$ldap_sync_passwd`` and ``$ldap_sync_hash`` entries in the
-``/etc/puppet/manifests/vars.pp`` file without also updating the value in
+``/etc/puppet/environments/simp/manifests/vars.pp`` file without also updating the value in
 LDAP itself; this is the most common issue reported by users.
 
 Currently, SIMP cannot self-modify the LDAP database directly;

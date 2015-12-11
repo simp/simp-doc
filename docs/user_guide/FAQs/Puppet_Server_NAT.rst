@@ -4,69 +4,29 @@ Puppet Server Behind a NAT
 This section provides guidance for when the Puppet server is behind a
 NAT but is managing hosts outside the NAT.
 
-To resolve this issue, open the ``/etc/puppet/manifests/vars.pp`` file and
-rename the ``puppet_servers`` variable to
-``puppet_server_hosts_mod``. Then, create a new ``$puppet_servers``
-variable and point it to ``template('site/nat_ip_switch.erb')``.
+Your puppet server certificate must have all names in it that are used by 
+any client.  To update your certificates follow the guidance:
 
-The entries in ``vars.pp`` should look like the following example.
+1) Update your certificate names in the /etc/puppet/puppet.conf:
 
-Example Sample Entries in ``vars.pp``
-
-.. code-block:: ruby
-
-  $puppet_server_hosts_mod = "puppet.$dns_domain|1.2.3.4 puppet2.$dns_domain|2.3.4.5"
-  $puppet_servers = template('site/nat_ip_switch.erb')
+    [main]
+        
+    dns_alt_names = hostname.your.domain,hostname.your.other.domain
 
 
-Create a ``/etc/puppet/modules/site/templates/nat_ip_switch.erb`` file
-with the content shown in the next example. Change the appropriate
-portions of the content to meet the needs of the user environment.
+   Put all possible hostnames in a comma seperated list above. 
 
-.. important::
+2) Regenerate ALL certificates on Puppet:
 
-    Ensure that the ``.erb`` file is owned by *root.puppet* and mode
-    *640*.
+   http://docs.puppetlabs.com/puppet/3.8/reference/ssl_regenerate_certificates.html
 
-Source Create the ``nat_ip_switch.erb``
+   In Section 2 of the web page above that says update your Puppetdb
+   certificates follow the instructions in Step 3, option A at this
+   location:
 
-.. code-block:: ruby
-
-  <%
-  # Edit this variable to provide the IP address mappings.
-  # The left-hand side should contain the internal addresses.
-  # The right-hand side should contain the external addresses.
-  t_ipmap = {
-      "1.2.3.4" => "10.10.10.10",
-      "2.3.4.5" => '10.2.3.4'
-  }
-
-  # Edit this regex to match the hosts.
-  # This is done with a Regexp; the user can use whichever is preferred.
-  # Pure IP matching would be faster using the IPAddr class.
-  t_inside_nets = Regexp.new("^5\.*")
-
-  t_pupsrvs = puppet_server_hosts_mod.split(/\s|,|;/)
-
-  # Change the ipaddress variable to the host that the regexp above is matching.
-  if not t_inside_nets.match(ipaddress) then
-    t_pupsrvs.each_index do |t_i|
-      t_vals = t_pupsrvs[t_i].split(/\|/)
-      if t_ipmap.include?(t_vals.last) then
-        t_vals[-1] = t_ipmap[t_vals.last]
-        t_pupsrvs[t_i] = t_vals.join('|')
-      end
-    end
-
-    t_pupsrvs = t_pupsrvs.join(' ')
-  end
-  -%>
-  <%= t_pupsrvs -%>
+   http://docs.puppetlabs.com/puppetdb/2.3/install_from_source.html#step-3-option-a-run-the-ssl-configuration-script
 
 
-Run ``puppet agent -t`` on the client to receive the appropriately
-mapped NAT address of the Puppet server.
 
-If the user cannot connect to the NAT'd Puppet server, change the values
-in the ``/etc/hosts`` directory to the correct values and try running
-``puppet agent -t`` again.
+        
+
