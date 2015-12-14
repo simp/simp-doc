@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "5ac4a560_1e8cf67e",
+        "filename": "docs/user_guide/Managing_Workstation_Infrastructures.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 1004834
+      },
+      "writtenOn": "2015-12-14T13:30:01Z",
+      "side": 0,
+      "message": "Were these validated? They may not function properly any longer.",
+      "revId": "d0bb3e5fb6da0d7c958a56d352412fb02973cabd",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735",
+      "unresolved": false
+    }
+  ]
+}

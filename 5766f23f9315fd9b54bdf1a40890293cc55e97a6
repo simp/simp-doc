@@ -1,0 +1,123 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "5ac4a560_7ea6ca11",
+        "filename": "docs/installation_guide/Hiera_Overview.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 62,
+      "author": {
+        "id": 1004834
+      },
+      "writtenOn": "2015-12-14T13:30:01Z",
+      "side": 1,
+      "message": "\u0027additionally\u0027 should be capitalized here as it starts a new sentence.",
+      "revId": "5766f23f9315fd9b54bdf1a40890293cc55e97a6",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5ac4a560_beaf82e2",
+        "filename": "docs/installation_guide/Hiera_Overview.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 66,
+      "author": {
+        "id": 1004834
+      },
+      "writtenOn": "2015-12-14T13:30:01Z",
+      "side": 1,
+      "message": "Why did this get downcased?",
+      "revId": "5766f23f9315fd9b54bdf1a40890293cc55e97a6",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5ac4a560_deaa7ed1",
+        "filename": "docs/installation_guide/Hiera_Overview.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 69,
+      "author": {
+        "id": 1004834
+      },
+      "writtenOn": "2015-12-14T13:30:01Z",
+      "side": 1,
+      "message": "\u0027hiera\u0027 should be capitalized.",
+      "revId": "5766f23f9315fd9b54bdf1a40890293cc55e97a6",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5ac4a560_1eb5d630",
+        "filename": "docs/installation_guide/Hiera_Overview.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 87,
+      "author": {
+        "id": 1004834
+      },
+      "writtenOn": "2015-12-14T13:30:01Z",
+      "side": 1,
+      "message": "These need to be fixed.\n\nShould be EL_MAJOR_VERSION instead of the mess that it is now.",
+      "revId": "5766f23f9315fd9b54bdf1a40890293cc55e97a6",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5ac4a560_7e7dea6d",
+        "filename": "docs/user_guide/FAQs/Puppet_Server_NAT.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1004834
+      },
+      "writtenOn": "2015-12-14T13:30:01Z",
+      "side": 1,
+      "message": "vars.pp does not exist any longer.\n\nActually, I think that this whole section no longer applies...\n\nA story should be created to figure out how to do this with the new code base.",
+      "revId": "5766f23f9315fd9b54bdf1a40890293cc55e97a6",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5ac4a560_be96a292",
+        "filename": "docs/user_guide/FAQs/Redundant_LDAP.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 24,
+      "author": {
+        "id": 1004834
+      },
+      "writtenOn": "2015-12-14T13:30:01Z",
+      "side": 1,
+      "message": "vars.pp no longer exists.\n\nThese variables are now in Hiera and should be updated.",
+      "revId": "5766f23f9315fd9b54bdf1a40890293cc55e97a6",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5ac4a560_de919e9b",
+        "filename": "docs/user_guide/FAQs/Redundant_LDAP.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 124,
+      "author": {
+        "id": 1004834
+      },
+      "writtenOn": "2015-12-14T13:30:01Z",
+      "side": 1,
+      "message": "vars.pp no longer exists.",
+      "revId": "5766f23f9315fd9b54bdf1a40890293cc55e97a6",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735",
+      "unresolved": false
+    }
+  ]
+}
