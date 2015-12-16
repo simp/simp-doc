@@ -7,7 +7,7 @@
 Summary: SIMP Documentation
 Name: simp-doc
 Version: 4.2.0
-Release: 0
+Release: 1
 License: Apache License, Version 2.0
 Group: Documentation
 Source: %{name}-%{version}-%{release}.tar.gz
@@ -93,6 +93,9 @@ fi
 # Post uninstall stuff
 
 %changelog
+* Wed Dec 16 2015 Trevor Vaughan <tvaughan@onyxpoint.com> - 4.2.0-1
+- Doc updates for 4.2.0-1
+
 * Wed Nov 11 2015 Trevor Vaughan <tvaughan@onyxpoint.com> - 4.2.0-0
 - Updated the default passwords to be easier overall
 

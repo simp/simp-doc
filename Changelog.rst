@@ -1,4 +1,4 @@
-SIMP 4.2.0-0
+SIMP 4.2.0-1
 
 ---------
 Changelog
@@ -14,9 +14,9 @@ Changelog
 
   PageBreak
 
-SIMP 4.2.0-0
+SIMP 4.2.0-1
 
-**Package**: 4.2.0-0
+**Package**: 4.2.0-1
 
 This release is known to work with:
 
@@ -226,6 +226,8 @@ Fixed Bugs
 * pupmod-common => Deprecated - Replaced by pupmod-simplib!
 * pupmod-simplib
 
+  - Updated to fix regression with CCE-4241-6. Single user mode is now properly
+    password protected.
   - Fixed the secure_mountpoints code so that it no longer incorrectly bind
     mounts /tmp or /var/tmp.
   - We no longer supply crontab or anacrontab in global_etcd.
