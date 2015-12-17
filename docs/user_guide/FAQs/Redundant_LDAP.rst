@@ -21,7 +21,6 @@ Source Code for Using an OpenLDAP Server openldap
 .. code-block:: ruby
 
   # These are some common variables.
-  # See /etc/puppet/environments/simp/manifests/vars.pp for the stock version.
 
   $ldap_master = 'ldap://ldapmaster.your.domain'
 

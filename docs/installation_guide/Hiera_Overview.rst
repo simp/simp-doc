@@ -59,21 +59,22 @@ should be included on a node. In SIMP, we place
 ``hiera_include('classes')`` in ``/etc/puppet/environements/simp/manifests/site.pp``. since
 site.pp is outside of any node definition and below all top scope
 variables, every node controlled by puppet will get every class tagged
-with 'classes' **in its hierarchy**. additionally, simp\_def.yaml in is
+with 'classes' **in its hierarchy**. Additionally, simp\_def.yaml in is
 the hierarchy of every node, so every node will receive those classes
 (by default).
 
-assigning defined types to nodes
+Assigning Defined Types to Nodes
 --------------------------------
 
-defined types do not have the ability to receive parameters via hiera in
-the traditional sense. to include a defined type on a node, one could
-use create\_resources, but this is messy and discouraged. instead, make a
-site class, ``/etc/puppet/environements/simp/modules/site/manifests/my_site.pp``. For
-example, to include tftpboot linux\_model and assign\_host on your
+defined types do not have the ability to receive parameters via Hiera in
+the traditional sense. To include a defined type on a node, one could
+use create\_resources, but this is messy and discouraged. Instead, make a
+site class in the site manifests directory, like: 
+``/etc/puppet/environements/simp/modules/site/manifests/my_site.pp``.
+For example, to include tftpboot linux\_model and assign\_host on your
 puppet server, puppet.your.domain:
 
-Adding a Site Manifest Examples
+Add the following code to a file tftpboot.pp in you site manifests directory:
 
 .. code-block:: ruby
 
@@ -83,20 +84,18 @@ Adding a Site Manifest Examples
         class site::tftpboot {
           include 'tftpboot'
 
-          tftpboot::linux_model { 'CentOS_RHEL_MAJOR_VERSION':
-            kernel => 'centosRHEL_MAJOR_VERSION_x86_64/vmlinuz',
-            initrd => 'centosRHEL_MAJOR_VERSION_x86_64/initrd.img',
+          tftpboot::linux_model { 'EL_MAJOR_VERSION':
+            kernel => 'EL_MAJOR_VERSION_x86_64/vmlinuz',
+            initrd => 'EL_MAJOR_VERSION_x86_64/initrd.img',
             ks     => "http://KSSERVER/ks/pupclient_x86_64.cfg",
             extra  => 'ipappend 2'
           }
 
-          tftpboot::assign_host { 'default': model => 'CentOS_RHEL_MAJOR_VERSION' }
+          tftpboot::assign_host { 'default': model => 'EL_MAJOR_VERSION' }
         }
 
-Then, in ``/etc/puppetenvironments/simp/hieradata/hosts/puppet.your.domain.yaml``
-
-
-Adding TFTP Site to Hiera Examples
+Then add the following code to your servers Hiera file,
+ ``/etc/puppetenvironments/simp/hieradata/hosts/puppet.your.domain.yaml``
 
 .. code-block:: yaml
 
