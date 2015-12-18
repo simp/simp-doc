@@ -57,7 +57,7 @@ conventions set on the system, use the native Puppet user and group
 types.
 
 To have a user that does not expire, look at the
-``/etc/puppet/localusers`` file to enable these users across the systems.
+``/etc/puppet/environments/simp/localusers`` file to enable these users across the systems.
 The comments in the file provide instructions on generating entries for
 the desired systems. It is hoped that future versions of Puppet will
 support the modification of password expiration values via the native
@@ -88,19 +88,19 @@ lifespan of the certificates:
     these settings must be changed within the official CA, not on the
     SIMP system.
 
--  ``/etc/puppet/Config/FakeCA/CA``
+-  ``/etc/puppet/environments/simp/Config/FakeCA/CA``
 
--  ``/etc/puppet/Config/FakeCA/ca.cnf``
+-  ``/etc/puppet/environments/simp/Config/FakeCA/ca.cnf``
 
--  ``/etc/puppet/Config/FakeCA/default\_altnames.cnf``
+-  ``/etc/puppet/environments/simp/Config/FakeCA/default\_altnames.cnf``
 
--  ``/etc/puppet/Config/FakeCA/default.cnf``
+-  ``/etc/puppet/environments/simp/Config/FakeCA/default.cnf``
 
 -  ``/etc/puppet/Config/FakeCA/user.cnf``
 
 In addition, any certificates that have already been created and signed
 will have a config file containing all of its details in
-``/etc/puppet/Config/FakeCA/output/conf/``.
+``/etc/puppet/environments/simp/Config/FakeCA/output/conf/``.
 
 .. important::
 
@@ -113,7 +113,7 @@ Below is an example of how to change the expiration time from one year
 
 .. code-block:: bash
 
-  for file in $(grep -rl 365 /etc/puppet/Config/FakeCA/)
+  for file in $(grep -rl 365 /etc/puppet/environments/simp/Config/FakeCA/)
   do
     sed -i 's/365/1825/' $file
   done
@@ -152,7 +152,7 @@ the system will deny access to all ports except port 22 to allow for
 recovery via SSH.
 
 There are many examples of how to use the IPtables module in the source
-code; the Apache module at ``/etc/puppet/modules/apache`` is a
+code; the Apache module at ``/etc/puppet/environments/simp/modules/apache`` is a
 particularly good example. In addition, look at the definitions in the
 IPtables module to understand their purpose and choose the best option.
 Refer to the `IPtables page of the Developers
