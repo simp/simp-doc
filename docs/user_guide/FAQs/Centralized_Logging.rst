@@ -25,7 +25,7 @@ Enable the Clients
 ------------------
 
 To have clients send data to the server, make the following changes to
-the ``/etc/puppet/hieradata/simp_def.yaml`` file.
+the ``/etc/puppet/environments/simp/hieradata/simp_def.yaml`` file.
 
 Code to Enable the Client Logging Examples:
 
