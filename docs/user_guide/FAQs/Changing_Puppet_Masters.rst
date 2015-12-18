@@ -33,7 +33,7 @@ properly.
 On the Old Puppet Master
 ------------------------
 
-Remove or comment out all items for the client node in the ``/etc/puppet/hieradata/hosts`` space.
+Remove or comment out all items for the client node in the ``/etc/puppet/environments/simp/hieradata/hosts`` space.
 
 To run ``puppet agent`` in *noop* mode to ensure that there are no
 inadvertent errors, type ``puppet agent --test --noop``.
