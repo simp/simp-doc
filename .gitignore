@@ -1,4 +1,10 @@
 rst/_build
 docs/_build
-_build
+docs/*/Changelog.rst
+_build_v5
+_build_v4
 .sw[pnoqst]
+builderrors
+html
+pdf
+sphinx_cache

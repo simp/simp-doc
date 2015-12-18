@@ -1,12 +1,11 @@
 Security Concepts Appendices
 ============================
 
-:doc:`Appendix_Audit_Rules`
+.. toctree::
+  :maxdepth: 2
 
-:doc:`Appendix_KS`
-
-:doc:`Appendix_AIDE`
-
-:doc:`Appendix_RPM`
-
-:doc:`Appendix_SCTM`
+  Appendix_AIDE.rst
+  Appendix_Audit_Rules.rst
+  Appendix_KS.rst
+  Appendix_RPM.rst
+  Appendix_SCTM.rst

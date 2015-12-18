@@ -7,10 +7,15 @@ Contents:
 
   Introduction
   SIMP_Server_Installation
-  Client_Installation
-  Hiera_Overview
+  Client_Management
   Certificates
-  PXE_Boot
-  ../common/Changelog
-  glossary
+  Hiera_Overview
+  Changelog <../common/Changelog.rst>
+  Glossary <../common/Glossary.rst>
+  Installation_Miscellaney
 
+Indices and tables
+------------------
+
+* :ref:`genindex`
+* :ref:`search`

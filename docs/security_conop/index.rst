@@ -1,19 +1,25 @@
 SIMP Security Concepts
 ================================
 
-This is the &SIMP_VERSION;-&SIMP_RELEASE; release of SIMP based on the &RHEL_VERSION; release of the
-Community Enterprise Operating System (CentOS) and Red Hat Enterprise
-Linux (RHEL).
+This is the |simp_version| release of SIMP compatible with the |rhel_version|
+release of CentOS and Red Hat Enterprise Linux (RHEL).
 
-This document describes the many Security Concepts of SIMP.
+
+This document provides a foundational Security Concept of Operations for the SIMP framework.
 
 Contents:
 
 .. toctree::
   :maxdepth: 1
 
-  Introduction
+  Sec_Introduction
   Technical_Security
   Operational_Security
   System_Management
   Appendices
+
+Indices and tables
+------------------
+
+* :ref:`genindex`
+* :ref:`search`

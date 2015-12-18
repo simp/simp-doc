@@ -1,3 +1,6 @@
+
+.. _Hiera:
+
 Hiera Overview
 ==============
 
@@ -14,46 +17,46 @@ Setting Parameters
 ------------------
 
 **Automatic Lookup** You can now safely declare any class on any node
-with 'include', even if the class is parametized. Before Hiera, this was
+with 'include', even if the class is parameterized. Before Hiera, this was
 not possible. Puppet will automatically retrieve class parameters from
 Hiera using keys. Add a key with a value pair to an appropriate yaml
 file, say default.yaml, as such:
 
 Adding a Key/Value Pair to Hiera Examples
 
-.. code-block:: XML
+.. code-block:: xml
 
           ---
           classfoo::parameter_bar: "Woo"
           classfoo::parameter_baz: "Hoo"
-          
+
 
 You can then 'include classfoo' on any node, with parameter\_bar and
 parameter\_baz defaulting to Woo and Hoo, respectively.
 
 **Lookup Functions** You are not required to set up your hierarchy for
-automatic variable lookup. Using three functionts, you can query Hiera
+automatic variable lookup. Using three functions, you can query Hiera
 for any key.
 
-The first is 'hiera'. This uses standard priority lookup and can
+The first is ``hiera``. This uses standard priority lookup and can
 retrieve values of any data type from Hiera. If no key is found, a
-default should be included. *$myvar = hiera('parameter\_bar', 'Woo')*
+default should be included. ``$myvar = hiera('parameter_bar', 'Woo')``
 
-The second is 'hiera\_array'. This uses an array merge lookup. It
-retrieves all array values for a given key througout the entire
+The second is ``hiera_array``. This uses an array merge lookup. It
+retrieves all array values for a given key throughout the entire
 hierarchy and flattens them into a single array.
 
-The third is 'hiera\_hash'. This uses a hash merge lookup. It retrieves
+The third is ``hiera_hash``. This uses a hash merge lookup. It retrieves
 all hash values for a given key throughout the entire hierarchy and
 merges them into a single hash.
 
 Assigning Classes to Nodes
 --------------------------
 
-Assigning classes to nodes is done with the 'hiera\_include' function.
+Assigning classes to nodes is done with the ``hiera_include`` function.
 Hiera does an array merge lookup on 'tags' to retrieve classes which
 should be included on a node. In SIMP, we place
-hiera\_include('classes') in */etc/puppet/manifests/site.pp*. Since
+``hiera_include('classes')`` in ``/etc/puppet/environements/simp/manifests/site.pp``. since
 site.pp is outside of any node definition and below all top scope
 variables, every node controlled by puppet will get every class tagged
 with 'classes' **in its hierarchy**. Additionally, simp\_def.yaml in is
@@ -63,70 +66,63 @@ the hierarchy of every node, so every node will receive those classes
 Assigning Defined Types to Nodes
 --------------------------------
 
-Defined types do not have the ability to receive parameters via Hiera in
+defined types do not have the ability to receive parameters via Hiera in
 the traditional sense. To include a defined type on a node, one could
-use creat\_resources, but this is messy and discouraged. Instead, make a
-site class, */etc/puppet/modules/site/manifests/my\_site.pp*. For
-example, to include tftpboot linux\_model and assign\_host on your
+use create\_resources, but this is messy and discouraged. Instead, make a
+site class in the site manifests directory, like: 
+``/etc/puppet/environements/simp/modules/site/manifests/my_site.pp``.
+For example, to include tftpboot linux\_model and assign\_host on your
 puppet server, puppet.your.domain:
 
-Adding a Site Manifest Examples
+Add the following code to a file tftpboot.pp in you site manifests directory:
 
-.. code-block:: Ruby
+.. code-block:: ruby
 
-          # in /etc/puppet/modules/site/manifests/tftpboot.pp
-          # Set KSSERVER statically or use Hiera for lookup
+        # in /etc/puppet/environments/simp/modules/site/manifests/tftpboot.pp
+        # Set KSSERVER statically or use Hiera for lookup
 
-          class site::tftpboot {
-            include 'tftpboot'
+        class site::tftpboot {
+          include 'tftpboot'
 
-            tftpboot::linux_model { 'CentOS_RHEL_MAJOR_VERSION':
-              kernel => 'centosRHEL_MAJOR_VERSION_x86_64/vmlinuz',
-              initrd => 'centosRHEL_MAJOR_VERSION_x86_64/initrd.img',
-              ks     => "http://KSSERVER/ks/pupclient_x86_64.cfg",
-              extra  => 'ipappend 2'
-            }
-
-            tftpboot::assign_host { 'default': model => 'CentOS_RHEL_MAJOR_VERSION' }
+          tftpboot::linux_model { 'EL_MAJOR_VERSION':
+            kernel => 'EL_MAJOR_VERSION_x86_64/vmlinuz',
+            initrd => 'EL_MAJOR_VERSION_x86_64/initrd.img',
+            ks     => "http://KSSERVER/ks/pupclient_x86_64.cfg",
+            extra  => 'ipappend 2'
           }
-          
 
-Then, in */etc/puppet/hieradata/hosts/puppet.your.domain.yaml*
+          tftpboot::assign_host { 'default': model => 'EL_MAJOR_VERSION' }
+        }
 
-Adding TFTP Site to Hirea Examples
+Then add the following code to your servers Hiera file,
+ ``/etc/puppetenvironments/simp/hieradata/hosts/puppet.your.domain.yaml``
 
-.. code-block:: XML
+.. code-block:: yaml
 
           ---
           classes:
             - 'site::tftpboot'
-          
+
 
 SIMP Hiera File Structure
 -------------------------
 
-*/etc/puppet/hiera.yaml* Hiera's config file, used to control the
-hierarchy of your backends.
+- ``/etc/puppet/hiera.yaml`` Hiera's config file, used to control the
+  hierarchy of your backends.
+- ``/etc/puppet/environments/simp/hieradata/`` Default location of the yaml files which
+  contain your node data
+- ``/etc/puppet/environments/simp/hieradata/simp_classes.yaml`` The list of default classes
+  to include on any SIMP system.
+- ``/etc/puppet/environments/simp/hieradata/simp_def.yaml`` Contains the variables needed to
+  configure a working SIMP system. Modified by simp-config.
+- ``/etc/puppet/environments/simp/hieradata/hosts/`` By populating this directory with
+  some.host.name.yaml file, you can assign parameters to host some.host.name
+- ``/etc/puppet/environments/simp/hieradata/domains/`` Same principal as hosts, but domain
+  names.
+- ``/etc/puppet/manifests/`` Contains site.pp and all other node manifests.
+  BE CAREFUL when modifying this directory, site.pp contains your globals.
+  This directory can be used to supplement or even REPLACE Hiera, with
+  nodes. Note that Hiera cannot regex hostnames to apply manifests, so a
+  node manifest will have to be created here if you wish to have that
+  ability.
 
-*/etc/puppet/hieradata/* Default location of the yaml files which
-contain your node data
-
-*/etc/puppet/hieradata/simp\_classes.yaml* The list of default classes
-to include on any SIMP system.
-
-*/etc/puppet/hieradata/simp\_def.yaml* Contains the variables needed to
-configure a working SIMP system. Modified by simp-config.
-
-*/etc/puppet/hieradata/hosts/* By populating this directory with with
-some.host.name.yaml file, you can assign parameters to host
-some.host.name
-
-*/etc/puppet/hieradata/domains/* Same principal as hosts, but domain
-names.
-
-*/etc/puppet/manifests/* Contains site.pp and all other node manifests.
-BE CAREFUL when modifying this directory, site.pp contains your globals.
-This directory can be used to supplement or even REPLACE Hiera, with
-nodes. Note that Hiera cannot regex hostnames to apply manifests, so a
-node manifest will have to be created here if you wish to have that
-ability.

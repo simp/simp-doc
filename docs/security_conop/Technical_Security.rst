@@ -7,7 +7,7 @@ technical security controls described in *NIST 800-53*.
 Identification and Authentication
 ---------------------------------
 
-This section addresses the identification and authentication of of users
+This section addresses the identification and authentication of users
 and devices.
 
 User Identification and Authentication
@@ -16,7 +16,7 @@ User Identification and Authentication
 Identification and authentication of system and service users can occur
 at the system level or globally in the SIMP architecture. While local
 accounts and groups can be created manually, the SIMP team suggests
-adding users via the */etc/puppet/localusers* file or by using the
+adding users via the ``/etc/puppet/environments/simp/localusers`` file or by using the
 native Puppet user and group types. System users can authenticate their
 access using Secure Shell (SSH) keys or passwords. For more centralized
 control, identify and authenticate users by using the Lightweight
@@ -123,38 +123,38 @@ management have several default settings including:
 
 -  Auditing of administrative actions to capture local account creation
    and modifications to LDAP accounts is done via the
-   */var/log/slapd\_audit.log* file for ldap accounts and
-   */var/log/audit.log* for local accounts. [AC-2(4)]
+   ``/var/log/slapd.audit`` file for ldap accounts and
+   ``/var/log/audit/audit.log`` for local accounts. [AC-2(4)]
 
 -  Shell session timeouts after 15 minutes of inactivity. [AC-2(5)] This
    can be circumvented by running a command that opens an endless pipe
-   such as **/bin/cat**. However, this command cannot be enforced more
+   such as ``/bin/cat``. However, this command cannot be enforced more
    heavily due to the high likelihood of breaking system applications.
    If the optional gnome module is used, the GNOME screen saver will
    lock the screen after 15 minutes of inactivity.
 
 -  Assignment of users into groups locally or centrally via LDAP.
    [AC-2(7)] By default, SIMP will have an administrators groups that
-   has the ability to run **sudosh**. Implementations should further
+   has the ability to run ``sudosh``. Implementations should further
    define administrators or user groups and limit them with the Puppet
-   *sudo* class.
+   ``sudo`` class.
 
 Access Enforcement
 ------------------
 
 SIMP uses the implementation of Discretionary Access Control (DAC) that
 is native to Linux. Specific file permissions have been assigned based
-on published security guidance for Red Hat, CentOS, and and UNIX.
+on published security guidance for Red Hat, CentOS, and UNIX.
 
 Default permissions on files created by users are enforced with user
-file access mask settings (using the **umask** command) that allow only
+file access mask settings (using the ``umask`` command) that allow only
 the owner to read and write to the file. Implementations may further
 extend the access control in UNIX by restricting access to application
-files or using the file Access Control List (ACL) commands **getfacl**
-and **setacl**. Users of SIMP should not change file permissions on
+files or using the file Access Control List (ACL) commands ``getfacl``
+and ``setacl``. Users of SIMP should not change file permissions on
 operating system files as it may decrease the overall security of the
 system. If a group needs access to a particular file or directory, use
-the **setfacl** command to allow the necessary access without lessening
+the ``setfacl`` command to allow the necessary access without lessening
 the permissions on the system. [AC-3]
 
 .. _Flow_Enforcement:
@@ -175,100 +175,146 @@ included in :ref:`default_server_ports` and :ref:`default_client_ports`. [AC-4]
 Default Server Ports
 ~~~~~~~~~~~~~~~~~~~~
 
-+-------------+-----------+------------+-----------+-----------+-----------------------------+
-| Application | Direction | Protocol   | Transport | Ports     | Comment                     |
-+=============+===========+============+===========+===========+=============================+
-| Puppet      | Localhost | HTTP       | TCP       | 8140      | The port upon which the     |
-|             |           |            |           |           | Puppet master listens for   |
-|             |           |            |           |           | client connections via      |
-|             |           |            |           |           | Apache                      |
-+-------------+-----------+------------+-----------+-----------+-----------------------------+
-| Puppet CA   | In        | HTTPS      | TCP       | 8141      | This is used to ensure that |
-|             |           |            |           |           | Apache can verify all       |
-|             |           |            |           |           | certificates from external  |
-|             |           |            |           |           | systems properly prior to   |
-|             |           |            |           |           | allowing access to Puppet.  |
-+-------------+-----------+------------+-----------+-----------+-----------------------------+
-| Apache/YUM  | In        | HTTP       | TCP       | 80        | This is used for YUM and is |
-|             |           |            |           |           | unencrypted, since YUM will |
-|             |           |            |           |           | not work otherwise.         |
-+-------------+-----------+------------+-----------+-----------+-----------------------------+
-| DHCPD       | In        | DHCP/BOOTP | TCP/UDP   | 546, 547  | DHCP pooling is disabled by |
-|             |           |            |           |           | default and should only be  |
-|             |           |            |           |           | used if the implementation  |
-|             |           |            |           |           | requires the use of this    |
-|             |           |            |           |           | protocol.                   |
-+-------------+-----------+------------+-----------+-----------+-----------------------------+
-| TFTP        | In        | TFTP       | TCP/UDP   | 69        | This is used for kickstart. |
-|             |           |            |           |           | It could also be used to    |
-|             |           |            |           |           | update network devices.     |
-|             |           |            |           |           | TFTP does not support       |
-|             |           |            |           |           | encryption.                 |
-+-------------+-----------+------------+-----------+-----------+-----------------------------+
-| rsyslog     | Out       | syslog     | TCP/UDP   | 6514      | This is encrypted when      |
-|             |           |            |           |           | communicating with a SIMP   |
-|             |           |            |           |           | syslog server (not          |
-|             |           |            |           |           | installed by default).      |
-+-------------+-----------+------------+-----------+-----------+-----------------------------+
-| named       | In/Out    | DNS        | TCP/UDP   | 53        | Inbound connections happen  |
-|             |           |            |           |           | to the locally managed      |
-|             |           |            |           |           | hosts. Outbound connections |
-|             |           |            |           |           | happen to other domains per |
-|             |           |            |           |           | the normal operations of    |
-|             |           |            |           |           | DNS.                        |
-+-------------+-----------+------------+-----------+-----------+-----------------------------+
-| NTPD        | Out       | NTP        | TCP/UDP   | 123       | Only connects to an         |
-|             |           |            |           |           | external time source by     |
-|             |           |            |           |           | default.                    |
-+-------------+-----------+------------+-----------+-----------+-----------------------------+
-| SSHD        | In        | SSH        | TCP       | 22        | SSH is always allowed from  |
-|             |           |            |           |           | any source IP by default.   |
-+-------------+-----------+------------+-----------+-----------+-----------------------------+
-| stunnel     | In        | TLS        | TCP       | 8730      | Stunnel is a protected      |
-|             |           |            |           |           | connection for rsyncing     |
-|             |           |            |           |           | configuration files to      |
-|             |           |            |           |           | Puppet clients.             |
-+-------------+-----------+------------+-----------+-----------+-----------------------------+
-| rsync       | Localhost | RSYNC      | TCP       | 873       | This accepts connections to |
-|             |           |            |           |           | the localhost and forwards  |
-|             |           |            |           |           | through Stunnel.            |
-+-------------+-----------+------------+-----------+-----------+-----------------------------+
-| LDAP        | In        | LDAP       | TCP       | 389       | Connections are protected   |
-|             |           |            |           |           | by bi-directional,          |
-|             |           |            |           |           | authenticated encryption.   |
-+-------------+-----------+------------+-----------+-----------+-----------------------------+
-| LDAPS       | In        | LDAPS      | TCP       | 636       | Used for LDAP over SSL.     |
-+-------------+-----------+------------+-----------+-----------+-----------------------------+
+.. list-table::
+  :widths: 12 12 12 12 10 42
+  :header-rows: 1
+
+  * - Application
+    - Direction
+    - Protocol
+    - Transport
+    - Ports
+    - Comment
+  * - Puppet
+    - Localhost
+    - HTTP
+    - TCP
+    - 8140
+    - The port upon which the Puppet master listens for client connections via Apache
+  * - Puppet CA
+    - In
+    - HTTPS
+    - TCP
+    - 8141
+    - This is used to ensure that Apache can verify all certificates from external systems properly prior to allowing access to Puppet.
+  * - Apache/YUM
+    - In
+    - HTTP
+    - TCP
+    - 80
+    - This is used for YUM and is unencrypted, since YUM will not work otherwise.
+  * - DHCPD
+    - In
+    - DHCP/BOOTP
+    - TCP/UDP
+    - 546,
+    - 547	 DHCP pooling is disabled by default and should only be used if the implementation requires the use of this protocol.
+  * - TFTP
+    - In
+    - TFTP
+    - TCP/UDP
+    - 69
+    - This is used for kickstart. It could also be used to update network devices. TFTP does not support encryption.
+  * - rsyslog
+    - Out
+    - syslog
+    - TCP/UDP
+    - 6514
+    - This is encrypted when communicating with a SIMP syslog server (not installed by default).
+  * - named
+    - In/Out
+    - DNS
+    - TCP/UDP
+    - 53
+    - Inbound connections happen to the locally managed hosts. Outbound connections happen to other domains per the normal operations of DNS.
+  * - NTPD
+    - Out
+    - NTP
+    - TCP/UDP
+    - 123
+    - Only connects to an external time source by default.
+  * - SSHD
+    - In
+    - SSH
+    - TCP
+    - 22
+    - SSH is always allowed from any source IP by default.
+  * - stunnel
+    - In
+    - TLS
+    - TCP
+    - 8730
+    - Stunnel is a protected connection for rsyncing configuration files to Puppet clients.
+  * - rsync
+    - Localhost
+    - RSYNC
+    - TCP
+    - 873
+    - This accepts connections to the localhost and forwards through Stunnel.
+  * - LDAP
+    - In
+    - LDAP
+    - TCP
+    - 389
+    - Connections are protected by bi-directional, authenticated encryption.
+  * - LDAPS
+    - In
+    - LDAPS
+    - TCP
+    - 636
+    - Used for LDAP over SSL.
 
 .. _default_client_ports:
 
 Default Client Ports
 ~~~~~~~~~~~~~~~~~~~~
 
-+-------------+-----------+-----------+-----------+-----------+-----------------------------+
-| Application | Direction | Protocol  | Transport | Ports     | Comment                     |
-+=============+===========+===========+===========+===========+=============================+
-| Puppet      | Out       | HTTPS     | TCP       | 8140      | Communications to the       |
-|             |           |           |           |           | Puppet server.              |
-+-------------+-----------+-----------+-----------+-----------+-----------------------------+
-| rsyslog     | Out       | syslog    | TCP/UDP   | 6514      | This is encrypted when      |
-|             |           |           |           |           | communicating with a SIMP   |
-|             |           |           |           |           | syslog server.              |
-+-------------+-----------+-----------+-----------+-----------+-----------------------------+
-| DNS Client  | Out       | DNS       | TCP/UDP   | 53        | Normal name resolution.     |
-+-------------+-----------+-----------+-----------+-----------+-----------------------------+
-| NTPD        | Out       | NTP       | TCP/UDP   | 123       | Only connects to an         |
-|             |           |           |           |           | external time source by     |
-|             |           |           |           |           | default.                    |
-+-------------+-----------+-----------+-----------+-----------+-----------------------------+
-| SSHD        | In        | SSH       | TCP       | 22        | SSH is allowed from any     |
-|             |           |           |           |           | source IP by default.       |
-+-------------+-----------+-----------+-----------+-----------+-----------------------------+
-| LDAP        | Out       | LDAP      | TCP       | 389       | Connections are protected   |
-|             |           |           |           |           | by bi-directional           |
-|             |           |           |           |           | authenticated encryption.   |
-+-------------+-----------+-----------+-----------+-----------+-----------------------------+
+.. list-table::
+  :widths: 12 12 12 12 10 42
+  :header-rows: 1
 
+  * - Application
+    - Direction
+    - Protocol
+    - Transport
+    - Ports
+    - Comment
+  * - Puppet
+    - Out
+    - HTTPS
+    - TCP
+    - 8140
+    - Communications to the Puppet server.
+  * - rsyslog
+    - Out
+    - syslog
+    - TCP/UDP
+    - 6514
+    - This is encrypted when communicating with a SIMP syslog server.
+  * - DNS Client
+    - Out
+    - DNS
+    - TCP/UDP
+    - 53
+    - Normal name resolution.
+  * - NTPD
+    - Out
+    - NTP
+    - TCP/UDP
+    - 123
+    - Only connects to an external time source by default.
+  * - SSHD
+    - In
+    - SSH
+    - TCP
+    - 22
+    - SSH is allowed from any source IP by default.
+  * - LDAP
+    - Out
+    - LDAP
+    - TCP
+    - 389
+    - Connections are protected by bi-directional authenticated encryption.
 
 Separation of Duties
 --------------------
@@ -281,10 +327,10 @@ in LDAP for full operating System support. [AC-5]
 Least Privilege
 ---------------
 
-SIMP does not allow *root* to directly SSH into a system. The *root*
+SIMP does not allow ``root`` to directly SSH into a system. The ``root``
 user must be at a console (or at a virtual instance of the physical
 console) to log on. Otherwise, users must log on as themselves and
-perform privileged commands using **sudo** or **sudosh**. [AC-6]
+perform privileged commands using ``sudo`` or ``sudosh``. [AC-6]
 
 *NIST 800-53* least privilege security controls give people access to
 objects only as needed. SIMP provides only the needed software,
@@ -315,7 +361,7 @@ include:
    Given the way SSH is used in operational settings, this default value
    is reasonable. [AC-10]
 
--  Session lock only applies if the *windowmanager::gnome* module is
+-  Session lock only applies if the ``windowmanager::gnome`` module is
    used. Sessions lock automatically after 15 minutes of inactivity.
    Users must authenticate their access with valid credentials to
    reestablish a session. [AC-11]
@@ -329,17 +375,20 @@ with an explanation of why these aspects are not required.
 Implementations should include any additional services that do require
 identification and/or authentication. [AC-14]
 
-+-----------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-| Service/Application   | Rationale                                                                                                                                                                                                                                                                                                                                                                                                                                                           |
-+=======================+=====================================================================================================================================================================================================================================================================================================================================================================================================================================================================+
-| TFTP                  | TFTP is a simple file transfer application that, in the SIMP environment, does not allow for writing to the files being accessed. This application is primarily used to support the Preboot Execution Environment (PXE) booting of hosts and the updating of network devices. There is no option to authenticate systems at this level by protocol design. TFTP is limited to a user's local subnet using IPtables and is enforced additionally with TCPWrappers.   |
-+-----------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-| DHCP                  | By default, system IP addresses are not pooled, but are rather statically assigned to a client, which is identified by the MAC address. DHCP is limited to the local subnet.                                                                                                                                                                                                                                                                                        |
-+-----------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-| Apache/YUM            | RPMs are stored in a directory for systems to use for both kickstart and package updating. Sensitive information should never be stored here. Apache/YUM is limited to the local subnet.                                                                                                                                                                                                                                                                            |
-+-----------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-| DNS                   | The DNS protocol does not require identification nor authentication. DNS is limited to the local subnet.                                                                                                                                                                                                                                                                                                                                                            |
-+-----------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+.. list-table::
+  :widths: 16 84
+  :header-rows: 1
+
+  * - Service/Application
+    - Rationale
+  * - TFTP
+    - TFTP is a simple file transfer application that, in the SIMP environment, does not allow for writing to the files being accessed. This application is primarily used to support the Preboot Execution Environment (PXE) booting of hosts and the updating of network devices. There is no option to authenticate systems at this level by protocol design. TFTP is limited to a user’s local subnet using IPtables and is enforced additionally with TCPWrappers.
+  * - DHCP
+    - By default, system IP addresses are not pooled, but are rather statically assigned to a client, which is identified by the MAC address. DHCP is limited to the local subnet.
+  * - Apache/YUM
+    - RPMs are stored in a directory for systems to use for both kickstart and package updating. Sensitive information should never be stored here. Apache/YUM is limited to the local subnet.
+  * - DNS
+    - The DNS protocol does not require identification nor authentication. DNS is limited to the local subnet.
 
 Table: Actions Without Identification and Authentication
 
@@ -381,7 +430,7 @@ a type of privileged user.
 SIMP can also be used as a platform for workstations or general users
 performing non-administrative activities. In both cases, general users
 with accounts on an individual host are allowed access to the host using
-the *pam::access* module, so long as they have an account on the target
+the ``pam::access`` module, so long as they have an account on the target
 host. No user may perform or have access to administrative functions
 unless given sudo or sudosh privileges via Puppet.
 
@@ -425,7 +474,7 @@ Single User Mode
 
 SIMP systems have a password requirement for single user mode. In the
 event maintenance needs to be performed at a system console, users must
-be in possession of the *root* password before they can be
+be in possession of the ``root`` password before they can be
 authenticated. Grub passwords are also set to prevent unauthorized
 modifications to boot parameters. [SC-24]
 
@@ -444,8 +493,7 @@ Puppet CA can be found in the Puppet Labs `security
 documentation <http://projects.puppetlabs.com/projects/1/wiki/certificates_and_security>`__.
 [SC-17, SC-13]
 
-    **Warning**
-
+.. warning::
     Fake CA certificates should not be used in an operational setting.
 
 Mobile Code
@@ -489,9 +537,9 @@ The SIMP development team reviews every release of the major security
 guides for updated auditable events suggestions. Each of those
 suggestions is reviewed and applied if deemed applicable. [AU-2(3)]
 Privileged commands are audited as part of the SIMP auditing
-configuration. This is accomplished by monitoring *sudo* commands with
-auditd. Keystrokes for administrators that use **sudosh** are also
-logged. Each session can be replayed using **sudosh-replay**. [AU-2(4)]
+configuration. This is accomplished by monitoring ``sudo`` commands with
+auditd. Keystrokes for administrators that use ``sudosh`` are also
+logged. Each session can be replayed using ``sudosh-replay``. [AU-2(4)]
 
 Content of Audit Records
 ------------------------
@@ -517,7 +565,7 @@ Audit records capture the following information [AU-3]:
 Audit Storage
 -------------
 
-Audit logs are stored locally on a separate partition in the */var/log*
+Audit logs are stored locally on a separate partition in the ``/var/log``
 directory. The size of this partition is configurable. Other default
 audit storage configurations include:
 
@@ -555,11 +603,11 @@ Protection of Audit Information
 -------------------------------
 
 The primary means of protecting the audit logs is through the use of
-file permissions. Audit records are stored in the */var/log* directory
-and can only be accessed by *root*. Audit logs are rotated off daily if
+file permissions. Audit records are stored in the ``/var/log`` directory
+and can only be accessed by ``root``. Audit logs are rotated off daily if
 the implementation has not developed a way of offloading the logs to
 another location where they can be backed up. Lastly, if the
-*rsyslog::stock::log\_server* module is implemented, logs are
+``rsyslog::stock::log_server`` module is implemented, logs are
 transmitted to the log server over a TLS protected link.
 
 Time Synchronization

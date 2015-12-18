@@ -16,7 +16,7 @@ number of nodes, nodes begin to drop to compile times lower than 30
 seconds. These nodes are not actually completing their Puppet runs. This
 data can be seen in the following graph:
 
-Number of Nodes vs. Compile Time 
+Number of Nodes vs. Compile Time
 --------------------------------
 
 The queue size can be found by looking at the maximum number of clients

@@ -1,18 +1,11 @@
+[![License](http://img.shields.io/:license-apache-blue.svg)](http://www.apache.org/licenses/LICENSE-2.0.html) [![Build Status](https://travis-ci.org/simp/pupmod-simp-simp-doc.svg)](https://travis-ci.org/simp/pupmod-simp-simp-doc)
+
 ## SIMP Documentation
 
 The Documentation repository for the 5.1.X version of SIMP.
 
-This repository will house information relevant to the EL7 (RHEL/CentOS) build.
+This is a component of the [System Integrity Management Platform](https://github.com/NationalSecurityAgency/SIMP), a compliance-management framework built on Puppet.
 
-# NOTE: THIS REPOSITORY IS IN A TRANSITIONAL STATE
-We are migrating from [publican](https://fedorahosted.org/publican/) to [reStructuredText](http://docutils.sourceforge.net/docs/ref/rst/restructuredtext.html).  
+If you find any issues, they can be submitted to our [JIRA](https://simp-project.atlassian.net/).
 
-### NOTES
-* The `Rakefile` currently builds the publican documentation (deprecated).
-* The `.travis.yml` is targeted at building the reStructuredText docs (in progress).
-
-### TODO
-- [X] TravisCI tests
-- [X] Port Publican documentation to rst
-- [ ] Remove Publican documentation
-- [ ] update & vet documentation against current SIMP version
+Please read our [Contribution Guide](https://simp-project.atlassian.net/wiki/display/SD/Contributing+to+SIMP) and visit our [developer wiki](https://simp-project.atlassian.net/wiki/display/SD/SIMP+Development+Home).
