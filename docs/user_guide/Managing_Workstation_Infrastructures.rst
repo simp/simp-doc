@@ -17,7 +17,7 @@ User Workstation Setup
 ----------------------
 
 Below is an example class,
-``/etc/puppet/modules/site/manifests/workstation.pp``, that could be used to
+``/etc/puppet/environments/simp/modules/site/manifests/workstation.pp``, that could be used to
 set up a user workstation.
 
 .. code-block:: ruby
@@ -69,7 +69,7 @@ Graphical Desktop Setup
 -----------------------
 
 Below is an example manifest called
-``/etc/puppet/modules/site/manifests/gui.pp`` for setting up a graphical
+``/etc/puppet/environments/simp/modules/site/manifests/gui.pp`` for setting up a graphical
 desktop on a user workstation.
 
 .. code-block:: ruby
@@ -96,7 +96,7 @@ Workstation Repositories
 ------------------------
 
 Below is an example manifest called
-``/etc/puppet/modules/site/manifests/repos.pp`` for setting up workstation
+``/etc/puppet/environments/simp/modules/site/manifests/repos.pp`` for setting up workstation
 repositories.
 
 .. code-block:: ruby
@@ -111,7 +111,7 @@ Virtualization on User Workstations
 -----------------------------------
 
 Below is an example manifest called
-``/etc/puppet/modules/site/manifests/virt.pp`` for allowing virtualization
+``/etc/puppet/environments/simp/modules/site/manifests/virt.pp`` for allowing virtualization
 on a user workstation.
 
 .. code-block:: ruby
@@ -157,7 +157,7 @@ Network File System
 -------------------
 
 Below is an example manifest called
-``/etc/puppet/modules/site/automount.pp`` for Network File System setup.
+``/etc/puppet/environments/simp/modules/site/automount.pp`` for Network File System setup.
 
 .. code-block:: ruby
 
@@ -194,7 +194,7 @@ Setting up a Print Client
 ~~~~~~~~~~~~~~~~~~~~~~~~~
 
 Below is an example manifest called
-``/etc/puppet/modules/site/manifests/print/client.pp`` for setting up a
+``/etc/puppet/environments/simp/modules/site/manifests/print/client.pp`` for setting up a
 print client.
 
 .. code-block:: ruby
@@ -219,7 +219,7 @@ Setting up a Print Server
 ~~~~~~~~~~~~~~~~~~~~~~~~~
 
 Below is an example manifest called
-``/etc/puppet/modules/site/manifests/print/server.pp`` for setting up a
+``/etc/puppet/environments/simp/modules/site/manifests/print/server.pp`` for setting up a
 print server.
 
 .. code-block:: ruby
@@ -283,7 +283,7 @@ server and provide a tunnel to ``127.0.0.1:<VNC Port>``. Refer to the SSH
 client's documentation for specific instructions.
 
 To set up additional VNC port settings, refer to the code in
-```/etc/puppet/modules/vnc/manifests/server.pp <file:///etc/puppet/modules/vnc/manifests/server.pp>`__``
+```/etc/puppet/environments/simp/modules/vnc/manifests/server.pp <file:///etc/puppet/environments/simp/modules/vnc/manifests/server.pp>`__``
 for examples.
 
 .. important::
@@ -313,7 +313,7 @@ Modify Puppet
 ~~~~~~~~~~~~~
 
 If definitions for the machines involved in the VNC do not already exist
-in Hiera, create an ``/etc/puppet/hieradata/hosts/vserv.your.domain.yaml``
+in Hiera, create an ``/etc/puppet/environments/simp/hieradata/hosts/vserv.your.domain.yaml``
 file. In the client hosts file, modify or create the entries shown in
 the examples below. These additional modules will allow vserv to act as
 a VNC server and vclnt to act as a client.
