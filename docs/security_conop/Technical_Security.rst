@@ -16,7 +16,7 @@ User Identification and Authentication
 Identification and authentication of system and service users can occur
 at the system level or globally in the SIMP architecture. While local
 accounts and groups can be created manually, the SIMP team suggests
-adding users via the ``/etc/puppet/localusers`` file or by using the
+adding users via the ``/etc/puppet/environments/simp/localusers`` file or by using the
 native Puppet user and group types. System users can authenticate their
 access using Secure Shell (SSH) keys or passwords. For more centralized
 control, identify and authenticate users by using the Lightweight
@@ -123,8 +123,8 @@ management have several default settings including:
 
 -  Auditing of administrative actions to capture local account creation
    and modifications to LDAP accounts is done via the
-   ``/var/log/slapd_audit.log`` file for ldap accounts and
-   ``/var/log/audit.log`` for local accounts. [AC-2(4)]
+   ``/var/log/slapd.audit`` file for ldap accounts and
+   ``/var/log/audit/audit.log`` for local accounts. [AC-2(4)]
 
 -  Shell session timeouts after 15 minutes of inactivity. [AC-2(5)] This
    can be circumvented by running a command that opens an endless pipe
