@@ -1,0 +1,106 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "da9df570_b76e1095",
+        "filename": "docs/common/PXE_Boot.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 23,
+      "author": {
+        "id": 1004834
+      },
+      "writtenOn": "2015-12-21T20:50:52Z",
+      "side": 1,
+      "message": "Should this be \u0027top\u0027 instead of \u0027op\u0027?",
+      "revId": "1b249a4755062a94d62a5be28d6fb18d2ddd7f4f",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da9df570_d76b9483",
+        "filename": "docs/common/PXE_Boot.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 100,
+      "author": {
+        "id": 1004834
+      },
+      "writtenOn": "2015-12-21T20:50:52Z",
+      "side": 1,
+      "message": "\u0027exist\u0027 instead of \u0027exists\u0027?",
+      "revId": "1b249a4755062a94d62a5be28d6fb18d2ddd7f4f",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da9df570_57dde441",
+        "filename": "docs/installation_guide/Hiera_Overview.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 59,
+      "author": {
+        "id": 1004834
+      },
+      "writtenOn": "2015-12-21T20:50:52Z",
+      "side": 1,
+      "message": "\u0027Since\u0027 instead of \u0027since\u0027",
+      "revId": "1b249a4755062a94d62a5be28d6fb18d2ddd7f4f",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da9df570_77e2e804",
+        "filename": "docs/installation_guide/Hiera_Overview.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 69,
+      "author": {
+        "id": 1004834
+      },
+      "writtenOn": "2015-12-21T20:50:52Z",
+      "side": 1,
+      "message": "Need to capitalize sentence",
+      "revId": "1b249a4755062a94d62a5be28d6fb18d2ddd7f4f",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da9df570_97e66c15",
+        "filename": "docs/installation_guide/Hiera_Overview.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 72,
+      "author": {
+        "id": 1004834
+      },
+      "writtenOn": "2015-12-21T20:50:52Z",
+      "side": 1,
+      "message": "I\u0027m not quite following this sentence.\n\n\u0027Hiera in site class...\u0027",
+      "revId": "1b249a4755062a94d62a5be28d6fb18d2ddd7f4f",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da9df570_d7f0f4cb",
+        "filename": "docs/installation_guide/Hiera_Overview.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 120,
+      "author": {
+        "id": 1004834
+      },
+      "writtenOn": "2015-12-21T20:50:52Z",
+      "side": 1,
+      "message": "\u0027principle\u0027 instead of \u0027principal\u0027",
+      "revId": "1b249a4755062a94d62a5be28d6fb18d2ddd7f4f",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735",
+      "unresolved": false
+    }
+  ]
+}

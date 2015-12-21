@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "da9df570_f7689889",
+        "filename": "docs/common/PXE_Boot.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 111,
+      "author": {
+        "id": 1004834
+      },
+      "writtenOn": "2015-12-21T20:50:52Z",
+      "side": 0,
+      "message": "Why did this get removed? This is correct from what I can tell.",
+      "revId": "ea4f640ad9f3b205bece6b5b684d920651f50558",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735",
+      "unresolved": false
+    }
+  ]
+}
