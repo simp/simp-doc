@@ -12,17 +12,26 @@ Setting Up Kickstart
 ~~~~~~~~~~~~~~~~~~~~
 This section describes how to configure the kickstart server.  
    
-1. Locate the following files in the ``/var/www/ks`` directory:
-    A.  ``pupclient_x86_64.cfg``
-    B.  ``diskdetect.sh``
-2. Open each of the files and follow the instructions provided within them to replace the variables. You need to know the IP Addresses of the YUM, Kickstart, and TFTPserver. (They default to the simp server in simp config).  
-3. Type ``chown root.apache /var/www/ks/*`` to ensure that all files are owned by ``root`` and in the ``apache`` group.
-4. Type ``chmod 640 /var/www/ks/*`` to change the permissions so the owner can read and write the file and the ``apache`` group can only read. 
+#. Locate the following files in the ``/var/www/ks`` directory
+
+   -  ``pupclient_x86_64.cfg``
+   -  ``diskdetect.sh``
+
+#. Open each of the files and follow the instructions provided within them to replace the variables. 
+   You need to know the IP Addresses of the YUM, Kickstart, and TFTPserver. (They default to the simp server in simp config).  
+
+   - ``pupclient_x86_64.cfg``: Replace the variables noted at the top and generate and
+     enter the passwords.
+   - ``diskdetect.sh``:  The ``diskdetect.sh`` script is responsible for detecting the first active disk 
+     and applying a disk configuration. Edit this file to meet any necessary requirements or use this file
+     as a starting point for further work. It will work as is for most systems as long as your disk device names are in the list.
+
+#. Type ``chown root.apache /var/www/ks/*`` to ensure that all files are owned by ``root`` and in the ``apache`` group.
+#. Type ``chmod 640 /var/www/ks/*`` to change the permissions so the owner can read and write the file and the ``apache`` group can only read. 
 
 .. note:: The URLs and locations in the file are setup for a default SIMP install. That means the same OS and version as the SIMP server, all servers in one location (on the SIMP server) and in specific directories. If you have installed these servers in a different location then the defaults, you may need to edit URLs or directories.
 
 .. note:: If you want to PXE boot more than this operating system, make a copy of these files, name them appropriately and update URLS and links inside and anything else you may need. (You must know what you are doing before attempting this.) If you are booting more than one OS you must also make sure your YUM server has the OS packages for the other OSs. By default the YUM server on SIMP has the packages only for the version of OS installed on the SIMP server.
-
 
 Setting up TFTP
 ~~~~~~~~~~~~~~~
@@ -38,22 +47,17 @@ Verify the static files are in the correct location:
 .. only:: simp_4
 
  Type ``cd /srv/rsync/tftpboot`` and
- then type ``ls`` to check for the existence of the
- ``/srv/rsync/tftpboot/linux-install/OSTYPE-MAJORRELEASE_ARCH``
- directory.
 
 .. only:: not simp_4
 
- Type ``cd /var/simp/rsync/OSTYPE/MAJORRELEASE/tftpboot`` and
- then type ``ls`` to check for the existence of the
- ``linux-install/OSTYPE-MAJORRELEASE_ARCH``
- directory.
+ Type ``cd /var/simp/rsync/OSTYPE/MAJORRELEASE/tftpboot``
 
- OSTYPE and MAJORRELEASE under rsync are the version of the SIMP server
+ (OSTYPE and MAJORRELEASE under rsync are the type and version of the SIMP server)
 
-where OSTYPE and MAJORRELEASE under linux-install are the OS type and OS major version of the systems you will be PXE booting.
- 
-Under this directory your should find a directory named OSTYPE-MAJORRELEASE.MINORRELEASE-ARCH and a link to this directory named OSTYPE-MAJORRELEASE-ARCH.
+Verify there is a ``linux-install`` directory and cd to this directory.
+
+Under the linux-install directory you should find a directory named ``OSTYPE-MAJORRELEASE.MINORRELEASE-ARCH``
+and a link to this directory named ``OSTYPE-MAJORRELEASE-ARCH``.
 
 Under OSTYPE-MAJORRELEASE.MINORRELEASE-ARCH your should find the files:
 
@@ -66,7 +70,6 @@ If these are not there then you must create the directories as needed and copy t
 
 .. important:: The link is what is used in the TFTP configuration files.
 
-.. note:: If you want to be able to PXE boot different OS, then add a directory for each on and obtain the pxeboot images and copy them under the linux-install directory. SIMP only provides images for the OS for the SIMP server.
 
 Manifest
 ________
@@ -74,9 +77,10 @@ ________
 Create a site manifest for the TFTP server on the Puppet server.  
 
 1. Create the file ``/etc/puppet/environment/simp/modules/site/manifests/tftpboot.pp``.  Use the source code example below. 
-     A. Replace KSSERVER with the IP address of Kickstart server (or the code to look up the IP Address using Hiera).
-     B. Replace OSTYPE, MAJORRELEASE and ARCH with the correct value for the systems you will be PXE booting.
-     C. MODEL NAME is usually of the form OSTYPE-MAJORRELEASE-ARCH for consistency.
+
+   - Replace KSSERVER with the IP address of Kickstart server (or the code to look up the IP Address using Hiera).
+   - Replace OSTYPE, MAJORRELEASE and ARCH with the correct values for the systems you will be PXE booting.
+   - MODEL NAME is usually of the form OSTYPE-MAJORRELEASE-ARCH for consistency.
 
 .. code-block:: ruby
 
@@ -94,10 +98,9 @@ Create a site manifest for the TFTP server on the Puppet server.
   }
 
 2. Add the tftpboot site manifest on your puppet server node via Hiera.
-
-Create the file (or edit if it exists):  ``/etc/puppet/environments/simp/hieradata/hosts/<tftp.server.fqdn>.yaml``.
-(By default the TFTP server is the same as your puppet server o in the deault case it will exist.)
-Add the following example code to that yaml file.
+   Create the file (or edit if it exists):  ``/etc/puppet/environments/simp/hieradata/hosts/<tftp.server.fqdn>.yaml``.
+   (By default the TFTP server is the same as your puppet server so it should exist.)
+   Add the following example code to that yaml file.
 
 .. code-block:: yaml
 
@@ -106,6 +109,6 @@ Add the following example code to that yaml file.
     - 'site::tftpboot'
 
 3. After updating the above file, type ``puppet agent -t --tags tftpboot``
-on the Puppet server.
+   on the Puppet server.
 
 .. note:: To PXE boot more OSs create, in the tftpboot.pp file, a tftpboot::linux_model block for each OS type using the extra directories and kickstart files created using the notes in previous sections. Point individual systems to them by adding assign_host lines with their MAC pointing to the appropriate model name.
