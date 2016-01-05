@@ -1,0 +1,176 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "fa81d914_be5fc371",
+        "filename": "docs/installation_guide/Certificates.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 1005194
+      },
+      "writtenOn": "2016-01-05T13:43:55Z",
+      "side": 1,
+      "message": "might want to note the symlink to environments/keydist",
+      "revId": "bd96172942e2978b7443a82798ccfcca33c17e38",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "fa81d914_9ed11fd0",
+        "filename": "docs/installation_guide/Hiera_Overview.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 59,
+      "author": {
+        "id": 1005194
+      },
+      "writtenOn": "2016-01-05T13:43:55Z",
+      "side": 1,
+      "message": "environments",
+      "range": {
+        "startLine": 59,
+        "startChar": 46,
+        "endLine": 59,
+        "endChar": 59
+      },
+      "revId": "bd96172942e2978b7443a82798ccfcca33c17e38",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "fa81d914_fed77bbd",
+        "filename": "docs/installation_guide/Hiera_Overview.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 72,
+      "author": {
+        "id": 1005194
+      },
+      "writtenOn": "2016-01-05T13:43:55Z",
+      "side": 1,
+      "message": "environments",
+      "range": {
+        "startLine": 72,
+        "startChar": 25,
+        "endLine": 72,
+        "endChar": 38
+      },
+      "revId": "bd96172942e2978b7443a82798ccfcca33c17e38",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "fa81d914_5eeec78c",
+        "filename": "docs/installation_guide/Hiera_Overview.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 97,
+      "author": {
+        "id": 1005194
+      },
+      "writtenOn": "2016-01-05T13:43:55Z",
+      "side": 1,
+      "message": "puppet/environments",
+      "range": {
+        "startLine": 97,
+        "startChar": 8,
+        "endLine": 97,
+        "endChar": 26
+      },
+      "revId": "bd96172942e2978b7443a82798ccfcca33c17e38",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "fa81d914_de01d73a",
+        "filename": "docs/installation_guide/Hiera_Overview.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 121,
+      "author": {
+        "id": 1005194
+      },
+      "writtenOn": "2016-01-05T13:43:55Z",
+      "side": 1,
+      "message": "/etc/puppet/environments/simp/manifests",
+      "range": {
+        "startLine": 121,
+        "startChar": 4,
+        "endLine": 121,
+        "endChar": 26
+      },
+      "revId": "bd96172942e2978b7443a82798ccfcca33c17e38",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "fa81d914_7ec1cbe3",
+        "filename": "docs/user_guide/Certificates.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 1005194
+      },
+      "writtenOn": "2016-01-05T13:43:55Z",
+      "side": 1,
+      "message": "Give the full path to the certs here and then note the keydist symlink location.",
+      "revId": "bd96172942e2978b7443a82798ccfcca33c17e38",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "fa81d914_7e68ebf5",
+        "filename": "docs/user_guide/FAQs/Puppet_Server_NAT.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 8,
+      "author": {
+        "id": 1005194
+      },
+      "writtenOn": "2016-01-05T13:43:55Z",
+      "side": 1,
+      "message": "This is unclear",
+      "range": {
+        "startLine": 7,
+        "startChar": 0,
+        "endLine": 8,
+        "endChar": 61
+      },
+      "revId": "bd96172942e2978b7443a82798ccfcca33c17e38",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "fa81d914_be7263e3",
+        "filename": "docs/user_guide/FAQs/Puppet_Server_NAT.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 17,
+      "author": {
+        "id": 1005194
+      },
+      "writtenOn": "2016-01-05T13:43:55Z",
+      "side": 1,
+      "message": "Add this to the step 1 instructions above the code.",
+      "range": {
+        "startLine": 17,
+        "startChar": 3,
+        "endLine": 17,
+        "endChar": 62
+      },
+      "revId": "bd96172942e2978b7443a82798ccfcca33c17e38",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735",
+      "unresolved": false
+    }
+  ]
+}
