@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "fa81d914_fb582258",
+        "filename": "docs/common/PXE_Boot.rst",
+        "patchSetId": 2
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 1005143
+      },
+      "writtenOn": "2016-01-27T00:59:58Z",
+      "side": 1,
+      "message": "Trailing whitespaces",
+      "range": {
+        "startLine": 13,
+        "startChar": 61,
+        "endLine": 13,
+        "endChar": 63
+      },
+      "revId": "b3688a12519e4b8595b459e1bde7b1c7700ff123",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "fa81d914_1b541620",
+        "filename": "docs/user_guide/FAQs/Puppet_Server_NAT.rst",
+        "patchSetId": 2
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1005143
+      },
+      "writtenOn": "2016-01-27T00:59:58Z",
+      "side": 1,
+      "message": "Trailing whitespaces",
+      "range": {
+        "startLine": 7,
+        "startChar": 73,
+        "endLine": 7,
+        "endChar": 74
+      },
+      "revId": "b3688a12519e4b8595b459e1bde7b1c7700ff123",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735",
+      "unresolved": false
+    }
+  ]
+}
