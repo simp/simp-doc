@@ -69,7 +69,7 @@ Elasticsearch Puppet module for details on how to define additional
 output targets.
 
 SIMP Logstash Flow
------------------
+------------------
 
 Logstash, SIMP, and Security
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
