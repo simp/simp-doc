@@ -15,6 +15,7 @@ Contents:
   Puppetmaster_Backup
   Managing_Workstation_Infrastructures
   Upgrading_SIMP
+  Foreman
   Logstash
   Kerberos
   Troubleshooting
