@@ -504,12 +504,8 @@ SIMP SCTM Technical Controls
      -
    * - AU-12
      - Audit Generation
-     - Audit and Accountability
-
-     - a. Auditd provides the audit generation capability and is running on all SIMP systems by default.
-     - b. The audit.rules files configures events that are audited. 
-     - c. The audit.rules applies the list of audit rules defined in SIMP Security Concepts document.
-
+     - Audit and Accountability (a) Auditd provides the audit generation capability and is running on all SIMP systems by default. (b) The audit.rules files configures events that are audited. (c) The audit.rules applies the list of audit rules defined in SIMP Security Concepts document.
+     -
    * - AU-12(1)
      - Audit Generation (Control Enhancement)
      - Audit and Accountability
@@ -616,13 +612,8 @@ SIMP SCTM Technical Controls
      - C. Authenticator strength is enforced using pam\_crack\_lib.so. This works for user defined passwords on local and LDAP accounts. E. It's up to the implementation to change the values for the various passwords. F. Password history is set to 24 by default in SIMP and enforced with pam.G. For local accounts, password aging is set to 180 days. It's set to the same in LDAP, but enforced at the time of account creation using ldifs. LDAP subsequently uses PAM to enforce the aging. Key based passwordless logins do not enforce aging. Upon generation, server and puppet certificates can also be set to expire.H. Authenticators for local and LDAP account are protected using operating system access controls. The server certificates are also protected using operating system controls.
    * - IA-5(1)
      - Authenticator Management (Control Enhancement)
-     - Identification and Authentication
-
-     - a. Authenticator strength is enforced using pam\_crack\_lib.so. This works for user defined passwords on local and LDAP accounts. Administrators can bypass PAM and set weak passwords in LDAP. Under normal circumstances, users would be forced to change their password at login, at which point pam enforced complexity. 
-     - b. Not enforced 
-     - c. Hashed passwords are built into linux (/etc/shadow and /etc/pam.d/system-auth pam\_unix.so). LDAP password changed by users are done through pam before getting placed in LDAP. Manual LDAP password are created using the slapasswd command.
-     - d. Password minimum and maximum lifetimes are enforced through /etc/login.defs and ldap. e. By default, the previous 24 passwords can not be reused.
-
+     - Identification and Authentication (a) Authenticator strength is enforced using pam\_crack\_lib.so. This works for user defined passwords on local and LDAP accounts. Administrators can bypass PAM and set weak passwords in LDAP. Under normal circumstances, users would be forced to change their password at login, at which point pam enforced complexity. (b) Not enforced. (c) Hashed passwords are built into linux (/etc/shadow and /etc/pam.d/system-auth pam\_unix.so). LDAP password changed by users are done through pam before getting placed in LDAP. Manual LDAP password are created using the slapasswd command. (d) Password minimum and maximum lifetimes are enforced through /etc/login.defs and ldap. e. By default, the previous 24 passwords can not be reused.
+     -
    * - IA-5(2)
      - Authenticator Management (Control Enhancement)
      - Identification and Authentication
