@@ -1,3 +1,5 @@
+.. _SIMP ISO:
+
 Building a Bootable DVD from the SIMP tarball
 =============================================
 
