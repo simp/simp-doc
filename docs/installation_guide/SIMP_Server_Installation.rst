@@ -115,6 +115,8 @@ Preparing the SIMP Server Environment
 -------------------------------------
 
 1. Boot the system and ensure the SIMP ISO is selected.
+   
+   a. If do not have a SIMP ISO, see :ref:`SIMP ISO`.
 2. Press *Enter** to run the standard SIMP install, or choose from the customized options list.
 3. When the installation is complete, the system will restart automatically.
 4. Log on as ``root`` and type the default password shown in **Table 2.1.**
