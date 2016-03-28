@@ -248,12 +248,17 @@ pupmod-simp-nscd
 """"""""""""""""
 
 * Replaced remaining `lsb*` variables.
+* Fixed a race condition between `service nscd restart` and
+  `service nscd reload`
 
 pupmod-simp-openldap
 """"""""""""""""""""
 
 * Fixed several ordering and variable issues discovered when testing for
   `Puppet 4`_
+* Fixed numerous issues with nslcd
+* Now copy the system certificates to `/etc/nslcd.d` for instances that wish to
+  use their own certificates.
 
 pupmod-simp-pki
 """""""""""""""
