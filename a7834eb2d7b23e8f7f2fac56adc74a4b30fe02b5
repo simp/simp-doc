@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "da9b358b_ec06971f",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1005143
+      },
+      "writtenOn": "2016-03-31T18:12:41Z",
+      "side": 1,
+      "message": "The SIMP project has a preferred format for git commit messages.  See https://simp-project.atlassian.net/wiki/display/SD/Contributing+to+SIMP",
+      "range": {
+        "startLine": 7,
+        "startChar": 72,
+        "endLine": 7,
+        "endChar": 74
+      },
+      "revId": "a7834eb2d7b23e8f7f2fac56adc74a4b30fe02b5",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da9b358b_318a9cc0",
+        "filename": "docs/installation_guide/SIMP_Server_Installation.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 118,
+      "author": {
+        "id": 1005143
+      },
+      "writtenOn": "2016-03-31T18:12:41Z",
+      "side": 1,
+      "message": "Zoonds! Trailing Whitespace!",
+      "range": {
+        "startLine": 118,
+        "startChar": 0,
+        "endLine": 118,
+        "endChar": 3
+      },
+      "revId": "a7834eb2d7b23e8f7f2fac56adc74a4b30fe02b5",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da9b358b_cc03d30e",
+        "filename": "docs/installation_guide/SIMP_Server_Installation.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 119,
+      "author": {
+        "id": 1005143
+      },
+      "writtenOn": "2016-03-31T18:12:41Z",
+      "side": 1,
+      "message": "is not gud anglish",
+      "range": {
+        "startLine": 119,
+        "startChar": 6,
+        "endLine": 119,
+        "endChar": 20
+      },
+      "revId": "a7834eb2d7b23e8f7f2fac56adc74a4b30fe02b5",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735",
+      "unresolved": false
+    }
+  ]
+}
