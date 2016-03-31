@@ -62,12 +62,13 @@ Simp User UserPassword
 ========= ========
 
 A table of settings that can be changed/defined during installation is located in Appendix B, :ref:`List of Installation Variables`.
-Review this if you are unfamiliar with SIMP.  
+Review this if you are unfamiliar with SIMP.
 
 Preparing the SIMP Server Environment
 -------------------------------------
 
 1. Boot the system and ensure the SIMP ISO is selected.
+  a. If you do not have a SIMP ISO, see :ref:`SIMP ISO`.
 2. Press *Enter** to run the standard SIMP install, or choose from the customized options list.
 3. When the installation is complete, the system will restart automatically.
 4. Log on as ``root`` and type the default password shown in **Table 2.1.**

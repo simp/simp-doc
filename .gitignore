@@ -8,3 +8,4 @@ builderrors
 html
 pdf
 sphinx_cache
+/Gemfile.lock
