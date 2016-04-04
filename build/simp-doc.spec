@@ -7,7 +7,7 @@
 Summary: SIMP Documentation
 Name: simp-doc
 Version: 5.1.0
-Release: 2
+Release: 4.Alpha
 License: Apache License, Version 2.0
 Group: Documentation
 Source: %{name}-%{version}-%{release}.tar.gz
@@ -88,6 +88,10 @@ mv pdf/SIMP_Documentation.pdf pdf/SIMP-%{version}-%{release}.pdf
 # Post uninstall stuff
 
 %changelog
+* Mon Apr 04 2016 Trevor Vaughan <tvaughan@onyxpoint.com> - 5.1.0-4.Alpha
+- Starting on the 5.1.0-4 release...
+- Changed the tftpboot docs to use https.
+
 * Wed Nov 11 2015 Trevor Vaughan <tvaughan@onyxpoint.com> - 5.1.0-2
 - Update to fix SIMP RPM dependencies
 
