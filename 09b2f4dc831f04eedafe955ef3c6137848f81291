@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "baa041b7_4a8d847a",
+        "filename": "docs/user_guide/SIMP_Administration.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 35,
+      "author": {
+        "id": 1005143
+      },
+      "writtenOn": "2016-04-04T22:24:26Z",
+      "side": 1,
+      "message": "Duplicated passage from lines 29-31",
+      "range": {
+        "startLine": 33,
+        "startChar": 0,
+        "endLine": 35,
+        "endChar": 26
+      },
+      "revId": "09b2f4dc831f04eedafe955ef3c6137848f81291",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "baa041b7_6a904896",
+        "filename": "docs/user_guide/SIMP_Administration.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 49,
+      "author": {
+        "id": 1005143
+      },
+      "writtenOn": "2016-04-04T22:24:26Z",
+      "side": 1,
+      "message": "Is it really \"flocal?\"",
+      "range": {
+        "startLine": 49,
+        "startChar": 35,
+        "endLine": 49,
+        "endChar": 36
+      },
+      "revId": "09b2f4dc831f04eedafe955ef3c6137848f81291",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735",
+      "unresolved": false
+    }
+  ]
+}
