@@ -25,10 +25,202 @@ every single package on every system.
 The general technique is to put packages that all systems will receive
 into the ``Updates`` repository provided with SIMP. Any packages that will
 only go to specific system sets will then be placed into adjunct
-repositories under ``/var/www/yum`` and the user will point specific
+repositories under ``/srv/www/yum`` and the user will point specific
 systems at those repositories using the ``yumrepo`` Puppet type. Any
 common packages can be symlinked or hard linked between repositories for
 maximum space utilization.
+
+systems at those repositories using the ``yumrepo`` Puppet type. Any
+common packages can be symlinked or hard linked between repositories for
+maximum space utilization.
+
+Extending the native Framework
+******************************
+
+By default, SIMP stores YUM information in the following directories:
+
+.. only:: not simp_4
+
+   - ``/var/lib/yum/repos/x86_64/7/Local``
+   - ``/srv/www/yum``
+
+.. only:: simp_4
+
+   - ``/var/lib/yum/repos/x86_64/6/flocal-x86_64``
+   - ``/srv/www/yum``
+
+
+.. only:: not simp_4
+
+   SIMP specific information is present in ``/var/lib/yum/repos/x86_64/7/Local`` and it is highly unlikely that you would want to modify anything in this directory.
+
+.. only:: simp_4
+
+   SIMP specific information is present in ``/srv/www/yum/CentOS/6.7/x86_64/flocal-x86_64`` and it is highly unlikely that you would want to modify anything in this directory.
+
+
+
+With the standard configuration, access to the yum repository is restricted to the networks contained in the $client_nets variable in ``vars.pp``.  For this section, we will assume that this is sufficient for your needs.
+
+The Red Hat Repo(s)
+*******************
+
+
+.. only:: not simp_4
+
+   If you look in ``/var/lib/yum`` you will see something like the following directory structure (depending on your architecture):
+   - ``/var/lib/yum/repos/x86_64/7/``
+
+.. only:: simp_4
+
+   If you look in ``/srv/www/yum`` you will see something like the following directory structure (depending on your architecture):
+   - ``/srv/www/yum/repos/x86_64/6/``
+
+
+This is the default space and YUM will have been configured on your systems to use the 'Updates' directory within this space for all package retrieval.
+
+.. only:: not simp_4
+
+   All RedHat updates should be placed within the appropriate 'Updates' directory, eg. ``/var/lib/yum/repos/x86_64/7/updates`` or similar
+
+.. only:: simp_4
+
+   All RedHat updates should be placed within the appropriate 'Updates' directory, eg. ``/srv/www/yum/repos/CentOS/6.7/x86_64/Updates`` or similar
+
+You should run the following in the 'Updates' directory after *any* package addition or removal within that directory.
+
+.. code-block:: bash
+
+  $ createrepo .
+  $ chown -R root.apache ./*
+  $ find . -type f -exec chmod 640 {} \;
+  $ find . -type d -exec chmod 750 {} \;
+
+Adding your custom space
+************************
+
+For this example, we are going to assume that you have a repository named FOO that you would like to expose to your systems.  You would perform the following commands to enable this repository on the server:
+
+.. only:: not simp_4
+
+  .. code-block:: bash
+
+     $ cd /var/lib/yum
+     $ mkdir foo
+     $ cd foo
+     $ -- copy all RPMs into the folder
+     $ createrepo .
+     $ chown -R root.apache ./*
+     $ find . -type f -exec chmod 640 {} \;
+     $ find . -type d -exec chmod 750 {} \;
+
+.. only:: simp_4
+
+  .. code-block:: bash
+
+     $ cd /srv/www/yum
+     $ mkdir foo
+     $ cd foo
+     $ -- copy all RPMs into the folder
+     $ createrepo .
+     $ chown -R root.apache ./*
+     $ find . -type f -exec chmod 640 {} \;
+     $ find . -type d -exec chmod 750 {} \;
+
+
+Obviously, you could have different directory structures under 'foo', but that is an attribute of YUM repo management and left as an exercise for the reader.
+This directory is now properly exposed to all networks in $client_nets.
+When you add new files to the repo, you only need to re-run the ``createrepo .`` command in the ``/srv/www/yum/`` sub-directory.
+
+Configuring the clients
+***********************
+
+Now that you've added this directory, you're obviously going to want to add it to one or more client nodes.
+
+The best way to do this is to make it part of your site configuration.  You *can* make it part of your module, but you will need to wrap it in a define so that the server can be modified.  This ends up being not too much better than just adding it to each node manually.
+
+To add it to the client node, you should use the puppet 'yumrepo' native type.  You can find more information on the type on the 'Puppet Type Reference' on the Internet.
+
+At a glance, it would look like the following (assuming you are doing this one on the server configured as $yum_server in ``vars.pp``):
+
+.. code-block:: ruby
+
+  yumrepo { foo:
+    baseurl => "Project FOO",
+    enabled => 1,
+    enablegroups => 0,
+    gpgcheck => 0,
+    keepalive => 0,
+    metadata_expire => 3600,
+    tag => "firstrun"
+  }
+
+
+Working Outside the Native Framework
+************************************
+
+There may be a time when you want to expose this information to a different set of IPs than those in $client_nets.  The easiest way to do this is to modify the 'site' module.
+The 'site' module, located at ``/etc/puppet/environments/simp/modules/site`` is a space set up for the ease of use of a module, but with site-specific information.  The SIMP RPMs will never affect anything in this directory.  Anything you do here could also be done natively, but it makes the use of templates easier.
+
+Setting up the space as shown in the following sections will provide the most flexibility and ease of use.
+
+**/etc/puppet/environments/simp/modules/site/manifests/init.pp**
+
+Content:
+
+.. code-block:: ruby
+
+  import "sub/*.pp"
+
+
+**/etc/puppet/environments/simp/modules/site/manifests/sub/apache.pp**
+
+Content:
+
+.. code-block:: ruby
+
+  class site::apache::distros {
+     import "apache"
+
+     apache::add_site { "site_distros":
+       content => template('site/apache/distros.erb')
+     }
+  }
+
+
+**/etc/puppet/environments/simp/modules/site/templates/apache/distros.erb**
+
+Content:
+
+.. code-block:: ruby
+
+  Alias /foo /var/www/foo
+
+  <Location /foo>
+     Order allow, deny
+     Allow from 127.0.0.1
+     Allow from ::1
+     Allow from <%= domain %>
+     <% begin client_nets_cidr
+       client_nets_cidr.each do | i | %>
+     Allow from <%= i %><%= "\n" %><% end %> <% rescue %><% end %>
+     Options Indexes MultiViews
+  </Location>
+
+
+
+Final steps and notes:
+**********************
+
+This is just an example.  You would, of course, add whatever IP/address manipulation you need to make this effective for your site.
+
+If you did create new files in the 'site' module, you will need to restart the puppetmaster process to make them take effect.
+
+Also, the module changes won't be applied until puppetd's next run on the server.
+
+Finally, you will need to ``include "site::apache::distros"`` in whatever node is appropriate for your site.
+
+
 
 Sudosh
 ------
