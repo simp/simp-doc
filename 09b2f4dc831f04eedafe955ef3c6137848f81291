@@ -2,6 +2,29 @@
   "comments": [
     {
       "key": {
+        "uuid": "baa041b7_e01fd759",
+        "filename": "docs/user_guide/SIMP_Administration.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 1005194
+      },
+      "writtenOn": "2016-04-05T12:12:11Z",
+      "side": 1,
+      "message": "/var or /srv depending on OS",
+      "range": {
+        "startLine": 28,
+        "startChar": 21,
+        "endLine": 28,
+        "endChar": 25
+      },
+      "revId": "09b2f4dc831f04eedafe955ef3c6137848f81291",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "baa041b7_4a8d847a",
         "filename": "docs/user_guide/SIMP_Administration.rst",
         "patchSetId": 1
@@ -18,6 +41,52 @@
         "startChar": 0,
         "endLine": 35,
         "endChar": 26
+      },
+      "revId": "09b2f4dc831f04eedafe955ef3c6137848f81291",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "baa041b7_c024d3b0",
+        "filename": "docs/user_guide/SIMP_Administration.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 44,
+      "author": {
+        "id": 1005194
+      },
+      "writtenOn": "2016-04-05T12:12:11Z",
+      "side": 1,
+      "message": "Users should not need to care about this directory",
+      "range": {
+        "startLine": 44,
+        "startChar": 7,
+        "endLine": 44,
+        "endChar": 40
+      },
+      "revId": "09b2f4dc831f04eedafe955ef3c6137848f81291",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "baa041b7_a03aefcb",
+        "filename": "docs/user_guide/SIMP_Administration.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 45,
+      "author": {
+        "id": 1005194
+      },
+      "writtenOn": "2016-04-05T12:12:11Z",
+      "side": 1,
+      "message": "/var/www/yum",
+      "range": {
+        "startLine": 45,
+        "startChar": 7,
+        "endLine": 45,
+        "endChar": 20
       },
       "revId": "09b2f4dc831f04eedafe955ef3c6137848f81291",
       "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735",
@@ -65,6 +134,322 @@
         "startChar": 35,
         "endLine": 49,
         "endChar": 36
+      },
+      "revId": "09b2f4dc831f04eedafe955ef3c6137848f81291",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "baa041b7_8037ebe2",
+        "filename": "docs/user_guide/SIMP_Administration.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 49,
+      "author": {
+        "id": 1005194
+      },
+      "writtenOn": "2016-04-05T12:12:11Z",
+      "side": 1,
+      "message": "Users should not need to care about this directory",
+      "range": {
+        "startLine": 49,
+        "startChar": 7,
+        "endLine": 49,
+        "endChar": 48
+      },
+      "revId": "09b2f4dc831f04eedafe955ef3c6137848f81291",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "baa041b7_6034e7dd",
+        "filename": "docs/user_guide/SIMP_Administration.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 55,
+      "author": {
+        "id": 1005194
+      },
+      "writtenOn": "2016-04-05T12:12:11Z",
+      "side": 1,
+      "message": "The base SIMP repository",
+      "range": {
+        "startLine": 55,
+        "startChar": 3,
+        "endLine": 55,
+        "endChar": 28
+      },
+      "revId": "09b2f4dc831f04eedafe955ef3c6137848f81291",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "baa041b7_0052bb13",
+        "filename": "docs/user_guide/SIMP_Administration.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 55,
+      "author": {
+        "id": 1005194
+      },
+      "writtenOn": "2016-04-05T12:12:11Z",
+      "side": 1,
+      "message": "/var/www/yum/SIMP",
+      "range": {
+        "startLine": 55,
+        "startChar": 45,
+        "endLine": 55,
+        "endChar": 78
+      },
+      "revId": "09b2f4dc831f04eedafe955ef3c6137848f81291",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "baa041b7_4031e3eb",
+        "filename": "docs/user_guide/SIMP_Administration.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 59,
+      "author": {
+        "id": 1005194
+      },
+      "writtenOn": "2016-04-05T12:12:11Z",
+      "side": 1,
+      "message": "Same here",
+      "range": {
+        "startLine": 59,
+        "startChar": 3,
+        "endLine": 59,
+        "endChar": 28
+      },
+      "revId": "09b2f4dc831f04eedafe955ef3c6137848f81291",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "baa041b7_a041cf3b",
+        "filename": "docs/user_guide/SIMP_Administration.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 59,
+      "author": {
+        "id": 1005194
+      },
+      "writtenOn": "2016-04-05T12:12:11Z",
+      "side": 1,
+      "message": "/srv/www/yum/SIMP",
+      "range": {
+        "startLine": 59,
+        "startChar": 45,
+        "endLine": 59,
+        "endChar": 89
+      },
+      "revId": "09b2f4dc831f04eedafe955ef3c6137848f81291",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "baa041b7_4048c35b",
+        "filename": "docs/user_guide/SIMP_Administration.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 65,
+      "author": {
+        "id": 1005194
+      },
+      "writtenOn": "2016-04-05T12:12:11Z",
+      "side": 1,
+      "message": "OS",
+      "range": {
+        "startLine": 65,
+        "startChar": 4,
+        "endLine": 65,
+        "endChar": 11
+      },
+      "revId": "09b2f4dc831f04eedafe955ef3c6137848f81291",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "baa041b7_60b9872e",
+        "filename": "docs/user_guide/SIMP_Administration.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 88,
+      "author": {
+        "id": 1005194
+      },
+      "writtenOn": "2016-04-05T12:12:11Z",
+      "side": 1,
+      "message": "The default location for the OS repositories is:\n\n.. only::not simp_4\n\n   - ``/var/www/yum/${::operatingsystem}/7/x86_64\n\n.. only:: simp_4\n\n   - ``/srv/www/yum/${::operatingsystem}/6/x86_64\n\nAn \u0027Updates\u0027 repository has been configured in this space.  All OS updates should be placed within this directory.",
+      "range": {
+        "startLine": 69,
+        "startChar": 0,
+        "endLine": 88,
+        "endChar": 146
+      },
+      "revId": "09b2f4dc831f04eedafe955ef3c6137848f81291",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "baa041b7_408d637a",
+        "filename": "docs/user_guide/SIMP_Administration.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 97,
+      "author": {
+        "id": 1005194
+      },
+      "writtenOn": "2016-04-05T12:12:11Z",
+      "side": 1,
+      "message": "$yum clean all\n$yum makecache",
+      "revId": "09b2f4dc831f04eedafe955ef3c6137848f81291",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "baa041b7_e07b577a",
+        "filename": "docs/user_guide/SIMP_Administration.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 99,
+      "author": {
+        "id": 1005194
+      },
+      "writtenOn": "2016-04-05T12:12:11Z",
+      "side": 1,
+      "message": "a custom repository",
+      "range": {
+        "startLine": 99,
+        "startChar": 7,
+        "endLine": 99,
+        "endChar": 24
+      },
+      "revId": "09b2f4dc831f04eedafe955ef3c6137848f81291",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "baa041b7_c0f733f4",
+        "filename": "docs/user_guide/SIMP_Administration.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 128,
+      "author": {
+        "id": 1005194
+      },
+      "writtenOn": "2016-04-05T12:12:11Z",
+      "side": 1,
+      "message": ".. only:: not simp_4\n  .. code-block:: bash\n    $cd /var/www/yum\n.. only:: simp_4\n  .. code-block::bash\n    $cd /srv/www/yum\n\n.. code-block::bash\n    $ mkdir foo\n    $ cd foo\n    $ -- copy all RPMs into the folder\n    $ createrepo .\n    $ chown -R root.apache ./*\n    $ find . -type f -exec chmod 640 {} \\;\n    $ find . -type d -exec chmod 750 {} \\;",
+      "range": {
+        "startLine": 104,
+        "startChar": 0,
+        "endLine": 128,
+        "endChar": 43
+      },
+      "revId": "09b2f4dc831f04eedafe955ef3c6137848f81291",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "baa041b7_80936ba3",
+        "filename": "docs/user_guide/SIMP_Administration.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 131,
+      "author": {
+        "id": 1005194
+      },
+      "writtenOn": "2016-04-05T12:12:11Z",
+      "side": 1,
+      "message": "Omit",
+      "range": {
+        "startLine": 131,
+        "startChar": 0,
+        "endLine": 131,
+        "endChar": 157
+      },
+      "revId": "09b2f4dc831f04eedafe955ef3c6137848f81291",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "baa041b7_a0dd4f72",
+        "filename": "docs/user_guide/SIMP_Administration.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 132,
+      "author": {
+        "id": 1005194
+      },
+      "writtenOn": "2016-04-05T12:12:11Z",
+      "side": 1,
+      "message": "By placing the basepath of the repository within the default path served by Apache, it will be exposed to all networks in $::client_nets.",
+      "range": {
+        "startLine": 132,
+        "startChar": 0,
+        "endLine": 132,
+        "endChar": 71
+      },
+      "revId": "09b2f4dc831f04eedafe955ef3c6137848f81291",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "baa041b7_80da4b77",
+        "filename": "docs/user_guide/SIMP_Administration.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 133,
+      "author": {
+        "id": 1005194
+      },
+      "writtenOn": "2016-04-05T12:12:11Z",
+      "side": 1,
+      "message": "To modify the package set in any repository at any time, re-run\n.. code-block::bash\n  $ cd /some/repository/\n  $ cp /some/packages /some/repository/\n  $ createrepo .\n  $ chown -R root.apache ./*\n  $ find . -type f -exec chmod 640 {} \\;\n  $ find . -type d -exec chmod 750 {} \\;\n  $ yum clean all\n  $ yum makecache",
+      "range": {
+        "startLine": 133,
+        "startChar": 0,
+        "endLine": 133,
+        "endChar": 128
+      },
+      "revId": "09b2f4dc831f04eedafe955ef3c6137848f81291",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "baa041b7_40bb230f",
+        "filename": "docs/user_guide/SIMP_Administration.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 149,
+      "author": {
+        "id": 1005194
+      },
+      "writtenOn": "2016-04-05T12:12:11Z",
+      "side": 1,
+      "message": "http://your.server.fqdn/yum/foo",
+      "range": {
+        "startLine": 149,
+        "startChar": 16,
+        "endLine": 149,
+        "endChar": 27
       },
       "revId": "09b2f4dc831f04eedafe955ef3c6137848f81291",
       "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735",
