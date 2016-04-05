@@ -91,7 +91,7 @@ Create a site manifest for the TFTP server on the Puppet server.
     tftpboot::linux_model { 'MODEL NAME':
       kernel => 'OSTYPE-MAJORRELEASE-ARCH/vmlinuz',
       initrd => 'OSTYPE-MAJORRELEASE-ARCH/initrd.img',
-      ks     => "http://KSSERVER/ks/pupclient_x86_64.cfg",
+      ks     => "https://KSSERVER/ks/pupclient_x86_64.cfg",
       extra  => "ksdevice=bootif\nipappend 2"
     }
 

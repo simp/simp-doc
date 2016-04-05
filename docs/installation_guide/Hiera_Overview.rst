@@ -88,7 +88,7 @@ Adding a Site Manifest Examples
             tftpboot::linux_model { 'CentOS_RHEL_MAJOR_VERSION':
               kernel => 'centosRHEL_MAJOR_VERSION_x86_64/vmlinuz',
               initrd => 'centosRHEL_MAJOR_VERSION_x86_64/initrd.img',
-              ks     => "http://KSSERVER/ks/pupclient_x86_64.cfg",
+              ks     => "https://KSSERVER/ks/pupclient_x86_64.cfg",
               extra  => 'ipappend 2'
             }
 
