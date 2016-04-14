@@ -50,23 +50,24 @@ source /opt/rh/python27/enable
 
 virtualenv venv
 source venv/bin/activate
-pip install --upgrade sphinx
-pip install --upgrade rst2pdf
-pip install --upgrade pillow
-pip install --upgrade svglib
-pip install --upgrade sphinxcontrib-findanything
+pip install --upgrade -r requirements.txt
 
-sphinx-build -E -n -t simp_%{simp_major_version} -b html       -d sphinx_cache docs html
+sphinx-build -E -n -t simp_%{simp_major_version} -b html -d sphinx_cache docs html
 sphinx-build -E -n -t simp_%{simp_major_version} -b singlehtml -d sphinx_cache docs html-single
 
 # Rst2pdf is currently broken on references so we have to remove them.
 # This should be removed when this bug is fixed.
 find docs -name "*.rst" -exec sed -i 's/:ref://g' {} \;
 
-sphinx-build -E -n -t simp_%{simp_major_version} -b pdf        -d sphinx_cache docs pdf
+sphinx-build -E -n -t simp_%{simp_major_version} -b pdf -d sphinx_cache docs pdf
 
 if [ ! -d changelogs ]; then
   mkdir changelogs
+fi
+
+if [ ! -f pdf/SIMP_Documentation.pdf ] || [ `stat --printf="%s" pdf/SIMP_Documentation.pdf` -eq 0 ]; then
+  echo "Error: PDF output has size 0"
+  exit 1
 fi
 
 mv pdf/SIMP_Documentation.pdf pdf/SIMP-%{version}-%{release}.pdf
@@ -88,9 +89,11 @@ mv pdf/SIMP_Documentation.pdf pdf/SIMP-%{version}-%{release}.pdf
 # Post uninstall stuff
 
 %changelog
-* Mon Apr 04 2016 Trevor Vaughan <tvaughan@onyxpoint.com> - 5.1.0-4.Alpha
+* Mon Apr 04 2016 Trevor Vaughan <tvaughan@onyxpoint.com> - 5.1.0-4.Alpha.1
 - Starting on the 5.1.0-4 release...
 - Changed the tftpboot docs to use https.
+- Fixed a bug that was preventing PDF builds
+- Updated the RPM build to fail if the resulting PDF is size 0
 
 * Wed Nov 11 2015 Trevor Vaughan <tvaughan@onyxpoint.com> - 5.1.0-2
 - Update to fix SIMP RPM dependencies

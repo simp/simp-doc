@@ -357,7 +357,16 @@ SIMP SCTM Technical Controls
    * - AU-2
      - Auditable Events
      - Audit and Accountability
-     - a. SIMP audit rules were built by using industry best practices gathered over the years. The heaviest reliance has been on the SCAP-Security Guide (SSG). SIMP aims for a balance between performance and operational needs so the settings are rarely an exact match from these guides. The list of events that audited are by auditd can be found in appendix of the Security Concepts document. b. Implementation Specific c. Rational is for audit setting is provided in SSG. d. Threat information is specific to the implementation. Auditd and syslog facility can always be fine tuned for each implementation.
+     - a. SIMP audit rules were built by using industry best practices gathered
+          over the years. The heaviest reliance has been on the SCAP-Security
+          Guide (SSG). SIMP aims for a balance between performance and
+          operational needs so the settings are rarely an exact match from
+          these guides. The list of events that audited are by auditd can be
+          found in appendix of the Security Concepts document.
+       b. Implementation Specific
+       c. Rationale is for audit setting is provided in SSG. d. Threat
+          information is specific to the implementation. Auditd and syslog
+          facility can always be fine tuned for each implementation.
    * - AU-2(3)
      - Auditable Events (Control Enhancement)
      - Audit and Accountability
@@ -385,7 +394,14 @@ SIMP SCTM Technical Controls
    * - AU-5
      - Response to Audit Processing Failures
      - Audit and Accountability
-     - a. Implementation Specific. b. The audit.conf file configures the system to log to syslog when disk space becomes low. If the disk becomes full, the audit daemon will be suspended, but the system will remain active. This is contrary to some industry guidance to put the system into single user mode when disk space becomes an issue. Implementations may wish to change the default behaviour at the risk of stopping the system from functioning.
+     - a. Implementation Specific.
+       b. The audit.conf file configures the system to log to syslog when disk
+          space becomes low. If the disk becomes full, the audit daemon will be
+          suspended, but the system will remain active. This is contrary to
+          some industry guidance to put the system into single user mode when
+          disk space becomes an issue. Implementations may wish to change the
+          default behaviour at the risk of stopping the system from
+          functioning.
    * - AU-5(1)
      - Response to Audit Processing Failures (Control Enhancement)
      - Audit and Accountability
@@ -504,8 +520,12 @@ SIMP SCTM Technical Controls
      -
    * - AU-12
      - Audit Generation
-     - Audit and Accountability (a) Auditd provides the audit generation capability and is running on all SIMP systems by default. (b) The audit.rules files configures events that are audited. (c) The audit.rules applies the list of audit rules defined in SIMP Security Concepts document.
-     -
+     - Audit and Accountability
+     - a. Auditd provides the audit generation capability and is running on all
+          SIMP systems by default.
+       b. The audit.rules files configures events that are audited.
+       c. The audit.rules applies the list of audit rules defined in SIMP
+          Security Concepts document.
    * - AU-12(1)
      - Audit Generation (Control Enhancement)
      - Audit and Accountability
@@ -612,8 +632,20 @@ SIMP SCTM Technical Controls
      - C. Authenticator strength is enforced using pam\_crack\_lib.so. This works for user defined passwords on local and LDAP accounts. E. It's up to the implementation to change the values for the various passwords. F. Password history is set to 24 by default in SIMP and enforced with pam.G. For local accounts, password aging is set to 180 days. It's set to the same in LDAP, but enforced at the time of account creation using ldifs. LDAP subsequently uses PAM to enforce the aging. Key based passwordless logins do not enforce aging. Upon generation, server and puppet certificates can also be set to expire.H. Authenticators for local and LDAP account are protected using operating system access controls. The server certificates are also protected using operating system controls.
    * - IA-5(1)
      - Authenticator Management (Control Enhancement)
-     - Identification and Authentication (a) Authenticator strength is enforced using pam\_crack\_lib.so. This works for user defined passwords on local and LDAP accounts. Administrators can bypass PAM and set weak passwords in LDAP. Under normal circumstances, users would be forced to change their password at login, at which point pam enforced complexity. (b) Not enforced. (c) Hashed passwords are built into linux (/etc/shadow and /etc/pam.d/system-auth pam\_unix.so). LDAP password changed by users are done through pam before getting placed in LDAP. Manual LDAP password are created using the slapasswd command. (d) Password minimum and maximum lifetimes are enforced through /etc/login.defs and ldap. e. By default, the previous 24 passwords can not be reused.
-     -
+     - Identification and Authentication
+     - a. Authenticator strength is enforced using pam\_crack\_lib.so. This
+          works for user defined passwords on local and LDAP accounts.
+          Administrators can bypass PAM and set weak passwords in LDAP. Under
+          normal circumstances, users would be forced to change their password
+          at login, at which point pam enforced complexity.
+       b. Not enforced.
+       c. Hashed passwords are built into linux (/etc/shadow and
+          /etc/pam.d/system-auth pam\_unix.so). LDAP password changed by users
+          are done through pam before getting placed in LDAP. Manual LDAP
+          password are created using the slapasswd command.
+       d. Password minimum and maximum lifetimes are enforced through
+          /etc/login.defs and ldap.
+       e. By default, the previous 24 passwords can not be reused.
    * - IA-5(2)
      - Authenticator Management (Control Enhancement)
      - Identification and Authentication
@@ -1113,7 +1145,14 @@ SIMP SCTM Management Controls
    * - CM-2(5)
      - Baseline Configuration (Control Enhancement)
      - Configuration Management
-     - a. SIMP provides a minimal list of packages and services installed. The minimal list of packages can be found in kickstart files and the appendix of this document. Additional packages are installed by each implementation or as SIMP modules are applied. b. It's not feasible to technically deny additional applications from being installed. There is nothing in SIMP that can stop and RPM from being applied. Applications that require network access to service activation must be registered with puppet.
+     - a. SIMP provides a minimal list of packages and services installed. The
+          minimal list of packages can be found in kickstart files and the
+          appendix of this document. Additional packages are installed by each
+          implementation or as SIMP modules are applied.
+       b. It's not feasible to technically deny additional applications from
+          being installed. There is nothing in SIMP that can stop and RPM from
+          being applied. Applications that require network access to service
+          activation must be registered with puppet.
    * - CM-2(6)
      - Baseline Configuration (Control Enhancement)
      - Configuration Management
