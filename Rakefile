@@ -216,7 +216,7 @@ namespace :docs do
   desc 'build PDF docs (SLOW)'
   task :pdf do
     extra_args = ''
-    cmd = "sphinx-build -E -n #{extra_args} -b pdf -d sphinx_cache docs pdf"
+    cmd = "sphinx-build -T -E -n #{extra_args} -b pdf -d sphinx_cache docs pdf"
     puts "== #{cmd}"
     %x(#{cmd} > /dev/null)
   end
