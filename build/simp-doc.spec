@@ -7,7 +7,7 @@
 Summary: SIMP Documentation
 Name: simp-doc
 Version: 4.2.0
-Release: 3.Alpha.1
+Release: 3.Alpha.2
 License: Apache License, Version 2.0
 Group: Documentation
 Source: %{name}-%{version}-%{release}.tar.gz
@@ -94,6 +94,9 @@ fi
 # Post uninstall stuff
 
 %changelog
+* Thu Apr 28 2016 Nick Markowski <nmarkowski@keywcorp.com> - 4.2.0-3.Alpha.2
+- Updated kickstart docs to use https.
+
 * Tue Apr 05 2016 Trevor Vaughan <tvaughan@onyxpoint.com> - 4.2.0-3.Alpha.1
 - Prepare for the next release
 - Changed the tftpboot docs to use https.

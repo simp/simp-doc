@@ -41,7 +41,7 @@ Default Puppet Master Kickstart file (contains default RPMs)
     text
     keyboard us
     lang en_US
-    url --url http://#KSSERVER#/yum/#LINUXDIST#/7/x86_64
+    url --url https://#KSSERVER#/yum/#LINUXDIST#/7/x86_64
 
     %include /tmp/part-include
 
@@ -129,10 +129,10 @@ Default Puppet Master Kickstart file (contains default RPMs)
 
     %pre
     ksserver="#KSSERVER#"
-    wget -O /tmp/diskdetect.sh http://$ksserver/ks/diskdetect.sh;
+    wget -O /tmp/diskdetect.sh https://$ksserver/ks/diskdetect.sh;
     chmod 750 /tmp/diskdetect.sh;
     /tmp/diskdetect.sh;
-    wget -O /tmp/repodetect.sh http://$ksserver/ks/repodetect.sh;
+    wget -O /tmp/repodetect.sh https://$ksserver/ks/repodetect.sh;
     chmod 750 /tmp/repodetect.sh;
     /tmp/repodetect.sh '7' $ksserver;
     %end
@@ -157,7 +157,7 @@ Default Puppet Master Kickstart file (contains default RPMs)
     source /root/.bashrc
 
     # Enable the firstboot bootstrapping script.
-    wget --no-check-certificate -O /etc/init.d/runpuppet http://$ksserver/ks/runpuppet;
+    wget --no-check-certificate -O /etc/init.d/runpuppet https://$ksserver/ks/runpuppet;
     chmod 700 /etc/rc.d/init.d/runpuppet;
     chkconfig --add runpuppet;
     chkconfig --level 35 runpuppet on;
