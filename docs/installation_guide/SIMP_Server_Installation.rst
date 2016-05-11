@@ -75,6 +75,9 @@ Preparing the SIMP Server Environment
 5. Type the default password again when prompted for the (current) UNIX password.
 6. Type a new password when prompted for the New Password. Retype the password when prompted.
 
+
+.. include:: SIMP_Server_Installation/Disk_Encryption.rst
+
 Installing the SIMP Server
 --------------------------
 
