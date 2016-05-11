@@ -76,6 +76,12 @@ Glossary of Terms
       A network protocol that enables a server to automatically assign an IP
       address to a computer.
 
+   EL
+   Enterprise Linux
+      In the context of SIMP, EL is a generic term for `Enterprise Linux` and
+      covers both :term:`RHEL` and :term:`CentOS` as well as other :term:`RHEL`
+      derivatives such as Oracle Linux.
+
    ENC
    External Node Classifier
       An arbitrary script or application which can tell :term:`Puppet` which
@@ -128,6 +134,11 @@ Glossary of Terms
 
       Source: `Hiera Overview <http://docs.puppetlabs.com/hiera/latest/>`__
 
+   initrd
+      The :term:`Linux` `Initial RAMDisk`. A complete :term:`Linux` environment
+      that is loaded at boot time to enable booting the rest of the operating
+      system.
+
    IP
    IP Address
    Internet Protocol Address
@@ -147,6 +158,13 @@ Glossary of Terms
       A user space application that provides an interface to the IPv6 firewall
       rules on modern Linux systems.
 
+   ISO
+   ISO 9660
+     A file system standard published by the International Organization for
+     Standardization (ISO) or optical disc media.
+
+      Source: `Wikipedia: ISO_9660 <https://en.wikipedia.org/wiki/ISO_9660>`__
+
    Kerberos
       A computer network authentication protocol that works on the basis of
       "tickets" to allow nodes communicating over a non-secure network to prove
@@ -163,6 +181,12 @@ Glossary of Terms
       A protocol for querying and modifying LDAP directory services including
       information such as names, addresses, email, phone numbers, and other
       information from an online directory.
+
+   LUKS
+   Linux Unified Key Setup
+      The standard for Linux hard disk encryption.
+
+      See: `The LUKS Homepage <https://gitlab.com/cryptsetup/cryptsetup/blob/master/README.md>`__
 
    MAC
    MAC Address
@@ -328,6 +352,13 @@ Glossary of Terms
    Trivial File Transfer Protocol
       A file transfer protocol generally used for automated transfer of
       configuration or boot files between machines in a local environment.
+
+   UUID
+   Universally Unique Identifier
+      A 128-bit unique value that is generally written as groups of hexadecimal
+      digits separated by hyphens.
+
+      See also: UUIDGEN(1)
 
    TTY
       A Unix command that prints to standard output the name of the terminal
