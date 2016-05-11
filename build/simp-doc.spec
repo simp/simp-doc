@@ -8,8 +8,8 @@
 
 Summary: SIMP Documentation
 Name: simp-doc
-Version: 5.1.0
-Release: 4.Alpha
+Version: __VERSION__
+Release: __RELEASE__
 License: Apache License, Version 2.0
 Group: Documentation
 Source: %{name}-%{version}-%{release}.tar.gz
@@ -91,54 +91,60 @@ mv pdf/SIMP_Documentation.pdf pdf/SIMP-%{version}-%{release}.pdf
 # Post uninstall stuff
 
 %changelog
-* Thu Apr 28 2016 Nick Markowski <nmarkowski@keywcorp.com> - 5.1.0-4.Alpha.2
-- Updated kickstart docs to use https.`
+* Fri May 13 2016 Trevor Vaughan <tvaughan@onyxpoint.com>
+- First cut at the consolidated Documentation
 
-* Mon Apr 04 2016 Trevor Vaughan <tvaughan@onyxpoint.com> - 5.1.0-4.Alpha.1
+* Wed May 11 2016 Nick Markowski <nmarkowski@keywcorp.com>
+- Updated tftpboot default entry to use noverifyssl.
+
+* Thu Apr 28 2016 Nick Markowski <nmarkowski@keywcorp.com>
+- Updated kickstart docs to use https.
+
+* Mon Apr 04 2016 Trevor Vaughan <tvaughan@onyxpoint.com>
 - Starting on the 5.1.0-4 release...
 - Changed the tftpboot docs to use https.
 - Fixed a bug that was preventing PDF builds
 - Updated the RPM build to fail if the resulting PDF is size 0
 
-* Wed Nov 11 2015 Trevor Vaughan <tvaughan@onyxpoint.com> - 5.1.0-2
+* Wed Nov 11 2015 Trevor Vaughan <tvaughan@onyxpoint.com>
 - Update to fix SIMP RPM dependencies
 
-* Wed Nov 11 2015 Trevor Vaughan <tvaughan@onyxpoint.com> - 5.1.0-0
+* Wed Nov 11 2015 Trevor Vaughan <tvaughan@onyxpoint.com>
 - Updated the default passwords to be easier overall
 
-* Tue Sep 22 2015 Trevor Vaughan <tvaughan@onyxpoint.com> - 5.1.0-RC1
+* Tue Sep 22 2015 Trevor Vaughan <tvaughan@onyxpoint.com>
 - Preparing for the 5.1.0-RC1 release.
 
-* Tue Aug 11 2015 Trevor Vaughan <tvaughan@onyxpoint.com> - 5.1.0-Beta2
+* Tue Aug 11 2015 Trevor Vaughan <tvaughan@onyxpoint.com>
 - Updated the spec file to properly build the docs.
 
-* Fri Jul 31 2015 Judy Johnson <judy.johnson@onyxpoint.com> - 5.1.0-Beta2
+* Fri Jul 31 2015 Judy Johnson <judy.johnson@onyxpoint.com>
 - Converted docs from Publican to ReStructured Text.
 
-* Wed Mar 11 2015 Trevor Vaughan <tvaughan@onyxpoint.com> - 5.1.0-Alpha
+* Wed Mar 11 2015 Trevor Vaughan <tvaughan@onyxpoint.com>
 - Added text to cover the move to the new Puppet Server and the migration to
   Environments.
 - Removed some old material.
 
-* Sat Dec 20 2014 Trevor Vaughan <tvaughan@onyxpoint.com> - 5.0.0-2
+* Sat Dec 20 2014 Trevor Vaughan <tvaughan@onyxpoint.com>
 - Update the changelog for 5.0.0-2
 
-* Mon Dec 08 2014 Kendall Moore <kmoore@keywcorp.com> - 5.0.0-1
+* Mon Dec 08 2014 Kendall Moore <kmoore@keywcorp.com>
 - No longer suggest grub-crypt to encrypt passwords and instead use a simple
   ruby script.
 
-* Tue Nov 25 2014 Trevor Vaughan <tvaughan@onyxpoint.com> - 5.0.0-0
+* Tue Nov 25 2014 Trevor Vaughan <tvaughan@onyxpoint.com>
 - Final release of 5.0.0
 
-* Wed Oct 29 2014 Trevor Vaughan <tvaughan@onyxpoint.com> - 5.0.0-RC1
+* Wed Oct 29 2014 Trevor Vaughan <tvaughan@onyxpoint.com>
 - Updated the Changelog for the 5.0.0-RC1 release.
 
-* Thu Aug 07 2014 Trevor Vaughan <tvaughan@onyxpoint.com> - 5.0.0-Beta
+* Thu Aug 07 2014 Trevor Vaughan <tvaughan@onyxpoint.com>
 - Updated for the 5.0.0-Beta release
 
-* Fri Jan 10 2014 Trevor Vaughan <tvaughan@onyxpoint.com> - 4.1.0-Alpha2
+* Fri Jan 10 2014 Trevor Vaughan <tvaughan@onyxpoint.com>
 - Added a script for converting LDAP users to InetOrgPerson entries
   and updated the LDIFs to account for such.
 
-* Mon Nov 25 2013 Trevor Vaughan <tvaughan@onyxpoint.com> - 4.1.0-Alpha2
+* Mon Nov 25 2013 Trevor Vaughan <tvaughan@onyxpoint.com>
 - First release of 4.1.0-Alpha2
