@@ -1,8 +1,6 @@
 SIMP User Guide
 ================================
 
-
-
 Contents:
 
 .. toctree::
@@ -11,18 +9,23 @@ Contents:
   Introduction
   User_Management
   Client_Management
-  PXE_Boot
-  Maximum_Nodes
   Certificates
+  Maximum_Nodes
   SIMP_Administration
   Puppetmaster_Backup
   Managing_Workstation_Infrastructures
   Upgrading_SIMP
+  Foreman
   Logstash
   Kerberos
   Troubleshooting
   FAQ
   SIMP_Package_Data
-  Changelog
-  glossary
-  File_Samples
+  Changelog <../common/Changelog.rst>
+  Glossary <../common/Glossary.rst>
+
+Indices and tables
+------------------
+
+* :ref:`genindex`
+* :ref:`search`

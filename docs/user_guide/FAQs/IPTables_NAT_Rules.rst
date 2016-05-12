@@ -8,7 +8,7 @@ on using the basic IPtables Module.
 Add NAT Rules
 -------------
 
-The user may be required to add :term:`Network Address Translation (NAT)` rules to the IPtables ruleset. To
+The user may be required to add :term:`Network Address Translation` (NAT) rules to the IPtables ruleset. To
 achieve this using the IPtables module, SIMP 1.1.3 or later is required
 and the ``iptables::add_rules`` input statement should be used to affect
 the appropriate changes.

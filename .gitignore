@@ -1,9 +1,13 @@
-rst/_build
-docs/_build
-_build_v5
-_build_v4
 .sw[pnoqst]
+/Gemfile.lock
+_build_v4
+_build_v5
 builderrors
+dist
+docs/*/Changelog.rst
+docs/_build
 html
+html-single
 pdf
+rst/_build
 sphinx_cache

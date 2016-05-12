@@ -10,3 +10,72 @@
 code, .rst-content tt, .rst-content code {
   font-size: 90%;
 }
+
+
+/*
+ * === SIMP-specific styling ===
+*/
+ 
+/* link colors
+ * -------------------------------------------------------------------------- */
+a         { color: #336633; }
+a:visited { color: #80b980; }
+a:hover   { color: #29b929; }
+
+/* menu text colors
+ * -------------------------------------------------------------------------- */
+.wy-menu-vertical li.on a, .wy-menu-vertical li.current>a {
+  color: #003300;
+}
+
+.wy-menu-vertical li.current a {
+  color: #446644;
+}
+
+/* menu hover effects 
+ * -------------------------------------------------------------------------- */
+.wy-menu-vertical a:hover, .wy-menu-vertical li.on a:hover {
+  background-color: #194419;
+}
+
+.wy-nav-side {
+  background-color: #003300;
+}
+
+/* CSS gradient
+ * -------------------------------------------------------------------------- */
+.wy-side-nav-search {
+  /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#070707+0,000000+100&1+18,0+99 */
+  background: -moz-linear-gradient(top, rgba(7,7,7,1) 0%, rgba(6,6,6,1) 18%, rgba(0,0,0,0) 99%, rgba(0,0,0,0) 100%); /* FF3.6+ */
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(7,7,7,1)), color-stop(18%,rgba(6,6,6,1)), color-stop(99%,rgba(0,0,0,0)), color-stop(100%,rgba(0,0,0,0))); /* Chrome,Safari4+ */
+  background: -webkit-linear-gradient(top, rgba(7,7,7,1) 0%,rgba(6,6,6,1) 18%,rgba(0,0,0,0) 99%,rgba(0,0,0,0) 100%); /* Chrome10+,Safari5.1+ */
+  background: -o-linear-gradient(top, rgba(7,7,7,1) 0%,rgba(6,6,6,1) 18%,rgba(0,0,0,0) 99%,rgba(0,0,0,0) 100%); /* Opera 11.10+ */
+  background: -ms-linear-gradient(top, rgba(7,7,7,1) 0%,rgba(6,6,6,1) 18%,rgba(0,0,0,0) 99%,rgba(0,0,0,0) 100%); /* IE10+ */
+  background: linear-gradient(to bottom, rgba(7,7,7,1) 0%,rgba(6,6,6,1) 18%,rgba(0,0,0,0) 99%,rgba(0,0,0,0) 100%); /* W3C */
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#070707', endColorstr='#00000000',GradientType=0 ); /* IE6-9 */
+}
+
+
+/* "Admonition" boxes
+ * -------------------------------------------------------------------------- */
+.rst-content .note .admonition-title {
+  background: #53AE60;
+}
+.rst-content .note {
+  background: #D6E6D2;
+}
+
+.rst-content .important .admonition-title {
+  background: #F25C4E;
+}
+.rst-content .important {
+  background: #FADBDB;
+}
+
+.rst-content .warning .admonition-title {
+  background: #E9882E;
+}
+.rst-content .warning {
+  background: #FFDFD5;
+}
+
