@@ -68,8 +68,8 @@ SIMP only defines the Elasticsearch output by default. Please see the
 Elasticsearch Puppet module for details on how to define additional
 output targets.
 
-SIMP Logstash Fow
------------------
+SIMP Logstash Flow
+------------------
 
 Logstash, SIMP, and Security
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~

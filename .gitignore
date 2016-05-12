@@ -1,9 +1,16 @@
-rst/_build
-docs/_build
-_build_v5
-_build_v4
 .sw[pnoqst]
+/Gemfile.lock
+_build_v4
+_build_v5
+# This is here because the Rakefile rewrites part of it and we don't want those
+# changes checked in.
+build/simp-doc.spec
 builderrors
+dist
+docs/_build
+docs/dynamic
 html
+html-single
 pdf
+rst/_build
 sphinx_cache

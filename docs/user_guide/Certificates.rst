@@ -9,8 +9,8 @@ generating a Fake CA.
 Obtaining Official Certificates
 -------------------------------
 
-All SIMP systems must have :term:`Public Key Infrastructure (PKI)` keypairs generated for the server. These
-keys reside in the ``/etc/puppet/keydist`` directory and are served to the
+All SIMP systems must have :term:`Public Key Infrastructure` (PKI) keypairs generated for the server. These
+keys reside in the ``/etc/puppet/environments/simp/keydist`` directory and are served to the
 clients over the Puppet protocol.
 
 .. note::
@@ -18,24 +18,29 @@ clients over the Puppet protocol.
   operation. Do not get the two confused.
 
 The table below lists the steps to add any keys for the server that were
-received from a proper CA to ``/etc/puppet/keydist``.
+received from a proper CA to ``/etc/puppet/environments/simp/keydist``.
 
-1. Type ``mkdir /etc/puppet/keydist/***<Client System FQDN>***``
-2. Type ``mv ***<Certificate Directory>***/***<FQDN>***.[pem|pub] /etc/puppet/keydist/***<FQDN>***``
-3. Type ``chown -R root.puppet /etc/puppet/keydist``
-4. Type ``chmod -R u=rwX,g=rX,o-rwx /etc/puppet/keydist``
+#. Type ``mkdir /etc/puppet/environments/simp/keydist/***<Client System FQDN>***``
+#. Type
+   ::
+     
+     mv ***<Certificate Directory>***/***<FQDN>***.[pem|pub] \
+     /etc/puppet/environments/simp/keydist/***<FQDN>***
+
+#. Type ``chown -R root.puppet /etc/puppet/environments/simp/keydist``
+#. Type ``chmod -R u=rwX,g=rX,o-rwx /etc/puppet/environments/simp/keydist``
 
 Table: Official Certificates Procedure
 
 The table below lists the steps to create and populate the
-``/etc/puppet/keydist/cacerts`` directory.
+``/etc/puppet/keydist/environments/simp/cacerts`` directory.
 
-1. Type ``cd /etc/puppet/keydist``
-2. Type ``mkdir cacerts`` and copy the root CA public certificates into *cacerts* in :term:`Privacy Enhanced Mail (PEM)` format (one per file).
+1. Type ``cd /etc/puppet/environments/simp/keydist``
+2. Type ``mkdir cacerts`` and copy the root CA public certificates into *cacerts* in :term:`Privacy Enhanced Mail` (PEM) format (one per file).
 3. Type ``cd cacerts``
 4. Type ``for file in *.pem; do ln -s $file `openssl x509 -in $file -hash -noout`.0; done``
 
-Table: */etc/puppet/keydist/cacerts* Directory Creation Procedure
+Table: */etc/puppet/environments/simp/keydist/cacerts* Directory Creation Procedure
 
 Generating Fake CAs
 -------------------
@@ -50,7 +55,7 @@ system so that it will work until proper certificates are provided.
 
 The table below lists the steps to generate the Fake CAs.
 
-1. Type ``cd /etc/puppet/Config/FakeCA``
+1. Type ``cd /etc/puppet/environments/simp/Config/FakeCA``
 
 2. Type ``vi togen``
 
@@ -73,8 +78,8 @@ Table: Generating Fake CAs Procedure
   generated, the running system will break. To troubleshoot
   certificate problems, see the section at the end of this chapter.
 
-If issues arise while generating keys, type ``cd /etc/puppet/Config/FakeCA`` to navigate to the
-*/etc/puppet/Config/FakeCA* directory, then type ``./clean.sh`` to start over.
+If issues arise while generating keys, type ``cd /etc/puppet/environments/simp/Config/FakeCA`` to navigate to the
+*/etc/puppet/Config/environments/simp/FakeCA* directory, then type ``./clean.sh`` to start over.
 
 After running the *clean.sh* script, type ``./gencerts_nopass.sh`` to
 run the script again using the previous procedure table.
