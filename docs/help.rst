@@ -1,4 +1,4 @@
 Help
 ====
 
-If you are looking for assistence please email the SIMP mailing lists. simp@simp.org
+If you are looking for assistance please email the SIMP mailing lists. simp@simp-project.org
