@@ -86,7 +86,7 @@ Add the following code to a file tftpboot.pp in your site/manifests directory:
           tftpboot::linux_model { 'EL_MAJOR_VERSION':
             kernel => 'EL_MAJOR_VERSION_x86_64/vmlinuz',
             initrd => 'EL_MAJOR_VERSION_x86_64/initrd.img',
-            ks     => "https://KSSERVER/ks/pupclient_x86_64.cfg",
+            ks     => "https://KSSERVER/ks/pupclient_x86_64.cfg --noverifyssl inst.noverifyssl",
             extra  => 'ipappend 2'
           }
 
