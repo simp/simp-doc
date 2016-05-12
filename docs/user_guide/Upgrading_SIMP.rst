@@ -88,7 +88,8 @@ Migration Script Execution
 
   .. code-block:: bash
 
-    isoinfo -i SIMP_Update.iso -R -x `isoinfo -i SIMP_Update.iso -Rf | grep noarch/simp-utils` > simp-utils-update.rpm
+    isoinfo -i SIMP_Update.iso -R -x `isoinfo -i SIMP_Update.iso -Rf | \
+      grep noarch/simp-utils` > simp-utils-update.rpm
 
 2. Install the new simp-utils RPM:
 

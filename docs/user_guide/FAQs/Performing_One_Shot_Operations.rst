@@ -9,7 +9,7 @@ location, but does not want to enforce that action over time.
 Use the PSSH Utility
 --------------------
 
-:term:`Parallel Secure Shell (PSSH)` has been included in SIMP for some time, but has not been installed by
+:term:`Parallel Secure Shell` (PSSH) has been included in SIMP for some time, but has not been installed by
 default.
 
 The table below lists the steps to use PSSH.

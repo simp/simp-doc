@@ -15,6 +15,191 @@
 import sys
 import os
 import shlex
+import shutil
+import datetime
+import yaml
+import urllib2
+import textwrap
+
+on_rtd = os.environ.get('READTHEDOCS') == 'True'
+
+# Pre-Build Manipulation Code
+
+basedir = os.path.abspath(os.path.dirname(__file__))
+github_base = 'https://raw.githubusercontent.com/simp'
+
+changelog_name = 'Changelog.rst'
+changelog = os.path.join(basedir, '..', '..', '..',  changelog_name)
+
+os_ver_mapper_name = 'release_mappings.yaml'
+os_ver_mapper = os.path.join(basedir, '..', '..', '..', 'build', os_ver_mapper_name)
+
+target_dirs = [ 'dynamic' ]
+
+# Allow this to be built up over time
+epilog = []
+
+# The version info for the project you're documenting, acts as replacement for
+# |version| and |release|, also used in various other places throughout the
+# built documents.
+#
+# The short X.Y version.
+version = '0.0'
+
+# The full version, including alpha/beta/rc tags.
+release = 'NEED_FULL_SIMP_BUILD_TREE'
+
+rhel_major_version = 'UNKNOWN'
+rhel_minor_version = 'UNKNOWN'
+
+# Grab the version information out of all of the surrounding infrastructure
+# files if they exist.
+
+spec_file = os.path.join(basedir, '..', 'build', 'simp-doc.spec')
+os_ver_mapper = os.path.join(basedir, '..', '..', '..', 'build', 'release_mappings.yaml')
+
+os_ver_mapper_content = None
+
+if os.path.isfile(spec_file):
+    with open(spec_file, 'r') as f:
+        for line in f:
+            _tmp = line.split()
+            if 'Version:' in _tmp:
+                version_list = _tmp[-1].split('.')
+                version = '.'.join(version_list[0:2])
+            elif 'Release:' in _tmp:
+                release = _tmp[-1]
+
+if '.'.join(version_list) != version:
+    release = version_list[-1] + '-' + release
+
+full_version = ".".join([version, release])
+
+# This ordering matches our usual default fallback branch scheme
+github_version_targets = [
+    full_version,
+    'simp-' + version + '.X',
+    version + '.X',
+    'master'
+]
+
+if on_rtd:
+    github_version_targets.insert(0,os.environ.get('READTHEDOCS_VERSION'))
+
+if os.path.isfile(os_ver_mapper):
+    with open(os_ver_mapper, 'r') as f:
+        os_ver_mapper_content = f.read()
+else:
+    os_ver_mapper_urls = []
+    for version_target in github_version_targets:
+        os_ver_mapper_urls.append('/'.join([github_base, 'simp-core', version_target, 'build', os_ver_mapper_name]))
+
+    # Grab it from the Internet!
+    for os_ver_mapper_url in os_ver_mapper_urls:
+        print(os_ver_mapper_url)
+        try:
+            os_ver_mapper_content = urllib2.urlopen(os_ver_mapper_url).read()
+            break
+        except urllib2.URLError:
+            next
+
+release_mapping_list = ['UNKNOWN']
+
+if os_ver_mapper_content != None:
+    os_flavors = None
+    ver_map = yaml.load(os_ver_mapper_content)
+    if version in ver_map['simp_releases']:
+        os_flavors = ver_map['simp_releases'][version]['flavors']
+    elif version + '.X' in ver_map['simp_releases']:
+        os_flavors = ver_map['simp_releases'][version + '.X']['flavors']
+
+    # Extract the actual OS version supported for placement in the docs
+    if os_flavors is not None:
+        if os_flavors['RedHat']:
+            ver_list = os_flavors['RedHat']['os_version'].split('.')
+            rhel_major_version = ver_list[0]
+            rhel_minor_version = ver_list[1]
+        elif os_flavors['CentOS']:
+            ver_list = os_flavors['CentOS']['os_version'].split('.')
+            rhel_major_version = ver_list[0]
+            rhel_minor_version = ver_list[1]
+
+        # Build the Release mapping table for insertion into the docs
+        release_mapping_list = []
+        for os_flavor in os_flavors:
+            release_mapping_list.append('* **' + os_flavor + ' ' + os_flavors[os_flavor]['os_version'] + '**')
+            for i, iso in enumerate(os_flavors[os_flavor]['isos']):
+                release_mapping_list.append("\n   * **ISO #" + str(i+1) + ":** " + iso['name'])
+                release_mapping_list.append("   * **Checksum:** " + iso['checksum'])
+
+        # Trailing newline
+        release_mapping_list.append('')
+
+epilog.append('.. |simp_version| replace:: %s' % full_version)
+
+rhel_version = ".".join([rhel_major_version, rhel_minor_version])
+epilog.append('.. |rhel_version| replace:: %s' % rhel_version)
+
+known_os_compat_content = """
+Known OS Compatibility
+----------------------
+
+{0}
+""".format("\n".join(release_mapping_list))
+
+changelog_urls = []
+for version_target in github_version_targets:
+    changelog_urls.append('/'.join([github_base, 'simp-doc', version_target, changelog_name]))
+
+changelog_stub = """
+Changelog Stub
+==============
+
+.. warning::
+    The build scripts could not find a valid Changelog either locally or on the Internet!
+
+.. note::
+    Please check your Internet connectivity as well as your local build system.
+
+Attempted Locations:
+{0}
+""".format("\n".join(["  * %s" % x for x in [changelog] + changelog_urls]))
+
+current_changelog = changelog_stub
+
+for target_dir in target_dirs:
+    target_dir = os.path.join(basedir, target_dir)
+    if not os.path.exists(target_dir):
+            os.mkdir(target_dir)
+
+    changelog_dest =  os.path.join(target_dir, changelog_name)
+    known_os_compat_dest =  os.path.join(target_dir, 'Known_OS_Compatibility.rst')
+
+    if os.path.isfile(changelog):
+        # Is the Changelog on disk?
+        with open(changelog, 'r') as changelog_content:
+            current_changelog = changelog_content.read()
+    else:
+        # Grab it from the Internet!
+        # This is really designed for use with ReadTheDocs
+
+        for changelog_url in changelog_urls:
+            try:
+                current_changelog = urllib2.urlopen(changelog_url).read()
+                break
+            except urllib2.URLError:
+                next
+
+    # Write out the new Changelog
+    if current_changelog == changelog_stub:
+        sys.stderr.write("Warning: Could not find a valid Changelog, using the stub....\n")
+
+    with open(changelog_dest, 'w') as f:
+        f.write(current_changelog)
+
+    with open(known_os_compat_dest, 'w') as f:
+        f.write(known_os_compat_content)
+
 
 # If extensions (or modules to document with autodoc) are in another directory,
 # add these directories to sys.path here. If the directory is relative to the
@@ -33,8 +218,17 @@ extensions = [
     'sphinx.ext.autodoc',
     'sphinx.ext.intersphinx',
     'sphinx.ext.todo',
-    'rst2pdf.pdfbuilder',
-#    'sphinxcontrib.fulltoc',
+    # To use this, you need to make the necessary variable available in setup
+    # using the 'add_config_value' function.
+    #
+    # Example:
+    #   def setup(app):
+    #     app.add_config_value('releaselevel', '', 'env') # The third value must always be 'env'
+    #
+    # Usage:
+    #   .. ifconfig:: releaselevel in ('alpha', 'beta', 'rc')
+    'sphinx.ext.ifconfig',
+    'rst2pdf.pdfbuilder'
 ]
 
 # Add any paths that contain templates here, relative to this directory.
@@ -53,17 +247,8 @@ master_doc = 'index'
 
 # General information about the project.
 project = u'SIMP'
-copyright = u'2015, THE SIMP TEAM'
+copyright = str(datetime.datetime.now().year) + u', THE SIMP TEAM'
 author = u'THE SIMP TEAM'
-
-# The version info for the project you're documenting, acts as replacement for
-# |version| and |release|, also used in various other places throughout the
-# built documents.
-#
-# The short X.Y version.
-version = '4.2'
-# The full version, including alpha/beta/rc tags.
-release = '0-Beta2'
 
 # The language for content autogenerated by Sphinx. Refer to documentation
 # for a list of supported languages.
@@ -80,7 +265,7 @@ language = None
 
 # List of patterns, relative to source directory, that match files and
 # directories to ignore when looking for source files.
-exclude_patterns = ['_build']
+exclude_patterns = ['_build', '**/*.inc']
 
 # The reST default role (used for this markup: `text`) to use for all
 # documents.
@@ -143,7 +328,7 @@ html_title = "%s %s.%s documentation" % (project, version, release )
 
 # The name of an image file (relative to this directory) to place at the top
 # of the sidebar.
-#html_logo = None
+html_logo = "images/SIMP_Logo.png"
 
 # The name of an image file (within the static path) to use as favicon of the
 # docs.  This file should be a Windows icon file (.ico) being 16x16 or 32x32
@@ -304,7 +489,6 @@ texinfo_documents = [
 #intersphinx_mapping = {'https://docs.python.org/': None}
 
 # PDF
-#extensions = ['sphinx.ext.autodoc','rst2pdf.pdfbuilder']
 pdf_documents = [
     (master_doc, u'SIMP_Documentation',u'SIMP Documentation', u'SIMP'),
 ]
@@ -313,6 +497,10 @@ pdf_language = "en_US"
 pdf_fit_background_mode = "scale"
 pdf_compressed = True
 pdf_stylesheets = ['sphinx','kerning','letter']
+pdf_use_toc = True
+pdf_toc_depth = 3
 
 # tag
 tags.add('simp_%s' % version.split('.')[0])
+
+rst_epilog = "\n".join(epilog)
