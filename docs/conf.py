@@ -149,7 +149,7 @@ Known OS Compatibility
 
 changelog_urls = []
 for version_target in github_version_targets:
-    changelog_urls.append('/'.join([github_base, 'simp-doc', version_target, changelog_name]))
+    changelog_urls.append('/'.join([github_base, 'simp-core', version_target, changelog_name]))
 
 changelog_stub = """
 Changelog Stub
