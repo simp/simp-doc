@@ -2,7 +2,7 @@
 
 ## SIMP Documentation
 
-The Documentation repository for the 5.1.X version of SIMP.
+The Documentation repository for SIMP
 
 This is a component of the [System Integrity Management Platform](https://github.com/NationalSecurityAgency/SIMP), a compliance-management framework built on Puppet.
 
