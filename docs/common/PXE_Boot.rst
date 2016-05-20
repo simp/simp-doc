@@ -85,16 +85,32 @@ Create a site manifest for the TFTP server on the Puppet server.
 .. code-block:: ruby
 
   class site::tftpboot {
-    include 'tftpboot'
+    include '::tftpboot'
 
-    tftpboot::linux_model { 'MODEL NAME':
+    tftpboot::linux_model { 'el7_x86_64':
       kernel => 'OSTYPE-MAJORRELEASE-ARCH/vmlinuz',
       initrd => 'OSTYPE-MAJORRELEASE-ARCH/initrd.img',
       ks     => "https://KSSERVER/ks/pupclient_x86_64.cfg --noverifyssl inst.noverifyssl",
-      extra  => "ksdevice=bootif\nipappend 2"
+      extra  => "inst.noverifyssl ksdevice=bootif\nipappend 2"
     }
 
-    tftpboot::assign_host { 'default': model => 'MODEL NAME' }
+    ::tftpboot::assign_host { 'default': model => 'el7_x86_64' }
+  }
+
+.. code-block:: ruby
+
+  # Note the difference in the `extra` arguments here.
+  class site::tftpboot {
+    include '::tftpboot'
+
+    tftpboot::linux_model { 'el6_x86_64':
+      kernel => 'OSTYPE-MAJORRELEASE-ARCH/vmlinuz',
+      initrd => 'OSTYPE-MAJORRELEASE-ARCH/initrd.img',
+      ks     => "https://KSSERVER/ks/pupclient_x86_64.cfg --noverifyssl inst.noverifyssl",
+      extra  => "noverifyssl ksdevice=bootif\nipappend 2"
+    }
+
+    ::tftpboot::assign_host { 'default': model => 'el6_x86_64' }
   }
 
 2. Add the tftpboot site manifest on your puppet server node via Hiera.
