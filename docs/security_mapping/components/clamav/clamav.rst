@@ -1,6 +1,8 @@
 ClamAV
 ========
 
+**Module Name**: ``pupmod-clamav``
+
 This module installs and configures ClamAV.  ClamAV is a command line malicious
 code detection tool.
 
