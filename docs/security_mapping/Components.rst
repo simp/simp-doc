@@ -17,6 +17,10 @@ This section contains the security documentation for  SIMP modules (represented 
   components/named/named.rst
   components/openldap/openldap.rst
   components/pam/pam.rst
+  components/pupmod/pupmod.rst
+  components/rsync/rsync.rst
   components/ssh/ssh.rst
+  components/stunnel/stunnel.rst
   components/sudo/sudo.rst
   components/sudosh/sudosh.rst
+  components/tcpwrappers/tcpwrappers.rst
