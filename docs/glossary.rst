@@ -95,6 +95,21 @@ Glossary of Terms
 
       Source: `External Node Classifiers <https://docs.puppetlabs.com/guides/external_nodes.html>`__
 
+   EPEL
+   Extra Packages for Enterprise Linux
+     A Fedora Special Interest Group that creates, maintains, and manages a
+     high quality set of additional packages for :term:`Enterprise Linux`,
+     including, but not limited to, Red Hat Enterprise Linux (:term:`RHEL`),
+     :term:`CentOS` and Scientific Linux (SL), Oracle Linux (OL).E
+
+     EPEL packages are usually based on their Fedora counterparts and will
+     never conflict with or replace packages in the base Enterprise Linux
+     distributions. EPEL uses much of the same infrastructure as Fedora,
+     including buildsystem, bugzilla instance, updates manager, mirror manager
+     and more.
+
+     Source: `EPEL Homepage <https://fedoraproject.org/wiki/EPEL>`__
+
    FIPS
    Federal Information Processing Standard
       Federal Information Processing Standards (FIPS) Publications are
@@ -303,6 +318,14 @@ Glossary of Terms
       and reflective. It also has a dynamic type system and automatic memory
       management; it is therefore similar in varying respects to Smalltalk,
       Python, Perl, Lisp, Dylan, Pike, and CLU.
+
+   RVM
+   Ruby Version Manager
+      command-line tool which allows you to easily install, manage, and work
+      with multiple :term:`Ruby` environments from interpreters to sets of
+      gems.
+
+      Source: `RVM Homepage <https://rvm.io/>`__
 
    Service Account
       An account that is not for use by a human user but which still requires

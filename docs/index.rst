@@ -15,10 +15,11 @@ Contents:
   self
 
 .. toctree::
-  :maxdepth: 1
+  :maxdepth: 2
 
   Changelog
-  Installation Guide <installation_guide/index>
+  Getting Started <getting_started_guide/index>
+  Installation <installation_guide/index>
   User Guide <user_guide/index>
   Security Control Mapping <security_mapping/index>
   license

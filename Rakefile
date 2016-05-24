@@ -5,22 +5,29 @@ require 'yaml'
 require 'find'
 
 task 'munge:prep' do
+  @doc_spec_file = 'build/simp-doc.spec'
+
+  if File.exist?(@doc_spec_file) && !@doc_spec_file_content
+    @doc_spec_file_content = File.read(@doc_spec_file)
+  end
+
   # This is done to make sure that we have something to build from!
   default_simp_version = '5.1.X'
-  
-  specfile = '../../src/build/simp.spec'
+
   tmpspec = Tempfile.new('docspec')
-  
+
   begin
+    specfile = '../../src/build/simp.spec'
+
     unless File.exist?(specfile)
       require 'open-uri'
-  
+
       simp_version = ENV['SIMP_VERSION']
-  
+
       unless simp_version
         simp_version = default_simp_version
       end
-  
+
       spec_url = "https://raw.githubusercontent.com/simp/simp-core/#{simp_version}/src/build/simp.spec"
       begin
         open(spec_url) do |specfile|
@@ -29,17 +36,17 @@ task 'munge:prep' do
       rescue Exception
         raise(Error, "Could not find a valid spec file at #{spec_url}, check your SIMP_VERSION environment setting!")
       end
-  
+
       specfile = tmpspec.path
     end
-  
+
     specinfo = Simp::RPM.get_info(specfile)
-  
+
     simp_version = specinfo[:version]
     simp_release = specinfo[:release]
-  
-    %x(sed -i s/___VERSION___/#{simp_version}/ build/simp-doc.spec)
-    %x(sed -i s/___RELEASE___/#{simp_release}/ build/simp-doc.spec)
+
+    %x(sed -i s/__VERSION__/#{simp_version}/ #{@doc_spec_file})
+    %x(sed -i s/__RELEASE__/#{simp_release}/ #{@doc_spec_file})
   ensure
     tmpspec.close
     tmpspec.unlink
@@ -273,5 +280,8 @@ end
 
 # We want to prep for build if possible, but not when running `rake -T`, etc...
 Rake.application.tasks.select{|task| task.name.start_with?('docs:', 'pkg:')}.each do |task|
-  task.enhance ['munge:prep']
+  task.enhance ['munge:prep'] do
+    # Restore the original spec file
+    File.open(@doc_spec_file, 'w'){ |fh| fh.write(@doc_spec_file_content) }
+  end
 end

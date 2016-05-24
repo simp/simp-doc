@@ -9,3 +9,4 @@ gem_sources.each { |gem_source| source gem_source }
 
 gem 'rake', '~> 10'
 gem 'simp-rake-helpers'
+gem 'pry'

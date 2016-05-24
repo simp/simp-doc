@@ -56,7 +56,6 @@ rhel_minor_version = 'UNKNOWN'
 # files if they exist.
 
 spec_file = os.path.join(basedir, '..', 'build', 'simp-doc.spec')
-os_ver_mapper = os.path.join(basedir, '..', '..', '..', 'build', 'release_mappings.yaml')
 
 os_ver_mapper_content = None
 
