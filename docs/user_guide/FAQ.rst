@@ -10,6 +10,8 @@ SIMP.
   FAQs/Centralized_Logging
   FAQs/Changing_Puppet_Masters
   FAQs/DVD_Build
+  FAQs/Disable_dhcpd
+  FAQs/Disable_named
   FAQs/Exclude_Repositories
   FAQs/IPTables_NAT_Rules
   FAQs/Network_Build
