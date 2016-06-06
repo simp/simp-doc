@@ -91,6 +91,9 @@ mv pdf/SIMP_Documentation.pdf pdf/SIMP-%{version}-%{release}.pdf
 # Post uninstall stuff
 
 %changelog
+* Fri Jun 10 2016 Nick Miller <nick.miller@onyxpoint.com>
+- Added FAW entries for disabling DHCP and named 
+
 * Fri May 13 2016 Trevor Vaughan <tvaughan@onyxpoint.com>
 - First cut at the consolidated Documentation
 
