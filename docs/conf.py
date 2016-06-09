@@ -68,6 +68,9 @@ if os.path.isfile(spec_file):
                 version = '.'.join(version_list[0:2])
             elif 'Release:' in _tmp:
                 release = _tmp[-1]
+else:
+    print("Could not find spec file at " + spec_file)
+
 
 if '.'.join(version_list) != version:
     release = version_list[-1] + '-' + release
@@ -101,6 +104,10 @@ else:
         try:
             print("Downloading Version Mapper: " + os_ver_mapper_url)
             os_ver_mapper_content = urllib2.urlopen(os_ver_mapper_url).read()
+            # If we don't have a valid version from the RPM spec file, just
+            # pick up what we found.
+            if version == '0.0':
+                version = version_target
             break
         except urllib2.URLError:
             next
