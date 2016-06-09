@@ -25,7 +25,7 @@ on_rtd = os.environ.get('READTHEDOCS') == 'True'
 
 # Pre-Build Manipulation Code
 
-basedir = os.path.abspath(os.path.dirname(__file__))
+basedir = os.path.abspath(os.getcwd())
 github_base = 'https://raw.githubusercontent.com/simp'
 
 changelog_name = 'Changelog.rst'
