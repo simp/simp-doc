@@ -75,10 +75,13 @@ if '.'.join(version_list) != version:
 full_version = ".".join([version, release])
 
 # This ordering matches our usual default fallback branch scheme
+# Need to fix this to go figure out the branches from GitHub directly
 github_version_targets = [
     full_version,
     'simp-' + version + '.X',
     version + '.X',
+    '5.1.X',
+    '4.2.X',
     'master'
 ]
 
@@ -184,7 +187,6 @@ for target_dir in target_dirs:
 
         for changelog_url in changelog_urls:
             try:
-                sys.stderr.write("Trying" + changelog_url)
                 current_changelog = urllib2.urlopen(changelog_url).read()
                 break
             except urllib2.URLError:
