@@ -1,4 +1,4 @@
-:tocdepth: 1
+:tocdepth: 2
 
 Getting Started with SIMP
 =========================
@@ -7,7 +7,7 @@ Contents:
 
 .. toctree::
   :glob:
-  :maxdepth: 1
+  :maxdepth: 2
 
   Introduction
   Installation_From_RPM

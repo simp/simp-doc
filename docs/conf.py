@@ -184,6 +184,7 @@ for target_dir in target_dirs:
 
         for changelog_url in changelog_urls:
             try:
+                sys.stderr.write("Trying" + changelog_url)
                 current_changelog = urllib2.urlopen(changelog_url).read()
                 break
             except urllib2.URLError:
