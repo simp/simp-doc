@@ -17,8 +17,7 @@ Contents:
 .. toctree::
   :maxdepth: 2
 
-  Changelog
-  Getting Started <getting_started_guide/index>
+  Changelog <dynamic/Changelog>
   Installation <installation_guide/index>
   User Guide <user_guide/index>
   Security Control Mapping <security_mapping/index>
