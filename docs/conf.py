@@ -99,10 +99,10 @@ else:
     # Grab it from the Internet!
     for os_ver_mapper_url in os_ver_mapper_urls:
         try:
+            print("Downloading Version Mapper: " + os_ver_mapper_url)
             os_ver_mapper_content = urllib2.urlopen(os_ver_mapper_url).read()
             break
         except urllib2.URLError:
-            print("Could not download " + os_ver_mapper_url)
             next
 
 release_mapping_list = ['UNKNOWN']
@@ -187,10 +187,10 @@ for target_dir in target_dirs:
 
         for changelog_url in changelog_urls:
             try:
+                print("Downloading Changelog: " + changelog_url)
                 current_changelog = urllib2.urlopen(changelog_url).read()
                 break
             except urllib2.URLError:
-                print("Could not download " + changelog_url)
                 next
 
     # Write out the new Changelog
