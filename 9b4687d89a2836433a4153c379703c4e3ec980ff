@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "baa041b7_d50db6e9",
+        "filename": "docs/user_guide/FAQs/Disable_dhcpd.rst",
+        "patchSetId": 3
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 1004834
+      },
+      "writtenOn": "2016-06-09T19:21:41Z",
+      "side": 1,
+      "message": "Need to note what file this will be in by default in a SIMP installation.",
+      "revId": "9b4687d89a2836433a4153c379703c4e3ec980ff",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735",
+      "unresolved": false
+    }
+  ]
+}
