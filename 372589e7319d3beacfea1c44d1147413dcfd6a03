@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "baa041b7_7b4a5857",
+        "filename": "build/simp-doc.spec",
+        "patchSetId": 4
+      },
+      "lineNbr": 95,
+      "author": {
+        "id": 1005194
+      },
+      "writtenOn": "2016-06-10T18:23:26Z",
+      "side": 1,
+      "message": "FAW!",
+      "range": {
+        "startLine": 95,
+        "startChar": 7,
+        "endLine": 95,
+        "endChar": 11
+      },
+      "revId": "372589e7319d3beacfea1c44d1147413dcfd6a03",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "baa041b7_9b3d1cbe",
+        "filename": "build/simp-doc.spec",
+        "patchSetId": 4
+      },
+      "lineNbr": 95,
+      "author": {
+        "id": 1005194
+      },
+      "writtenOn": "2016-06-10T18:23:26Z",
+      "side": 1,
+      "message": "ws",
+      "range": {
+        "startLine": 95,
+        "startChar": 48,
+        "endLine": 95,
+        "endChar": 49
+      },
+      "revId": "372589e7319d3beacfea1c44d1147413dcfd6a03",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735",
+      "unresolved": false
+    }
+  ]
+}
