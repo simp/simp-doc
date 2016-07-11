@@ -14,3 +14,4 @@ html-single
 pdf
 rst/_build
 sphinx_cache
+build/rpm_metadata
