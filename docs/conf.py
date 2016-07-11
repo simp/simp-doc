@@ -20,6 +20,7 @@ import datetime
 import yaml
 import urllib2
 import textwrap
+import re
 
 on_rtd = os.environ.get('READTHEDOCS') == 'True'
 
@@ -55,34 +56,31 @@ rhel_minor_version = 'UNKNOWN'
 # Grab the version information out of all of the surrounding infrastructure
 # files if they exist.
 
-spec_file = os.path.join(basedir, '..', 'build', 'simp-doc.spec')
-
 os_ver_mapper_content = None
 
-if os.path.isfile(spec_file):
-    with open(spec_file, 'r') as f:
-        for line in f:
-            _tmp = line.split()
-            if 'Version:' in _tmp:
-                version_list = _tmp[-1].split('.')
-                version = '.'.join(version_list[0:2])
-            elif 'Release:' in _tmp:
-                release = _tmp[-1]
+# Attempt to read auto-generated release file.  Needs to be run after
+# rake munge:prep
+rel_file = os.path.join(basedir, '..', 'build/rpm_metadata/release')
+if os.path.isfile(rel_file):
+  with open(rel_file,'r') as f:
+    for line in f:
+      _tmp = line.split(':')
+      if 'version' in _tmp:
+        version = _tmp[-1].strip()
+      elif 'release' in _tmp:
+        release = _tmp[-1].strip()
 else:
-    print("Could not find spec file at " + spec_file)
+    print("Could not find release file at " + rel_file)
 
-
-if '.'.join(version_list) != version:
-    release = version_list[-1] + '-' + release
-
-full_version = ".".join([version, release])
+full_version = "-".join([version, release])
+version_family = re.sub('\.\d$',".X",version)
 
 # This ordering matches our usual default fallback branch scheme
 # Need to fix this to go figure out the branches from GitHub directly
 github_version_targets = [
     full_version,
-    'simp-' + version + '.X',
-    version + '.X',
+    'simp-' + version_family,
+    version_family,
     '5.1.X',
     '4.2.X',
     'master'
@@ -119,8 +117,8 @@ if os_ver_mapper_content != None:
     ver_map = yaml.load(os_ver_mapper_content)
     if version in ver_map['simp_releases']:
         os_flavors = ver_map['simp_releases'][version]['flavors']
-    elif version + '.X' in ver_map['simp_releases']:
-        os_flavors = ver_map['simp_releases'][version + '.X']['flavors']
+    elif version_family in ver_map['simp_releases']:
+        os_flavors = ver_map['simp_releases'][version_family]['flavors']
 
     # Extract the actual OS version supported for placement in the docs
     if os_flavors is not None:

@@ -1,5 +1,45 @@
 # DO NOT CHECK IN MODIFIED VERSIONS OF THIS FILE!
 
+%{lua:
+
+src_dir = rpm.expand('%{pup_module_info_dir}')
+if string.match(src_dir, '^%%') or (posix.stat(src_dir, 'type') ~= 'directory') then
+  src_dir = './'
+end
+
+-- These UNKNOWN entries should break the build if something bad happens
+
+module_name = "UNKNOWN"
+module_version = "UNKNOWN"
+module_license = "UNKNOWN"
+
+-- Default to 0
+module_release = '0'
+
+-- Snag the RPM-specific items out of the 'build/rpm_metadata' directory
+local rel_file = io.open(src_dir .. "/build/rpm_metadata/release", "r")
+if rel_file then
+  for line in rel_file:lines() do
+    is_comment = string.match(line, "^%s*#")
+    is_blank = string.match(line, "^%s*$")
+
+    if not (is_comment or is_blank) then
+      if string.match(line, "^%s?version:") then
+        version_match = line
+      elseif string.match(line, "^%s?release:") then
+        release_match = line
+      end
+    end
+  end
+  if version_match then
+    module_version = string.gsub(version_match,"version:","")
+  end
+  if release_match then
+    module_release = string.gsub(release_match,"release:","")
+  end
+end
+}
+
 %if 0%{?el6}
 %define simp_major_version 4
 %else
@@ -8,8 +48,8 @@
 
 Summary: SIMP Documentation
 Name: simp-doc
-Version: __VERSION__
-Release: __RELEASE__
+Version: %{lua: print(module_version)}
+Release: %{lua: print(module_release)}
 License: Apache License, Version 2.0
 Group: Documentation
 Source: %{name}-%{version}-%{release}.tar.gz
