@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "baa041b7_0ee37aa5",
+        "filename": "docs/user_guide/HOWTO/Central_Log_Collection/Logstash.rst",
+        "patchSetId": 2
+      },
+      "lineNbr": 317,
+      "author": {
+        "id": 1008615
+      },
+      "writtenOn": "2016-07-18T19:04:04Z",
+      "side": 1,
+      "message": "The gem is only required on eligible compile masters.  I had the code in the manifest as a hacky workaround for testing, but I\u0027ve removed that and put the install in the `before(:all)` hook.  It should fix for idempotence, as well.",
+      "revId": "a15430a9b267d5e91aed62e45f62bc79991952e6",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "baa041b7_2e53de6c",
+        "filename": "docs/user_guide/HOWTO/Central_Log_Collection/Logstash.rst",
+        "patchSetId": 2
+      },
+      "lineNbr": 352,
+      "author": {
+        "id": 1008615
+      },
+      "writtenOn": "2016-07-18T19:04:04Z",
+      "side": 1,
+      "message": "LDAP doesn\u0027t work out of the box.  They will need some Hiera config.  Namely, they need to enable LDAP auth in the `cfg` hash, and they need to fill out the entire `ldap_cfg` hash.  The `with ldap configured` context from the tests has some example code.",
+      "revId": "a15430a9b267d5e91aed62e45f62bc79991952e6",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735",
+      "unresolved": false
+    }
+  ]
+}
