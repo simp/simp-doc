@@ -74,15 +74,15 @@ out the corresponding branch.
 Set Up Ruby
 -----------
 
-We highly recommend using :term:`RVM`_ to make it easy to develop and test against
-several versions of :term:`Ruby` at once without damaging your underlying
-:term:`Operating System`.
+We highly recommend using :term:`RVM` to make it easy to develop and test
+against several versions of :term:`Ruby` at once without damaging your
+underlying Operating System.
 
 RVM Installation
 ^^^^^^^^^^^^^^^^
 
 The following commands, taken from the `RVM Installation Page`_ can be used to
-install RVM for your user.
+install :term:`RVM` for your user.
 
 .. code-block:: bash
 
@@ -94,7 +94,8 @@ install RVM for your user.
 Set the Default Ruby
 ^^^^^^^^^^^^^^^^^^^^
 
-You'll want to use :term:`Ruby` 2.1.0 as your default :term:`RVM` for SIMP development.
+You'll want to use :term:`Ruby` 2.1.0 as your default :term:`RVM` for SIMP
+development.
 
 .. code-block:: bash
 
@@ -107,11 +108,12 @@ You'll want to use :term:`Ruby` 2.1.0 as your default :term:`RVM` for SIMP devel
 Bundler
 ^^^^^^^
 
-The next important tool is `Bundler`_. Bundler makes it easy to install Gems and
-their dependencies. It gets this information from the Gemfile found in the root
-of each repo. The Gemfile contains all of the gems required for working with
-the repo. More info on Bundler can be found on the `Bundler Rationale Page`_ and
-more information on Rubygems can be found at `Rubygems.org`_.
+The next important tool is `Bundler`_. Bundler makes it easy to install Gems
+and their dependencies. It gets this information from the Gemfile found in the
+root of each repo. The Gemfile contains all of the gems required for working
+with the repo. More info on Bundler can be found on the
+`Bundler Rationale Page`_ and more information on Rubygems can be found at
+`Rubygems.org`_.
 
 Configure Mock
 --------------

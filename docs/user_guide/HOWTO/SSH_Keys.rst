@@ -9,7 +9,7 @@ LDAP Enabled
 
 When enabled, ssh keys are both stored and retrieved directly from LDAP.
 
-See Also: :ref:`Managing Users with LDAP <ldap_user_management>`
+See Also: :ref:`Managing Users with LDAP <Managing LDAP Users>`
 
 Without LDAP
 ------------

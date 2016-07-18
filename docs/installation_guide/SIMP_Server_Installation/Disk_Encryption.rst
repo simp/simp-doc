@@ -1,22 +1,23 @@
 Disk Encryption
 ---------------
 
-The default :term:`ISO` and kickstart files in SIMP now encrypt the first physical
-volume if the `simp_disk_crypt` option is provided at the boot command line.
+The default :term:`ISO` and kickstart files in SIMP now encrypt the first
+physical volume if the ``simp_disk_crypt`` option is provided at the boot
+command line.
 
 .. warning::
   The system is set to **automatically** decrypt at boot! This means that the
   password is embedded in the :term:`initrd` file.
 
 .. note::
-  The `/boot` directory is **not** encrypted, since that would prevent the system
-  from booting automatically.
+  The ``/boot`` directory is **not** encrypted, since that would prevent the
+  system from booting automatically.
 
 Method
 ^^^^^^
 
 When enabled, SIMP implements disk encryption, with automatic decryption, so
-that users have the option to use their own keys in the future.  Alternatively,
+that users have the option to use their own keys in the future. Alternatively,
 users may remove the system local keys and require that a password be entered
 at each boot.
 
@@ -34,22 +35,22 @@ layer of disk encryption is not necessarily warranted or a good idea.
 Implementation
 ^^^^^^^^^^^^^^
 
-The system keys are referenced in `/etc/crypttab` and, by default, reside at
-`/etc/.cryptcreds`. At build time, these files are copied into all :term:`initrd` files
-present on the system. This ensures that all kernels can successfully boot the
-system.
+The system keys are referenced in ``/etc/crypttab`` and, by default, reside at
+``/etc/.cryptcreds``. At build time, these files are copied into all
+:term:`initrd` files present on the system. This ensures that all kernels can
+successfully boot the system.
 
-The `/etc/dracut.conf` file is also updated to ensure that any new kernel loads
-will be able to boot successfully.
+The ``/etc/dracut.conf`` file is also updated to ensure that any new kernel
+loads will be able to boot successfully.
 
 .. warning::
-  The `/etc/.cryptcreds` file **is** encrypted when the system is off. However, a
-  copy is in the unencrypted :term:`initrd` files in `/boot` and should not be
-  considered secure from physical access to the raw disk image.
+  The ``/etc/.cryptcreds`` file **is** encrypted when the system is off.
+  However, a copy is in the unencrypted :term:`initrd` files in ``/boot`` and
+  should not be considered secure from physical access to the raw disk image.
 
 .. note::
-  Please be aware that **all** characters in the `/etc/.cryptcreds` file are part
-  of the password. The lack of a trailing newline is **very** important.
+  Please be aware that **all** characters in the ``/etc/.cryptcreds`` file are
+  part of the password. The lack of a trailing newline is **very** important.
 
 Replacing the Current Password
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -67,8 +68,8 @@ To change the password, you will need to perform the following steps.
 
 2. Get the :term:`UUID` of your partition
 
-  * This will be in the `/etc/crypttab` file. You'll want the entire
-    `UUID=<uuid>` string
+  * This will be in the ``/etc/crypttab`` file. You'll want the entire
+    ``UUID=<uuid>`` string
 
 3. Create the new password
 
@@ -96,7 +97,8 @@ To change the password, you will need to perform the following steps.
 
 4. Update the key
 
-  * There is a faster way to do this in :term:`EL` 7, but this method works on both systems
+  * There is a faster way to do this in :term:`EL` 7, but this method works on
+    both systems
 
     .. code-block:: bash
 
@@ -111,8 +113,8 @@ To change the password, you will need to perform the following steps.
 
 5. Update your :term:`initrd` files
 
-  * You want to make sure to update **all** of your :term:`initrd` files since you'll
-    want to be able to boot from any kernel.
+  * You want to make sure to update **all** of your :term:`initrd` files since
+    you'll want to be able to boot from any kernel.
 
     .. code-block:: bash
 
@@ -132,14 +134,12 @@ perform the following steps:
   * If you lose this, you won't be able to get into your system after reboot
 
 2. Using your favorite text editor, remove the `install_items` line in
-  `/etc/dracut.conf` that contains the reference to `/etc/.cryptcreds`
-
+   `/etc/dracut.conf` that contains the reference to `/etc/.cryptcreds`
 3. Remove the `/etc/.cryptcreds` file from the system
-
 4. Update your :term:`initrd` files
 
-  * You want to make sure to update **all** of your :term:`initrd` files since you'll
-    want to be able to boot from any kernel.
+  * You want to make sure to update **all** of your :term:`initrd` files since
+    you'll want to be able to boot from any kernel.
 
     .. code-block:: bash
 

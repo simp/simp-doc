@@ -150,9 +150,8 @@ Glossary of Terms
       Source: `Hiera Overview <http://docs.puppetlabs.com/hiera/latest/>`__
 
    initrd
-      The :term:`Linux` `Initial RAMDisk`. A complete :term:`Linux` environment
-      that is loaded at boot time to enable booting the rest of the operating
-      system.
+      The `Initial RAMDisk`. A complete environment that is loaded at boot time
+      to enable booting the rest of the operating system.
 
    IP
    IP Address
