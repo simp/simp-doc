@@ -3,7 +3,7 @@
 Managing Local/Service Users
 ============================
 
-Though the SIMP team **highly recommends** using :ref:`LDAP <ldap_user_management>`
+Though the SIMP team **highly recommends** using :ref:`LDAP <Managing LDAP Users>`
 to centrally manage your users, you may occasionally need to set up a
 :term:`service account` or specific local users on your systems.
 

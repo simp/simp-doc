@@ -1,5 +1,5 @@
-Backing up the Puppet Master
-============================
+Back up the Puppet Master
+=========================
 
 This section details all of the steps required for backing up the Puppet
 Master.

@@ -1,5 +1,5 @@
-Performing One-shot Operations
-==============================
+Perform One-shot Operations
+===========================
 
 This section introduces the options provided for performing one-shot
 commands on all Puppet-managed systems without using Puppet. This is

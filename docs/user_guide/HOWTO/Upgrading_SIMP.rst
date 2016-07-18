@@ -1,5 +1,5 @@
-Upgrading SIMP
-==============
+Upgrade SIMP
+============
 
 This chapter provides information on how to upgrade a running instance
 to the latest codebase.

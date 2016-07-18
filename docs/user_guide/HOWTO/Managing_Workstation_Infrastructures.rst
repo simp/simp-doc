@@ -1,5 +1,5 @@
-Managing Workstation Infrastructures
-====================================
+Manage Workstation Infrastructures
+==================================
 
 This chapter describes how to manage client workstations with a SIMP
 system including GUIs, repositories, virtualization, Network File System

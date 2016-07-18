@@ -74,12 +74,10 @@ alternate name.
 
   $ nslookup 1.2.3.4
 
-.. _pki_validation:
-
 PKI Issues
 ----------
 
 If both PAM and DNS appear to be correct, you should next validate that your
 :term:`PKI` certificates are both valid and functional.
 
-See :ref:`Checking Your SIMP PKI Communication <pki_validation>` for additional guidance.
+See :ref:`pki_validation` for additional guidance.
