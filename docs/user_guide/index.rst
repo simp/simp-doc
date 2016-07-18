@@ -1,24 +1,21 @@
+:tocdepth: 2
+
 SIMP User Guide
 ===============
 
 Contents:
 
 .. toctree::
-  :glob:
+  :maxdepth: 2
 
-  Introduction
-  User_Management
-  Client_Management
+  Introduction <../common/Introduction>
+  Client_Management <../common/Client_Management>
   Certificates
   Maximum_Nodes
   SIMP_Administration
-  Puppetmaster_Backup
-  Managing_Workstation_Infrastructures
-  Upgrading_SIMP
-  Foreman
-  Logstash
-  Kerberos
+  User_Management
   Troubleshooting
+  HOWTO
   FAQ
   SIMP_Package_Data
 
