@@ -33,6 +33,29 @@
       "revId": "a15430a9b267d5e91aed62e45f62bc79991952e6",
       "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "baa041b7_2c176746",
+        "filename": "docs/user_guide/SIMP_Administration.rst",
+        "patchSetId": 2
+      },
+      "lineNbr": 183,
+      "author": {
+        "id": 1008746
+      },
+      "writtenOn": "2016-07-18T19:39:13Z",
+      "side": 1,
+      "message": "Remove reference to an example that was removed?",
+      "range": {
+        "startLine": 182,
+        "startChar": 0,
+        "endLine": 183,
+        "endChar": 59
+      },
+      "revId": "a15430a9b267d5e91aed62e45f62bc79991952e6",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735",
+      "unresolved": false
     }
   ]
 }
