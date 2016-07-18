@@ -1,4 +1,4 @@
-.. _ldap_user_management:
+.. _Managing LDAP Users:
 
 Managing Users with Lightweight Directory Access Protocol (LDAP)
 ================================================================

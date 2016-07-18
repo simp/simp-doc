@@ -129,7 +129,7 @@ the client.
    to the puppet server and run ``puppet cert sign <puppet.client.fqdn>``.
 
 Upon successful deployment of a new client, it is highly recommended that
-:ref:`LDAP administrative accounts <ldap_user_management>` be created.
+:ref:`LDAP administrative accounts <Managing LDAP Users>` be created.
 
 Troubleshooting Issues
 ----------------------
