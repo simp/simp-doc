@@ -1,17 +1,22 @@
-Centralized Logging
+.. _Rsyslog:
+
+Centralized Rsyslog
 ===================
 
 SIMP provides a pre-built set of classes within the *rsyslog* module for
 enabling centralized logging within the infrastructure.
 
-After completing these steps, run Puppet on the server and clients, or
-wait until after the next run to see logs start to flow.
+There are no provisions here for setting up shared storage or deduplication.
+This is inherently not a use case that Rsyslog is well designed for and we
+suggest that you look at an alternative. We have incorporated the combination
+of :ref:`Elasticsearch, Logstash, and Grafana` (ELG) into the SIMP ecosystem as a
+well-known, Open Source, software collection.
 
 Enable the Server
 -----------------
 
 To enable the pre-built log server, add the following example code to
-the designated logging node.
+the designated centralized logging node.
 
 Code to Enable the Server Logging Examples
 

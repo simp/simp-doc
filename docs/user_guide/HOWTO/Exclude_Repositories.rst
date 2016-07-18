@@ -1,7 +1,7 @@
 .. _Exclude_Repos:
 
-Excluding Repositories
-======================
+Exclude Repositories
+====================
 
 By default, SIMP applies updates from all available repositories on a
 nightly basis. This ensures that bug fixes and security updates are

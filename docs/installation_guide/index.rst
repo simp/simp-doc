@@ -4,11 +4,12 @@ SIMP Installation Guide
 Contents:
 
 .. toctree::
+  :maxdepth: 2
 
-  Introduction
-  Known OS Compatibility <../dynamic/Known_OS_Compatibility.rst>
+  Introduction <../common/Introduction>
+  Known OS Compatibility <../dynamic/Known_OS_Compatibility>
   SIMP_Server_Installation
-  Client_Management
+  Client Management <../common/Client_Management>
   Certificates
   Hiera_Overview
   Installation_Miscellaney

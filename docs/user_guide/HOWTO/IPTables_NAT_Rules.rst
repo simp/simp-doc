@@ -1,5 +1,5 @@
-IPtables NAT Rules
-==================
+Configure IPTables NAT Rules
+============================
 
 See the `IPtables Module
 Reference <../developers_guide/rdoc/classes/iptables.html>`__ for notes

@@ -1,5 +1,3 @@
-:tocdepth: 2
-
 Welcome to the SIMP documentation!
 ==================================
 This is the |simp_version| release of SIMP compatible with the |rhel_version|

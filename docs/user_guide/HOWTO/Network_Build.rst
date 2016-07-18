@@ -1,5 +1,5 @@
-Network-based Initial Server Build
-==================================
+Kickstart the Initial Server
+============================
 
 This section provides guidance to install the initial SIMP server via an
 existing kickstart infrastructure.

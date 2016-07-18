@@ -1,5 +1,5 @@
-SFTP Restricted Account
-=======================
+Enable SFTP Restricted Accounts
+===============================
 
 This section describes the method for restricting an account to
 :term:`SSH File Transfer Protocol` (SFTP) access only.

@@ -150,9 +150,8 @@ Glossary of Terms
       Source: `Hiera Overview <http://docs.puppetlabs.com/hiera/latest/>`__
 
    initrd
-      The :term:`Linux` `Initial RAMDisk`. A complete :term:`Linux` environment
-      that is loaded at boot time to enable booting the rest of the operating
-      system.
+      The `Initial RAMDisk`. A complete environment that is loaded at boot time
+      to enable booting the rest of the operating system.
 
    IP
    IP Address
@@ -185,6 +184,7 @@ Glossary of Terms
       "tickets" to allow nodes communicating over a non-secure network to prove
       their identity to one another in a secure manner.
 
+   KDC
    Key Distribution Center
       Part of a cryptosystem intended to reduce the risks inherent in
       exchanging keys. KDCs often operate in systems within which some users
