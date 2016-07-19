@@ -2,6 +2,57 @@
   "comments": [
     {
       "key": {
+        "uuid": "baa041b7_f517fea0",
+        "filename": "docs/user_guide/HOWTO.rst",
+        "patchSetId": 2
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 1008746
+      },
+      "writtenOn": "2016-07-19T14:24:43Z",
+      "side": 1,
+      "message": "In the HTML for this page, the list of HOWTOs are not named consistently.  Need to pick a single style. For example,\n\"How to xxxx\" or \"\u003cverb\u003e \u003cnoun\u003e\", where examples of the latter are \"Setup Central Log Collection\", \"Change Puppet Masters\", etc.",
+      "revId": "a15430a9b267d5e91aed62e45f62bc79991952e6",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "baa041b7_f5301e58",
+        "filename": "docs/user_guide/HOWTO/Central_Log_Collection/Logstash.rst",
+        "patchSetId": 2
+      },
+      "lineNbr": 25,
+      "author": {
+        "id": 1008746
+      },
+      "writtenOn": "2016-07-19T14:24:43Z",
+      "side": 1,
+      "message": "If the non-repository installation methods have been disabled, what does it mean \"These methods still function, but we have not tested them.\"?",
+      "revId": "a15430a9b267d5e91aed62e45f62bc79991952e6",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "baa041b7_753d2e2a",
+        "filename": "docs/user_guide/HOWTO/Central_Log_Collection/Logstash.rst",
+        "patchSetId": 2
+      },
+      "lineNbr": 177,
+      "author": {
+        "id": 1008746
+      },
+      "writtenOn": "2016-07-19T14:24:43Z",
+      "side": 1,
+      "message": "ES\u003dElasticstore?  Perhaps this should be in the glossary.",
+      "revId": "a15430a9b267d5e91aed62e45f62bc79991952e6",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "baa041b7_0ee37aa5",
         "filename": "docs/user_guide/HOWTO/Central_Log_Collection/Logstash.rst",
         "patchSetId": 2
@@ -30,6 +81,74 @@
       "writtenOn": "2016-07-18T19:04:04Z",
       "side": 1,
       "message": "LDAP doesn\u0027t work out of the box.  They will need some Hiera config.  Namely, they need to enable LDAP auth in the `cfg` hash, and they need to fill out the entire `ldap_cfg` hash.  The `with ldap configured` context from the tests has some example code.",
+      "revId": "a15430a9b267d5e91aed62e45f62bc79991952e6",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "baa041b7_95cb1253",
+        "filename": "docs/user_guide/HOWTO/DVD_Build.rst",
+        "patchSetId": 2
+      },
+      "lineNbr": 8,
+      "author": {
+        "id": 1008746
+      },
+      "writtenOn": "2016-07-19T14:24:43Z",
+      "side": 1,
+      "message": "- 1st 2 paragraphs are very repetitive.  Can they be combined?\n- Only references RHEL iso, What about CentOS?",
+      "revId": "a15430a9b267d5e91aed62e45f62bc79991952e6",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "baa041b7_15dee210",
+        "filename": "docs/user_guide/HOWTO/DVD_Build.rst",
+        "patchSetId": 2
+      },
+      "lineNbr": 16,
+      "author": {
+        "id": 1008746
+      },
+      "writtenOn": "2016-07-19T14:24:43Z",
+      "side": 1,
+      "message": "Does not appear as a table in html docs.  Format error with \u0027Table:Build a SIMP DVD Procedure\u0027?",
+      "revId": "a15430a9b267d5e91aed62e45f62bc79991952e6",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "baa041b7_d5e3dad6",
+        "filename": "docs/user_guide/HOWTO/DVD_Build.rst",
+        "patchSetId": 2
+      },
+      "lineNbr": 31,
+      "author": {
+        "id": 1008746
+      },
+      "writtenOn": "2016-07-19T14:24:43Z",
+      "side": 1,
+      "message": "Would it be better if this were updated with the latest RHEL as an example(7.2?)",
+      "revId": "a15430a9b267d5e91aed62e45f62bc79991952e6",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "baa041b7_cca11bf9",
+        "filename": "docs/user_guide/HOWTO/Kerberos.rst",
+        "patchSetId": 2
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 1008746
+      },
+      "writtenOn": "2016-07-19T14:24:43Z",
+      "side": 1,
+      "message": "It is unclear what keydist is (Linux service?). Should this be in the glossary, or would it be a term understood by those that understand pki key distribution.",
       "revId": "a15430a9b267d5e91aed62e45f62bc79991952e6",
       "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735",
       "unresolved": false
