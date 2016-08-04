@@ -18,8 +18,7 @@ interrupt services due to network issues connecting to your :term:`LDAP`
 server.
 
 To allow a user to access a particular system, you need to use the
-`pam::access::manage <https://github.com/simp/pupmod-simp-pam/blob/master/manifests/access/manage.pp#L8:L44>`_
-define as shown below.
+`pam::access::manage`_ define as shown below.
 
 .. code-block:: ruby
 
@@ -35,6 +34,37 @@ define as shown below.
     comment => 'Bob the proxied'
   }
 
+Faillock
+--------
+
+If a user fails to authenticate properly in **3** consecutive tries (the
+default ``pam::deny``), :term:`PAM` will lock the account.
+
+To see a list of user authentication attempts, run ``faillock``.
+
+If a user is marked as invalid (I) or reaches the max number of attempts, you
+will need to reset ``faillock`` before authentication can occur.  To do so, run
+
+.. code-block:: bash
+
+   faillock --reset --user <user>
+
+LDAP Lockout
+------------
+
+If your account is in LDAP, you may have locked yourself out.  Like
+:term:`PAM`, :term:`LDAP` has a maximum number of logins, **5** by default.
+See ``openldap::server::conf::default_ldif::ppolicy_pwd_max_failure``.
+
+To determine if the account is locked, run the following on the LDAP server:
+
+.. code-block:: bash
+
+  slapcat -a uid=<user>
+
+If you see ``pwdAccountLockedTime`` then the account is locked, and you will
+need to follow the instructions in :ref:`unlock-ldap-label` to unlock it.
+
 Troubleshooting DNS
 -------------------
 
@@ -42,14 +72,14 @@ If :term:`PAM` is not the issue, you may be having :term:`DNS` issues. This can
 evidence itself in two ways.
 
 First, per the 'Bob' example above, you may be using an :term:`FQDN` to
-identify a host on your network. If DNS is not properly configured, then there
-is no way for the host to understand that you should have access from this
-remote system.
+identify a host on your network. If :term:`DNS` is not properly configured,
+then there is no way for the host to understand that you should have access
+from this remote system.
 
 Second, the default :term:`PKI` settings in SIMP ensure that all connections
 are validated against the :term:`FQDN` of the client system. In the case of an
-:term:`LDAP` connection, a misconfiguration in DNS may result in an inability to
-authenticate against the :term:`LDAP` service.
+:term:`LDAP` connection, a misconfiguration in DNS may result in an inability
+to authenticate against the :term:`LDAP` service.
 
 In the following sections, we will assume that we have a host named
 'system.my.domain' with the IP address '1.2.3.4'.
@@ -67,8 +97,8 @@ Testing a Reverse Lookup
 ~~~~~~~~~~~~~~~~~~~~~~~~
 
 The following should return the expected hostname for your system. This
-hostname **must** be either the primary name in the PKI certificate or a valid
-alternate name.
+hostname **must** be either the primary name in the :term:`PKI` certificate or
+a valid alternate name.
 
 .. code-block:: bash
 
@@ -81,3 +111,5 @@ If both PAM and DNS appear to be correct, you should next validate that your
 :term:`PKI` certificates are both valid and functional.
 
 See :ref:`pki_validation` for additional guidance.
+
+.. _pam::access::manage: https://github.com/simp/pupmod-simp-pam/blob/master/manifests/access/manage.pp#L8:L44

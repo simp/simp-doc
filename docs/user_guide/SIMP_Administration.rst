@@ -136,6 +136,8 @@ package set in any repository at any time, re-run:
   $ yum clean all
   $ yum makecache
 
+.. _ug-configuring-the-clients:
+
 Configuring the Clients
 ^^^^^^^^^^^^^^^^^^^^^^^
 

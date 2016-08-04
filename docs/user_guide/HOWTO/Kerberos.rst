@@ -1,3 +1,5 @@
+.. _ug-howto-enable-kerberos:
+
 Enable Kerberos
 ===============
 

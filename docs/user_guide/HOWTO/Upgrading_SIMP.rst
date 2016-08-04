@@ -1,3 +1,5 @@
+.. _ug-howto-upgrade-simp:
+
 Upgrade SIMP
 ============
 

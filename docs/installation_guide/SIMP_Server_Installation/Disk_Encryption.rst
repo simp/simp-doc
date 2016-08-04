@@ -1,3 +1,5 @@
+.. _ig-disk-encryption:
+
 Disk Encryption
 ---------------
 

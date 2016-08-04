@@ -1,3 +1,5 @@
+.. _simp-user-guide:
+
 SIMP User Guide
 ===============
 

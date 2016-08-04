@@ -1,3 +1,5 @@
+.. _simp-installation-guide:
+
 SIMP Installation Guide
 ================================
 

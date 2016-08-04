@@ -5,9 +5,12 @@ Managing Users with Lightweight Directory Access Protocol (LDAP)
 
 SIMP natively uses OpenLDAP for user and group management. Actionable
 copies of the :term:`LDAP` Data Interchange Format (.ldif) files can be found
-on the system in the ``/usr/share/doc/simp-doc-<Version>/ldifs`` directory.
+on the system in the ``/usr/share/doc/simp-doc-<Version>/ldifs`` directory and
+can be copied into ``/root/ldifs`` to have pre-populated versions of the
+examples below.
 
-Users cannot have any extraneous spaces in .ldif files.
+.. WARNING::
+  Do not leave any extraneous spaces in LDIF files!
 
 .. code-block:: bash
 
@@ -19,8 +22,7 @@ Users cannot have any extraneous spaces in .ldif files.
      's/\\(^[[:graph:]]\*:\\)[[:space:]]\*\\ ([[:graph:]]\*\\) \\[[:space:]]\*$/\\1\\2/' \
      file.ldif
 
-.. note::
-
+.. NOTE::
   Use the ``[`` and ``]`` characters to scroll right when using
   ELinks.
 
@@ -30,20 +32,18 @@ Add Users
 Users can be added with or without a password. Follow the instructions
 in the following sections.
 
-.. warning::
-
+.. WARNING::
     This process should not be used to create users or groups for daemon
     processes unless the user has experience.
 
 Adding Users With a Password
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-To add a user to the system, :term:`Secure Shell` (SSH) to the LDAP server and use the
-``slappasswd`` command to generate a password hash for a user.
+To add a user to the system, :term:`Secure Shell` (SSH) to the LDAP server and
+use the ``slappasswd`` command to generate a password hash for a user.
 
 Create a ``/root/ldifs`` directory and add the following information to
-the ``/root/ldifs/adduser.ldif`` file. Replace the information within < >
-with the installed system's information.
+the ``/root/ldifs/adduser.ldif`` following the example below.
 
 Example ldif to add a user
 
@@ -74,15 +74,14 @@ Type:
 .. code-block:: bash
 
   `ldapadd -Z -x -W -D "cn=LDAPAdmin,ou=People,dc=your,dc=domain" \
-  -f /root/ldifs/adduser.ldif` .
+    -f /root/ldifs/adduser.ldif` .
 
-Ensure that an administrative account is created as soon as the SIMP
-system has been properly configured. Administrative accounts should
-belong to the *administrators*\ LDAP group (gidNumber 700). Members of
-this LDAP group can utilize sudo sudosh for privilege escalation.
+Ensure that an administrative account is created as soon as the SIMP system has
+been properly configured. Administrative accounts should belong to the
+``administrators`` LDAP group (gidNumber 700). Members of this LDAP group can
+utilize sudo sudosh for privilege escalation.
 
-.. note::
-
+.. NOTE::
     The ``pwdReset: TRUE`` command causes the user to change the
     assigned password at the next login. This command is useful to
     pre-generate the password first and change it at a later time.
@@ -92,11 +91,10 @@ this LDAP group can utilize sudo sudosh for privilege escalation.
     around 10000.
 
 Adding Users Without a Password
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 Create a ``/root/ldifs`` directory and add the following information to
-the ``/root/ldifs/adduser.ldif`` file. Replace the information within < >
-with the installed system's information.
+the ``/root/ldifs/adduser.ldif`` file following the template below.
 
 Example ldif example to add a user
 
@@ -121,14 +119,13 @@ Type:
 .. code-block:: bash
 
   ldapadd -Z -x -W -D "cn=LDAPAdmin,ou=People,dc=your,dc=domain" \
-   -f /root/ldifs/adduser.ldif
+   -f adduser.ldif
 
 Remove Users
 ------------
 
-To remove a user, create a ``/root/ldifs/removeuser.ldif`` file. Add the
-information below to the file and replace the text within < > with the
-installed system's information.
+To remove a user, create a ``/root/ldifs/removeuser.ldif`` file following the
+template below.
 
 Example ldif to remove a user
 
@@ -145,21 +142,19 @@ Type:
 .. code-block:: bash
 
   ldapmodify -Z -x -W -D "cn=LDAPAdmin,ou=People,dc=your,dc=domain" \
-  -f /root/ldifs/removeuser.ldif
+  -f removeuser.ldif
 
-Additional .ldif File Commands
-------------------------------
+Additional Common LDAP Operations
+---------------------------------
 
-Other useful commands for .ldif files can be found below. Before using
-these commands, ensure that the ``/root/ldifs`` directory has been
-created.
+Other useful provided LDIF files can be found below. Before using these
+commands, ensure that the ``/root/ldifs`` directory has been created.
 
 Changing a Password
-~~~~~~~~~~~~~~~~~~~
+^^^^^^^^^^^^^^^^^^^
 
 To change a password, add the following information to the
-``/root/ldifs/<.ldif File>`` file. Replace the information below within <
-> with the installed system's information.
+``/root/ldifs/force_password_reset.ldif`` file.
 
 Example ldif to change password
 
@@ -175,14 +170,13 @@ Type:
 .. code-block:: bash
 
   ldapmodify -Z -x -W -D "cn=LDAPAdmin,ou=People,dc=your,dc=domain" \
-  -f <.ldif_file>
+  -f force_password_reset.ldif
 
 Adding a Group
-~~~~~~~~~~~~~~
+^^^^^^^^^^^^^^
 
-To add a group, add the following information to the ``/root/ldifs/<.ldif
-File>`` file. Replace the information below within < > with the installed
-system's information.
+To add a group, add the following information to the
+``/root/ldifs/add_group.ldif`` file.
 
 Example ldif to add a group
 
@@ -200,14 +194,13 @@ Type:
 .. code-block:: bash
 
   ldapadd -Z -x -W -D "cn=LDAPAdmin,ou=People,dc=your,dc=domain" \
-  -f <.ldif_file>
+  -f add_group.ldif
 
 Removing a Group
-~~~~~~~~~~~~~~~~
+^^^^^^^^^^^^^^^^
 
 To remove a group, add the following information to the
-``/root/ldifs/<.ldif File>`` file. Replace the information below within <
-> with the installed system's information.
+``/root/ldifs/del_group.ldif`` file.
 
 Example ldif to remove a group
 
@@ -221,14 +214,13 @@ Type:
 .. code-block:: bash
 
   ldapmodify -Z -x -W -D "cn=LDAPAdmin,ou=People,dc=your,dc=domain" \
-  -f <.ldif_file>
+  -f del_group.ldif
 
 Adding Users to a Group
-~~~~~~~~~~~~~~~~~~~~~~~
+^^^^^^^^^^^^^^^^^^^^^^^
 
 To add users to a group, add the following information to the
-``/root/ldifs/<.ldif File>`` file. Replace the information below within <
-> with the installed system's information.
+``/root/ldifs/add_to_group.ldif`` file.
 
 Example ldif to add to a group
 
@@ -247,14 +239,13 @@ Type:
 .. code-block:: bash
 
   ldapmodify -Z -x -W -D "cn=LDAPAdmin,ou=People,dc=your,dc=domain" \
-  -f <.ldif_file>
+  -f add_to_group.ldif
 
 Removing Users from a Group
-~~~~~~~~~~~~~~~~~~~~~~~~~~~
+^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 To remove users from a group, add the following information to the
-``/root/ldifs/<.ldif File>`` file. Replace the information below within <
-> with the installed system's information.
+``/root/ldifs/del_from_group.ldif`` file.
 
 Example ldif to remove a user from a group
 
@@ -273,14 +264,13 @@ Type:
 .. code-block:: bash
 
   ldapmodify -Z -x -W -D "cn=LDAPAdmin,ou=People,dc=your,dc=domain" \
-  -f <.ldif_file>
+  -f del_from_group.ldif
 
 Updating an SSH Public Key
-~~~~~~~~~~~~~~~~~~~~~~~~~~
+^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 To update an SSH public key, add the following information to the
-``/root/ldifs/<.ldif File>`` file. Replace the information below within <
-> with the installed system's information.
+``/root/ldifs/mod_sshkey.ldif`` file.
 
 Example ldif to update SSH public key
 
@@ -296,16 +286,15 @@ Type:
 .. code-block:: bash
 
   ldapmodify -Z -x -W -D "cn=LDAPAdmin,ou=People,dc=your,dc=domain" \
-  -f <.ldif_file>
+  -f mod_sshkey.ldif
 
 Forcing a Password Reset
-~~~~~~~~~~~~~~~~~~~~~~~~
+^^^^^^^^^^^^^^^^^^^^^^^^
 
 To force a password reset, add the following information to the
-``/root/ldifs/<.ldif File>`` file. Replace the information below within <
-> with the installed system's information.
+``/root/ldifs/force_password_reset.ldif`` file.
 
-Example ldif to reset user's shadowLastChange
+Example LDIF to reset user's shadowLastChange
 
 .. code-block:: ruby
 
@@ -322,23 +311,22 @@ Type:
 .. code-block:: bash
 
   ldapmodify -Z -x -W -D "cn=LDAPAdmin,ou=People,dc=your,dc=domain" \
-  -f <.ldif_file>
+  -f force_password_reset.ldif
 
-.. note::
+.. NOTE::
+    The ``ldapmodify`` command is only effective when using the *ppolicy*
+    overlay. In addition, the user's **shadowLastChange** must be changed to a
+    value prior to the expiration date to force a :term:`PAM` reset.
 
-    The ``ldapmodify`` command is only effective when using the
-    *ppolicy* overlay. In addition, the user's *shadowLastChange* must
-    be changed to a value prior to the expiration date to force a
-    :term:`PAM` reset.
+.. _unlock-ldap-label:
 
 Unlocking an LDAP Account
-~~~~~~~~~~~~~~~~~~~~~~~~~
+^^^^^^^^^^^^^^^^^^^^^^^^^
 
 To unlock an LDAP account, add the following information to the
-``/root/ldifs/<.ldif File>`` file. Replace the information below within <
-> with the installed system's information.
+``/root/ldifs/unlock_account.ldif`` file.
 
-Example ldif to Unlock LDAP Account
+Example LDIF to Unlock LDAP Account
 
 .. code-block:: ruby
 
@@ -351,17 +339,16 @@ Type:
 .. code-block:: bash
 
   ldapmodify -Z -x -W -D "cn=LDAPAdmin,ou=People,dc=your,dc=domain" \
-   -f <.ldif_file>
+   -f unlock_account.ldif
 
-.. note::
-
+.. NOTE::
     The ``ldapmodify`` command is only effective when using the
     *ppolicy* overlay.
 
 Troubleshooting Issues
 ----------------------
 
-If a user's password is changed in LDAP or the user changes it shortly
-after its initial setup, the "Password too young to change" error may
-appear. In this situation, apply the ``pwdReset:TRUE`` command to the
-user's account as described Add Users with a Password section.
+If a user's password is changed in LDAP or the user changes it shortly after
+its initial setup, the "Password too young to change" error may appear. In this
+situation, apply the ``pwdReset:TRUE`` option to the user's account as
+described in `Adding Users with a Password`_.
