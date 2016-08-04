@@ -14,6 +14,7 @@ the SIMP system.
   HOWTO/DVD_Build
   HOWTO/Exclude_Repositories
   HOWTO/Foreman
+  HOWTO/NFS
   HOWTO/IPTables_NAT_Rules
   HOWTO/Kerberos
   HOWTO/Managing_Workstation_Infrastructures

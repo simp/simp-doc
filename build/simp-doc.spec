@@ -131,6 +131,12 @@ mv pdf/SIMP_Documentation.pdf pdf/SIMP-%{version}-%{release}.pdf
 # Post uninstall stuff
 
 %changelog
+* Thu Aug 04 2016 Nick Markowski <nmarkowski@keywcorp.com>
+- Fixed syntax errors in Local User creation docs.
+- Added SSSD Local domain/user creation docs.
+- Updated Why can't I login?? docs to include a how-to unlock
+  accounts via LDAP and faillock.
+
 * Fri Jun 10 2016 Nick Miller <nick.miller@onyxpoint.com>
 - Added FAQ entries for disabling DHCP and named
 
