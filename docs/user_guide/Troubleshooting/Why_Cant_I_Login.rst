@@ -35,6 +35,46 @@ define as shown below.
     comment => 'Bob the proxied'
   }
 
+Faillock
+--------
+
+If a user fails to authenticate properly in 3 consecutive tries
+(the default pam::deny), :term: `PAM` will lock the account.
+
+To see a list of user authentication attempts, run
+
+.. code-block:: bash
+
+  faillock
+
+If a user is marked as invalid (I) or reaches the max number of attempts,
+you will need to reset faillock before authentication can occur.  To do so, run
+
+.. code-block:: bash
+
+   faillock --reset --user <user>
+
+LDAP Lockout
+------------
+
+If your account is LDAP, you may have locked yourself out.  Like :term: `PAM`,
+:term: `LDAP` has a maximum number of logins, 5 by default.  See
+openldap::server::conf::default_ldif::ppolicy_pwd_max_failure.  To determine if
+the account is locked, run
+
+.. code-block:: bash
+
+  slapcat -a uid=<user>
+
+If you see a field:
+
+.. code-block:: bash
+
+  pwdAccountLockedTime:
+
+Then the account is locked, and you will need to reference
+:ref: `unlock-ldap-label` to unlock it.
+
 Troubleshooting DNS
 -------------------
 

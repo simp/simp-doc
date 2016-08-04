@@ -331,6 +331,7 @@ Type:
     be changed to a value prior to the expiration date to force a
     :term:`PAM` reset.
 
+.. _unlock-ldap-label:
 Unlocking an LDAP Account
 ~~~~~~~~~~~~~~~~~~~~~~~~~
 
