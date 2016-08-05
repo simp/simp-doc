@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "baa041b7_c7b2d493",
+        "filename": "docs/user_guide/User_Management/SSSD.rst",
+        "patchSetId": 4
+      },
+      "lineNbr": 27,
+      "author": {
+        "id": 1005361
+      },
+      "writtenOn": "2016-08-05T16:56:32Z",
+      "side": 1,
+      "message": "need a colon",
+      "range": {
+        "startLine": 27,
+        "startChar": 35,
+        "endLine": 27,
+        "endChar": 36
+      },
+      "revId": "27959bdc38d91b853d7b880de8b3ed5fc574d775",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "baa041b7_87a84c21",
+        "filename": "docs/user_guide/User_Management/SSSD.rst",
+        "patchSetId": 4
+      },
+      "lineNbr": 43,
+      "author": {
+        "id": 1005361
+      },
+      "writtenOn": "2016-08-05T16:56:32Z",
+      "side": 1,
+      "message": "modify the one in simp_def?",
+      "range": {
+        "startLine": 42,
+        "startChar": 2,
+        "endLine": 43,
+        "endChar": 13
+      },
+      "revId": "27959bdc38d91b853d7b880de8b3ed5fc574d775",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "baa041b7_276860f4",
+        "filename": "docs/user_guide/User_Management/SSSD.rst",
+        "patchSetId": 4
+      },
+      "lineNbr": 47,
+      "author": {
+        "id": 1005361
+      },
+      "writtenOn": "2016-08-05T16:56:32Z",
+      "side": 1,
+      "message": "should this do in default.yaml?",
+      "range": {
+        "startLine": 45,
+        "startChar": 2,
+        "endLine": 47,
+        "endChar": 24
+      },
+      "revId": "27959bdc38d91b853d7b880de8b3ed5fc574d775",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735",
+      "unresolved": false
+    }
+  ]
+}
