@@ -2,6 +2,46 @@
   "comments": [
     {
       "key": {
+        "uuid": "baa041b7_4b512a2f",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 4
+      },
+      "lineNbr": 8,
+      "author": {
+        "id": 1005143
+      },
+      "writtenOn": "2016-08-09T04:06:07Z",
+      "side": 1,
+      "message": "The git commit message topic line should be followed by a line of whitespace (See https://simp-project.atlassian.net/wiki/display/SD/Contributing+to+SIMP)",
+      "revId": "27959bdc38d91b853d7b880de8b3ed5fc574d775",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "baa041b7_0b368202",
+        "filename": "docs/user_guide/User_Management/Local_Users.rst",
+        "patchSetId": 4
+      },
+      "lineNbr": 83,
+      "author": {
+        "id": 1005143
+      },
+      "writtenOn": "2016-08-09T04:06:07Z",
+      "side": 1,
+      "message": "Nice catch on the _group.\n\nA quoted string containing only a variable interpolation should fail puppet-lint.",
+      "range": {
+        "startLine": 83,
+        "startChar": 20,
+        "endLine": 83,
+        "endChar": 42
+      },
+      "revId": "27959bdc38d91b853d7b880de8b3ed5fc574d775",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "baa041b7_c7b2d493",
         "filename": "docs/user_guide/User_Management/SSSD.rst",
         "patchSetId": 4
