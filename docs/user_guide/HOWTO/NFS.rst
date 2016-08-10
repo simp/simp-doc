@@ -1,12 +1,9 @@
 Configuring NFS
 ===============
 
-This chapter describes multiple configurations of NFS including:
+.. contents:: This chapter describes multiple configurations of NFS including:
+  :local:
 
-  #. Exporting non-home directories
-  #. Exporting home directories
-  #. Enabling Stunnel
-  #. Coming soon: Enabling Kerberos
 
 All implementations are based on ``pupmod-simp-nfs`` and ``pupmod-simp-simp``.
 
@@ -21,7 +18,7 @@ Default.yaml
 
 .. code-block:: yaml
 
-   nfs::server :            "your.server.fqdn"
+   nfs::server:             "your.server.fqdn"
    nfs::server::client_ips: "%{alias('client_nets')}"
    nfs::simp_iptables:      true
    nfs::simp_krb5:          false

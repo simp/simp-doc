@@ -3,8 +3,14 @@
 Upgrade SIMP
 ============
 
+.. note:: Please refer to the `Migrating To Environments` section if you are upgrading from an older version.
+
 This chapter provides information on how to upgrade a running instance
 to the latest codebase.
+
+.. contents::
+  :local:
+
 
 Pre-Upgrade Recommendations
 ---------------------------
@@ -30,6 +36,50 @@ The following process should be followed before upgrade.
 Using the syntax above, you can add fully qualified domain names, one at a time, to the 'allow' list and only those hosts will be able to retrieve their catalog from the running server. 127.0.0.1 serves as a placeholder so that no host can actually retrieve their catalog.
 
 
+Upgrading SIMP from an ISO
+--------------------------
+
+1. Copy the release ISO to the simp server that is being upgraded
+
+2. Backup the existing environment:
+
+  .. code-block:: bash
+
+    cd /etc/puppet/environments
+    cp -r simp simp.old
+
+3. Unpack the new ISO using the ``unpack_dvd`` utility:
+
+  .. code-block:: bash
+
+    /usr/local/bin/unpack_dvd -d /var/www/yum <path-to-new-ISO>
+
+  This should update the existing YUM repos on the system to include updated system packages and updated SIMP packages.
+
+  .. note::
+    If there is a operating system release in between SIMP releases (for example, CentOS 6.7 to 6.8), the filesystem repo (``/etc/yum.repos.d/filesystem.repo``) needs to be modified to look for the new version of the OS.
+
+4. Update the system!
+
+  .. code-block:: bash
+
+    yum update
+
+  .. note:: If there are issues with gpg keys, try running ``yum reinstall simp-gpgkeys`` as root.
+
+5. Read the Changelog **carefully** and see what you may need to change in your infrastructure. For example, there
+  have been some changes to our default SIMP server hiera file. You will need to compare the
+  new ``puppet.your.domain.yaml`` to the existing SIMP host hiera file.
+
+6. Run puppet on the puppet server:
+
+  .. code-block:: bash
+
+    puppet agent -t
+
+7. That's it! Updates should propogate automatically throughout all clients as puppet and yum runs.
+
+
 Migrating To Environments
 -------------------------
 
@@ -50,8 +100,9 @@ existing data into the new *simp* environment.
     You must have at least **2.2G** of **free memory** to run the new
     Puppet Server.
 
+
 Migration Script Features
--------------------------
+^^^^^^^^^^^^^^^^^^^^^^^^^
 
 The migration script will perform the following actions on your system:
 
@@ -83,8 +134,9 @@ The migration script will perform the following actions on your system:
     ``/etc/puppet/modules`` without fear of the SIMP packages overwriting
     your work.
 
+
 Migration Script Execution
---------------------------
+^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 1. Copy the new SIMP ISO onto your system. For the purposes of these instructions, we will refer to this is SIMP_Update.iso. Please ensure that you are in the directory with the ISO prior to proceeding. Extract the new simp-utils package using the following command:
 
@@ -152,8 +204,9 @@ Table: Executing the Migration Script
 
 Your new Puppet Server should now be running and a run of ``puppet agent -t`` should complete as usual.
 
+
 Converting from Extdata to Hiera
---------------------------------
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 SIMP now uses Hiera natively instead of Extdata. Tools have been put
 into place by Puppet Labs and SIMP to make the conversion as easy as
@@ -229,8 +282,9 @@ user needs to set.
     For more information on hiera and puppet in general, see
     http://docs.puppetlabs.com/hiera/1/complete_example.html.
 
+
 Scope Functions
----------------
+^^^^^^^^^^^^^^^
 
 All scope functions must take arguments in array form. For example in
 ``/etc/puppet/modules/apache/templates/ssl.conf.erb``:
@@ -243,13 +297,14 @@ All scope functions must take arguments in array form. For example in
 
 
 Commands
---------
+^^^^^^^^
 
 Deprecated commands mentioned in Puppet 2.7 upgrade are now completely
 removed.
 
+
 Lock File
----------
+^^^^^^^^^
 
 Puppet agent now uses the two lock files instead of one. These are the
 run-in-progress lockfile (``agent_catalog_run_lockfile``) and the

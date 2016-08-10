@@ -3,6 +3,9 @@
 Managing Users with Lightweight Directory Access Protocol (LDAP)
 ================================================================
 
+.. contents::
+  :local:
+
 SIMP natively uses OpenLDAP for user and group management. Actionable
 copies of the :term:`LDAP` Data Interchange Format (.ldif) files can be found
 on the system in the ``/usr/share/doc/simp-doc-<Version>/ldifs`` directory and
