@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "baa041b7_d68036c1",
+        "filename": "docs/user_guide/HOWTO/Upgrading_SIMP.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 55,
+      "author": {
+        "id": 1005194
+      },
+      "writtenOn": "2016-08-10T19:41:06Z",
+      "side": 1,
+      "message": "This might need to be /srv depending on their installation options.",
+      "range": {
+        "startLine": 55,
+        "startChar": 33,
+        "endLine": 55,
+        "endChar": 45
+      },
+      "revId": "30911b12b084addddc6b2563819a0cbc3e9ddc61",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "baa041b7_966f4e2a",
+        "filename": "docs/user_guide/HOWTO/Upgrading_SIMP.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 72,
+      "author": {
+        "id": 1005194
+      },
+      "writtenOn": "2016-08-10T19:41:06Z",
+      "side": 1,
+      "message": "might want to reference the actual .rpmnew file",
+      "range": {
+        "startLine": 72,
+        "startChar": 2,
+        "endLine": 72,
+        "endChar": 33
+      },
+      "revId": "30911b12b084addddc6b2563819a0cbc3e9ddc61",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735",
+      "unresolved": false
+    }
+  ]
+}
