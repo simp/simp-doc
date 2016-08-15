@@ -37,7 +37,7 @@ To allow a user to access a particular system, you need to use the
 Faillock
 --------
 
-If a user fails to authenticate properly in **3** consecutive tries (the
+If a user fails to authenticate properly in **5** consecutive tries (the
 default ``pam::deny``), :term:`PAM` will lock the account.
 
 To see a list of user authentication attempts, run ``faillock``.
