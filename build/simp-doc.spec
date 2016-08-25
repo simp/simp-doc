@@ -131,6 +131,9 @@ mv pdf/SIMP_Documentation.pdf pdf/SIMP-%{version}-%{release}.pdf
 # Post uninstall stuff
 
 %changelog
+* Thu Aug 25 2016 Nick Markowski <nmarkowski@keywcorp.com>
+- Added warning not to enable krb5 with autofs.
+
 * Thu Aug 04 2016 Nick Markowski <nmarkowski@keywcorp.com>
 - Fixed syntax errors in Local User creation docs.
 - Added SSSD Local domain/user creation docs.

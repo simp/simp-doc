@@ -166,6 +166,13 @@ If you wish to encrypt your NFS data using stunnel, set the following in
 Enabling krb5
 -------------
 
+.. warning::
+
+  This functionality is incomplete. See ticket SIMP-1400 in our
+  `JIRA Bug Tracking`_ . Until that ticket is resolved, it is
+  HIGHLY recommended you continue to use stunnel for encrypted
+  nfs traffic.
+
 default.yaml
 ^^^^^^^^^^^^
 
@@ -207,3 +214,6 @@ Client
 
   classes:
     - 'simp::nfs::home_client'
+
+
+.. _JIRA Bug Tracking: https://simp-project.atlassian.net/
