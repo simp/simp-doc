@@ -29,8 +29,10 @@ on_rtd = os.environ.get('READTHEDOCS') == 'True'
 basedir = os.path.abspath(os.getcwd())
 github_base = 'https://raw.githubusercontent.com/simp'
 
-changelog_name = 'Changelog.rst'
-changelog = os.path.join(basedir, '..', '..', '..',  changelog_name)
+changelog_name        = 'Changelog.rst'
+default_changlog_path = os.path.join(basedir, '..', '..', '..',  changelog_name)
+changelog             = os.getenv('SIMP_CHANGELOG_PATH', default_changlog_path)
+
 
 os_ver_mapper_name = 'release_mappings.yaml'
 os_ver_mapper = os.path.join(basedir, '..', '..', '..', 'build', os_ver_mapper_name)
