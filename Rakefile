@@ -48,13 +48,13 @@ EOM
 
     # If the default specfile does not exist, we need to check Github for a usable spec.
     unless File.exist?(specfile)
-      warn("WARNING: No suitable spec file found at #{specfile}, defaulting to https://raw.githubusercontent.com/simp/simp-core/ENV['SIMP_VERSION']/src/build/simp.spec")
+      warn("WARNING: No suitable spec file found at #{specfile}, defaulting to https://raw.githubusercontent.com/simp/simp-core/ENV['SIMP_BRANCH']/src/build/simp.spec")
       require 'open-uri'
 
-      simp_version = ENV['SIMP_VERSION']
+      simp_version = ENV['SIMP_BRANCH']
 
       unless simp_version
-        warn("WARNING: Found no ENV['SIMP_VERSION'] set, defaulting to #{default_simp_version}")
+        warn("WARNING: Found no ENV['SIMP_BRANCH'] set, defaulting to #{default_simp_version}")
         simp_version = default_simp_version
       end
 
@@ -64,7 +64,7 @@ EOM
           tmpspec.write(specfile.read)
         end
       rescue Exception
-        raise(Error, "Could not find a valid spec file at #{spec_url}, check your SIMP_VERSION environment setting!")
+        raise(Error, "Could not find a valid spec file at #{spec_url}, check your SIMP_BRANCH environment setting!")
       end
 
       specfile = tmpspec.path
@@ -85,6 +85,10 @@ EOM
     %x(sed -i s/version:.*/version:#{simp_version}/ #{rel_file})
     %x(sed -i s/release:.*/release:#{simp_release}/ #{rel_file})
   ensure
+    if ( ENV.fetch('SIMP_PKG_verbose','no') == 'yes' || ENV.fetch('SIMP_DOC_verbose','no') == 'yes' )
+      FileUtils.cp(tmpspec.path, File.expand_path('dist/_tempspec.spec', File.dirname(__FILE__)), :verbose => true)
+      FileUtils.cp( rel_file, File.expand_path('dist/_temp_release', File.dirname(__FILE__)), :verbose => true)
+    end
     tmpspec.close
     tmpspec.unlink
   end
@@ -94,6 +98,7 @@ class DocPkg < Simp::Rake::Pkg
   # We need to inject the SCL Python repos for RHEL6 here if necessary
   def mock_pre_check(chroot, *args)
     mock_cmd = super(chroot, *args)
+    _verbose = ( ENV.fetch('SIMP_PKG_verbose','no') == 'yes' || ENV.fetch('SIMP_DOC_verbose','no') == 'yes' )
 
     rh_version = %x(#{mock_cmd} -r #{chroot} -q --chroot 'cat /etc/redhat-release | cut -f3 -d" " | cut -f1 -d"."').chomp
 
@@ -122,7 +127,7 @@ class DocPkg < Simp::Rake::Pkg
         end
       end
     end
-
+    puts "------- simp-doc pkg: mock cmd = `#{mock_cmd}`" if _verbose
     mock_cmd
   end
 
