@@ -1,7 +1,7 @@
 Apache
 ========
 
-**Module Name**: ``pupmod-apache``
+**Module Name**: ``pupmod-simp-apache``
 
 This Puppet module provides the capability to configure Apache and component
 sites.

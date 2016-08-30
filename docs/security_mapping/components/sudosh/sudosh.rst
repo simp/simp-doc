@@ -1,7 +1,7 @@
 Sudosh
 ========
 
-**Module Name**: ``pupmod-sudosh``
+**Module Name**: ``pupmod-simp-sudosh``
 
 This Puppet module provides the capability to use Sudosh with
 logging to rsyslog.

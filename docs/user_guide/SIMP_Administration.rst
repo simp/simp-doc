@@ -125,7 +125,7 @@ By placing the ``basepath`` of the repository within the default path served by
 Apache, it will be exposed to all networks in ``$client_nets``.  To modify the
 package set in any repository at any time, re-run:
 
-.. code-block::bash
+.. code-block:: bash
 
   $ cd /some/repository/
   $ cp /some/packages /some/repository/

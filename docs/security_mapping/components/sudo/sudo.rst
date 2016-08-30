@@ -1,7 +1,7 @@
 Sudo
 ========
 
-**Module Name**: ``pupmod-sudo``
+**Module Name**: ``pupmod-simp-sudo``
 
 This Puppet module manages the sudoers infrastructure.
 

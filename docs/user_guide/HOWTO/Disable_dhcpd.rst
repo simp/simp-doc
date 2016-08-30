@@ -1,5 +1,5 @@
-Disable DHCP
-============
+HOWTO Disable DHCP
+==================
 
 If you have an existing infrastructure and do not want to use SIMP as a DHCP
 server, here is how to disable it:

@@ -1,5 +1,5 @@
-Enable The Foreman
-==================
+HOWTO Enable The Foreman
+========================
 
 This chapter gives instruction for getting a basic configuration of
 `Foreman <http://www.theforeman.org/>`__ working in a SIMP environment
@@ -164,7 +164,7 @@ Collecting Facts
 
 If you want to collect facts, you will need to get a copy /etc/puppet/nodes.rb
 from the forman site (see the facts section of the foreman documentation) edit
-the foreman cron job under /etc/cron.d and uncomment out the collection and...
+the foreman cron job under /etc/cron.d and uncomment out the collection and
 give puppet the right to run cron jobs.  To give puppet the right to run
 cronjobs add the following code to your forman.pp manifest under site:
 

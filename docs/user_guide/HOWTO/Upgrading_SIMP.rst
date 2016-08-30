@@ -1,7 +1,7 @@
 .. _ug-howto-upgrade-simp:
 
-Upgrade SIMP
-============
+HOWTO Upgrade SIMP
+==================
 
 .. WARNING::
   Please refer to the `Migrating To Environments`_ section if you are upgrading

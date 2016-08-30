@@ -1,7 +1,7 @@
 OpenLDAP
 =========
 
-**Module Name**: ``pupmod-openldap``
+**Module Name**: ``pupmod-simp-openldap``
 
 This Puppet module provides the capability to configure OpenLDAP servers and
 clients.

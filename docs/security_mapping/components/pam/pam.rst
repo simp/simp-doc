@@ -1,7 +1,7 @@
 PAM
 ====
 
-**Module Name**: ``pupmod-pam``
+**Module Name**: ``pupmod-simp-pam``
 
 This Puppet module provides the capability to configure various PAM settings on
 the system.

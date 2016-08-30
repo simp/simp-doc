@@ -1,5 +1,5 @@
 Configure PXE Boot
-------------------
+++++++++++++++++++
 
 Sample kickstart templates have been provided in the ``/var/www/ks`` directory on the SIMP server  and on the SIMP DVD under ``/ks``.  Pre-boot images are locate in the DVD under ``/images/pxeboot``.  If you have an existing :term:`Preboot Execution Environment` (PXE) setup you can use these to PXE a SIMP client. Follow your own sites procedures for this.
 

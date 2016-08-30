@@ -16,7 +16,7 @@ minimum requirements:
 
 -  RAM: 512 MB
 
--  HDD: 5 GB
+-  HDD: 15 GB
 
 Configuring the Puppet Master
 -----------------------------
@@ -25,57 +25,73 @@ Perform the following actions as ``root`` on the Puppet Master system
 prior to attempting to install a client.
 
 Configure DNS
--------------
-
-Most static files are pulled over ``rsync`` by Puppet in this
-implementation for network efficiency. Specific directories of interest
-are noted in this section.
-
-It is possible to use an existing DNS setup; however, the following
-table lists the steps for a local setup.
++++++++++++++
 
 .. only:: simp_4
 
-  1. Navigate to ``/srv/rsync/bind_dns``
+  In SIMP most managed, system configuration files are pulled over
+  ``rsync`` by Puppet for network efficiency. These managed files include
+  DNS configuration files and can be found at
+  ``/srv/rsync/bind_dns/default``.
 
 .. only:: not simp_4
 
-  1. Navigate to ``/var/simp/rsync/OSTYPE/MAJORRELEASE/bind_dns``
+  In SIMP most managed, system configuration files are pulled over
+  ``rsync`` by Puppet for network efficiency. These managed files include
+  DNS configuration files and can be found at 
+  ``/var/simp/rsync/OSTYPE/MAJORRELEASE/bind_dns/default``.
 
-2. Modify the named files to correctly reflect the environment. At a
-   minimum, the following files under ``/srv/rsync/bind_dns/default``
-   should be edited:
+It is possible to use an existing DNS setup; however, the configuration
+steps that follow are for a local setup:
 
-  * ``named/etc/named.conf``
-  * ``named/etc/zones/your.domain``
-  * ``named/var/named/forward/your.domain.db``
-  * ``named/var/named/reverse/0.0.10.db``
+.. only:: simp_4
+
+  1. Navigate to ``/srv/rsync/bind_dns/default``
+
+.. only:: not simp_4
+
+  1. Navigate to ``/var/simp/rsync/OSTYPE/MAJORRELEASE/bind_dns/default``
+..
+
+2. Modify the ``named`` files to correctly reflect the environment.
+
+   * The relevant files under ``bind_dns/default`` are as follows:
+
+     * ``named/etc/named.conf``
+     * ``named/etc/zones/your.domain``
+     * ``named/var/named/forward/your.domain.db``
+     * ``named/var/named/reverse/0.0.10.db``
+
+  * Review ``named/etc/named.conf`` and check/update the
+    following:
+
+    * Update the :term:`IP` for allow-query and allow-recursion
+    * Delete any unnecessary zone stanzas (i.e. forwarding) if not
+      necessary
+    * Substitute in the :term:`FQDN` of your domain for all occurrences of
+      your.domain
+  * Add clients to ``named/var/named/forward/your.domain.db`` and
+    ``named/var/named/reverse/0.0.10.db`` and then rename these files
+    to more appropriately match your system configuration.
+
+3. Type ``puppet agent -t --tags named`` on the Puppet Master to apply
+   the changes. 
+4. Validate DNS and ensure the ``/etc/resolv.conf`` is updated appropriately.
+5. If an error about the rndc.key appears when starting bind, 
+   see `Bind Documentation <https://www.isc.org/downloads/bind/>`_ for more
+   information.  Once you have resolved the problem, re-run the puppet command
+   ``puppet agent -t --tags named`` on the Puppet Master to apply.
 
 .. important::
 
-  For the ``named/var/named/forward/your.domain.db`` and
-  ``named/var/named/reverse/0.0.10.db`` files, add clients as needed.
-  Make sure to rename both of these files to more appropriately match
-  your system configuration.
-
-* At a minimum, review ``named/etc/named.conf`` and check/update the
-   following:
-
-  * Update the :term:`IP` for allow-query and allow-recursion
-  * Delete any unnecessary zone stanzas (i.e. forwarding) if not
-    necessary
-  * Substitute in the :term:`FQDN` of your domain for all occurrences of
-    your.domain
-
-#. Type ``puppet agent -t --tags named`` on the Puppet Master to apply
-   the changes. Validate DNS and ensure the ``/etc/resolv.conf`` is
-   updated appropriately
-#. If an error about the rndc.key appears when starting bind, copy the
-   ``rndc.key`` to ``/etc`` then re-run the puppet command: ``cp -p
-   /var/named/chroot/etc/rndc.key /etc/rndc.key``
+  You can adjust the list of clients in your
+  ``named/var/named/forward/<your.domain>.db`` and
+  ``named/var/named/reverse/<your reverse domain>.db`` files at any time.
+  Just remember to run ``puppet agent -t --tags named`` on the Puppet
+  Master to propagate these updates.
 
 Configure DHCP
---------------
+++++++++++++++
 
 Perform the following actions as ``root`` on the Puppet Master system
 prior to attempting to install a client.
@@ -109,7 +125,11 @@ Save and close the file.
 
 Run ``puppet agent -t`` on the Puppet Master to apply the changes.
 
-.. include:: ../common/PXE_Boot.rst
+.. include:: PXE_Boot.rst
+
+.. _Certificates:
+
+.. include:: Certificates.rst
 
 Setting Up the Client
 ---------------------
@@ -131,8 +151,8 @@ the client.
 Upon successful deployment of a new client, it is highly recommended that
 :ref:`LDAP administrative accounts <Managing LDAP Users>` be created.
 
-Troubleshooting Issues
-----------------------
+Troubleshooting Puppet Issues
+-----------------------------
 
 If the client has been kickstarted, but is not communicating with the Puppet
 server, try the following options:
@@ -144,8 +164,11 @@ server, try the following options:
 * Remove ``/var/lib/puppet/ssl`` on the client system; run ``puppet cert
   --clean ***<Client Host Name>***`` on the Puppet server; and try again.
 
-Troubleshoot Certificate Issues
--------------------------------
+
+.. _cm-troubleshoot-cert-issues:
+
+Troubleshooting Certificate Issues
+----------------------------------
 
 If host certificates do not appear to be working and the banner is not getting
 rsync'd to the clients, ensure that all certificates verify against the
@@ -171,4 +194,4 @@ regenerated. The table below lists the steps to revoke the certificate.
    ::
 
      OPENSSL_CONF=default.cnf openssl ca -revoke \
-     ../../keydist/***<Host to Revoke>*/*<Host to Revoke>*.pub**
+     keydist/*<Host to Revoke>*/*<Host to Revoke>*.pub

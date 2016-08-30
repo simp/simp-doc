@@ -1,7 +1,7 @@
 Pupmod
 ========
 
-**Module Name**: ``pupmod-pupmod``
+**Module Name**: ``pupmod-simp-pupmod``
 
 This Puppet module provides the capability to configure both
 puppet servers and puppet clients.

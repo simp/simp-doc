@@ -1,7 +1,7 @@
 Rsync
 ========
 
-**Module Name**: ``pupmod-rsync``
+**Module Name**: ``pupmod-simp-rsync``
 
 This Puppet module provides the capability to configure an rsync server.  The
 intent is for this server to be run encrypted via a stunnel channel.

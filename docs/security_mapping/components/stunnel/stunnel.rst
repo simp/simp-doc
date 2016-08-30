@@ -1,7 +1,7 @@
 Stunnel
 ========
 
-**Module Name**: ``pupmod-stunnel``
+**Module Name**: ``pupmod-simp-stunnel``
 
 This Puppet module provides the capability to configure stunnel channels on your
 system.

@@ -2,11 +2,10 @@ SIMP Security Control Mapping
 ================================
 
 This is the security control mapping for SIMP.  The document has two main 
-sections.  The first contains security control sources 
+sections.  The first section contains the security components, which in 
+our case are SIMP modules.  Each component is documented and mapped to the
+security control sources.  The second contains security control sources 
 which are references or reference documents that contain security guidance.
-The second section contains the security components.  In our case, a 
-component is a SIMP module.  Each component is documented and mapped to the
-security control sources.
 
 Contents:
 

@@ -1,17 +1,11 @@
-Manage Workstation Infrastructures
-==================================
+.. _Infrastructure-Setup:
+
+HOWTO Manage Workstation Infrastructures
+========================================
 
 This chapter describes how to manage client workstations with a SIMP
 system including GUIs, repositories, virtualization, Network File System
 (NFS), printing, and Virtual Network Computing (VNC).
-
-.. _Infrastructure-Setup:
-
-Infrastructure Setup
---------------------
-
-The following sections provide examples for setting up a SIMP
-workstation environment.
 
 User Workstation Setup
 ----------------------
@@ -185,8 +179,8 @@ Below is an example manifest called
             }
 
 
-Setting up a Printer Environment
---------------------------------
+Printer Setup
+-------------
 
 Below are example manifests for setting up a printing environment.
 
@@ -240,18 +234,18 @@ print server.
             }
 
 
-VNC
-===
+VNC Setup
+---------
 
 :term:`Virtual Network Computing` (VNC) is a tool that is used to manage desktops and workstations remotely
 through the standard setup or a proxy.
 
 VNC Standard Setup
-------------------
+~~~~~~~~~~~~~~~~~~
 
 .. note::
 
-    You must have the ``pupmod-vnc`` RPM installed to use VNC on your
+    You must have the ``pupmod-simp-vnc`` RPM installed to use VNC on your
     system!
 
 To enable remote access via VNC on the system, include ``vnc::server``
@@ -296,7 +290,7 @@ for examples.
     the manual for additional details.
 
 VNC Through a Proxy
--------------------
+~~~~~~~~~~~~~~~~~~~
 
 The section describes the process to VNC through a proxy. This setup
 provides the user with a persistent VNC session.
@@ -310,7 +304,7 @@ provides the user with a persistent VNC session.
     that has access to the server, client, and proxy.
 
 Modify Puppet
-~~~~~~~~~~~~~
++++++++++++++
 
 If definitions for the machines involved in the VNC do not already exist
 in Hiera, create an ``/etc/puppet/environments/simp/hieradata/hosts/vserv.your.domain.yaml``
@@ -341,7 +335,7 @@ VNC client node
 
 
 Run the Server
-~~~~~~~~~~~~~~
+++++++++++++++
 
 As ``vuser`` on ``vserv.your.domain``, type ``vncserver``.
 
@@ -357,7 +351,7 @@ is ``/home/vuser/.vnc/vserv.your.domain:<Port Number>.log``
     Remember the port number; it will be needed to set up an SSH tunnel.
 
 Set up an SSH Tunnel
-~~~~~~~~~~~~~~~~~~~~
+++++++++++++++++++++
 
 Set up a tunnel from the client (vclnt), through the proxy server
 (proxy), to the server (vserv). The table below lists the steps to set
@@ -381,7 +375,7 @@ Table: Set Up SSH Tunnel Procedure
     then all references below to 590\ *<Port Number>* become 5906.
 
 Set Up Clients
-~~~~~~~~~~~~~~
+++++++++++++++
 
 On ``vclnt.your.domain``, type ``vncviewer localhost:590\ ***<Port
 Number>***`` to open the Remote Desktop viewer.

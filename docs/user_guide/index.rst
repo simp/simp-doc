@@ -8,12 +8,12 @@ Contents:
 .. toctree::
   :maxdepth: 2
 
-  Introduction <../common/Introduction>
-  Client Management <../common/Client_Management>
-  Certificates
+  Introduction
+  Client_Management
   Maximum_Nodes
   SIMP_Administration
   User_Management
+  Hiera_Overview
   Troubleshooting
   HOWTO
   FAQ

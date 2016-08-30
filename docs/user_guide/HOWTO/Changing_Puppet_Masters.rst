@@ -1,5 +1,5 @@
-Changing Puppet Masters
-=======================
+HOWTO Change Puppet Masters
+===========================
 
 It may be necessary to change the Puppet Master. To point a particular
 client to a new Puppet Master, follow the steps in the sections below.
