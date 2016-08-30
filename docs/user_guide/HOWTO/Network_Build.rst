@@ -1,5 +1,5 @@
-Kickstart the Initial Server
-============================
+HOWTO Kickstart the Initial Server
+==================================
 
 This section provides guidance to install the initial SIMP server via an
 existing kickstart infrastructure.

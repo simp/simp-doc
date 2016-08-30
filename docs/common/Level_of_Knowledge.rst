@@ -1,15 +1,3 @@
-Introduction
-============
-
-This guide will walk a user through the process of managing a :term:`SIMP` system.
-This system includes, at a minimum, a SIMP server with properly
-configured networking information and a working Puppet server.
-Additionally, this document outlines the process of managing clients and
-users associated with the SIMP system.
-
-Level of Knowledge
-------------------
-
 SIMP is designed for use by system administrators or users with a strong
 background using Linux operating systems. The core applications that
 make up SIMP and require prerequisite knowledge are:
@@ -47,8 +35,3 @@ control and manipulate these tools from the :term:`command line interface`
 
 Knowledge of scripting and :term:`Ruby` programming will also help to further
 customize a SIMP install but is not required for routine use.
-
-SIMP Defined
-------------
-
-.. include:: ../common/SIMP_Overview.rst

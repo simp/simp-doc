@@ -1,5 +1,5 @@
-Enable Redundant LDAP
-=====================
+HOWTO Enable Redundant LDAP
+===========================
 
 This section describes how to set up redundant OpenLDAP servers in SIMP.  These
 servers are also referred to as "slave" servers.

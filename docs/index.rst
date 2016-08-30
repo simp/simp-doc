@@ -1,7 +1,11 @@
 Welcome to the SIMP documentation!
 ==================================
-This is the |simp_version| release of SIMP compatible with the |rhel_version|
-release of CentOS and Red Hat Enterprise Linux (RHEL).
+This is the documentation for the |simp_version| release of SIMP, which is
+compatible with the |rhel_version| release of CentOS and Red Hat Enterprise
+Linux (RHEL).  This guide will walk a user through the process of installing
+and managing a :term:`SIMP` system.  It also provides a mapping of security
+features to security requirements, which can be used to document a system's
+security conformance.
 
 .. include:: common/SIMP_Overview.rst
 
@@ -16,7 +20,7 @@ Contents:
   :maxdepth: 2
 
   Changelog <dynamic/Changelog>
-  Installation <installation_guide/index>
+  Installation Guide <installation_guide/index>
   User Guide <user_guide/index>
   Security Control Mapping <security_mapping/index>
   license

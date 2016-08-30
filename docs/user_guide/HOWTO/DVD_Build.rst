@@ -1,7 +1,7 @@
 .. _SIMP ISO:
 
-Building a Bootable DVD from the SIMP tarball
-=============================================
+HOWTO Build a Bootable DVD from the SIMP tarball
+================================================
 
 SIMP is an overlay on top of :term:`Enterprise Linux`, not a complete
 distribution. As such, you must build a bootable DVD if provided with the SIMP

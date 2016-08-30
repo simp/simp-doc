@@ -48,5 +48,5 @@ return the string 'OK'.
   # Validate the LDAP system
   $ openssl verify -CApath cacerts ldap.my.domain
 
-If there are any issues, you may need to follow the Fake CA README to generate
+If there are any issues, you may need to follow the steps in :ref:`Certificates` to generate
 new certificates for one or more of your hosts.

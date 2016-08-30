@@ -1,5 +1,5 @@
-Puppet Server Behind a NAT
-==========================
+HOWTO Configure a Puppet Server Behind a NAT
+============================================
 
 This section provides guidance for when the Puppet server is behind a
 NAT but is managing hosts outside the NAT.

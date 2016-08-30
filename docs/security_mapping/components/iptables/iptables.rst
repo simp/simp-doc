@@ -1,7 +1,7 @@
 IPTables
 =========
 
-**Module Name**: ``pupmod-iptables``
+**Module Name**: ``pupmod-simp-iptables``
 
 The `iptables` module manages all IPTables and IP6Tables rules in an atomic
 fashion. All rules are applied only once per puppet agent run during the

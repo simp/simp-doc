@@ -1,7 +1,7 @@
 .. _ug-howto-enable-kerberos:
 
-Enable Kerberos
-===============
+HOWTO Enable Kerberos
+=====================
 
 For the latest documentation, see the documentation in the
 `SIMP KRB5 Puppet Module`_.

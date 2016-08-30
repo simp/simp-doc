@@ -1,6 +1,6 @@
 .. _simp-installation-guide:
 
-SIMP Installation Guide
+SIMP Server Installation Guide
 ================================
 
 Contents:
@@ -8,12 +8,10 @@ Contents:
 .. toctree::
   :maxdepth: 2
 
-  Introduction <../common/Introduction>
+  Introduction
   Known OS Compatibility <../dynamic/Known_OS_Compatibility>
   SIMP_Server_Installation
-  Client Management <../common/Client_Management>
-  Certificates
-  Hiera_Overview
+  Disk Encryption <Disk_Encryption>
   Installation_Miscellaney
 
 Indices and tables

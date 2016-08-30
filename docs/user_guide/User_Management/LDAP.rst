@@ -6,11 +6,20 @@ Managing Users with Lightweight Directory Access Protocol (LDAP)
 .. contents::
   :local:
 
+Prepare SIMP ldifs
+------------------
+
 SIMP natively uses OpenLDAP for user and group management. Actionable
 copies of the :term:`LDAP` Data Interchange Format (.ldif) files can be found
-on the system in the ``/usr/share/doc/simp-doc-<Version>/ldifs`` directory and
-can be copied into ``/root/ldifs`` to have pre-populated versions of the
-examples below.
+on the system in the ``/usr/share/doc/simp-doc-<Version>/ldifs`` directory.
+Copy these files into ``/root/ldifs`` and fix their Distinguished Names:
+
+.. code-block:: bash
+
+  mkdir /root/ldifs
+  cp /usr/share/doc/simp-doc-*/ldifs/* /root/ldifs
+  cd /root/ldifs
+  sed -i 's/dc=your,dc=domain/<your actual DN information>/g' \*.ldif
 
 .. WARNING::
   Do not leave any extraneous spaces in LDIF files!
@@ -29,55 +38,69 @@ examples below.
   Use the ``[`` and ``]`` characters to scroll right when using
   ELinks.
 
-Add Users
----------
+Add a User
+----------
 
 Users can be added with or without a password. Follow the instructions
 in the following sections.
+
+.. NOTE::
+   Every user must belong to a unique, primary group, but can optionally
+   belong to one or more, secondary groups.
 
 .. WARNING::
     This process should not be used to create users or groups for daemon
     processes unless the user has experience.
 
-Adding Users With a Password
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+Add a User with a Password
+^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-To add a user to the system, :term:`Secure Shell` (SSH) to the LDAP server and
-use the ``slappasswd`` command to generate a password hash for a user.
+To add a user with a password to the system, along with a unique group for
+that user:
 
-Create a ``/root/ldifs`` directory and add the following information to
-the ``/root/ldifs/adduser.ldif`` following the example below.
-
-Example ldif to add a user
+1. Login to the LDAP server as ``root``.
+2. Use the ``slappasswd`` command to generate a password hash for a user. 
+3. Edit the ``/root/ldifs/adduser_with_password.ldif`` shown below.
 
 .. code-block:: ruby
 
-  dn: uid=<User UID>,ou=People,dc=your,dc=domain
-  uid: <User UID>
-  cn: <User UID>
-  objectClass: account
+  dn: cn=<username>,ou=Group,dc=your,dc=domain
+  objectClass: posixGroup
+  objectClass: top
+  cn: <username>
+  gidNumber: <Unique GID Number>
+  description: "<Group Description>"
+  
+  dn: uid=<username>,ou=People,dc=your,dc=domain
+  uid: <username>
+  cn: <username>
+  givenName: <First Name>
+  sn: <Last Name>
+  mail: <e-mail address>
+  objectClass: inetOrgPerson
   objectClass: posixAccount
   objectClass: top
   objectClass: shadowAccount
   objectClass: ldapPublicKey
-  shadowMax: 90
+  shadowMax: 180
   shadowMin: 1
   shadowWarning: 7
-  shadowLastChange: 10167
-  pwdReset: TRUE
-  sshPublicKey: <User SSH Public Key>
+  shadowLastChange: 10701
+  sshPublicKey: <some SSH public key>
   loginShell: /bin/bash
-  uidNumber: <User UID Number>
-  gidNumber: <User Primary GID>
-  homeDirectory: /home/<User UID>
-  userPassword: <Password Hash from slappasswd>
+  uidNumber: <some UID number above 500>
+  gidNumber: <some GID number above 500>
+  homeDirectory: /home/<username>
+  userPassword: <slappasswd generated SSHA hash>
+  pwdReset: TRUE
 
-Type:
+4. Type the following, substituting your DN information for
+   ``dc=your,dc=domain``:
 
 .. code-block:: bash
 
-  `ldapadd -Z -x -W -D "cn=LDAPAdmin,ou=People,dc=your,dc=domain" \
-    -f /root/ldifs/adduser.ldif` .
+  ldapadd -Z -x -W -D "cn=LDAPAdmin,ou=People,dc=your,dc=domain" \
+  -f /root/ldifs/adduser_with_password.ldif
 
 Ensure that an administrative account is created as soon as the SIMP system has
 been properly configured. Administrative accounts should belong to the
@@ -85,147 +108,151 @@ been properly configured. Administrative accounts should belong to the
 utilize sudo sudosh for privilege escalation.
 
 .. NOTE::
-    The ``pwdReset: TRUE`` command causes the user to change the
-    assigned password at the next login. This command is useful to
-    pre-generate the password first and change it at a later time.
+   The ``pwdReset: TRUE`` command causes the user to change the
+   assigned password at the next login. This command is useful to
+   pre-generate the password first and change it at a later time.
 
-    This command appears to be broken in some versions of ``nss_ldap``.
-    Therefore, to avoid future issues set ``shadowLastChange`` to a value
-    around 10000.
+   This command appears to be broken in some versions of ``nss_ldap``.
+   Therefore, to avoid future issues set ``shadowLastChange`` to a value
+   around 10000.
 
-Adding Users Without a Password
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+.. WARNING::
+   The initial password set for a user must confform to the password policy
+   or the user will not be able to login and change his/her password, even
+   though the password reset has been enabled by ``pwdReset: TRUE``.
+   
 
-Create a ``/root/ldifs`` directory and add the following information to
-the ``/root/ldifs/adduser.ldif`` file following the template below.
+Add a User without a Password
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Example ldif example to add a user
+To add a user without a password to the system, along with a unique group
+for that user
+
+1. Login to the LDAP server as ``root``.
+2. Edit the ``/root/ldifs/adduser_no_password.ldif`` shown below.
 
 .. code-block:: ruby
 
-  dn: uid=<User UID>,ou=People,dc=your,dc=domain
-  uid: <User UID>
-  cn: <User UID>
-  objectClass: account
+  dn: cn=<username>,ou=Group,dc=your,dc=domain
+  objectClass: posixGroup
+  objectClass: top
+  cn: <username>
+  gidNumber: <Unique GID Number>
+  description: "<Group Description>"
+  
+  dn: uid=<username>,ou=People,dc=your,dc=domain
+  uid: <username>
+  cn: <username>
+  givenName: <First Name>
+  sn: <Last Name>
+  mail: <e-mail address>
+  objectClass: inetOrgPerson
   objectClass: posixAccount
   objectClass: top
   objectClass: shadowAccount
   objectClass: ldapPublicKey
-  sshPublicKey: <User SSH Public Key>
+  sshPublicKey: <some SSH public key>
   loginShell: /bin/bash
-  uidNumber: <User UID Number>
-  gidNumber: <User Primary GID>
-  homeDirectory: /home/<User UID>
+  uidNumber: <some UID number above 500>
+  gidNumber: <GID number from above>
+  homeDirectory: /home/<username>
 
-Type:
+3. Type the following, substituting your DN information for
+   ``dc=your,dc=domain``:
 
 .. code-block:: bash
 
-  ldapadd -Z -x -W -D "cn=LDAPAdmin,ou=People,dc=your,dc=domain" \
-   -f adduser.ldif
+   ldapadd -Z -x -W -D "cn=LDAPAdmin,ou=People,dc=your,dc=domain" \
+   -f /root/ldifs/adduser_no_password.ldif
 
-Remove Users
-------------
+Remove a User
+-------------
 
-To remove a user, create a ``/root/ldifs/removeuser.ldif`` file following the
-template below.
+To remove a user to the system, along with a unique group for that user:
 
-Example ldif to remove a user
+1. Login to the LDAP server as ``root``.
+2. Edit the ``/root/ldifs/del_user.ldif`` shown below.
 
 .. code-block:: ruby
 
-  dn: cn=<User UID>,ou=Group,dc=example,dc=domain
-  changeType: delete
+   dn: cn=<User UID>,ou=Group,dc=example,dc=domain
+   changeType: delete
 
-  dn: uid=<User UID>,ou=People,dc=example,dc=domain
-  changeType: delete
+   dn: uid=<User UID>,ou=People,dc=example,dc=domain
+   changeType: delete
 
-Type:
+3. Type the following, substituting your DN information for
+   ``dc=your,dc=domain``:
 
 .. code-block:: bash
 
   ldapmodify -Z -x -W -D "cn=LDAPAdmin,ou=People,dc=your,dc=domain" \
-  -f removeuser.ldif
+  -f /root/ldifs/del_user.ldif
 
 Additional Common LDAP Operations
 ---------------------------------
 
-Other useful provided LDIF files can be found below. Before using these
-commands, ensure that the ``/root/ldifs`` directory has been created.
+As described below, other useful operations can be executed using the
+remaining LDIF files.
 
-Changing a Password
-^^^^^^^^^^^^^^^^^^^
+Add a Group
+^^^^^^^^^^^
 
-To change a password, add the following information to the
-``/root/ldifs/force_password_reset.ldif`` file.
+SIMP systems are preconfigured with two groups:
 
-Example ldif to change password
+- ``administrators`` (700):  Group that has both sudosh and ssh privileges
+- ``users`` (100): Group that does not have sudosh or ssh privileges
 
-.. code-block:: ruby
+To add another group:
 
-  dn: uid=<User UID>,ou=People,dc=your,dc=domain
-  changetype: modify
-  replace: userPassword
-  userPassword: <Hash from slappasswd>
-
-Type:
-
-.. code-block:: bash
-
-  ldapmodify -Z -x -W -D "cn=LDAPAdmin,ou=People,dc=your,dc=domain" \
-  -f force_password_reset.ldif
-
-Adding a Group
-^^^^^^^^^^^^^^
-
-To add a group, add the following information to the
-``/root/ldifs/add_group.ldif`` file.
-
-Example ldif to add a group
+1. Login to the LDAP server as ``root``.
+2. Edit the ``/root/ldifs/add_group.ldif`` shown below.
 
 .. code-block:: ruby
 
-  dn: cn=<Group Name>,ou=Group,dc=your,dc=domain
-  objectClass: posixGroup
-  objectClass: top
-  cn: <Group Name>
-  gidNumber: <GID>
-  description: "Some Descriptive Text"
+   dn: cn=<groupname>,ou=Group,dc=your,dc=domain
+   objectClass: posixGroup
+   objectClass: top
+   cn: <groupname>
+   gidNumber: <Unique GID number>
+   description: "<Some useful group description>"
 
-Type:
+3. Type the following, substituting your DN information for
+   ``dc=your,dc=domain``:
 
 .. code-block:: bash
 
   ldapadd -Z -x -W -D "cn=LDAPAdmin,ou=People,dc=your,dc=domain" \
-  -f add_group.ldif
+  -f /root/ldifs/add_group.ldif
 
-Removing a Group
-^^^^^^^^^^^^^^^^
+Remove a Group
+^^^^^^^^^^^^^^
 
-To remove a group, add the following information to the
-``/root/ldifs/del_group.ldif`` file.
+To remove a group:
 
-Example ldif to remove a group
+1. Login to the LDAP server as ``root``.
+2. Edit the ``/root/ldifs/del_group.ldif`` shown below.
 
 .. code-block:: ruby
 
   dn: cn=<Group Name>,ou=Group,dc=your,dc=domain
   changetype: delete
 
-Type:
+3. Type the following, substituting your DN information for
+   ``dc=your,dc=domain``:
 
 .. code-block:: bash
 
   ldapmodify -Z -x -W -D "cn=LDAPAdmin,ou=People,dc=your,dc=domain" \
-  -f del_group.ldif
+  -f /root/ldifs/del_group.ldif
 
-Adding Users to a Group
-^^^^^^^^^^^^^^^^^^^^^^^
+Add Users to a Group
+^^^^^^^^^^^^^^^^^^^^
 
-To add users to a group, add the following information to the
-``/root/ldifs/add_to_group.ldif`` file.
+To add users to a group:
 
-Example ldif to add to a group
+1. Login to the LDAP server as ``root``.
+2. Edit the ``/root/ldifs/add_to_group.ldif`` shown below.
 
 .. code-block:: ruby
 
@@ -237,20 +264,21 @@ Example ldif to add to a group
   ...
   memberUid: <UIDX>
 
-Type:
+3. Type the following, substituting your DN information for
+   ``dc=your,dc=domain``:
 
 .. code-block:: bash
 
   ldapmodify -Z -x -W -D "cn=LDAPAdmin,ou=People,dc=your,dc=domain" \
-  -f add_to_group.ldif
+  -f /root/ldifs/add_to_group.ldif
 
-Removing Users from a Group
-^^^^^^^^^^^^^^^^^^^^^^^^^^^
+Remove Users from a Group
+^^^^^^^^^^^^^^^^^^^^^^^^^
 
-To remove users from a group, add the following information to the
-``/root/ldifs/del_from_group.ldif`` file.
+To add users to a group:
 
-Example ldif to remove a user from a group
+1. Login to the LDAP server as ``root``.
+2. Edit the ``/root/ldifs/del_to_group.ldif`` shown below.
 
 .. code-block:: ruby
 
@@ -262,20 +290,21 @@ Example ldif to remove a user from a group
   ...
   memberUid: <UIDX>
 
-Type:
+3. Type the following, substituting your DN information for
+   ``dc=your,dc=domain``:
 
 .. code-block:: bash
 
   ldapmodify -Z -x -W -D "cn=LDAPAdmin,ou=People,dc=your,dc=domain" \
-  -f del_from_group.ldif
+  -f /root/ldifs/del_from_group.ldif
 
-Updating an SSH Public Key
-^^^^^^^^^^^^^^^^^^^^^^^^^^
+Update a User's SSH Public Key
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-To update an SSH public key, add the following information to the
-``/root/ldifs/mod_sshkey.ldif`` file.
+To update an SSH public key:
 
-Example ldif to update SSH public key
+1. Login to the LDAP server as ``root``.
+2. Edit the ``/root/ldifs/mod_sshkey.ldif`` shown below.
 
 .. code-block:: ruby
 
@@ -284,52 +313,86 @@ Example ldif to update SSH public key
   replace: sshPublicKey
   sshPublicKey: <User OpenSSH Public Key>
 
-Type:
+3. Type the following, substituting your DN information for
+   ``dc=your,dc=domain``:
 
 .. code-block:: bash
 
   ldapmodify -Z -x -W -D "cn=LDAPAdmin,ou=People,dc=your,dc=domain" \
-  -f mod_sshkey.ldif
+  -f /root/ldif/mod_sshkey.ldif
 
-Forcing a Password Reset
-^^^^^^^^^^^^^^^^^^^^^^^^
+Force a Password Reset
+^^^^^^^^^^^^^^^^^^^^^^
 
-To force a password reset, add the following information to the
-``/root/ldifs/force_password_reset.ldif`` file.
+To force a password reset for a user:
 
-Example LDIF to reset user's shadowLastChange
+1. Login to the LDAP server as ``root``.
+2. Edit the ``/root/ldifs/force_password_reset.ldif`` shown below.
 
 .. code-block:: ruby
+   
+   dn: uid=<username>,ou=People,dc=your,dc=domain
+   changetype: modify
+   replace: pwdReset
+   pwdReset: TRUE
+   -
+   replace: shadowLastChange
+   shadowLastChange: 10101
 
-  dn: uid=<User UID>,ou=People,dc=your,dc=domain
-  changetype: modify
-  replace: pwdReset
-  pwdReset: TRUE
-  -
-  replace: shadowLastChange
-  shadowLastChange: 10000
-
-Type:
+3. Type the following, substituting your DN information for
+   ``dc=your,dc=domain``:
 
 .. code-block:: bash
 
   ldapmodify -Z -x -W -D "cn=LDAPAdmin,ou=People,dc=your,dc=domain" \
-  -f force_password_reset.ldif
+  -f /root/ldifs/force_password_reset.ldif
 
 .. NOTE::
     The ``ldapmodify`` command is only effective when using the *ppolicy*
     overlay. In addition, the user's **shadowLastChange** must be changed to a
     value prior to the expiration date to force a :term:`PAM` reset.
 
+Lock an LDAP Account
+^^^^^^^^^^^^^^^^^^^^
+
+To lock an LDAP account:
+
+1. Login to the LDAP server as ``root``.
+2. Edit the ``/root/ldifs/lock_user.ldif`` shown below.
+
+.. code-block:: ruby
+
+  dn: uid=<username>,ou=People,dc=your,dc=domain
+  changetype: modify
+  replace: pwdAccountLockedTime
+  pwdAccountLockedTime: 000001010000Z
+  -
+  delete: sshPublicKey
+  -
+  replace: userPassword
+  userPassword: !!
+
+3. Type the following, substituting your DN information for
+   ``dc=your,dc=domain``:
+
+.. code-block:: bash
+
+  ldapmodify -Z -x -W -D "cn=LDAPAdmin,ou=People,dc=your,dc=domain" \
+  -f /root/ldifs/lock_user.ldif
+
+.. NOTE::
+    The ``ldapmodify`` command is only effective when using the
+    *ppolicy* overlay.
+
 .. _unlock-ldap-label:
 
-Unlocking an LDAP Account
-^^^^^^^^^^^^^^^^^^^^^^^^^
+Unlock an LDAP Account
+^^^^^^^^^^^^^^^^^^^^^^
 
-To unlock an LDAP account, add the following information to the
-``/root/ldifs/unlock_account.ldif`` file.
+To unlock an LDAP account:
 
-Example LDIF to Unlock LDAP Account
+1. Login to the LDAP server as ``root``.
+2. Edit the ``/root/ldifs/unlock_account.ldif`` shown below.
 
 .. code-block:: ruby
 
@@ -337,12 +400,13 @@ Example LDIF to Unlock LDAP Account
   changetype: modify
   delete: pwdAccountLockedTime
 
-Type:
+3. Type the following, substituting your DN information for
+   ``dc=your,dc=domain``:
 
 .. code-block:: bash
 
   ldapmodify -Z -x -W -D "cn=LDAPAdmin,ou=People,dc=your,dc=domain" \
-   -f unlock_account.ldif
+   -f /root/ldifs/unlock_account.ldif
 
 .. NOTE::
     The ``ldapmodify`` command is only effective when using the
@@ -354,4 +418,4 @@ Troubleshooting Issues
 If a user's password is changed in LDAP or the user changes it shortly after
 its initial setup, the "Password too young to change" error may appear. In this
 situation, apply the ``pwdReset:TRUE`` option to the user's account as
-described in `Adding Users with a Password`_.
+described in `Add a User with a Password`_.

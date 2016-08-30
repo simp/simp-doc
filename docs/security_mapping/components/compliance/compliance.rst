@@ -1,7 +1,7 @@
 Compliance
 ===========
 
-**Module Name**: ``pupmod-onyxpoint-compliance_markup``
+**Module Name**: ``pupmod-simp-compliance_markup``
 
 This module adds a function to enable compliance annotations in Puppet code.
 

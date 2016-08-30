@@ -63,8 +63,9 @@ EOM
         open(spec_url) do |specfile|
           tmpspec.write(specfile.read)
         end
-      rescue Exception
-        raise(Error, "Could not find a valid spec file at #{spec_url}, check your SIMP_VERSION environment setting!")
+      rescue Exception => e
+        $stderr.puts e.message
+        raise("Could not find a valid spec file at #{spec_url}, check your SIMP_VERSION environment setting!")
       end
 
       specfile = tmpspec.path

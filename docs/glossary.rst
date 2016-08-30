@@ -210,7 +210,7 @@ Glossary of Terms
       A unique identifier assigned to network interfaces for
       communications on the physical network segment.
 
-      Source: `<Wikipedia: MAC address <https://en.wikipedia.org/wiki/MAC_address>`__
+      Source: `Wikipedia: MAC address <https://en.wikipedia.org/wiki/MAC_address>`__
 
    NAT
    Network Address Translation

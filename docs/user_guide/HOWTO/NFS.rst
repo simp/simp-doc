@@ -1,5 +1,5 @@
-Configuring NFS
-===============
+HOWTO Configure NFS
+===================
 
 .. contents:: This chapter describes multiple configurations of NFS including:
   :local:
