@@ -3,23 +3,46 @@
 %{lua:
 
 src_dir = rpm.expand('%{pup_module_info_dir}')
+
 if string.match(src_dir, '^%%') or (posix.stat(src_dir, 'type') ~= 'directory') then
-  src_dir = './'
+  io.stderr:write("AA '"..src_dir.."'\n")
+  src_dir = rpm.expand('%{_sourcedir}')
+
+  -- NOTE: this only recently became this mad as I tried to find a way to
+  -- acommodate local and mock-based release detections & SOURCE1builds.
+  -- So far, it has not worked
+  io.stderr:write("BB '"..src_dir.."'\n")
+  if (posix.stat( (src_dir .. '/build/rpm_metadata/release' ), 'type')  ~= 'regular') then
+    src_dir = './'
+    io.stderr:write("CC '"..src_dir.."'\n")
+    if (posix.stat( (src_dir .. '/build/rpm_metadata/release' ), 'type')  ~= 'regular') then
+      src_dir = rpm.expand('%{_sourcedir}')
+      io.stderr:write("DD '"..src_dir.."'\n")
+      if (posix.stat( (src_dir .. '/release' ), 'type')  ~= 'regular') then
+        src_dir = './'
+        io.stderr:write("EE '"..src_dir.."'\n")
+      end
+    end
+  end
 end
 
 -- These UNKNOWN entries should break the build if something bad happens
 
-module_name = "UNKNOWN"
-module_version = "UNKNOWN"
-module_license = "UNKNOWN"
+package_version = "UNKNOWN"
+rel_file_exists = false
 
--- Default to 0
-module_release = '0'
+--
+-- Default to 2016
+-- This was done due to the change in naming scheme across all of the modules.
+--
+package_release = '2016'
 
 -- Snag the RPM-specific items out of the 'build/rpm_metadata' directory
-local rel_file = io.open(src_dir .. "/build/rpm_metadata/release", "r")
-if rel_file then
-  for line in rel_file:lines() do
+rel_file = src_dir .. "/build/rpm_metadata/release"
+local rel_file_handle = io.open(rel_file, "r")
+if rel_file_handle then
+  rel_file_exists = true
+  for line in rel_file_handle:lines() do
     is_comment = string.match(line, "^%s*#")
     is_blank = string.match(line, "^%s*$")
 
@@ -32,12 +55,23 @@ if rel_file then
     end
   end
   if version_match then
-    module_version = string.gsub(version_match,"version:","")
+    package_version = string.gsub(version_match,"version:","")
   end
   if release_match then
-    module_release = string.gsub(release_match,"release:","")
+    package_release = string.gsub(release_match,"release:","")
   end
 end
+io.stderr:write("----------------------------------------\n")
+io.stderr:write("          Lua sanity checks              \n")
+io.stderr:write("----------------------------------------\n")
+io.stderr:write("src_dir: '" .. src_dir .. "' \n")
+io.stderr:write("rel_file: '" .. rel_file .. "' \n")
+io.stderr:write("rel_file_exists: '" .. tostring(rel_file_exists) .. "' \n")
+io.stderr:write("package_version: '" .. package_version .. "' \n")
+io.stderr:write("package_release: '" .. package_release .. "' \n")
+io.stderr:write("----------------------------------------\n")
+-- uncomment in case you really want to be awesome
+-- rpm.interactive()
 }
 
 %if 0%{?el6}
@@ -48,17 +82,37 @@ end
 
 Summary: SIMP Documentation
 Name: simp-doc
-Version: %{lua: print(module_version)}
-Release: %{lua: print(module_release)}
+Version: %{lua: print(package_version)}
+Release: %{lua: print(package_release)}
 License: Apache License, Version 2.0
 Group: Documentation
-Source: %{name}-%{version}-%{release}.tar.gz
+Source0:    %{name}-%{version}-%{release}.tar.gz
+
+%{lua:
+  -- Include our sources as appropriate
+  if (posix.stat( rel_file, 'type')  == 'regular') then
+    print("Source2: " .. rel_file)
+
+--    posix.symlink( rel_file, ( rpm.expand('%{_sourcedir}') .. '/release' ) )
+
+--    -- RPM wants basename(Source2) at the top level, will not settle for less
+--    -- This was a quick crack at just shoving it over there.  However, it
+--    -- breaks the release detection up top
+--    new_rel_file = ( rpm.expand('%{_sourcedir}') .. '/release' )
+--    local new_rel_file_handle = io.open( new_rel_file, 'w' )
+--    for line in io.lines( rel_file ) do
+--      io.stderr:write("GRAAAAAH("..rel_file.."): "..line.."\n")
+--      new_rel_file_handle:write( line .. "\n" )
+--    end
+--    new_rel_file_handle:close()
+
+  end
+}
 Buildroot: %{_tmppath}/%{name}-%{version}-%{release}-buildroot
 Buildarch: noarch
 Requires: links
 %if 0%{?el6}
-BuildRequires: scl-utils
-BuildRequires: python27
+BuildRequires: scl-utils, python27
 %endif
 BuildRequires: python-pip
 BuildRequires: python-virtualenv
@@ -70,6 +124,12 @@ BuildRequires: dejavu-fonts-common
 BuildRequires: libjpeg-devel
 BuildRequires: zlib-devel
 
+
+%{lua:
+
+io.stderr:write( "SOURCES:\n--------\n" )
+for i, s in ipairs(sources) do io.stderr:write( "  - Source"..(i-1)..": "..s.."\n") end}
+
 %description
 Documentation for SIMP %{version}-%{release}
 
@@ -79,7 +139,8 @@ command 'simp doc'.
 Alternatively, you can read the docs at https://simp.readthedocs.org
 
 %prep
-%setup -q
+cp -p %{SOURCE1}  .
+%setup
 
 %build
 # We need the latest version of sphinx and rst2pdf
