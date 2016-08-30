@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "baa041b7_d7c6b767",
+        "filename": "docs/common/SIMP_Overview.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 1004834
+      },
+      "writtenOn": "2016-08-30T21:11:10Z",
+      "side": 1,
+      "message": "We shouldn\u0027t call it a \u0027security framework\u0027. We\u0027re advertising as a framework with security, not a security framework. It\u0027s about not alienating our audiences.\n\nWould \u0027Operating System Management Framework\u0027 or the like work?",
+      "revId": "2bd20fa58c466c60be2f9310edfa975ddd23682d",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735",
+      "unresolved": false
+    }
+  ]
+}
