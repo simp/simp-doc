@@ -2,22 +2,44 @@
 
 %{lua:
 
+--
+-- When you build you must pass this along so that we know how to get the
+-- preliminary information.
+-- This directory should hold the following items:
+--   * 'build' directory
+--   * 'CHANGELOG' <- The RPM formatted Changelog
+--
+
 src_dir = rpm.expand('%{pup_module_info_dir}')
+
 if string.match(src_dir, '^%%') or (posix.stat(src_dir, 'type') ~= 'directory') then
-  src_dir = './'
+  src_dir = rpm.expand('%{_sourcedir}')
+
+  if (posix.stat((src_dir .. "/CHANGELOG"), 'type') ~= 'regular') then
+    src_dir = './'
+  end
 end
 
 -- These UNKNOWN entries should break the build if something bad happens
 
-module_name = "UNKNOWN"
-module_version = "UNKNOWN"
-module_license = "UNKNOWN"
+package_name = "UNKNOWN"
+package_version = "UNKNOWN"
+package_license = "UNKNOWN"
 
 -- Default to 0
-module_release = '0'
+package_release = '0'
+
+-- This starts as an empty string so that we can build it later
+package_requires = ''
 
 -- Snag the RPM-specific items out of the 'build/rpm_metadata' directory
-local rel_file = io.open(src_dir .. "/build/rpm_metadata/release", "r")
+rel_file = io.open(src_dir .. "/build/rpm_metadata/release", "r")
+
+if not rel_file then
+  -- Need this for the SRPM case
+  rel_file = io.open(src_dir .. "/release", "r")
+end
+
 if rel_file then
   for line in rel_file:lines() do
     is_comment = string.match(line, "^%s*#")
@@ -32,10 +54,32 @@ if rel_file then
     end
   end
   if version_match then
-    module_version = string.gsub(version_match,"version:","")
+    package_version = string.gsub(version_match,"version:","")
   end
   if release_match then
-    module_release = string.gsub(release_match,"release:","")
+    package_release = string.gsub(release_match,"release:","")
+  end
+end
+}
+
+%{lua:
+
+-- Next, the Requirements
+
+req_file = io.open(src_dir .. "/build/rpm_metadata/requires", "r")
+
+if not req_file then
+  -- Need this for the SRPM case
+  req_file = io.open(src_dir .. "/requires", "r")
+end
+
+if req_file then
+  for line in req_file:lines() do
+    valid_line = (string.match(line, "^Requires: ") or string.match(line, "^Obsoletes: ") or string.match(line, "^Provides: "))
+
+    if valid_line then
+      package_requires = (package_requires .. "\\n" .. line)
+    end
   end
 end
 }
@@ -48,13 +92,24 @@ end
 
 Summary: SIMP Documentation
 Name: simp-doc
-Version: %{lua: print(module_version)}
-Release: %{lua: print(module_release)}
+Version: %{lua: print(package_version)}
+Release: %{lua: print(package_release)}
 License: Apache License, Version 2.0
 Group: Documentation
-Source: %{name}-%{version}-%{release}.tar.gz
+Source0: %{name}-%{version}-%{release}.tar.gz
+Source1: CHANGELOG
+%{lua:
+  -- Include our sources as appropriate
+  if rel_file then
+    print("Source2: release")
+  end
+  if req_file then
+    print("Source3: requires")
+  end
+}
 Buildroot: %{_tmppath}/%{name}-%{version}-%{release}-buildroot
 Buildarch: noarch
+%{lua: print(package_requires) }
 Requires: links
 %if 0%{?el6}
 BuildRequires: scl-utils
@@ -131,72 +186,33 @@ mv pdf/SIMP_Documentation.pdf pdf/SIMP-%{version}-%{release}.pdf
 # Post uninstall stuff
 
 %changelog
-* Thu Aug 25 2016 Nick Markowski <nmarkowski@keywcorp.com>
-- Added warning not to enable krb5 with autofs.
+%{lua:
+-- Finally, the CHANGELOG
 
-* Thu Aug 04 2016 Nick Markowski <nmarkowski@keywcorp.com>
-- Fixed syntax errors in Local User creation docs.
-- Added SSSD Local domain/user creation docs.
-- Updated Why can't I login?? docs to include a how-to unlock
-  accounts via LDAP and faillock.
+-- A default CHANGELOG in case we cannot find a real one
 
-* Fri Jun 10 2016 Nick Miller <nick.miller@onyxpoint.com>
-- Added FAQ entries for disabling DHCP and named
+default_changelog = [===[
+* $date Auto Changelog <auto@no.body> - $version-$release
+- Latest release of $name
+]===]
 
-* Fri May 13 2016 Trevor Vaughan <tvaughan@onyxpoint.com>
-- First cut at the consolidated Documentation
+default_lookup_table = {
+  date = os.date("%a %b %d %Y"),
+  version = package_version,
+  release = package_release,
+  name = package_name
+}
 
-* Wed May 11 2016 Nick Markowski <nmarkowski@keywcorp.com>
-- Updated tftpboot default entry to use noverifyssl.
-
-* Thu Apr 28 2016 Nick Markowski <nmarkowski@keywcorp.com>
-- Updated kickstart docs to use https.
-
-* Mon Apr 04 2016 Trevor Vaughan <tvaughan@onyxpoint.com>
-- Starting on the 5.1.0-4 release...
-- Changed the tftpboot docs to use https.
-- Fixed a bug that was preventing PDF builds
-- Updated the RPM build to fail if the resulting PDF is size 0
-
-* Wed Nov 11 2015 Trevor Vaughan <tvaughan@onyxpoint.com>
-- Update to fix SIMP RPM dependencies
-
-* Wed Nov 11 2015 Trevor Vaughan <tvaughan@onyxpoint.com>
-- Updated the default passwords to be easier overall
-
-* Tue Sep 22 2015 Trevor Vaughan <tvaughan@onyxpoint.com>
-- Preparing for the 5.1.0-RC1 release.
-
-* Tue Aug 11 2015 Trevor Vaughan <tvaughan@onyxpoint.com>
-- Updated the spec file to properly build the docs.
-
-* Fri Jul 31 2015 Judy Johnson <judy.johnson@onyxpoint.com>
-- Converted docs from Publican to ReStructured Text.
-
-* Wed Mar 11 2015 Trevor Vaughan <tvaughan@onyxpoint.com>
-- Added text to cover the move to the new Puppet Server and the migration to
-  Environments.
-- Removed some old material.
-
-* Sat Dec 20 2014 Trevor Vaughan <tvaughan@onyxpoint.com>
-- Update the changelog for 5.0.0-2
-
-* Mon Dec 08 2014 Kendall Moore <kmoore@keywcorp.com>
-- No longer suggest grub-crypt to encrypt passwords and instead use a simple
-  ruby script.
-
-* Tue Nov 25 2014 Trevor Vaughan <tvaughan@onyxpoint.com>
-- Final release of 5.0.0
-
-* Wed Oct 29 2014 Trevor Vaughan <tvaughan@onyxpoint.com>
-- Updated the Changelog for the 5.0.0-RC1 release.
-
-* Thu Aug 07 2014 Trevor Vaughan <tvaughan@onyxpoint.com>
-- Updated for the 5.0.0-Beta release
-
-* Fri Jan 10 2014 Trevor Vaughan <tvaughan@onyxpoint.com>
-- Added a script for converting LDAP users to InetOrgPerson entries
-  and updated the LDIFs to account for such.
-
-* Mon Nov 25 2013 Trevor Vaughan <tvaughan@onyxpoint.com>
-- First release of 4.1.0-Alpha2
+changelog = io.open(src_dir .. "/CHANGELOG","r")
+if changelog then
+  first_line = changelog:read()
+  if string.match(first_line, "^*%s+%a%a%a%s+%a%a%a%s+%d%d?%s+%d%d%d%d%s+.+") then
+    changelog:seek("set",0)
+    print(changelog:read("*all"))
+  else
+    print((default_changelog:gsub('$(%w+)', default_lookup_table)))
+  end
+else
+  print((default_changelog:gsub('$(%w+)', default_lookup_table)))
+end
+}
