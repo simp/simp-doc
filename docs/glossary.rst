@@ -1,7 +1,10 @@
 Glossary of Terms
 =================
 
-.. note:: Many terms here have been reproduced from various locations across the Internet and are governed by the licenses surrounding the source material. Please see the reference links for specifics on usage and reproducibility.
+.. note::
+  Many terms here have been reproduced from various locations across the
+  Internet and are governed by the licenses surrounding the source material.
+  Please see the reference links for specifics on usage and reproducibility.
 
 .. glossary::
    :sorted:
@@ -66,6 +69,18 @@ Glossary of Terms
 
       Source: `Wikipedia: Central Processing Unit <https://en.wikipedia.org/wiki/Central_processing_unit>`__
 
+   DAC
+   Discretionary Access Control
+      A type of access control defined by the Trusted Computer System
+      Evaluation Criteria[1] "as a means of restricting access to objects
+      based on the identity of subjects and/or groups to which they belong.
+      The controls are discretionary in the sense that a subject with a
+      certain access permission is capable of passing that permission (perhaps
+      indirectly) on to any other subject (unless restrained by mandatory
+      access control)".
+
+      Source: `Wikipedia: Discretionary access control <https://en.wikipedia.org/wiki/Discretionary_access_control>`__
+
    DNS
    Domain Name System
       A database system that translates a computer's fully qualified domain
@@ -75,6 +90,15 @@ Glossary of Terms
    Dynamic Host Configuration Protocol
       A network protocol that enables a server to automatically assign an IP
       address to a computer.
+
+   DoS
+   Denial of Service
+   Denial of Service Attack
+      An attempt to make a machine or network resource unavailable to its
+      intended users, such as to temporarily or indefinitely interrupt or
+      suspend services of a host connected to the Internet.
+
+      Source: `Wikipedia: Denial-of-service attack <https://en.wikipedia.org/wiki/Denial-of-service_attack>__
 
    EL
    Enterprise Linux
@@ -113,9 +137,9 @@ Glossary of Terms
    FIPS
    Federal Information Processing Standard
       Federal Information Processing Standards (FIPS) Publications are
-      standards issued by NIST after approval by the Secretary of
-      Commerce pursuant to the Federal Information Security Management
-      Act (FISMA)
+      standards issued by :term:`NIST` after approval by the Secretary of
+      Commerce pursuant to the Federal Information Security Management Act
+      (FISMA)
 
       The particular standard of note in SIMP is `FIPS 140-2 <http://csrc.nist.gov/publications/fips/fips140-2/fips1402.pdf>`__
 
@@ -197,11 +221,29 @@ Glossary of Terms
       information such as names, addresses, email, phone numbers, and other
       information from an online directory.
 
+   LDIF
+   Lightweight Directory Interchange Format
+     A standard plain text data interchange format for representing
+     :term:`LDAP` (Lightweight Directory Access Protocol) directory content and
+     update requests. LDIF conveys directory content as a set of records, one
+     record for each object (or entry). It also represents update requests,
+     such as Add, Modify, Delete, and Rename, as a set of records, one record
+     for each update request.
+
+      Source: `Wikipedia: LDAP Data Interchange Format <https://en.wikipedia.org/wiki/LDAP_Data_Interchange_Format>`__
+
    LUKS
    Linux Unified Key Setup
       The standard for Linux hard disk encryption.
 
       See: `The LUKS Homepage <https://gitlab.com/cryptsetup/cryptsetup/blob/master/README.md>`__
+
+   Mandatory Access Control
+      A type of access control by which the operating system constrains the
+      ability of a subject or initiator to access or generally perform some
+      sort of operation on an object or target.
+
+      Source: `Wikipedia: Mandatory access control <https://en.wikipedia.org/wiki/Mandatory_access_control>`__
 
    MAC
    MAC Address
@@ -217,11 +259,42 @@ Glossary of Terms
       The process of modifying IP address information in IP packet headers
       while in transit across a traffic routing device.
 
+   NIST
+   National Institute of Standards and Technology
+      The National Institute of Standards and Technology (NIST) was founded in
+      1901 and now part of the U.S. Department of Commerce. NIST is one of the
+      nation's oldest physical science laboratories.
+
+      Source: `NIST - About NIST <https://www2.nist.gov/about-nist>`__
+
+   NIST SP
+   NIST Special Publication
+      A set of publications that provide computer/cyber/information security
+      and guidelines, recommendations, and reference materials.
+
+      See: `NIST Special Publications <http://csrc.nist.gov/publications/PubsSPs.html>`__
+
+   NIST 800-53
+   NIST SP 800-53
+   NIST Special Publication 800-53
+      Security and Privacy Controls for Federal Information Systems and
+      Organizations
+
+      See: `SP 800-53 <http://nvlpubs.nist.gov/nistpubs/SpecialPublications/NIST.SP.800-53r4.pdf>`__
+
    NFS
    Network File System
       A distributed file system protocol that allows a user on a client
       computer to access files over a network in a manner similar to how local
       storage is accessed.
+
+   OS
+   Operating System
+      System software that manages computer hardware and software resources and
+      provides common services for computer programs. All computer programs,
+      excluding firmware, require an operating system to function.
+
+      Source: `Wikipedia: Operating system <https://en.wikipedia.org/wiki/Operating_system>`__
 
    PSSH
    Parallel Secure Shell
@@ -344,6 +417,13 @@ Glossary of Terms
 
       See also :term:`TLS`.
 
+   SELinux
+      A Linux kernel security module that provides a mechanism for supporting
+      access control security policies, including United States Department of
+      Defense–style mandatory access controls (MAC).
+
+      Source: `Wikipedia: Security-Enhanced Linux <https://en.wikipedia.org/wiki/Security-Enhanced_Linux>`__
+
    SIMP
    System Integrity Management Platform
       A security framework that sits on top of :term:`RHEL` or :term:`CentOS`.
@@ -361,6 +441,12 @@ Glossary of Terms
       An application that acts as an echo logger to enhance the auditing of
       privileged activities at the command line of the operating system.
       Utilities are available for playing back sudosh sessions in real time.
+
+   SYN cookies
+   syncookies
+      A technique used to resist SYN flood attacks.
+
+      Source: `Wikipedia: SYN cookies <https://en.wikipedia.org/wiki/SYN_cookies>`__
 
    TLS
    Transport Layer Security

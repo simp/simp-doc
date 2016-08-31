@@ -22,6 +22,7 @@ Contents:
   Changelog <dynamic/Changelog>
   Installation Guide <installation_guide/index>
   User Guide <user_guide/index>
+  Security Concept of Operations <security_conop/index>
   Security Control Mapping <security_mapping/index>
   license
   help

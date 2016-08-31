@@ -1,3 +1,5 @@
+.. _SIMP_Security_Control_Mapping:
+
 SIMP Security Control Mapping
 ================================
 
