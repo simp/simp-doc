@@ -1,4 +1,4 @@
-The System Integrity Management Platform (SIMP) is a framework designed
+The System Integrity Management Platform (SIMP) is a security framework designed
 around the concept that individuals and organizations should not need to repeat
 the work of automating the basic components of their operating system infrastructure.
 
