@@ -86,14 +86,8 @@ to change at first login. This is the default in the SIMP-provided LDIFs. Once
 a user attempts to change a password, the settings in PAM and LDAP enforce
 complexity requirements.
 
-By default, SIMP requires the following password complexity:
-
-  * 14 Characters
-  * 1 Upper Case Letter
-  * 1 Lower Case Letter
-  * 1 Number
-  * 1 Special Character
-  * No more than 3 consecutive characters from each category
+For the default password complexity rules see the
+:ref:`faq-password-complexity` FAQ.
 
 [:ref:`IA-5`, :ref:`IA-5 (1)`, :ref:`IA-5 (4)`]
 

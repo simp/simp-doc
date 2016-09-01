@@ -7,3 +7,4 @@ This chapter addresses some of the frequently asked questions (FAQ) about SIMP.
   :maxdepth: 1
 
   FAQ/Getting_Help
+  FAQ/Password_Complexity

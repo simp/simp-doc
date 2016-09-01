@@ -8,14 +8,25 @@ In almost all cases, this is because either your user has not been placed in a
 group allowed to access the system, your :term:`DNS` is setup incorrectly, or
 your :term:`PKI` certificates are invalid.
 
+SSSD Password Checks
+--------------------
+
+:term:`SSSD` has been made the default name service caching service in SIMP.
+During this process, we discovered that SSSD will enforce password complexity
+restrictions **upon login**. This means that, if your password does not meet
+the system password complexity requirements, you will not be able to login
+until an administrator changes your password to something stronger.
+
+For the default complexity rules, see the :ref:`faq-password-complexity` FAQ.
+
 PAM Access Restrictions
 -----------------------
 
-By default, SIMP uses the `pam_access.so` :term:`PAM` module to restrict access
-on each individual host. While this may not seem as flexible as some methods,
-it is the most failsafe method for ensuring that you don't accidentally
-interrupt services due to network issues connecting to your :term:`LDAP`
-server.
+By default, SIMP uses the ``pam_access.so`` :term:`PAM` module to restrict
+access on each individual host. While this may not seem as flexible as some
+methods, it is the most failsafe method for ensuring that you don't
+accidentally interrupt services due to network issues connecting to your
+:term:`LDAP` server.
 
 To allow a user to access a particular system, you need to use the
 `pam::access::manage`_ define as shown below.
@@ -82,7 +93,7 @@ are validated against the :term:`FQDN` of the client system. In the case of an
 to authenticate against the :term:`LDAP` service.
 
 In the following sections, we will assume that we have a host named
-'system.my.domain' with the IP address '1.2.3.4'.
+``system.my.domain`` with the IP address ``1.2.3.4``.
 
 Testing a Forward Lookup
 ~~~~~~~~~~~~~~~~~~~~~~~~

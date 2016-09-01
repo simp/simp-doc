@@ -448,6 +448,14 @@ Glossary of Terms
 
       Source: `Wikipedia: SYN cookies <https://en.wikipedia.org/wiki/SYN_cookies>`__
 
+   SSSD
+   System Security Services Daemon
+      A daemon that provides access to identity and authentication remote
+      resource through a common framework that can provide caching and offline
+      support to the system.
+
+      Source: `SSSD Homepage <https://fedorahosted.org/sssd/>`__
+
    TLS
    Transport Layer Security
       A cryptographic protocol that provides network communications security.
