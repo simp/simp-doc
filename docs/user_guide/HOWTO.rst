@@ -11,6 +11,7 @@ the SIMP system.
   Change Puppet Masters <HOWTO/Changing_Puppet_Masters>
   Disable dhcpd <HOWTO/Disable_dhcpd>
   Disable named <HOWTO/Disable_named>
+  Discard Mail to Root <HOWTO/Discard_Mail_to_Root>
   Build a bootable SIMP DVD <HOWTO/DVD_Build>
   Exclude YUM Repositories <HOWTO/Exclude_Repositories>
   Enable The Foreman <HOWTO/Foreman>
