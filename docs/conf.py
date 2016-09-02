@@ -12,6 +12,7 @@
 # All configuration values have a default; values that are commented out
 # serve to show the default.
 
+from __future__ import print_function
 import sys
 import os
 import shlex
@@ -50,44 +51,85 @@ version = '0.0'
 # The full version, including alpha/beta/rc tags.
 release = 'NEED_FULL_SIMP_BUILD_TREE'
 
-rhel_major_version = 'UNKNOWN'
-rhel_minor_version = 'UNKNOWN'
+el_major_version = 'UNKNOWN'
+el_minor_version = 'MAPPING'
 
 # Grab the version information out of all of the surrounding infrastructure
 # files if they exist.
 
 os_ver_mapper_content = None
 
-# Attempt to read auto-generated release file.  Needs to be run after
-# rake munge:prep
-rel_file = os.path.join(basedir, '..', 'build/rpm_metadata/release')
-if os.path.isfile(rel_file):
-  with open(rel_file,'r') as f:
-    for line in f:
-      _tmp = line.split(':')
-      if 'version' in _tmp:
-        version = _tmp[-1].strip()
-      elif 'release' in _tmp:
-        release = _tmp[-1].strip()
-else:
-    print("Could not find release file at " + rel_file)
-
-full_version = "-".join([version, release])
-version_family = re.sub('\.\d$',".X",version)
-
 # This ordering matches our usual default fallback branch scheme
 # Need to fix this to go figure out the branches from GitHub directly
 github_version_targets = [
-    full_version,
-    'simp-' + version_family,
-    version_family,
     '5.1.X',
     '4.2.X',
     'master'
 ]
 
+# If we're running on ReadTheDocs, we should go fetch the content from the
+# actual branch that we're using
 if on_rtd:
     github_version_targets.insert(0,os.environ.get('READTHEDOCS_VERSION'))
+
+# This should be fixed once we move back to the master branch for all mainline
+# work.
+if not on_rtd or (os.environ.get('READTHEDOCS_VERSION') == 'master'):
+    # Attempt to read auto-generated release file. Needs to be run after
+    # rake munge:prep
+    rel_file = os.path.join(basedir, '..', 'build/rpm_metadata/release')
+    if os.path.isfile(rel_file):
+        with open(rel_file,'r') as f:
+            for line in f:
+                _tmp = line.split(':')
+            if 'version' in _tmp:
+                version = _tmp[-1].strip()
+            elif 'release' in _tmp:
+                release = _tmp[-1].strip()
+    # If we couldn't find that, go ahead and dig through GitHub directly with
+    # our best guess.
+    else:
+        os_simp_spec_urls = []
+        for version_target in github_version_targets:
+            os_simp_spec_urls.append('/'.join([github_base, 'simp-core', version_target, 'src', 'build', 'simp.spec']))
+
+        # Grab it from the Internet!
+        for os_simp_spec_url in os_simp_spec_urls:
+            try:
+                print("NOTICE: Downloading SIMP Spec File: " + os_simp_spec_url, file=sys.stderr)
+                os_simp_spec_content = urllib2.urlopen(os_simp_spec_url).read().splitlines()
+
+                # Read the version out of the spec file and run with it.
+                for line in os_simp_spec_content:
+                    _tmp = line.split()
+                    if 'Version:' in _tmp:
+                        version_list = _tmp[-1].split('.')
+                        version = '.'.join(version_list[0:2]).strip()
+                        version = re.sub('%\{.*?\}', '', version)
+                    elif 'Release:' in _tmp:
+                        release = _tmp[-1].strip()
+                        release = re.sub('%\{.*?\}', '', release)
+                break
+            except urllib2.URLError:
+                next
+
+
+full_version = "-".join([version, release])
+version_family = re.sub('\.\d$',".X",version)
+
+if on_rtd:
+    _insert_target = 1
+else:
+    _insert_target = 0
+
+# Update the github list with the rest of our 'best guess' content
+# This is in reverse order so that it's easier to insert
+github_version_targets.insert(_insert_target, version_family)
+github_version_targets.insert(_insert_target,'simp-' + version_family)
+
+# If we have some sort of valid release, shove it on the stack too.
+if release != 'NEED_FULL_SIMP_BUILD_TREE':
+    github_version_targets.insert(0,full_version)
 
 if os.path.isfile(os_ver_mapper):
     with open(os_ver_mapper, 'r') as f:
@@ -100,7 +142,7 @@ else:
     # Grab it from the Internet!
     for os_ver_mapper_url in os_ver_mapper_urls:
         try:
-            print("Downloading Version Mapper: " + os_ver_mapper_url)
+            print("NOTICE: Downloading Version Mapper: " + os_ver_mapper_url, file=sys.stderr)
             os_ver_mapper_content = urllib2.urlopen(os_ver_mapper_url).read()
             # If we don't have a valid version from the RPM spec file, just
             # pick up what we found.
@@ -110,7 +152,7 @@ else:
         except urllib2.URLError:
             next
 
-release_mapping_list = ['UNKNOWN']
+release_mapping_list = ['Release Mapping Entry Not Found for Version ' + full_version]
 
 if os_ver_mapper_content != None:
     os_flavors = None
@@ -124,12 +166,12 @@ if os_ver_mapper_content != None:
     if os_flavors is not None:
         if os_flavors['RedHat']:
             ver_list = os_flavors['RedHat']['os_version'].split('.')
-            rhel_major_version = ver_list[0]
-            rhel_minor_version = ver_list[1]
+            el_major_version = ver_list[0]
+            el_minor_version = ver_list[1]
         elif os_flavors['CentOS']:
             ver_list = os_flavors['CentOS']['os_version'].split('.')
-            rhel_major_version = ver_list[0]
-            rhel_minor_version = ver_list[1]
+            el_major_version = ver_list[0]
+            el_minor_version = ver_list[1]
 
         # Build the Release mapping table for insertion into the docs
         release_mapping_list = []
@@ -144,8 +186,8 @@ if os_ver_mapper_content != None:
 
 epilog.append('.. |simp_version| replace:: %s' % full_version)
 
-rhel_version = ".".join([rhel_major_version, rhel_minor_version])
-epilog.append('.. |rhel_version| replace:: %s' % rhel_version)
+el_version = ".".join([el_major_version, el_minor_version])
+epilog.append('.. |el_version| replace:: %s' % el_version)
 
 known_os_compat_content = """
 Known OS Compatibility
@@ -192,7 +234,7 @@ for target_dir in target_dirs:
 
         for changelog_url in changelog_urls:
             try:
-                print("Downloading Changelog: " + changelog_url)
+                print("NOTICE: Downloading Changelog: " + changelog_url, file=sys.stderr)
                 current_changelog = urllib2.urlopen(changelog_url).read()
                 break
             except urllib2.URLError:

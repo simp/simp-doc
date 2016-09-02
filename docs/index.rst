@@ -1,7 +1,7 @@
 Welcome to the SIMP documentation!
 ==================================
 This is the documentation for the |simp_version| release of SIMP, which is
-compatible with the |rhel_version| release of CentOS and Red Hat Enterprise
+compatible with the |el_version| release of CentOS and Red Hat Enterprise
 Linux (RHEL).  This guide will walk a user through the process of installing
 and managing a :term:`SIMP` system.  It also provides a mapping of security
 features to security requirements, which can be used to document a system's
