@@ -1,7 +1,7 @@
 Glossary of Terms
 =================
 
-.. note::
+.. NOTE::
   Many terms here have been reproduced from various locations across the
   Internet and are governed by the licenses surrounding the source material.
   Please see the reference links for specifics on usage and reproducibility.
@@ -34,7 +34,6 @@ Glossary of Terms
 
    BIOS
    Basic Input/Output System
-
       A type of firmware used to perform hardware initialization during
       the booting process (power-on startup) on IBM PC compatible
       computers.
@@ -72,7 +71,7 @@ Glossary of Terms
    DAC
    Discretionary Access Control
       A type of access control defined by the Trusted Computer System
-      Evaluation Criteria[1] "as a means of restricting access to objects
+      Evaluation Criteria "as a means of restricting access to objects
       based on the identity of subjects and/or groups to which they belong.
       The controls are discretionary in the sense that a subject with a
       certain access permission is capable of passing that permission (perhaps

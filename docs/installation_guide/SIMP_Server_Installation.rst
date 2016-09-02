@@ -118,7 +118,7 @@ Installing the SIMP Server
     value, press *Enter*. Otherwise, enter your desired value.
   * A list of the variables that are set by ``simp config`` is contained in
     :ref:`List of Installation Variables`.
-  - A description of the installation preparation actions taken by
+  * A description of the installation preparation actions taken by
     ``simp config``, in addition to the generation of a SIMP configuration
     file, is contained in :ref:`simp config Actions`.
 

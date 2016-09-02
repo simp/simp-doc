@@ -41,7 +41,7 @@ describes the known areas in SIMP.
   - * **Poor Account Management**: SIMP security access control is based on
       users being created and managed over time. Giving shell access to
       unnecessary users allows them the opportunity to escalate privileges.
-    * Use the default :term:`LDIF`s and local user modules to ensure that
+    * Use the default :term:`LDIF` files and local user modules to ensure that
       account settings remain restrictive. Ensure the system has policies and
       procedures in place to manage accounts. Finally, ensure that users are in
       appropriate groups with limited privileges.

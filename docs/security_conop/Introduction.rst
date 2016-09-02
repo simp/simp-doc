@@ -27,7 +27,7 @@ a concept to provide the reader with a reference to the specific control that
 is being discussed. The identifier is written as [AB-X(Y)], where A is the
 control family, X is the control section, and Y is the control enhancement.
 
-.. note::
+.. NOTE::
   At present, this document will **not** be mapped to any additional standards
   since there are available mappings of the 800-53 to various other security
   frameworks.

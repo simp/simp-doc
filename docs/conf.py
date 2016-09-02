@@ -548,6 +548,7 @@ pdf_fit_background_mode = "scale"
 pdf_compressed = True
 pdf_stylesheets = ['sphinx','kerning','letter']
 pdf_use_toc = True
+pdf_use_index = False
 pdf_toc_depth = 3
 
 # tag
