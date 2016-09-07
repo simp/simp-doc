@@ -21,7 +21,7 @@ easily. An overall SIMP RPM is also installed on the Puppet Master, which
 denotes the version number of SIMP that is installed.
 [:ref:`CM-2`, :ref:`CM-2 (2)`, :ref:`CM-2 (3)`, :ref:`CM-6`]
 
-SIMP installs a minimal set of :term:`RPMs`, which can be found in the
+SIMP installs a minimal set of :term:`RPM` packages, which can be found in the
 kickstart files on the ISO. RPMs, services, and IPTables rules all use a
 whitelist stance for allowing access or installation.
 [:ref:`CM-2 (5)`]

@@ -158,24 +158,25 @@ Below is an example manifest called
             #If you are not using NFS, you do not need to include this.
 
             class site::automount {
-              include 'autofs'
+              include '::autofs'
 
               file { '/net':
                 ensure => 'directory',
                 mode   => '0755'
               }
 
-            #A global share
-            Autofs::map::master { ‘share’:
-              mount_point => ‘/net’,
-              map_name    => ‘/etc/autofs/share.map’
-            }
-            #Map the share
-            autofs::map::entry { ‘share’:
-              options    => ‘-fstype=nfs4, port=2049.soft’,
-            location    => “${::nfs_server}:/share’.
-            Target     => ‘share’
-            }
+              #A global share
+              Autofs::map::master { ‘share’:
+                mount_point => ‘/net’,
+                map_name    => ‘/etc/autofs/share.map’
+              }
+
+              #Map the share
+              autofs::map::entry { ‘share’:
+                options  => ‘-fstype=nfs4, port=2049.soft’,
+                location => “${::nfs_server}:/share’,
+                Target   => ‘share’
+              }
             }
 
 
