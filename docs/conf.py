@@ -74,7 +74,7 @@ if on_rtd:
 
 # This should be fixed once we move back to the master branch for all mainline
 # work.
-if not on_rtd or (os.environ.get('READTHEDOCS_VERSION') == 'master'):
+if (not on_rtd) or (os.environ.get('READTHEDOCS_VERSION') == 'master'):
     # Attempt to read auto-generated release file. Needs to be run after
     # rake munge:prep
     rel_file = os.path.join(basedir, '..', 'build/rpm_metadata/release')
@@ -82,10 +82,10 @@ if not on_rtd or (os.environ.get('READTHEDOCS_VERSION') == 'master'):
         with open(rel_file,'r') as f:
             for line in f:
                 _tmp = line.split(':')
-            if 'version' in _tmp:
-                version = _tmp[-1].strip()
-            elif 'release' in _tmp:
-                release = _tmp[-1].strip()
+                if 'version' in _tmp:
+                    version = _tmp[-1].strip()
+                elif 'release' in _tmp:
+                    release = _tmp[-1].strip()
     # If we couldn't find that, go ahead and dig through GitHub directly with
     # our best guess.
     else:
@@ -112,7 +112,6 @@ if not on_rtd or (os.environ.get('READTHEDOCS_VERSION') == 'master'):
                 break
             except urllib2.URLError:
                 next
-
 
 full_version = "-".join([version, release])
 version_family = re.sub('\.\d$',".X",version)
@@ -159,6 +158,8 @@ if os_ver_mapper_content != None:
     ver_map = yaml.load(os_ver_mapper_content)
     if version in ver_map['simp_releases']:
         os_flavors = ver_map['simp_releases'][version]['flavors']
+    elif full_version in ver_map['simp_releases']:
+        os_flavors = ver_map['simp_releases'][full_version]['flavors']
     elif version_family in ver_map['simp_releases']:
         os_flavors = ver_map['simp_releases'][version_family]['flavors']
 
@@ -188,6 +189,10 @@ epilog.append('.. |simp_version| replace:: %s' % full_version)
 
 el_version = ".".join([el_major_version, el_minor_version])
 epilog.append('.. |el_version| replace:: %s' % el_version)
+
+def setup(app):
+    app.add_config_value('simp_version', full_version, 'env') # The third value must always be 'env'
+    app.add_config_value('el_version', el_version, 'env') # The third value must always be 'env'
 
 known_os_compat_content = """
 Known OS Compatibility
