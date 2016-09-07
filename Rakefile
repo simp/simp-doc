@@ -174,19 +174,40 @@ DocPkg.new( File.dirname( __FILE__ ) ) do |t|
   end
 end
 
-def process_rpm_yaml(rel)
+def process_rpm_yaml(rel,simp_version)
   fail("Must pass release to 'process_rpm_yaml'") unless rel
+
+      header = <<-EOM
+SIMP #{simp_version} #{rel} External RPMs
+-----------------------------------------
+
+This provides a list of RPMs, and their sources, for non-SIMP components that
+are required for system functionality and are specific to an installation on a
+#{rel} system.
+
+      EOM
 
   rpm_data = Dir.glob("../../build/yum_data/SIMP*#{rel}*/packages.yaml")
 
-  data = ['Not Found,Unknown']
+  table = [ header ]
+  table << ".. list-table:: SIMP #{simp_version} #{rel} External RPMs"
+  table << '   :widths: 20 80'
+  table << '   :header-rows: 1'
+  table << ''
+  table << '   * - RPM Name'
+  table << '     - RPM Source'
+
+  data = ['   * - Not Found']
+  data << ['     - Unknown']
   unless rpm_data.empty?
     data = YAML.load_file(rpm_data.sort_by{|filename| File.mtime(filename)}.last)
-    data = data.values.map{|x| x = x[:rpm_name] + ',' + x[:source]}
+    data = data.values.map{|x| x = "   * - #{x[:rpm_name]}\n     - #{x[:source]}"}
   end
 
-  fh = File.open(File.join('docs','security_conop','RPM_Lists',%(#{rel}.csv)),'w')
-  fh.puts(data.join("\n"))
+  table += data
+
+  fh = File.open(File.join('docs','user_guide','RPM_Lists',%(External_SIMP_#{simp_version}_#{rel}_RPM_List.rst)),'w')
+  fh.puts(table.join("\n"))
   fh.sync
   fh.close
 end
@@ -195,15 +216,15 @@ namespace :docs do
   namespace :rpm do
     desc 'Update the RPM lists'
     task :external do
+      simp_version = Simp::RPM.get_info('build/simp-doc.spec')[:version]
       ['RHEL','CentOS'].each do |rel|
-        process_rpm_yaml(rel)
+        process_rpm_yaml(rel,simp_version)
       end
     end
 
     desc 'Update the SIMP RPM list'
     task :simp do
       simp_version = Simp::RPM.get_info('build/simp-doc.spec')[:version]
-      default_data = ['Unknown,Unknown,Unknown']
       collected_data = []
 
       if File.directory?('../../src/build')
@@ -265,17 +286,37 @@ namespace :docs do
         end
       end
 
-      if collected_data.empty?
-        collected_data = default_data
-      else
-        # Create the necessary CSV format
-        collected_data.sort_by!{|x| x[:name]}
-        collected_data.map!{|x| x = [x[:name],x[:full_version],!x[:metadata]['optional']].join(',')}
+      header = <<-EOM
+SIMP #{simp_version} RPMs
+-------------------------
+
+This provides a comprehensive list of all SIMP RPMs and related metadata. Most
+importantly, it provides a list of which modules are installed by default and
+which are simply available in the repository.
+
+      EOM
+
+      table = [ header ]
+      table << ".. list-table:: SIMP #{simp_version} RPMs"
+      table << '   :widths: 30 30 30'
+      table << '   :header-rows: 1'
+      table << ''
+      table << '   * - Name'
+      table << '     - Version'
+      table << '     - Optional'
+
+      data = ['   * - Unknown']
+      data << ['     - Unknown']
+      data << ['     - Unknown']
+      unless collected_data.empty?
+        data = collected_data.sort_by{|x| x[:name]}.map{|x| x = "   * - #{x[:name]}\n     - #{x[:full_version]}\n     - #{!x[:metadata]['optional']}"}
       end
 
-      fh = File.open(File.join('docs','user_guide','SIMP_RPM_List.csv'),'w')
+      table += data
+
+      fh = File.open(File.join('docs','user_guide','RPM_Lists',"Core_SIMP_#{simp_version}_RPM_List.rst"),'w')
       # Highlight those items that are always there
-      fh.puts(collected_data.join("\n").gsub(',true',',**true**'))
+      fh.puts(table.join("\n").gsub(',true',',**true**'))
       fh.sync
       fh.close
     end
