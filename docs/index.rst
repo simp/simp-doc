@@ -1,5 +1,6 @@
 Welcome to the SIMP documentation!
 ==================================
+
 This is the documentation for the |simp_version| release of SIMP, which is
 compatible with the |el_version| release of CentOS and Red Hat Enterprise
 Linux (RHEL).  This guide will walk a user through the process of installing
