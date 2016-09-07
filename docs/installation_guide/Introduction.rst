@@ -11,7 +11,7 @@ related to client management are covered in :ref:`simp-user-guide`.
   There are default passwords present on the system that should be changed prior
   to deploying the system.
 
-  **Please make sure that change these passwords!**
+  **Please make sure that you change these passwords!**
 
   For a list of the passwords, see :ref:`ig-default-passwords`
 

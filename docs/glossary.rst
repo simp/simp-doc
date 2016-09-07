@@ -97,7 +97,7 @@ Glossary of Terms
       intended users, such as to temporarily or indefinitely interrupt or
       suspend services of a host connected to the Internet.
 
-      Source: `Wikipedia: Denial-of-service attack <https://en.wikipedia.org/wiki/Denial-of-service_attack>__
+      Source: `Wikipedia: Denial-of-service attack <https://en.wikipedia.org/wiki/Denial-of-service_attack>`__
 
    EL
    Enterprise Linux

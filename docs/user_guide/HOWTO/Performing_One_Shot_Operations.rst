@@ -1,4 +1,4 @@
-HOTWO Perform One-shot Operations
+HOWTO Perform One-Shot Operations
 =================================
 
 This section introduces the options provided for performing one-shot

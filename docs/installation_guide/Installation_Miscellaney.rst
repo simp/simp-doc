@@ -1,5 +1,5 @@
-Installation Miscellaney
-========================
+Installation Miscellany
+=======================
 
 .. _List of Installation Variables:
 
