@@ -22,13 +22,13 @@ Required RPMs
 
     $ sudo yum install -y augeas-devel createrepo genisoimage git gnupg2 \
         libicu-devel libxml2 libxml2-devel libxslt libxslt-devel \
-        mock rpmdevtools clamav gcc gcc-c++ ruby-devel
+        mock rpm-sign rpmdevtools clamav gcc gcc-c++ ruby-devel
 
   # Installing from EL 7:
 
     $ sudo yum install -y augeas-devel createrepo genisoimage git gnupg2 \
         libicu-devel libxml2 libxml2-devel libxslt libxslt-devel \
-        mock rpmdevtools clamav-update gcc gcc-c++ ruby-devel
+        mock rpm-sign rpmdevtools clamav-update gcc gcc-c++ ruby-devel
 
   # Installing from Fedora 22/23:
 
