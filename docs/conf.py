@@ -108,7 +108,7 @@ if (not on_rtd) or (os.environ.get('READTHEDOCS_VERSION') == 'master'):
                     _tmp = line.split()
                     if 'Version:' in _tmp:
                         version_list = _tmp[-1].split('.')
-                        version = '.'.join(version_list[0:2]).strip()
+                        version = '.'.join(version_list[0:3]).strip()
                         version = re.sub('%\{.*?\}', '', version)
                     elif 'Release:' in _tmp:
                         release = _tmp[-1].strip()
@@ -380,7 +380,7 @@ html_context = {
 
 # The name for this set of Sphinx documents.  If None, it defaults to
 # "<project> v<release> documentation".
-html_title = "%s %s.%s documentation" % (project, version, release )
+html_title = "%s %s-%s documentation" % (project, version, release )
 
 # A shorter title for the navigation bar.  Default is the same as html_title.
 #html_short_title = None
