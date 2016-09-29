@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "baa041b7_8578967f",
+        "filename": "docs/user_guide/HOWTO/DVD_Build.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 18,
+      "author": {
+        "id": 1005143
+      },
+      "writtenOn": "2016-09-29T04:17:45Z",
+      "side": 1,
+      "message": "The reset of the examples seem to be 7.2 now.",
+      "range": {
+        "startLine": 18,
+        "startChar": 57,
+        "endLine": 18,
+        "endChar": 60
+      },
+      "revId": "1bdb21fffaf20b9f65fea70e32d48262e8396a34",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735",
+      "unresolved": false
+    }
+  ]
+}
