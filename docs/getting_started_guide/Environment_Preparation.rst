@@ -1,3 +1,5 @@
+.. _environment_prep:
+
 Environment Preparation
 =======================
 
@@ -30,7 +32,7 @@ Required RPMs
         libicu-devel libxml2 libxml2-devel libxslt libxslt-devel \
         mock rpm-sign rpmdevtools clamav-update gcc gcc-c++ ruby-devel
 
-  # Installing from Fedora 22/23:
+  # Installing from Fedora 23/24:
 
     $ sudo dnf install -y augeas-devel createrepo genisoimage git gnupg \
         libicu-devel libxml2 libxml2-devel libxslt libxslt-devel \
@@ -38,7 +40,7 @@ Required RPMs
 
 .. warning::
 
-   Please use a **non-root** user for developing SIMP
+   Please use a **non-root** user for developing SIMP!
 
 .. note::
 
@@ -88,22 +90,22 @@ install :term:`RVM` for your user.
 
    $ gpg2 --keyserver hkp://keys.gnupg.net --recv-keys \
        409B6B1796C275462A1703113804BB82D39DC0E3
-   $ \curl -sSL https://get.rvm.io | bash -s stable --ruby=1.9.3 --ruby=2.1.0
+   $ \curl -sSL https://get.rvm.io | bash -s stable --ruby=2.1.9
    $ source ~/.rvm/scripts/rvm
 
 Set the Default Ruby
 ^^^^^^^^^^^^^^^^^^^^
 
-You'll want to use :term:`Ruby` 2.1.0 as your default :term:`RVM` for SIMP
+You'll want to use :term:`Ruby` 2.1.9 as your default :term:`RVM` for SIMP
 development.
 
 .. code-block:: bash
 
-   $ rvm use --default 2.1.0
+   $ rvm use --default 2.1.9
 
 .. note::
 
-  Once this is done, you can simply type ``rvm use 2.1.0``.
+  Once this is done, you can simply type ``rvm use 2.1.9``.
 
 Bundler
 ^^^^^^^

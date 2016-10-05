@@ -20,6 +20,7 @@ Contents:
 .. toctree::
   :maxdepth: 2
 
+  Getting Started Guide <quick_start_guide/index>
   Changelog <dynamic/Changelog>
   Installation Guide <installation_guide/index>
   User Guide <user_guide/index>
