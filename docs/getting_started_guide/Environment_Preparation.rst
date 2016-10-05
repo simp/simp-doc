@@ -1,8 +1,14 @@
+.. _Environment_Preparation:
+
 Environment Preparation
 =======================
 
 Getting Started
 ---------------
+
+.. NOTE::
+
+  If you are preparing to generate a SIMP ISO from a release tarball, you don't need ``mock``!
 
 Required Packages
 ^^^^^^^^^^^^^^^^^
@@ -30,23 +36,23 @@ Required RPMs
         libicu-devel libxml2 libxml2-devel libxslt libxslt-devel \
         mock rpm-sign rpmdevtools clamav-update gcc gcc-c++ ruby-devel
 
-  # Installing from Fedora 22/23:
+  # Installing from Fedora 23/24:
 
     $ sudo dnf install -y augeas-devel createrepo genisoimage git gnupg \
         libicu-devel libxml2 libxml2-devel libxslt libxslt-devel \
         mock rpm-sign rpmdevtools clamav-update gcc gcc-c++ ruby-devel
 
-.. warning::
+.. WARNING::
 
-   Please use a **non-root** user for developing SIMP
+   Please use a **non-root** user for building SIMP!
 
-.. note::
+.. NOTE::
 
    The SIMP build generates various keys and does quite a bit of package
    signing. As such, your systems needs to be able to keep its entropy pool
    reasonably full at all times. If you check
-   /proc/sys/kernel/random/entropy_avail and it shows a number below **1024**,
-   then you should either make sure that `rngd` is running and pointed to a
+   ``/proc/sys/kernel/random/entropy_avail`` and it shows a number below **1024**,
+   then you should either make sure that ``rngd`` is running and pointed to a
    hardware source (preferred) or install and use **haveged**. It is not
    recommended that you use `haveged` in production but it may be your only
    choice if building on a virtual system.
@@ -88,22 +94,22 @@ install :term:`RVM` for your user.
 
    $ gpg2 --keyserver hkp://keys.gnupg.net --recv-keys \
        409B6B1796C275462A1703113804BB82D39DC0E3
-   $ \curl -sSL https://get.rvm.io | bash -s stable --ruby=1.9.3 --ruby=2.1.0
+   $ \curl -sSL https://get.rvm.io | bash -s stable --ruby=2.1.9
    $ source ~/.rvm/scripts/rvm
 
 Set the Default Ruby
 ^^^^^^^^^^^^^^^^^^^^
 
-You'll want to use :term:`Ruby` 2.1.0 as your default :term:`RVM` for SIMP
+You'll want to use :term:`Ruby` 2.1.9 as your default :term:`RVM` for SIMP
 development.
 
 .. code-block:: bash
 
-   $ rvm use --default 2.1.0
+   $ rvm use --default 2.1.9
 
-.. note::
+.. NOTE::
 
-  Once this is done, you can simply type ``rvm use 2.1.0``.
+  Once this is done, you can simply type ``rvm use 2.1.9``.
 
 Bundler
 ^^^^^^^
@@ -118,8 +124,9 @@ with the repo. More info on Bundler can be found on the
 Configure Mock
 --------------
 
-The SIMP build process makes heavy use of Mock to create clean packages. As
-such, you need to ensure that your system is ready.
+Building SIMP from scratch makes heavy use of Mock to create clean packages. As
+such, you need to ensure that your system is ready. If you plan on just buidling
+from a tarball, you can skip this section.
 
 Add Your User to the Mock Group
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
