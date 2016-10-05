@@ -1,4 +1,0 @@
-Building From Source
-====================
-
-TBD
