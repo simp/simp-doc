@@ -1,7 +1,8 @@
 Introduction
 ============
 
-This document provides guidance on developing for the SIMP infrastructure.
+This document provides guidance on some of the big ideas that drive the SIMP
+infrastructure, and hopes to explain some of the design decisions.
 
 Please be aware that this is a snapshot in time and, while it should remain
 accurate, if you find any issues, please check the `SIMP How-To Articles`_ on

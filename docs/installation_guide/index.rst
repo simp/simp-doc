@@ -12,7 +12,7 @@ Contents:
   Known OS Compatibility <../dynamic/Known_OS_Compatibility>
   SIMP_Server_Installation
   Disk Encryption <Disk_Encryption>
-  Installation_Miscellany
+  Installation_Miscellaney
 
 Indices and tables
 ------------------
