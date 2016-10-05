@@ -24,7 +24,7 @@ Please read our [Contribution Guide](https://simp-project.atlassian.net/wiki/dis
 
 ### Building the docs
 ```bash
-# build HTML docs
+# build HTML docs, dumps the resulting files in doc/
 rake docs:html
 
 # build HTML docs, using an alternate Changelog.rst location
@@ -74,10 +74,10 @@ The prerequisites for **rst2pdf** may require extra OS packages:
 
 ```bash
 # fedora 24
-sudo dnf install -y libjpeg-devel zlib-devel
+sudo dnf install -y libjpeg-devel zlib-devel python-debel
 
 # centos 7
-sudo yum install -y libjpeg-devel zlib-devel
+sudo yum install -y libjpeg-devel zlib-devel python-devel
 
 # Debian 8.5 (containers)
 sudo apt-get install -y python-dev zlib1g-dev libjpeg-dev
