@@ -14,7 +14,7 @@ Below is an example class,
 ``/etc/puppet/environments/simp/modules/site/manifests/workstation.pp``, that could be used to
 set up a user workstation.
 
-.. code-block:: ruby
+.. code:: ruby
 
   class site::workstation {
     include 'site::gui'
