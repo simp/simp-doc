@@ -176,6 +176,13 @@ Glossary of Terms
       The `Initial RAMDisk`. A complete environment that is loaded at boot time
       to enable booting the rest of the operating system.
 
+   IMA
+   Integrity Management Architecture
+      The integrity subsystem is to detect if files have been
+      accidentally or maliciously altered, both remotely and locally.
+
+      Source: `IMA Sourceforge Page <http://linux-ima.sourceforge.net/linux-ima-content.html-20110907>`_
+
    IP
    IP Address
    Internet Protocol Address
@@ -468,6 +475,28 @@ Glossary of Terms
    Trivial File Transfer Protocol
       A file transfer protocol generally used for automated transfer of
       configuration or boot files between machines in a local environment.
+
+   TPM
+   Trusted Platform Module
+      An international standard for a secure cryptoprocessor, which is a
+      dedicated microcontroller designed to secure hardware by integrating
+      cryptographic keys into devices.
+
+      Source: `Wikipedia: Trusted Platform Module <https://en.wikipedia.org/wiki/Trusted_Platform_Module>`_
+
+   TXT
+   Trusted Execution Technology
+      A hardware feature designed to harden platforms from the emerging threats
+      of hypervisor attacks, BIOS, or other firmware attacks, malicious root kit
+      installations, or other software-based attacks. It increases protection by
+      allowing greater control of the launch stack through a Measured Launch
+      Environment (MLE) and enabling isolation in the boot process.
+
+      Source: `Intel Trusted Execution Technology: White Paper <http://www.intel.com/content/www/us/en/architecture-and-technology/trusted-execution-technology/trusted-execution-technology-security-paper..htmlhttp://www.intel.com/content/www/us/en/architecture-and-technology/trusted-execution-technology/trusted-execution-technology-security-paper..html>`_
+
+   tboot
+   Trusted Boot
+     See :term:`TXT`.
 
    UUID
    Universally Unique Identifier
