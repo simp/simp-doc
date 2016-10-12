@@ -505,6 +505,40 @@
       "revId": "d127ad65aebbf0ecae1eddbbd49e35737c94b1af",
       "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "baa041b7_48e8377b",
+        "filename": "docs/getting_started_guide/Installing_SIMP_From_A_Repository.rst",
+        "patchSetId": 7
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1007363
+      },
+      "writtenOn": "2016-10-12T14:57:48Z",
+      "side": 1,
+      "message": "need a new line after this.",
+      "revId": "d127ad65aebbf0ecae1eddbbd49e35737c94b1af",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "baa041b7_08d8efed",
+        "filename": "docs/getting_started_guide/Installing_SIMP_From_A_Repository.rst",
+        "patchSetId": 7
+      },
+      "lineNbr": 14,
+      "author": {
+        "id": 1007363
+      },
+      "writtenOn": "2016-10-12T14:57:48Z",
+      "side": 1,
+      "message": "need a new line after this.",
+      "revId": "d127ad65aebbf0ecae1eddbbd49e35737c94b1af",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735",
+      "unresolved": false
     }
   ]
 }
