@@ -1,0 +1,119 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "baa041b7_ab00dd01",
+        "filename": "docs/getting_started_guide/Building_SIMP_From_Source.rst",
+        "patchSetId": 8
+      },
+      "lineNbr": 14,
+      "author": {
+        "id": 1005361
+      },
+      "writtenOn": "2016-10-12T15:50:03Z",
+      "side": 1,
+      "message": "this isn\u0027t something you download",
+      "range": {
+        "startLine": 14,
+        "startChar": 2,
+        "endLine": 14,
+        "endChar": 105
+      },
+      "revId": "58f497d8bca5ca63e78afcf19703b7485a77d025",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "baa041b7_8b03d90c",
+        "filename": "docs/getting_started_guide/Building_SIMP_From_Tarball.rst",
+        "patchSetId": 8
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 1005361
+      },
+      "writtenOn": "2016-10-12T15:50:03Z",
+      "side": 1,
+      "message": "this isn\u0027t something you download",
+      "range": {
+        "startLine": 19,
+        "startChar": 2,
+        "endLine": 19,
+        "endChar": 105
+      },
+      "revId": "58f497d8bca5ca63e78afcf19703b7485a77d025",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "baa041b7_ab27bdb4",
+        "filename": "docs/getting_started_guide/Installing_SIMP_From_A_Tarball.rst",
+        "patchSetId": 8
+      },
+      "lineNbr": 22,
+      "author": {
+        "id": 1005361
+      },
+      "writtenOn": "2016-10-12T15:50:03Z",
+      "side": 1,
+      "message": "I think we should suggest a location. It will make the directory structure of the unpacked tarball and the repo clearer",
+      "range": {
+        "startLine": 22,
+        "startChar": 0,
+        "endLine": 22,
+        "endChar": 33
+      },
+      "revId": "58f497d8bca5ca63e78afcf19703b7485a77d025",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "baa041b7_cb15613d",
+        "filename": "docs/getting_started_guide/Installing_SIMP_From_A_Tarball.rst",
+        "patchSetId": 8
+      },
+      "lineNbr": 33,
+      "author": {
+        "id": 1005361
+      },
+      "writtenOn": "2016-10-12T15:50:03Z",
+      "side": 1,
+      "message": "move this above the tarball section or into a completely new section. Here, it is confusing because it isn\u0027t part of the createrepo process",
+      "range": {
+        "startLine": 30,
+        "startChar": 0,
+        "endLine": 33,
+        "endChar": 31
+      },
+      "revId": "58f497d8bca5ca63e78afcf19703b7485a77d025",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "baa041b7_6b1d3561",
+        "filename": "docs/getting_started_guide/Installing_SIMP_From_A_Tarball.rst",
+        "patchSetId": 8
+      },
+      "lineNbr": 35,
+      "author": {
+        "id": 1005361
+      },
+      "writtenOn": "2016-10-12T15:50:03Z",
+      "side": 1,
+      "message": "This is a confusing way to say this. Maybe \"generate repo metadata with createrepo\" or something would be clearer",
+      "range": {
+        "startLine": 35,
+        "startChar": 0,
+        "endLine": 35,
+        "endChar": 27
+      },
+      "revId": "58f497d8bca5ca63e78afcf19703b7485a77d025",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735",
+      "unresolved": false
+    }
+  ]
+}
