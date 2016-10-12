@@ -48,6 +48,63 @@
     },
     {
       "key": {
+        "uuid": "baa041b7_2b984dbf",
+        "filename": "docs/getting_started_guide/Installing_SIMP_From_A_Repository.rst",
+        "patchSetId": 8
+      },
+      "lineNbr": 17,
+      "author": {
+        "id": 1007363
+      },
+      "writtenOn": "2016-10-12T17:45:19Z",
+      "side": 1,
+      "message": "should be sudo touch....",
+      "revId": "58f497d8bca5ca63e78afcf19703b7485a77d025",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "baa041b7_0b9349a4",
+        "filename": "docs/getting_started_guide/Installing_SIMP_From_A_Repository.rst",
+        "patchSetId": 8
+      },
+      "lineNbr": 55,
+      "author": {
+        "id": 1007363
+      },
+      "writtenOn": "2016-10-12T17:45:19Z",
+      "side": 1,
+      "message": "should be sudo touch....",
+      "revId": "58f497d8bca5ca63e78afcf19703b7485a77d025",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "baa041b7_abea1d0d",
+        "filename": "docs/getting_started_guide/Installing_SIMP_From_A_Repository.rst",
+        "patchSetId": 8
+      },
+      "lineNbr": 115,
+      "author": {
+        "id": 1007363
+      },
+      "writtenOn": "2016-10-12T17:45:19Z",
+      "side": 1,
+      "message": "should we call this out as a note?",
+      "range": {
+        "startLine": 115,
+        "startChar": 17,
+        "endLine": 115,
+        "endChar": 40
+      },
+      "revId": "58f497d8bca5ca63e78afcf19703b7485a77d025",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "baa041b7_ab27bdb4",
         "filename": "docs/getting_started_guide/Installing_SIMP_From_A_Tarball.rst",
         "patchSetId": 8
@@ -110,6 +167,75 @@
         "startChar": 0,
         "endLine": 35,
         "endChar": 27
+      },
+      "revId": "58f497d8bca5ca63e78afcf19703b7485a77d025",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "baa041b7_cb4d613c",
+        "filename": "docs/getting_started_guide/Installing_SIMP_From_A_Tarball.rst",
+        "patchSetId": 8
+      },
+      "lineNbr": 48,
+      "author": {
+        "id": 1007363
+      },
+      "writtenOn": "2016-10-12T17:45:19Z",
+      "side": 1,
+      "message": "We should probably tell them to just copy the files from the build/yum_data/SIMP_whatever/repos.  These have changed and they will need more than just the Elasticsearch repo now (I think).",
+      "range": {
+        "startLine": 47,
+        "startChar": 2,
+        "endLine": 48,
+        "endChar": 9
+      },
+      "revId": "58f497d8bca5ca63e78afcf19703b7485a77d025",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "baa041b7_eb69458d",
+        "filename": "docs/getting_started_guide/Installing_SIMP_From_A_Tarball.rst",
+        "patchSetId": 8
+      },
+      "lineNbr": 50,
+      "author": {
+        "id": 1007363
+      },
+      "writtenOn": "2016-10-12T17:45:19Z",
+      "side": 1,
+      "message": "If we do keep them, then change these to this:\n\n[elasticsearch-2.x]\nname\u003dElasticsearch repository for 2.x packages\nbaseurl\u003dhttps://packages.elastic.co/elasticsearch/2.x/centos\ngpgcheck\u003d1\ngpgkey\u003dhttps://packages.elastic.co/GPG-KEY-elasticsearch\nenabled\u003d1\n\n[logstash-2.3]\nname\u003dLogstash repository for 2.3.x packages\nbaseurl\u003dhttps://packages.elastic.co/logstash/2.3/centos\ngpgcheck\u003d1\ngpgkey\u003dhttps://packages.elastic.co/GPG-KEY-elasticsearch\nenabled\u003d1\n\n[grafana]\nname\u003dgrafana\nbaseurl\u003dhttps://packagecloud.io/grafana/stable/el/7/$basearch\nenabled\u003d1\ngpgcheck\u003d1\ngpgkey\u003dhttps://grafanarel.s3.amazonaws.com/RPM-GPG-KEY-grafana",
+      "range": {
+        "startLine": 50,
+        "startChar": 1,
+        "endLine": 50,
+        "endChar": 19
+      },
+      "revId": "58f497d8bca5ca63e78afcf19703b7485a77d025",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "baa041b7_8b0999df",
+        "filename": "docs/getting_started_guide/index.rst",
+        "patchSetId": 8
+      },
+      "lineNbr": 18,
+      "author": {
+        "id": 1007363
+      },
+      "writtenOn": "2016-10-12T17:45:19Z",
+      "side": 1,
+      "message": "Should there be more nesting here?  \n\nLike:\n\nBuilding SIMP\n  Environment Prep\n  Building from Source\n  Building from Tarball",
+      "range": {
+        "startLine": 16,
+        "startChar": 2,
+        "endLine": 18,
+        "endChar": 28
       },
       "revId": "58f497d8bca5ca63e78afcf19703b7485a77d025",
       "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735",
