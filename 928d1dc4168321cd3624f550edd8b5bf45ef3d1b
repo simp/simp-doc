@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "baa041b7_e58ba9be",
+        "filename": "docs/getting_started_guide/Building_From_Source.rst",
+        "patchSetId": 11
+      },
+      "lineNbr": 4,
+      "author": {
+        "id": 1005194
+      },
+      "writtenOn": "2016-10-14T15:26:13Z",
+      "side": 1,
+      "message": "Why? we already have a build simp from source section.",
+      "range": {
+        "startLine": 1,
+        "startChar": 0,
+        "endLine": 4,
+        "endChar": 3
+      },
+      "revId": "928d1dc4168321cd3624f550edd8b5bf45ef3d1b",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735",
+      "unresolved": false
+    }
+  ]
+}
