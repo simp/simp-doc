@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "baa041b7_d9d1ac58",
+        "filename": "docs/getting_started_guide/Environment_Preparation.rst",
+        "patchSetId": 12
+      },
+      "lineNbr": 58,
+      "author": {
+        "id": 1005143
+      },
+      "writtenOn": "2016-10-16T19:17:15Z",
+      "side": 1,
+      "message": "Is this still our recommendation?",
+      "range": {
+        "startLine": 56,
+        "startChar": 63,
+        "endLine": 58,
+        "endChar": 42
+      },
+      "revId": "1212fe9e7573ef8960b1cd821c0301de93caf09a",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735",
+      "unresolved": false
+    }
+  ]
+}
