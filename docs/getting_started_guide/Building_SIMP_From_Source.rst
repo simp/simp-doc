@@ -19,14 +19,17 @@ Change into the ``simp-core`` directory and make sure you are on the correct bra
 .. code::
 
    $ cd simp-core
-   $ git checkout 5.1.X # for SIMP 5 and CentOS 7
-   $ git checkout 4.2.X # for SIMP 4 and CentOS 6
+   $ git checkout tags/5.2.0-0 # (example) for the latest stable tagged version
+   $ git checkout tags/4.3.0-0 # (example) for the latest stable tagged version
+   $ git checkout 5.1.X # for SIMP 5 and CentOS 7 (not necessarily stable)
+   $ git checkout 4.2.X # for SIMP 4 and CentOS 6 (not necessarily stable)
+
 
 Run ``bundle`` to make sure that all of the build tools and dependencies are installed and up to date:
 
 .. code::
 
-   $ bundle
+   $ bundle install
 
 Make sure all of the source materials that were downloaded above are in your current working directory.
 
