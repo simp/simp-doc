@@ -1,3 +1,7 @@
+* Thu Oct 20 2016 Nick Markowski <nmarkowski@keywcorp.com>
+- Updated the getting started guide to clarify what to check
+  out to get an expected build of SIMP.
+
 * Mon Oct 17 2016 Nick Miller <nick.miller@onyxpoint.com>
 - Added docs on how to manage TPM devices
 

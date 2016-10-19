@@ -57,26 +57,6 @@ Required RPMs
    recommended that you use `haveged` in production but it may be your only
    choice if building on a virtual system.
 
-Clone the Core Repository
--------------------------
-
-You should now move to your preferred working directory and clone the SIMP core
-development repository.
-
-.. code-block:: bash
-
-  $ git clone https://github.com/simp/simp-core
-  $ cd simp-core
-
-Check Out Your Preferred Branch
--------------------------------
-
-You're now ready to begin development!
-
-However, you've probably noticed that the `master` branch of the environment is
-relatively empty. To build your preferred version of SIMP, you'll need to check
-out the corresponding branch.
-
 Set Up Ruby
 -----------
 
@@ -121,6 +101,10 @@ with the repo. More info on Bundler can be found on the
 `Bundler Rationale Page`_ and more information on Rubygems can be found at
 `Rubygems.org`_.
 
+.. code-block:: bash
+
+   $ rvm all do gem install bundler
+
 Configure Mock
 --------------
 
@@ -144,23 +128,38 @@ Prepare to Work
 
 You are now ready to begin development!
 
-If you want to start with the :term:`EL` 6 build
+Clone simp-core:
 
 .. code-block:: bash
 
-   $ git checkout 4.2.X
+  $ git clone https://github.com/simp/simp-core
+  $ cd simp-core
 
-If you want to start with the :term:`EL` 7 build
+Check out your desired branch of SIMP:
 
-.. code-block:: bash
+* To check out a stable SIMP release, check out a tag:
+
+.. code::
+
+   $ git checkout tags/5.2.0-0
+
+* To check out an unstable SIMP release, check out the latest 5.X or 4.X HEAD:
+
+.. code::
 
    $ git checkout 5.1.X
+   $ git checkout 4.2.X
 
-Now, initialize your build environment
+.. NOTE::
+
+   SIMP >= 5.2.X, >= 4.3.X are still developed on the 5.1.X and
+   4.2.X branches, respectively.  We have not migrated our development
+   to new branches.
+
+Grab gem dependencies:
 
 .. code-block:: bash
 
-   # Grab all of your Gem dependencies
    $ bundle install
 
 .. _Bundler Rationale Page: http://bundler.io/rationale.html

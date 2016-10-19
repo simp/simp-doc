@@ -14,19 +14,38 @@ Download the CentOS/RedHat installation media:
 Generating The ISO!
 -------------------
 
-Change into the ``simp-core`` directory and make sure you are on the correct branch for your target SIMP version:
+Change into the ``simp-core`` directory.
 
 .. code::
 
    $ cd simp-core
-   $ git checkout 5.1.X # for SIMP 5 and CentOS 7
-   $ git checkout 4.2.X # for SIMP 4 and CentOS 6
+
+Check out your desired branch of SIMP:
+
+* To check out a stable SIMP release, check out a tag:
+
+.. code::
+
+   $ git checkout tags/5.2.0-0
+
+* To check out an unstable SIMP release, check out the latest 5.X or 4.X HEAD:
+
+.. code::
+
+   $ git checkout 5.1.X
+   $ git checkout 4.2.X
+
+.. NOTE::
+
+   SIMP >= 5.2.X, >= 4.3.X are still developed on the 5.1.X and
+   4.2.X branches, respectively.  We have not migrated our development
+   to new branches.
 
 Run ``bundle`` to make sure that all of the build tools and dependencies are installed and up to date:
 
 .. code::
 
-   $ bundle
+   $ bundle install
 
 Make sure all of the source materials that were downloaded above are in your current working directory.
 
