@@ -144,13 +144,20 @@ Prepare to Work
 
 You are now ready to begin development!
 
-If you want to start with the :term:`EL` 6 build
+For the latest stable version, you would check out a tag (like these)
+
+.. code-block:: bash
+
+   $ git checkout tags/5.2.0-0  # will check out a tagged EL 6 Build
+   $ git checkout tags/4.3.0-0  # will check out a tagged EL 7 Build
+
+If you want to start with the :term:`EL` 6 build (not necessarily stable)
 
 .. code-block:: bash
 
    $ git checkout 4.2.X
 
-If you want to start with the :term:`EL` 7 build
+If you want to start with the :term:`EL` 7 build (not necessarily stable)
 
 .. code-block:: bash
 
