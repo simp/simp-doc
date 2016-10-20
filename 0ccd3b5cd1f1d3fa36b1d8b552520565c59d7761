@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "baa041b7_0a80c3bd",
+        "filename": "docs/getting_started_guide/Environment_Preparation.rst",
+        "patchSetId": 4
+      },
+      "lineNbr": 140,
+      "author": {
+        "id": 1005361
+      },
+      "writtenOn": "2016-10-20T18:58:13Z",
+      "side": 1,
+      "message": "stable?",
+      "range": {
+        "startLine": 140,
+        "startChar": 17,
+        "endLine": 140,
+        "endChar": 25
+      },
+      "revId": "0ccd3b5cd1f1d3fa36b1d8b552520565c59d7761",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "baa041b7_ea823fc6",
+        "filename": "docs/getting_started_guide/Environment_Preparation.rst",
+        "patchSetId": 4
+      },
+      "lineNbr": 146,
+      "author": {
+        "id": 1005361
+      },
+      "writtenOn": "2016-10-20T18:58:13Z",
+      "side": 1,
+      "message": "unstable",
+      "revId": "0ccd3b5cd1f1d3fa36b1d8b552520565c59d7761",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735",
+      "unresolved": false
+    }
+  ]
+}
