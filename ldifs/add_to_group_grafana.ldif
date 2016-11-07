@@ -1,0 +1,19 @@
+dn: cn=simp_grafana_viewers,ou=Group,dc=your,dc=domain
+changetype: modify
+add: memberUid
+memberUid: <UID1>
+
+dn: cn=simp_grafana_editors_ro,ou=Group,dc=your,dc=domain
+changetype: modify
+add: memberUid
+memberUid: <UID1>
+
+dn: cn=simp_grafana_editors,ou=Group,dc=your,dc=domain
+changetype: modify
+add: memberUid
+memberUid: <UID1>
+
+dn: cn=simp_grafana_admins,ou=Group,dc=your,dc=domain
+changetype: modify
+add: memberUid
+memberUid: <UID1>

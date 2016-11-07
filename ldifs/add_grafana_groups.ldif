@@ -1,0 +1,27 @@
+dn: cn=simp_grafana_viewers,ou=Group,dc=your,dc=domain
+objectClass: posixGroup
+objectClass: top
+cn: simp_grafana_viewers
+gidNumber: <Unique GID number>
+description: "Grafana Viewers"
+
+dn: cn=simp_grafana_editors_ro,ou=Group,dc=your,dc=domain
+objectClass: posixGroup
+objectClass: top
+cn: simp_grafana_editors_ro
+gidNumber: <Unique GID number>
+description: "Grafana Read Only Editors"
+
+dn: cn=simp_grafana_editors,ou=Group,dc=your,dc=domain
+objectClass: posixGroup
+objectClass: top
+cn: simp_grafana_editors
+gidNumber: <Unique GID number>
+description: "Grafana Editors"
+
+dn: cn=simp_grafana_admins,ou=Group,dc=your,dc=domain
+objectClass: posixGroup
+objectClass: top
+cn: simp_grafana_admins
+gidNumber: <Unique GID number>
+description: "Grafana Admins"
