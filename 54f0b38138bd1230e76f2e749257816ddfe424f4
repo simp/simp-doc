@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "baa041b7_f2f309e6",
+        "filename": "docs/getting_started_guide/ISO_Build/Building_SIMP_Via_Rake.rst",
+        "patchSetId": 2
+      },
+      "lineNbr": 15,
+      "author": {
+        "id": 1005361
+      },
+      "writtenOn": "2016-11-07T19:07:31Z",
+      "side": 1,
+      "message": "what does this mean?",
+      "range": {
+        "startLine": 15,
+        "startChar": 46,
+        "endLine": 15,
+        "endChar": 58
+      },
+      "revId": "54f0b38138bd1230e76f2e749257816ddfe424f4",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "baa041b7_b2fd81b3",
+        "filename": "docs/getting_started_guide/ISO_Build/Environment_Preparation.rst",
+        "patchSetId": 2
+      },
+      "lineNbr": 157,
+      "author": {
+        "id": 1005361
+      },
+      "writtenOn": "2016-11-07T19:07:31Z",
+      "side": 1,
+      "message": "+1",
+      "range": {
+        "startLine": 157,
+        "startChar": 2,
+        "endLine": 157,
+        "endChar": 15
+      },
+      "revId": "54f0b38138bd1230e76f2e749257816ddfe424f4",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735",
+      "unresolved": false
+    }
+  ]
+}
