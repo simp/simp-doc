@@ -31,9 +31,9 @@ Logstash
 --------
 
 `Logstash`_ is an Open Source tool that provides a means for SIMP
-implementations to have logs and events collected, searched, and forwarded
-(filtered or unfiltered) to another host. SIMP comes with three separate but
-related modules. The modules are:
+implementations to have logs and events collected, filtered, and forwarded
+to another host. SIMP comes with three separate but related modules. The
+modules are:
 
 * **Logstash:** Installs the RPMs and configuration needed for log inputs,
   filters, and outputs.
@@ -67,7 +67,7 @@ manipulation that is desired, there is likely a filter and
 SIMP Logstash Architecture
 --------------------------
 
-Combining the SIMP Logstash, Elasticsearch, and Grafana modules provides an
+Combining the SIMP Logstash, Elasticsearch, and Grafana modules provides a
 functioning log collection, reduction, and search capability. Unless scale
 dictates otherwise, these three modules can easily be applied to a single host.
 
@@ -113,11 +113,14 @@ SIMP module settings:
    be exposed to a defined list of hosts. If you are connecting to
    Grafana from anything other than the localhost, a user name and
    password is required for authentication. Both LDAP and local database
-   users are supported.
+   users are supported.  By default, only an admin account is created.  
+   SIMP will automatically generate that password.
 
 -  **Syslog over Stunnel:**  The default behavior in SIMP is to encrypt
-   syslog traffic over Stunnel. This remains the case with Logstash.
-   Unencrypted traffic is also supported for network devices.
+   syslog traffic using native TLS in rsyslog.  The logstash syslog configuration 
+   is setup to listen on a stunnel port, which then forwards to the local
+   logstash syslog listener.  Unencrypted traffic is also supported for
+   network devices.
 
 -  **Limiting Web Actions:**  The Grafana module restricts what HTTP
    commands a user can perform on the Elasticsearch data store. Full
@@ -223,6 +226,12 @@ your initial cluster.
   # to communicate with this host.
   #
   # SIMP does not support multicast connectivity for security reasons.
+ 
+  # You need to add your grafana hosts to the apache ACL 
+  simp_elasticsearch::http_method_acl :
+    'limits' :
+      'hosts' :
+        'grafana.%{::domain}' : 'defaults'
 
   simp_elasticsearch::unicast_hosts :
     - "%{::fqdn}:9300"
@@ -285,7 +294,9 @@ add the following to your ``site.pp`` file for your environment.
 
 Make sure you point your clients to the Logstash server by setting the
 ``log_server`` variable to the ``fqdn`` of the Logstash server in
-:term:`Hiera`.
+:term:`Hiera`.  You will also need to set 
+``rsyslog::enable_tls_logging: true`` to ensure logs are sent to Logstash
+stunnel listener.
 
 Deploying Grafana
 ^^^^^^^^^^^^^^^^^
@@ -295,15 +306,13 @@ GUI to provide the ability to generate user dashboards as well as dynamic log
 analysis.
 
 The SIMP team chose to support the Open Source `Grafana`_ project due to its
-inbuilt authentication support but you could easily point `Kibana`_ or another
-interface of your choosing at your `Elasticsearch`_ cluster.
-
-.. note::
-  It is suggested that you install Grafana on a host that is **not** an
-  Elasticsearch node unless using a single-node deployment.
-
-  This is to prevent any vulnerabilities in Grafana from providing direct
-  access to your Elasticsearch infrastructure
+builtin authentication and access control support.  While the Grafana is great
+at visualizing data, it can be challenging to explore your logs.  You could 
+easily point `Kibana`_ or another tool of your choosing at your 
+`Elasticsearch`_ cluster. You could also install Kibana alongside Grafana.
+Since Kibana does not offer (free and opensource) access control, you can
+configure Kibana to listen to local host only and tightly control who can SSH
+to your Kibana node.
 
 .. note::
   By default, the Grafana administrative password is randomly set using
@@ -314,17 +323,21 @@ interface of your choosing at your `Elasticsearch`_ cluster.
   The ``rubygem-toml`` package must be present on your puppet compile servers
   for the Grafana puppet module to function properly.
 
+  On your puppet master, you can install the toml gem by i
+  executing ``puppetserver gem install toml``.
+
   If you do not install this via Kickstart, you will need two runs of Puppet to
   complete the Grafana installation since the TOML Ruby Gem will not be able to
   be installed prior to Puppet loading.
 
 .. warning::
-  Do **not** point Grafana directly at your Logstash node unless you have a
+  Do **not** point Grafana directly at your Elasticsearch node unless you have a
   single-node deployment.
 
   Grafana has the ability to put **extreme** loads on your Elasticsearch
   infrastructure with poorly formed queries and should be connected to a node
-  that is not used for ingest.
+  that is not used for ingest.  This is also helps prevent any vulnerabilities
+  in Grafana from providing direct access to your Elasticsearch infrastructure.
 
 Targeting your Grafana host or hostgroup, apply the following :term:`Hiera`
 settings.
@@ -344,10 +357,71 @@ settings.
   classes:
     - 'simp_grafana'
 
-After your Puppet run, you should be able to connect to port 443 on your
+After your Puppet run, you should be able to connect to port 8443 on your
 Grafana host and authenticate with the administrative user.
 
-Documentation on LDAP integration is forthcoming...
+Grafana LDAP Integration
+````````````````````````
+
+SIMP uses Grafana roles and maps them to LDAP groups to provide access control.
+When you apply the SIMP Grafana class, Grafana will be configured for LDAP
+authentication (if you are using SIMP LDAP).  The table below describes the
+Grafana roles.
+
+.. list-table:: Grafana Roles
+   :widths: 15 30 55
+   :header-rows: 1
+
+   * - Grafana Role
+     - SIMP LDAP Role
+     - Permissions
+   * - Viewer
+     - simp_grafana_viewers
+     - Can only view dashboards, not save / create them.
+   * - Read Only Editors
+     - simp_grafana_editors_ro
+     - Can edit graphs and queries but not save dashboards.
+   * - Editor
+     - simp_grafana_editors
+     - Can view, update and create dashboards.
+   * - Admin
+     - simp_grafana_admins
+     - Everything an Editor can plus edit and add data sources and organization users.
+
+All that remains is to create the LDAP groups and assign users to those groups.
+An example of creating the viewers group would be:
+
+.. code-block:: ruby
+
+   dn: cn=simp_grafana_viewers,ou=Group,dc=your,dc=domain
+   objectClass: posixGroup
+   objectClass: top
+   cn: simp_grafana_viewers
+   gidNumber: <Unique GID number>
+   description: "Grafana Viewers"
+
+You would then add users to that group using:
+
+.. code-block:: ruby
+
+  dn: cn=simp_grafana_viewers,ou=Group,dc=your,dc=domain
+  changetype: modify
+  add: memberUid
+  memberUid: <UID1>
+  memberUid: <UID2>
+  ...
+  memberUid: <UIDX>
+
+More information on managing LDAP users can be found in the :ref:`User_Management`
+section.  Refer to the ``simp_grafana`` module for additional information on 
+using the puppet module to manage Grafana LDAP configuration.
+
+Grafana Dashboards
+``````````````````
+SIMP can optionally install default Grafana dashboards.  To install the dashboards,
+use hiera to apply ``simp_grafana::simp_dashboards: true`` to your grafana node.
+They will be installed in ``/var/lib/grafana/dashboards``.  The dashboards are
+read-only.  If you want to modify them, save each one with a different name.
 
 .. _Elasticsearch: https://www.elastic.co/products/elasticsearch
 .. _Logstash: https://www.elastic.co/products/logstash
