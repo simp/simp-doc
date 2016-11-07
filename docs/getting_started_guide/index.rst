@@ -3,16 +3,14 @@
 SIMP Getting Started Guide
 ==========================
 
-Welcome to SIMP! For a truly quick start, install SIMP on an existing system
-from a repository. For a consistent installation, prepare your environment
-and build simp from a tarball.
+Welcome to SIMP!
 
 .. toctree::
   :maxdepth: 2
 
   Introduction
+  Known OS Compatibility <../dynamic/Known_OS_Compatibility>
   Installing_SIMP_From_A_Repository
-  Installing_SIMP_From_A_Tarball
-  Environment_Preparation
-  Building_SIMP_From_Source
-  Building_SIMP_From_Tarball
+  Building_A_SIMP_ISO
+  ISO_Install/index
+  Installation_Miscellaney

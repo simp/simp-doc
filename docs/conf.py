@@ -160,31 +160,55 @@ release_mapping_list = ['Release Mapping Entry Not Found for Version ' + full_ve
 if os_ver_mapper_content != None:
     os_flavors = None
     ver_map = yaml.load(os_ver_mapper_content)
-    if version in ver_map['simp_releases']:
-        os_flavors = ver_map['simp_releases'][version]['flavors']
-    elif full_version in ver_map['simp_releases']:
-        os_flavors = ver_map['simp_releases'][full_version]['flavors']
-    elif version_family in ver_map['simp_releases']:
-        os_flavors = ver_map['simp_releases'][version_family]['flavors']
 
-    # Extract the actual OS version supported for placement in the docs
-    if os_flavors is not None:
-        if os_flavors['RedHat']:
-            ver_list = os_flavors['RedHat']['os_version'].split('.')
-            el_major_version = ver_list[0]
-            el_minor_version = ver_list[1]
-        elif os_flavors['CentOS']:
-            ver_list = os_flavors['CentOS']['os_version'].split('.')
-            el_major_version = ver_list[0]
-            el_minor_version = ver_list[1]
+    map_versions = sorted(ver_map['simp_releases'].keys(), reverse=True)
 
-        # Build the Release mapping table for insertion into the docs
-        release_mapping_list = []
-        for os_flavor in os_flavors:
-            release_mapping_list.append('* **' + os_flavor + ' ' + os_flavors[os_flavor]['os_version'] + '**')
-            for i, iso in enumerate(os_flavors[os_flavor]['isos']):
-                release_mapping_list.append("\n   * **ISO #" + str(i+1) + ":** " + iso['name'])
-                release_mapping_list.append("   * **Checksum:** " + iso['checksum'])
+    unstable_releases = []
+    for map_version in map_versions:
+        if re.search('\.X$', map_version):
+            unstable_releases.append(map_version)
+
+    unstable_releases = sorted(unstable_releases, reverse=True)
+
+    major_releases = []
+    for head_release in unstable_releases:
+        major_version = head_release.split('.')[0]
+        if re.search('^' + major_version + '\.', head_release):
+            major_releases.append(major_version)
+
+    head_releases = []
+    major_found = []
+    for map_version in map_versions:
+        major_version = map_version.split('.')[0]
+        if major_version in major_found:
+            continue
+
+        if re.search('^' + major_version + '\.', map_version):
+            head_releases.append(map_version)
+            major_found.append(major_version)
+
+    # Build the Release mapping table for insertion into the docs
+    release_mapping_list = []
+    for release in (head_releases + unstable_releases):
+        os_flavors = ver_map['simp_releases'][release]['flavors']
+        release_mapping_list.append('* **SIMP ' + release + '**')
+
+        # Extract the actual OS version supported for placement in the docs
+        if os_flavors is not None:
+            if os_flavors['RedHat']:
+                ver_list = os_flavors['RedHat']['os_version'].split('.')
+                el_major_version = ver_list[0]
+                el_minor_version = ver_list[1]
+            elif os_flavors['CentOS']:
+                ver_list = os_flavors['CentOS']['os_version'].split('.')
+                el_major_version = ver_list[0]
+                el_minor_version = ver_list[1]
+
+            for os_flavor in os_flavors:
+                release_mapping_list.append("\n    * **" + os_flavor + ' ' + os_flavors[os_flavor]['os_version'] + '**')
+                for i, iso in enumerate(os_flavors[os_flavor]['isos']):
+                    release_mapping_list.append("\n      * **ISO #" + str(i+1) + ":** " + iso['name'])
+                    release_mapping_list.append("      * **Checksum:** " + iso['checksum'])
 
         # Trailing newline
         release_mapping_list.append('')

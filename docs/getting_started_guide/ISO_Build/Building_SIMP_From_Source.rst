@@ -1,10 +1,12 @@
+.. _gsg-building_simp_from_source:
+
 Building SIMP From Source
 =========================
 
 Getting Started
 ---------------
 
-Please have your environment prepared as specified by :ref:`Environment_Preparation` before continuing.
+Please have your environment prepared as specified by :ref:`gsg-environment_preparation` before continuing.
 
 Download the CentOS/RedHat installation media:
 

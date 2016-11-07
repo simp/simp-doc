@@ -16,7 +16,6 @@ Contents:
   Hiera_Overview
   Troubleshooting
   HOWTO
-  FAQ
   SIMP_Package_Data
 
 Indices and tables
