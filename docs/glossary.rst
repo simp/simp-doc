@@ -119,6 +119,18 @@ Glossary of Terms
       covers both :term:`RHEL` and :term:`CentOS` as well as other :term:`RHEL`
       derivatives such as Oracle Linux.
 
+   Elasticsearch
+      A distributed, RESTful search and analytics engine capable of solving a
+      growing number of use cases. As the heart of the Elastic Stack, it
+      centrally stores your data so you can discover the expected and uncover
+      the unexpected.
+
+      Source: `Elasticsearch Homepage <https://www.elastic.co/products/elasticsearch>`__
+
+   ELG
+      An acronym for :term:`Elasticsearch`, :term:`Logstash`, and
+      :term:`Grafana`
+
    ENC
    External Node Classifier
       An arbitrary script or application which can tell :term:`Puppet` which
@@ -164,6 +176,14 @@ Glossary of Terms
       the :term:`DNS`. It specifies all domain levels, including the top-level
       domain and the root zone. An FQDN is distinguished by its unambiguity; it
       can only be interpreted one way.
+
+   Grafana
+       A system of pluggable panels and data sources allowing easy
+       extensibility and a variety of panels, including fully featured graph
+       panels with rich visualization options. There is built in support for
+       many of the most popular time series data sources.
+
+       Source: `Grafana Homepage <http://grafana.org/>`__
 
    GUI
    Graphical User Interface
@@ -251,6 +271,13 @@ Glossary of Terms
      for each update request.
 
       Source: `Wikipedia: LDAP Data Interchange Format <https://en.wikipedia.org/wiki/LDAP_Data_Interchange_Format>`__
+
+   Logstash
+      An open source, server-side data processing pipeline that ingests data
+      from a multitude of sources simultaneously, transforms it, and then sends
+      it to your favorite “stash.”
+
+      Source: `Logstash Homepage <https://www.elastic.co/products/logstash>`__
 
    LUKS
    Linux Unified Key Setup
