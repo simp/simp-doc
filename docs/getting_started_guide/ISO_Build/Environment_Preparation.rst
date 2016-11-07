@@ -1,4 +1,4 @@
-.. _Environment_Preparation:
+.. _gsg-environment_preparation:
 
 Environment Preparation
 =======================
@@ -7,17 +7,15 @@ Getting Started
 ---------------
 
 .. NOTE::
-
-  If you are preparing to generate a SIMP ISO from a release tarball, you don't need ``mock``!
+  You can skip setting up ``mock`` if you are generating an ISO from a release tarball!
 
 Required Packages
 ^^^^^^^^^^^^^^^^^
 
-Before we go any further, you'll want to make sure that you have a few
-:term:`RPM` packages installed on your system and that your build system has
-access to the Internet. If you're using :term:`Enterprise Linux` as your build
-system, you will need to enable :term:`EPEL` for your system prior to
-proceeding.
+Before we proceed, you'll want to make sure that you have a few :term:`RPM`
+packages installed on your system and that your build system has access to the
+Internet. If you're using :term:`Enterprise Linux` as your build system, you
+will need to enable :term:`EPEL` for your system prior to proceeding.
 
 Required RPMs
 """""""""""""
@@ -43,19 +41,15 @@ Required RPMs
         mock rpm-sign rpmdevtools clamav-update gcc gcc-c++ ruby-devel
 
 .. WARNING::
-
    Please use a **non-root** user for building SIMP!
 
 .. NOTE::
-
    The SIMP build generates various keys and does quite a bit of package
-   signing. As such, your systems needs to be able to keep its entropy pool
-   reasonably full at all times. If you check
-   ``/proc/sys/kernel/random/entropy_avail`` and it shows a number below **1024**,
-   then you should either make sure that ``rngd`` is running and pointed to a
-   hardware source (preferred) or install and use **haveged**. It is not
-   recommended that you use `haveged` in production but it may be your only
-   choice if building on a virtual system.
+   signing. As such, your system mustto be able to keep its entropy pool
+   full at all times. If you check ``/proc/sys/kernel/random/entropy_avail``
+   and it shows a number below **1024**, then you should either make sure that
+   ``rngd`` is running and pointed to a hardware source (preferred) or install
+   and use **haveged**.
 
 Set Up Ruby
 -----------
@@ -108,9 +102,11 @@ with the repo. More info on Bundler can be found on the
 Configure Mock
 --------------
 
+.. NOTE::
+  If you plan on just building from a tarball, you can skip this section.
+
 Building SIMP from scratch makes heavy use of Mock to create clean packages. As
-such, you need to ensure that your system is ready. If you plan on just buidling
-from a tarball, you can skip this section.
+such, you need to ensure that your system is ready.
 
 Add Your User to the Mock Group
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -120,7 +116,7 @@ Add Your User to the Mock Group
    $ getent group mock > /dev/null || sudo newgrp mock
    $ sudo usermod -a -G mock $USER
 
-You may need to run `newgrp` or logout and back in for the group settings to
+You may need to run ``newgrp`` or logout and back in for the group settings to
 take effect.
 
 Prepare to Work
@@ -141,6 +137,7 @@ Check out your desired branch of SIMP:
 
 .. code::
 
+   $ git fetch --tags
    $ git checkout tags/5.2.0-0
 
 * To check out an unstable SIMP release, check out the latest 5.X or 4.X HEAD:
@@ -151,10 +148,13 @@ Check out your desired branch of SIMP:
    $ git checkout 4.2.X
 
 .. NOTE::
+   SIMP >= 5.2.X, >= 4.3.X are still developed on the ``5.1.X`` and ``4.2.X``
+   branches, respectively. All future development will be made on the
+   ``master`` branch.
 
-   SIMP >= 5.2.X, >= 4.3.X are still developed on the 5.1.X and
-   4.2.X branches, respectively.  We have not migrated our development
-   to new branches.
+.. WARNING::
+   Any branch that is not tagged with a git tag should be treated as
+   **unstable**.
 
 Grab gem dependencies:
 

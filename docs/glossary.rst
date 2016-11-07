@@ -32,6 +32,11 @@ Glossary of Terms
       options that the admin may wish to customize.  They are found in the
       auditd.conf file.
 
+   Beaker
+     An acceptance testing harness, written in Ruby, by the Puppet team.
+
+     Source: `Beaker Source Repository: <https://github.com/puppetlabs/beaker>`__
+
    BIOS
    Basic Input/Output System
       A type of firmware used to perform hardware initialization during
@@ -89,6 +94,15 @@ Glossary of Terms
    Dynamic Host Configuration Protocol
       A network protocol that enables a server to automatically assign an IP
       address to a computer.
+
+   Docker
+      Docker containers wrap a piece of software in a complete filesystem that
+      contains everything needed to run: code, runtime, system tools, system
+      libraries – anything that can be installed on a server. This guarantees
+      that the software will always run the same, regardless of its
+      environment.
+
+      Source: `Docker: What is Docker? <https://www.docker.com/what-docker>`__
 
    DoS
    Denial of Service
@@ -294,6 +308,20 @@ Glossary of Terms
       computer to access files over a network in a manner similar to how local
       storage is accessed.
 
+   FOSS
+   Open Source
+      Following an Open Source Initiative approved License.
+
+      See: `The Open Source Definition <https://opensource.org/osd-annotated>`__
+
+   OpenSCAP
+      The OpenSCAP project provides tools that are free to use anywhere you
+      like, for any purpose. Availability of the code results in greater
+      portability – anyone can send patches to add support for their platform
+      of choice.
+
+      Source: `OpenSCAP Features <https://www.open-scap.org/features/>`__
+
    OS
    Operating System
       System software that manages computer hardware and software resources and
@@ -341,14 +369,21 @@ Glossary of Terms
       cryptographically bound public and private keys.
 
    Puppet
-      An Open Source configuration management tool written and maintained by
-      `Puppet Labs <http://www.puppetlabs.com>`__. Written as a Ruby DSL,
-      Puppet provides a declarative language that allows system administrators
-      to provide a consistently applied management infrastructure. Users
-      describes system resource and resource state in the Puppet language.
-      Puppet discovers system specific information via facter and compiles
-      Puppet manifests into a system specific catalog containing resources and
-      resource dependencies, which are applied to each client system.
+      An :term:`Open Source` configuration management tool written and
+      maintained by `Puppet Labs <http://www.puppetlabs.com>`__. Written as a
+      Ruby DSL, Puppet provides a declarative language that allows system
+      administrators to provide a consistently applied management
+      infrastructure. Users describes system resource and resource state in the
+      Puppet language.  Puppet discovers system specific information via facter
+      and compiles Puppet manifests into a system specific catalog containing
+      resources and resource dependencies, which are applied to each client
+      system.
+
+   Rake
+   Ruby Make
+      A Make-like program implemented in Ruby.
+
+      Source: `Rake Homepage <https://ruby.github.io/rake/>`__
 
    RAM
    Random Access Memory
@@ -406,6 +441,26 @@ Glossary of Terms
 
       Source: `RVM Homepage <https://rvm.io/>`__
 
+   SCAP
+   Security Content Automation Protocol
+      A synthesis of interoperable specifications derived from community ideas.
+
+      Source: `SCAP Homepage <https://scap.nist.gov/>`__
+
+   SSG
+   SCAP Security Guide
+      A security policy written in a form of :term:`SCAP` documents. The
+      security policy created in SCAP Security Guide covers many areas
+      of computer security and provides the best-practice solutions. The guide
+      consists of rules with very detailed description and also includes proven
+      remediation scripts, optimized for target systems. SCAP Security Guide,
+      together with :term:`OpenSCAP` tools, can be used for auditing your
+      system in an automated way.
+
+      Source: `OpenSCAP Homepage <http://www.open-scap.org/security-policies/scap-security-guide/>`__
+
+      See Also: :term:`SCAP`
+
    Service Account
       An account that is not for use by a human user but which still requires
       login access to a host.
@@ -462,6 +517,13 @@ Glossary of Terms
 
       Source: `SSSD Homepage <https://fedorahosted.org/sssd/>`__
 
+   STIG
+   DISA STIG
+   Defense Information Systems Agency Secure Technical Implementation Guide
+      Configuration standards for DOD IA and IA-enabled devices/systems.
+
+      Source: `DISA IASE <http://iase.disa.mil/stigs/Pages/index.aspx>`__
+
    TLS
    Transport Layer Security
       A cryptographic protocol that provides network communications security.
@@ -509,6 +571,20 @@ Glossary of Terms
       A Unix command that prints to standard output the name of the terminal
       connected to standard input. The name of the program comes from
       teletypewriter, abbreviated "TTY".
+
+   Vagrant
+      A tool for building complete development environments. With an
+      easy-to-use workflow and focus on automation, Vagrant lowers development
+      environment setup time, increases development/production parity, and
+      makes the "works on my machine" excuse a relic of the past.
+
+      Source: `Vagrant: About Vagrant <https://www.vagrantup.com/about.html>`__
+
+   VirtualBox
+      A general-purpose full virtualizer for x86 hardware, targeted at server,
+      desktop and embedded use.
+
+      Source: `VirtualBox: About VirtualBox <https://www.virtualbox.org/wiki/VirtualBox>`__
 
    VM
    Virtual Machine

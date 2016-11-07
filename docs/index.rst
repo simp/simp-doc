@@ -18,16 +18,17 @@ Contents:
   self
 
 .. toctree::
+  :numbered:
   :maxdepth: 2
 
-  Getting Started Guide <getting_started_guide/index>
+  For the Impatient <getting_started_guide/Just_Install>
   Changelog <dynamic/Changelog>
-  Installation Guide <installation_guide/index>
+  Getting Started <getting_started_guide/index>
   User Guide <user_guide/index>
   Security Concept of Operations <security_conop/index>
   Security Control Mapping <security_mapping/index>
+  help/index
   license
-  help
   glossary
 
 Indices and tables

@@ -1,5 +1,19 @@
+.. _gsg-installing_simp_from_a_repository:
+
 Installing SIMP From A Repository
 =================================
+
+Using the `official SIMP YUM repositories`_ is the simplest method for getting
+up and running with a SIMP system. If you are using a virtual infrastructure,
+such as `AWS`_, `Microsoft Azure`_, `Google Cloud`_, or your own internal VM
+stack, this is the method that you will almost definitely want to use.
+
+.. NOTE::
+  This method does *not* modify your system's partitioning scheme or encryption
+  scheme to meet any regulatory policies. If you want an example of what that
+  should look like either see the :ref:`simp-installation-guide` or check out the
+  `Kickstart`_ files in the `simp-core Git repository`_.
+
 
 Enable EPEL
 -----------
@@ -12,12 +26,13 @@ Enable EPEL
 Install The SIMP-Project Repository
 -----------------------------------
 
-.. code-block:: bash
+Add the following to ``/etc/yum.repos.d/simp-project.repo``, replacing ``7`` with
+the appropriate version of EL and ``5`` with the appropriate version of SIMP.
+``EL 7`` with ``SIMP 5.X`` is shown below.
 
-   $ sudo touch /etc/yum.repos.d/simp-project.repo
+If you don't know what versions map together, please see the
+:ref:`faq-simp_version_guide`.
 
-Add the following to simp-project.repo, replacing 7 with the appropriate version
-of EL and 5 with the appropriate version of SIMP (EL 7,SIMP 5.X shown below)
 
 .. code-block:: bash
 
@@ -45,18 +60,20 @@ Install The SIMP-project_dependencies Repository
 ------------------------------------------------
 
 .. NOTE::
+  The repository may contain items from external vendors, most notably Puppet,
+  Inc. and EPEL but may also contain non-SIMP project files that have been
+  compiled for distribution.
 
-  The repository may contain items from external vendors, most notably
-  Puppet, Inc. and EPEL but may also contain non-SIMP project files that have
-  been compiled for distribution.
+Add the following to ``/etc/yum.repos.d/simp-project_dependencies.repo``,
+replacing ``7`` with the appropriate version of EL and ``5`` with the appropriate
+version of SIMP.  ``EL 7`` with ``SIMP 5.X`` is shown below.
 
-.. code-block:: bash
+If you don't know what versions map together, please see the
+:ref:`faq-simp_version_guide`.
 
-   $ sudo touch /etc/yum.repos.d/simp-project_dependencies.repo
-
-Add the following to simp-project_dependencies.repo, replacing 7 with the
-appropriate version of EL and 5 with the appropriate version of SIMP (EL 7,
-SIMP 5.X shown below)
+.. NOTE::
+  The **whitespace** and **alignment** shown before the additional ``gpgkey`` values
+  **must be preserved**
 
 .. code-block:: bash
 
@@ -91,27 +108,28 @@ Rebuild The Yum Cache
 
    $ sudo yum makecache
 
-Install SIMP!
+Install SIMP
 -------------
 .. code-block:: bash
 
-   $ sudo yum install simp
+   $ sudo yum install -y simp
 
 Modify Yum URLs
 ---------------
 
 Set the following variables to repositories of your choosing in
-/etc/puppet/environments/production/hieradata/default.yaml
+``/etc/puppet/environments/production/hieradata/default.yaml``
 
 .. code-block:: yaml
 
    # Full URL to a YUM repo for Operating System packages
-   simp::yum::os_update_url: "http://mirror.centos.org/centos/$releasever/os/$basearch/"
+   simp::yum::os_update_url: 'http://mirror.centos.org/centos/$releasever/os/$basearch/'
    # Full URL to a YUM repo for SIMP packages
-   simp::yum::simp_update_url: "https://packagecloud.io/simp-project/5_X/el/7/$basearch"
+   simp::yum::simp_update_url: 'https://packagecloud.io/simp-project/5_X/el/7/$basearch'
 
 SIMP Config
 -----------
+
 Run simp config:
 
 .. code-block:: bash
@@ -119,10 +137,9 @@ Run simp config:
    $ simp config
 
 .. NOTE::
-
-  If you intend to use FIPS, set use_fips=true during simp config and follow the
-  Enable FIPS instructions after config is complete.  Otherwise, set it false
-  and skip Enable FIPS.
+  If you intend to use FIPS, set ``use_fips=true`` during simp config and follow
+  the `Enable FIPS`_ instructions after config is complete.  Otherwise, set it to
+  ``false`` and skip Enable FIPS.
 
 Enable FIPS
 -----------
@@ -135,8 +152,8 @@ Enable FIPS
    $ dracut -f
    $ reboot now
 
-Bootstrap Bootstrap Bootstrap
------------------------------
+SIMP Bootstrap
+--------------
 
 .. code-block:: bash
 
@@ -145,12 +162,22 @@ Bootstrap Bootstrap Bootstrap
 Clients
 -------
 
-Add clients as you would a normal Puppet client.
+Use the ``runpuppet`` script from the newly created SIMP server to bootstrap
+your clients.
 
-Alternatively, you can download the runpuppet script from the SIMP server
+.. NOTE::
+  This would be the general technique that you would use to auto-bootstrap your
+  clients via ``user-data`` scripts in cloud environments.
+
+  Be ready to sign your client credentials as systems check in with the server!
 
 .. code-block:: bash
 
-   $ curl http://puppet.server.fqdn/ks/runpuppet > runpuppet
-   $ chmod +x runpuppet
-   $ ./runpuppet
+   $ curl http://<puppet.server.fqdn>/ks/runpuppet | bash
+
+.. _official SIMP YUM repositories: https://packagecloud.io/simp-project
+.. _AWS: https://aws.amazon.com/
+.. _Microsoft Azure: https://azure.microsoft.com
+.. _Google Cloud: https://cloud.google.com
+.. _Kickstart: http://pykickstart.readthedocs.io/en/latest
+.. _simp-core Git repository: https://github.com/simp/simp-core/tree/5.1.X/src/DVD/ks
