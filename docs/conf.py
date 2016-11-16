@@ -57,6 +57,11 @@ release = 'NEED_FULL_SIMP_BUILD_TREE'
 
 el_major_version = 'UNKNOWN'
 el_minor_version = 'MAPPING'
+saved_major_version = 'UNKNOWN'
+saved_minor_version = 'MAPPING'
+# Default version and release to ensure we build *something*
+default_simp_version = '5.1.X'
+default_simp_release = 'X'
 
 # Grab the version information out of all of the surrounding infrastructure
 # files if they exist.
@@ -75,6 +80,31 @@ github_version_targets = [
 # actual branch that we're using
 if on_rtd:
     github_version_targets.insert(0,os.environ.get('READTHEDOCS_VERSION'))
+    simp_version = os.environ.get('READTHEDOCS_VERSION')
+    os_simp_spec_urls = []
+    
+    for version_target in github_version_targets:
+        os_simp_spec_urls.append('/'.join([github_base, 'simp-core', version_target, 'src', 'build', 'simp.spec']))
+
+        # Grab release and version from the Internet!
+        for os_simp_spec_url in os_simp_spec_urls:
+            try:
+                print("NOTICE: Downloading SIMP Spec File: " + os_simp_spec_url, file=sys.stderr)
+                os_simp_spec_content = urllib2.urlopen(os_simp_spec_url).read().splitlines()
+
+                # Read the version out of the spec file and run with it.
+                for line in os_simp_spec_content:
+                    _tmp = line.split()
+                    if 'Version:' in _tmp:
+                        version_list = _tmp[-1].split('.')
+                        version = '.'.join(version_list[0:3]).strip()
+                        version = re.sub('%\{.*?\}', '', version)
+                    elif 'Release:' in _tmp:
+                        release = _tmp[-1].strip()
+                        release = re.sub('%\{.*?\}', '', release)
+                break
+            except urllib2.URLError:
+                next
 
 # This should be fixed once we move back to the master branch for all mainline
 # work.
@@ -218,12 +248,22 @@ if os_ver_mapper_content != None:
                     release_mapping_list.append("\n      * **ISO #" + str(i+1) + ":** " + iso['name'])
                     release_mapping_list.append("      * **Checksum:** " + iso['checksum'])
 
+                    # does it match my version?
+                    if (not on_rtd) and (release == full_version):
+                        saved_major_version = el_major_version
+                        saved_minor_version = el_minor_version
+ 
+                    if (on_rtd) and (release == full_version):
+                        saved_major_version = el_major_version
+                        saved_minor_version = el_minor_version
+
         # Trailing newline
         release_mapping_list.append('')
 
 epilog.append('.. |simp_version| replace:: %s' % full_version)
 
-el_version = ".".join([el_major_version, el_minor_version])
+#el_version = ".".join([el_major_version, el_minor_version])
+el_version = ".".join([saved_major_version, saved_minor_version])
 epilog.append('.. |el_version| replace:: %s' % el_version)
 
 def setup(app):
@@ -412,7 +452,7 @@ html_context = {
 
 # The name for this set of Sphinx documents.  If None, it defaults to
 # "<project> v<release> documentation".
-html_title = "%s %s-%s documentation" % (project, version, release )
+html_title = "%s %s documentation" % (project, full_version )
 
 # A shorter title for the navigation bar.  Default is the same as html_title.
 #html_short_title = None
