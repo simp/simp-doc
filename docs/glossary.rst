@@ -177,6 +177,14 @@ Glossary of Terms
       domain and the root zone. An FQDN is distinguished by its unambiguity; it
       can only be interpreted one way.
 
+   GPG
+   GnuPG
+   Gnu Privacy Guard
+      A complete and free implementation of the OpenPGP standard as defined by
+      RFC4880 (also known as PGP).
+
+      Source: `GnuPG Homepage <https://www.gnupg.org/>`__
+
    Grafana
        A system of pluggable panels and data sources allowing easy
        extensibility and a variety of panels, including fully featured graph

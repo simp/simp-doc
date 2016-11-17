@@ -25,6 +25,7 @@ Contents:
   Changelog <dynamic/Changelog>
   Getting Started <getting_started_guide/index>
   User Guide <user_guide/index>
+  Contributing to SIMP <contributors_guide/index>
   Security Concept of Operations <security_conop/index>
   Security Control Mapping <security_mapping/index>
   help/index
