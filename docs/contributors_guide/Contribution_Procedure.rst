@@ -55,6 +55,8 @@ Contribution Procedure
      * Use ``git rebase -i`` to squash commits (use ``git rebase -i HEAD~n`` to
        go back ``n`` commits)
 
+   * Make sure to select the option **Allow edits from maintainers**.  This will allow people in the organization to make edits to the pull request.
+
 #. `Travis-CI`_ will notice the pull request and run CI tests
 
    * Travis-CI will run tests based on the `.travis.yml`_ file in the
