@@ -73,7 +73,7 @@ Contribution Procedure
      all following examples will be using it.
 
    * If your change gets feedback with status `request changes`, then you can
-     update your pull request using the following steps:
+     update your pull request using the following steps, or read the `Github documentation`_:
 
      #. In the local repository where the changes were made earlier, the pull
         request can be checked out with
@@ -113,3 +113,4 @@ Contribution Procedure
 .. _feature branch: https://www.atlassian.com/git/tutorials/comparing-workflows/feature-branch-workflow
 .. _hub: https://hub.github.com/
 .. _pull request: https://help.github.com/articles/using-pull-requests
+.. _Github documentation: https://help.github.com/articles/committing-changes-to-a-pull-request-branch-created-from-a-fork/
