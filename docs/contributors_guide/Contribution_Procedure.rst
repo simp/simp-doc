@@ -62,40 +62,46 @@ Contribution Procedure
    * Travis-CI results can be seen in the PR on GitHub and are posted to the
      project's `HipChat`_ channel
 
-#. After passing Travis-CI tests, the GitHub pull request must be picked up in
-   `GerritHub`_ for code review
+#. After passing Travis-CI tests, the GitHub pull request must be reviewed by a
+   at least one organization member.
 
-   * **NOTE:** Currently, this is a *manual* process and requires a project
-     administrator
+   .. NOTE::
 
-#. Pull requests are code reviewed on `GerritHub`_
+     We recommend using `hub`_ to manage GitHub repositories, and
+     all following examples will be using it.
 
-   * If you need to update an existing pull request, `amend`_ the pull
-     request's commit using the following commands:
+   * If your change gets feedback with status `request changes`, then you can
+     update your pull request using the following steps:
 
-     * ``git add`` or ``delete`` (this stages the build with the relevant
-       changes; ``add --all`` will add all the new changes, otherwise ``add``
-       or ``delete`` to tailor your changeset)
-     * ``git commit --amend`` (this amends the previous commit)
+     #. In the local repository where the changes were made earlier, the pull
+        request can be checked out with
+        ``hub checkout https://github.com/simp/<repo>/pull/<number>``.
 
-       * **NOTE:** The final line of the amended commit message must include
-         the Gerrit review's Change-ID
-         (example: ``Change-Id: Ie536768505a1baff45d6ad3ae4de9e7501ffb53c``)
-       * ``git push --force`` (this sends back to the ``master`` branch)
+     #. Checkout the contents of the pull request. Hub will check it out into a
+        branch named ``<PR creator username>/<feature branch name>``
 
-     * If you prefer to amend your change in Gerrithub, you can use the
-       `git-review`_ package to make submitting patch sets easier
+     #. ``git add`` or ``delete`` (this stages the build with the relevant
+        changes; ``add --all`` will add all the new changes, otherwise ``add``
+        or ``delete`` to tailor your changeset)
 
-       * Install the ``git-review`` package
-       * Add the remote: ``git remote add gerrit <url>``
-       * Run: ``git-review -r gerrit``
+     #. ``git commit`` and add a new commit.
 
-#. After the `GerritHub`_ review is approved, the changes will be automatically
-   merged into the original `GitHub`_ repository
+     #. Add the git remote for the creator of the pull request's repo:
+        ``hub remote add <PR creator username>``
+
+     #. Push up your changes:
+        ``git push <PR creator username> <feature branch name>``
+
+     #. The pull request will automatically be updated and participants will get
+        an email notifying them that there are new commits to review.
+
+
+#. After the pull request is approved, the all of the commits in the pull
+   request will be squashed into one commit and merged into the original
+   `GitHub`_ repository
 
 .. _.travis.yml: http://docs.travis-ci.com/user/build-configuration/
 .. _Fork: https://help.github.com/articles/fork-a-repo
-.. _GerritHub: https://review.gerrithub.io/#/q/is:open+project:%255Esimp.*
 .. _GitHub: https://github.com/simp
 .. _HipChat: https://simp-project.hipchat.com/chat
 .. _JIRA issues can be referenced: https://confluence.atlassian.com/bitbucket/processing-jira-software-issues-with-smart-commit-messages-298979931.html
@@ -103,5 +109,5 @@ Contribution Procedure
 .. _Travis-CI: https://travis-ci.org/simp
 .. _amend: https://www.atlassian.com/git/tutorials/rewriting-history/git-commit--amend
 .. _feature branch: https://www.atlassian.com/git/tutorials/comparing-workflows/feature-branch-workflow
-.. _git-review: https://github.com/openstack-infra/git-review
+.. _hub: https://hub.github.com/
 .. _pull request: https://help.github.com/articles/using-pull-requests
