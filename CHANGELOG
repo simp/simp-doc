@@ -1,3 +1,8 @@
+* Tue Nov 29 2016 Trevor Vaughan <tvaughan@onyxpoint.com>
+- Updated the RPM spec file to use the new SCL repos
+- You *must* have an appropriately configured Mock configuration for this to
+  work!
+
 * Thu Oct 20 2016 Nick Markowski <nmarkowski@keywcorp.com>
 - Updated the getting started guide to clarify what to check
   out to get an expected build of SIMP.
