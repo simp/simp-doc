@@ -8,4 +8,5 @@ Contributing to SIMP
 
   Introduction
   Contribution_Procedure
+  Maintenance_Procedure
   Resources

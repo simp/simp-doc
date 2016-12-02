@@ -1,107 +1,91 @@
+.. _gsg-contributors_guide-contribution_procedure:
+
 Contribution Procedure
 ======================
 
-#. `Fork`_ the project on `GitHub`_
+We use the standard `GitHub workflow`_ for SIMP development with the exception
+that we use a `Squash and Merge`_ merge method for pulling in changes, in order
+to maintain a more legible commit history on `master`.
 
-#. Make a new `feature branch`_ for your changes
+#. Search the `SIMP JIRA`_ for an open ticket that is relevant to the issue or
+   open a new one.
 
-   * Suggestion: name the branch after the issue (e.g., 'SIMP-999')
+#. Use the `GitHub GUI to fork and clone`_ the repository (we'll use
+   ``pupmod-simp-iptables`` for the rest of this walkthrough)
 
-#. Make your changes!
+#. Clone the repo you want to work on:
 
-   * SIMP contributions should observe the `Puppet Language Style Guide`_
-     conventions where feasible
-   * Contributions should ideally include relevant spec and/or acceptance tests
+   * ``git clone git@github.com:<YOUR_GITHUB_NAME>/pupmod-simp-iptables iptables``
 
-#. Save your changes in a **single commit**
+#. Enter the directory and create a `feature branch`_: ``git checkout -b SIMP-XXXX``
 
-   * Use the following commit message conventions:
+#. Do your work! `(Including tests, of course)`
 
-     .. code-block:: none
+#. Commit your work. We will `squash`_ your `pull request`_ into one commit
+   when we merge it, so you can use as many commits as you'd like.
 
-        (SIMP-999) Fix the broken thing [50 chars max]
+   .. IMPORTANT::
+      The **first** commit should use the `Commit Message Conventions`_
 
-        Discussion about the fix (if needed) [each line: 72 chars max]
+#. Push your changes to Github on your feature branch:
 
-        SIMP-998 #comment Comment on a related issue [72 chars max]
-        SIMP-999 #close
+   * ``git push origin SIMP-XXXX``
 
-   * The commit message should be the following format:
+#. Using the GitHub GUI, create a `pull request`_ from your feature branch to
+   the branch of the original repo that you want to contribute to. Leave the
+   '`Allow edits from maintainers`_' checkbox checked to let a team member add
+   add commits to your pull request.
 
-     * First line:
+#. `Travis-CI`_ will run the spec tests for the branch and a member of the SIMP
+   team will `review`_ your submission. You should receive emails from Github as
+   the code reviews progress.
 
-       * Start with the Issue name in parentheses [e.g., ``SIMP-999``],
-         followed by a summary of the change
-       * No longer than **50** characters
-       * Followed by a line of white space
+Commit Message Conventions
+--------------------------
 
-     * Subsequent lines:
+An example commit message that following the SIMP conventions:
 
-       * Each line should be no longer than **72** characters
+  .. code-block:: none
 
-     * Issue references:
+     (SIMP-999) Fix the broken thing [50 chars max]
 
-       * `JIRA issues can be referenced`_ at the end of the commit message
-       * It is recommended to only use the commands ``#comment`` and ``#close``
-       * Avoid ``#resolve`` and ``#time`` as it will not update JIRA until
-         after the issue is merged
+     Discussion about the fix (if needed) [each line: 72 chars max]
 
-#. Push your changes up to your forked repo on GitHub
+     SIMP-998 #comment Comment on a related issue [72 chars max]
+     SIMP-999 #close
 
-#. Create a `pull request`_ ("PR") on GitHub using your new branch
+The first commit message should be the following format:
 
-   * The pull request should contain a **single** new commit
+  * First line:
 
-     * Use ``git rebase -i`` to squash commits (use ``git rebase -i HEAD~n`` to
-       go back ``n`` commits)
+    * Start with the Issue name in parentheses [e.g., ``(SIMP-999)``], followed
+      by a summary of the change
+    * No longer than **50** characters
+    * Followed by a line of white space
 
-#. `Travis-CI`_ will notice the pull request and run CI tests
+  * Subsequent lines:
 
-   * Travis-CI will run tests based on the `.travis.yml`_ file in the
-     repository's top-level directory
-   * Travis-CI results can be seen in the PR on GitHub and are posted to the
-     project's `HipChat`_ channel
+    * Each line should be no longer than **72** characters
+    * Describe the previous behavior, why it was changed, and the changes in
+      detail
 
-#. After passing Travis-CI tests, the GitHub pull request must be picked up in
-   `GerritHub`_ for code review
+  * Issue references:
 
-   * **NOTE:** Currently, this is a *manual* process and requires a project
-     administrator
+    * `JIRA issues can be referenced`_ at the end of the commit message
+    * It is recommended to only use `JIRA Smart Commit Tags`_ ``#comment`` and
+      ``#close``
+    * Avoid ``#resolve`` and ``#time`` as it will not update JIRA until
+      after the issue is merged
 
-#. Pull requests are code reviewed on `GerritHub`_
-
-   * If you need to update an existing pull request, `amend`_ the pull
-     request's commit using the following commands:
-
-     * ``git add`` or ``delete`` (this stages the build with the relevant
-       changes; ``add --all`` will add all the new changes, otherwise ``add``
-       or ``delete`` to tailor your changeset)
-     * ``git commit --amend`` (this amends the previous commit)
-
-       * **NOTE:** The final line of the amended commit message must include
-         the Gerrit review's Change-ID
-         (example: ``Change-Id: Ie536768505a1baff45d6ad3ae4de9e7501ffb53c``)
-       * ``git push --force`` (this sends back to the ``master`` branch)
-
-     * If you prefer to amend your change in Gerrithub, you can use the
-       `git-review`_ package to make submitting patch sets easier
-
-       * Install the ``git-review`` package
-       * Add the remote: ``git remote add gerrit <url>``
-       * Run: ``git-review -r gerrit``
-
-#. After the `GerritHub`_ review is approved, the changes will be automatically
-   merged into the original `GitHub`_ repository
-
-.. _.travis.yml: http://docs.travis-ci.com/user/build-configuration/
-.. _Fork: https://help.github.com/articles/fork-a-repo
-.. _GerritHub: https://review.gerrithub.io/#/q/is:open+project:%255Esimp.*
-.. _GitHub: https://github.com/simp
-.. _HipChat: https://simp-project.hipchat.com/chat
-.. _JIRA issues can be referenced: https://confluence.atlassian.com/bitbucket/processing-jira-software-issues-with-smart-commit-messages-298979931.html
-.. _Puppet Language Style Guide: https://docs.puppetlabs.com/guides/style_guide.html
-.. _Travis-CI: https://travis-ci.org/simp
-.. _amend: https://www.atlassian.com/git/tutorials/rewriting-history/git-commit--amend
+.. _GitHub Workflow: https://guides.github.com/introduction/flow/
+.. _Squash and Merge: https://github.com/blog/2141-squash-your-commits
+.. _SIMP JIRA: https://simp-project.atlassian.net
+.. _GitHub GUI to fork and clone: https://help.github.com/articles/fork-a-repo/
 .. _feature branch: https://www.atlassian.com/git/tutorials/comparing-workflows/feature-branch-workflow
-.. _git-review: https://github.com/openstack-infra/git-review
+.. _squash: https://github.com/blog/2141-squash-your-commits
 .. _pull request: https://help.github.com/articles/using-pull-requests
+.. _Allow edits from maintainers: https://help.github.com/articles/allowing-changes-to-a-pull-request-branch-created-from-a-fork/
+.. _Travis-CI: https://travis-ci.org/simp
+.. _review: https://help.github.com/articles/reviewing-proposed-changes-in-a-pull-request/
+.. _JIRA issues can be referenced: https://confluence.atlassian.com/bitbucket/processing-jira-software-issues-with-smart-commit-messages-298979931.html
+.. _JIRA Smart Commit Tags: https://confluence.atlassian.com/bitbucket/processing-jira-software-issues-with-smart-commit-messages-298979931.html

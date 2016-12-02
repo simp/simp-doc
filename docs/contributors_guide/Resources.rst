@@ -5,22 +5,18 @@ Useful Resources
 
 * `TravisCI`_
 
-* SIMP Project Gerrit Status Links
+* SIMP Project Status Links
 
   * `Open Changes`_
-  * `Fully Reviewed Changes`_
-  * `Failing Changes`_
-  * `Open Mergeable Changes`_
+  * `Changes that need attention`_
+  * `Failing Changes in TravisCI`_
   * `Pending Changes`_
-  * `Submitted Changes`_
   * `Merged Changes`_
 
 .. _GitHub Guides: https://guides.github.com
 .. _TravisCI: https://travis-ci.org/simp
-.. _Open Changes: https://review.gerrithub.io/#/dashboard/?title=SIMP+Open+Changes&project=^simp+-is:abandoned+-is:merged
-.. _Fully Reviewed Changes: https://review.gerrithub.io/#/dashboard/?title=SIMP+Fully+Reviewed+Changes&project=^simp+-is:abandoned+label:Code-Review+2+label:Verified+1
-.. _Failing Changes: https://review.gerrithub.io/#/dashboard/?title=SIMP+Failing+Changes&project=^simp+-is:abandoned+(label:Code-Review-1+OR+label:Verified-1)
-.. _Open Mergeable Changes: https://review.gerrithub.io/#/dashboard/?title=SIMP+Open+Mergeable+Changes&project=^simp+is:mergeable+-is:abandoned
-.. _Pending Changes: https://review.gerrithub.io/#/dashboard/?title=SIMP+Pending+Changes&project=^simp+status:pending+-is:abandoned
-.. _Submitted Changes: https://review.gerrithub.io/#/dashboard/?title=SIMP+Submitted+Changes&project=^simp+status:submitted+-is:abandoned
-.. _Merged Changes: https://review.gerrithub.io/#/q/is:merged+project:^simp/.*
+.. _Open Changes: https://github.com/search?utf8=%E2%9C%93&q=org%3Asimp+is%3Apr+is%3Aopen&type=Issues&ref=searchresults
+.. _Changes that need attention: https://github.com/search?utf8=%E2%9C%93&q=org%3Asimp+is%3Apr+is%3Aopen+comments%3A%3E1&type=Issues&ref=searchresults
+.. _Failing Changes in TravisCI: https://github.com/search?utf8=%E2%9C%93&q=org%3Asimp+is%3Apr+is%3Amerged+status%3Afailure&type=Issues&ref=searchresults
+.. _Pending Changes: https://github.com/search?utf8=%E2%9C%93&q=org%3Asimp+is%3Apr+is%3Aopen+status%3Apending&type=Issues&ref=searchresults
+.. _Merged Changes: https://github.com/search?utf8=%E2%9C%93&q=org%3Asimp+is%3Apr+is%3Amerged&type=Issues&ref=searchresults
