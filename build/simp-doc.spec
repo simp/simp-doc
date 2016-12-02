@@ -112,7 +112,7 @@ Buildarch: noarch
 %{lua: print(package_requires) }
 Requires: links
 %if 0%{?el6}
-BuildRequires: scl-utils
+BuildRequires: centos-release-scl
 BuildRequires: python27
 %endif
 BuildRequires: python-pip
