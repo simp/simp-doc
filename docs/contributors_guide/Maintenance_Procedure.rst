@@ -45,7 +45,7 @@ Amending Changes to Submitted Pull Requests
 
 #. Push your new commit to the feature branch of the **owner** of the pull
    request.  In this example, the owner is `jeefberkey`, and the feature branch
-   name is `SIMP-XXXX`: ``hub push jeefberkey SIMP-XXXX``
+   name is `SIMP-XXXX`: ``hub push jeefberkey HEAD:SIMP-XXXX``
 
 #. The pull request has been updated, and participants have received an email
 
