@@ -26,9 +26,10 @@ Amending Changes to Submitted Pull Requests
         for the critical components, one wrong command and and life can get
         unpleasant.
 
-#. Pull down the pull request as found on the GitHub GUI:
+#. Pull down the pull request as found on the GitHub GUI. The local branch should
+   match the branch in the PR (for example, branch SIMP-XXXX):
 
-   * ``hub checkout https://github.com/simp/pupmod-simp-doc/pull/28``
+   * ``hub checkout https://github.com/simp/simp-doc/pull/9999 SIMP-XXXX``
 
 #. Review the code or make your additional changes
 
@@ -40,11 +41,11 @@ Amending Changes to Submitted Pull Requests
 
 #. Set up the target repo for a push:
 
-   * ``git remote set-url -p jeefberkey``
+   * ``hub remote set-url -p jeefberkey``
 
 #. Push your new commit to the feature branch of the **owner** of the pull
    request.  In this example, the owner is `jeefberkey`, and the feature branch
-   name is `SIMP-1897`: ``hub push jeefberkey SIMP-1897``
+   name is `SIMP-XXXX`: ``hub push jeefberkey SIMP-XXXX``
 
 #. The pull request has been updated, and participants have received an email
 
