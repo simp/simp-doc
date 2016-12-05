@@ -38,6 +38,10 @@ Amending Changes to Submitted Pull Requests
 
    * ``git commit -a -m "I made the docs better"``
 
+#. Set up the target repo for a push:
+
+   * ``git remote set-url -p jeefberkey``
+
 #. Push your new commit to the feature branch of the **owner** of the pull
    request.  In this example, the owner is `jeefberkey`, and the feature branch
    name is `SIMP-1897`: ``hub push jeefberkey SIMP-1897``
