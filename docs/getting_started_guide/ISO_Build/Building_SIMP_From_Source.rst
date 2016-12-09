@@ -55,17 +55,17 @@ Run the ``build:auto`` rake task to create a bootable ISO using the following te
 
 .. code::
 
-   $ bundle exec rake build:auto[<SIMP version>,<Directory containing install media>]
+   $ bundle exec rake build:auto[<Directory containing install media>,<SIMP version>]
 
 For example:
 
 .. code::
 
    $ # for SIMP 5 and CentOS 7
-   $ bundle exec rake build:auto[5.1.X,.]
+   $ bundle exec rake build:auto[`pwd`,5.1.X]
 
    $ # for SIMP 4 and CentOS 6
-   $ bundle exec rake build:auto[4.2.X,.]
+   $ bundle exec rake build:auto[`pwd`,4.2.X]
 
 Once the process completes, you should have a bootable SIMP ISO ready for installation!
 
