@@ -6,7 +6,7 @@ HOWTO Upgrade SIMP
 .. WARNING::
   Please refer to the `Migrating To Environments`_ section if you are upgrading
   from a version of SIMP before we started using Puppet Environments. If you
-  have an ``/etc/puppet/environments/simp`` directory and no record of
+  have an ``/etc/puppetlabs/code/environments/simp`` directory and no record of
   ``/etc/puppet/extdata`` on your system, then you do not need to migrate your
   code to environments.
 
@@ -33,7 +33,7 @@ The following process should be followed prior to upgrading:
    doesn't work properly.
 
    The simplest way to do this is to set the catalog retrieval capability to
-   ``127.0.0.1`` in ``/etc/puppet/auth.conf`` as shown below.
+   ``127.0.0.1`` in ``/etc/puppetlabs/puppet/auth.conf`` as shown below.
 
    .. code-block:: bash
 
@@ -57,7 +57,7 @@ Upgrading SIMP from an ISO
 
    .. code-block:: bash
 
-     cd /etc/puppet/environments
+     cd /etc/puppetlabs/code/environments
      cp -r simp simp.old
 
 #. Unpack the new ISO using the ``unpack_dvd`` utility:
@@ -127,19 +127,19 @@ The migration script will perform the following actions on your system:
 *  Remove the ``puppet-server`` package from your system
 *  Install the ``puppetserver`` package onto your system
 *  Update all packages from your repositories
-*  Create a backup folder at ``/etc/puppet/environments/pre_migration.simp``
+*  Create a backup folder at ``/etc/puppetlabs/code/environments/pre_migration.simp``
 *  Create a Git repository in the backup folder under a timestamped directory
 *  Commit all current materials from ``/etc/puppet`` into the backup Git
    repository
 *  Checkout the backup Git repository under the timestamped directory as
    ``backup_data`` for ease of use
 *  Migrate all existing data into the new ``simp`` environment under
-   ``/etc/puppet/environments/simp``
+   ``/etc/puppetlabs/code/environments/simp``
 
 .. NOTE::
     All future upgrades will only affect the new ``simp`` environment.  You may
     create new environments and/or modify the contents of
-    ``/etc/puppet/modules`` without fear of the SIMP packages overwriting your
+    ``/etc/puppetlabs/code/modules`` without fear of the SIMP packages overwriting your
     work.
 
 Migration Script Execution
@@ -189,7 +189,7 @@ Migration Script Execution
 
    .. code-block:: bash
 
-      rm /var/run/puppetserver/puppetserver
+      rm /run/puppetlabs/puppetserver
 
 #. Kill any running puppet master processes:
 
@@ -257,7 +257,7 @@ your data from your code.
     $param2 = 'default2'
   ) { .... }
 
-  # /etc/puppet/hieradata/default.yaml
+  # /etc/puppetlabs/code/environments/simp/hieradata/default.yaml
   ---
   foo::param1: 'custom1'
 
@@ -286,7 +286,7 @@ Scope Functions
 ^^^^^^^^^^^^^^^
 
 All scope functions must take arguments in array form. For example in
-``/etc/puppet/modules/apache/templates/ssl.conf.erb``:
+``/etc/puppetlabs/code/environments/simp/modules/apache/templates/ssl.conf.erb``:
 
 .. code-block:: erb
 

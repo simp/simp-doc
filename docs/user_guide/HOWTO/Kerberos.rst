@@ -72,7 +72,7 @@ Creating Host Principals
 Before you can really do anything with your hosts, you need to ensure that the
 host itself has a keytab.
 
-SIMP uses the `/etc/puppet/keydist` directory for each host to securely
+SIMP uses the `/etc/puppetlabs/code/environments/simp/keydist` directory for each host to securely
 distribute keytabs to the clients.
 
 On the KDC, generate a principal for each host in your environment using the

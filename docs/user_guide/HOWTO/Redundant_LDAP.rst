@@ -15,7 +15,7 @@ answering the basic questions it asks you.  If it is not desirable to have the
 ldap server on the Puppet server a redundant LDAP server can be set up on an
 alternate server and promoted to master using the directions below.
 
-How ever if there is already a working infrastructure and you want to move to
+However if there is already a working infrastructure and you want to move to
 openldap you can do the following:
 
 Configure the following settings in ``simp_def.yaml`` in the hiera directory:
@@ -229,7 +229,7 @@ Troubleshooting
 
 If the system is not replicating, it is possible that another user has updated
 the ``$ldap_sync_passwd`` and ``$ldap_sync_hash`` entries in the
-``/etc/puppet/environments/simp/simp_def.yaml`` file without also updating the
+``/etc/puppetlabs/code/environments/simp/simp_def.yaml`` file without also updating the
 value in LDAP itself; this is the most common issue reported by users.
 
 Currently, SIMP cannot self-modify the LDAP database directly; therefore, the

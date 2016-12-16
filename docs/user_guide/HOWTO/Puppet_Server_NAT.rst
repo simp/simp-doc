@@ -7,7 +7,7 @@ NAT but is managing hosts outside the NAT.
 Your puppet server certificate must have all names in it that are used by
 any client.  To update your certificates follow the guidance:
 
-1) Add the alternative certificate names (in a comma-seperated list) in /etc/puppet/puppet.conf
+1) Add the alternative certificate names (in a comma-separated list) in /etc/puppetlabs/puppet/puppet.conf
 
     [main]
 

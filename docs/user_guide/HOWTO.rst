@@ -1,7 +1,7 @@
 SIMP HOWTO Guides
 =================
 
-This chapter provides guidance on configuration various common capabilities in
+This chapter provides guidance on configuration of various common capabilities in
 the SIMP system.
 
 .. toctree::
@@ -14,7 +14,6 @@ the SIMP system.
   Discard Mail to Root <HOWTO/Discard_Mail_to_Root>
   Build a bootable SIMP DVD <HOWTO/DVD_Build>
   Exclude YUM Repositories <HOWTO/Exclude_Repositories>
-  Enable The Foreman <HOWTO/Foreman>
   Configure NFS <HOWTO/NFS>
   Configure IPTables NAT Rules <HOWTO/IPTables_NAT_Rules>
   Enable Kerberos <HOWTO/Kerberos>
