@@ -19,42 +19,22 @@ This configuration is also helpful because it is easier to manage symlinks in
 YUM repositories than it is to manage individual package minutia for every
 single package on every system.
 
-.. only:: not simp_4
-
-  The general technique is to put packages that all systems will receive into
-  the ``Updates`` repository provided with SIMP.Any packages that will only go
-  to specific system sets will then be placed into adjunct repositories under
-  ``/var/www/yum`` and the user will point specific systems at those
-  repositories using the ``yumrepo`` Puppet type. Any common packages can be
-  symlinked or hard linked between repositories for maximum space utilization.
-
-.. only:: simp_4
-
-  The general technique is to put packages that all systems will receive into
-  the ``Updates`` repository provided with SIMP. Any packages that will only go
-  to specific system sets will then be placed into adjunct repositories under
-  ``/srv/www/yum`` and the user will point specific systems at those
-  repositories using the ``yumrepo`` Puppet type. Any common packages can be
-  symlinked or hard linked between repositories for maximum space utilization.
+The general technique is to put packages that all systems will receive into
+the ``Updates`` repository provided with SIMP. Any packages that will only go
+to specific system sets will then be placed into adjunct repositories under
+``/var/www/yum`` and the user will point specific systems at those
+repositories using the ``yumrepo`` Puppet type. Any common packages can be
+symlinked or hard linked between repositories for maximum space utilization.
 
 Extending the Native Framework
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 By default, SIMP stores :term:`YUM` information in the following directories:
 
-.. only:: not simp_4
+ - ``/var/www/yum``
 
-   - ``/var/www/yum``
-
-  The base SIMP repository is in ``/var/www/yum/SIMP`` and it is highly
-  unlikely that you would want to modify anything in this directory.
-
-.. only:: simp_4
-
-   - ``/srv/www/yum``
-
-  The base SIMP repository is in ``/srv/www/yum/SIMP`` and it is highly
-  unlikely that you would want to modify anything in this directory.
+The base SIMP repository is in ``/var/www/yum/SIMP`` and it is highly
+unlikely that you would want to modify anything in this directory.
 
 With the standard configuration, access to the yum repository is restricted to
 the networks contained in the ``$client_nets`` variable in :term:`Hiera`.  For
@@ -205,7 +185,7 @@ have these users follow the normal password expiration conventions set on the
 system, use the native Puppet user and group types.
 
 To have a user that does not expire, look at the
-``/etc/puppet/environments/simp/localusers`` file to enable these users across
+``/etc/puppetlabs/code/environments/simp/localusers`` file to enable these users across
 the systems.  The comments in the file provide instructions on generating
 entries for the desired systems. It is hoped that future versions of Puppet
 will support the modification of password expiration values via the native
@@ -234,19 +214,19 @@ certificates:
     these settings must be changed within the official CA, not on the
     SIMP system.
 
--  ``/etc/puppet/environments/simp/Config/FakeCA/CA``
+-  ``/etc/puppetlabs/code/environments/simp/FakeCA/CA``
 
--  ``/etc/puppet/environments/simp/Config/FakeCA/ca.cnf``
+-  ``/etc/puppetlabs/code/environments/simp/FakeCA/ca.cnf``
 
--  ``/etc/puppet/environments/simp/Config/FakeCA/default\_altnames.cnf``
+-  ``/etc/puppetlabs/code/environments/simp/FakeCA/default\_altnames.cnf``
 
--  ``/etc/puppet/environments/simp/Config/FakeCA/default.cnf``
+-  ``/etc/puppetlabs/code/environments/simp/FakeCA/default.cnf``
 
--  ``/etc/puppet/Config/FakeCA/user.cnf``
+-  ``/etc/puppetlabs/code/environments/simp/FakeCA/user.cnf``
 
 In addition, any certificates that have already been created and signed will
 have a config file containing all of its details in
-``/etc/puppet/environments/simp/Config/FakeCA/output/conf/``.
+``/etc/puppetlabs/code/environments/simp/FakeCA/output/conf/``.
 
 .. important::
     Editing any entries in the above mentioned config files will not
@@ -258,7 +238,7 @@ default) to five years for any newly created certificate.
 
 .. code-block:: bash
 
-  for file in $(grep -rl 365 /etc/puppet/environments/simp/Config/FakeCA/)
+  for file in $(grep -rl 365 /etc/puppetlabs/code/environments/simp/FakeCA/)
   do
     sed -i 's/365/1825/' $file
   done
@@ -271,7 +251,7 @@ different from the server certificates and should be managed with the
 ``puppet cert`` tool. For the complete documentation on the ``puppet cert``
 tool, visit the `Puppet Labs cert manual <http://docs.puppetlabs.com/man/cert.html>`__
 detailing its capabilities. On a SIMP system, these certificates are located in
-the ``/var/lib/puppet/ssl/`` directory and are set to expire every five years.
+the ``/etc/puppetlabs/puppet/ssl`` directory and are set to expire every five years.
 
 The SIMP Utility
 ----------------
@@ -289,7 +269,7 @@ simp passgen
 
 Throughout the SIMP codebase, you may find references to the ``passgen()``
 function. This function will auto-generate passwords and store them in the
-``simp_autofiles/gen_passwd`` space in the root of the using Environment on the
+``simp_autofiles/gen_passwd`` space in the root of the simp Environment on the
 Puppet server. For more information, see the `passgen()`_ documentation.
 
 Integrating Applications
@@ -313,7 +293,7 @@ will not open up the IPTables rule set completely. Instead, the system will
 deny access to all ports except port 22 to allow for recovery via SSH.
 
 There are many examples of how to use the IPTables module in the source code;
-the Apache module at ``/etc/puppet/environments/simp/modules/apache`` is a
+the Apache module at ``/etc/puppetlabs/code/environments/simp/modules/apache`` is a
 particularly good example. In addition, look at the definitions in the IPTables
 module to understand their purpose and choose the best option.  Refer to the
 `IPTables page of the Developers Guide <../../developers_guide/rdoc/classes/iptables.html>`__

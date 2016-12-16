@@ -6,7 +6,7 @@ Puppet Client Certificate Issues
 
 Most of the time, clients will have certificate issues due to the system clock
 not being properly set. Before taking any other measures, make sure that your
-system clock is correct on both the mmaster and the clients!
+system clock is correct on both the master and the clients!
 
 If you need to fix client certificate issues outside of time, first make sure that you don't have a certificate already in place on your Puppet server.
 
@@ -57,7 +57,7 @@ The following table lists the steps to regenerate the server CAs:
 .. code-block:: bash
 
   $ service puppetserver stop
-  $ rm -rf /var/lib/puppet/ssl
+  $ rm -rf /etc/puppetlabs/puppet/ssl
   $ puppet cert list --all
   $ puppet cert --generate ***<fqdn>***
   $ service puppetserver start

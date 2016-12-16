@@ -7,7 +7,7 @@ Installation Variables
 ------------------------------
 This section describes the list of variables that are configurable during
 the install. These variables are written to
-``/etc/puppet/environments/simp/hieradata/simp_def.yaml`` by ``simp config``
+``/etc/puppetlabs/code/environments/simp/hieradata/simp_def.yaml`` by ``simp config``
 and are derived from user input.
 
 +-------------------------------------------+--------------------+----------+
@@ -157,39 +157,33 @@ bootstrapping.
 |               |  ``/etc/grub2.cfg``.                                         |
 +---------------+--------------------------------------------------------------+
 |Certificates   | If no certificates for the host are found in                 |
-|               | ``/etc/puppet/environments/simp/keydist``, ``simp config``   |
+|               | ``/etc/puppetlabs/code/environments/simp/modules/pki/        |
+|               | files/keydist``, ``simp config``                             |
 |               | will use the FakeCA to generate certificates needed by SIMP  |
 |               | for the host.  These certificates are independent of the     |
 |               | certificates managed by Puppet, itself.                      |
 +---------------+--------------------------------------------------------------+
 |System Hiera   | If a hosts yaml file in                                      |
-|               | ``/etc/puppet/environments/simp/hieradata/hosts`` does not   |
-|               | already exist, ``simp config`` will create one from a SIMP   |
-|               | template.                                                    |
+|               | ``/etc/puppetlabs/code/environments/simp/hieradata/hosts``   |
+|               | does not already exist, ``simp config`` will create one from |
+|               | a SIMP template.                                             |
 +---------------+--------------------------------------------------------------+
-|YUM Update     |.. only:: simp_4                                              |
-|               |                                                              |
-|               |  ``simp config`` updates the appropriate YUM Updates         |
-|               |  repository contained at                                     |
-|               |  ``/srv/www/yum/OSTYPE/MAJORRELEASE/ARCH``.                  |
-|               |                                                              |
-|               |.. only:: not simp_4                                          |
-|               |                                                              |
-|               |  ``simp config`` updates the appropriate YUM Updates         |
+|YUM Update     | ``simp config`` updates the appropriate YUM Updates          |
 |               |  repository contained at                                     |
 |               |  ``/var/www/yum/OSTYPE/MAJORRELEASE/ARCH``.                  |
 +---------------+--------------------------------------------------------------+
-|Puppet         | - Updates ``/etc/puppet/autosign.conf``.                     |
-|               | - Updates ``/etc/puppet/puppet.conf``, after creating a      |
-|               |   backup of the existing file. This update will include      |
-|               |   FIPS-related settings, as appropriate.                     |
+|Puppet         | - Updates ``/etc/puppetlabs/puppet/autosign.conf``.          |
+|               | - Updates ``/etc/puppetlabs/puppet/puppet.conf``, after      |
+|               |   creating abackup of the existing file. This update will    |
+|               |   include FIPS-related settings, as appropriate.             |
 |               | - Updates ``/etc/hosts`` to ensure puppet server entries     |
 |               |   exist.                                                     |
 +---------------+--------------------------------------------------------------+
 |LDAP           | ``simp config`` adds or removes the ``simp::ldap_server``    |
 |               | setting from the hosts YAML file in                          |
-|               | ``/etc/puppet/environments/simp/hieradata/hosts``, based on  |
-|               | whether the user opts to use or not use LDAP, respectively.  |
+|               | ``/etc/puppetlabs/code/environments/simp/hieradata/hosts``,  |
+|               | based on whether the user opts to use or not use LDAP,       |
+|               | respectively.                                                |
 +---------------+--------------------------------------------------------------+
 
 .. todo simp bootstrap Actions

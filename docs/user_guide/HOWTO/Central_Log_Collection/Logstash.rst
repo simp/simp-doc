@@ -170,14 +170,14 @@ volume and 4GB of memory.
 
 You can extend and replicate this setup on as many systems as necessary to
 provide ingest and dashboard redundancy. Alternatively, you can split Grafana
-and Logstash to do allow greater resource dedication.
+and Logstash to allow greater resource dedication.
 
 We do recommend that you have an Elasticsearch node on the Logstash system to
 reduce the likelihood that Logstash will hang when trying to find a
 non-existent storage node.
 
 Optimization of your Elasticsearch infrastructure depends on many factors and
-should be handled once you decide how far your systems is going to expand.
+should be handled once you decide how far your system is going to expand.
 Please be aware that scaling is highly dependent on how your actually use your
 cluster in production.
 
@@ -259,17 +259,9 @@ following to your ``site.pp`` file for your environment.
     $hostgroup = 'elasticsearch'
   }
 
-.. only:: not simp_4
-
-   Then, ensure that a file called 'elasticsearch.yaml' is present in the
-   ``/etc/puppet/environments/simp/hieradata/hostgroups/`` directory and
-   contains the following content.
-
-.. only:: simp_4
-
-   Then, ensure that a file called 'elasticsearch.yaml' is present in the
-   ``/etc/puppet/hieradata/hostgroups/`` directory and contains the following
-   content.
+Then, ensure that a file called 'elasticsearch.yaml' is present in the
+``/etc/puppetlabs/code/environments/simp/hieradata/hostgroups/`` directory and contains the following
+content.
 
 .. code-block:: yaml
 
@@ -322,7 +314,7 @@ to your Kibana node.
    The ``rubygem-toml`` package must be present on your puppet compile servers
    for the Grafana puppet module to function properly.
 
-   On your puppet master, you can install the toml gem by i executing
+   On your puppet master, you can install the toml gem by executing
    ``puppetserver gem install toml``.
 
    If you do not install this via Kickstart, you will need two runs of Puppet
@@ -335,7 +327,7 @@ to your Kibana node.
 
    Grafana has the ability to put **extreme** loads on your Elasticsearch
    infrastructure with poorly formed queries and should be connected to a node
-   that is not used for ingest. This is also helps prevent any vulnerabilities
+   that is not used for ingest. This also helps prevent any vulnerabilities
    in Grafana from providing direct access to your Elasticsearch
    infrastructure.
 

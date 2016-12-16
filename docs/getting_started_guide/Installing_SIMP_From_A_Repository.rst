@@ -27,7 +27,8 @@ Install The SIMP-Project Repository
 -----------------------------------
 
 Add the following to ``/etc/yum.repos.d/simp-project.repo``, replacing ``7`` with
-the appropriate version of EL and ``5`` with the appropriate version of SIMP.
+the appropriate version of EL and ``5`` with the appropriate version of SIMP. If 
+the repo file does not exist, create it.
 ``EL 7`` with ``SIMP 5.X`` is shown below.
 
 If you don't know what versions map together, please see the
@@ -66,7 +67,8 @@ Install The SIMP-project_dependencies Repository
 
 Add the following to ``/etc/yum.repos.d/simp-project_dependencies.repo``,
 replacing ``7`` with the appropriate version of EL and ``5`` with the appropriate
-version of SIMP.  ``EL 7`` with ``SIMP 5.X`` is shown below.
+version of SIMP.  ``EL 7`` with ``SIMP 5.X`` is shown below. If 
+the repo file does not exist, create it.
 
 If you don't know what versions map together, please see the
 :ref:`faq-simp_version_guide`.
@@ -118,7 +120,7 @@ Modify Yum URLs
 ---------------
 
 Set the following variables to repositories of your choosing in
-``/etc/puppet/environments/production/hieradata/default.yaml``
+``/etc/puppetlabs/code/environments/production/hieradata/default.yaml``
 
 .. code-block:: yaml
 
@@ -146,7 +148,7 @@ Enable FIPS
 
 .. code-block:: bash
 
-   $ rm -rf /var/lib/puppet/ssl
+   $ rm -rf /etc/puppetlabs/puppet/ssl
    $ yum-config-manager --enable base
    $ yum install dracut-fips
    $ dracut -f

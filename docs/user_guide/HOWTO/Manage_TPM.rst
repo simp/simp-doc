@@ -66,8 +66,8 @@ Enable and take ownership
       /dev/tpm0: character special (10/224)
 
 
-#. A TPM would be muct less useful if the boot process can't be protected. A
-   BIOS password must be set to make sure no thirds parties can boot the host.
+#. A TPM would be much less useful if the boot process can't be protected. A
+   BIOS password must be set to make sure no third parties can boot the host.
    Please set the admin password and the user password in the BIOS. If there is
    an option to require password at boot time, enable it. Do not enable Intel
    Platform Trust Techonology (PTT) or Intel TXT at this time.
@@ -77,7 +77,7 @@ Enable and take ownership
    provided with the hardware.
 
 #. At this point, the TPM module can take over management of the device. Add
-   ``tpm`` to the host's hieradata according the the example below or use the
+   ``tpm`` to the host's hieradata according to the example below or use the
    ``tpm_ownership`` type directly.
 
    .. code-block:: yaml
@@ -162,7 +162,7 @@ will stop changes to the filesystem if there is a issue detected.
 #. Reboot
 
 #. The files on the system must now be measured and saved. In order to do this,
-   every files owned by root and included in the policy must be touched. This
+   every file owned by root and included in the policy must be touched. This
    step will take some time.
 
    .. code-block:: bash

@@ -3,7 +3,7 @@ Apply Certificates
 
 All clients in a SIMP system must have :term:`Public Key Infrastructure` (PKI)
 keypairs generated for the server.  These keys reside in the
-``/etc/puppet/environments/simp/keydist`` directory  on the
+``/etc/puppetlabs/code/environments/simp/keydist`` directory  on the
 SIMP server and are served to the clients over the puppet protocol.
 
 .. note::
@@ -22,22 +22,22 @@ Below are the steps to install official certificates for a SIMP client on
 the SIMP server:
 
 1. Copy the certificates received from a proper :term:`CA` to the SIMP server.
-2. Add the keys for the node to ``/etc/puppet/environments/simp/keydist``.
+2. Add the keys for the node to ``/etc/puppetlabs/code/environments/simp/keydist``.
 
-  a) Type ``mkdir /etc/puppet/environments/simp/keydist/***<Client System FQDN>***``
+  a) Type ``mkdir /etc/puppetlabs/code/environments/simp/keydist/***<Client System FQDN>***``
   b) Type 
      ::
        
        mv ***<Certificate Directory>***/***<FQDN>***.[pem|pub] \
-       /etc/puppet/environments/simp/keydist/***<FQDN>***
+       /etc/puppetlabs/code/environments/simp/keydist/***<FQDN>***
 
-  c) Type ``chown -R root.puppet /etc/puppet/environments/simp/keydist``
-  d) Type ``chmod -R u=rwX,g=rX,o-rwx /etc/puppet/environments/simp/keydist``
+  c) Type ``chown -R root.puppet /etc/puppetlabs/code/environments/simp/keydist``
+  d) Type ``chmod -R u=rwX,g=rX,o-rwx /etc/puppetlabs/code/environments/simp/keydist``
 
-3. Create and populate the ``/etc/puppet/environments/simp/keydist/cacerts``
+3. Create and populate the ``/etc/puppetlabs/code/environments/simp/keydist/cacerts``
    directory.
 
-  a) Type ``cd /etc/puppet/environments/simp/keydist``
+  a) Type ``cd /etc/puppetlabs/code/environments/simp/keydist``
   b) Type ``mkdir cacerts`` and copy the root CA public certificates into cacerts in Privacy
      Enhanced Mail (PEM) format (one per file).
   c) Type ``cd cacerts``
@@ -57,7 +57,7 @@ system, so that it will work until proper certificates are provided.
 
 Below are the steps to generate the certificates using the SIMP-provided, Fake CA.
 
-1. Type ``cd /etc/puppet/environments/simp/FakeCA``
+1. Type ``cd /etc/puppetlabs/code/environments/simp/FakeCA``
 2. Type ``vi togen``
 3. Remove old entries from the file and add the :term:`Fully Qualified Domain Name`
    (FQDN) of the systems (one per line) for which certificates will be created.
@@ -78,8 +78,8 @@ Below are the steps to generate the certificates using the SIMP-provided, Fake C
   generated, the running system will break. To troubleshoot
   certificate problems, see the :ref:`cm-troubleshoot-cert-issues` section.
 
-If issues arise while generating keys, type ``cd /etc/puppet/environments/simp/FakeCA``
-to navigate to the ``/etc/puppet/environments/simp/FakeCA`` directory, then type
+If issues arise while generating keys, type ``cd /etc/puppetlabs/code/environments/simp/FakeCA``
+to navigate to the ``/etc/puppetlabs/code/environments/simp/FakeCA`` directory, then type
 ``./clean.sh`` to start over.
 
 After running the ``clean.sh`` script, type ``./gencerts_nopass.sh`` to
