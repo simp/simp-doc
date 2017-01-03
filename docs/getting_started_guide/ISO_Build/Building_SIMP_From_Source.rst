@@ -24,7 +24,7 @@ Change into the ``simp-core`` directory.
 
 Check out your desired branch of SIMP:
 
-* To check out a stable SIMP release, check out a tag:
+* To check out a stable SIMP release, check out a tag (*Recommended*):
 
 .. code::
 
