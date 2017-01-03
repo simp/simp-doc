@@ -41,8 +41,8 @@ branch for your target SIMP version:
 .. code::
 
    $ cd simp-core
-   $ git checkout 5.1.X # for SIMP 5 and CentOS 7
-   $ git checkout 4.2.X # for SIMP 4 and CentOS 6
+   $ git checkout tags/5.2.0-0 # for SIMP 5 and CentOS 7
+   $ git checkout tags/4.3.1-0 # for SIMP 4 and CentOS 6
 
 Run ``bundle install`` to make sure that all of the build tools and dependencies are
 installed and up to date:
@@ -79,7 +79,7 @@ installation!
 
 
 .. _BinTray artifacts repository: https://bintray.com/simp/Releases/Artifacts#files
-.. _latest 5.2.0-0 release (for CentOS 7): https://bintray.com/simp/Releases/download_file?file_path=SIMP-DVD-RHEL-5.2.0-0.tar.gz
+.. _latest 5.2.0-0 release (for CentOS 7): https://bintray.com/simp/Releases/download_file?file_path=SIMP-DVD-CentOS-5.2.0-0.tar.gz
 .. _latest 4.3.0-0 release (for CentOS 6): https://bintray.com/simp/Releases/download_file?file_path=SIMP-DVD-CentOS-4.3.0-0.tar.gz
 .. _CentOS-7-x86_64-DVD-1511.iso: http://isoredirect.centos.org/centos/7/isos/x86_64/CentOS-7-x86_64-DVD-1511.iso
 .. _DVD1 and DVD2: http://isoredirect.centos.org/centos/6/isos/x86_64/

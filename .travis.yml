@@ -1,12 +1,9 @@
 # build reStructuredText documentation
 ---
 language: python
+sudo: true
 python:
   - "2.7"
-addons:
-  apt:
-    packages:
-      - python-devel
 install:
   - pip install -q -r requirements.txt
 script:
