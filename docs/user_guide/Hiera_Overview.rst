@@ -106,7 +106,7 @@ Then add the following code to your servers Hiera file,
 SIMP Hiera File Structure
 -------------------------
 
-- ``/etc/puppetlbs/puppet/hiera.yaml`` Hiera's config file, used to control the
+- ``/etc/puppetlabs/puppet/hiera.yaml`` Hiera's config file, used to control the
   hierarchy of your backends.
 - ``/etc/puppetlabs/code/environments/simp/hieradata/`` Default location of the yaml files which
   contain your node data
@@ -118,7 +118,7 @@ SIMP Hiera File Structure
   some.host.name.yaml file, you can assign parameters to host some.host.name
 - ``/etc/puppetlabs/code/environments/simp/hieradata/domains/`` Same principal as hosts, but domain
   names.
-- ``/etc/puppet/manifests/`` Contains site.pp and all other node manifests.
+- ``/etc/puppetlabs/code/environment/simp/manifests/`` Contains site.pp and all other node manifests.
   BE CAREFUL when modifying this directory, site.pp contains your globals.
   This directory can be used to supplement or even REPLACE Hiera, with
   nodes. Note that Hiera cannot regex hostnames to apply manifests, so a

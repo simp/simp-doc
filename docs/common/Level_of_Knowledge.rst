@@ -2,7 +2,7 @@ SIMP is designed for use by system administrators or users with a strong
 background using Linux operating systems. The core applications that
 make up SIMP and require prerequisite knowledge are:
 
-- :term:`Puppet` - 3.7 or later
+- :term:`Puppet` - 4.0 or later
 
 - :term:`Domain Name System` (DNS) - BIND 9
 

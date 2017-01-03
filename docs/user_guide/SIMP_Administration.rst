@@ -203,7 +203,7 @@ Server Certificates
 
 Server certificates are the standard PKI certificates assigned either by an
 official CA or generated using the FakeCA utility offered by SIMP.  They can be
-found in the ``/etc/pki/`` directory of both the client and server systems.
+found in the ``/etc/pki/simp`` directory of both the client and server systems.
 These certificates are set to expire annually. To change this, edit the
 following files with the number of days for the desired lifespan of the
 certificates:
