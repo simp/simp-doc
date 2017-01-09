@@ -16,10 +16,11 @@ User Identification and Authentication
 Identification and authentication of system and service users can occur at
 either the :term:`Operating System` level or globally in the SIMP architecture.
 While local accounts and groups can be created manually, the SIMP team suggests
-adding users via the ``/etc/puppet/localusers`` file or by using the native
-Puppet user and group types. System users can authenticate their access using
-Secure Shell (SSH) keys or passwords. For more centralized control, identify
-and authenticate users by using the Lightweight Directory Access Protocol
+adding users via the ``/etc/puppetlabs/code/environments/<environment>/localusers``
+file or by using the native Puppet user and group types. System users can
+authenticate their access using Secure Shell (SSH) keys or passwords. For more
+centralized control, identify and authenticate users by using the Lightweight
+Directory Access Protocol
 (:term:`LDAP`).
 [:ref:`IA-2`]
 

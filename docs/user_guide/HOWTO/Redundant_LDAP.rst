@@ -15,7 +15,7 @@ answering the basic questions it asks you.  If it is not desirable to have the
 ldap server on the Puppet server a redundant LDAP server can be set up on an
 alternate server and promoted to master using the directions below.
 
-How ever if there is already a working infrastructure and you want to move to
+However if there is already a working infrastructure and you want to move to
 openldap you can do the following:
 
 Configure the following settings in ``simp_def.yaml`` in the hiera directory:
@@ -25,63 +25,62 @@ Configure the following settings in ``simp_def.yaml`` in the hiera directory:
  # === use_ldap ===
  # Whether or not to use LDAP on this system.
  # If you disable this, modules will not attempt to use LDAP where possible.
- use_ldap: true
+ "simp_options::ldap": true
 
  # === ldap::base_dn ===
  # The Base DN of the LDAP server
- "ldap::base_dn": "dc=your,dc=domain"
+ "simp_options::ldap::base_dn": "dc=your,dc=domain"
 
  # === ldap::bind_dn ===
  # LDAP Bind Distinguished Name
- "ldap::bind_dn": "cn=hostAuth,ou=Hosts,%{hiera('ldap::base_dn')}"
+ "simp_options::ldap::bind_dn": "cn=hostAuth,ou=Hosts,%{hiera('ldap::base_dn')}"
 
  # === ldap::bind_pw ===
  # The LDAP bind password
- "ldap::bind_pw": "MyRandomlyGeneratedLargePassword"
+ "simp_options::ldap::bind_pw": "MyRandomlyGeneratedLargePassword"
 
  # === ldap::bind_hash ===
  # The salted LDAP bind password hash
- "ldap::bind_hash": "{SSHA}9nByVJSZFBe8FfMkar1ovpRxJLdB0Crr"
+ "simp_options::ldap::bind_hash": "{SSHA}9nByVJSZFBe8FfMkar1ovpRxJLdB0Crr"
 
  # === ldap::sync_dn ===
  #
- "ldap::sync_dn": "cn=LDAPSync,ou=Hosts,%{hiera('ldap::base_dn')}"
+ "simp_options::ldap::sync_dn": "cn=LDAPSync,ou=Hosts,%{hiera('ldap::base_dn')}"
 
  # === ldap::sync_pw ===
  # The LDAP sync password
- "ldap::sync_pw": "MyOtherRandomVeryLargePassword"
+ "simp_options::ldap::sync_pw": "MyOtherRandomVeryLargePassword"
 
  # === ldap::sync_hash ===
  # The SSHA hash for ldap::sync_pw
- "ldap::sync_hash": "{SSHA}VlgYUmRzyuuKZXM3L8RT28En/eqtuTUO"
+ "simp_options::ldap::sync_hash": "{SSHA}VlgYUmRzyuuKZXM3L8RT28En/eqtuTUO"
 
  # === ldap::root_dn ===
  # The LDAP root DN.
- "ldap::root_dn": "cn=LDAPAdmin,ou=People,%{hiera('ldap::base_dn')}"
+ "simp_options::ldap::root_dn": "cn=LDAPAdmin,ou=People,%{hiera('ldap::base_dn')}"
 
  # === ldap::root_hash ===
  # The LDAP root password hash.
  #  If you set this with simp config, type the password and the hash will be
  # generated for you.'
- "ldap::root_hash": "{SSHA}GSCDnNF6KMXBf1F8eIe5xvQxVJou3zGu"
+ "simp_options::ldap::root_hash": "{SSHA}GSCDnNF6KMXBf1F8eIe5xvQxVJou3zGu"
 
  # === ldap::master ===
  # This is the LDAP master in URI form (ldap://server)
- "ldap::master": "ldap://ldap_server1.your.domain"
+ "simp_options::ldap::master": "ldap://ldap_server1.your.domain"
 
  # === ldap::uri ===
  # List of OpenLDAP servers in URI form (ldap://server)
- "ldap::uri":
+ "simp_options::ldap::uri":
    - "ldap://ldap_server1.your.domain"
 
  # === sssd::domains ===
  # A list of domains for SSSD to use.
- # `simp config` will automativcally populate this field with `FQDN` if
+ # `simp config` will automatically populate this field with `FQDN` if
  # `use_fqdn` is true, otherwise it will comment out the field.
  #
  "sssd::domains":
    - LDAP
-
 
 Add the `simp::ldap_server` class into the yaml file for the ldap server in
 Hiera (`hieradata/hosts/ldap_server1.your.domain.yaml`):
@@ -113,8 +112,8 @@ Once the master is ready, LDAP slave nodes can be configured to replicate data
 from the master. These servers are read-only, and modifications cannot be made
 to LDAP entries while the master is down.
 
-Slave nodes can be configured via hiera by using `simp::ldap_server::is_slave`,
-setting the replication id, and adding the `simp::ldap_server` class.  This
+Slave nodes can be configured via hiera by using `simp_options::simp::ldap_server::is_slave`,
+setting the replication id, and adding the `simp_options::simp::ldap_server` class.  This
 will set up your redundant server using the defaults. To do these three things,
 add the following lines to the
 ``hieradata/hosts/ldap_server2.your.domain.yaml`` file:
@@ -228,8 +227,8 @@ Troubleshooting
 ---------------
 
 If the system is not replicating, it is possible that another user has updated
-the ``$ldap_sync_passwd`` and ``$ldap_sync_hash`` entries in the
-``/etc/puppet/environments/simp/simp_def.yaml`` file without also updating the
+the ``simp_options::ldap::sync_pw`` and ``simp_options::ldap::sync_hash`` entries in the
+``/etc/puppetlabs/code/environments/simp/simp_def.yaml`` file without also updating the
 value in LDAP itself; this is the most common issue reported by users.
 
 Currently, SIMP cannot self-modify the LDAP database directly; therefore, the
@@ -238,16 +237,16 @@ LDAP Administrator needs to perform this action. Refer to the
 OpenLDAP.
 
 The example below shows the changes necessary to update the
-``$ldap_sync`` information in LDAP.
+``ldap::sync`` information in LDAP.
 
-Update ``$ldap_sync`` Information in LDAP Examples
+Update ``ldap::sync`` Information in LDAP Examples
 
 .. code-block:: yaml
 
   dn: cn=LDAPSync,ou=People,dc=your,dc=domain
   changetype: modify
   replace: userPassword
-  userPassword: <Hash from $ldap_sync_hash>
+  userPassword: <Hash from simp_options::ldap::sync_hash>
 
 
 Further Information

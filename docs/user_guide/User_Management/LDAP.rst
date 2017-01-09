@@ -117,7 +117,7 @@ utilize sudo sudosh for privilege escalation.
    around 10000.
 
 .. WARNING::
-   The initial password set for a user must confform to the password policy
+   The initial password set for a user must conform to the password policy
    or the user will not be able to login and change his/her password, even
    though the password reset has been enabled by ``pwdReset: TRUE``.
    
@@ -168,7 +168,7 @@ for that user
 Remove a User
 -------------
 
-To remove a user to the system, along with a unique group for that user:
+To remove a user from the system, along with a unique group for that user:
 
 1. Login to the LDAP server as ``root``.
 2. Edit the ``/root/ldifs/del_user.ldif`` shown below.
@@ -275,7 +275,7 @@ To add users to a group:
 Remove Users from a Group
 ^^^^^^^^^^^^^^^^^^^^^^^^^
 
-To add users to a group:
+To remove users from a group:
 
 1. Login to the LDAP server as ``root``.
 2. Edit the ``/root/ldifs/del_to_group.ldif`` shown below.

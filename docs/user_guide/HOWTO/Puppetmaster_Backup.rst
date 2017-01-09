@@ -16,8 +16,8 @@ Master.
     The SIMP team is currently evaluating other options for an inbuilt
     backup system.
 
-1. Backup ``/var/lib/puppet/ssl``
-2. Backup ``/etc/puppet``
+1. Backup ``/etc/puppetlabs/puppet/ssl``
+2. Backup ``/etc/puppetlabs/puppet``
 3. Backup ``/srv/rsync`` and/or ``/var/simp/rsync``
 4. **Optional:** Backup /var/www
 

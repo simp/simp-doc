@@ -27,31 +27,15 @@ prior to attempting to install a client.
 Configure DNS
 +++++++++++++
 
-.. only:: simp_4
-
-  In SIMP most managed, system configuration files are pulled over
-  ``rsync`` by Puppet for network efficiency. These managed files include
-  DNS configuration files and can be found at
-  ``/srv/rsync/bind_dns/default``.
-
-.. only:: not simp_4
-
-  In SIMP most managed, system configuration files are pulled over
-  ``rsync`` by Puppet for network efficiency. These managed files include
-  DNS configuration files and can be found at 
-  ``/var/simp/rsync/OSTYPE/MAJORRELEASE/bind_dns/default``.
+In SIMP, most managed, system configuration files are pulled over
+``rsync`` by Puppet for network efficiency. These managed files include
+DNS configuration files and can be found at
+``/var/simp/environments/simp/rsync/OSTYPE/MAJORRELEASE/bind_dns/default``.
 
 It is possible to use an existing DNS setup; however, the configuration
 steps that follow are for a local setup:
 
-.. only:: simp_4
-
-  1. Navigate to ``/srv/rsync/bind_dns/default``
-
-.. only:: not simp_4
-
-  1. Navigate to ``/var/simp/rsync/OSTYPE/MAJORRELEASE/bind_dns/default``
-..
+1. Navigate to ``/var/simp/environments/simp/rsync/OSTYPE/MAJORRELEASE/bind_dns/default``
 
 2. Modify the ``named`` files to correctly reflect the environment.
 
@@ -96,15 +80,8 @@ Configure DHCP
 Perform the following actions as ``root`` on the Puppet Master system
 prior to attempting to install a client.
 
-.. only:: simp_4
-
- Open the ``/srv/rsync/dhcpd/dhcpd.conf`` file and edit it to suit the
- necessary environment.
-
-.. only:: not simp_4
-
- Open the ``/var/simp/rsync/OSTYPE/MAJORRELEASE/dhcpd/dhcpd.conf`` file
- and edit it to suit the necessary environment.
+Open the ``/var/simp/enviroments/simp/rsync/OSTYPE/MAJORRELEASE/dhcpd/dhcpd.conf`` file
+and edit it to suit the necessary environment.
 
 Make sure the following is done in the ``dhcpd.conf`` :
 
@@ -161,7 +138,7 @@ server, try the following options:
   both must be correct.
 * Check the time on the systems. More than an hour's difference will cause
   serious issues with certificates.
-* Remove ``/var/lib/puppet/ssl`` on the client system; run ``puppet cert
+* Remove ``/etc/puppetlabs/puppet/ssl`` on the client system; run ``puppet cert
   --clean ***<Client Host Name>***`` on the Puppet server; and try again.
 
 
@@ -177,7 +154,7 @@ installed :term:`CA` certificates.
 The table below lists the steps to determine which certificates are working and
 which are not.
 
-#. Navigate to ``/etc/puppet/environments/simp/keydist``
+#. Navigate to ``/etc/puppetlabs/code/environments/simp/keydist``
 #. Run ``find . -name “****<Your.Domain>*.pub” -exec openssl verify -CApath cacerts {} \;``
 
 .. important::
@@ -189,7 +166,7 @@ which are not.
 If the TXT_DB error number 2 appears, revoke the certificate that is being
 regenerated. The table below lists the steps to revoke the certificate.
 
-#. Navigate to ``/etc/puppet/environments/simp/keydist;``
+#. Navigate to ``/etc/puppetlabs/code/environments/simp/keydist;``
 #. Run 
    ::
 

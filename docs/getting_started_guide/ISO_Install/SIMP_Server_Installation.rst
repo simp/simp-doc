@@ -124,7 +124,7 @@ Installing the SIMP Server
 
 .. NOTE::
   Once ``simp config`` has been run, a SIMP configuration file with all your
-  settings is written to ``/etc/puppet/environments/simp/hieradata/simp_def.yaml``
+  settings is written to ``/etc/puppetlabs/code/environments/simp/hieradata/simp_def.yaml``
   and also archived in ``/root/.simp/simp_conf.yaml``.
 
 #. Type ``simp bootstrap``

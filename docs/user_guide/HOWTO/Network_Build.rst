@@ -48,15 +48,15 @@ these locations on the newly built SIMP server.
 
 .. note::
 
-  These steps assume that the SIMP DVD material is copied in its unpacked form to the ``/srv/SIMP`` directory and that the version unpacked is RHEL 5.8. Adjust the paths appropriately if the CentOS or 5.7 version is being used.
+  These steps assume that the SIMP DVD material is copied in its unpacked form to the ``/srv/SIMP`` directory and that the version unpacked is RHEL 7.0. Adjust the paths appropriately if the CentOS or different EL version is being used.
 
 1. Copy the entire SIMP DVD material to the SIMP server.
-2. Type ``cd /srv;``
-3. Type ``mkdir -p www/yum/RedHat/5.8/x86_64;``
-4. Type ``mv /srv/SIMP/SIMP www/yum;``
-5. Type ``mv /srv/SIMP/ks www;``
-6. Type ``cd www/yum/RedHat``
-7. Type ``ln -s 5.8 6; and then cd 5.8/x86_64;`` to be able to move to newer versions more easily.
+2. Type ``cd /var;``
+3. Type ``mkdir -p www/yum/CentOS/7.0/x86_64;``
+4. Type ``mv /var/SIMP/SIMP www/yum;``
+5. Type ``mv /var/SIMP/ks www;``
+6. Type ``cd www/yum/CentOS``
+7. Type ``ln -s 7.0 7; and then cd 7.0/x86_64;`` to be able to move to newer versions more easily.
 8. Type ``mkdir Updates;``
 9. Type ``cd Updates;``
 10. Type ``find .. -type f -name “*.rpm” -exec ln -s {} \;``
@@ -84,7 +84,7 @@ these locations on the newly built SIMP server.
     cat << EOF >> /etc/yum.repos.d/filesystem.repo
     [frhbase]
     name=$ostype $rhversion base repo
-    baseurl=file:///var/www/yum/RedHat/6/x86_64/Server
+    baseurl=file:///var/www/yum/CentOS/7/x86_64/Server
     enabled=1
     gpgcheck=0
     EOF

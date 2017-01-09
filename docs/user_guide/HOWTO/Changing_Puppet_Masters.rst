@@ -7,7 +7,7 @@ client to a new Puppet Master, follow the steps in the sections below.
 On the Client
 -------------
 
-Enter the following changes into the */etc/puppet/puppet.conf* file.
+Enter the following changes into the */etc/puppetlabs/puppet/puppet.conf* file.
 
 Code Changes on Client to Switch Puppet Masters
 
@@ -18,8 +18,8 @@ Code Changes on Client to Switch Puppet Masters
   ca_port = 8141
 
 
-To remove all files and sub-directories in the ``/var/lib/puppet/ssl``
-directory, type ``cd /var/lib/puppet/ssl``. Then type ``rm -rf ./*``.
+To remove all files and sub-directories in the ``/etc/puppetlabs/puppet/ssl``
+directory, type ``cd /etc/puppetlabs/puppet/ssl``. Then type ``rm -rf ./*``.
 
 Assuming the new Puppet Master has been set up to properly accept the
 client, type ``puppet agent --test`` to run a full Puppet run while
@@ -33,7 +33,7 @@ properly.
 On the Old Puppet Master
 ------------------------
 
-Remove or comment out all items for the client node in the ``/etc/puppet/environments/simp/hieradata/hosts`` space.
+Remove or comment out all items for the client node in the ``/etc/puppetlabs/code/environments/simp/hieradata/hosts`` space.
 
 To run ``puppet agent`` in *noop* mode to ensure that there are no
 inadvertent errors, type ``puppet agent --test --noop``.
