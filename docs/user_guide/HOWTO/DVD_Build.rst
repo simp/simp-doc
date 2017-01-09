@@ -22,19 +22,19 @@ These steps are based on an example ISO of ``rhel-server-6.7-x86_64-dvd.iso``.
 
   .. code-block:: bash
 
-    for file in `isoinfo -Rf -i rhel-server-6.7-x86_64-dvd.iso | \
-      tac`; do mkdir -p RHEL6.7-x86_64`dirname $file`; \
-      isoinfo -R -x $file -i rhel-server-6.7-x86_64-dvd.iso > RHEL6.7-x86_64$file; done
+    $ for file in `isoinfo -Rf -i rhel-server-7.2-x86_64-dvd.iso | \
+        tac`; do mkdir -p RHEL7.2-x86_64`dirname $file`; \
+        isoinfo -R -x $file -i rhel-server-7.2-x86_64-dvd.iso > RHEL7.2-x86_64$file; done
 
-2. Type ``tar -C RHEL6.7-x86_64 -xzf ***<SIMP tarball>***``
+2. Type ``$ tar -C RHEL7.2-x86_64/ -xzf ***<SIMP tarball>***``
 
 3. Type
 
   .. code-block:: bash
 
-    mkisofs -o SIMP-6.7-***<SIMP Version>-x86_64.iso \***
-      -b isolinux/isolinux.bin -c boot.cat -no-emul-boot -boot-load-size 4 \
-      -boot-info-table -R -m TRANS.TBL -uid 0 -gid 0 RHEL6.7-x86_64
+    $ mkisofs -o SIMP-7.2-***<SIMP Version>***-x86_64.iso \
+        -b isolinux/isolinux.bin -c boot.cat -no-emul-boot -boot-load-size 4 \
+        -boot-info-table -R -m TRANS.TBL -uid 0 -gid 0 RHEL7.2-x86_64
 
 The fully bootable SIMP DVD is ready to install on a new system. Replace the
 RHEL version and architecture to fit the user's needs. See the Changelog for
