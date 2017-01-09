@@ -5,7 +5,11 @@ sudo: true
 python:
   - "2.7"
 install:
-  - pip install -q -r requirements.txt
+  - sudo pip install -q -r requirements.txt
+  # - sudo apt-get -qq update && sudo apt-get install -y --no-install-recommends texlive-fonts-recommended texlive-latex-extra texlive-fonts-extra dvipng texlive-latex-recommended
 script:
+  - sphinx-build -E -n -b linkcheck docs/ linkcheck
   - sphinx-build -n -t simp_4 -b html -d _build_v4/sphinx_cache docs/ _build_v4/html
   - sphinx-build -n -t simp_5 -b html -d _build_v5/sphinx_cache docs/ _build_v5/html
+  # - sphinx-build -E -n -b latex -D language=en -d _build/doctrees docs/ latex
+  # - pdflatex -interaction=nonstopmode -halt-on-error ./latex/*.tex

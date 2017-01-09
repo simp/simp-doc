@@ -341,7 +341,17 @@ which are simply available in the repository.
     %x(#{cmd} > /dev/null)
   end
 
-  desc 'build PDF docs (SLOW)'
+  desc 'build Sphinx PDF docs using the RTD resources (SLOWEST) TODO: BROKEN'
+  task :sphinxpdf do
+    [ "sphinx-build -E -n -b latex -D language=en -d sphinx_cache docs latex",
+      "pdflatex -interaction=nonstopmode -halt-on-error ./latex/*.tex"
+    ].each do |cmd|
+      puts "== #{cmd}"
+      %x(#{cmd} > /dev/null)
+    end
+  end
+
+  desc 'build PDF docs (SLOWEST)'
   task :pdf do
     extra_args = ''
     cmd = "sphinx-build -T -E -n #{extra_args} -b pdf -d sphinx_cache docs pdf"
@@ -349,6 +359,12 @@ which are simply available in the repository.
     %x(#{cmd} > /dev/null)
   end
 
+  desc 'Check for broken external links'
+  task :linkcheck do
+    cmd = "sphinx-build -T -E -n -b linkcheck -d sphinx_cache docs linkcheck"
+    puts "== #{cmd}"
+    %x(#{cmd} > /dev/null)
+  end
 
   desc 'run a local web server to view HTML docs on http://localhost:5000'
   task :server, [:port] => [:html] do |_t, args|
