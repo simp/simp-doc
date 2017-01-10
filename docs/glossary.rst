@@ -60,8 +60,16 @@ Glossary of Terms
       issues commands to the program in the form of successive lines of text
       (command lines).
 
-
        Source: `Wikipedia: Command Line Interface <https://en.wikipedia.org/wiki/Command-line_interface>`__
+
+   Code Manager
+      See :term:`r10k`.
+
+   Control Repo
+      A version control repository containing all of the required modules, data,
+      and configuration for a Puppet environment.
+
+      See Puppet, Inc documentation: https://docs.puppet.com/pe/latest/cmgmt_control_repo.html
 
    CPU
    Central Processing Unit
@@ -189,6 +197,9 @@ Glossary of Terms
       the :term:`DNS`. It specifies all domain levels, including the top-level
       domain and the root zone. An FQDN is distinguished by its unambiguity; it
       can only be interpreted one way.
+
+   git
+      A version control system that supports branches.
 
    GPG
    GnuPG
@@ -387,11 +398,6 @@ Glossary of Terms
 
       Source: `Wikipedia: Operating system <https://en.wikipedia.org/wiki/Operating_system>`__
 
-   PSSH
-   Parallel Secure Shell
-      A tool that provides parallel versions of OpenSSH and other related
-      tools.
-
    PAM
    Pluggable Authentication Modules
       A mechanism to integrate multiple low-level authentication schemes into a
@@ -442,6 +448,15 @@ Glossary of Terms
       function the data performs in classes.
 
       See: `Language: Data Types <https://docs.puppet.com/puppet/4.9/lang_data_type.html>`__
+
+   Puppetfile
+      A Ruby file that contains references to Puppet modules.
+
+      See the Puppetfile spec: https://github.com/puppetlabs/r10k/blob/master/doc/puppetfile.mkd
+
+   r10k
+      A code management tool that uses :term:`git` branches to automate the
+      development and deployment of :term:`Puppet` code.
 
    Rake
    Ruby Make
