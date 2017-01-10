@@ -13,9 +13,7 @@ Before installing clients, the system should consist of the following
 minimum requirements:
 
 -  Hardware/:term:`Virtual Machine` (VM) : Capable of running RHEL 6 or 7 ; 64-bit compatible
-
 -  RAM: 512 MB
-
 -  HDD: 15 GB
 
 Configuring the Puppet Master
@@ -28,7 +26,7 @@ Configure DNS
 +++++++++++++
 
 In SIMP, most managed, system configuration files are pulled over
-``rsync`` by Puppet for network efficiency. These managed files include
+``rsync`` by Puppet to minimize the cost of managing them. These managed files include
 DNS configuration files and can be found at
 ``/var/simp/environments/simp/rsync/OSTYPE/MAJORRELEASE/bind_dns/default``.
 
@@ -59,14 +57,14 @@ steps that follow are for a local setup:
     to more appropriately match your system configuration.
 
 3. Type ``puppet agent -t --tags named`` on the Puppet Master to apply
-   the changes. 
+   the changes.
 4. Validate DNS and ensure the ``/etc/resolv.conf`` is updated appropriately.
-5. If an error about the rndc.key appears when starting bind, 
+5. If an error about the rndc.key appears when starting bind,
    see `Bind Documentation <https://www.isc.org/downloads/bind/>`_ for more
    information.  Once you have resolved the problem, re-run the puppet command
    ``puppet agent -t --tags named`` on the Puppet Master to apply.
 
-.. important::
+.. IMPORTANT::
 
   You can adjust the list of clients in your
   ``named/var/named/forward/<your.domain>.db`` and
@@ -154,10 +152,10 @@ installed :term:`CA` certificates.
 The table below lists the steps to determine which certificates are working and
 which are not.
 
-#. Navigate to ``/etc/puppetlabs/code/environments/simp/keydist``
-#. Run ``find . -name “****<Your.Domain>*.pub” -exec openssl verify -CApath cacerts {} \;``
+#. Navigate to ``/var/simp/environments/simp/site_files/pki_files/files/keydist``
+#. Run ``find . -name “****<your.domain>*.pub” -exec openssl verify -CApath cacerts {} \;``
 
-.. important::
+.. IMPORTANT::
 
   The screen displays ``./<Host Name>.<Your.Domain>/<Host
   Name>.<Your.Domain>.pub: OK`` If anything other than OK appears for each
@@ -166,8 +164,8 @@ which are not.
 If the TXT_DB error number 2 appears, revoke the certificate that is being
 regenerated. The table below lists the steps to revoke the certificate.
 
-#. Navigate to ``/etc/puppetlabs/code/environments/simp/keydist;``
-#. Run 
+#. Navigate to ``/var/simp/environments/simp/site_files/pki_files/files/keydist``
+#. Run
    ::
 
      OPENSSL_CONF=default.cnf openssl ca -revoke \

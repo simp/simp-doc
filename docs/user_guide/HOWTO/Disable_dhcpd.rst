@@ -9,7 +9,7 @@ Hiera:
 
 .. code-block:: yaml
 
-  simp::kickstart_server::manage_dhcp: false
+  simp::server::kickstart::manage_dhcp: false
 
 
 Alternatively, if you don't want SIMP to be a kickstart server, either, just

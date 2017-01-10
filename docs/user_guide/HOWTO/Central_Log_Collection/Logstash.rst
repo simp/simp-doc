@@ -226,8 +226,8 @@ your initial cluster.
   # to communicate with this host.
   #
   # SIMP does not support multicast connectivity for security reasons.
- 
-  # You need to add your grafana hosts to the apache ACL 
+
+  # You need to add your grafana hosts to the apache ACL
   simp_elasticsearch::http_method_acl :
     'limits' :
       'hosts' :

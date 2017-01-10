@@ -16,10 +16,10 @@ Copy these files into ``/root/ldifs`` and fix their Distinguished Names:
 
 .. code-block:: bash
 
-  mkdir /root/ldifs
-  cp /usr/share/doc/simp-doc-*/ldifs/* /root/ldifs
-  cd /root/ldifs
-  sed -i 's/dc=your,dc=domain/<your actual DN information>/g' \*.ldif
+  $ mkdir /root/ldifs
+  $ cp /usr/share/doc/simp-doc-*/ldifs/* /root/ldifs
+  $ cd /root/ldifs
+  $ sed -i 's/dc=your,dc=domain/<your actual DN information>/g' \*.ldif
 
 .. WARNING::
   Do not leave any extraneous spaces in LDIF files!
@@ -59,10 +59,10 @@ To add a user with a password to the system, along with a unique group for
 that user:
 
 1. Login to the LDAP server as ``root``.
-2. Use the ``slappasswd`` command to generate a password hash for a user. 
+2. Use the ``slappasswd`` command to generate a password hash for a user.
 3. Edit the ``/root/ldifs/adduser_with_password.ldif`` shown below.
 
-.. code-block:: ruby
+.. code-block:: yaml
 
   dn: cn=<username>,ou=Group,dc=your,dc=domain
   objectClass: posixGroup
@@ -70,7 +70,7 @@ that user:
   cn: <username>
   gidNumber: <Unique GID Number>
   description: "<Group Description>"
-  
+
   dn: uid=<username>,ou=People,dc=your,dc=domain
   uid: <username>
   cn: <username>
@@ -99,7 +99,7 @@ that user:
 
 .. code-block:: bash
 
-  ldapadd -Z -x -W -D "cn=LDAPAdmin,ou=People,dc=your,dc=domain" \
+  $ ldapadd -Z -x -W -D "cn=LDAPAdmin,ou=People,dc=your,dc=domain" \
   -f /root/ldifs/adduser_with_password.ldif
 
 Ensure that an administrative account is created as soon as the SIMP system has
@@ -120,7 +120,7 @@ utilize sudo sudosh for privilege escalation.
    The initial password set for a user must conform to the password policy
    or the user will not be able to login and change his/her password, even
    though the password reset has been enabled by ``pwdReset: TRUE``.
-   
+
 
 Add a User without a Password
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -131,7 +131,7 @@ for that user
 1. Login to the LDAP server as ``root``.
 2. Edit the ``/root/ldifs/adduser_no_password.ldif`` shown below.
 
-.. code-block:: ruby
+.. code-block:: yaml
 
   dn: cn=<username>,ou=Group,dc=your,dc=domain
   objectClass: posixGroup
@@ -139,7 +139,7 @@ for that user
   cn: <username>
   gidNumber: <Unique GID Number>
   description: "<Group Description>"
-  
+
   dn: uid=<username>,ou=People,dc=your,dc=domain
   uid: <username>
   cn: <username>
@@ -162,7 +162,7 @@ for that user
 
 .. code-block:: bash
 
-   ldapadd -Z -x -W -D "cn=LDAPAdmin,ou=People,dc=your,dc=domain" \
+   $ ldapadd -Z -x -W -D "cn=LDAPAdmin,ou=People,dc=your,dc=domain" \
    -f /root/ldifs/adduser_no_password.ldif
 
 Remove a User
@@ -173,7 +173,7 @@ To remove a user from the system, along with a unique group for that user:
 1. Login to the LDAP server as ``root``.
 2. Edit the ``/root/ldifs/del_user.ldif`` shown below.
 
-.. code-block:: ruby
+.. code-block:: yaml
 
    dn: cn=<User UID>,ou=Group,dc=example,dc=domain
    changeType: delete
@@ -186,7 +186,7 @@ To remove a user from the system, along with a unique group for that user:
 
 .. code-block:: bash
 
-  ldapmodify -Z -x -W -D "cn=LDAPAdmin,ou=People,dc=your,dc=domain" \
+  $ ldapmodify -Z -x -W -D "cn=LDAPAdmin,ou=People,dc=your,dc=domain" \
   -f /root/ldifs/del_user.ldif
 
 Additional Common LDAP Operations
@@ -208,7 +208,7 @@ To add another group:
 1. Login to the LDAP server as ``root``.
 2. Edit the ``/root/ldifs/add_group.ldif`` shown below.
 
-.. code-block:: ruby
+.. code-block:: yaml
 
    dn: cn=<groupname>,ou=Group,dc=your,dc=domain
    objectClass: posixGroup
@@ -222,7 +222,7 @@ To add another group:
 
 .. code-block:: bash
 
-  ldapadd -Z -x -W -D "cn=LDAPAdmin,ou=People,dc=your,dc=domain" \
+  $ ldapadd -Z -x -W -D "cn=LDAPAdmin,ou=People,dc=your,dc=domain" \
   -f /root/ldifs/add_group.ldif
 
 Remove a Group
@@ -233,7 +233,7 @@ To remove a group:
 1. Login to the LDAP server as ``root``.
 2. Edit the ``/root/ldifs/del_group.ldif`` shown below.
 
-.. code-block:: ruby
+.. code-block:: yaml
 
   dn: cn=<Group Name>,ou=Group,dc=your,dc=domain
   changetype: delete
@@ -243,7 +243,7 @@ To remove a group:
 
 .. code-block:: bash
 
-  ldapmodify -Z -x -W -D "cn=LDAPAdmin,ou=People,dc=your,dc=domain" \
+  $ ldapmodify -Z -x -W -D "cn=LDAPAdmin,ou=People,dc=your,dc=domain" \
   -f /root/ldifs/del_group.ldif
 
 Add Users to a Group
@@ -254,7 +254,7 @@ To add users to a group:
 1. Login to the LDAP server as ``root``.
 2. Edit the ``/root/ldifs/add_to_group.ldif`` shown below.
 
-.. code-block:: ruby
+.. code-block:: yaml
 
   dn: cn=<Group Name>,ou=Group,dc=your,dc=domain
   changetype: modify
@@ -269,7 +269,7 @@ To add users to a group:
 
 .. code-block:: bash
 
-  ldapmodify -Z -x -W -D "cn=LDAPAdmin,ou=People,dc=your,dc=domain" \
+  $ ldapmodify -Z -x -W -D "cn=LDAPAdmin,ou=People,dc=your,dc=domain" \
   -f /root/ldifs/add_to_group.ldif
 
 Remove Users from a Group
@@ -280,7 +280,7 @@ To remove users from a group:
 1. Login to the LDAP server as ``root``.
 2. Edit the ``/root/ldifs/del_to_group.ldif`` shown below.
 
-.. code-block:: ruby
+.. code-block:: yaml
 
   dn: cn=<Group Name>,ou=Group,dc=your,dc=domain
   changetype: modify
@@ -295,7 +295,7 @@ To remove users from a group:
 
 .. code-block:: bash
 
-  ldapmodify -Z -x -W -D "cn=LDAPAdmin,ou=People,dc=your,dc=domain" \
+  $ ldapmodify -Z -x -W -D "cn=LDAPAdmin,ou=People,dc=your,dc=domain" \
   -f /root/ldifs/del_from_group.ldif
 
 Update a User's SSH Public Key
@@ -306,7 +306,7 @@ To update an SSH public key:
 1. Login to the LDAP server as ``root``.
 2. Edit the ``/root/ldifs/mod_sshkey.ldif`` shown below.
 
-.. code-block:: ruby
+.. code-block:: yaml
 
   dn: uid=<User UID>,ou=People,dc=your,dc=domain
   changetype: modify
@@ -329,8 +329,8 @@ To force a password reset for a user:
 1. Login to the LDAP server as ``root``.
 2. Edit the ``/root/ldifs/force_password_reset.ldif`` shown below.
 
-.. code-block:: ruby
-   
+.. code-block:: yaml
+
    dn: uid=<username>,ou=People,dc=your,dc=domain
    changetype: modify
    replace: pwdReset
@@ -344,7 +344,7 @@ To force a password reset for a user:
 
 .. code-block:: bash
 
-  ldapmodify -Z -x -W -D "cn=LDAPAdmin,ou=People,dc=your,dc=domain" \
+  $ ldapmodify -Z -x -W -D "cn=LDAPAdmin,ou=People,dc=your,dc=domain" \
   -f /root/ldifs/force_password_reset.ldif
 
 .. NOTE::
@@ -360,7 +360,7 @@ To lock an LDAP account:
 1. Login to the LDAP server as ``root``.
 2. Edit the ``/root/ldifs/lock_user.ldif`` shown below.
 
-.. code-block:: ruby
+.. code-block:: yaml
 
   dn: uid=<username>,ou=People,dc=your,dc=domain
   changetype: modify
@@ -377,7 +377,7 @@ To lock an LDAP account:
 
 .. code-block:: bash
 
-  ldapmodify -Z -x -W -D "cn=LDAPAdmin,ou=People,dc=your,dc=domain" \
+  $ ldapmodify -Z -x -W -D "cn=LDAPAdmin,ou=People,dc=your,dc=domain" \
   -f /root/ldifs/lock_user.ldif
 
 .. NOTE::
@@ -394,7 +394,7 @@ To unlock an LDAP account:
 1. Login to the LDAP server as ``root``.
 2. Edit the ``/root/ldifs/unlock_account.ldif`` shown below.
 
-.. code-block:: ruby
+.. code-block:: yaml
 
   dn: uid=<User UID>,ou=People,dc=your,dc=domain
   changetype: modify
@@ -405,7 +405,7 @@ To unlock an LDAP account:
 
 .. code-block:: bash
 
-  ldapmodify -Z -x -W -D "cn=LDAPAdmin,ou=People,dc=your,dc=domain" \
+  $ ldapmodify -Z -x -W -D "cn=LDAPAdmin,ou=People,dc=your,dc=domain" \
    -f /root/ldifs/unlock_account.ldif
 
 .. NOTE::

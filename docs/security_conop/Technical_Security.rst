@@ -16,12 +16,10 @@ User Identification and Authentication
 Identification and authentication of system and service users can occur at
 either the :term:`Operating System` level or globally in the SIMP architecture.
 While local accounts and groups can be created manually, the SIMP team suggests
-adding users via the ``/etc/puppetlabs/code/environments/<environment>/localusers``
-file or by using the native Puppet user and group types. System users can
+adding users using the native Puppet user and group types. System users can
 authenticate their access using Secure Shell (SSH) keys or passwords. For more
 centralized control, identify and authenticate users by using the Lightweight
-Directory Access Protocol
-(:term:`LDAP`).
+Directory Access Protocol (:term:`LDAP`).
 [:ref:`IA-2`]
 
 The SIMP team recommends using :term:`LDAP` as the primary source for user
@@ -189,7 +187,7 @@ Application Direction Protocol   Transport Ports   Comment
 =========== ========= ========== ========= ======= =======================================================================
 Puppet      Localhost HTTP       TCP       8140    The port upon which the Puppet master listens for client connections via Apache
 Puppet CA   In        HTTPS      TCP       8141    This is used to ensure that Apache can verify all certificates from external systems properly prior to allowing access to Puppet.
-Apache/YUM  In        HTTP       TCP       80      This is used for YUM and is unencrypted, since YUM will not work otherwise.
+Apache/YUM  In        HTTP       TCP       443     This is used for YUM and is encrypted using https.
 DHCPD       In        DHCP/BOOTP TCP/UDP   546,547 DHCP pooling is disabled by default and should only be used if the implementation requires the use of this protocol.
 TFTP        In        TFTP       TCP/UDP   69      This is used for kickstart. It could also be used to update network devices. TFTP does not support encryption.
 rsyslog     Out       syslog     TCP/UDP   6514    This is encrypted when communicating with a SIMP syslog server (not installed by default).

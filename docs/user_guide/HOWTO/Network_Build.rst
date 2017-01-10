@@ -67,9 +67,9 @@ these locations on the newly built SIMP server.
 15. Type ``chmod -R u+rwX,g+rX,o-rwx /var/www;``
 16. Enter the following commands into the command line to adjust the file.
 
-  ::
+  .. code-block:: bash
 
-    cat << EOF >> /etc/yum.repos.d/filesystem.repo
+    $ cat << EOF >> /etc/yum.repos.d/filesystem.repo
     [flocal-x86_64]
     name=Local within the filesystem
     baseurl=file:///var/www/yum/SIMP/x86_64
@@ -79,9 +79,9 @@ these locations on the newly built SIMP server.
 
 17. Enter the following commands into the command line to adjust the file.
 
-  ::
+  .. code-block:: bash
 
-    cat << EOF >> /etc/yum.repos.d/filesystem.repo
+    $ cat << EOF >> /etc/yum.repos.d/filesystem.repo
     [frhbase]
     name=$ostype $rhversion base repo
     baseurl=file:///var/www/yum/CentOS/7/x86_64/Server

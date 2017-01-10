@@ -14,49 +14,49 @@ Below is an example class,
 ``/etc/puppetlabs/code/environments/simp/modules/site/manifests/workstation.pp``, that could be used to
 set up a user workstation.
 
-.. code-block:: ruby
+.. code-block:: puppet
 
-  class site::workstation {
-    include 'site::gui'
-    include 'site::repos'
-    include 'site::virt'
-    include 'site::automount'
-    include 'site::print::client'
+   class site::workstation {
+     include 'site::gui'
+     include 'site::repos'
+     include 'site::virt'
+     include 'site::automount'
+     include 'site::print::client'
 
-    # Make sure everyone can log into all nodes.
-    # If you want to change this, simply remove this line and add
-    # individual entries to your nodes as appropriate
-    pam::access::manage { "Allow Users":
-      comment => 'Allow all users in the "users" group to access the system from anywhere.',
-      users   => '(users)',
-      origins => ['ALL']
-    }
+     # Make sure everyone can log into all nodes.
+     # If you want to change this, simply remove this line and add
+     # individual entries to your nodes as appropriate
+     pam::access::rule { "Allow Users":
+       comment => 'Allow all users in the "users" group to access the system from anywhere.',
+       users   => ['(users)'],
+       origins => ['ALL']
+     }
 
-    # General Use Packages
-    package { [
-      'pidgin',
-      'git',
-      'control-center-extra',
-      'gconf-editor',
-      'evince',
-      'libreoffice-writer',
-      'libreoffice-xsltfilter',
-      'libreoffice-calc',
-      'libreoffice-impress',
-      'libreoffice-emailmerge',
-      'libreoffice-base',
-      'libreoffice-math',
-      'libreoffice-pdfimport',
-      'bluefish',
-      'gnome-media',
-      'pulseaudio',
-      'file-roller',
-      'inkscape',
-      'gedit-plugins',
-      'planner'
-    ]: ensure => 'latest'
-    }
-  }
+     # General Use Packages
+     package { [
+       'pidgin',
+       'git',
+       'control-center-extra',
+       'gconf-editor',
+       'evince',
+       'libreoffice-writer',
+       'libreoffice-xsltfilter',
+       'libreoffice-calc',
+       'libreoffice-impress',
+       'libreoffice-emailmerge',
+       'libreoffice-base',
+       'libreoffice-math',
+       'libreoffice-pdfimport',
+       'bluefish',
+       'gnome-media',
+       'pulseaudio',
+       'file-roller',
+       'inkscape',
+       'gedit-plugins',
+       'planner'
+     ]: ensure => 'latest'
+     }
+   }
 
 
 Graphical Desktop Setup
@@ -66,24 +66,24 @@ Below is an example manifest called
 ``/etc/puppetlabs/code/environments/simp/modules/site/manifests/gui.pp`` for setting up a graphical
 desktop on a user workstation.
 
-.. code-block:: ruby
+.. code-block:: puppet
 
-            class site::gui {
-              include 'xwindows::gdm'
-              include 'windowmanager::gnome'
-              include 'vnc::client'
+   class site::gui {
+     include 'gdm'
+     include 'gnome'
+     include 'vnc::client'
 
-               # Compiz Stuff
-              package { [
-                'fusion-icon',
-                'emerald-themes',
-                'compiz-fusion-extras',
-                'compiz-fusion-extras-gnome',
-                'vinagre'
-              ]:
-                ensure => 'latest'
-              }
-            }
+      # Compiz Stuff
+     package { [
+       'fusion-icon',
+       'emerald-themes',
+       'compiz-fusion-extras',
+       'compiz-fusion-extras-gnome',
+       'vinagre'
+     ]:
+       ensure => 'latest'
+     }
+   }
 
 
 Workstation Repositories
@@ -93,12 +93,12 @@ Below is an example manifest called
 ``/etc/puppetlabs/code/environments/simp/modules/site/manifests/repos.pp`` for setting up workstation
 repositories.
 
-.. code-block:: ruby
+.. code-block:: puppet
 
-            class site::repos {
-              # Whatever local yumrepo statements you need for installing
-              # your packages and keeping your systems up to date
-            }
+   class site::repos {
+     # Whatever local yumrepo statements you need for installing
+     # your packages and keeping your systems up to date
+   }
 
 
 Virtualization on User Workstations
@@ -108,76 +108,42 @@ Below is an example manifest called
 ``/etc/puppetlabs/code/environments/simp/modules/site/manifests/virt.pp`` for allowing virtualization
 on a user workstation.
 
-.. code-block:: ruby
+.. code-block:: puppet
 
-            # We allow users to run VMs on their workstations.
-            # If you don't want this, just don't include this class.
-            # If this is installed, VM creation and management is still limited by PolicyKit
+   # We allow users to run VMs on their workstations.
+   # If you don't want this, just don't include this class.
+   # If this is installed, VM creation and management is still limited by PolicyKit
 
-            class site::virt {
-              include 'libvirt::kvm'
-              include 'libvirt::ksm'
-              include 'network::redhat'
+   class site::virt {
+     include 'libvirt::kvm'
+     include 'libvirt::ksm'
+     include 'network'
 
-              network::redhat::add_eth { "em1":
-                bridge => 'br0',
-                hwaddr => $::macaddress_em1
-              }
+     network::eth { "em1":
+       bridge => 'br0',
+       hwaddr => $facts['macaddress_em1']
+     }
 
-              network::redhat::add_eth { "br0":
-                net_type => 'Bridge',
-                hwaddr => $::macaddress_em1,
-                require => Network::Redhat::Add_eth["em1"]
-              }
+     network::eth { "br0":
+       net_type => 'Bridge',
+       hwaddr   => $facts['macaddress_em1'],
+       require  => Network::Eth['em1']
+     }
 
-              common::swappiness::conf { 'default':
-                high_swappiness => '80',
-                max_swappiness => '100'
-              }
+     class { 'swappiness':
+       high_swappiness => 80,
+       max_swappiness  => 100
+     }
 
-              # If 80% of memory is used, flush caches.
-              exec { 'flush_cache_himem':
+     # If 80% of memory is used, flush caches.
+     exec { 'flush_cache_himem':
+       command => '/bin/echo 1 > /proc/sys/vm/drop-caches',
+       onlyif => inline_template("/bin/<%= memoryfree.split(/\s/)[0].
+       to_f/memorysize.split(/\s/)[0].to_f < 0.2 ? true : false %>")
+     }
 
-                command => '/bin/echo 1 > /proc/sys/vm/drop-caches',
-                onlyif => inline_template("/bin/<%= memoryfree.split(/\s/)[0].
-                to_f/memorysize.split(/\s/)[0].to_f < 0.2 ? true : false %>")
-              }
-
-              package { 'virt-manager': ensure => 'latest' }
-            }
-
-
-Network File System
--------------------
-
-Below is an example manifest called
-``/etc/puppetlabs/code/environments/simp/modules/site/automount.pp`` for Network File System setup.
-
-.. code-block:: ruby
-
-            #If you are not using NFS, you do not need to include this.
-
-            class site::automount {
-              include '::autofs'
-
-              file { '/net':
-                ensure => 'directory',
-                mode   => '0755'
-              }
-
-              #A global share
-              Autofs::map::master { ‘share’:
-                mount_point => ‘/net’,
-                map_name    => ‘/etc/autofs/share.map’
-              }
-
-              #Map the share
-              autofs::map::entry { ‘share’:
-                options  => ‘-fstype=nfs4, port=2049.soft’,
-                location => “${::nfs_server}:/share’,
-                Target   => ‘share’
-              }
-            }
+     package { 'virt-manager': ensure => 'latest' }
+   }
 
 
 Printer Setup
@@ -192,22 +158,22 @@ Below is an example manifest called
 ``/etc/puppetlabs/code/environments/simp/modules/site/manifests/print/client.pp`` for setting up a
 print client.
 
-.. code-block:: ruby
+.. code-block:: puppet
 
-            class site::print::client inherits site::print::server {
-              polkit::local_authority { 'print_support':
-                identity                 => ['unix_group:*'],
-                action                   => 'org.opensuse.cupskhelper.mechanism.*',
-                section_name       => 'Allow all print management permissions',
-                result_any            => 'yes',
-                result_interactive => 'yes',
-                result_active         => 'yes'
-              }
+   class site::print::client inherits site::print::server {
+     polkit::local_authority { 'print_support':
+       identity           => ['unix_group:*'],
+       action             => 'org.opensuse.cupskhelper.mechanism.*',
+       section_name       => 'Allow all print management permissions',
+       result_any         => 'yes',
+       result_interactive => 'yes',
+       result_active      => 'yes'
+     }
 
-              package { 'cups-pdf': ensure => 'latest' }
-              package { 'cups-pk-helper': ensure => 'latest' }
-              package { 'system-config-printer': ensure => 'present' }
-            }
+     package { 'cups-pdf': ensure => 'latest' }
+     package { 'cups-pk-helper': ensure => 'latest' }
+     package { 'system-config-printer': ensure => 'present' }
+   }
 
 
 Setting up a Print Server
@@ -217,22 +183,22 @@ Below is an example manifest called
 ``/etc/puppetlabs/code/environments/simp/modules/site/manifests/print/server.pp`` for setting up a
 print server.
 
-.. code-block:: ruby
+.. code-block:: puppet
 
-            class site::print::server {
+   class site::print::server {
 
-              # Note, this is *not* set up for being a central print server.
-              # You'll need to add the appropriate IPTables rules for that to work.
-              package { 'cups': ensure => 'latest' }
+     # Note, this is *not* set up for being a central print server.
+     # You'll need to add the appropriate IPTables rules for that to work.
+     package { 'cups': ensure => 'latest' }
 
-              service { 'cups':
-                enable     => 'true',
-                ensure     => 'running',
-                hasrestart => 'true',
-                hasstatus  => 'true',
-                require    => Package['cups']
-              }
-            }
+     service { 'cups':
+       enable     => 'true',
+       ensure     => 'running',
+       hasrestart => 'true',
+       hasstatus  => 'true',
+       require    => Package['cups']
+     }
+   }
 
 
 VNC Setup
@@ -244,7 +210,7 @@ through the standard setup or a proxy.
 VNC Standard Setup
 ~~~~~~~~~~~~~~~~~~
 
-.. note::
+.. NOTE::
 
     You must have the ``pupmod-simp-vnc`` RPM installed to use VNC on your
     system!
@@ -281,7 +247,7 @@ To set up additional VNC port settings, refer to the code in
 ``/etc/puppetlabs/code/environments/simp/modules/vnc/manifests/server.pp``
 for examples.
 
-.. important::
+.. IMPORTANT::
 
     Multiple users can log on to the same system at the same time with
     no adverse effects; however, none of these sessions are persistent.
@@ -296,7 +262,7 @@ VNC Through a Proxy
 The section describes the process to VNC through a proxy. This setup
 provides the user with a persistent VNC session.
 
-.. important::
+.. IMPORTANT::
 
     In order for this setup to work, the system must have a VNC server
     (``vserver.your.domain``), a VNC client (``vclnt.your.domain``), and a
@@ -330,7 +296,7 @@ VNC client node
 
   # vclnt.your.domain.yaml
   classes:
-    - 'windowmanager::gnome'
+    - 'gnome'
     - 'mozilla::firefox'
     - 'vnc::client'
 
@@ -359,21 +325,22 @@ Set up a tunnel from the client (vclnt), through the proxy server
 up the tunnel.
 
 
-1. On the workstation, type ssh -l vuser -L 590***<Port Number>*:localhost:590***<Port Number>***proxy.your.domain**
+1. On the workstation, type ``ssh -l vuser -L 590***<Port Number>*:localhost:590***<Port Number>***proxy.your.domain**``
 
-  .. note:: This command takes the user to the proxy.
+  .. NOTE:: This command takes the user to the proxy.
 
-2. On the proxy, type ssh -l vuser -L 590***<Port Number>*:localhost:590***<Port Number>***vserv.your.domain**
+2. On the proxy, type ``ssh -l vuser -L 590***<Port Number>*:localhost:590***<Port Number>***vserv.your.domain**``
 
-  .. note:: This command takes the user to the VNC server.
+  .. NOTE:: This command takes the user to the VNC server.
 
 Table: Set Up SSH Tunnel Procedure
 
-.. note::
+.. NOTE::
 
     The port number in 590\ *<Port Number>* is the same port number as
     previously described. For example, if the *<Port Number>* was 6,
     then all references below to 590\ *<Port Number>* become 5906.
+
 
 Set Up Clients
 ++++++++++++++

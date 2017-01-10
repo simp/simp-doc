@@ -22,73 +22,64 @@ Configure the following settings in ``simp_def.yaml`` in the hiera directory:
 
 .. code-block:: yaml
 
- # === use_ldap ===
- # Whether or not to use LDAP on this system.
- # If you disable this, modules will not attempt to use LDAP where possible.
- "simp_options::ldap": true
+  # === ldap ===
+  # Whether or not to use LDAP on this system.
+  # If you disable this, modules will not attempt to use LDAP where possible.
+  simp_options::ldap: true
 
- # === ldap::base_dn ===
- # The Base DN of the LDAP server
- "simp_options::ldap::base_dn": "dc=your,dc=domain"
+  # The Base DN of the LDAP server
+  simp_options::ldap::base_dn: "dc=your,dc=domain"
 
- # === ldap::bind_dn ===
- # LDAP Bind Distinguished Name
- "simp_options::ldap::bind_dn": "cn=hostAuth,ou=Hosts,%{hiera('ldap::base_dn')}"
+  # LDAP Bind Distinguished Name
+  simp_options::ldap::bind_dn: "cn=hostAuth,ou=Hosts,%{hiera('ldap::base_dn')}"
 
- # === ldap::bind_pw ===
- # The LDAP bind password
- "simp_options::ldap::bind_pw": "MyRandomlyGeneratedLargePassword"
+  # The LDAP bind password
+  simp_options::ldap::bind_pw: "MyRandomlyGeneratedLargePassword"
 
- # === ldap::bind_hash ===
- # The salted LDAP bind password hash
- "simp_options::ldap::bind_hash": "{SSHA}9nByVJSZFBe8FfMkar1ovpRxJLdB0Crr"
+  # The salted LDAP bind password hash
+  simp_options::ldap::bind_hash: "{SSHA}9nByVJSZFBe8FfMkar1ovpRxJLdB0Crr"
 
- # === ldap::sync_dn ===
- #
- "simp_options::ldap::sync_dn": "cn=LDAPSync,ou=Hosts,%{hiera('ldap::base_dn')}"
+  #
+  simp_options::ldap::sync_dn: "cn=LDAPSync,ou=Hosts,%{hiera('ldap::base_dn')}"
 
- # === ldap::sync_pw ===
- # The LDAP sync password
- "simp_options::ldap::sync_pw": "MyOtherRandomVeryLargePassword"
+  # The LDAP sync password
+  simp_options::ldap::sync_pw: "MyOtherRandomVeryLargePassword"
 
- # === ldap::sync_hash ===
- # The SSHA hash for ldap::sync_pw
- "simp_options::ldap::sync_hash": "{SSHA}VlgYUmRzyuuKZXM3L8RT28En/eqtuTUO"
+  # The SSHA hash for ldap::sync_pw
+  simp_options::ldap::sync_hash: "{SSHA}VlgYUmRzyuuKZXM3L8RT28En/eqtuTUO"
 
- # === ldap::root_dn ===
- # The LDAP root DN.
- "simp_options::ldap::root_dn": "cn=LDAPAdmin,ou=People,%{hiera('ldap::base_dn')}"
+  # The LDAP root DN.
+  simp_options::ldap::root_dn: "cn=LDAPAdmin,ou=People,%{hiera('ldap::base_dn')}"
 
- # === ldap::root_hash ===
- # The LDAP root password hash.
- #  If you set this with simp config, type the password and the hash will be
- # generated for you.'
- "simp_options::ldap::root_hash": "{SSHA}GSCDnNF6KMXBf1F8eIe5xvQxVJou3zGu"
+  # The LDAP root password hash.
+  # If you set this with simp config, type the password and the hash will be
+  # generated for you.'
+  simp_options::ldap::root_hash: "{SSHA}GSCDnNF6KMXBf1F8eIe5xvQxVJou3zGu"
 
- # === ldap::master ===
- # This is the LDAP master in URI form (ldap://server)
- "simp_options::ldap::master": "ldap://ldap_server1.your.domain"
+  # This is the LDAP master in URI form (ldap://server)
+  simp_options::ldap::master: ldap://ldap_server1.your.domain
 
- # === ldap::uri ===
- # List of OpenLDAP servers in URI form (ldap://server)
- "simp_options::ldap::uri":
-   - "ldap://ldap_server1.your.domain"
+  # === ldap::uri ===
+  # List of OpenLDAP servers in URI form (ldap://server)
+  simp_options::ldap::uri:
+    - ldap://ldap_server1.your.domain
 
- # === sssd::domains ===
- # A list of domains for SSSD to use.
- # `simp config` will automatically populate this field with `FQDN` if
- # `use_fqdn` is true, otherwise it will comment out the field.
- #
- "sssd::domains":
-   - LDAP
+  # === sssd::domains ===
+  # A list of domains for SSSD to use.
+  # `simp config` will automatically populate this field with `FQDN` if
+  # `use_fqdn` is true, otherwise it will comment out the field.
+  #
+  sssd::domains:
+    - LDAP
+
 
 Add the `simp::ldap_server` class into the yaml file for the ldap server in
 Hiera (`hieradata/hosts/ldap_server1.your.domain.yaml`):
 
 .. code-block:: yaml
 
- classes :
-   - 'simp::ldap_server'
+  classes :
+    - 'simp::server::ldap'
 
 Leave any other classes that are there if they are needed.  Run the puppet
 agent on the ldap server until it runs cleanly. Run the agent on the puppet
@@ -96,7 +87,7 @@ server.  Once all the other clients update against the Puppet server, they will
 be able to authenticate against the LDAP server.  Adding users and groups is
 described in the :ref:`User_Management`.
 
-.. note::
+.. NOTE::
 
  Information on how the create salted ({SSHA}) passwords can be found at the
  `OpenLDAP site <http://www.openldap.org/faq/data/cache/347.html>`__.
@@ -120,11 +111,11 @@ add the following lines to the
 
 .. code-block:: yaml
 
- simp::ldap_server::is_slave : true
- simp::ldap_server::rid  : "888"
+  simp::server::ldap:is_slave: true
+  simp::server::ldap:rid: "888"
 
- classes :
-    - 'simp::ldap_server'
+  classes :
+    - 'simp::server::ldap'
 
 .. _URI:
 
@@ -133,13 +124,13 @@ lists of URIs in the ``hieradata/simp_def.yaml`` file:
 
 .. code-block:: yaml
 
- # === ldap::uri ===
- # List of OpenLDAP servers in URI form (ldap://server)
- "ldap::uri":
-   - "ldap://ldap_server1.your.domain"
-   - "ldap://ldap_server2.your.domain"
+  # === ldap::uri ===
+  # List of OpenLDAP servers in URI form (ldap://server)
+  simp_options::ldap::uri:
+    - ldap://ldap_server1.your.domain
+    - ldap://ldap_server2.your.domain
 
-.. note::
+.. NOTE::
 
  To see the defaults for LDAP replication in SIMP, review the parameters passed
  to the module ``openldap/manifests/server/syncrepl.pp``. These parameters are
@@ -158,17 +149,17 @@ In this example, the site profile is called `site::ldapslave` and the RID of
 the server is `999` (these can be changed).  One setting, `sizelimit`, is being
 overwritten but you can overwrite any number of them.
 
-.. code-block:: ruby
+.. code-block:: puppet
 
- class site::ldapslave {
+  class site::ldapslave {
 
-   include 'simp::ldap_server'
+    include 'simp::server::ldap'
 
-   # custom settings:
-   openldap::server::syncrepl { '999':
-     sizelimit  => '5000',
-   }
- }
+    # custom settings:
+    openldap::server::syncrepl { '999':
+      sizelimit  => '5000',
+    }
+  }
 
 The name of the `openldap::server::syncrepl` instance must be a unique replication id.
 
@@ -177,8 +168,8 @@ Place this file in the `site::` module's  `manifests/` directory using the name
 
 .. code-block:: yaml
 
- classes :
- - 'site::ldapslave'
+  classes :
+    - 'site::ldapslave'
 
 
 Lastly, add the server to the URI_ listing in `simp_def.yaml` so all the
@@ -195,9 +186,8 @@ server's hiera .yaml file and change the setting for the master ldap in the
 
 .. code-block:: yaml
 
- # === ldap::master ===
- # This is the LDAP master in URI form (ldap://server)
- "ldap::master": "ldap://ldap_server1.your.domain"
+  # This is the LDAP master in URI form (ldap://server)
+  simp_options::ldap::master: ldap://ldap_server1.your.domain
 
 For a redundant server set up using custom settings, remove the call to the
 custom class and replace it with the call to the site::ldap_server class in the
@@ -237,9 +227,9 @@ LDAP Administrator needs to perform this action. Refer to the
 OpenLDAP.
 
 The example below shows the changes necessary to update the
-``ldap::sync`` information in LDAP.
+``simp_options::ldap::sync`` information in LDAP.
 
-Update ``ldap::sync`` Information in LDAP Examples
+Update ``simp_options::ldap::sync`` Information in LDAP Examples
 
 .. code-block:: yaml
 

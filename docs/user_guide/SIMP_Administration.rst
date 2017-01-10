@@ -3,7 +3,7 @@ General Administration
 
 This chapter provides basic guidance on how to administer a SIMP environment.
 
-.. warning::
+.. WARNING::
     While working with the system, keep in mind that Puppet does not work well
     with capital letters in host names. Therefore, they should not be used.
 
@@ -43,14 +43,7 @@ this section, we will assume that this is sufficient for your needs.
 The Operating System Repos
 ^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-.. only:: not simp_4
-
-The default location for the OS repositories is ``/var/www/yum/${::operatingsystem}/7/x86_64``.
-
-
-.. only:: simp_4
-
-The default location for the OS repositories is ``/var/www/yum/${::operatingsystem}/6/x86_64``.
+The default location for the OS repositories is ``/var/www/yum/OSTYPE/MAJORRELEASE/x86_64``.
 
 An ``Updates`` repository has been configured in this space. All OS updates
 should be placed within this directory.
@@ -74,8 +67,6 @@ For this example, we are going to assume that you have a repository named
 ``foo`` that you would like to expose to your systems. You would perform the
 following commands to enable this repository on the server:
 
-.. only:: not simp_4
-
   .. code-block:: bash
 
      $ cd /var/www/yum
@@ -87,22 +78,9 @@ following commands to enable this repository on the server:
      $ find . -type f -exec chmod 640 {} \;
      $ find . -type d -exec chmod 750 {} \;
 
-.. only:: simp_4
-
-  .. code-block:: bash
-
-     $ cd /srv/www/yum
-     $ mkdir foo
-     $ cd foo
-     $ -- copy all RPMs into the folder
-     $ createrepo .
-     $ chown -R root.apache ./*
-     $ find . -type f -exec chmod 640 {} \;
-     $ find . -type d -exec chmod 750 {} \;
-
 
 By placing the ``basepath`` of the repository within the default path served by
-Apache, it will be exposed to all networks in ``$client_nets``.  To modify the
+Apache, it will be exposed to all networks in ``simp_options::trusted_nets``.  To modify the
 package set in any repository at any time, re-run:
 
 .. code-block:: bash
@@ -184,13 +162,6 @@ It is also possible that there will be users that are local to the system. To
 have these users follow the normal password expiration conventions set on the
 system, use the native Puppet user and group types.
 
-To have a user that does not expire, look at the
-``/etc/puppetlabs/code/environments/simp/localusers`` file to enable these users across
-the systems.  The comments in the file provide instructions on generating
-entries for the desired systems. It is hoped that future versions of Puppet
-will support the modification of password expiration values via the native
-types and that the ``localusers`` file will be retired.
-
 Certificate Management
 ----------------------
 
@@ -208,7 +179,7 @@ These certificates are set to expire annually. To change this, edit the
 following files with the number of days for the desired lifespan of the
 certificates:
 
-.. note::
+.. NOTE::
     This assumes that the user has generated Certificates with the
     FakeCA provided by SIMP. If official certificates are being used,
     these settings must be changed within the official CA, not on the
@@ -228,7 +199,7 @@ In addition, any certificates that have already been created and signed will
 have a config file containing all of its details in
 ``/etc/puppetlabs/code/environments/simp/FakeCA/output/conf/``.
 
-.. important::
+.. IMPORTANT::
     Editing any entries in the above mentioned config files will not
     affect the existing certificates. To make changes to an existing
     certificate it must be re-created and signed.
@@ -259,8 +230,8 @@ The SIMP Utility
 The SIMP server provides a command line utility called ``simp`` that is a
 simple interface into some SIMP-specific settings and subsystems.
 
-The best source of information on the capabilities of this tool are the man
-page which can be accessed via ``man simp``.
+The best source of information on the capabilities of this tool are the help
+page which can be accessed via ``simp help``.
 
 .. _simp passgen:
 

@@ -4,7 +4,7 @@
 Hiera Overview
 ==============
 
-SIMP now uses Hiera natively instead of Extdata. From Puppet Labs
+SIMP uses Hiera to assign classes to nodes. From the Puppet, Inc
 website: Hiera is a key/value lookup tool for configuration data, built
 to set node-specific data without repeating yourself. It is an attempt
 to make SIMP more configurable to you, the end user. It configures
@@ -24,11 +24,11 @@ file, say default.yaml, as such:
 
 Adding a Key/Value Pair to Hiera Examples
 
-.. code-block:: xml
+.. code-block:: yaml
 
-          ---
-          classfoo::parameter_bar: "Woo"
-          classfoo::parameter_baz: "Hoo"
+    ---
+    classfoo::parameter_bar: "Woo"
+    classfoo::parameter_baz: "Hoo"
 
 
 You can then 'include classfoo' on any node, with parameter\_bar and
@@ -110,14 +110,17 @@ SIMP Hiera File Structure
   hierarchy of your backends.
 - ``/etc/puppetlabs/code/environments/simp/hieradata/`` Default location of the yaml files which
   contain your node data
-- ``/etc/puppetlabs/code/environments/simp/hieradata/simp_classes.yaml`` The list of default classes
+- ``/etc/puppetlabs/code/environments/simp/hieradata/simp/simp.yaml`` The list of default classes
   to include on any SIMP system.
-- ``/etc/puppetlabs/code/environments/simp/hieradata/simp_def.yaml`` Contains the variables needed to
-  configure a working SIMP system. Modified by simp-config.
+- ``/etc/puppetlabs/code/environments/simp/hieradata/simp/site/*.yaml`` Contains the variables needed to
+  configure a working SIMP system. Added by simp-config.
 - ``/etc/puppetlabs/code/environments/simp/hieradata/hosts/`` By populating this directory with
   some.host.name.yaml file, you can assign parameters to host some.host.name
 - ``/etc/puppetlabs/code/environments/simp/hieradata/domains/`` Same principal as hosts, but domain
   names.
+- ``/etc/puppetlabs/code/environments/simp/hieradata/hostgroups/`` The hostgroup of a node can be computer
+  in `site.pp`. Nodes assigned to hostgroup `$hostgroup` will read hiera from a file named
+  `$hostgroup.yaml` in this directory.
 - ``/etc/puppetlabs/code/environment/simp/manifests/`` Contains site.pp and all other node manifests.
   BE CAREFUL when modifying this directory, site.pp contains your globals.
   This directory can be used to supplement or even REPLACE Hiera, with

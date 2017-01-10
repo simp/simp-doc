@@ -5,7 +5,7 @@ Sample kickstart templates have been provided in the ``/var/www/ks`` directory o
 
 In this section we describe how to configure the Kickstart and TFTP servers to PXE boot a SIMP client.  (The DHCP server setup, also required for PXE booting, is discussed in and earlier chapter.)
 
-.. note:: This example sets up a PXE boot for a system that is the same OS as the SIMP Server. If you are setting up a PXE boot for a different OS then you must make sure that the OS packages are available for all systems you are trying to PXE boot through YUM. There are notes throughout the instructions to help in setting multiple OS but they are not comprehensive.  You should understand DHCP, KS, YUM and TFTP relationships for PXE booting before attempting this.
+.. NOTE:: This example sets up a PXE boot for a system that is the same OS as the SIMP Server. If you are setting up a PXE boot for a different OS then you must make sure that the OS packages are available for all systems you are trying to PXE boot through YUM. There are notes throughout the instructions to help in setting multiple OS but they are not comprehensive.  You should understand DHCP, KS, YUM and TFTP relationships for PXE booting before attempting this.
 
 
 Setting Up Kickstart
@@ -29,9 +29,9 @@ This section describes how to configure the kickstart server.
 #. Type ``chown root.apache /var/www/ks/*`` to ensure that all files are owned by ``root`` and in the ``apache`` group.
 #. Type ``chmod 640 /var/www/ks/*`` to change the permissions so the owner can read and write the file and the ``apache`` group can only read.
 
-.. note:: The URLs and locations in the file are setup for a default SIMP install. That means the same OS and version as the SIMP server, all servers in one location (on the SIMP server) and in specific directories. If you have installed these servers in a different location than the defaults, you may need to edit URLs or directories.
+.. NOTE:: The URLs and locations in the file are setup for a default SIMP install. That means the same OS and version as the SIMP server, all servers in one location (on the SIMP server) and in specific directories. If you have installed these servers in a different location than the defaults, you may need to edit URLs or directories.
 
-.. note:: If you want to PXE boot more than this operating system, make a copy of these files, name them appropriately and update URLS and links inside and anything else you may need. (You must know what you are doing before attempting this.) If you are booting more than one OS you must also make sure your YUM server has the OS packages for the other OSs. By default the YUM server on SIMP has the packages only for the version of OS installed on the SIMP server.
+.. NOTE:: If you want to PXE boot more than this operating system, make a copy of these files, name them appropriately and update URLS and links inside and anything else you may need. (You must know what you are doing before attempting this.) If you are booting more than one OS you must also make sure your YUM server has the OS packages for the other OSs. By default the YUM server on SIMP has the packages only for the version of OS installed on the SIMP server.
 
 Setting up TFTP
 ~~~~~~~~~~~~~~~
@@ -44,15 +44,9 @@ ____________
 
 Verify the static files are in the correct location:
 
-.. only:: simp_4
+Type ``cd /var/simp/enviroments/simp/rsync/OSTYPE/MAJORRELEASE/tftpboot``
 
- Type ``cd /srv/rsync/tftpboot`` and
-
-.. only:: not simp_4
-
- Type ``cd /var/simp/rsync/OSTYPE/MAJORRELEASE/tftpboot``
-
- (OSTYPE and MAJORRELEASE under rsync are the type and version of the SIMP server)
+(OSTYPE and MAJORRELEASE under rsync are the type and version of the SIMP server)
 
 Verify there is a ``linux-install`` directory and cd to this directory.
 
@@ -68,7 +62,7 @@ If these are not there then you must create the directories as needed and copy t
 ``/var/www/yum/OSTYPE/MAJORRELEASE/ARCH/images/pxeboot`` or from the images directory on the SIMP DVD.
 
 
-.. important:: The link is what is used in the TFTP configuration files.
+.. IMPORTANT:: The link is what is used in the TFTP configuration files.
 
 
 Manifest
@@ -99,19 +93,19 @@ Create a site manifest for the TFTP server on the Puppet server.
 
 .. code-block:: ruby
 
-  # Note the difference in the `extra` arguments here.
-  class site::tftpboot {
-    include '::tftpboot'
+   # Note the difference in the `extra` arguments here.
+   class site::tftpboot {
+     include '::tftpboot'
 
-    tftpboot::linux_model { 'el6_x86_64':
-      kernel => 'OSTYPE-MAJORRELEASE-ARCH/vmlinuz',
-      initrd => 'OSTYPE-MAJORRELEASE-ARCH/initrd.img',
-      ks     => "https://KSSERVER/ks/pupclient_x86_64.cfg",
-      extra  => "noverifyssl ksdevice=bootif\nipappend 2"
-    }
+     tftpboot::linux_model { 'el6_x86_64':
+       kernel => 'OSTYPE-MAJORRELEASE-ARCH/vmlinuz',
+       initrd => 'OSTYPE-MAJORRELEASE-ARCH/initrd.img',
+       ks     => "https://KSSERVER/ks/pupclient_x86_64.cfg",
+       extra  => "noverifyssl ksdevice=bootif\nipappend 2"
+     }
 
-    ::tftpboot::assign_host { 'default': model => 'el6_x86_64' }
-  }
+     tftpboot::assign_host { 'default': model => 'el6_x86_64' }
+   }
 
 2. Add the tftpboot site manifest on your puppet server node via Hiera.
    Create the file (or edit if it exists):  ``/etc/puppetlabs/code/environments/simp/hieradata/hosts/<tftp.server.fqdn>.yaml``.
@@ -127,4 +121,9 @@ Create a site manifest for the TFTP server on the Puppet server.
 3. After updating the above file, type ``puppet agent -t --tags tftpboot``
    on the Puppet server.
 
-.. note:: To PXE boot more OSs, create, in the tftpboot.pp file, a tftpboot::linux_model block for each OS type using the extra directories and kickstart files created using the notes in previous sections. Point individual systems to them by adding assign_host lines with their MAC pointing to the appropriate model name.
+.. NOTE::
+   To PXE boot more OSs, create, in the tftpboot.pp file, a tftpboot::linux_model
+   block for each OS type using the extra directories and kickstart files
+   created using the notes in previous sections. Point individual systems to
+   them by adding assign_host lines with their MAC pointing to the appropriate
+   model name.

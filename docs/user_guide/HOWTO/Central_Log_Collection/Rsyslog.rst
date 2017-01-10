@@ -23,7 +23,7 @@ Code to Enable the Server Logging Examples
 .. code-block:: yaml
 
   classes :
-    - 'simp::rsyslog::stock'
+    - 'simp_rsyslog'
 
 
 Enable the Clients

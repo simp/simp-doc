@@ -17,25 +17,25 @@ The example below shows an IPtable NAT rule.
 
 Example of an IPtable NAT Rule
 
-.. code-block:: ruby
+.. code-block:: puppet
 
-  iptables::add_rules { "nat_global":
-     table => "nat",
-     first => "true",
-     absolute => "true",
-     header => "false",
-     content => "
+   iptables::rule { 'nat_global':
+     table    => 'nat',
+     first    => true,
+     absolute => true,
+     header   => false,
+     content  => '
      :PREROUTING ACCEPT [0:0]
      :POSTROUTING ACCEPT [0:0]
      :OUTPUT ACCEPT [0:0]
-     "
+     '
    }
 
- iptables::add_rules { "nat_test":
-     table   => "nat",
-     header  => "false",
-     content => "
+   iptables::rule { 'nat_test':
+     table   => 'nat',
+     header  => false,
+     content => '
      -A PREROUTING --physdev-in
      eth1 -j DROP
-     "
+     '
    }
