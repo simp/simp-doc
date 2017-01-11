@@ -1,6 +1,10 @@
 HOWTO Configure a Puppet Server Behind a NAT
 ============================================
 
+.. ATTENTION::
+
+  This page was written for Puppet 3 and SIMP versions less than 6.
+
 This section provides guidance for when the Puppet server is behind a
 NAT but is managing hosts outside the NAT.
 
@@ -16,11 +20,11 @@ any client.  To update your certificates follow the guidance:
 
 2) Regenerate ALL certificates on Puppet:
 
-   http://docs.puppetlabs.com/puppet/3.8/reference/ssl_regenerate_certificates.html
+   https://docs.puppet.com/puppet/3.8/ssl_regenerate_certificates.html
 
    In Section 2 of the web page above that says update your Puppetdb
    certificates follow the instructions in Step 3, option A at this
    location:
 
-   http://docs.puppetlabs.com/puppetdb/2.3/install_from_source.html#step-3-option-a-run-the-ssl-configuration-script
+   https://docs.puppet.com/puppetdb/2.3/install_from_source.html#step-3-option-a-run-the-ssl-configuration-script
 

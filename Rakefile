@@ -363,7 +363,7 @@ which are simply available in the repository.
   task :linkcheck do
     cmd = "sphinx-build -T -E -n -b linkcheck -d sphinx_cache docs linkcheck"
     puts "== #{cmd}"
-    %x(#{cmd} > /dev/null)
+    %x(#{cmd})
   end
 
   desc 'run a local web server to view HTML docs on http://localhost:5000'

@@ -138,11 +138,11 @@ Glossary of Terms
       node definitions in the main site manifest (site.pp).
 
       The `Puppet Enterprise Console
-      <https://docs.puppetlabs.com/pe/latest/console_accessing.html>`__ and
-      `The Foreman <http://theforeman.org/>`__ are two examples of External
+      <https://docs.puppet.com/pe/latest/console_accessing.html>`__ and
+      `The Foreman <https://theforeman.org/>`__ are two examples of External
       Node Classifiers.
 
-      Source: `External Node Classifiers <https://docs.puppetlabs.com/guides/external_nodes.html>`__
+      Source: `External Node Classifiers <https://docs.puppet.com/guides/external_nodes.html>`__
 
    EPEL
    Extra Packages for Enterprise Linux
@@ -212,7 +212,7 @@ Glossary of Terms
       :term:`Puppet` better and let you set node-specific data without
       repeating yourself.
 
-      Source: `Hiera Overview <http://docs.puppetlabs.com/hiera/latest/>`__
+      Source: `Hiera Overview <https://docs.puppet.com/hiera/latest/>`__
 
    initrd
       The `Initial RAMDisk`. A complete environment that is loaded at boot time
@@ -320,7 +320,7 @@ Glossary of Terms
       1901 and now part of the U.S. Department of Commerce. NIST is one of the
       nation's oldest physical science laboratories.
 
-      Source: `NIST - About NIST <https://www2.nist.gov/about-nist>`__
+      Source: `NIST - About NIST <https://www.nist.gov/about-nist>`__
 
    NIST SP
    NIST Special Publication
@@ -335,7 +335,7 @@ Glossary of Terms
       Security and Privacy Controls for Federal Information Systems and
       Organizations
 
-      See: `SP 800-53 <http://nvlpubs.nist.gov/nistpubs/SpecialPublications/NIST.SP.800-53r4.pdf>`__
+      See: `SP 800-53 <https://web.nvd.nist.gov/view/800-53/home>`__
 
    NFS
    Network File System
@@ -347,7 +347,7 @@ Glossary of Terms
    Open Source
       Following an Open Source Initiative approved License.
 
-      See: `The Open Source Definition <https://opensource.org/osd-annotated>`__
+      See: `The Open Source Definition <http://opensource.org/osd-annotated>`__
 
    OpenSCAP
       The OpenSCAP project provides tools that are free to use anywhere you
@@ -405,7 +405,7 @@ Glossary of Terms
 
    Puppet
       An :term:`Open Source` configuration management tool written and
-      maintained by `Puppet Labs <http://www.puppetlabs.com>`__. Written as a
+      maintained by `Puppet Labs <http://www.puppet.com>`__. Written as a
       Ruby DSL, Puppet provides a declarative language that allows system
       administrators to provide a consistently applied management
       infrastructure. Users describes system resource and resource state in the
@@ -589,7 +589,7 @@ Glossary of Terms
       allowing greater control of the launch stack through a Measured Launch
       Environment (MLE) and enabling isolation in the boot process.
 
-      Source: `Intel Trusted Execution Technology: White Paper <http://www.intel.com/content/www/us/en/architecture-and-technology/trusted-execution-technology/trusted-execution-technology-security-paper..htmlhttp://www.intel.com/content/www/us/en/architecture-and-technology/trusted-execution-technology/trusted-execution-technology-security-paper..html>`_
+      Source: `Intel Trusted Execution Technology: White Paper <http://www.intel.com/content/www/us/en/architecture-and-technology/trusted-execution-technology/trusted-execution-technology-security-paper..html>`_
 
    tboot
    Trusted Boot

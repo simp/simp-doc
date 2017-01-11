@@ -395,7 +395,7 @@ The *Fake CA* certificates should be replaced with your own hardware-generated
 certificates if at all possible. The *Puppet CA* may be replaced but please
 understand all ramifications to the infrastructure before doing so.
 
-More information on the Puppet CA can be found in the Puppet Labs `security documentation <http://projects.puppetlabs.com/projects/1/wiki/certificates_and_security>`__.
+More information on the Puppet CA can be found in the Puppet Labs `security documentation <https://docs.puppet.com/background/ssl/index.html>`__.
 [:ref:`SC-17`, :ref:`SC-13`]
 
 .. WARNING::

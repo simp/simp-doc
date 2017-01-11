@@ -123,4 +123,4 @@ If both PAM and DNS appear to be correct, you should next validate that your
 
 See :ref:`pki_validation` for additional guidance.
 
-.. _pam::access::manage: https://github.com/simp/pupmod-simp-pam/blob/master/manifests/access/manage.pp#L8:L44
+.. _pam::access::manage: https://github.com/simp/pupmod-simp-pam/blob/master/manifests/access/rule.pp

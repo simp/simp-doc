@@ -1,4 +1,5 @@
 # build reStructuredText documentation
+# Commented section of this file should eventually build RTD flavored PDFs.
 ---
 language: python
 sudo: true
