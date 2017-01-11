@@ -157,8 +157,8 @@ bootstrapping.
 |               |  ``/etc/grub2.cfg``.                                         |
 +---------------+--------------------------------------------------------------+
 |Certificates   | If no certificates for the host are found in                 |
-|               | ``/etc/puppetlabs/code/environments/simp/modules/pki/        |
-|               | files/keydist``, ``simp config``                             |
+|               | ``/etc/puppetlabs/code/environments/simp/modules/pki/``      |
+|               | ``files/keydist``, ``simp config``                           |
 |               | will use the FakeCA to generate certificates needed by SIMP  |
 |               | for the host.  These certificates are independent of the     |
 |               | certificates managed by Puppet, itself.                      |
