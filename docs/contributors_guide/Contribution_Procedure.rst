@@ -85,7 +85,7 @@ The first commit message should be the following format:
 .. _squash: https://github.com/blog/2141-squash-your-commits
 .. _pull request: https://help.github.com/articles/using-pull-requests
 .. _Allow edits from maintainers: https://help.github.com/articles/allowing-changes-to-a-pull-request-branch-created-from-a-fork/
-.. _Travis-CI: https://travis-ci.org/simp
+.. _Travis-CI: http://travis-ci.org/simp
 .. _review: https://help.github.com/articles/reviewing-proposed-changes-in-a-pull-request/
 .. _JIRA issues can be referenced: https://confluence.atlassian.com/bitbucket/processing-jira-software-issues-with-smart-commit-messages-298979931.html
 .. _JIRA Smart Commit Tags: https://confluence.atlassian.com/bitbucket/processing-jira-software-issues-with-smart-commit-messages-298979931.html

@@ -34,5 +34,5 @@ control family, X is the control section, and Y is the control enhancement.
 
   If you believe that we are missing anything in particular, please `file a bug`_!
 
-.. _800-53: http://nvlpubs.nist.gov/nistpubs/SpecialPublications/NIST.SP.800-53r4.pdf
-.. _file a bug: http://simp-project.atlassian.net
+.. _800-53: https://web.nvd.nist.gov/view/800-53/home
+.. _file a bug: https://simp-project.atlassian.net

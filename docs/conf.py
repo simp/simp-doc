@@ -82,7 +82,7 @@ if on_rtd:
     github_version_targets.insert(0,os.environ.get('READTHEDOCS_VERSION'))
     simp_version = os.environ.get('READTHEDOCS_VERSION')
     os_simp_spec_urls = []
-    
+
     for version_target in github_version_targets:
         os_simp_spec_urls.append('/'.join([github_base, 'simp-core', version_target, 'src', 'build', 'simp.spec']))
 
@@ -252,7 +252,7 @@ if os_ver_mapper_content != None:
                     if (not on_rtd) and (release == full_version):
                         saved_major_version = el_major_version
                         saved_minor_version = el_minor_version
- 
+
                     if (on_rtd) and (release == full_version):
                         saved_major_version = el_major_version
                         saved_minor_version = el_minor_version
@@ -425,6 +425,12 @@ pygments_style = 'sphinx'
 # If true, `todo` and `todoList` produce output, else they produce nothing.
 todo_include_todos = True
 
+# A regex of yum repos that the linkcheck builder should ignore
+linkcheck_ignore = [
+  r'^http[s]?:\/\/.*epel\/', # epel repos
+  r'^http[s]?:\/\/yum\.puppet' # puppetlabs repos
+  r'^http[s]?:\/\/groups\.google\.com\/forum\/\?fromgroups#!forum\/simp' # these links don't resolve properly in the checker
+ ]
 
 # -- Options for HTML output ----------------------------------------------
 
