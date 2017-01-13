@@ -26,6 +26,7 @@ the SIMP server:
 
   a) Type ``mkdir /var/simp/environments/simp/site_files/pki_files/files/keydist/***<Client System FQDN>***``
   b) Type
+
      .. code-block:: bash
 
        mv ***<Certificate Directory>***/***<FQDN>***.[pem|pub] \
