@@ -10,3 +10,4 @@ Contents:
   Technical_Security
   Operational_Security
   System_Management
+  Scans
