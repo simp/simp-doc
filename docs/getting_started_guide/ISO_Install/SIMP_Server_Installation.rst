@@ -60,7 +60,7 @@ Preparing the SIMP Server Environment
 
 #. Boot the system and ensure the SIMP ISO is selected.
 
-  - If you do not have a SIMP ISO, see :ref:`SIMP ISO`.
+  - If you do not have a SIMP ISO, see :ref:`gsg-building_simp_from_tarball`.
 
 #. Press *Enter* to run the standard SIMP install, or choose from the
    customized options list.
@@ -77,6 +77,7 @@ Preparing the SIMP Server Environment
       password.
    c. Type a new password when prompted for the New Password. Retype the
       password when prompted.
+
 #. Change the ``simp`` user password
 
    a. At the console, log on as ``simp`` and type the default password shown
@@ -98,7 +99,7 @@ Installing the SIMP Server
     certificate validation appear, check the Puppet server and client times to
     ensure they are synchronized.
 
-..  WARNING::
+.. WARNING::
     Keep in mind as the installation process begins that Puppet does not
     work well with capital letters in host names. Therefore, they should
     not be used.
@@ -129,7 +130,7 @@ Installing the SIMP Server
 
 #. Type ``simp bootstrap``
 
-.. note::
+.. NOTE::
   If progress bars are of equal length and the bootstrap finishes quickly, a
   problem has occurred. This is most likely due to an error in SIMP
   configuration. Refer to the previous step and make sure that all
@@ -164,3 +165,4 @@ Performing Post-installation Setup on the SIMP Server
 #. Reboot your system:
 
    Type ``reboot``
+
