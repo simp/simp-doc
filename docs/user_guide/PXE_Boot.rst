@@ -44,9 +44,9 @@ ____________
 
 Verify the static files are in the correct location:
 
-Type ``cd /var/simp/enviroments/simp/rsync/OSTYPE/MAJORRELEASE/tftpboot``
+Type ``cd /var/simp/enviroments/simp/rsync/<OSTYPE>/<MAJORRELEASE>/tftpboot``
 
-(OSTYPE and MAJORRELEASE under rsync are the type and version of the SIMP server)
+(<OSTYPE> and <MAJORRELEASE> under rsync are the type and version of the SIMP **server**)
 
 Verify there is a ``linux-install`` directory and cd to this directory.
 
@@ -59,7 +59,7 @@ Under OSTYPE-MAJORRELEASE.MINORRELEASE-ARCH you should find the files:
 - vmlinuz
 
 If these are not there then you must create the directories as needed and copy the files from
-``/var/www/yum/OSTYPE/MAJORRELEASE/ARCH/images/pxeboot`` or from the images directory on the SIMP DVD.
+``/var/www/yum/<OSTYPE>/<MAJORRELEASE>/<ARCH>/images/pxeboot`` or from the images directory on the SIMP DVD.
 
 
 .. IMPORTANT:: The link is what is used in the TFTP configuration files.

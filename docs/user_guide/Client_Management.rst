@@ -9,33 +9,32 @@ based on the standard SIMP system installed using the SIMP DVD.
 System Requirements
 -------------------
 
-Before installing clients, the system should consist of the following
-minimum requirements:
+Client systems should meet the following minimum requirements:
 
--  Hardware/:term:`Virtual Machine` (VM) : Capable of running RHEL 6 or 7 ; 64-bit compatible
+-  Hardware/:term:`Virtual Machine` (VM) : Capable of running RHEL 6 or 7 x86_64
 -  RAM: 512 MB
 -  HDD: 15 GB
 
 Configuring the Puppet Master
 -----------------------------
 
-Perform the following actions as ``root`` on the Puppet Master system
-prior to attempting to install a client.
+Perform the following actions as ``root`` on the Puppet Master system **prior**
+to attempting to install a client.
 
 Configure DNS
 +++++++++++++
 
-In SIMP, most managed, system configuration files are pulled over
-``rsync`` by Puppet to minimize the cost of managing them. These managed files include
-DNS configuration files and can be found at
-``/var/simp/environments/simp/rsync/OSTYPE/MAJORRELEASE/bind_dns/default``.
+In SIMP, numerous and/or large configuration files are distributed via
+``rsync`` by Puppet to minimize management cost. These managed files presently
+include DNS configuration files and can be found at
+``/var/simp/environments/simp/rsync/<OSTYPE>/<MAJORRELEASE>/bind_dns/default``.
 
-It is possible to use an existing DNS setup; however, the configuration
-steps that follow are for a local setup:
+The following configuration steps are for a SIMP-managed setup. However, you
+can use an existing DNS infrastructure.
 
-1. Navigate to ``/var/simp/environments/simp/rsync/OSTYPE/MAJORRELEASE/bind_dns/default``
+#. Navigate to ``/var/simp/environments/simp/rsync/<OSTYPE>/<MAJORRELEASE>/bind_dns/default``
 
-2. Modify the ``named`` files to correctly reflect the environment.
+#. Modify the ``named`` files to correctly reflect the environment.
 
    * The relevant files under ``bind_dns/default`` are as follows:
 
@@ -44,25 +43,24 @@ steps that follow are for a local setup:
      * ``named/var/named/forward/your.domain.db``
      * ``named/var/named/reverse/0.0.10.db``
 
-  * Review ``named/etc/named.conf`` and check/update the
-    following:
+  * Review ``named/etc/named.conf`` and update the following:
 
     * Update the :term:`IP` for allow-query and allow-recursion
     * Delete any unnecessary zone stanzas (i.e. forwarding) if not
       necessary
     * Substitute in the :term:`FQDN` of your domain for all occurrences of
-      your.domain
+      ``your.domain``
   * Add clients to ``named/var/named/forward/your.domain.db`` and
     ``named/var/named/reverse/0.0.10.db`` and then rename these files
-    to more appropriately match your system configuration.
+    to appropriately match your environment.
 
-3. Type ``puppet agent -t --tags named`` on the Puppet Master to apply
+#. Type ``puppet agent -t`` on the Puppet Master to apply
    the changes.
-4. Validate DNS and ensure the ``/etc/resolv.conf`` is updated appropriately.
-5. If an error about the rndc.key appears when starting bind,
-   see `Bind Documentation <https://www.isc.org/downloads/bind/>`_ for more
-   information.  Once you have resolved the problem, re-run the puppet command
-   ``puppet agent -t --tags named`` on the Puppet Master to apply.
+#. Validate DNS and ensure the ``/etc/resolv.conf`` is updated appropriately.
+#. If an error about the ``rndc.key`` appears when starting ``named``, see the
+   `Bind Documentation <https://www.isc.org/downloads/bind/>`_.  Once you have
+   resolved the issue, re-run the puppet command ``puppet agent -t`` on the
+   Puppet Master to apply.
 
 .. IMPORTANT::
 
@@ -78,21 +76,22 @@ Configure DHCP
 Perform the following actions as ``root`` on the Puppet Master system
 prior to attempting to install a client.
 
-Open the ``/var/simp/enviroments/simp/rsync/OSTYPE/MAJORRELEASE/dhcpd/dhcpd.conf`` file
+Open the ``/var/simp/enviroments/simp/rsync/<OSTYPE>/<MAJORRELEASE>/dhcpd/dhcpd.conf`` file
 and edit it to suit the necessary environment.
 
 Make sure the following is done in the ``dhcpd.conf`` :
 
-  * The ``next-server`` setting in the pxeclients class block points to
-    the IP Address of the :term:`TFTP` server.
+  * The ``next-server`` setting in the ``pxeclients`` class block points to the
+    IP Address of the :term:`TFTP` server.
   * Create a Subnet block and edit the following:
 
     - Make sure the **router** and **netmask** are correct for your
       environment.
     - Enter the hardware ethernet and fixed-address for each client that will
-      be kickstarted.  SIMP environments should not allow clients to pick
-      random IP Address in a subnet.  The MAC address must be associated with
-      and IP Address here. (You can add additional ones as needed.)
+      be kickstarted.  For increased security, it is suggested that SIMP
+      environments not allow clients to pick random IP Address in a subnet.
+      The MAC address must be associated with and IP Address here. (You can add
+      additional ones as needed.)
     - Enter the domain name for option **domain-name**
     - Enter the IP Address of the DNS server for option **domain-name-servers**
 
@@ -109,8 +108,8 @@ Run ``puppet agent -t`` on the Puppet Master to apply the changes.
 Setting Up the Client
 ---------------------
 
-The following lists the steps to :term:`PXE` boot the system and set up
-the client.
+The following lists the steps to :term:`PXE` boot the system and set up the
+client.
 
 #. Set up your client's :term:`BIOS` or virtual settings to boot off the
    network.
@@ -137,8 +136,7 @@ server, try the following options:
 * Check the time on the systems. More than an hour's difference will cause
   serious issues with certificates.
 * Remove ``/etc/puppetlabs/puppet/ssl`` on the client system; run ``puppet cert
-  --clean ***<Client Host Name>***`` on the Puppet server; and try again.
-
+  --clean ***<Client Host Name>***`` on the Puppet server and try again.
 
 .. _cm-troubleshoot-cert-issues:
 
@@ -161,8 +159,8 @@ which are not.
   Name>.<Your.Domain>.pub: OK`` If anything other than OK appears for each
   host, analyze the error and ensure that the CA certificates are correct.
 
-If the TXT_DB error number 2 appears, revoke the certificate that is being
-regenerated. The table below lists the steps to revoke the certificate.
+If the ``TXT_DB`` error number **2** appears, revoke the certificate that is
+being regenerated. The table below lists the steps to revoke the certificate.
 
 #. Navigate to ``/var/simp/environments/simp/site_files/pki_files/files/keydist``
 #. Run

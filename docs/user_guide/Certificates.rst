@@ -8,7 +8,7 @@ SIMP server and are served to the clients over the puppet protocol.
 
 .. NOTE::
 
-  These keypairs are not the keys that the Puppet server uses for its
+  These keypairs are **not** the keys that the Puppet server uses for its
   operation. Do not get the two confused.
 
 This section provides guidance on installing official certificates or, as
@@ -24,7 +24,7 @@ the SIMP server:
 1. Copy the certificates received from a proper :term:`CA` to the SIMP server.
 2. Add the keys for the node to ``/var/simp/environments/simp/site_files/pki_files/files/keydist``.
 
-  a) Type ``mkdir /var/simp/environments/simp/site_files/pki_files/files/keydist/***<Client System FQDN>***``
+  a) Type ``mkdir -p /var/simp/environments/simp/site_files/pki_files/files/keydist/***<Client System FQDN>***``
   b) Type
 
      .. code-block:: bash
@@ -47,14 +47,14 @@ the SIMP server:
 Generating Certificates from the Fake CA
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-If server certificates have not or could not be obtained at the time of
-client installation, SIMP provides a way to create them for the
-system, so that it will work until proper certificates are provided.
+If server certificates have not or could not be obtained at the time of client
+installation, SIMP provides a way to create them for the system, so that it
+will work until proper certificates are provided.
 
 .. NOTE::
 
-  This option should not be used for any operational system that can
-  use proper enterprise PKI certificates.
+  This option should not be used for any operational system that can use proper
+  enterprise PKI certificates.
 
 Below are the steps to generate the certificates using the SIMP-provided, Fake CA.
 
@@ -63,21 +63,33 @@ Below are the steps to generate the certificates using the SIMP-provided, Fake C
 3. Remove old entries from the file and add the :term:`Fully Qualified Domain Name`
    (FQDN) of the systems (one per line) for which certificates will be created.
 
-  .. NOTE:: To use alternate DNS names for the same system, separate the names with commas and without spaces. For example, ``.name,alt.name1,alt.name2.``
+  .. NOTE::
+
+    To use alternate DNS names for the same system, separate the names with
+    commas and without spaces.
+
+    For example, ``.name,alt.name1,alt.name2.``
 
 4. Type ``wc cacertkey``
 
-  .. NOTE:: Ensure that the ``cacertkey`` file is not empty. If it is, enter text into the file; then save and close the file.
+  .. NOTE::
+
+    Ensure that the ``cacertkey`` file is not empty. If it is, enter text into
+    the file; then save and close the file.
 
 5. Type ``./gencerts_nopass.sh auto``
 
-  .. NOTE:: To avoid using the default Fake CA values, remove the ``auto`` statement from the ``./gencerts_nopass.sh`` command.
+  .. NOTE::
+
+    To avoid using the default Fake CA values, remove the ``auto`` statement
+    from the ``./gencerts_nopass.sh`` command.
 
 .. WARNING::
 
   If the ``clean.sh`` command is run after the certificates have been
-  generated, the running system will break. To troubleshoot
-  certificate problems, see the :ref:`cm-troubleshoot-cert-issues` section.
+  generated, you will not be able to generate new host certificates under the
+  old CA. To troubleshoot certificate problems, see the
+  :ref:`cm-troubleshoot-cert-issues` section.
 
 If issues arise while generating keys, type ``cd /etc/puppetlabs/code/environments/simp/FakeCA``
 to navigate to the ``/etc/puppetlabs/code/environments/simp/FakeCA`` directory, then type
