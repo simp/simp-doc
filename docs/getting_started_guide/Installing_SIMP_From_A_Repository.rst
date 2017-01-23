@@ -27,7 +27,7 @@ Install The SIMP-Project Repository
 -----------------------------------
 
 Add the following to ``/etc/yum.repos.d/simp-project.repo``, replacing ``7`` with
-the appropriate version of EL and ``5`` with the appropriate version of SIMP. If 
+the appropriate version of EL and ``5`` with the appropriate version of SIMP. If
 the repo file does not exist, create it.
 ``EL 7`` with ``SIMP 5.X`` is shown below.
 
@@ -67,7 +67,7 @@ Install The SIMP-project_dependencies Repository
 
 Add the following to ``/etc/yum.repos.d/simp-project_dependencies.repo``,
 replacing ``7`` with the appropriate version of EL and ``5`` with the appropriate
-version of SIMP.  ``EL 7`` with ``SIMP 5.X`` is shown below. If 
+version of SIMP.  ``EL 7`` with ``SIMP 5.X`` is shown below. If
 the repo file does not exist, create it.
 
 If you don't know what versions map together, please see the

@@ -13,6 +13,8 @@ any client.  To update your certificates follow the guidance:
 
 1) Add the alternative certificate names (in a comma-separated list) in /etc/puppetlabs/puppet/puppet.conf
 
+  .. code-block:: ini
+
     [main]
 
     dns_alt_names = hostname.your.domain,hostname.your.other.domain

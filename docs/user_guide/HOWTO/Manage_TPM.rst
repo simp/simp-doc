@@ -25,7 +25,7 @@ Overview
 General hardware requirements:
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-   * A host with a TPM chip on the motherboard
+   * A host with a TPM 1.2 chip on the motherboard
 
 
 Trusted Boot hardware requirements:
@@ -39,8 +39,8 @@ Other non-puppet requirements:
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
    * A legacy, non-UEFI bootloader
-   * A BIOS password (it should require one to enable the TPM)
-   * Physical access to the machine to enter the BIOS password
+   * A BIOS password (one should be required to enable the TPM)
+   * Easy physical access to the machine to enter the BIOS password
 
 
 Enable and take ownership
@@ -111,7 +111,7 @@ reboots to be completely set up.
 
    .. code-block:: yaml
 
-     tpm::use_ima: true
+     tpm::ima: true
 
 #. Run puppet, then reboot.
 

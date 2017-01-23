@@ -33,13 +33,13 @@ To allow a user to access a particular system, you need to use the
 
 .. code-block:: ruby
 
-  pam::access::manage { 'Allow the security group into the system':
+  pam::access::rule { 'Allow the security group into the system':
     users   => ['(security)'],
     origins => ['ALL'],
     comment => 'The core security team'
   }
 
-  pam::access::manage { 'Allow bob into the system from the proxy only':
+  pam::access::rule { 'Allow bob into the system from the proxy only':
     users   => ['bob'],
     origins => ["proxy.${::domain}"],
     comment => 'Bob the proxied'
@@ -58,7 +58,7 @@ will need to reset ``faillock`` before authentication can occur.  To do so, run
 
 .. code-block:: bash
 
-   faillock --reset --user <user>
+   $ faillock --reset --user <user>
 
 LDAP Lockout
 ------------
@@ -71,7 +71,7 @@ To determine if the account is locked, run the following on the LDAP server:
 
 .. code-block:: bash
 
-  slapcat -a uid=<user>
+  $ slapcat -a uid=<user>
 
 If you see ``pwdAccountLockedTime`` then the account is locked, and you will
 need to follow the instructions in :ref:`unlock-ldap-label` to unlock it.

@@ -9,11 +9,11 @@ Add a User
 
 Create a user account based on the following example.
 
-.. code-block:: ruby
+.. code-block:: puppet
 
   user { "foo":
-    uid => <UID>,
-    gid => <GID>,
+    uid   => <UID>,
+    gid   => <GID>,
     shell => <Path to SFTP Server>
   }
 
@@ -24,5 +24,5 @@ Modify ``/etc/shells``
 ----------------------
 
 To modify ``/etc/shells`` to include the shell information provided in the
-previous user account example, add ``common::shells`` in Hiera, and add
+previous user account example, add ``useradd`` in Hiera, and add
 ``/usr/libexec/openssh/sftp-server`` to the list.

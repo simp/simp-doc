@@ -10,7 +10,6 @@ Contents:
 
   Introduction
   Client_Management
-  Maximum_Nodes
   SIMP_Administration
   User_Management
   Hiera_Overview

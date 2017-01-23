@@ -9,7 +9,7 @@ guise of an aptly named Fake CA.
 The Fake CA can be very useful for getting your environment running prior to
 obtaining proper certificates from an official CA.
 
-.. warning::
+.. WARNING::
 
   The Fake CA is **not** hardware backed by default and should not be used for
   sensitive cryptographic operations unless there is no other alternative
@@ -21,7 +21,7 @@ proceeding.
 For this section, we will assume that it is the 'simp' environment located at
 the active environment path.
 
-.. note::
+.. NOTE::
 
   Just as with Puppet certificates, the time on your system must be correct and
   your DNS must be fully functional. Check that these are correct before
@@ -40,7 +40,7 @@ return the string 'OK'.
 
 .. code-block:: bash
 
-  $ cd `puppet config print environmentpath`/simp/keydist
+  $ cd /var/simp/environments/`puppet config print environment`/site_files/pki_files/files/keydist
 
   # Validate the client system
   $ openssl verify -CApath cacerts system.my.domain

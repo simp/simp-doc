@@ -13,8 +13,8 @@ The simplest method of discarding root's e-mail is to redirect it to
   **absolutely sure** that you want to discard all of root's e-mail on your
   systems.
 
-.. code-block:: ruby
+.. code-block:: puppet
 
-   ::postfix::alias { 'root':
+   postfix::alias { 'root':
      values => '/dev/null'
    }

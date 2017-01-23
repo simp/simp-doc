@@ -20,12 +20,12 @@ If you **do** have a certificate in place, and need to register a client with th
 
   $ puppet cert clean <fqdn.of.the.client>
 
-.. warning::
+.. WARNING::
 
   If you delete the Puppet server's certificate, you will need to re-deploy
   Puppet certificates to **all** of your nodes!
 
-.. warning::
+.. WARNING::
 
   **NEVER RUN ``puppet cert clean --all``**
 
@@ -43,7 +43,7 @@ simply run the following on your client once the server is ready.
 Puppet Server Certificate Issues
 --------------------------------
 
-.. warning::
+.. WARNING::
 
   This is destructive to your Puppet communications. This should only be used
   if you have no other options.

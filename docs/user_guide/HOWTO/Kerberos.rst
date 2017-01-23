@@ -13,7 +13,7 @@ The module, by default, sets up a fully functional KDC in your environment and
 generates keytabs for one admin user, and all of your hosts that it can
 discover via :ref:`keydist <Certificates>`.
 
-.. note::
+.. NOTE::
   The `keydist` discovery only works if the KDC is on the same system as your
   Puppet Server!
 
@@ -23,7 +23,7 @@ Beginning with krb5
 The following sections give a brief guide on how to get started, for more
 information, please see the `official Red Hat documentation`_.
 
-.. note::
+.. NOTE::
   You can skip this section if you're using the default settings. These will
   complete the following for you with randomly generated passwords for all
   keytabs and the master password.
@@ -40,11 +40,11 @@ ACL Configuration
 The following Puppet code snippet will create an ACL for your admin user that
 is *probably* appropriate for your organization.
 
-.. code:: ruby
+.. code:: puppet
 
-  krb5_acl{ "${::domain}_admin":
-   principal       => "*/admin@${::domain}",
-   operation_mask  => '*'
+  krb5_acl { "${facts['domain']}_admin":
+    principal       => "*/admin@${facts['domain']}",
+    operation_mask  => '*'
   }
 
 Create Your Admin Principal
@@ -99,7 +99,7 @@ Move all of the resulting keytab files SECURELY to
 `<environment_dir>/keydist/<fqdn>/keytabs` on the Puppet server as appropriate
 for each file.
 
-.. note::
+.. NOTE::
 
   Make sure that all of your keytab directories are readable by the group
   **puppet** and not the entire world!
