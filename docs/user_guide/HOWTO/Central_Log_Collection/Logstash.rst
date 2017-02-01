@@ -426,6 +426,6 @@ different name.
 .. _Grafana: http://grafana.org/
 .. _SIMP Logstash module: https://github.com/simp/pupmod-simp-simp_logstash
 .. _Logstash documentation: https://www.elastic.co/guide/en/logstash/current/index.html
-.. _Elasticsearch scaling: http://lmgtfy.com/?q=elasticsearch+scaling
+.. _Elasticsearch scaling: https://www.elastic.co/guide/en/elasticsearch/guide/master/_scale_horizontally.html 
 .. _SIMP IPSec: https://github.com/simp/pupmod-simp-libreswan
 .. _simplib passgen(): https://github.com/simp/pupmod-simp-simplib/blob/master/lib/puppet/parser/functions/passgen.rb
