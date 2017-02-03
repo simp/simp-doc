@@ -425,11 +425,16 @@ pygments_style = 'sphinx'
 # If true, `todo` and `todoList` produce output, else they produce nothing.
 todo_include_todos = True
 
-# A regex of yum repos that the linkcheck builder should ignore
+# A regex of links that the linkcheck builder should ignore
 linkcheck_ignore = [
-  r'^http[s]?:\/\/.*epel\/', # epel repos
-  r'^http[s]?:\/\/yum\.puppet' # puppetlabs repos
-  r'^http[s]?:\/\/groups\.google\.com\/forum\/\?fromgroups#!forum\/simp' # these links don't resolve properly in the checker
+    # Links with anchors have issues
+    r'^http[s]?:\/\/.*#\w+$',
+    # ignore rpms
+    r'^http[s]?:\/\/.*\.rpm$',
+    # links that the resolver has trouble with
+    r'^http[s]?:\/\/groups\.google\.com\/forum\/\?fromgroups#!forum\/simp',
+    r'^http[s]?:\/\/travis-ci\.org',
+    r'^http[s]?:\/\/bundler\.io/rationale\.html'
  ]
 
 # -- Options for HTML output ----------------------------------------------
