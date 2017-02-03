@@ -347,7 +347,7 @@ Glossary of Terms
    Open Source
       Following an Open Source Initiative approved License.
 
-      See: `The Open Source Definition <http://opensource.org/osd-annotated>`__
+      See: `The Open Source Definition <https://opensource.org/osd-annotated>`__
 
    OpenSCAP
       The OpenSCAP project provides tools that are free to use anywhere you
@@ -405,7 +405,7 @@ Glossary of Terms
 
    Puppet
       An :term:`Open Source` configuration management tool written and
-      maintained by `Puppet Labs <http://www.puppet.com>`__. Written as a
+      maintained by `Puppet, Inc <https://puppet.com>`__. Written as a
       Ruby DSL, Puppet provides a declarative language that allows system
       administrators to provide a consistently applied management
       infrastructure. Users describes system resource and resource state in the
@@ -430,7 +430,7 @@ Glossary of Terms
    Red Hat®
    Red Hat®, Inc.
       A collection of many different software programs, developed by
-      `Red Hat®, Inc. <http://www.redhat.com>`__ and other members of the Open
+      `Red Hat®, Inc. <https://www.redhat.com>`__ and other members of the Open
       Source community. All software programs included in Red Hat Enterprise
       Linux® are GPG signed by Red Hat®, Inc. to indicate that they were
       supplied by Red Hat®, Inc.
