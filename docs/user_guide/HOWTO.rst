@@ -9,8 +9,6 @@ the SIMP system.
 
   Setup Central Log Collection <HOWTO/Central_Log_Collection>
   Change Puppet Masters <HOWTO/Changing_Puppet_Masters>
-  Disable dhcpd <HOWTO/Disable_dhcpd>
-  Disable named <HOWTO/Disable_named>
   Discard Mail to Root <HOWTO/Discard_Mail_to_Root>
   Exclude YUM Repositories <HOWTO/Exclude_Repositories>
   Configure NFS <HOWTO/NFS>
