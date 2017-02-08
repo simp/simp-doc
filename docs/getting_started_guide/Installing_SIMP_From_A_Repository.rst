@@ -110,59 +110,85 @@ Rebuild The Yum Cache
 
    $ sudo yum makecache
 
-Install SIMP
--------------
+Install the SIMP Server
+-----------------------
+
+1. Select the simp-adapter package appropriate for the version of Puppet
+   you will be using
+
+   * simp-adapter-foss:  Version appropriate for FOSS Puppet
+   * simp-adapter-pe:   Version appropriate for Puppet Enterprise
+
+2. Install the simp-adapter package
+
+.. code-block:: bash
+
+   $ sudo yum install -y simp-adapter-foss
+
+3. Install the remaining SIMP packages
+
 .. code-block:: bash
 
    $ sudo yum install -y simp
 
-Modify Yum URLs
----------------
+Configure and Bootstrap the SIMP Server
+---------------------------------------
 
-Set the following variables to repositories of your choosing in
-``/etc/puppetlabs/code/environments/production/hieradata/default.yaml``
+1. Login as root
+2. Type ``simp config`` and configure the system as prompted.
 
-.. code-block:: yaml
+  - ``simp config`` will prompt you for system settings and then apply the
+    smallest settings subset that is required to bootstrap the system.
+  - When applicable, ``simp config`` will present you with a
+    recommendation for each setting (variable).  To keep a recommended
+    value, press *Enter*. Otherwise, enter your desired value.
+  - ``simp config``  generates a log file containing details of the
+    configuration selected and actions taken.
+  - For more details about the installation variables set by ``simp config``
+    and the corresponding actions, see :ref:`Installation Miscellany`.
+  - For a list of additional options, type ``simp help config``.
 
-   # Full URL to a YUM repo for Operating System packages
-   simp::yum::os_update_url: 'http://mirror.centos.org/centos/$releasever/os/$basearch/'
-   # Full URL to a YUM repo for SIMP packages
-   simp::yum::simp_update_url: 'https://packagecloud.io/simp-project/5_X/el/7/$basearch'
-
-SIMP Config
------------
-
-Run simp config:
-
-.. code-block:: bash
-
-   $ simp config
+    - ``simp config --dry-run`` will run through all of the ``simp config``
+      prompts without applying any changes to the system. This is the
+      option to run to become familiar with the variables set by
+      ``simp config`` or generate a configuration file to be used as
+      a template for subsequent ``simp config`` runs.
+    - ``simp config -a <Config File>`` will load a previously generated
+      configuration in lieu of prompting for settings, and then apply the
+      settings.  This is the option to run for systems that will be rebuilt
+      often.
 
 .. NOTE::
-  If you intend to use FIPS, set ``use_fips=true`` during simp config and follow
-  the `Enable FIPS`_ instructions after config is complete.  Otherwise, set it to
-  ``false`` and skip Enable FIPS.
+  Once ``simp config`` has been run, three SIMP configuration files
+  will be generated:
 
-Enable FIPS
------------
+  - ``/root/.simp/simp_conf.yaml``: File containing  all your
+    ``simp config`` settings; can include additional settings related
+    to ones you entered and other settings required for SIMP.
+  - ``/etc/puppetlabs/code/environments/simp/hieradata/simp_config_settings.yaml``:
+    File containing global hieradata relevant to SIMP clients and
+    the SIMP server.
+  - ``/etc/puppetlabs/code/environments/simp/hieradata/hosts/<host>.yaml``:
+    SIMP server host YAML file.
+
+
+3. Type ``simp bootstrap``
+
+.. NOTE::
+  If progress bars are of equal length and the bootstrap finishes quickly, a
+  problem has occurred. This is most likely due to an error in SIMP
+  configuration. Refer to the previous step and make sure that all
+  configuration options are correct.
+
+4. Reboot your system
 
 .. code-block:: bash
 
-   $ rm -rf /etc/puppetlabs/puppet/ssl
-   $ yum-config-manager --enable base
-   $ yum install dracut-fips
-   $ dracut -f
-   $ reboot now
+   $ reboot
 
-SIMP Bootstrap
---------------
 
-.. code-block:: bash
-
-   $ simp bootstrap
-
-Clients
--------
+Bootstrap SIMP Clients
+----------------------
 
 Use the ``runpuppet`` script from the newly created SIMP server to bootstrap
 your clients.
