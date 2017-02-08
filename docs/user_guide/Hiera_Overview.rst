@@ -79,10 +79,10 @@ puppet server, puppet.your.domain:
 
 
 SIMP File Structure
-===================
+-------------------
 
-In the Puppet environment, which is located at
-``/etc/puppetlabs/code/environments/simp`` by default in SIMP, contains almost
+The default puppet environment in SIMP, located at
+``/etc/puppetlabs/code/environments/simp``, contains almost
 all necessary files for a Puppet infrastructure. It will look like this on a
 fresh SIMP system:
 
@@ -97,7 +97,7 @@ fresh SIMP system:
    └── simp_autofiles/
 
 - ``environment.conf`` - Sets the environment to include the second SIMP modulepath.
-- ``FakeCA/`` - Face certificate authority. See :ref:`Certificates`.
+- ``FakeCA/`` - Fake certificate authority. See :ref:`Certificates`.
 - ``manifests/`` - Contains site.pp and all other node manifests.
 - ``hieradata/`` - Default location of the yaml files which contain your node data
 - ``modules/`` - Default install location of Puppet modules. Each module RPM copies files here during installation from ``/usr/share/simp/modules``.
@@ -105,7 +105,7 @@ fresh SIMP system:
 
 
 Second Modulepath
-"""""""""""""""""
+-----------------
 
 SIMP utilizes a second modulepath to ensure that deployment tools like r10k
 don't squash keydist and some krb5 files. The path is
@@ -113,7 +113,7 @@ don't squash keydist and some krb5 files. The path is
 
 
 Hiera
-"""""
+-----
 
 .. code-block:: bash
 
@@ -130,11 +130,45 @@ Hiera
 - ``hieradata/hosts/`` - By populating this directory with some.host.name.yaml file, you can assign parameters to host some.host.name
 - ``hieradata/domains/`` - Same principal as hosts, but domain names.
 - ``hieradata/Redhat/`` - RedHat-specific hiera settings.
-- ``hieradata/CentOS/`` - RedHat-specific hiera settings, symlinks to ``hieradata/Redhat/``.
-- ``hieradata/hostgroups/`` - The hostgroup of a node can be computer in `site.pp`. Nodes assigned to hostgroup `$hostgroup` will read hiera from a file named `<hostgroup>.yaml` in this directory.
+- ``hieradata/CentOS/`` - CentOS-specific hiera settings, symlinks to ``hieradata/Redhat/``.
+- ``hieradata/hostgroups/`` - The hostgroup of a node can be computed in `site.pp`. Nodes assigned to hostgroup `$hostgroup` will read hiera from a file named `<hostgroup>.yaml` in this directory.
 - ``hieradata/default.yaml`` - Settings that should be applied to the entire infrastructure.
 - ``hieradata/simp_config_settings.yaml`` - Contains the variables needed to configure SIMP. Added by ``simp config``.
 - ``hieradata/scenarios/`` - Directory containing SIMP Scenarios, set in ``manifests/site.pp``.
 
-``/etc/puppetlabs/puppet/hiera.yaml`` Hiera's config file, used to control the
-hierarchy of your backends.
+``/etc/puppetlabs/puppet/hiera.yaml`` - Hiera's config file, used to control the
+hierarchy of your backends. The order of the files above mirrors that order in
+the distributed hiera.yaml.
+
+SIMP Scenarios
+--------------
+
+SIMP scenarios are groups of classes, setting, and simp_options that ensure the
+system is compliant and secure.
+
+There are currently three SIMP scenarios:
+- *simp*
+- *simp-lite*
+- *poss*
+
+The *simp* scenario includes all security features enabled by default, including
+iptables and svckill. This scenario is what stock SIMP used to look like in
+previous releases.
+
+The *simp-lite* scenario offers many security features, with a few explicity
+turned off. This scenario was designed to make it easier to implment SIMP in an
+existing environment, because it might not be trivial to flip SELinux to
+Enforcing on all nodes.
+
+The *poss* option is the barebones option. It only includes the ``pupmod``
+class, to configure Puppet agent on clients. All of the simp_options default to
+false, so SIMP will not do a lot of modification to clients through Puppet when
+using this scenario.
+
+.. NOTE::
+
+  The SIMP or Puppet server is exempt from most of these settings, and will be
+  using most features from the *simp* scenario by default. The SIMP server
+  should only have services on it related to Puppet and systems management, and
+  SIMP modules all work with all security features enabled.
+

@@ -4,8 +4,8 @@
 Client Management
 =================
 
-This chapter provides guidance to install and configure, via kickstart, SIMP
-clients based on the standard SIMP system installed using the SIMP DVD.
+This chapter provides guidance to install and configure SIMP clients, via
+kickstart, with the resources supplied by the SIMP ISO.
 
 This guide also assumes that your SIMP server is a :term:`yum` package repository.
 
