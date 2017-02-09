@@ -4,7 +4,9 @@ HOWTO Configure NFS
 .. contents:: This chapter describes multiple configurations of NFS including:
   :local:
 
-All implementations are based on ``pupmod-simp-nfs`` and ``pupmod-simp-simp``.
+All implementations are based on ``pupmod-simp-nfs``, ``pupmod-simp-simp_nfs``,
+and ``pupmod-simp-simp``.
+
 
 Exporting Non-Home Directories
 ------------------------------
@@ -12,13 +14,13 @@ Exporting Non-Home Directories
 **Goal:** Export ``/var/nfs_share`` on the server, mount as ``/mnt/nfs`` on the
 client.
 
+
 default.yaml
 ^^^^^^^^^^^^
 
 .. code-block:: yaml
 
   nfs::server: "your.server.fqdn"
-  nfs::server::trusted_nets: "%{hiera('simp_options::trusted_nets')}"
 
 Server
 ^^^^^^
@@ -91,7 +93,7 @@ In ``site/manifests/nfs_client.pp``:
     mount { "/mnt/nfs":
       ensure  => 'mounted',
       fstype  => 'nfs4',
-      device  => 'puppet.simp.test:/var/nfs_share',
+      device  => '<your nfs server>:/var/nfs_share',
       options => "sec=${nfs_security}",
       require => File['/mnt/nfs']
     }
@@ -116,10 +118,10 @@ Utilize the SIMP profile module ``simp_nfs``:
 
   #. ``simp_nfs``: Manages client and server configurations for managing nfs
      home directories.
-  #. ``simp_nfs::create_home_dirs``: Optional hourly cron that binds to a LDAP
-     server, ``ldap::uri`` by default, and creates a NFS home directory for all
-     users in the LDAP server. Also expires any home directories for users that
-     no longer exist in LDAP.
+  #. ``simp_nfs::export_home::create_home_dirs``: Optional hourly cron that
+     binds to a LDAP server, ``ldap::uri`` by default, and creates a NFS home
+     directory for all users in the LDAP server. Also expires any home
+     directories for users that no longer exist in LDAP.
 
 .. NOTE::
 
@@ -132,13 +134,13 @@ Utilize the SIMP profile module ``simp_nfs``:
    Any users logged onto a host at the time of module application will not have
    their home directories re-mounted until they log out and log back in.
 
+
 default.yaml
 ^^^^^^^^^^^^
 
 .. code-block:: yaml
 
   nfs::is_server: false
-  nfs::client::stunnel::nfs_server: <your nfs server>
   simp_nfs::home_dir_server: <your nfs server>
 
   classes:
@@ -150,12 +152,12 @@ Server
 
 .. code-block:: yaml
 
-  simp_nfs::export_home_dirs: true
   nfs::is_server: true
+  simp_nfs::export_home::create_home_dirs: true
 
   classes:
-    - simp_nfs
-    - simp_nfs::create_home_dirs
+    - simp_nfs::export::home
+
 
 Enabling Stunnel
 ----------------
@@ -166,13 +168,19 @@ If you wish to encrypt your NFS data using stunnel, set the stunnel simp_option:
 
   simp_options::stunnel: true
 
-And disable stunnel for nfs clients on the NFS server:
+Disable stunnel for nfs clients on the NFS server:
 
 .. code-block:: yaml
 
   # (Optional) If left to true, the nfs over stunnel will attempt to create a
   # loop and stunnel will fail to start
   nfs::client::stunnel: false
+
+Set your nfs server for the ``stunnel`` classes in ``nfs``:
+
+.. code-block:: yaml
+
+  nfs::client::stunnel::nfs_server: <your nfs server>
 
 
 Enabling krb5
@@ -185,6 +193,8 @@ Enabling krb5
   HIGHLY recommended you continue to use stunnel for encrypted
   nfs traffic.
 
+In addition to the code above, add the following code:
+
 default.yaml
 ^^^^^^^^^^^^
 
@@ -196,7 +206,6 @@ default.yaml
   nfs::secure_nfs: true
   simp_options::krb5: true
 
-
   krb5::kdc::auto_keytabs::global_services:
     - 'nfs'
 
@@ -206,13 +215,9 @@ Server
 
 .. code-block:: yaml
 
-  nfs::is_server: true
-  simp_nfs::create_home_dirs: true
-
   classes:
-    - 'simp_nfs'
-    - 'simp_nfs::create_home_dirs'
     - 'krb5::kdc'
+
 
 Clients
 ^^^^^^^
