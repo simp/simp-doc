@@ -1,6 +1,7 @@
 
 .. _Hiera:
 
+
 Hiera Overview
 ==============
 
@@ -12,6 +13,7 @@ Puppet in two ways: automatic parameter lookup/hiera lookup functions,
 and assigning classes to nodes. The former allows you to generate
 reusable code and concentrates parameter assignment to one directory.
 The latter is a supplement to the failed inheritance model.
+
 
 Setting Parameters
 ------------------
@@ -50,6 +52,7 @@ The third is ``hiera_hash``. This uses a hash merge lookup. It retrieves
 all hash values for a given key throughout the entire hierarchy and
 merges them into a single hash.
 
+
 Assigning Classes to Nodes
 --------------------------
 
@@ -63,6 +66,7 @@ with 'classes' **in its hierarchy**. Additionally, simp\_def.yaml is in
 the hierarchy of every node, so every node will receive those classes
 (by default).
 
+
 Assigning Defined Types to Nodes
 --------------------------------
 
@@ -73,58 +77,98 @@ site class ``/etc/puppetlabs/code/environments/simp/modules/site/manifests/my_si
 For example, to include tftpboot linux\_model and assign\_host on your
 puppet server, puppet.your.domain:
 
-Add the following code to a file tftpboot.pp in your site/manifests directory:
 
-.. code-block:: ruby
+SIMP File Structure
+-------------------
 
-        # in /etc/puppetlabs/code/environments/simp/modules/site/manifests/tftpboot.pp
-        # Set KSSERVER statically or use Hiera for lookup
+The default puppet environment in SIMP, located at
+``/etc/puppetlabs/code/environments/simp``, contains almost
+all necessary files for a Puppet infrastructure. It will look like this on a
+fresh SIMP system:
 
-        class site::tftpboot {
-          include 'tftpboot'
+.. code-block:: bash
 
-          tftpboot::linux_model { 'EL_MAJOR_VERSION':
-            kernel => 'EL_MAJOR_VERSION_x86_64/vmlinuz',
-            initrd => 'EL_MAJOR_VERSION_x86_64/initrd.img',
-            ks     => "https://KSSERVER/ks/pupclient_x86_64.cfg --noverifyssl inst.noverifyssl",
-            extra  => 'ipappend 2'
-          }
+   /etc/puppetlabs/code/environments/simp/
+   ├── environment.conf
+   ├── FakeCA/
+   ├── hieradata/
+   ├── manifests/
+   ├── modules/
+   └── simp_autofiles/
 
-          tftpboot::assign_host { 'default': model => 'EL_MAJOR_VERSION' }
-        }
-
-Then add the following code to your servers Hiera file,
- ``/etc/puppetlabs/code/environments/simp/hieradata/hosts/puppet.your.domain.yaml``
-
-.. code-block:: yaml
-
-          ---
-          classes:
-            - 'site::tftpboot'
+- ``environment.conf`` - Sets the environment to include the second SIMP modulepath.
+- ``FakeCA/`` - Fake certificate authority. See :ref:`Certificates`.
+- ``manifests/`` - Contains site.pp and all other node manifests.
+- ``hieradata/`` - Default location of the yaml files which contain your node data
+- ``modules/`` - Default install location of Puppet modules. Each module RPM copies files here during installation from ``/usr/share/simp/modules``.
+- ``simp_autofiles`` - SIMP files
 
 
-SIMP Hiera File Structure
--------------------------
+Second Modulepath
+-----------------
 
-- ``/etc/puppetlabs/puppet/hiera.yaml`` Hiera's config file, used to control the
-  hierarchy of your backends.
-- ``/etc/puppetlabs/code/environments/simp/hieradata/`` Default location of the yaml files which
-  contain your node data
-- ``/etc/puppetlabs/code/environments/simp/hieradata/simp/simp.yaml`` The list of default classes
-  to include on any SIMP system.
-- ``/etc/puppetlabs/code/environments/simp/hieradata/simp/site/*.yaml`` Contains the variables needed to
-  configure a working SIMP system. Added by simp-config.
-- ``/etc/puppetlabs/code/environments/simp/hieradata/hosts/`` By populating this directory with
-  some.host.name.yaml file, you can assign parameters to host some.host.name
-- ``/etc/puppetlabs/code/environments/simp/hieradata/domains/`` Same principal as hosts, but domain
-  names.
-- ``/etc/puppetlabs/code/environments/simp/hieradata/hostgroups/`` The hostgroup of a node can be computer
-  in `site.pp`. Nodes assigned to hostgroup `$hostgroup` will read hiera from a file named
-  `$hostgroup.yaml` in this directory.
-- ``/etc/puppetlabs/code/environment/simp/manifests/`` Contains site.pp and all other node manifests.
-  BE CAREFUL when modifying this directory, site.pp contains your globals.
-  This directory can be used to supplement or even REPLACE Hiera, with
-  nodes. Note that Hiera cannot regex hostnames to apply manifests, so a
-  node manifest will have to be created here if you wish to have that
-  ability.
+SIMP utilizes a second modulepath to ensure that deployment tools like r10k
+don't squash keydist and some krb5 files. The path is
+``/var/simp/environments/simp/site_files/``.
+
+
+Hiera
+-----
+
+.. code-block:: bash
+
+   /etc/puppetlabs/code/environments/simp/hieradata/
+   ├── CentOS -> RedHat/
+   ├── compliance_profiles/
+   ├── default.yaml
+   ├── hostgroups/
+   ├── hosts/
+   ├── RedHat/
+   ├── scenarios/
+   └── simp_config_settings.yaml
+
+- ``hieradata/hosts/`` - By populating this directory with some.host.name.yaml file, you can assign parameters to host some.host.name
+- ``hieradata/domains/`` - Same principal as hosts, but domain names.
+- ``hieradata/Redhat/`` - RedHat-specific hiera settings.
+- ``hieradata/CentOS/`` - CentOS-specific hiera settings, symlinks to ``hieradata/Redhat/``.
+- ``hieradata/hostgroups/`` - The hostgroup of a node can be computed in `site.pp`. Nodes assigned to hostgroup `$hostgroup` will read hiera from a file named `<hostgroup>.yaml` in this directory.
+- ``hieradata/default.yaml`` - Settings that should be applied to the entire infrastructure.
+- ``hieradata/simp_config_settings.yaml`` - Contains the variables needed to configure SIMP. Added by ``simp config``.
+- ``hieradata/scenarios/`` - Directory containing SIMP Scenarios, set in ``manifests/site.pp``.
+
+``/etc/puppetlabs/puppet/hiera.yaml`` - Hiera's config file, used to control the
+hierarchy of your backends. The order of the files above mirrors that order in
+the distributed hiera.yaml.
+
+SIMP Scenarios
+--------------
+
+SIMP scenarios are groups of classes, setting, and simp_options that ensure the
+system is compliant and secure.
+
+There are currently three SIMP scenarios:
+- *simp*
+- *simp-lite*
+- *poss*
+
+The *simp* scenario includes all security features enabled by default, including
+iptables and svckill. This scenario is what stock SIMP used to look like in
+previous releases.
+
+The *simp-lite* scenario offers many security features, with a few explicity
+turned off. This scenario was designed to make it easier to implment SIMP in an
+existing environment, because it might not be trivial to flip SELinux to
+Enforcing on all nodes.
+
+The *poss* option is the barebones option. It only includes the ``pupmod``
+class, to configure Puppet agent on clients. All of the simp_options default to
+false, so SIMP will not do a lot of modification to clients through Puppet when
+using this scenario.
+
+.. NOTE::
+
+  The SIMP or Puppet server is exempt from most of these settings, and will be
+  using most features from the *simp* scenario by default. The SIMP server
+  should only have services on it related to Puppet and systems management, and
+  SIMP modules all work with all security features enabled.
 
