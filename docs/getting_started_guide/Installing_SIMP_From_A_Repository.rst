@@ -131,6 +131,17 @@ Install the SIMP Server
 
    $ sudo yum install -y simp
 
+.. NOTE::
+  The ``simp`` RPM installs the SIMP core Puppet modules. Breaking changes in
+  these modules trigger a breaking change update in SIMP itself.
+
+  There are a large number of additional 'extra' modules that may be
+  individually installed. Search for ``pupmod`` via ``yum`` to discover what is
+  available.
+
+  If you wish to install all of the extra modules, you can simply run
+  ``sudo yum install -y simp-extras``
+
 Configure and Bootstrap the SIMP Server
 ---------------------------------------
 
