@@ -78,21 +78,23 @@ Create a site manifest for the TFTP server on the Puppet server.
 
 .. code-block:: ruby
 
-  class site::tftpboot {
-    include '::tftpboot'
+   # for CentOS/RedHat 7
+   class site::tftpboot {
+     include '::tftpboot'
 
-    tftpboot::linux_model { 'el7_x86_64':
-      kernel => 'OSTYPE-MAJORRELEASE-ARCH/vmlinuz',
-      initrd => 'OSTYPE-MAJORRELEASE-ARCH/initrd.img',
-      ks     => "https://KSSERVER/ks/pupclient_x86_64.cfg",
-      extra  => "inst.noverifyssl ksdevice=bootif\nipappend 2"
-    }
+     tftpboot::linux_model { 'el7_x86_64':
+       kernel => 'OSTYPE-MAJORRELEASE-ARCH/vmlinuz',
+       initrd => 'OSTYPE-MAJORRELEASE-ARCH/initrd.img',
+       ks     => "https://KSSERVER/ks/pupclient_x86_64.cfg",
+       extra  => "inst.noverifyssl ksdevice=bootif\nipappend 2"
+     }
 
-    ::tftpboot::assign_host { 'default': model => 'el7_x86_64' }
-  }
+     ::tftpboot::assign_host { 'default': model => 'el7_x86_64' }
+   }
 
 .. code-block:: ruby
 
+   # For CentOS/RedHat 6
    # Note the difference in the `extra` arguments here.
    class site::tftpboot {
      include '::tftpboot'
