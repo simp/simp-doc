@@ -81,7 +81,7 @@ The first commit message should be the following format:
 .. _Squash and Merge: https://github.com/blog/2141-squash-your-commits
 .. _SIMP JIRA: https://simp-project.atlassian.net
 .. _GitHub GUI to fork and clone: https://help.github.com/articles/fork-a-repo/
-.. _feature branch: https://www.atlassian.com/git/tutorials/comparing-workflows/feature-branch-workflow
+.. _feature branch: https://www.atlassian.com/git/tutorials/comparing-workflows#feature-branch-workflow
 .. _squash: https://github.com/blog/2141-squash-your-commits
 .. _pull request: https://help.github.com/articles/using-pull-requests
 .. _Allow edits from maintainers: https://help.github.com/articles/allowing-changes-to-a-pull-request-branch-created-from-a-fork/

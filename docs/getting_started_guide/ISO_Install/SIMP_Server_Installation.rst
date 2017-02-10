@@ -30,8 +30,8 @@ make the initial configuration easier and more repeatable.
 
 .. _ig-default-passwords:
 
-SIMP Default Passwords and Settings
------------------------------------
+SIMP Default Passwords
+----------------------
 
 Below is a table containing the default passwords found on a basic SIMP server
 upon install.
@@ -50,17 +50,12 @@ Simp User UserPassword
 
 Table: SIMP Default Passwords
 
-A table of variables that can be changed/defined during installation is located
-in :ref:`List of Installation Variables`.  Review this if you are unfamiliar
-with SIMP, as you will be prompted for the values for these variables during
-the SIMP server installation.
-
 Preparing the SIMP Server Environment
 -------------------------------------
 
 #. Boot the system and ensure the SIMP ISO is selected.
 
-  - If you do not have a SIMP ISO, see :ref:`gsg-building_simp_from_tarball`.
+   - If you do not have a SIMP ISO, see :ref:`gsg-building_simp_from_tarball`.
 
 #. Press *Enter* to run the standard SIMP install, or choose from the
    customized options list.
@@ -104,31 +99,44 @@ Installing the SIMP Server
     work well with capital letters in host names. Therefore, they should
     not be used.
 
-#. Log on as ``simp`` and run ``su -`` to gain root access.
-#. Type ``simp config``
+1. Log on as ``simp`` and run ``su -`` to gain root access.
+2. Type ``simp config`` and configure the system as prompted.
 
-  * Type ``simp config -a <Config File>`` to load a previously generated
-    configuration, instead of being prompted for settings.  This is the
-    option to run for systems that will be rebuilt often.
-  * For a list of additional options, type ``simp help config``.
-
-#. Configure the system as prompted.
-
-  * ``simp config`` will present you with a recommendation for each variable
-    that may be derived from existing OS settings.  To keep a recommended
+  - ``simp config`` will prompt you for system settings and then apply the 
+    smallest settings subset that is required to bootstrap the system.
+  - When applicable, ``simp config`` will present you with a
+    recommendation for each setting (variable).  To keep a recommended
     value, press *Enter*. Otherwise, enter your desired value.
-  * A list of the variables that are set by ``simp config`` is contained in
-    :ref:`List of Installation Variables`.
-  * A description of the installation preparation actions taken by
-    ``simp config``, in addition to the generation of a SIMP configuration
-    file, is contained in :ref:`simp config Actions`.
+  - ``simp config``  generates a log file containing details of the
+    configuration selected and actions taken.
+  - For more details about the installation variables set by ``simp config``
+    and the corresponding actions, see :ref:`Installation Miscellany`.
+  - For a list of additional options, type ``simp help config``.
+
+    - ``simp config --dry-run`` will run through all of the ``simp config``
+      prompts without applying any changes to the system. This is the
+      option to run to become familiar with the variables set by
+      ``simp config`` or generate a configuration file to be used as
+      a template for subsequent ``simp config`` runs.
+    - ``simp config -a <Config File>`` will load a previously generated
+      configuration in lieu of prompting for settings, and then apply the
+      settings.  This is the option to run for systems that will be rebuilt
+      often.
 
 .. NOTE::
-  Once ``simp config`` has been run, a SIMP configuration file with all your
-  settings is written to ``/etc/puppetlabs/code/environments/simp/hieradata/simp_def.yaml``
-  and also archived in ``/root/.simp/simp_conf.yaml``.
+  Once ``simp config`` has been run, three SIMP configuration files
+  will be generated:
 
-#. Type ``simp bootstrap``
+  - ``/root/.simp/simp_conf.yaml``: File containing  all your
+    ``simp config`` settings; can include additional settings related
+    to ones you entered and other settings required for SIMP.
+  - ``/etc/puppetlabs/code/environments/simp/hieradata/simp_config_settings.yaml``:
+    File containing global hieradata relevant to SIMP clients and
+    the SIMP server.
+  - ``/etc/puppetlabs/code/environments/simp/hieradata/hosts/<host>.yaml``:
+    SIMP server host YAML file.
+
+3. Type ``simp bootstrap``
 
 .. NOTE::
   If progress bars are of equal length and the bootstrap finishes quickly, a
@@ -136,14 +144,13 @@ Installing the SIMP Server
   configuration. Refer to the previous step and make sure that all
   configuration options are correct.
 
-#. Type ``reboot``
+4. Type ``reboot``
 
 Performing Post-installation Setup on the SIMP Server
 -----------------------------------------------------
 
 #. Log on as ``root``
-#. Run puppet for the first time. Errors will appear for DHCP. These can be
-   safely ignored at this stage.
+#. Run puppet for the first time.
 
    Type: ``puppet agent -t``
 
@@ -158,7 +165,7 @@ Performing Post-installation Setup on the SIMP Server
 
    Type: ``yum clean all; yum makecache``
 
-#. Run puppet. Ignore the same DHCP errors:
+#. Run puppet.
 
    Type: ``puppet agent -t``
 

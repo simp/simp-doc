@@ -13,4 +13,4 @@ Welcome to SIMP!
   Installing_SIMP_From_A_Repository
   Building_A_SIMP_ISO
   ISO_Install/index
-  Installation_Miscellaney
+  Initial_Configuration

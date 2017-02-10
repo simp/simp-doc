@@ -236,7 +236,7 @@ Puppet Certificates
 Puppet certificates are issued and maintained strictly within Puppet.  They are
 different from the server certificates and should be managed with the
 ``puppet cert`` tool. For the complete documentation on the ``puppet cert``
-tool, visit the `Puppet, Inc cert manual <http://docs.puppet.com/man/cert.html>`__
+tool, visit the `Puppet Inc. cert manual <https://docs.puppet.com/puppet/latest/man/cert.html>`__
 detailing its capabilities. On a SIMP system, these certificates are located in
 the ``/etc/puppetlabs/puppet/ssl`` directory and are set to expire every five years.
 
@@ -310,6 +310,6 @@ want to have a GUI on some of the systems. Refer to the
 :ref:`Infrastructure-Setup` section for information on setting up GUIs for the
 systems.
 
-.. _Puppet Type Reference: https://docs.puppet.com/puppet/latest/reference/type.html
-.. _Puppet Environments: https://docs.puppet.com/puppet/latest/reference/environments.html
+.. _Puppet Type Reference: https://docs.puppet.com/puppet/latest/type.html
+.. _Puppet Environments: https://docs.puppet.com/puppet/latest/environments.html
 .. _passgen(): https://github.com/simp/pupmod-simp-simplib/blob/master/lib/puppet/parser/functions/passgen.rb
