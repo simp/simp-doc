@@ -106,7 +106,7 @@ Configure DHCP
 Perform the following actions as ``root`` on the Puppet Master system
 prior to attempting to install a client.
 
-Open the ``/var/simp/enviroments/simp/rsync/<OSTYPE>/<MAJORRELEASE>/dhcpd/dhcpd.conf`` file
+Open the ``/var/simp/environments/simp/rsync/<OSTYPE>/Global/dhcpd/dhcpd.conf`` file
 and edit it to suit the necessary environment.
 
 Make sure the following is done in the ``dhcpd.conf`` :
