@@ -44,7 +44,7 @@ ____________
 
 Verify the static files are in the correct location:
 
-Type ``cd /var/simp/enviroments/simp/rsync/<OSTYPE>/<MAJORRELEASE>/tftpboot``
+Type ``cd /var/simp/environments/simp/rsync/<OSTYPE>/Global/tftpboot``
 
 (<OSTYPE> and <MAJORRELEASE> under rsync are the type and version of the SIMP **server**)
 
