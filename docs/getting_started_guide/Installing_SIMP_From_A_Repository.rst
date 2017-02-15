@@ -86,6 +86,7 @@ If you don't know what versions map together, please see the
   enabled=1
   gpgkey=https://raw.githubusercontent.com/NationalSecurityAgency/SIMP/master/GPGKEYS/RPM-GPG-KEY-SIMP
          https://yum.puppetlabs.com/RPM-GPG-KEY-puppetlabs
+         https://yum.puppetlabs.com/RPM-GPG-KEY-puppet
          https://getfedora.org/static/352C64E5.txt
   sslverify=1
   sslcacert=/etc/pki/tls/certs/ca-bundle.crt
@@ -98,6 +99,7 @@ If you don't know what versions map together, please see the
   enabled=0
   gpgkey=https://raw.githubusercontent.com/NationalSecurityAgency/SIMP/master/GPGKEYS/RPM-GPG-KEY-SIMP
          https://yum.puppetlabs.com/RPM-GPG-KEY-puppetlabs
+         https://yum.puppetlabs.com/RPM-GPG-KEY-puppet
          https://getfedora.org/static/352C64E5.txt
   sslverify=1
   sslcacert=/etc/pki/tls/certs/ca-bundle.crt
@@ -116,8 +118,8 @@ Install the SIMP Server
 1. Select the simp-adapter package appropriate for the version of Puppet
    you will be using
 
-   * simp-adapter-foss:  Version appropriate for FOSS Puppet
-   * simp-adapter-pe:   Version appropriate for Puppet Enterprise
+   * **simp-adapter-foss**:  Version appropriate for FOSS Puppet
+   * **simp-adapter-pe**:   Version appropriate for Puppet Enterprise
 
 2. Install the simp-adapter package
 
@@ -142,6 +144,14 @@ Install the SIMP Server
   If you wish to install all of the extra modules, you can simply run
   ``sudo yum install -y simp-extras``
 
+4. Fix permissions on ``/var/run/puppetlabs/puppetserver``, if they are not
+   set to ``puppet``
+
+.. code-block:: bash
+
+   $ sudo chown puppet:puppet /var/run/puppetlabs/puppetserver
+
+
 Configure and Bootstrap the SIMP Server
 ---------------------------------------
 
@@ -156,7 +166,7 @@ Configure and Bootstrap the SIMP Server
   - ``simp config``  generates a log file containing details of the
     configuration selected and actions taken.
   - For more details about the installation variables set by ``simp config``
-    and the corresponding actions, see :ref:`Installation Miscellany`.
+    and the corresponding actions, see :ref:`Initial_Configuration`.
   - For a list of additional options, type ``simp help config``.
 
     - ``simp config --dry-run`` will run through all of the ``simp config``
