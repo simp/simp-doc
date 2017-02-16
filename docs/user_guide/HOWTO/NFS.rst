@@ -7,6 +7,11 @@ HOWTO Configure NFS
 All implementations are based on ``pupmod-simp-nfs``, ``pupmod-simp-simp_nfs``,
 and ``pupmod-simp-simp``.
 
+.. NOTE::
+
+  pupmod-simp-simp_nfs is not a core module, and may need to be installed prior
+  to applying the following manifests.
+
 
 Exporting Non-Home Directories
 ------------------------------
@@ -159,29 +164,45 @@ Server
     - simp_nfs::export::home
 
 
-Enabling Stunnel
-----------------
+Enabling/Disabling Stunnel
+--------------------------
 
-If you wish to encrypt your NFS data using stunnel, set the stunnel simp_option:
+Stunnel is a means to encrypt your NFS data.
 
-.. code-block:: yaml
+Enable
+^^^^^^
 
-  simp_options::stunnel: true
+If simp_options::stunnel is set to true, you need only specify the following,
+in the server's yaml file:
 
-Disable stunnel for nfs clients on the NFS server:
+.. NOTE::
 
-.. code-block:: yaml
-
-  # (Optional) If left to true, the nfs over stunnel will attempt to create a
-  # loop and stunnel will fail to start
-  nfs::client::stunnel: false
-
-Set your nfs server for the ``stunnel`` classes in ``nfs``:
+  The following is set to prevent a cyclical connection of stunnel to itself,
+  in the event the server is a client of itself.
 
 .. code-block:: yaml
 
   nfs::client::stunnel::nfs_server: <your nfs server>
 
+
+If simp_options::stunnel is set to false and you don't wish to globally enable
+stunnel, you will also need to set the following, in default.yaml:
+
+.. code-block:: yaml
+
+  nfs::stunnel: true
+
+Disable
+^^^^^^^
+
+If simp_options::stunnel is set to true, but you don't want your NFS traffic to
+go through stunnel, set the following, in default.yaml:
+
+.. code-block:: yaml
+
+  nfs::stunnel: false
+
+If simp_options::stunnel is set to false, stunnel is already disabled.
 
 Enabling krb5
 -------------
