@@ -40,14 +40,6 @@ In ``site/manifests/nfs_server.pp``:
   ){
     include '::nfs'
 
-    if $kerberos {
-      $security = 'krb5p'
-    } else {
-      $security = 'sys'
-    }
-
-    include '::nfs'
-
     $nfs_security = $kerberos ? { true => 'krb5p', false => 'sys' }
 
     file { '/var/nfs_share':
