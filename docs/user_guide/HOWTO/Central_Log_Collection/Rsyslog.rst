@@ -37,7 +37,7 @@ appropriate hiera files:
     - 'simp_rsyslog'
 
 
-In the default hiera directory is
+The default hiera directory is
 ``/etc/puppetlabs/code/environments/simp/hieradata`` and generally the
 following files will be used::
 
@@ -60,7 +60,7 @@ openldap. See the simp_rsyslog module for more details.
 Set Log Servers
 ^^^^^^^^^^^^^^^
 
-The list of log servers are usually set during ``simp config``, and dumped into
+The list of log servers are usually set during ``simp config``, and placed in
 the ``simp_config_settings.yaml`` hiera file. If this value needs to be
 changed, you can either run ``simp config`` again or set the values below in
 the ``default.yaml``.
@@ -140,9 +140,9 @@ or
   simp_rsyslog::forward_logs: false
   rsyslog::tcp_server: true
 
-After a puppet run the logs from the client will be stored in
+After puppet has run on all the systems, the logs from the clients will be stored in
 ``/var/log/hosts/<client name>`` directory on the log server.  simp_rsyslog
-also sets up logrotation for these files.
+also sets up logrotation for these files by default.
 
 Forwarding logfiles from a log server
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -156,8 +156,10 @@ not include the current server in its list.  For example for a server using TLS:
   simp_rsyslog::is_server: true
   simp_rsyslog::forward_logs: true
   rsyslog::tls_tcp_server: true
-  simp_rsyslog::logservers: ['someotherlogserver.that.is.not.me']
-  simp_rsyslog::failover_log_servers: ['someotherfailoverserver.that.is.not.me']
+  simp_rsyslog::logservers:
+    - 'someotherlogserver.that.is.not.me'
+  simp_rsyslog::failover_log_servers:
+    - 'someotherfailoverserver.that.is.not.me'
 
 This will forward its own logs and the client logs it receives on to another server.
 
