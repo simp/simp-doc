@@ -90,8 +90,8 @@ settings for host groups or individual servers
   fill the disks on the system very quickly with repeated messages.
 
 .. NOTE::
-  It is common in big environments to use aliases or to cluster servers so the
-  determing the name a server is using for logging is not straight forward.
+  It is common in big environments to use aliases or to cluster servers so
+  determining the name a server is using for logging is not straight forward.
   Because of this simp could not check reliably to see if the host was
   forwarding to itself.
 
@@ -101,7 +101,7 @@ TLS
 
 If encryption is going to be used, make sure the certificates are in place.
 See the pupmod-simp-pki module to understand how SIMP modules distribute
-certificates or, if SIMP is not being used to distribute certifcates, the
+certificates or, if SIMP is not being used to distribute certificates, the
 naming convention used for pki variables in modules.
 
 
