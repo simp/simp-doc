@@ -121,7 +121,7 @@ or
 
 .. code-block:: yaml
 
-  #If using TLS
+  #If not using TLS
   simp_rsyslog::forward_logs: true
   rsyslog::pki: false
   rsyslog::enable_tls_logging: false
