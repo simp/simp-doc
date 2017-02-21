@@ -113,9 +113,18 @@ similiar hiera file to reach all clients:
 
 .. code-block:: yaml
 
+  #If using TLS
   simp_rsyslog::forward_logs: true
-  # Only include the following if using TLS
   rsyslog::enable_tls_logging: true
+
+or
+
+.. code-block:: yaml
+
+  #If using TLS
+  simp_rsyslog::forward_logs: true
+  rsyslog::pki: false
+  rsyslog::enable_tls_logging: false
 
 
 Enable the Server
@@ -139,6 +148,7 @@ or
   simp_rsyslog::is_server: true
   simp_rsyslog::forward_logs: false
   rsyslog::tcp_server: true
+  rsyslog::tls_tcp_server: false
 
 After puppet has run on all the systems, the logs from the clients will be stored in
 ``/var/log/hosts/<client name>`` directory on the log server.  simp_rsyslog
