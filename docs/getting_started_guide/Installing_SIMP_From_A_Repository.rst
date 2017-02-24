@@ -218,6 +218,11 @@ your clients.
   This would be the general technique that you would use to auto-bootstrap your
   clients via ``user-data`` scripts in cloud environments.
 
+.. NOTE::
+  If you didn't enable the ``simp::server::kickstart`` class on your server to
+  do the kickstart of your client, you will need to add the
+  ``simp::server::kickstart::runpuppet`` class manually to generate the script.
+
   Be ready to sign your client credentials as systems check in with the server!
 
 .. code-block:: bash
