@@ -158,7 +158,7 @@ Performing Post-installation Setup on the SIMP Server
    using the ``unpack_dvd`` utility. This creates a new tree under
    ``/var/www/yum/CentOS``.
 
-   Type: ``unpack_dvd CentOS-RHEL_MAJOR_MINOR_VERSION- *####*-x86_64-Everything.iso``
+   Type: ``unpack_dvd CentOS-RHEL_MAJOR_VERSION-x86_64-DVD-####.iso``
 
 #. Update your system using yum. The updates applied will be dependent on what
    ISO you initially used.
