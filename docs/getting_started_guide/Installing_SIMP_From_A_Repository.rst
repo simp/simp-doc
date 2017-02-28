@@ -212,18 +212,32 @@ Bootstrap SIMP Clients
 ----------------------
 
 Use the ``runpuppet`` script from the newly created SIMP server to bootstrap
-your clients.
+your clients. That script can be aquired in one of two ways:
+
+1. Use a SIMP server as a kickstart server, see :ref:`Client_Management` for
+   details on how to take advantage of SIMP to make this easier.
+
+2. If another server is to be used as a kickstart server, you can still use our
+   distributed and tested provisioning script, ``runpuppet``.
+
+   Add the ``simp::server::kickstart::runpuppet`` class to you kickstart server
+   node to use ``runpuppet``. The file can be placed in an exising web server by
+   setting the ``location`` parameter. Here's an example that could be placed
+   in a kickstarting profile class:
+
+   .. code-block:: puppet
+
+     class { 'simp::server::kickstart::runpuppet':
+       location => '/var/www/web/server/path/runpuppet'
+     }
 
 .. NOTE::
   This would be the general technique that you would use to auto-bootstrap your
   clients via ``user-data`` scripts in cloud environments.
 
-.. NOTE::
-  If you didn't enable the ``simp::server::kickstart`` class on your server to
-  do the kickstart of your client, you will need to add the
-  ``simp::server::kickstart::runpuppet`` class manually to generate the script.
-
   Be ready to sign your client credentials as systems check in with the server!
+
+Run the script on a client. This example assumes the first option from above:
 
 .. code-block:: bash
 
@@ -234,4 +248,4 @@ your clients.
 .. _Microsoft Azure: https://azure.microsoft.com
 .. _Google Cloud: https://cloud.google.com
 .. _Kickstart: http://pykickstart.readthedocs.io/en/latest
-.. _simp-core Git repository: https://github.com/simp/simp-core/tree/5.1.X/src/DVD/ks
+.. _simp-core Git repository: https://github.com/simp/simp-core/tree/master/build/distributions/CentOS/7/x86_64/DVD/ks
