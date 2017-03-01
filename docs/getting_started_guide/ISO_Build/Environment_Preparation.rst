@@ -7,7 +7,7 @@ Getting Started
 ---------------
 
 .. NOTE::
-  You can skip setting up ``mock`` if you are generating an ISO from a release tarball!
+   You can skip setting up ``mock`` if you are generating an ISO from a release tarball!
 
 Required Packages
 ^^^^^^^^^^^^^^^^^
@@ -84,8 +84,7 @@ development.
    $ rvm use --default 2.1.9
 
 .. NOTE::
-
-  Once this is done, you can simply type ``rvm use 2.1.9``.
+   Once this is done, you can simply type ``rvm use 2.1.9``.
 
 Bundler
 ^^^^^^^
@@ -105,7 +104,7 @@ Configure Mock
 --------------
 
 .. NOTE::
-  If you plan on just building from a tarball, you can skip this section.
+   If you plan on just building from a tarball, you can skip this section.
 
 Building SIMP from scratch makes heavy use of Mock to create clean packages. As
 such, you need to ensure that your system is ready.
