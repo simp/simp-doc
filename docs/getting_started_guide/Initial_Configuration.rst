@@ -56,7 +56,7 @@ that variables beginning with 'cli::' are only used internally by
 |                                | to 'simp'; *true* or *false*              |
 +--------------------------------+-------------------------------------------+
 | cli::simp::scenario            | SIMP scenario; *simp* = full SIMP system, |
-|                                | *simp-lite* = SIMP system with some       |
+|                                | *simp_lite* = SIMP system with some       |
 |                                | security features disabled for clients,   |
 |                                | *poss* = SIMP system with all security    |
 |                                | features disabled for clients.            |
