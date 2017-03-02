@@ -140,6 +140,8 @@ Hiera
 hierarchy of your backends. The order of the files above mirrors that order in
 the distributed hiera.yaml.
 
+.. _simp scenarios:
+
 SIMP Scenarios
 --------------
 
