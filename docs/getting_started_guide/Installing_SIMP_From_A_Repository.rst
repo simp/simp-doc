@@ -9,10 +9,10 @@ such as `AWS`_, `Microsoft Azure`_, `Google Cloud`_, or your own internal VM
 stack, this is the method that you will almost definitely want to use.
 
 .. NOTE::
-  This method does *not* modify your system's partitioning scheme or encryption
-  scheme to meet any regulatory policies. If you want an example of what that
-  should look like either see the :ref:`simp-installation-guide` or check out the
-  `Kickstart`_ files in the `simp-core Git repository`_.
+   This method does *not* modify your system's partitioning scheme or
+   encryption scheme to meet any regulatory policies. If you want an example of
+   what that should look like either see the :ref:`simp-installation-guide` or
+   check out the `Kickstart`_ files in the `simp-core Git repository`_.
 
 
 Enable EPEL
@@ -27,31 +27,20 @@ Install The SIMP-Project Repository
 -----------------------------------
 
 Add the following to ``/etc/yum.repos.d/simp-project.repo``, replacing ``7`` with
-the appropriate version of EL and ``5`` with the appropriate version of SIMP. If
+the appropriate version of EL and ``6`` with the appropriate version of SIMP. If
 the repo file does not exist, create it.
-``EL 7`` with ``SIMP 5.X`` is shown below.
+``EL 7`` with ``SIMP 6.X`` is shown below.
 
 If you don't know what versions map together, please see the
 :ref:`faq-simp_version_guide`.
 
-
 .. code-block:: bash
 
-  [simp-project_5_X]
-  name=simp-project_5_X
-  baseurl=https://packagecloud.io/simp-project/5_X/el/7/$basearch
+  [simp-project_6_X]
+  name=simp-project_6_X
+  baseurl=https://packagecloud.io/simp-project/6_X/el/$releasever/$basearch
   gpgcheck=1
   enabled=1
-  gpgkey=https://raw.githubusercontent.com/NationalSecurityAgency/SIMP/master/GPGKEYS/RPM-GPG-KEY-SIMP
-  sslverify=1
-  sslcacert=/etc/pki/tls/certs/ca-bundle.crt
-  metadata_expire=300
-
-  [simp-project_5_X-source]
-  name=simp-project_5_X-source
-  baseurl=https://packagecloud.io/simp-project/5_X/el/7/SRPMS
-  gpgcheck=1
-  enabled=0
   gpgkey=https://raw.githubusercontent.com/NationalSecurityAgency/SIMP/master/GPGKEYS/RPM-GPG-KEY-SIMP
   sslverify=1
   sslcacert=/etc/pki/tls/certs/ca-bundle.crt
@@ -61,45 +50,33 @@ Install The SIMP-project_dependencies Repository
 ------------------------------------------------
 
 .. NOTE::
-  The repository may contain items from external vendors, most notably Puppet,
-  Inc. and EPEL but may also contain non-SIMP project files that have been
-  compiled for distribution.
+   The repository may contain items from external vendors, most notably Puppet,
+   Inc. and EPEL but may also contain non-SIMP project files that have been
+   compiled for distribution.
 
 Add the following to ``/etc/yum.repos.d/simp-project_dependencies.repo``,
-replacing ``7`` with the appropriate version of EL and ``5`` with the appropriate
-version of SIMP.  ``EL 7`` with ``SIMP 5.X`` is shown below. If
+replacing ``7`` with the appropriate version of EL and ``6`` with the appropriate
+version of SIMP. ``EL 7`` with ``SIMP 6.X`` is shown below. If
 the repo file does not exist, create it.
 
 If you don't know what versions map together, please see the
 :ref:`faq-simp_version_guide`.
 
 .. NOTE::
-  The **whitespace** and **alignment** shown before the additional ``gpgkey`` values
-  **must be preserved**
+   The **whitespace** and **alignment** shown before the additional ``gpgkey``
+   values **must be preserved**
 
 .. code-block:: bash
 
-  [simp-project_5_X_dependencies]
-  name=simp-project_5_1_X_dependencies
-  baseurl=https://packagecloud.io/simp-project/5_X_Dependencies/el/7/$basearch
+  [simp-project_6_X_dependencies]
+  name=simp-project_6_X_dependencies
+  baseurl=https://packagecloud.io/simp-project/6_X_Dependencies/el/$releasearch/$basearch
   gpgcheck=1
   enabled=1
   gpgkey=https://raw.githubusercontent.com/NationalSecurityAgency/SIMP/master/GPGKEYS/RPM-GPG-KEY-SIMP
          https://yum.puppetlabs.com/RPM-GPG-KEY-puppetlabs
          https://yum.puppetlabs.com/RPM-GPG-KEY-puppet
-         https://getfedora.org/static/352C64E5.txt
-  sslverify=1
-  sslcacert=/etc/pki/tls/certs/ca-bundle.crt
-  metadata_expire=300
-
-  [simp-project_5_X_dependencies-source]
-  name=simp-project_5_X_dependencies-source
-  baseurl=https://packagecloud.io/simp-project/5_X_Dependencies/el/7/SRPMS
-  gpgcheck=1
-  enabled=0
-  gpgkey=https://raw.githubusercontent.com/NationalSecurityAgency/SIMP/master/GPGKEYS/RPM-GPG-KEY-SIMP
-         https://yum.puppetlabs.com/RPM-GPG-KEY-puppetlabs
-         https://yum.puppetlabs.com/RPM-GPG-KEY-puppet
+         https://apt.postgresql.org/pub/repos/yum/RPM-GPG-KEY-PGDG-94
          https://getfedora.org/static/352C64E5.txt
   sslverify=1
   sslcacert=/etc/pki/tls/certs/ca-bundle.crt
@@ -134,15 +111,15 @@ Install the SIMP Server
    $ sudo yum install -y simp
 
 .. NOTE::
-  The ``simp`` RPM installs the SIMP core Puppet modules. Breaking changes in
-  these modules trigger a breaking change update in SIMP itself.
+   The ``simp`` RPM installs the SIMP core Puppet modules. Breaking changes in
+   these modules trigger a breaking change update in SIMP itself.
 
-  There are a large number of additional 'extra' modules that may be
-  individually installed. Search for ``pupmod`` via ``yum`` to discover what is
-  available.
+   There are a large number of additional 'extra' modules that may be
+   individually installed. Search for ``pupmod`` via ``yum`` to discover what
+   is available.
 
-  If you wish to install all of the extra modules, you can simply run
-  ``sudo yum install -y simp-extras``
+   If you wish to install all of the extra modules, you can simply run ``sudo
+   yum install -y simp-extras``
 
 4. Fix permissions on ``/var/run/puppetlabs/puppetserver``, if they are not
    set to ``puppet``
@@ -158,48 +135,47 @@ Configure and Bootstrap the SIMP Server
 1. Login as root
 2. Type ``simp config`` and configure the system as prompted.
 
-  - ``simp config`` will prompt you for system settings and then apply the
+  * ``simp config`` will prompt you for system settings and then apply the
     smallest settings subset that is required to bootstrap the system.
-  - When applicable, ``simp config`` will present you with a
+  * When applicable, ``simp config`` will present you with a
     recommendation for each setting (variable).  To keep a recommended
     value, press *Enter*. Otherwise, enter your desired value.
-  - ``simp config``  generates a log file containing details of the
+  * ``simp config``  generates a log file containing details of the
     configuration selected and actions taken.
-  - For more details about the installation variables set by ``simp config``
+  * For more details about the installation variables set by ``simp config``
     and the corresponding actions, see :ref:`Initial_Configuration`.
-  - For a list of additional options, type ``simp help config``.
+  * For a list of additional options, type ``simp help config``.
 
-    - ``simp config --dry-run`` will run through all of the ``simp config``
+    * ``simp config --dry-run`` will run through all of the ``simp config``
       prompts without applying any changes to the system. This is the
       option to run to become familiar with the variables set by
       ``simp config`` or generate a configuration file to be used as
       a template for subsequent ``simp config`` runs.
-    - ``simp config -a <Config File>`` will load a previously generated
+    * ``simp config -a <Config File>`` will load a previously generated
       configuration in lieu of prompting for settings, and then apply the
       settings.  This is the option to run for systems that will be rebuilt
       often.
 
 .. NOTE::
-  Once ``simp config`` has been run, three SIMP configuration files
-  will be generated:
+   Once ``simp config`` has been run, three SIMP configuration files will be
+   generated:
 
-  - ``/root/.simp/simp_conf.yaml``: File containing  all your
-    ``simp config`` settings; can include additional settings related
-    to ones you entered and other settings required for SIMP.
-  - ``/etc/puppetlabs/code/environments/simp/hieradata/simp_config_settings.yaml``:
-    File containing global hieradata relevant to SIMP clients and
-    the SIMP server.
-  - ``/etc/puppetlabs/code/environments/simp/hieradata/hosts/<host>.yaml``:
-    SIMP server host YAML file.
-
+   * ``/root/.simp/simp_conf.yaml``: File containing  all your ``simp config``
+     settings; can include additional settings related to ones you entered and
+     other settings required for SIMP.
+   * ``/etc/puppetlabs/code/environments/simp/hieradata/simp_config_settings.yaml``:
+     File containing global hieradata relevant to SIMP clients and the SIMP
+     server.
+   * ``/etc/puppetlabs/code/environments/simp/hieradata/hosts/<host>.yaml``:
+     SIMP server host YAML file.
 
 3. Type ``simp bootstrap``
 
 .. NOTE::
-  If progress bars are of equal length and the bootstrap finishes quickly, a
-  problem has occurred. This is most likely due to an error in SIMP
-  configuration. Refer to the previous step and make sure that all
-  configuration options are correct.
+   If progress bars are of equal length and the bootstrap finishes quickly, a
+   problem has occurred. This is most likely due to an error in SIMP
+   configuration. Refer to the previous step and make sure that all
+   configuration options are correct.
 
 4. Reboot your system
 
@@ -215,10 +191,11 @@ Use the ``runpuppet`` script from the newly created SIMP server to bootstrap
 your clients.
 
 .. NOTE::
-  This would be the general technique that you would use to auto-bootstrap your
-  clients via ``user-data`` scripts in cloud environments.
+   This would be the general technique that you would use to auto-bootstrap
+   your clients via ``user-data`` scripts in cloud environments.
 
-  Be ready to sign your client credentials as systems check in with the server!
+   Be ready to sign your client credentials as systems check in with the
+   server!
 
 .. code-block:: bash
 
