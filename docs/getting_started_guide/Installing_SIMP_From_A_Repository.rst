@@ -26,10 +26,8 @@ Enable EPEL
 Install The SIMP-Project Repository
 -----------------------------------
 
-Add the following to ``/etc/yum.repos.d/simp-project.repo``, replacing ``7`` with
-the appropriate version of EL and ``6`` with the appropriate version of SIMP. If
+Add the following to ``/etc/yum.repos.d/simp-project.repo``. If
 the repo file does not exist, create it.
-``EL 7`` with ``SIMP 6.X`` is shown below.
 
 If you don't know what versions map together, please see the
 :ref:`faq-simp_version_guide`.
@@ -54,10 +52,8 @@ Install The SIMP-project_dependencies Repository
    Inc. and EPEL but may also contain non-SIMP project files that have been
    compiled for distribution.
 
-Add the following to ``/etc/yum.repos.d/simp-project_dependencies.repo``,
-replacing ``7`` with the appropriate version of EL and ``6`` with the appropriate
-version of SIMP. ``EL 7`` with ``SIMP 6.X`` is shown below. If
-the repo file does not exist, create it.
+Add the following to ``/etc/yum.repos.d/simp-project_dependencies.repo``.
+If the repo file does not exist, create it.
 
 If you don't know what versions map together, please see the
 :ref:`faq-simp_version_guide`.
@@ -70,7 +66,7 @@ If you don't know what versions map together, please see the
 
   [simp-project_6_X_dependencies]
   name=simp-project_6_X_dependencies
-  baseurl=https://packagecloud.io/simp-project/6_X_Dependencies/el/$releasearch/$basearch
+  baseurl=https://packagecloud.io/simp-project/6_X_Dependencies/el/$releasever/$basearch
   gpgcheck=1
   enabled=1
   gpgkey=https://raw.githubusercontent.com/NationalSecurityAgency/SIMP/master/GPGKEYS/RPM-GPG-KEY-SIMP
