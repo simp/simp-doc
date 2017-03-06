@@ -1,3 +1,6 @@
+* Tue Feb 28 2017 Trevor Vaughan <tvaughan@onyxpoint.com>
+- Added docs for helping users understand the generated Development GPG keys.
+
 * Tue Nov 29 2016 Trevor Vaughan <tvaughan@onyxpoint.com>
 - Updated the RPM spec file to use the new SCL repos
 - You *must* have an appropriately configured Mock configuration for this to

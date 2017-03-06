@@ -38,8 +38,8 @@ is faster but the VirtualBox method is far easier to debug if issues arise.
 You must have a working :term:`Vagrant` installation to use this method.
 
 .. NOTE::
-  Make sure that you use the Vagrant installation directly from the
-  `Vagrant Homepage`_.
+   Make sure that you use the Vagrant installation directly from the
+   `Vagrant Homepage`_.
 
 Download the Appropriate EL ISO
 -------------------------------
