@@ -26,20 +26,15 @@ Enable EPEL
 Install The SIMP-Project Repository
 -----------------------------------
 
-Add the following to ``/etc/yum.repos.d/simp-project.repo``, replacing ``7`` with
-the appropriate version of EL and ``5`` with the appropriate version of SIMP. If
-the repo file does not exist, create it.
-``EL 7`` with ``SIMP 5.X`` is shown below.
-
-If you don't know what versions map together, please see the
-:ref:`faq-simp_version_guide`.
-
+Add the following to ``/etc/yum.repos.d/simp-project.repo``, replacing 
+``6`` with the appropriate version of SIMP. If the repo file does not exist,
+create it. The repo file contents for ``SIMP 6.X`` is shown below.
 
 .. code-block:: bash
 
-  [simp-project_5_X]
-  name=simp-project_5_X
-  baseurl=https://packagecloud.io/simp-project/5_X/el/7/$basearch
+  [simp-project_6_X]
+  name=simp-project_6_X
+  baseurl=https://packagecloud.io/simp-project/6_X/el/$releasever/$basearch
   gpgcheck=1
   enabled=1
   gpgkey=https://raw.githubusercontent.com/NationalSecurityAgency/SIMP/master/GPGKEYS/RPM-GPG-KEY-SIMP
@@ -47,9 +42,9 @@ If you don't know what versions map together, please see the
   sslcacert=/etc/pki/tls/certs/ca-bundle.crt
   metadata_expire=300
 
-  [simp-project_5_X-source]
-  name=simp-project_5_X-source
-  baseurl=https://packagecloud.io/simp-project/5_X/el/7/SRPMS
+  [simp-project_6_X-source]
+  name=simp-project_6_X-source
+  baseurl=https://packagecloud.io/simp-project/6_X/el/$releasever/SRPMS
   gpgcheck=1
   enabled=0
   gpgkey=https://raw.githubusercontent.com/NationalSecurityAgency/SIMP/master/GPGKEYS/RPM-GPG-KEY-SIMP
@@ -66,12 +61,8 @@ Install The SIMP-project_dependencies Repository
   compiled for distribution.
 
 Add the following to ``/etc/yum.repos.d/simp-project_dependencies.repo``,
-replacing ``7`` with the appropriate version of EL and ``5`` with the appropriate
-version of SIMP.  ``EL 7`` with ``SIMP 5.X`` is shown below. If
-the repo file does not exist, create it.
-
-If you don't know what versions map together, please see the
-:ref:`faq-simp_version_guide`.
+replacing ``6`` with the appropriate version of SIMP. If the repo file
+does not exist, create it. The repo file for ``SIMP 6.X`` is shown below.
 
 .. NOTE::
   The **whitespace** and **alignment** shown before the additional ``gpgkey`` values
@@ -79,27 +70,29 @@ If you don't know what versions map together, please see the
 
 .. code-block:: bash
 
-  [simp-project_5_X_dependencies]
-  name=simp-project_5_1_X_dependencies
-  baseurl=https://packagecloud.io/simp-project/5_X_Dependencies/el/7/$basearch
+  [simp-project_6_X_dependencies]
+  name=simp-project_6_X_dependencies
+  baseurl=https://packagecloud.io/simp-project/6_X_Dependencies/el/$releasever/$basearch
   gpgcheck=1
   enabled=1
   gpgkey=https://raw.githubusercontent.com/NationalSecurityAgency/SIMP/master/GPGKEYS/RPM-GPG-KEY-SIMP
          https://yum.puppetlabs.com/RPM-GPG-KEY-puppetlabs
          https://yum.puppetlabs.com/RPM-GPG-KEY-puppet
+         https://apt.postgresql.org/pub/repos/yum/RPM-GPG-KEY-PGDG-94
          https://getfedora.org/static/352C64E5.txt
   sslverify=1
   sslcacert=/etc/pki/tls/certs/ca-bundle.crt
   metadata_expire=300
 
-  [simp-project_5_X_dependencies-source]
-  name=simp-project_5_X_dependencies-source
-  baseurl=https://packagecloud.io/simp-project/5_X_Dependencies/el/7/SRPMS
+  [simp-project_6_X_dependencies-source]
+  name=simp-project_6_X_dependencies-source
+  baseurl=https://packagecloud.io/simp-project/6_X_Dependencies/el/$releasever/SRPMS
   gpgcheck=1
   enabled=0
   gpgkey=https://raw.githubusercontent.com/NationalSecurityAgency/SIMP/master/GPGKEYS/RPM-GPG-KEY-SIMP
          https://yum.puppetlabs.com/RPM-GPG-KEY-puppetlabs
          https://yum.puppetlabs.com/RPM-GPG-KEY-puppet
+         https://apt.postgresql.org/pub/repos/yum/RPM-GPG-KEY-PGDG-94
          https://getfedora.org/static/352C64E5.txt
   sslverify=1
   sslcacert=/etc/pki/tls/certs/ca-bundle.crt
@@ -143,14 +136,6 @@ Install the SIMP Server
 
   If you wish to install all of the extra modules, you can simply run
   ``sudo yum install -y simp-extras``
-
-4. Fix permissions on ``/var/run/puppetlabs/puppetserver``, if they are not
-   set to ``puppet``
-
-.. code-block:: bash
-
-   $ sudo chown puppet:puppet /var/run/puppetlabs/puppetserver
-
 
 Configure and Bootstrap the SIMP Server
 ---------------------------------------
