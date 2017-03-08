@@ -430,7 +430,7 @@ Glossary of Terms
    Red Hat®
    Red Hat®, Inc.
       A collection of many different software programs, developed by
-      `Red Hat®, Inc. <https://www.redhat.com>`__ and other members of the Open
+      `Red Hat®, Inc. <https://www.redhat.com/en>`__ and other members of the Open
       Source community. All software programs included in Red Hat Enterprise
       Linux® are GPG signed by Red Hat®, Inc. to indicate that they were
       supplied by Red Hat®, Inc.
