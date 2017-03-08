@@ -150,14 +150,14 @@ system is compliant and secure.
 
 There are currently three SIMP scenarios:
 - *simp*
-- *simp-lite*
+- *simp_lite*
 - *poss*
 
 The *simp* scenario includes all security features enabled by default, including
 iptables and svckill. This scenario is what stock SIMP used to look like in
 previous releases.
 
-The *simp-lite* scenario offers many security features, with a few explicity
+The *simp_lite* scenario offers many security features, with a few explicity
 turned off. This scenario was designed to make it easier to implment SIMP in an
 existing environment, because it might not be trivial to flip SELinux to
 Enforcing on all nodes.

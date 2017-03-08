@@ -25,7 +25,7 @@ is provided to help configure systems for logging.
 Configuration of the simp_rsyslog is done using hiera.  See :ref:`Hiera` for
 information on how SIMP configures and uses hiera.
 
-The simp_rsyslog class is included on systems if the simp or simp-lite
+The simp_rsyslog class is included on systems if the simp or simp_lite
 :ref:`scenarios <simp scenarios>` are used and by default configures local
 logging.  If scenarios are not being used include the the simp_rsyslog class
 on all systems including the log server. To do this add the following to the
