@@ -26,8 +26,9 @@ Enable EPEL
 Install The SIMP-Project Repository
 -----------------------------------
 
-Add the following to ``/etc/yum.repos.d/simp-project.repo``. If
-the repo file does not exist, create it.
+Add the following to ``/etc/yum.repos.d/simp-project.repo``, replacing 
+``6`` with the appropriate version of SIMP. If the repo file does not exist,
+create it. The repo file contents for ``SIMP 6.X`` is shown below.
 
 If you don't know what versions map together, please see the
 :ref:`faq-simp_version_guide`.
@@ -52,8 +53,9 @@ Install The SIMP-project_dependencies Repository
    Inc. and EPEL but may also contain non-SIMP project files that have been
    compiled for distribution.
 
-Add the following to ``/etc/yum.repos.d/simp-project_dependencies.repo``.
-If the repo file does not exist, create it.
+Add the following to ``/etc/yum.repos.d/simp-project_dependencies.repo``,
+replacing ``6`` with the appropriate version of SIMP. If the repo file
+does not exist, create it. The repo file for ``SIMP 6.X`` is shown below.
 
 If you don't know what versions map together, please see the
 :ref:`faq-simp_version_guide`.
@@ -117,14 +119,6 @@ Install the SIMP Server
    If you wish to install all of the extra modules, you can simply run ``sudo
    yum install -y simp-extras``
 
-4. Fix permissions on ``/var/run/puppetlabs/puppetserver``, if they are not
-   set to ``puppet``
-
-.. code-block:: bash
-
-   $ sudo chown puppet:puppet /var/run/puppetlabs/puppetserver
-
-
 Configure and Bootstrap the SIMP Server
 ---------------------------------------
 
@@ -178,7 +172,6 @@ Configure and Bootstrap the SIMP Server
 .. code-block:: bash
 
    $ reboot
-
 
 Bootstrap SIMP Clients
 ----------------------
