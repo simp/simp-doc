@@ -440,9 +440,9 @@ linkcheck_ignore = [
     # links that the resolver has trouble with
     r'^http[s]?:\/\/groups\.google\.com\/forum\/\?fromgroups#!forum\/simp',
     r'^http[s]?:\/\/travis-ci\.org',
-    r'^http[s]?:\/\/bundler\.io/rationale\.html'
+    r'^http[s]?:\/\/bundler\.io/rationale\.html',
     # SSL errors
-    r'^http[s]?:\/\/www\.elastic\.co'
+    r'^http[s]?:\/\/www\.elastic\.co',
     r'^https?:\/\/opensource\.org'
  ]
 
