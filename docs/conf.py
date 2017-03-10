@@ -38,7 +38,11 @@ changelog             = os.getenv('SIMP_CHANGELOG_PATH', default_changlog_path)
 
 
 os_ver_mapper_name = 'release_mappings.yaml'
-os_ver_mapper = os.path.join(basedir, '..', '..', '..', 'build', os_ver_mapper_name)
+
+os_ver_mapper = os.path.join(basedir, '..', '..', '..', 'build', 'distributions', 'CentOS', '7', 'x86_64', os_ver_mapper_name)
+
+if not os.path.isfile(os_ver_mapper):
+    os_ver_mapper = os.path.join(basedir, '..', '..', '..', 'build', os_ver_mapper_name)
 
 target_dirs = [ 'dynamic' ]
 
@@ -60,7 +64,7 @@ el_minor_version = 'MAPPING'
 saved_major_version = 'UNKNOWN'
 saved_minor_version = 'MAPPING'
 # Default version and release to ensure we build *something*
-default_simp_version = '5.1.X'
+default_simp_version = '6.0'
 default_simp_release = 'X'
 
 # Grab the version information out of all of the surrounding infrastructure
@@ -71,9 +75,9 @@ os_ver_mapper_content = None
 # This ordering matches our usual default fallback branch scheme
 # Need to fix this to go figure out the branches from GitHub directly
 github_version_targets = [
+    'master',
     '5.1.X',
-    '4.2.X',
-    'master'
+    '4.2.X'
 ]
 
 # If we're running on ReadTheDocs, we should go fetch the content from the
@@ -431,10 +435,15 @@ linkcheck_ignore = [
     r'^http[s]?:\/\/.*#\w+$',
     # ignore rpms
     r'^http[s]?:\/\/.*\.rpm$',
+    # ignore pdfs
+    r'^http[s]?:\/\/.*\.pdf$',
     # links that the resolver has trouble with
     r'^http[s]?:\/\/groups\.google\.com\/forum\/\?fromgroups#!forum\/simp',
     r'^http[s]?:\/\/travis-ci\.org',
-    r'^http[s]?:\/\/bundler\.io/rationale\.html'
+    r'^http[s]?:\/\/bundler\.io/rationale\.html',
+    # SSL errors
+    r'^http[s]?:\/\/www\.elastic\.co',
+    r'^https?:\/\/opensource\.org'
  ]
 
 # -- Options for HTML output ----------------------------------------------
