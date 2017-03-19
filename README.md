@@ -1,6 +1,5 @@
 [![License](http://img.shields.io/:license-apache-blue.svg)](http://www.apache.org/licenses/LICENSE-2.0.html) [![Build Status](https://travis-ci.org/simp/simp-doc.svg)](https://travis-ci.org/simp/simp-doc)
 
-
 * [SIMP Documentation](#simp-documentation)
 * [Usage](#usage)
   * [Building the docs](#building-the-docs)
@@ -34,6 +33,34 @@ SIMP_CHANGELOG_PATH=$PATH_TO_OTHER/Changelog.rst rake docs:html
 rake docs:server[port]
 ```
 
+If you want to build the RPM on EL6 systems, you will need to ensure that the
+SCL and python versions are appropriately available.
+
+To do this, you will need to make sure that the following is in your
+/etc/mock/epel-6-x86_64.cfg file:
+
+```python
+[centos-sclo-sclo]
+name=CentOS-6 - SCLo sclo
+baseurl=http://mirror.centos.org/centos/6/sclo/$basearch/sclo/
+gpgcheck=1
+enabled=1
+gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-CentOS-SIG-SCLo
+
+[centos-sclo-rh]
+name=CentOS-6 - SCLo rh
+baseurl=http://mirror.centos.org/centos/6/sclo/$basearch/rh/
+gpgcheck=1
+enabled=1
+gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-CentOS-SIG-SCLo
+
+[extras]
+name=CentOS-$releasever - Extras
+baseurl=http://mirror.centos.org/centos/$releasever/extras/$basearch/
+gpgcheck=1
+gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-CentOS-6
+```
+
 ### Maintaining the data
 ```
 # Update the RPM lists
@@ -42,7 +69,6 @@ rake docs:rpm:external
 # Update the SIMP RPM list
 rake docs:rpm:simp
 ```
-
 
 ## Environment variables
 
@@ -83,4 +109,3 @@ sudo yum install -y libjpeg-devel zlib-devel python-devel
 sudo apt-get install -y python-dev zlib1g-dev libjpeg-dev
 
 ```
-
