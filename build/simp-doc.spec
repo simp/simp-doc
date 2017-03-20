@@ -93,7 +93,7 @@ end
 Summary: SIMP Documentation
 Name: simp-doc
 Version: %{lua: print(package_version)}
-Release: %{lua: print(package_release)}
+Release: %{lua: print(package_release)}%{?dist}
 License: Apache License, Version 2.0
 Group: Documentation
 Source0: %{name}-%{version}-%{release}.tar.gz

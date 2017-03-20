@@ -73,10 +73,11 @@ EOM
 
     # Grab the version and release  out of whatever spec we have found.
     begin
-      specinfo = Simp::RPM.get_info(specfile)
-      simp_version = specinfo[:version]
-      simp_release = specinfo[:release]
-    rescue Exception
+
+      simp_version = %x(rpm -q --undefine="%dist" --queryformat '%{VERSION}\n' --specfile #{specfile}).lines.first.strip
+      simp_release = %x(rpm -q --undefine="%dist" --queryformat '%{RELEASE}\n' --specfile #{specfile}).lines.first.strip
+
+    rescue Exception => e
       warn("Could not obtain valid version/release information from #{specfile}, please check for consistency.  Defaulting to #{default_simp_version}-#{default_simp_release}")
       simp_version = default_simp_version
       simp_release = default_simp_release
@@ -100,26 +101,11 @@ class DocPkg < Simp::Rake::Pkg
 
     # This is super fragile
     if rh_version.to_i == 6
-      python_repo = 'rhscl-python27-epel-6-x86_64'
-
       puts "NOTICE: You can ignore any errors relating to RPM commands that don't result in failure"
       %x(#{mock_cmd} -q -r #{chroot} --chroot 'rpmdb --rebuilddb')
       sh  %(#{mock_cmd} -q -r #{chroot} --chroot 'rpm --quiet -q yum') do |ok,res|
         unless ok
           %x(#{mock_cmd} -q -r #{chroot} --install yum)
-        end
-      end
-
-      sh %(#{mock_cmd} -q -r #{chroot} --chroot 'rpm --quiet -q #{python_repo}') do |ok,res|
-        unless ok
-          %x(#{mock_cmd} -q -r #{chroot} --install 'https://www.softwarecollections.org/en/scls/rhscl/python27/epel-6-x86_64/download/#{python_repo}.noarch.rpm')
-        end
-      end
-
-      sh %(#{mock_cmd} -q -r #{chroot} --chroot 'rpm --quiet -q python27') do |ok,res|
-        unless ok
-          # Fun Fact: Mock (sometimes) adds its default repos to /etc/yum/yum.conf and ignores anything in yum.repos.d
-          puts %x(#{mock_cmd} -q -r #{chroot} --chroot 'cat /etc/yum.repos.d/#{python_repo}.repo >> /etc/yum/yum.conf && yum install -qy python27')
         end
       end
     end
