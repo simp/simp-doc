@@ -7,10 +7,11 @@ the SIMP system.
 .. toctree::
   :maxdepth: 1
 
+  Work with the SIMP Rsync Shares <HOWTO/Work_With_Rsync>
   Setup Central Log Collection <HOWTO/Central_Log_Collection>
   Change Puppet Masters <HOWTO/Changing_Puppet_Masters>
   Discard Mail to Root <HOWTO/Discard_Mail_to_Root>
-  Exclude YUM Repositories <HOWTO/Exclude_Repositories>
+  Exclude YUM Repositories from Nightly Updates <HOWTO/Exclude_Repositories>
   Configure NFS <HOWTO/NFS>
   Configure IPTables NAT Rules <HOWTO/IPTables_NAT_Rules>
   Enable Kerberos <HOWTO/Kerberos>
