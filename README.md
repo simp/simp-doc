@@ -60,6 +60,8 @@ baseurl=http://mirror.centos.org/centos/$releasever/extras/$basearch/
 gpgcheck=1
 gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-CentOS-6
 ```
+In addition, you must make sure ```/etc/pki/rpm-gpg/RPM-GPG-KEY-CentOS-SIG-SCLo```
+has been installed.
 
 ### Maintaining the data
 ```
