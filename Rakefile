@@ -73,10 +73,11 @@ EOM
 
     # Grab the version and release  out of whatever spec we have found.
     begin
-      specinfo = Simp::RPM.get_info(specfile)
-      simp_version = specinfo[:version]
-      simp_release = specinfo[:release]
-    rescue Exception
+
+      simp_version = %x(rpm -q --undefine="%dist" --queryformat '%{VERSION}\n' --specfile #{specfile}).lines.first.strip
+      simp_release = %x(rpm -q --undefine="%dist" --queryformat '%{RELEASE}\n' --specfile #{specfile}).lines.first.strip
+
+    rescue Exception => e
       warn("Could not obtain valid version/release information from #{specfile}, please check for consistency.  Defaulting to #{default_simp_version}-#{default_simp_release}")
       simp_version = default_simp_version
       simp_release = default_simp_release
