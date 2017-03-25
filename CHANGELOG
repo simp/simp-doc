@@ -2,6 +2,8 @@
 - Updated the Redundant LDAP HOWTO
 - Updated the SFTP Restricted Accounts HOWTO
 - Updated the IPTables NAT HOWTO
+- Updated Rsyslog HOWTO for new module layout
+- Updated Glossary
 
 * Thu Mar 23 2017 Trevor Vaughan <tvaughan@onyxpoint.com>
 - Added HOWTO on restricting SSH access to specific hosts and networks
