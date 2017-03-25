@@ -21,6 +21,8 @@ To do this, run:
 
 ``find `puppet config --section master print vardir`/simp` -name "*<client-fqdn>*" -exec tar --selinux --xattrs -rpvf <client-fqdn>_transfer.tar {} \;``
 
+``find /var/simp/environments -name "*<client-fqdn>*" -exec tar --selinux --xattrs -rpvf <client-fqdn>_transfer.tar {} \;``
+
 Then, pull all of the relevant Hiera configuration for the node:
 
 ``find /etc/puppet/environments -name "<client-hostname>.yaml" -exec tar --selinux --xattrs -rpvf <client-hostname>_transfer.tar {} \;``
