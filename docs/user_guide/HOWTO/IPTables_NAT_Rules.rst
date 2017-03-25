@@ -1,21 +1,19 @@
-HOWTO Configure IPTables NAT Rules
+HOWTO Configure iptables NAT Rules
 ==================================
 
-See the `IPtables Module
-Reference <../developers_guide/rdoc/classes/iptables.html>`__ for notes
-on using the basic IPtables Module.
+See the documentation in the ``iptables`` module itself for general usage.
 
 Add NAT Rules
 -------------
 
-The user may be required to add :term:`Network Address Translation` (NAT) rules to the IPtables ruleset. To
-achieve this using the IPtables module, SIMP 1.1.3 or later is required
-and the ``iptables::add_rules`` input statement should be used to affect
-the appropriate changes.
+The user may be required to add :term:`Network Address Translation` (NAT) rules
+to the iptables ruleset. To achieve this using the iptables module the
+``iptables::rule`` input statement should be used to effect the appropriate
+changes.
 
-The example below shows an IPtable NAT rule.
+The example below shows an iptables NAT rule.
 
-Example of an IPtable NAT Rule
+Example of an iptables NAT Rule
 
 .. code-block:: puppet
 
@@ -34,8 +32,5 @@ Example of an IPtable NAT Rule
    iptables::rule { 'nat_test':
      table   => 'nat',
      header  => false,
-     content => '
-     -A PREROUTING --physdev-in
-     eth1 -j DROP
-     '
+     content => '-A PREROUTING --physdev-in eth1 -j DROP'
    }
