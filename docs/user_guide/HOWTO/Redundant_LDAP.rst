@@ -114,8 +114,8 @@ three things, add the following lines to the
 .. code-block:: yaml
 
   simp_openldap::server::conf::rootpw: "{SSHA}GSCDnNF6KMXBf1F8eIe5xvQxVJou3zGu"
-  simp::server::ldap:is_slave: true
-  simp::server::ldap:rid: 888
+  simp::server::ldap::is_slave: true
+  simp::server::ldap::rid: 888
 
   classes :
     - 'simp::server::ldap'
