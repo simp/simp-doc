@@ -1,6 +1,8 @@
 * Sat Mar 25 2017 Trevor Vaughan <tvaughan@onyxpoint.com>
 - Updated the NFS HOWTO
 - Updated the Glossary
+- Updated the Redundant LDAP HOWTO
+- Updated the SFTP Restricted Accounts HOWTO
 
 * Thu Mar 23 2017 Trevor Vaughan <tvaughan@onyxpoint.com>
 - Added HOWTO on restricting SSH access to specific hosts and networks
