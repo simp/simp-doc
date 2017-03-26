@@ -105,8 +105,8 @@ data from the master. These servers are read-only, and modifications cannot be
 made to LDAP entries while the master is down.
 
 Slave nodes can be configured via Hiera by setting
-``simp_options::simp::ldap_server::is_slave`` to ``true``, setting the
-replication id (RID) , and adding the ``simp_options::simp::ldap_server``
+``simp::server::ldap::is_slave`` to ``true``, setting the
+replication id (RID) , and adding the ``simp::server::ldap``
 class. This will set up your redundant server using the defaults. To do these
 three things, add the following lines to the
 ``hieradata/hosts/ldap_server2.your.domain.yaml`` file:
