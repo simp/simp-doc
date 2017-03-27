@@ -31,7 +31,7 @@ configures local logging.
 
 If scenarios are not being used, include the ``simp_rsyslog`` class on all
 systems including the log server. If you're using the default SIMP install, you
-can add it to the ``simp::classes`` Array. Otherwise, you'll need to use a
+can add it to the ``simp::classes`` array. Otherwise, you'll need to use a
 standard Puppet ``include`` mechanism.
 
 What is Logged
@@ -50,7 +50,8 @@ those from OpenLDAP. See the ``simp_rsyslog`` module for more details.
 The Log Hash Format
 """""""""""""""""""
 
-The Hashes mentioned above are complex in nature but provide a clean interface to most aspects of log collection targeted to most users.
+The Hashes mentioned above are complex in nature but provide a clean interface to most
+aspects of log collection targeted to most users.
 
 The :term:`Puppet Data Type` representation of the Hashes is as follows:
 
@@ -115,13 +116,10 @@ set the values below in ``default.yaml``.
     - 'failoverserver1.fullyqualified.domain'
     - 'failoverserver2.fullyqualified.domain'
 
-* If you list more than one primary log server your logs will be forwarded to
-  **all** of the log servers in the Array
+If you list more than one primary log server your logs will be forwarded to
+**all** of the log servers in the array.
 
-* Failover log servers are optional.
-
-The default settings can be overwritten by setting the following :term:`Hiera`
-settings for host groups or individual servers:
+Failover log servers are optional.
 
 .. WARNING::
    If log forwarding is enabled on your log server, make sure you override the
@@ -196,9 +194,9 @@ stored in ``/var/log/hosts/<client name>`` directory on the log server.
 Forwarding Log Files from a Log Server
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-If the log server needs to forward the logs to another server, set
-``simp_rsyslog::forward_logs`` to ``true`` and remember to make sure that the
-``log_servers`` Array used on the relevant node does not include itself in the
+If the log server needs to forward logs to another server, edit its :term:`Hiera` file.
+Set ``simp_rsyslog::forward_logs`` to ``true`` and  make sure that the
+``log_servers`` array used on the relevant node does not include itself in the
 list. For example for a server using TLS:
 
 .. code-block:: yaml
