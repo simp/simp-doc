@@ -7,9 +7,8 @@ Add NAT Rules
 -------------
 
 The user may be required to add :term:`Network Address Translation` (NAT) rules
-to the iptables ruleset. To achieve this using the iptables module the
-``iptables::rule`` input statement should be used to effect the appropriate
-changes.
+to the iptables ruleset. To achieve this using the iptables module, the
+``iptables::rule`` input statement should be used.
 
 The example below shows an iptables NAT rule.
 
