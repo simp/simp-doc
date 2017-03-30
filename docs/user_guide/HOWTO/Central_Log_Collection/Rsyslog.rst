@@ -104,8 +104,8 @@ Set Log Servers
 The list of log servers are usually set during ``simp config``, and placed in
 the ``simp_config_settings.yaml`` :term:`Hiera` file.
 
-If this value needs to be changed, you can either run ``simp config`` again or
-set the values below in ``default.yaml``.
+If this value needs to be changed, either ``simp config`` can be run again or
+the values below can be overridden in ``default.yaml``:
 
 .. code-block:: yaml
 
