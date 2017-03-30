@@ -19,19 +19,23 @@ need to manually copy some artifacts from the old server to the new server
 
 To do this, run:
 
-``find `puppet config --section master print vardir`/simp` -name "*<client-fqdn>*" -exec tar --selinux --xattrs -rpvf <client-fqdn>_transfer.tar {} \;``
+.. code-block:: shell
 
-``find /var/simp/environments -name "*<client-fqdn>*" -exec tar --selinux --xattrs -rpvf <client-fqdn>_transfer.tar {} \;``
+   $ find `puppet config --section master print vardir`/simp` -name "*<client-fqdn>*" -exec tar --selinux --xattrs -rpvf <client-fqdn>_transfer.tar {} \;
+   $ find /var/simp/environments -name "*<client-fqdn>*" -exec tar --selinux --xattrs -rpvf <client-fqdn>_transfer.tar {} \;
 
 Then, pull all of the relevant Hiera configuration for the node:
 
-``find /etc/puppet/environments -name "<client-hostname>.yaml" -exec tar --selinux --xattrs -rpvf <client-hostname>_transfer.tar {} \;``
+.. code-block:: shell
 
-``find /etc/puppet/environments -name "<client-fqdn>.yaml" -exec tar --selinux --xattrs -rpvf <client-hostname>_transfer.tar {} \;``
+   $ find /etc/puppetlabs/code/environments -name "<client-hostname>.yaml" -exec tar --selinux --xattrs -rpvf <client-hostname>_transfer.tar {} \;
+   $ find /etc/puppetlabs/code/environments -name "<client-fqdn>.yaml" -exec tar --selinux --xattrs -rpvf <client-hostname>_transfer.tar {} \;
 
 Remove all of the node specific Hiera data:
 
-``find /etc/puppet/environments -name "<client-fqdn>.yaml" --delete``
+.. code-block:: shell
+
+   $ find /etc/puppetlabs/code/environments -name "<client-fqdn>.yaml" --delete
 
 .. NOTE::
 
@@ -41,7 +45,9 @@ Remove all of the node specific Hiera data:
 
 Reload the ``puppetserver`` process:
 
-``puppetserver_reload``
+.. code-block:: shell
+
+   $ puppetserver_reload
 
 On the New Puppet Server
 ------------------------
@@ -54,14 +60,18 @@ On the New Puppet Server
 
 Unpack the ``<client-hostname>_tansfer.tar`` archive onto the system:
 
-``tar --selinux --xattrs -C / -xvf <client-hostname>_transfer.tar``
+.. code-block:: shell
+
+   tar --selinux --xattrs -C / -xvf <client-hostname>_transfer.tar
 
 Reload the ``puppetserver`` process:
 
-``puppetserver_reload``
+.. code-block:: shell
 
-On the Client
--------------
+   puppetserver_reload
+
+On Each Client
+--------------
 
 .. WARNING::
 
