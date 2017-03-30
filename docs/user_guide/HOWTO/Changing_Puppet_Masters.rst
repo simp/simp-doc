@@ -21,7 +21,7 @@ To do this, run:
 
 .. code-block:: shell
 
-   $ find `puppet config --section master print vardir`/simp` -name "*<client-fqdn>*" -exec tar --selinux --xattrs -rpvf <client-fqdn>_transfer.tar {} \;
+   $ find `puppet config --section master print vardir`/simp -name "*<client-fqdn>*" -exec tar --selinux --xattrs -rpvf <client-fqdn>_transfer.tar {} \;
    $ find /var/simp/environments -name "*<client-fqdn>*" -exec tar --selinux --xattrs -rpvf <client-fqdn>_transfer.tar {} \;
 
 Then, pull all of the relevant Hiera configuration for the node:
