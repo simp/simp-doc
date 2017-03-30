@@ -85,15 +85,15 @@ Glossary of Terms
 
       Source: `Wikipedia: Discretionary access control <https://en.wikipedia.org/wiki/Discretionary_access_control>`__
 
-   DNS
-   Domain Name System
-      A database system that translates a computer's fully qualified domain
-      name into an IP address and the reverse.
-
    DHCP
    Dynamic Host Configuration Protocol
       A network protocol that enables a server to automatically assign an IP
       address to a computer.
+
+   DNS
+   Domain Name System
+      A database system that translates a computer's fully qualified domain
+      name into an IP address and the reverse.
 
    Docker
       Docker containers wrap a piece of software in a complete filesystem that
@@ -103,6 +103,12 @@ Glossary of Terms
       environment.
 
       Source: `Docker: What is Docker? <https://www.docker.com/what-docker>`__
+
+   DSL
+   Domain Specific Language
+      A computer language specalized to a particular application domain.
+
+      Source: `Wikipedia: Domain-specific language <https://en.wikipedia.org/wiki/Domain-specific_language>`__
 
    DoS
    Denial of Service
@@ -146,18 +152,25 @@ Glossary of Terms
 
    EPEL
    Extra Packages for Enterprise Linux
-     A Fedora Special Interest Group that creates, maintains, and manages a
-     high quality set of additional packages for :term:`Enterprise Linux`,
-     including, but not limited to, Red Hat Enterprise Linux (:term:`RHEL`),
-     :term:`CentOS` and Scientific Linux (SL), Oracle Linux (OL).E
+      A Fedora Special Interest Group that creates, maintains, and manages a
+      high quality set of additional packages for :term:`Enterprise Linux`,
+      including, but not limited to, Red Hat Enterprise Linux (:term:`RHEL`),
+      :term:`CentOS` and Scientific Linux (SL), Oracle Linux (OL).E
 
-     EPEL packages are usually based on their Fedora counterparts and will
-     never conflict with or replace packages in the base Enterprise Linux
-     distributions. EPEL uses much of the same infrastructure as Fedora,
-     including buildsystem, bugzilla instance, updates manager, mirror manager
-     and more.
+      EPEL packages are usually based on their Fedora counterparts and will
+      never conflict with or replace packages in the base Enterprise Linux
+      distributions. EPEL uses much of the same infrastructure as Fedora,
+      including buildsystem, bugzilla instance, updates manager, mirror manager
+      and more.
 
-     Source: `EPEL Homepage <https://fedoraproject.org/wiki/EPEL>`__
+      Source: `EPEL Homepage <https://fedoraproject.org/wiki/EPEL>`__
+
+   Facter
+      Cross-platform system profiling library for use with :term:`Puppet` and
+      other management tools. It discovers and reports per-node facts, which
+      are available in your Puppet manifests as variables.
+
+      Source: `Facter Documentation <https://docs.puppet.com/facter/>`__
 
    FIPS
    Federal Information Processing Standard
@@ -406,13 +419,20 @@ Glossary of Terms
    Puppet
       An :term:`Open Source` configuration management tool written and
       maintained by `Puppet, Inc <https://puppet.com>`__. Written as a
-      Ruby DSL, Puppet provides a declarative language that allows system
-      administrators to provide a consistently applied management
+      Ruby :term:`DSL`, Puppet provides a declarative language that allows
+      system administrators to provide a consistently applied management
       infrastructure. Users describes system resource and resource state in the
-      Puppet language.  Puppet discovers system specific information via facter
-      and compiles Puppet manifests into a system specific catalog containing
-      resources and resource dependencies, which are applied to each client
-      system.
+      Puppet language.  Puppet discovers system specific information via
+      :term:`Facter` and compiles Puppet manifests into a system-specific
+      catalog containing resources and resource dependencies, which are applied
+      to each client system.
+
+   Puppet Data Type
+      Added in Puppet version 4, strong data types allow for the enforcement of
+      inherent parameter validation as well as a better understanding of what
+      function the data performs in classes.
+
+      See: `Language: Data Types <https://docs.puppet.com/puppet/4.9/lang_data_type.html>`__
 
    Rake
    Ruby Make
