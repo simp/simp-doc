@@ -76,6 +76,13 @@ In ``hosts/<your_server_fqdn>.yaml``:
 Client
 ^^^^^^
 
+.. WARNING::
+
+  Non-wildcard indirect autofs mounts configured via nfs::client::mount
+  are not working properly at this time. See SIMP-2944 in our
+  `JIRA Bug Tracking`_ . You may wish to manually configure the mount
+  via autofs::map::master, and autofs::map::entry instead.
+
 In ``site/manifests/nfs_client.pp``:
 
 .. code-block:: puppet
@@ -96,7 +103,7 @@ In ``site/manifests/nfs_client.pp``:
       remote_path => '/nfs_share',
       sec         => $sec,
       at_boot     => true,
-      use_autofs  => true,
+      autofs      => true,
       require     => File['/mnt/nfs']
     }
   }
