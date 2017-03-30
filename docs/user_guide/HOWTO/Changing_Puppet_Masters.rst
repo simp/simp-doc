@@ -1,15 +1,88 @@
-HOWTO Change Puppet Masters
+HOWTO Change Puppet Servers
 ===========================
 
-It may be necessary to change the Puppet Master. To point a particular
-client to a new Puppet Master, follow the steps in the sections below.
+It may be necessary to change the Puppet Server. To point a particular
+client to a new Puppet Server, follow the steps in the sections below.
 
-On the Client
--------------
+.. NOTE::
 
-Enter the following changes into the */etc/puppetlabs/puppet/puppet.conf* file.
+   All commands in this section should be run as the ``root`` user.
 
-Code Changes on Client to Switch Puppet Masters
+On the Old Puppet Server
+------------------------
+
+Collect the Client's Server-Side Artifacts
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Until SIMP implements a shared Puppet data store (expected 2017-Q2), you will
+need to manually copy some artifacts from the old server to the new server
+
+To do this, run:
+
+.. code-block:: shell
+
+   $ find `puppet config --section master print vardir`/simp -name "*<client-fqdn>*" -exec tar --selinux --xattrs -rpvf <client-fqdn>_transfer.tar {} \;
+   $ find /var/simp/environments -name "*<client-fqdn>*" -exec tar --selinux --xattrs -rpvf <client-fqdn>_transfer.tar {} \;
+
+Then, pull all of the relevant Hiera configuration for the node:
+
+.. code-block:: shell
+
+   $ find /etc/puppetlabs/code/environments -name "<client-hostname>.yaml" -exec tar --selinux --xattrs -rpvf <client-hostname>_transfer.tar {} \;
+   $ find /etc/puppetlabs/code/environments -name "<client-fqdn>.yaml" -exec tar --selinux --xattrs -rpvf <client-hostname>_transfer.tar {} \;
+
+Remove all of the node specific Hiera data:
+
+.. code-block:: shell
+
+   $ find /etc/puppetlabs/code/environments -name "<client-fqdn>.yaml" --delete
+
+.. NOTE::
+
+   You may have Hiera YAML files with the short name of the host still in place
+   but those are too dangerous to automatically delete since they may match
+   multiple hosts.
+
+Reload the ``puppetserver`` process:
+
+.. code-block:: shell
+
+   $ puppetserver_reload
+
+On the New Puppet Server
+------------------------
+
+.. WARNING::
+
+   This assumes that the new Puppet Server is set up identically to the old
+   Puppet Server. If it is not, you will need to verify that the artifacts in
+   the ``tar`` file are correctly placed.
+
+Unpack the ``<client-hostname>_tansfer.tar`` archive onto the system:
+
+.. code-block:: shell
+
+   tar --selinux --xattrs -C / -xvf <client-hostname>_transfer.tar
+
+Reload the ``puppetserver`` process:
+
+.. code-block:: shell
+
+   puppetserver_reload
+
+On Each Client
+--------------
+
+.. WARNING::
+
+   Make sure you are running these commands **on the client**. If you run them
+   on the server, you have a very high risk of making your Puppet
+   infrastructure inoperable.
+
+Update the Puppet Config
+^^^^^^^^^^^^^^^^^^^^^^^^
+
+Enter the following changes into ``/etc/puppetlabs/puppet/puppet.conf``.
 
 .. code-block:: ini
 
@@ -17,23 +90,19 @@ Code Changes on Client to Switch Puppet Masters
   ca_server = new.puppet.master.fqdn
   ca_port = 8141
 
+Remove the Client Puppet Certificates
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-To remove all files and sub-directories in the ``/etc/puppetlabs/puppet/ssl``
-directory, type ``cd /etc/puppetlabs/puppet/ssl``. Then type ``rm -rf ./*``.
+To remove all legacy SSL material, run ``rm -rf `puppet config --section agent ssldir```
 
-Assuming the new Puppet Master has been set up to properly accept the
-client, type ``puppet agent --test`` to run a full Puppet run while
-pointing to the new server.
+Run Puppet
+^^^^^^^^^^
 
-If all goes well, the client will now be synchronized with the new
-Puppet Master. If not, refer to the SIMP Server Installation section of
-the SIMP Install Guide and ensure that the new Puppet Master was set up
-properly.
+Assuming the new Puppet Server has been set up to properly accept the
+client, execute a full Puppet run using ``puppet agent --test``.
 
-On the Old Puppet Master
-------------------------
+If everything was done properly, the client will now be synchronized with the
+new Puppet Server.
 
-Remove or comment out all items for the client node in the ``/etc/puppetlabs/code/environments/simp/hieradata/hosts`` space.
-
-To run ``puppet agent`` in *noop* mode to ensure that there are no
-inadvertent errors, type ``puppet agent --test --noop``.
+If you find issues, refer to the :ref:`Client_Management` section of the
+documentation and ensure that the new Puppet Server was set up properly.
