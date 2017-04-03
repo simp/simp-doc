@@ -9,23 +9,20 @@ and ``pupmod-simp-simp``.
 
 .. NOTE::
 
-  pupmod-simp-simp_nfs is not a core module, and may need to be installed prior
-  to applying the following manifests.
+  ``pupmod-simp-simp_nfs`` and ``pupmod-simp-nfs`` are not core modules, and
+  may need to be installed prior to following this guide.
 
 
-Exporting Non-Home Directories
-------------------------------
+Exporting Arbitrary Directories
+-------------------------------
 
 **Goal:** Export ``/var/nfs_share`` on the server, mount as ``/mnt/nfs`` on the
 client.
 
+.. NOTE::
 
-default.yaml
-^^^^^^^^^^^^
-
-.. code-block:: yaml
-
-  nfs::server: "your.server.fqdn"
+   If anything in this section does not make sense, there is a full working
+   example of how to export NFS home directories in the ``simp_nfs`` module.
 
 Server
 ^^^^^^
@@ -35,25 +32,35 @@ In ``site/manifests/nfs_server.pp``:
 .. code-block:: puppet
 
   class site::nfs_server (
-    Boolean          $kerberos     = simplib::lookup('simp_options::kerberos', { 'default_value' => false }),
-    Simplib::Netlist $trusted_nets = simplib::lookup('simp_options::trusted_nets', { 'default_value' => ['127.0.0.1'] }),
+    Boolean                                          $data_dir     = '/var/nfs_share',
+    Simplib::Netlist                                 $trusted_nets = simplib::lookup('simp_options::trusted_nets', { 'default_value' => ['127.0.0.1'] }),
+    Array[Enum['none','sys','krb5','krb5i','krb5p']] $sec          = ['sys']
   ){
-    include '::nfs'
+    include '::nfs::server'
 
-    $nfs_security = $kerberos ? { true => 'krb5p', false => 'sys' }
-
-    file { '/var/nfs_share':
+    file { $data_dir:
       ensure => 'directory',
       owner  => 'root',
       group  => 'root',
       mode   => '0644'
     }
 
-    nfs::server::export { 'nfs4_root':
-      clients     => $trusted_nets,
-      export_path => '/var/nfs_share',
-      sec         => [$nfs_security],
-      require     => File['/var/nfs_share']
+    if !$::nfs::stunnel {
+      nfs::server::export { 'nfs_share':
+        clients     => $trusted_nets,
+        export_path => $data_dir,
+        sec         => $sec,
+        require     => File[$data_dir]
+      }
+    }
+    else {
+      # Stunnel needs to point at the local host
+      nfs::server::export { 'nfs_share':
+        clients     => ['127.0.0.1'],
+        export_path => $data_dir,
+        sec         => $sec,
+        require     => File[$data_dir]
+      }
     }
   }
 
@@ -69,31 +76,33 @@ In ``hosts/<your_server_fqdn>.yaml``:
 Client
 ^^^^^^
 
+
 In ``site/manifests/nfs_client.pp``:
 
 .. code-block:: puppet
 
-  class site::nfs_client (
-    Boolean $kerberos = simplib::lookup('simp_options::kerberos', { 'default_value' => false }),
+   class site::nfs_client (
+    Simplib::Host                                    $nfs_server,
+    Enum['none','sys','krb5','krb5i','krb5p']        $sec = 'sys'
   ){
-    include '::nfs'
 
-    $nfs_security = $kerberos ? { true => 'krb5p', false =>  'sys' }
+     $_mnt_point = '/mnt/nfs'
 
-    file { '/mnt/nfs':
-      ensure => 'directory',
-      mode => '755',
-      owner => 'root',
-      group => 'root'
-    }
+     file { "${_mnt_point}":
+       ensure => 'directory',
+       mode   => '755',
+       owner  => 'root',
+       group  => 'root'
+     }
 
-    mount { "/mnt/nfs":
-      ensure  => 'mounted',
-      fstype  => 'nfs4',
-      device  => '<your nfs server>:/var/nfs_share',
-      options => "sec=${nfs_security}",
-      require => File['/mnt/nfs']
-    }
+     nfs::client::mount { "${_mnt_point}":
+       nfs_server  => $nfs_server,
+       remote_path => '/var/nfs_share',
+       sec         => $sec,
+       at_boot     => true,
+       autofs      => false,
+       require     => File["${_mnt_point}"]
+     }
   }
 
 In ``hosts/<your_client_fqdn>.yaml``:
@@ -101,23 +110,37 @@ In ``hosts/<your_client_fqdn>.yaml``:
 .. code-block:: yaml
 
   nfs::is_server: false
+  site::nfs_client::nfs_server: <your nfs server>
 
   classes:
     - 'site::nfs_client'
 
+.. WARNING::
 
-Exporting home directories
+  Non-wildcard indirect autofs mounts configured via nfs::client::mount
+  are not working properly at this time. See SIMP-2944 in our
+  `JIRA Bug Tracking`_ . You may wish to manually configure the mount
+  via autofs::map::master, and autofs::map::entry instead.
+
+.. NOTE::
+
+  The ``simp_nfs`` module contains a further example that includes the
+  use of a NFS root on the server and indirect autofs with wildcards on
+  the client.
+
+
+Exporting Home Directories
 --------------------------
 
 **Goal:** Export home directories for LDAP users.
 
 Utilize the SIMP profile module ``simp_nfs``:
 
-  #. ``simp_nfs``: Manages client and server configurations for managing nfs
+  #. ``simp_nfs``: Manages client and server configurations for managing NFS
      home directories.
-  #. ``simp_nfs::export_home::create_home_dirs``: Optional hourly cron that
-     binds to a LDAP server, ``ldap::uri`` by default, and creates a NFS home
-     directory for all users in the LDAP server. Also expires any home
+  #. ``simp_nfs::create_home_dirs``: Optional hourly cron job that binds to a
+     :term:`LDAP` server, ``simp_options::ldap::uri`` by default, and creates a
+     NFS home directory for all users in the LDAP server. Also expires any home
      directories for users that no longer exist in LDAP.
 
 .. NOTE::
@@ -131,7 +154,6 @@ Utilize the SIMP profile module ``simp_nfs``:
    Any users logged onto a host at the time of module application will not have
    their home directories re-mounted until they log out and log back in.
 
-
 default.yaml
 ^^^^^^^^^^^^
 
@@ -142,7 +164,6 @@ default.yaml
 
   classes:
     - simp_nfs
-
 
 Server
 ^^^^^^
@@ -164,8 +185,8 @@ Stunnel is a means to encrypt your NFS data.
 Enable
 ^^^^^^
 
-If simp_options::stunnel is set to true, you need only specify the following,
-in the server's yaml file:
+If ``simp_options::stunnel`` is set to ``true``, you need only specify the
+following, in the server's :term:`YAML` file:
 
 .. NOTE::
 
@@ -176,9 +197,8 @@ in the server's yaml file:
 
   nfs::client::stunnel::nfs_server: <your nfs server>
 
-
-If simp_options::stunnel is set to false and you don't wish to globally enable
-stunnel, you will also need to set the following, in default.yaml:
+If ``simp_options::stunnel`` is set to ``false`` and you don't wish to globally
+enable stunnel, you will also need to set the following, in default.yaml:
 
 .. code-block:: yaml
 
@@ -187,26 +207,25 @@ stunnel, you will also need to set the following, in default.yaml:
 Disable
 ^^^^^^^
 
-If simp_options::stunnel is set to true, but you don't want your NFS traffic to
-go through stunnel, set the following, in default.yaml:
+If ``simp_options::stunnel`` is set to ``true``, but you don't want your NFS
+traffic to go through stunnel, set the following, in default.yaml:
 
 .. code-block:: yaml
 
   nfs::stunnel: false
 
-If simp_options::stunnel is set to false, stunnel is already disabled.
+If ``simp_options::stunnel`` is set to ``false`` then stunnel is already disabled.
 
-Enabling krb5
--------------
+Enabling Kerberos
+-----------------
 
 .. WARNING::
 
   This functionality is incomplete. See ticket SIMP-1400 in our
-  `JIRA Bug Tracking`_ . Until that ticket is resolved, it is
-  HIGHLY recommended you continue to use stunnel for encrypted
-  nfs traffic.
+  `JIRA Bug Tracking`_ . Until that ticket is resolved, it is HIGHLY
+  recommended you continue to use stunnel for encrypted nfs traffic.
 
-In addition to the code above, add the following code:
+In addition to the sharing code (not the stunnel code) above, add the following:
 
 default.yaml
 ^^^^^^^^^^^^
@@ -222,7 +241,6 @@ default.yaml
   krb5::kdc::auto_keytabs::global_services:
     - 'nfs'
 
-
 Server
 ^^^^^^
 
@@ -230,7 +248,6 @@ Server
 
   classes:
     - 'krb5::kdc'
-
 
 Clients
 ^^^^^^^
@@ -241,6 +258,5 @@ Clients
 
   classes:
     - 'simp_nfs'
-
 
 .. _JIRA Bug Tracking: https://simp-project.atlassian.net/

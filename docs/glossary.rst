@@ -669,6 +669,13 @@ Glossary of Terms
 
       Source: `Wikipedia: X.509 <https://en.wikipedia.org/wiki/X.509>`__
 
+   YAML
+   YAML Ain't Markup Language
+      A human friendly data serialization standard for all programming
+      languages.
+
+      Source: `YAML Homepage <http://yaml.org/>`__
+
    YUM
    Yellowdog Updater, Modified
       A software installation tool for Linux. It is a complete software
