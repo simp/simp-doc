@@ -76,36 +76,33 @@ In ``hosts/<your_server_fqdn>.yaml``:
 Client
 ^^^^^^
 
-.. WARNING::
-
-  Non-wildcard indirect autofs mounts configured via nfs::client::mount
-  are not working properly at this time. See SIMP-2944 in our
-  `JIRA Bug Tracking`_ . You may wish to manually configure the mount
-  via autofs::map::master, and autofs::map::entry instead.
 
 In ``site/manifests/nfs_client.pp``:
 
 .. code-block:: puppet
 
-  class site::nfs_client (
+   class site::nfs_client (
     Simplib::Host                                    $nfs_server,
-    Array[Enum['none','sys','krb5','krb5i','krb5p']] $sec = ['sys']
+    Enum['none','sys','krb5','krb5i','krb5p']        $sec = 'sys'
   ){
-    file { '/mnt/nfs':
-      ensure => 'directory',
-      mode   => '755',
-      owner  => 'root',
-      group  => 'root'
-    }
 
-    nfs::client::mount { 'nfs_share':
-      nfs_server  => $nfs_server,
-      remote_path => '/nfs_share',
-      sec         => $sec,
-      at_boot     => true,
-      autofs      => true,
-      require     => File['/mnt/nfs']
-    }
+     $_mnt_point = '/mnt/nfs'
+
+     file { "${_mnt_point}":
+       ensure => 'directory',
+       mode   => '755',
+       owner  => 'root',
+       group  => 'root'
+     }
+
+     nfs::client::mount { "${_mnt_point}":
+       nfs_server  => $nfs_server,
+       remote_path => '/var/nfs_share',
+       sec         => $sec,
+       at_boot     => true,
+       autofs      => false,
+       require     => File["${_mnt_point}"]
+     }
   }
 
 In ``hosts/<your_client_fqdn>.yaml``:
@@ -113,9 +110,24 @@ In ``hosts/<your_client_fqdn>.yaml``:
 .. code-block:: yaml
 
   nfs::is_server: false
+  site::nfs_client::nfs_server: <your nfs server>
 
   classes:
     - 'site::nfs_client'
+
+.. WARNING::
+
+  Non-wildcard indirect autofs mounts configured via nfs::client::mount
+  are not working properly at this time. See SIMP-2944 in our
+  `JIRA Bug Tracking`_ . You may wish to manually configure the mount
+  via autofs::map::master, and autofs::map::entry instead.
+
+.. NOTE::
+
+  The ``simp_nfs`` module contains a further example that includes the
+  use of a NFS root on the server and indirect autofs with wildcards on
+  the client.
+
 
 Exporting Home Directories
 --------------------------
