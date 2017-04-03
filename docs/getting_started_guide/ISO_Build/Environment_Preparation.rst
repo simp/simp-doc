@@ -47,7 +47,7 @@ Required RPMs
 
 .. NOTE::
    The SIMP build generates various keys and does quite a bit of package
-   signing. As such, your system mustto be able to keep its entropy pool
+   signing. As such, your system must be able to keep its entropy pool
    full at all times. If you check ``/proc/sys/kernel/random/entropy_avail``
    and it shows a number below **1024**, then you should either make sure that
    ``rngd`` is running and pointed to a hardware source (preferred) or install
@@ -132,32 +132,36 @@ Clone simp-core:
   $ git clone https://github.com/simp/simp-core
   $ cd simp-core
 
-Check out your desired branch of SIMP:
+At this point, the master branch (latest 6.X) has been checked out.  If this is
+the version of SIMP you want to build, you can move on to install gem
+dependencies.
+
+If you need to build a specific version of SIMP:
+
 
 * To check out a stable SIMP release, check out a tag:
 
 .. code::
 
    $ git fetch --tags
-   $ git checkout tags/5.2.0-0
+   $ git checkout tags/6.0.0-0
 
-* To check out an unstable SIMP release, check out the latest 5.X or 4.X HEAD:
+* To check out an unstable SIMP release, check out the latest HEAD:
 
 .. code::
 
-   $ git checkout 5.1.X
-   $ git checkout 4.2.X
+   $ git checkout master
+   $ git checkout 5.X
 
 .. NOTE::
-   SIMP >= 5.2.X, >= 4.3.X are still developed on the ``5.1.X`` and ``4.2.X``
-   branches, respectively. All future development will be made on the
-   ``master`` branch.
+   SIMP >= 6.X (and future development) is maintained on the ``master`` branch.
+   SIMP >= 5.2.X (legacy) is maintained on the ``5.1.X`` branch.
 
 .. WARNING::
    Any branch that is not tagged with a git tag should be treated as
    **unstable**.
 
-Grab gem dependencies:
+Install gem dependencies:
 
 .. code-block:: bash
 
