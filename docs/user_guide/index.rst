@@ -12,7 +12,6 @@ Contents:
   Client_Management
   SIMP_Administration
   User_Management
-  Hiera_Overview
   Troubleshooting
   HOWTO
   SIMP_Package_Data

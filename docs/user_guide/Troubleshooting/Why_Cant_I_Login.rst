@@ -19,6 +19,8 @@ until an administrator changes your password to something stronger.
 
 For the default complexity rules, see the :ref:`faq-password-complexity` FAQ.
 
+.. _PAM Access Restrictions:
+
 PAM Access Restrictions
 -----------------------
 
@@ -29,7 +31,7 @@ accidentally interrupt services due to network issues connecting to your
 :term:`LDAP` server.
 
 To allow a user to access a particular system, you need to use the
-`pam::access::manage`_ define as shown below.
+`pam::access::rule`_ define as shown below.
 
 .. code-block:: ruby
 
@@ -123,4 +125,4 @@ If both PAM and DNS appear to be correct, you should next validate that your
 
 See :ref:`pki_validation` for additional guidance.
 
-.. _pam::access::manage: https://github.com/simp/pupmod-simp-pam/blob/master/manifests/access/rule.pp
+.. _pam::access::rule: https://github.com/simp/pupmod-simp-pam/blob/master/manifests/access/rule.pp

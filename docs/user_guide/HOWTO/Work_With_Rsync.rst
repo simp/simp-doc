@@ -1,3 +1,5 @@
+.. _HOWTO Work with the SIMP Rsync Shares:
+
 HOWTO Work with the SIMP Rsync Shares
 =====================================
 

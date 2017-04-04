@@ -1,22 +1,24 @@
 Apply Certificates
-++++++++++++++++++
+==================
 
 All clients in a SIMP system must have :term:`Public Key Infrastructure` (PKI)
 keypairs generated for the server.  These keys reside in the
-``/var/simp/environments/simp/site_files/pki_files/files/keydist`` directory  on the
+``/var/simp/environments/simp/site_files/pki_files/files/keydist`` directory on the
 SIMP server and are served to the clients over the puppet protocol.
 
 .. NOTE::
 
-  These keypairs are **not** the keys that the Puppet server uses for its
-  operation. Do not get the two confused.
+   These keypairs are **not** the keys that the Puppet server uses for its
+   operation. Do not get the two confused.
 
-This section provides guidance on installing official certificates or, as
-an interim measure, generating certificates from the Fake (self-signing)
+   See :ref:`Certificate Management` for more information.
+
+This section provides guidance on installing official certificates or, as an
+interim measure, generating certificates from the Fake (self-signing)
 Certificate Authority provided by SIMP.
 
 Installing Official Certificates
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+--------------------------------
 
 Below are the steps to install official certificates for a SIMP client on
 the SIMP server:
@@ -45,7 +47,7 @@ the SIMP server:
   d) Type ``for file in *.pem; do ln -s $file `openssl x509 -in $file -hash -noout`.0; done``
 
 Generating Certificates from the Fake CA
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+----------------------------------------
 
 If server certificates have not or could not be obtained at the time of client
 installation, SIMP provides a way to create them for the system, so that it
@@ -53,43 +55,43 @@ will work until proper certificates are provided.
 
 .. NOTE::
 
-  This option should not be used for any operational system that can use proper
-  enterprise PKI certificates.
+   This option should not be used for any operational system that can use
+   proper enterprise PKI certificates.
 
 Below are the steps to generate the certificates using the SIMP-provided, Fake CA.
 
-1. Type ``cd /etc/puppetlabs/code/environments/simp/FakeCA``
+1. Type ``cd /var/simp/environments/simp/FakeCA``
 2. Type ``vi togen``
 3. Remove old entries from the file and add the :term:`Fully Qualified Domain Name`
    (FQDN) of the systems (one per line) for which certificates will be created.
 
   .. NOTE::
 
-    To use alternate DNS names for the same system, separate the names with
-    commas and without spaces.
+     To use alternate DNS names for the same system, separate the names with
+     commas and without spaces.
 
-    For example, ``.name,alt.name1,alt.name2.``
+     For example, ``.name,alt.name1,alt.name2.``
 
 4. Type ``wc cacertkey``
 
   .. NOTE::
 
-    Ensure that the ``cacertkey`` file is not empty. If it is, enter text into
-    the file; then save and close the file.
+     Ensure that the ``cacertkey`` file is not empty. If it is, enter text into
+     the file; then save and close the file.
 
 5. Type ``./gencerts_nopass.sh auto``
 
   .. NOTE::
 
-    To avoid using the default Fake CA values, remove the ``auto`` statement
-    from the ``./gencerts_nopass.sh`` command.
+     To avoid using the default Fake CA values, remove the ``auto`` statement
+     from the ``./gencerts_nopass.sh`` command.
 
 .. WARNING::
 
-  If the ``clean.sh`` command is run after the certificates have been
-  generated, you will not be able to generate new host certificates under the
-  old CA. To troubleshoot certificate problems, see the
-  :ref:`cm-troubleshoot-cert-issues` section.
+   If the ``clean.sh`` command is run after the certificates have been
+   generated, you will not be able to generate new host certificates under the
+   old CA. To troubleshoot certificate problems, see the
+   :ref:`cm-troubleshoot-cert-issues` section.
 
 If issues arise while generating keys, type ``cd /etc/puppetlabs/code/environments/simp/FakeCA``
 to navigate to the ``/etc/puppetlabs/code/environments/simp/FakeCA`` directory, then type

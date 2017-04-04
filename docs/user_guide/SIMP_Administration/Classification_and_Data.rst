@@ -1,57 +1,63 @@
+.. _Classification and Data:
 
-.. _Hiera:
+Classification and Data
+=======================
 
+Node Classification in SIMP
+---------------------------
 
-Hiera Overview
-==============
+From the Puppet, Inc website:
 
-SIMP uses Hiera to assign classes to nodes. From the Puppet, Inc
-website: Hiera is a key/value lookup tool for configuration data, built
-to set node-specific data without repeating yourself. It is an attempt
-to make SIMP more configurable to you, the end user. It configures
-Puppet in two ways: automatic parameter lookup/hiera lookup functions,
-and assigning classes to nodes. The former allows you to generate
-reusable code and concentrates parameter assignment to one directory.
-The latter is a supplement to the failed inheritance model.
+  Hiera is a key/value lookup tool for configuration data, built to set
+  node-specific data without repeating yourself.
 
+SIMP uses :term:`Hiera` to attempt to make configuration of the overall system easier
+for our end users by providing a simple, centralized, method for setting class
+parameters using `automatic parameter lookup`_ and as a method for
+`basic node classification`_.
 
-Setting Parameters
-------------------
+It is **highly recommended** that you read the `Hiera Documentation`_ prior to
+jumping into using a SIMP system.
 
-**Automatic Lookup** You can now safely declare any class on any node
-with 'include', even if the class is parameterized. Before Hiera, this was
-not possible. Puppet will automatically retrieve class parameters from
-Hiera using keys. Add a key with a value pair to an appropriate yaml
-file, say default.yaml, as such:
+Hiera in SIMP
+-------------
 
-Adding a Key/Value Pair to Hiera Examples
+As mentioned, SIMP users are expected to make extensive use of Hiera to set
+parameters, particularly those that are deep within the code.
 
-.. code-block:: yaml
+The default Hiera hierarchy used by SIMP looks like the following:
 
-    ---
-    classfoo::parameter_bar: "Woo"
-    classfoo::parameter_baz: "Hoo"
+.. code::yaml
 
+   ---
+   :backends:
+     - 'yaml'
+   :hierarchy:
+     # Most specific
+     - 'hosts/%{trusted.certname}'
+     - 'hosts/%{facts.fqdn}'
+     - 'hosts/%{facts.hostname}'
+     - 'domains/%{facts.domain}'
+     - '%{facts.os.family}'
+     - '%{facts.os.name}/%{facts.os.release.full}'
+     - '%{facts.os.name}/%{facts.os.release.major}'
+     - '%{facts.os.name}'
+     - 'hostgroups/%{::hostgroup}'
+     - 'default'
+     - 'compliance_profiles/%{::compliance_profile}'
+     - 'simp_config_settings'
+     - 'scenarios/%{::simp_scenario}'
+     # Least specific
+   :logger: 'puppet'
+   :yaml:
+     :datadir: '/etc/puppetlabs/code/environments/%{::environment}/hieradata'
 
-You can then 'include classfoo' on any node, with parameter\_bar and
-parameter\_baz defaulting to Woo and Hoo, respectively.
+.. WARNING::
 
-**Lookup Functions** You are not required to set up your hierarchy for
-automatic variable lookup. Using three functions, you can query Hiera
-for any key.
+   This may not be accurate for your version of SIMP, please check your local
+   Hiera settings!
 
-The first is ``hiera``. This uses standard priority lookup and can
-retrieve values of any data type from Hiera. If no key is found, a
-default should be included. ``$myvar = hiera('parameter_bar', 'Woo')``
-
-The second is ``hiera_array``. This uses an array merge lookup. It
-retrieves all array values for a given key throughout the entire
-hierarchy and flattens them into a single array.
-
-The third is ``hiera_hash``. This uses a hash merge lookup. It retrieves
-all hash values for a given key throughout the entire hierarchy and
-merges them into a single hash.
-
+The rest of this document will use this hierarchy as a referece.
 
 Assigning Classes to Nodes
 --------------------------
@@ -66,7 +72,6 @@ with 'classes' **in its hierarchy**. Additionally, simp\_def.yaml is in
 the hierarchy of every node, so every node will receive those classes
 (by default).
 
-
 Assigning Defined Types to Nodes
 --------------------------------
 
@@ -76,7 +81,6 @@ use create\_resources, but this is messy and discouraged. Instead, make a
 site class ``/etc/puppetlabs/code/environments/simp/modules/site/manifests/my_site.pp``.
 For example, to include tftpboot linux\_model and assign\_host on your
 puppet server, puppet.your.domain:
-
 
 SIMP File Structure
 -------------------
@@ -103,14 +107,12 @@ fresh SIMP system:
 - ``modules/`` - Default install location of Puppet modules. Each module RPM copies files here during installation from ``/usr/share/simp/modules``.
 - ``simp_autofiles`` - SIMP files
 
-
 Second Modulepath
 -----------------
 
 SIMP utilizes a second modulepath to ensure that deployment tools like r10k
 don't squash keydist and some krb5 files. The path is
 ``/var/simp/environments/simp/site_files/``.
-
 
 Hiera
 -----
@@ -174,3 +176,8 @@ using this scenario.
   should only have services on it related to Puppet and systems management, and
   SIMP modules all work with all security features enabled.
 
+.. _Hiera Documentation: https://docs.puppet.com/hiera/3.3/complete_example.html
+.. _Hiera hierachy: https://docs.puppet.com/hiera/3.3/hierarchy.html
+.. _automatic parameter lookup: https://docs.puppet.com/hiera/3.3/puppet.html#automatic-parameter-lookup
+.. _basic node classification: https://docs.puppet.com/hiera/3.3/puppet.html#assigning-classes-to-nodes-with-hiera-hierainclude
+.. _structured data: https://docs.puppet.com/hiera/3.3/puppet.html#interacting-with-structured-data-from-hiera
