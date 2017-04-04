@@ -234,7 +234,7 @@ configurations.
 |               |   both the SIMP server and SIMP clients in the 'simp',       |
 |               |   environment, ``simp/hieradata/simp_config_settings.yaml``  |
 +---------------+--------------------------------------------------------------+
-| YUM           | - When the ISO-installed, on-server, SIMP-specific YUM repo  |
+| YUM           | - When the SIMP filesystem YUM repo from an ISO install      |
 |               |   exists (``/etc/yum.repos.d/simp_filesystem.repo``),        |
 |               |   ``simp config``                                            |
 |               |                                                              |
@@ -253,8 +253,8 @@ configurations.
 |               |     contained at ``/var/www/yum/OSTYPE/MAJORRELEASE/ARCH``.  |
 |               |   - Disables any default CentOS repos.                       |
 |               |                                                              |
-|               | - When the local SIMP-specific YUM repo does not exist,      |
-|               |   but the user wants to use internet repos ``simp config``   |
+|               | - When the SIMP filesystem YUM repo does not exist, but the  |
+|               |   user wants to use internet repos ``simp config``           |
 |               |                                                              |
 |               |   - Enables internet SIMP server repos in the SIMP server    |
 |               |     host YAML file by adding the                             |
@@ -264,8 +264,8 @@ configurations.
 |               |     ``simp::yum::repo::internet_simp_dependencies`` class    |
 |               |     to ``simp_config_settings.yaml``.                        |
 |               |                                                              |
-|               | - When the local SIMP-specific YUM repo does not exist       |
-|               |   and the user does not want to use internet repos,          |
+|               | - When the SIMP filesystem YUM repo does not exist and the   |
+|               |   user does not want to use internet repos,                  |
 |               |   ``simp config``                                            |
 |               |                                                              |
 |               |   - Checks the configuration of the  SIMP server's YUM repos |
