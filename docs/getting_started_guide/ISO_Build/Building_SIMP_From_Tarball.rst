@@ -18,19 +18,14 @@ Getting Started
   You do **not** need ``mock`` on your system if you are generating an ISO
   based on the SIMP Tarball!
 
-Download the CentOS/RedHat installation media:
-
-  * SIMP_5.X: `CentOS-7-x86_64-DVD-1511.iso`_
-  * SIMP_4.X: `DVD1 and DVD2`_ of the CentOS 6.8 release. For example,
-    ``CentOS-6.8-x86_64-bin-DVD1.iso``
-
 Download the SIMP release tarball, found on our `BinTray artifacts repository`_.
 
 Download the latest tarball according to your needs. If you are not sure what
 version you need, check the :ref:`faq-simp_version_guide`.
 
-  * The `latest 5.2.0-0 release (for CentOS 7)`_
-  * The `latest 4.3.0-0 release (for CentOS 6)`_
+  * The `latest 6.0.0-0 release (for CentOS 6)`_
+  * The `latest 6.0.0-0 release (for CentOS 7)`_
+  * The `latest checksums`_
 
 Generating The ISO!
 -------------------
@@ -41,8 +36,7 @@ branch for your target SIMP version:
 .. code::
 
    $ cd simp-core
-   $ git checkout tags/5.2.0-0 # for SIMP 5 and CentOS 7
-   $ git checkout tags/4.3.1-0 # for SIMP 4 and CentOS 6
+   $ git checkout tags/6.0.0-0 # for SIMP 6
 
 Run ``bundle install`` to make sure that all of the build tools and dependencies are
 installed and up to date:
@@ -57,7 +51,7 @@ current working directory.
 Run the ``build:auto`` rake task to create a bootable ISO:
 
 .. NOTE::
-  Do **not** add any whitespace before or after the commas. This is an artiface
+  Do **not** add any whitespace before or after the commas. This is an artifact
   of using ``rake``.
 
 .. code::
@@ -68,18 +62,17 @@ For example:
 
 .. code::
 
-   $ # for SIMP 5 and CentOS 7
-   $ bundle exec rake build:auto[.,5.1.X,SIMP-DVD-CentOS-5.2.0-0.tar.gz]
+   $ # for SIMP 6 and CentOS 7
+   $ bundle exec rake build:auto[.,6.X,SIMP-6.0.0-0-Overlay-EL-7-x86_64.tar.gz]
 
-   $ # for SIMP 4 and CentOS 6
-   $ bundle exec rake build:auto[.,4.2.X,SIMP-DVD-CentOS-4.3.0-0.tar.gz]
+   $ # for SIMP 6 and CentOS 6
+   $ bundle exec rake build:auto[.,6.X,SIMP-6.0.0-0-Overlay-EL-6-x86_64.tar.gz]
 
 Once the process completes, you should have a bootable SIMP ISO ready for
 installation!
 
 
-.. _BinTray artifacts repository: https://bintray.com/simp/Releases/Artifacts#files
-.. _latest 5.2.0-0 release (for CentOS 7): https://bintray.com/simp/Releases/download_file?file_path=SIMP-DVD-CentOS-5.2.0-0.tar.gz
-.. _latest 4.3.0-0 release (for CentOS 6): https://bintray.com/simp/Releases/download_file?file_path=SIMP-DVD-CentOS-4.3.0-0.tar.gz
-.. _CentOS-7-x86_64-DVD-1511.iso: http://isoredirect.centos.org/centos/7/isos/x86_64/CentOS-7-x86_64-DVD-1511.iso
-.. _DVD1 and DVD2: http://isoredirect.centos.org/centos/6/isos/x86_64/
+.. SIMP artifacts repository: http://simp-project.com/ISO/SIMP/
+.. _latest 6.0.0-0 release (for CentOS 6): http://simp-project.com/ISO/SIMP/SIMP-6.0.0-0-Powered-By-CentOS-6.8-x86_64.iso
+.. _latest 6.0.0-0 release (for CentOS 7): http://simp-project.com/ISO/SIMP/SIMP-6.0.0-0-Powered-By-CentOS-7.0-x86_64.iso
+.. _latest checksums: http://simp-project.com/ISO/SIMP/SHA512SUM
