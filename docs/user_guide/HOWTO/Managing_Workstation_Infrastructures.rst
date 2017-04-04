@@ -8,9 +8,10 @@ system including GUIs, repositories, virtualization, Network File System
 (NFS), printing, and Virtual Network Computing (VNC).
 
 
-Most of the SIMP workstation modules are not installed on the puppet server by default.
-Create a class and include this class on your puppet server or add to an existing class.
-For example:
+Most of the SIMP workstation Puppet modules are not installed on the puppet server by default.
+
+If using the SIMP RPMs, you will need to add these packages to your SIMP **server** using
+something like the following code snippet.
 
 .. code-block:: puppet
 
