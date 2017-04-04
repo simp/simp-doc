@@ -7,6 +7,28 @@ This chapter describes how to manage client workstations with a SIMP
 system including GUIs, repositories, virtualization, Network File System
 (NFS), printing, and Virtual Network Computing (VNC).
 
+
+Most of the SIMP workstation modules are not installed on the puppet server by default.
+Create a class and include this class on your puppet server or add to an existing class.
+For example:
+
+.. code-block:: puppet
+
+  class site::workstation_packages{
+
+    $package_list = [
+      'pupmod-simp-gdm',
+      'pupmod-simp-simp_nfs',
+      'pupmod-simp-vnc',
+      'pupmod-simp-libvirt',
+      'pupmod-simp-gnome'
+    ]
+
+    package { $package_list :
+      ensure => 'latest',
+    }
+  }
+
 User Workstation Setup
 ----------------------
 
@@ -20,7 +42,6 @@ set up a user workstation.
      include 'site::gui'
      include 'site::repos'
      include 'site::virt'
-     include 'site::automount'
      include 'site::print::client'
 
      # Make sure everyone can log into all nodes.
@@ -130,21 +151,22 @@ on a user workstation.
        require  => Network::Eth['em1']
      }
 
-     class { 'swappiness':
-       high_swappiness => 80,
-       max_swappiness  => 100
-     }
-
-     # If 80% of memory is used, flush caches.
      exec { 'flush_cache_himem':
        command => '/bin/echo 1 > /proc/sys/vm/drop-caches',
-       onlyif => inline_template("/bin/<%= memoryfree.split(/\s/)[0].
-       to_f/memorysize.split(/\s/)[0].to_f < 0.2 ? true : false %>")
+       onlyif => inline_template("/bin/<%= @facts['memoryfree'].split(/\s/)[0].
+       to_f/@facts['memorysize'].split(/\s/)[0].to_f < 0.2 ? true : false %>")
      }
 
      package { 'virt-manager': ensure => 'latest' }
    }
 
+To set swappiness values use hiera:
+
+.. code-block:: yaml
+
+  # Settings for swap for creating/running virtual machines
+  swap::high_swappiness: 80
+  swap::max_swappiness: 100
 
 Printer Setup
 -------------
@@ -285,7 +307,7 @@ VNC Server node
 
   # vserv.your.domain.yaml
   classes:
-    - 'windowmanager::gnome'
+    - 'gnome'
     - 'mozilla::firefox'
     - 'vnc::server'
 
