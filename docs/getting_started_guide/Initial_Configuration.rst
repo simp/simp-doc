@@ -61,6 +61,10 @@ that variables beginning with 'cli::' are only used internally by
 |                                | *poss* = SIMP system with all security    |
 |                                | features disabled for clients.            |
 +--------------------------------+-------------------------------------------+
+| cli::\                         | Whether to configure SIMP nodes to use    |
+| use_internet_simp_yum_repos    | internet SIMP and SIMP dependency YUM     |
+|                                | repositories.                             |
++--------------------------------+-------------------------------------------+
 | grub::password                 | GRUB password hash                        |
 +--------------------------------+-------------------------------------------+
 | puppetdb::master::config::\    | Port used by the puppet database          |
@@ -121,19 +125,22 @@ that variables beginning with 'cli::' are only used internally by
 +--------------------------------+-------------------------------------------+
 | simp::runlevel                 | Default system run level; 1-5             |
 +--------------------------------+-------------------------------------------+
-| simp::yum::enable_os_repos     | Whether to enable remote OS YUM           |
-|                                | repositories                              |
+| simp::yum::repo::\             | YUM server(s) for SIMP-managed, OS Update |
+| local_os_updates::servers      | packages                                  |
 +--------------------------------+-------------------------------------------+
-| simp::yum::enable_simp_repos   | Whether to enable remote SIMP YUM         |
-|                                | repositories                              |
-+--------------------------------+-------------------------------------------+
-| simp::yum::os_update_url       | Full URL to a YUM repo for OS packages    | 
-+--------------------------------+-------------------------------------------+
-| simp::yum::servers             | YUM server(s) for OS and SIMP packages    |
-+--------------------------------+-------------------------------------------+
-| simp::yum::simp_update_url     | Full URL to a YUM repo for SIMP packages  |
+| simp::yum::repo::\             | YUM server(s) for SIMP-managed, SIMP and  |
+| local_simp::servers            | SIMP dependency packages                  |
 +--------------------------------+-------------------------------------------+
 | sssd::domains                  | List of SSSD domains                      |
++--------------------------------+-------------------------------------------+
+| svckill::mode                  | Strategy svckill should use when it       |
+|                                | encounters undeclared services;           |
+|                                | *enforcing* = shutdown and disable all    |
+|                                | services not listed in your manifests or  |
+|                                | the exclusion file *warning* = only       |
+|                                | report what undeclared services should be |
+|                                | shut down and disabled, without actually  |
+|                                | making the changes to the system          |
 +--------------------------------+-------------------------------------------+
 
 .. _simp config Actions:
@@ -141,16 +148,16 @@ that variables beginning with 'cli::' are only used internally by
 simp config Actions
 -------------------
 
-In addition to creating the three configuration, YAML files, ``simp config`` 
+In addition to creating the three configuration, YAML files, ``simp config``
 performs a limited set of actions in order to prepare the system for
 bootstrapping.  Although the table that follows list all, possible,
 ``simp config`` actions, not all of these actions will apply for all site
 configurations.
 
 +---------------+--------------------------------------------------------------+
-|Category       |Actions Performed                                             |
+| Category      | Actions Performed                                            |
 +===============+==============================================================+
-|Certificates   | If no certificates for the host are found in                 |
+| Certificates  | If no certificates for the host are found in                 |
 |               | ``/var/simp/environments/simp/site_files/pki_files/``        |
 |               | ``files/keydist``, ``simp config`` will use SIMP's FakeCA    |
 |               | to generate interim host certificates.  These certificates,  |
@@ -159,34 +166,49 @@ configurations.
 |               | from an official :term:`Certificate Authority`, as soon as   |
 |               | is practical.                                                |
 +---------------+--------------------------------------------------------------+
-|Digest         | When the system is in :term:`FIPS` mode,                     |
-|Algorithm for  | ``simp config`` will set the Puppet digest algorithm to      |
-|FIPS           | *sha256* to prevent any Puppet-related actions executed by   |
+| Digest        | When the system is in :term:`FIPS` mode,                     |
+| Algorithm for | ``simp config`` will set the Puppet digest algorithm to      |
+| FIPS          | *sha256* to prevent any Puppet-related actions executed by   |
 |               | ``simp config`` from using MD5 checksums. Note that this is  |
 |               | **not** all that must be done to enable FIPS. The complete   |
 |               | set of actions required to support FIPS is handled by        |
 |               | ``simp bootstrap``.                                          |
 +---------------+-----------------+--------------------------------------------+
-|GRUB           |  When the user selects to set the GRUB password              |
+| GRUB          |  When the user selects to set the GRUB password              |
 |               |  ``simp config`` will set the password in the appropriate    |
 |               |  grub configuration file, ``/etc/grub.conf`` or              |
 |               |  ``/etc/grub2.cfg``.                                         |
 +---------------+--------------------------------------------------------------+
-|LDAP           | When the SIMP server is also an LDAP server, ``simp config`` |
+| LDAP          | When the SIMP server is also an LDAP server, ``simp config`` |
 |               |                                                              |
 |               | - Adds ``simp::server::ldap`` to the SIMP server host YAML   |
 |               |   file, which allows the SIMP server to act as a LDAP server |
 |               | - Adds the hash of the user-supplied LDAP root password to   |
-|               |   the SIMP server host YAML file as                          | 
+|               |   the SIMP server host YAML file as                          |
 |               |   ``simp_openldap::server::conf::rootpw`` to the SIMP        |
 +---------------+--------------------------------------------------------------+
-|Network        | - When the user selects to configure the network interface,  |
+| Lockout       | When the SIMP server is installed from ISO, the install      |
+| Prevention    | creates a local *simp* user that the SIMP server configures  |
+|               | to have both su and ssh privileges. (This user is provided   |
+|               | to prevent server lockout, as, per security policy, SIMP by  |
+|               | default disables logins via ssh for all users, including     |
+|               | 'root'.) So, when SIMP is **not** installed from ISO,        |
+|               | ``simp config`` does the following:                          |
+|               |                                                              |
+|               | - Warns the operator of this problem                         |
+|               | - Writes a lock file containing details on how to rectify    |
+|               |   the problem.  This lock file prevents ``simp bootstrap``   |
+|               |   from running until the user manually fixes the problem.    |
+|               | - Turns off the SIMP server configuration that allows        |
+|               |   su and ssh privileges for an inapplicable *simp* user.     |
++---------------+--------------------------------------------------------------+
+| Network       | - When the user selects to configure the network interface,  |
 |               |   ``simp config`` uses Puppet to set the network interface   |
 |               |   parameters in system networking files and to bring up the  |
 |               |   interface.                                                 |
 |               | - ``simp config`` sets the hostname.                         |
 +---------------+--------------------------------------------------------------+
-|Puppet         | - Copies SIMP modules installed via RPM in                   |
+| Puppet        | - Copies SIMP modules installed via RPM in                   |
 |               |   ``/usr/share/simp`` into the Puppet environments directory |
 |               |   ``/etc/puppetlabs/code/environments`` if necessary.        |
 |               | - When selected, sets the default Puppet environment to      |
@@ -199,8 +221,8 @@ configurations.
 |               | - Updates ``/etc/hosts`` to ensure a puppet server entry     |
 |               |   exists.                                                    |
 +---------------+--------------------------------------------------------------+
-|SIMP Hiera and | - Sets the ``$simp_scenario`` variable in the site.pp of the |
-|Site Manifest  |   'simp' environment to the user-selected scenario.          |
+| SIMP Hiera &  | - Sets the ``$simp_scenario`` variable in the site.pp of the |
+| Site Manifest |   'simp' environment to the user-selected scenario.          |
 |               | - If a host YAML file for the SIMP server does not already   |
 |               |   exist in                                                   |
 |               |   ``/etc/puppetlabs/code/environments/simp/hieradata/hosts`` |
@@ -212,26 +234,46 @@ configurations.
 |               |   both the SIMP server and SIMP clients in the 'simp',       |
 |               |   environment, ``simp/hieradata/simp_config_settings.yaml``  |
 +---------------+--------------------------------------------------------------+
-|YUM            | - When the local, SIMP-specific YUM repo exists              |
-|               |   (``/etc/yum.repos.d/simp_filesystem.repo``),               |
+| YUM           | - When the SIMP filesystem YUM repo from an ISO install      |
+|               |   exists (``/etc/yum.repos.d/simp_filesystem.repo``),        |
 |               |   ``simp config``                                            |
 |               |                                                              |
+|               |   - Configures SIMP server to act as a YUM server for the    |
+|               |     on-server repo, by adding the ``simp::server::yum``      |
+|               |     class to the SIMP server host YAML file.                 |
+|               |   - Configures SIMP clients to use the SIMP server's YUM     |
+|               |     repos by adding ``simp::yum::repo::local_os_updates``    |
+|               |     and ``simp::yum::repo::local_simp`` classes to           |
+|               |     ``simp_config_settings.yaml``.                           |
+|               |   - Disables the use of the ``simp::yum::repo::local*``      |
+|               |     repos in the SIMP server's host YAML file, as it is      |
+|               |     already configured to use the more efficent, filesystem  |
+|               |     repo.                                                    |
 |               |   - Updates the appropriate OS YUM Updates repository,       |
-|               |     contained at ``/var/www/yum/OSTYPE/MAJORRELEASE/ARCH``   |
-|               |   - Disables any default CentOS repos                        |
-|               |   - Adds  simp::server::yum class to the SIMP server host    |
-|               |     YAML file, which allows the SIMP server to act as a      |
-|               |     YUM server for that repo                                 |
+|               |     contained at ``/var/www/yum/OSTYPE/MAJORRELEASE/ARCH``.  |
+|               |   - Disables any default CentOS repos.                       |
 |               |                                                              |
-|               | - When the local SIMP-specific YUM repo does not exist,      |
+|               | - When the SIMP filesystem YUM repo does not exist, but the  |
+|               |   user wants to use internet repos ``simp config``           |
+|               |                                                              |
+|               |   - Enables internet SIMP server repos in the SIMP server    |
+|               |     host YAML file by adding the                             |
+|               |     ``simp::yum::repo::internet_simp_server`` class.         |
+|               |   - Enables internet SIMP dependency repos for both SIMP     |
+|               |     clients and in the SIMP server by adding the             |
+|               |     ``simp::yum::repo::internet_simp_dependencies`` class    |
+|               |     to ``simp_config_settings.yaml``.                        |
+|               |                                                              |
+|               | - When the SIMP filesystem YUM repo does not exist and the   |
+|               |   user does not want to use internet repos,                  |
 |               |   ``simp config``                                            |
 |               |                                                              |
-|               |   - Enables remote YUM repos in the SIMP server host YAML    |
-|               |     file                                                     |
-|               |   - Checks whether OS and SIMP packages can be found in      |
-|               |     user-configured remote YUM repos via ``repoquery``.  If  |
-|               |     this check fails, ``simp bootstrap`` will be prevented   |
-|               |     from running until the user manually fixes the issue.    |
+|               |   - Checks the configuration of the  SIMP server's YUM repos |
+|               |     via ``repoquery``.  If this check fails, writes a lock   |
+|               |     to prevent ``simp bootstrap`` from running until the     |
+|               |     user manually fixes the issue.                           |
+|               |   - Reminds the user to (manually) set up YUM repos for SIMP |
+|               |     clients.                                                 |
 +---------------+--------------------------------------------------------------+
 
 .. todo simp bootstrap Actions
