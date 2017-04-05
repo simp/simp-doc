@@ -16,7 +16,6 @@ the SIMP system.
   Configure IPTables NAT Rules <HOWTO/IPTables_NAT_Rules>
   Enable Kerberos <HOWTO/Kerberos>
   Manage Workstation Infrastructures <HOWTO/Managing_Workstation_Infrastructures>
-  Kickstart the Initial Server <HOWTO/Network_Build>
   Backup the Puppet Master <HOWTO/Puppetmaster_Backup>
   Configure a Puppet Server Behind a NAT <HOWTO/Puppet_Server_NAT>
   Enable Redundent LDAP <HOWTO/Redundant_LDAP>
