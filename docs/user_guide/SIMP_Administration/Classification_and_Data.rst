@@ -88,26 +88,16 @@ baseline, which are discused below in the `simp scenarios`_ section.
 Assigning Defined Types to Nodes
 --------------------------------
 
-Defined types do not have the ability to receive parameters via Hiera in
-the traditional sense. To include a defined type on a node, one could
-use an `iterator`_, but this is messy and discouraged. Instead, make a
-site class ``/etc/puppetlabs/code/environments/simp/modules/site/manifests/my_site.pp``.
-For example, to include ``tftpboot::linux_model`` and ``tftpboot::assign_host``
-on your puppet server, puppet.your.domain:
+Defined types do not have the ability to receive parameters via Hiera in the
+traditional sense. To include a defined type on a node, one could use
+``create_resources``, but this is messy and discouraged. Instead, create your
+own profile or add a class to the SIMP ``site`` module such as:
+``/etc/puppetlabs/code/environments/simp/modules/site/manifests/my_site.pp``.
 
-.. code-block:: puppet
+.. NOTE::
 
-   class site::my_site {
-     include '::tftpboot'
-
-     tftpboot::linux_model { 'el7_x86_64':
-       kernel => 'centos-7-x86_64/vmlinuz',
-       initrd => 'centos-7-x86_64/initrd.img',
-       ks     => "https://puppet.your.domain/ks/pupclient_x86_64.cfg",
-       extra  => "inst.noverifyssl ksdevice=bootif\nipappend 2"
-     }
-     tftpboot::assign_host { 'default': model => 'el7_x86_64' }
-   }
+   You can find a working example of this in the :ref:`PXE_Boot` section
+   of the documentation
 
 SIMP File Structure
 -------------------
