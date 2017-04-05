@@ -10,6 +10,7 @@
 - Updated Rsyslog HOWTO for new module layout
 - Updated Glossary
 - Updated the HOWTO for Changing Puppet Masters
+- Updated Kerberos HOWTO
 
 * Thu Mar 23 2017 Trevor Vaughan <tvaughan@onyxpoint.com>
 - Added HOWTO on restricting SSH access to specific hosts and networks

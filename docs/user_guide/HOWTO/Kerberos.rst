@@ -13,23 +13,33 @@ The module, by default, sets up a fully functional KDC in your environment and
 generates keytabs for one admin user, and all of your hosts that it can
 discover via :ref:`keydist <Certificates>`.
 
+.. IMPORTANT::
+
+   If you want to let SIMP automatically handle all of your hosts, you should
+   follow the README included with the SIMP provided ``krb5`` Puppet module and
+   you should **NOT** proceed with this guide.
+
 .. NOTE::
-  The `keydist` discovery only works if the KDC is on the same system as your
-  Puppet Server!
+
+   The ``keydist`` discovery only works if the KDC is on the same system as
+   your Puppet Server!
+
+.. WARNING::
+
+   For distribution of keys to work properly, you **must** add
+   ``/var/simp/environments/<environment>/site_files`` to your environment's
+   ``environment.conf`` file and restart the ``puppetserver`` process.
+
+   The default in the ``simp`` environment is:
+
+   ``modulepath = modules:/var/simp/environments/**simp**/site_files:$basemodulepath``
 
 Beginning with krb5
 -------------------
 
-The following sections give a brief guide on how to get started, for more
-information, please see the `official Red Hat documentation`_.
-
-.. NOTE::
-  You can skip this section if you're using the default settings. These will
-  complete the following for you with randomly generated passwords for all
-  keytabs and the master password.
-
-Usage
------
+The following sections give a brief guide on how to get started with manual
+Kerberos configuration and distribution of keytabs, for more information,
+please see the `official Red Hat documentation`_.
 
 Creating Admin Principals
 ^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -37,8 +47,8 @@ Creating Admin Principals
 ACL Configuration
 """""""""""""""""
 
-The following Puppet code snippet will create an ACL for your admin user that
-is *probably* appropriate for your organization.
+The following Puppet code snippet will create an :term:`ACL` for your admin
+user that is **probably** appropriate for your organization.
 
 .. code:: puppet
 
@@ -51,7 +61,7 @@ Create Your Admin Principal
 """""""""""""""""""""""""""
 
 Your first principal will be an admin principal and will be allowed to manage
-the environment since it is in the `admin` group. This **must** be created on
+the environment since it is in the ``admin`` group. This **must** be created on
 the KDC system.
 
 Run the following command, as root, to create your principal:
@@ -60,7 +70,7 @@ Run the following command, as root, to create your principal:
 
   # /usr/sbin/kadmin.local -r YOUR.DOMAIN -q "addprinc <username>/admin"
 
-You can now do everything remotely using this principal. Load it using
+You can now do everything remotely using this principal. Load it using:
 
 .. code:: bash
 
@@ -72,8 +82,8 @@ Creating Host Principals
 Before you can really do anything with your hosts, you need to ensure that the
 host itself has a keytab.
 
-SIMP uses the `/etc/puppetlabs/code/environments/simp/keydist` directory for each host to securely
-distribute keytabs to the clients.
+SIMP uses the ``/var/simp/environments/<client_environment>/site_files/krb5_files/files/keytabs/<client_fqdn>``
+directory for each host to securely distribute keytabs to the clients.
 
 On the KDC, generate a principal for each host in your environment using the
 following command:
@@ -96,19 +106,19 @@ Propagate the Keytabs
 ^^^^^^^^^^^^^^^^^^^^^
 
 Move all of the resulting keytab files SECURELY to
-`<environment_dir>/keydist/<fqdn>/keytabs` on the Puppet server as appropriate
-for each file.
+``/var/simp/environments/<client_environment>/site_files/krb5_files/keytabs/<fqdn>``
+on the Puppet server as appropriate for each file.
 
 .. NOTE::
 
-  Make sure that all of your keytab directories are readable by the group
-  **puppet** and not the entire world!
+   Make sure that all of your keytab directories are readable by the group
+   **puppet** and not the entire world!
 
-Then, update your node declarations to `include '::krb5::keytab'`.
+Then, update your node declarations to ``include '::krb5::keytab'``.
 
 Once the Puppet Agent runs on the clients, your keytabs will copied to
-`/etc/krb5_keytabs`. The keytab matching your `fqdn` will be set in place as
-the default system keytab.
+``/etc/krb5_keytabs``. The keytab matching the system ``fqdn`` will be set in
+place as the default system keytab.
 
 .. _SIMP KRB5 Puppet Module: https://github.com/simp/pupmod-simp-krb5
 .. _official Red Hat documentation: https://access.redhat.com/documentation/en-US/Red_Hat_Enterprise_Linux/6/html/Managing_Smart_Cards/Configuring_a_Kerberos_5_Server.html
