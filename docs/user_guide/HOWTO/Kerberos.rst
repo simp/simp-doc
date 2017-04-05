@@ -13,6 +13,12 @@ The module, by default, sets up a fully functional KDC in your environment and
 generates keytabs for one admin user, and all of your hosts that it can
 discover via :ref:`keydist <Certificates>`.
 
+.. IMPORTANT::
+
+   If you want to let SIMP automatically handle all of your hosts, you should
+   follow the README included with the SIMP provided ``krb5`` Puppet module and
+   you should **NOT** proceed with this guide.
+
 .. NOTE::
 
    The ``keydist`` discovery only works if the KDC is on the same system as
@@ -31,14 +37,9 @@ discover via :ref:`keydist <Certificates>`.
 Beginning with krb5
 -------------------
 
-The following sections give a brief guide on how to get started, for more
-information, please see the `official Red Hat documentation`_.
-
-.. NOTE::
-
-   You can skip this if you're using the default settings. These will complete
-   the following for you with randomly generated passwords for all keytabs and
-   the master password.
+The following sections give a brief guide on how to get started with manual
+Kerberos configuration and distribution of keytabs, for more information,
+please see the `official Red Hat documentation`_.
 
 Creating Admin Principals
 ^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -81,7 +82,7 @@ Creating Host Principals
 Before you can really do anything with your hosts, you need to ensure that the
 host itself has a keytab.
 
-SIMP uses the ``/var/simp/environments/<environment>/site_files/krb5_files``
+SIMP uses the ``/var/simp/environments/<client_environment>/site_files/krb5_files/files/keytabs/<client_fqdn>``
 directory for each host to securely distribute keytabs to the clients.
 
 On the KDC, generate a principal for each host in your environment using the
