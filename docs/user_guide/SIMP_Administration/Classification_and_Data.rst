@@ -57,30 +57,57 @@ The default Hiera hierarchy used by SIMP looks like the following:
    This may not be accurate for your version of SIMP, please check your local
    Hiera settings!
 
-The rest of this document will use this hierarchy as a referece.
+The rest of this document will use this hierarchy as a reference.
 
 Assigning Classes to Nodes
 --------------------------
 
-Assigning classes to nodes is done with the ``hiera_include`` function.
-Hiera does an array merge lookup on 'tags' to retrieve classes which
-should be included on a node. In SIMP, we place
-``hiera_include('classes')`` in ``/etc/puppetlabs/code/environments/simp/manifests/site.pp``. Since
-site.pp is outside of any node definition and below all top scope
-variables, every node controlled by puppet will get every class tagged
-with 'classes' **in its hierarchy**. Additionally, simp\_def.yaml is in
-the hierarchy of every node, so every node will receive those classes
-(by default).
+Assigning classes to nodes can be done in a few ways in SIMP. First, there is a
+a ``lookup`` function in ``/etc/puppetlabs/code/environments/simp/manifests/site.pp``
+that looks for an array called ``classes`` in your hierarchy. It also looks for
+an array called ``class_exclusions``, which can be used to remove classes from
+the classes array. The classes that are included are the result of
+``$classes - $class_exclusions``. If classes need to be added to all nodes, a
+``classes`` array could be added to the ``default.yaml`` in your hieradata,
+like this:
+
+.. code-block:: yaml
+
+   ---
+     classes:
+       - 'site::example_class'
+   ---
+
+A similar array could be created in any other layer in the hierarchy, and it
+will be merged with the 'unique' strategy by the ``lookup`` function noted
+above.
+
+The SIMP profile module also includes other classes needed for a secure
+baseline, which are discused below in the `simp scenarios`_ section.
 
 Assigning Defined Types to Nodes
 --------------------------------
 
 Defined types do not have the ability to receive parameters via Hiera in
 the traditional sense. To include a defined type on a node, one could
-use create\_resources, but this is messy and discouraged. Instead, make a
+use an `iterator`_, but this is messy and discouraged. Instead, make a
 site class ``/etc/puppetlabs/code/environments/simp/modules/site/manifests/my_site.pp``.
-For example, to include tftpboot linux\_model and assign\_host on your
-puppet server, puppet.your.domain:
+For example, to include ``tftpboot::linux_model`` and ``tftpboot::assign_host``
+on your puppet server, puppet.your.domain:
+
+.. code-block:: puppet
+
+   class site::my_site {
+     include '::tftpboot'
+
+     tftpboot::linux_model { 'el7_x86_64':
+       kernel => 'centos-7-x86_64/vmlinuz',
+       initrd => 'centos-7-x86_64/initrd.img',
+       ks     => "https://puppet.your.domain/ks/pupclient_x86_64.cfg",
+       extra  => "inst.noverifyssl ksdevice=bootif\nipappend 2"
+     }
+     tftpboot::assign_host { 'default': model => 'el7_x86_64' }
+   }
 
 SIMP File Structure
 -------------------
@@ -94,25 +121,21 @@ fresh SIMP system:
 
    /etc/puppetlabs/code/environments/simp/
    ├── environment.conf
-   ├── FakeCA/
    ├── hieradata/
    ├── manifests/
-   ├── modules/
-   └── simp_autofiles/
+   └── modules/
 
 - ``environment.conf`` - Sets the environment to include the second SIMP modulepath.
-- ``FakeCA/`` - Fake certificate authority. See :ref:`Certificates`.
 - ``manifests/`` - Contains site.pp and all other node manifests.
 - ``hieradata/`` - Default location of the yaml files which contain your node data
 - ``modules/`` - Default install location of Puppet modules. Each module RPM copies files here during installation from ``/usr/share/simp/modules``.
-- ``simp_autofiles`` - SIMP files
 
 Second Modulepath
 -----------------
 
 SIMP utilizes a second modulepath to ensure that deployment tools like r10k
 don't squash keydist and some krb5 files. The path is
-``/var/simp/environments/simp/site_files/``.
+``/var/simp/environments/simp/site_files/``. :ref:`Certificates` are stored there.
 
 Hiera
 -----
@@ -132,7 +155,7 @@ Hiera
 - ``hieradata/hosts/`` - By populating this directory with some.host.name.yaml file, you can assign parameters to host some.host.name
 - ``hieradata/domains/`` - Same principal as hosts, but domain names.
 - ``hieradata/Redhat/`` - RedHat-specific hiera settings.
-- ``hieradata/CentOS/`` - CentOS-specific hiera settings, symlinks to ``hieradata/Redhat/``.
+- ``hieradata/CentOS/`` - CentOS-specific hiera settings, symlinked to ``hieradata/Redhat/``.
 - ``hieradata/hostgroups/`` - The hostgroup of a node can be computed in `site.pp`. Nodes assigned to hostgroup `$hostgroup` will read hiera from a file named `<hostgroup>.yaml` in this directory.
 - ``hieradata/default.yaml`` - Settings that should be applied to the entire infrastructure.
 - ``hieradata/simp_config_settings.yaml`` - Contains the variables needed to configure SIMP. Added by ``simp config``.
@@ -147,7 +170,7 @@ the distributed hiera.yaml.
 SIMP Scenarios
 --------------
 
-SIMP scenarios are groups of classes, setting, and simp_options that ensure the
+SIMP scenarios are groups of classes, settings, and simp_options that ensure the
 system is compliant and secure.
 
 There are currently three SIMP scenarios:
@@ -160,7 +183,7 @@ iptables and svckill. This scenario is what stock SIMP used to look like in
 previous releases.
 
 The *simp_lite* scenario offers many security features, with a few explicity
-turned off. This scenario was designed to make it easier to implment SIMP in an
+turned off. This scenario was designed to make it easier to implement SIMP in an
 existing environment, because it might not be trivial to flip SELinux to
 Enforcing on all nodes.
 
@@ -174,10 +197,12 @@ using this scenario.
   The SIMP or Puppet server is exempt from most of these settings, and will be
   using most features from the *simp* scenario by default. The SIMP server
   should only have services on it related to Puppet and systems management, and
-  SIMP modules all work with all security features enabled.
+  SIMP modules all work with all security features enabled. See the
+  ``puppet.your.domain.yaml`` in the ``hieradata/hosts`` directory for details.
 
 .. _Hiera Documentation: https://docs.puppet.com/hiera/3.3/complete_example.html
 .. _Hiera hierachy: https://docs.puppet.com/hiera/3.3/hierarchy.html
+.. _iterator: https://docs.puppet.com/puppet/latest/lang_iteration.html
 .. _automatic parameter lookup: https://docs.puppet.com/hiera/3.3/puppet.html#automatic-parameter-lookup
 .. _basic node classification: https://docs.puppet.com/hiera/3.3/puppet.html#assigning-classes-to-nodes-with-hiera-hierainclude
 .. _structured data: https://docs.puppet.com/hiera/3.3/puppet.html#interacting-with-structured-data-from-hiera

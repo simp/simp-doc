@@ -21,7 +21,7 @@ safe*. This means that if the IPTables rules cannot cleanly apply, the system
 will only allow port 22 into the system for SSH troubleshooting and recovery.
 
 There are many examples of how to use the IPTables module in the source code;
-the Apache module at ``/etc/puppetlabs/code/environments/simp/modules/apache``
+the Apache module at ``/etc/puppetlabs/code/environments/simp/modules/simp_apache``
 is a particularly good example. You can also reference the Defined Types in the
 IPTables Puppet module to understand their purpose and choose the best option.
 

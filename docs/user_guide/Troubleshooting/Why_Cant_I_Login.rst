@@ -43,7 +43,7 @@ To allow a user to access a particular system, you need to use the
 
   pam::access::rule { 'Allow bob into the system from the proxy only':
     users   => ['bob'],
-    origins => ["proxy.${::domain}"],
+    origins => ["proxy.${facts['domain']}"],
     comment => 'Bob the proxied'
   }
 
@@ -104,7 +104,7 @@ The following should return the expected IP address for your system.
 
 .. code-block:: bash
 
-  $ nslookup system.my.domain
+  $ dig +short system.my.domain
 
 Testing a Reverse Lookup
 ~~~~~~~~~~~~~~~~~~~~~~~~
@@ -115,7 +115,7 @@ a valid alternate name.
 
 .. code-block:: bash
 
-  $ nslookup 1.2.3.4
+  $ dig +short -x 1.2.3.4
 
 PKI Issues
 ----------

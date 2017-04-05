@@ -3,8 +3,8 @@ General Administration
 
 .. WARNING::
 
-    While working with the system, keep in mind that Puppet does not work well
-    with capital letters in host names. Therefore, they should not be used.
+      While working with the system, keep in mind that Puppet does not work well
+      with capital letters in host names. Therefore, they should not be used.
 
 The SIMP Environment
 --------------------
@@ -30,10 +30,12 @@ environment represented. If you add new environments, you will need to
 replicate the appropriate structure from the ``simp`` environment into your
 custom environment.
 
+This space also holds FakeCA. See `Infrastructure Certificates`_.
+
 .. NOTE::
 
-   For more information on the SIMP rsync structure, please see
-   :ref:`HOWTO Work with the SIMP Rsync Shares`
+    For more information on the SIMP rsync structure, please see
+    :ref:`HOWTO Work with the SIMP Rsync Shares`
 
 /opt/puppetlabs/server/data/puppetserver/simp
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -55,8 +57,8 @@ updates that the system is aware of.
 
 .. NOTE::
 
-   Refer to the :ref:`Exclude_Repos` HOWTO for additional configuration
-   information.
+    Refer to the :ref:`Exclude_Repos` HOWTO for additional configuration
+    information.
 
 SIMP chose this as the default because it is easier to manage symlinks in YUM
 repositories than it is to manage individual package minutia for all packages
@@ -99,10 +101,10 @@ addition or removal within that directory.
 
 .. code-block:: bash
 
-  $ createrepo .
-  $ chown -R root.apache ./*
-  $ find . -type f -exec chmod 640 {} \;
-  $ find . -type d -exec chmod 750 {} \;
+   $ createrepo .
+   $ chown -R root.apache ./*
+   $ find . -type f -exec chmod 640 {} \;
+   $ find . -type d -exec chmod 750 {} \;
 
 
 Adding a Custom Repository
@@ -111,21 +113,21 @@ Adding a Custom Repository
 For this section, we will assume that you have a repository named ``foo`` that
 you would like to expose to your systems. To do this, perform the following:
 
-  .. code-block:: bash
+   .. code-block:: bash
 
-     $ cd /var/www/yum
-     $ mkdir foo
-     $ cd foo
-     $ -- copy all RPMs into the folder
-     $ createrepo .
-     $ chown -R root.apache ./*
-     $ find . -type f -exec chmod 640 {} \;
-     $ find . -type d -exec chmod 750 {} \;
+       $ cd /var/www/yum
+       $ mkdir foo
+       $ cd foo
+       $ -- copy all RPMs into the folder
+       $ createrepo .
+       $ chown -R root.apache ./*
+       $ find . -type f -exec chmod 640 {} \;
+       $ find . -type d -exec chmod 750 {} \;
 
 .. NOTE::
 
-   For more information on managing YUM repos, please see the
-   `Red Hat local repository Documentation`_.
+    For more information on managing YUM repos, please see the
+    `Red Hat local repository Documentation`_.
 
 
 Configuring the Clients
@@ -145,15 +147,15 @@ The following is a basic ``yumrepo`` example:
 
 .. code-block:: ruby
 
-  yumrepo { example:
-    baseurl         => "http://your.server.fqdn/yum/example",
-    enabled         => 1,
-    enablegroups    => 0,
-    gpgcheck        => 0,
-    keepalive       => 0,
-    metadata_expire => 3600,
-    tag             => "firstrun"
-  }
+   yumrepo { 'example':
+     baseurl         => 'http://your.server.fqdn/yum/foo',
+     enabled         => 1,
+     enablegroups    => 0,
+     gpgcheck        => 0,
+     keepalive       => 0,
+     metadata_expire => 3600,
+     tag             => 'firstrun'
+   }
 
 
 Session auditing
@@ -161,8 +163,8 @@ Session auditing
 
 By default, a SIMP system uses :term:`Sudosh` to enable logging of sudo
 sessions to ``Rsyslog``. To open a sudo session as ``root`` (or any other
-user), type ``su -`` as simp, or ``sudo sudosh`` as anyone else, instead of
-``sudo su``.
+user), type ``su -`` as simp (If installed via ISO), or ``sudo sudosh`` as
+anyone else, instead of ``sudo su``.
 
 The logs are stored in ``/var/log/sudosh.log``. Sessions can be replayed by
 typing ``sudosh-syslog-replay``.
@@ -205,9 +207,9 @@ the desired lifespan of the certificates:
 
 .. NOTE::
 
-   This assumes that the user has generated Certificates with the FakeCA
-   provided by SIMP. If official certificates are being used, these settings
-   **must be changed within the official CA, not on the SIMP system**.
+    This assumes that the user has generated Certificates with the FakeCA
+    provided by SIMP. If official certificates are being used, these settings
+    **must be changed within the official CA, not on the SIMP system**.
 
 -  ``/var/simp/environments/simp/FakeCA/CA``
 
@@ -225,19 +227,19 @@ have a config file containing all of its details in
 
 .. IMPORTANT::
 
-   Editing any entries in the above mentioned config files will **not** affect
-   existing certificates. Existing certificates must be regenerated if you need
-   to make changes.
+    Editing any entries in the above mentioned config files will **not** affect
+    existing certificates. Existing certificates must be regenerated if you need
+    to make changes.
 
 The following is an example of how to change the expiration time from one year
 (the default) to five years for any newly created certificate.
 
 .. code-block:: bash
 
-  for file in $(grep -rl 365 /var/simp/environments/simp/FakeCA/)
-  do
-    sed -i 's/365/1825/' $file
-  done
+   for file in $(grep -rl 365 /var/simp/environments/simp/FakeCA/)
+   do
+      sed -i 's/365/1825/' $file
+   done
 
 
 Puppet Certificates
@@ -273,7 +275,7 @@ simp passgen
 
 Throughout the SIMP codebase, you may find references to the ``passgen()``
 function. This function auto-generates passwords and stores them in
-``/var/simp/environments/<client environment>/simp_autofiles/gen_passwd``
+``/opt/puppetlabs/server/data/puppetserver/simp/environments/<environment>/simp_autofiles/gen_passwd``
 on the Puppet server.
 
 For more information, see the `passgen()`_ documentation.
