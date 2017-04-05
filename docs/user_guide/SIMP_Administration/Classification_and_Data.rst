@@ -27,7 +27,7 @@ parameters, particularly those that are deep within the code.
 
 The default Hiera hierarchy used by SIMP looks like the following:
 
-.. code::yaml
+.. code:: yaml
 
    ---
    :backends:
