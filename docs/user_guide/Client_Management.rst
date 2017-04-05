@@ -28,7 +28,7 @@ to attempting to install a client.
 
 
 Add the Kickstart server profile
-++++++++++++++++++++++++++++++++
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 In the Puppet server-specific hiera file (by default located at
 ``/etc/puppetlabs/code/environments/simp/hieradata/hosts/puppet.<your.domain>.yaml``),
@@ -47,7 +47,7 @@ After adding the above class, run puppet: ``puppet agent -t``.
 
 
 Configure DNS
-+++++++++++++
+^^^^^^^^^^^^^
 
 In SIMP, numerous and/or large configuration files are distributed via
 ``rsync`` by Puppet to minimize management cost. These managed files presently
@@ -93,15 +93,15 @@ can use an existing DNS infrastructure.
 
 .. NOTE::
 
-  You can adjust the list of clients in your
-  ``named/var/named/forward/<your.domain>.db`` and
-  ``named/var/named/reverse/<your reverse domain>.db`` files at any time.
-  Just remember to run ``puppet agent -t --tags named`` on the Puppet
-  Master to propagate these updates.
+   You can adjust the list of clients in your
+   ``named/var/named/forward/<your.domain>.db`` and
+   ``named/var/named/reverse/<your reverse domain>.db`` files at any time.
+   Just remember to run ``puppet agent -t --tags named`` on the Puppet Server
+   to propagate these updates.
 
 
 Configure DHCP
-++++++++++++++
+^^^^^^^^^^^^^^
 
 Perform the following actions as ``root`` on the Puppet Master system
 prior to attempting to install a client.
@@ -128,6 +128,8 @@ Make sure the following is done in the ``dhcpd.conf`` :
 Save and close the file.
 
 Run ``puppet agent -t`` on the Puppet Master to apply the changes.
+
+.. _PXE_Boot:
 
 .. include:: PXE_Boot.rst
 

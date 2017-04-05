@@ -81,6 +81,8 @@ set up a user workstation.
    }
 
 
+.. _Graphical Desktop Setup:
+
 Graphical Desktop Setup
 -----------------------
 

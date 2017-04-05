@@ -13,8 +13,9 @@ of :ref:`Elasticsearch, Logstash, and Grafana` (ELG) into the SIMP ecosystem as
 a well-known, Open Source, software collection.
 
 .. NOTE::
+
    For an overview of how to use Hiera to manage class parameters, please see
-   the :ref:`Hiera` section of the documentation.
+   :ref:`Classification and Data`.
 
 Preparation
 -----------
