@@ -28,6 +28,14 @@ By default, SIMP wraps all rsync connections in an Stunnel connection to
 provide encrypted connections. Additionally, SIMP adds randomly generated
 passwords to sensitive shares to prevent unauthorized connections.
 
+If you decide to disable stunnel, you will need to specify your rsync server
+in hiera, if it is not already specified.
+
+.. code-block:: yaml
+  ---
+  simp_options::rsync::server: <rsync_server_fqdn>
+
+
 You can restrict this as far as necessary in your environment but the defaults
 should suit most needs.
 
