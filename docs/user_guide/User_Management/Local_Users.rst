@@ -57,11 +57,11 @@ Local User Account
       owner  => 'root',
       group  => $_local_account_group,
       mode   => '0644',
-      source => $_local_account_ssh_public_key
+      content => $_local_account_ssh_public_key
     }
 
     sudo::user_specification { $_local_account_user:
-      user_list => $_local_account_user,
+      user_list => [$_local_account_user],
       host_list => [$::fqdn],
       runas     => 'root',
       cmnd      => ['/bin/cat /var/log/app.log'],
@@ -70,7 +70,7 @@ Local User Account
 
     # Allow this account from everywhere
     pam::access::rule { "Allow ${_local_account_user}":
-      users   => $_local_account_user,
+      users   => [$_local_account_user],
       origins => ['ALL']
     }
   }
@@ -140,7 +140,7 @@ Service Account
     }
 
     sudo::user_specification { $_svc_account_user:
-      user_list => $_svc_account_user,
+      user_list => [$_svc_account_user],
       host_list => [$facts['fqdn']],
       runas     => 'root',
       cmnd      => ['/bin/cat /var/log/app.log'],
@@ -149,7 +149,7 @@ Service Account
 
     # Allow this service account from everywhere
     pam::access::rule { "Allow ${_svc_account_user}":
-      users   => $_svc_account_user,
+      users   => [$_svc_account_user],
       origins => ['ALL']
     }
   }
