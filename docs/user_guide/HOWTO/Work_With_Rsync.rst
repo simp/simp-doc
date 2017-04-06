@@ -32,6 +32,7 @@ If you decide to disable stunnel, you will need to specify your rsync server
 in hiera, if it is not already specified.
 
 .. code-block:: yaml
+  
   ---
   simp_options::rsync::server: <rsync_server_fqdn>
 
