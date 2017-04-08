@@ -199,3 +199,33 @@ needs.
 
    Make sure your system can handle the load before adding rsync content into a
    VCS!
+
+Disabling Stunnel
+-----------------
+
+If you decide to disable stunnel, you will need to specify your rsync server in
+:term:`Hiera`, if it is not already specified.
+
+.. WARNING::
+   If you disable stunnel, your data and any rsync access credentials will be
+   passed in the clear!
+
+.. code-block:: yaml
+
+  ---
+  simp_options::rsync::server: <rsync_server_fqdn>
+
+Additionally, you will need to ensure your firewall is open on the rsync port.
+Include the following on the node acting as the rsync server.
+
+.. code-block:: ruby
+
+  class site::rsync_iptables (
+    Simplib::Netlist $allow      = simplib::lookup('simp_options::trusted_nets'),
+    Simplib::Port    $rsync_port = 873
+  ){
+    iptables::listen::tcp_stateful { "rsync_shares":
+      trusted_nets => $allow,
+      dports       => $rsync_port
+    }
+  }

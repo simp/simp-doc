@@ -18,7 +18,7 @@ Getting Started
   You do **not** need ``mock`` on your system if you are generating an ISO
   based on the SIMP Tarball!
 
-Download the SIMP release tarball, found on our `BinTray artifacts repository`_.
+Download the SIMP release tarball, found on our `SIMP artifacts repository`_.
 
 Download the latest tarball according to your needs. If you are not sure what
 version you need, check the :ref:`faq-simp_version_guide`.
@@ -72,7 +72,7 @@ Once the process completes, you should have a bootable SIMP ISO ready for
 installation!
 
 
-.. SIMP artifacts repository: http://simp-project.com/ISO/SIMP/
+.. _SIMP artifacts repository: http://simp-project.com/ISO/SIMP/
 .. _latest 6.0.0-0 release (for CentOS 6): http://simp-project.com/ISO/SIMP/SIMP-6.0.0-0-Powered-By-CentOS-6.8-x86_64.iso
 .. _latest 6.0.0-0 release (for CentOS 7): http://simp-project.com/ISO/SIMP/SIMP-6.0.0-0-Powered-By-CentOS-7.0-x86_64.iso
 .. _latest checksums: http://simp-project.com/ISO/SIMP/SHA512SUM
