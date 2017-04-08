@@ -57,11 +57,11 @@ Local User Account
       owner  => 'root',
       group  => $_local_account_group,
       mode   => '0644',
-      source => $_local_account_ssh_public_key
+      content => $_local_account_ssh_public_key
     }
 
     sudo::user_specification { $_local_account_user:
-      user_list => $_local_account_user,
+      user_list => [$_local_account_user],
       host_list => [$::fqdn],
       runas     => 'root',
       cmnd      => ['/bin/cat /var/log/app.log'],
@@ -70,7 +70,7 @@ Local User Account
 
     # Allow this account from everywhere
     pam::access::rule { "Allow ${_local_account_user}":
-      users   => $_local_account_user,
+      users   => [$_local_account_user],
       origins => ['ALL']
     }
   }
@@ -86,13 +86,13 @@ Service Account
 
     $_svc_account_user    = 'svcuser'
     $_svc_account_group   = 'svcgroup'
-    $_svc_account_id      = '1777'
+    $_svc_account_id      = '1779'
     $_svc_account_homedir = "/var/local/${_svc_account_user}"
 
     # Since this is a service account, automatically generate an SSH key for
     # the user and store it on the Puppet master for distribution.
-    $_svc_account_ssh_private_key = ssh_keygen($_svc_account_user, '2048', true)
-    $_svc_account_ssh_public_key  = ssh_keygen($_svc_account_user, '2048')
+    $_svc_account_ssh_private_key = ssh_autokey($_svc_account_user, '2048', true)
+    $_svc_account_ssh_public_key  = ssh_autokey($_svc_account_user, '2048')
 
     group { $_svc_account_group:
       gid       => $_svc_account_id,
@@ -115,32 +115,23 @@ Service Account
       mode   => '0600'
     }
 
-    ssh_authorized_key { $_svc_account_user:
-      type    => 'ssh-rsa',
-      key     => $_svc_account_ssh_public_key,
-      target  => "${_svc_account_homedir}/.ssh/authorized_keys",
-      require => [
-        File["${_svc_account_homedir}/.ssh"],
-        User[$_svc_account_user]
-      ]
-    }
-
     file { "${_svc_account_homedir}/.ssh/id_rsa":
       mode    => '0600',
       owner   => $_svc_account_user,
       group   => $_svc_account_group,
       content => $_svc_account_ssh_private_key
     }
-
+    
+     # In SIMP sshd is configured to use authorized_keys files in /etc/ssh/local_keys
     file { "/etc/ssh/local_keys/${_svc_account_user}":
       owner  => 'root',
       group  => $_svc_account_group,
       mode   => '0644',
-      source => "puppet:///site/ssh_autokeys/${_svc_account_user}.pub"
+      content => "ssh-rsa ${_svc_account_ssh_public_key}"
     }
 
     sudo::user_specification { $_svc_account_user:
-      user_list => $_svc_account_user,
+      user_list => [$_svc_account_user],
       host_list => [$facts['fqdn']],
       runas     => 'root',
       cmnd      => ['/bin/cat /var/log/app.log'],
@@ -149,7 +140,7 @@ Service Account
 
     # Allow this service account from everywhere
     pam::access::rule { "Allow ${_svc_account_user}":
-      users   => $_svc_account_user,
+      users   => [$_svc_account_user],
       origins => ['ALL']
     }
   }
