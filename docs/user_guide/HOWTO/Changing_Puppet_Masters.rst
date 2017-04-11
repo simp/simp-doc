@@ -1,3 +1,5 @@
+.. _ug-howto-change-puppet-servers:
+
 HOWTO Change Puppet Servers
 ===========================
 

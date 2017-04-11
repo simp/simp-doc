@@ -1,3 +1,5 @@
+.. _ug-howto-back-up-the-puppet-master:
+
 HOWTO Back up the Puppet Master
 ===============================
 

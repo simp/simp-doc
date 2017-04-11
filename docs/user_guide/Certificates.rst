@@ -1,3 +1,5 @@
+.. _ug-apply-certificates:
+
 Apply Certificates
 ==================
 
