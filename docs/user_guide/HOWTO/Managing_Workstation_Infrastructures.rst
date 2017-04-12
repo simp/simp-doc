@@ -155,7 +155,7 @@ on a user workstation.
      }
 
      exec { 'flush_cache_himem':
-       command => '/bin/echo 1 > /proc/sys/vm/drop-caches',
+       command => '/bin/echo 1 > /proc/sys/vm/drop_caches',
        onlyif => inline_template("/bin/<%= @facts['memoryfree'].split(/\s/)[0].
        to_f/@facts['memorysize'].split(/\s/)[0].to_f < 0.2 ? true : false %>")
      }

@@ -60,7 +60,7 @@ that user:
 
 1. Login to the LDAP server as ``root``.
 2. Use the ``slappasswd`` command to generate a password hash for a user.
-3. Edit the ``/root/ldifs/adduser_with_password.ldif`` shown below.
+3. Edit the ``/root/ldifs/add_user_with_password.ldif`` shown below.
 
 .. code-block:: yaml
 
@@ -100,7 +100,7 @@ that user:
 .. code-block:: bash
 
   $ ldapadd -Z -x -W -D "cn=LDAPAdmin,ou=People,dc=your,dc=domain" \
-  -f /root/ldifs/adduser_with_password.ldif
+  -f /root/ldifs/add_user_with_password.ldif
 
 Ensure that an administrative account is created as soon as the SIMP system has
 been properly configured. Administrative accounts should belong to the
@@ -129,7 +129,7 @@ To add a user without a password to the system, along with a unique group
 for that user
 
 1. Login to the LDAP server as ``root``.
-2. Edit the ``/root/ldifs/adduser_no_password.ldif`` shown below.
+2. Edit the ``/root/ldifs/add_user_no_password.ldif`` shown below.
 
 .. code-block:: yaml
 
@@ -163,7 +163,7 @@ for that user
 .. code-block:: bash
 
    $ ldapadd -Z -x -W -D "cn=LDAPAdmin,ou=People,dc=your,dc=domain" \
-   -f /root/ldifs/adduser_no_password.ldif
+   -f /root/ldifs/add_user_no_password.ldif
 
 Remove a User
 -------------
