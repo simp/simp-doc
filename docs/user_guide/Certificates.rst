@@ -19,6 +19,8 @@ This section provides guidance on installing official certificates or, as an
 interim measure, generating certificates from the Fake (self-signing)
 Certificate Authority provided by SIMP.
 
+.. _ug-apply-certificates-official-certificates:
+
 Installing Official Certificates
 --------------------------------
 
