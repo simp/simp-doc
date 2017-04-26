@@ -1,3 +1,6 @@
+* Tue Apr 11 2017 Nick Markowski <nmarkowski@keywcorp.com>
+- Created the recommended HOWTO Upgrade SIMP guide.
+
 * Thu Apr 06 2017 Nick Markowski <nmarkowski@keywcorp.com>
 - Updated simp rsync howto
 - Minor fixes to local_account template

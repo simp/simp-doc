@@ -22,5 +22,5 @@ the SIMP system.
   Enable SFTP Restricted Accounts <HOWTO/SFTP_Restricted_Accounts>
   Setup SSH Authorized Keys <HOWTO/SSH_Keys>
   Restrict SSH Network Access <HOWTO/SSH_Restrict_Network_Access.rst>
-  Upgrade SIMP (Coming Soon!) <HOWTO/Upgrade_SIMP>
+  Upgrade SIMP <HOWTO/Upgrade_SIMP>
   Manage TPM <HOWTO/Manage_TPM>

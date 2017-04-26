@@ -1,3 +1,5 @@
+.. _ug-howto-change-puppet-servers:
+
 HOWTO Change Puppet Servers
 ===========================
 
@@ -79,8 +81,19 @@ On Each Client
    on the server, you have a very high risk of making your Puppet
    infrastructure inoperable.
 
+Remove the Client Puppet Certificates
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+To remove all legacy SSL material, run ``rm -rf `puppet config --section agent ssldir```
+
 Update the Puppet Config
 ^^^^^^^^^^^^^^^^^^^^^^^^
+.. NOTE::
+  If upgrading from SIMP 4 or 5 to SIMP 6 you will need to upgrade your puppet agent
+  to the Puppet 4.0 agent before it can connect to the new puppet server.  A fix is being
+  worked under SIMP-3049.  If you installed from the ISO, the simp repo on the SIMP 6
+  server contains the correct rpm.  Point to the correct repo and run
+  ``yum install puppet-agent``.  This will also remove the old version.
 
 Enter the following changes into ``/etc/puppetlabs/puppet/puppet.conf``.
 
@@ -89,11 +102,6 @@ Enter the following changes into ``/etc/puppetlabs/puppet/puppet.conf``.
   server = new.puppet.master.fqdn
   ca_server = new.puppet.master.fqdn
   ca_port = 8141
-
-Remove the Client Puppet Certificates
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-To remove all legacy SSL material, run ``rm -rf `puppet config --section agent ssldir```
 
 Run Puppet
 ^^^^^^^^^^
