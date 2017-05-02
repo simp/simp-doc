@@ -3,8 +3,8 @@
 HOWTO Manage Workstation Infrastructures
 ========================================
 
-This chapter describes how to manage client workstations with a SIMP
-system including GUIs, repositories, virtualization, Network File System
+This chapter describes an example that could manage client workstations with a
+SIMP system including GUIs, repositories, virtualization, Network File System
 (NFS), printing, and Virtual Network Computing (VNC).
 
 
@@ -15,7 +15,7 @@ They will need to be installed on the puppet server using something like the fol
 
 .. code-block:: puppet
 
-  class site::workstation_packages{
+  class site::workstation_packages {
 
     $package_list = [
       'pupmod-simp-gdm',
@@ -26,22 +26,21 @@ They will need to be installed on the puppet server using something like the fol
     ]
 
     package { $package_list :
-      ensure => 'latest',
+      ensure => installed,
     }
   }
 
-Edit the site.pp file to create a hostgroup for the workstations.  The
+Edit the ``site.pp`` file to create a hostgroup for the workstations.  The
 following will make all nodes whose names start with ``ws`` followed any number
 of digits use the ``hieradata/hostgroup/workstation.yaml`` instead of the default:
 
 .. code-block:: puppet
 
-  # $hostgroup = 'default'
-  case $::hostname {
-    /^ws\d+.*/:            { $hostgroup = 'workstation'        }
-    default:               { $hostgroup = 'default'            }
+  case $facts['hostname'] {
+    /^ws\d+.*/: { $hostgroup = 'workstation' }
+    default:    { $hostgroup = 'default'     }
   }
-  
+
 
 The workstation.yaml file will include settings for all the workstations.  An example yaml file:
 
@@ -92,7 +91,7 @@ set up a user workstation.
        'vim-enhanced',
        'tmux',
        'git'
-     ]: ensure => 'latest'
+     ]: ensure => installed
      }
    }
 
@@ -128,15 +127,12 @@ desktop on a user workstation.
       'gnome-shell-extension-windowsNavigator',
       'gnome-shell-extension-alternate-tab',
       ]:
-       ensure => latest,
+       ensure => installed,
     }
 
     #Gui applications
     if $libreoffice {
-      package { [
-        'libreoffice',
-        ]: ensure => 'latest'
-      }
+      package { 'libreoffice': ensure => installed }
     }
   }
 
@@ -193,25 +189,17 @@ for allowing virtualization on a system.
      package { 'virt-manager': ensure => 'latest' }
 
      # Create polkit policy to allow users in virsh users group to use libvirt
-     $policy =
-      '// Allow members of the `virshusers` group to use virsh with qemu:///system
-       polkit.addRule(function(action, subject) {
-         if (action.id == "org.libvirt.unix.manage") {
-           if (subject.local && subject.active && subject.isInGroup("virshusers")) {
-             return polkit.Result.YES;
-           }
-         }
-       });'
-
-     file{ '/etc/polkit-1/rules.d/80-libvirt-users.rules':
-       content => $policy,
-       mode    => '0644'
+     class { 'libvirt::polkit':
+       ensure => present,
+       group  => 'virshusers',
+       local  => true,
+       active => true
      }
 
-      #Create group and add users.
-      group{ 'virshusers':
-        members => ['user1','user2']
-      }
+     #Create group and add users.
+     group{ 'virshusers':
+       members => ['user1','user2']
+     }
 
    }
 
@@ -233,7 +221,7 @@ Setting up a Print Client
 
 Below is an example manifest called
 ``/etc/puppetlabs/code/environments/simp/modules/site/manifests/print/client.pp`` for setting up a
-print client.
+print client on EL6.
 
 .. code-block:: puppet
 
