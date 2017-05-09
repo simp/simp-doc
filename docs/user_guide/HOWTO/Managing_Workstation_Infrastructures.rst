@@ -3,15 +3,11 @@
 HOWTO Manage Workstation Infrastructures
 ========================================
 
-This chapter describes an example that could manage client workstations with a
+This chapter describes example code used to manage client workstations with a
 SIMP system including GUIs, repositories, virtualization, Network File System
 (NFS), printing, and Virtual Network Computing (VNC).
 
-
-Most of the SIMP workstation Puppet modules are not installed on the puppet server by default.
-
-SIMP puppet modules not installed by default but included in the ISO (and on the package server).
-They will need to be installed on the puppet server using something like the following code snippet.
+To begin, install the following Puppet modules:
 
 .. code-block:: puppet
 
@@ -30,43 +26,13 @@ They will need to be installed on the puppet server using something like the fol
     }
   }
 
-Edit the ``site.pp`` file to create a hostgroup for the workstations.  The
-following will make all nodes whose names start with ``ws`` followed any number
-of digits use the ``hieradata/hostgroup/workstation.yaml`` instead of the default:
 
-.. code-block:: puppet
-
-  case $facts['hostname'] {
-    /^ws\d+.*/: { $hostgroup = 'workstation' }
-    default:    { $hostgroup = 'default'     }
-  }
-
-
-The workstation.yaml file will include settings for all the workstations.  An example yaml file:
-
-.. code-block:: yaml
-
-  ---
-
-  #Set the run level so it will bring up a graphical interface
-  simp::runlevel: 'graphical'
-  timezone::timezone: 'EST'
-
-  #Settings for home server. See HOWTO NFS for more info.
-  nfs::is_server: false
-  simp_nfs::home_dir_server: myhome.server.com
-
-  #The site::workstation manifest will do most of the work. An example is given below.
-  classes:
-    - site::workstation
-    - simp_nfs
-
-User Workstation Setup
-----------------------
+Create A Workstation Profile Class
+----------------------------------
 
 Below is an example class,
 ``/etc/puppetlabs/code/environments/simp/modules/site/manifests/workstation.pp``, that could be
-set up a user workstation.
+set up a user workstation.  Each ``site::`` class is described in the subsequent sections.
 
 .. code-block:: puppet
 
@@ -98,7 +64,7 @@ set up a user workstation.
 .. _Graphical Desktop Setup:
 
 Graphical Desktop Setup
------------------------
+~~~~~~~~~~~~~~~~~~~~~~~
 
 Below is an example manifest called
 ``/etc/puppetlabs/code/environments/simp/modules/site/manifests/gui.pp`` for setting up a graphical
@@ -139,7 +105,7 @@ desktop on a user workstation.
 
 
 Workstation Repositories
-------------------------
+~~~~~~~~~~~~~~~~~~~~~~~~
 
 For the site repos use the puppet resource yumrepo to create repo files to point to
 repositories.
@@ -155,7 +121,7 @@ repositories.
 
 
 Virtualization on User Workstations
------------------------------------
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 Below is an example manifest called
 ``/etc/puppetlabs/code/environments/simp/modules/site/manifests/virt.pp``
@@ -212,12 +178,12 @@ To set swappiness values use hiera:
   swap::max_swappiness: 100
 
 Printer Setup
--------------
+~~~~~~~~~~~~~
 
 Below are example manifests for setting up a printing environment.
 
 Setting up a Print Client
-~~~~~~~~~~~~~~~~~~~~~~~~~
+^^^^^^^^^^^^^^^^^^^^^^^^^
 
 Below is an example manifest called
 ``/etc/puppetlabs/code/environments/simp/modules/site/manifests/print/client.pp`` for setting up a
@@ -242,7 +208,7 @@ print client on EL6.
 
 
 Setting up a Print Server
-~~~~~~~~~~~~~~~~~~~~~~~~~
+^^^^^^^^^^^^^^^^^^^^^^^^^
 
 Below is an example manifest called
 ``/etc/puppetlabs/code/environments/simp/modules/site/manifests/print/server.pp`` for setting up a
@@ -264,6 +230,41 @@ print server.
        require    => Package['cups']
      }
    }
+
+
+Create A Workstation Hostgroup
+------------------------------
+
+Edit the ``site.pp`` file to create a hostgroup for the workstations.  The
+following will make all nodes whose names start with ``ws`` followed any number
+of digits use the ``hieradata/hostgroup/workstation.yaml`` instead of the default:
+
+.. code-block:: puppet
+
+  case $facts['hostname'] {
+    /^ws\d+.*/: { $hostgroup = 'workstation' }
+    default:    { $hostgroup = 'default'     }
+  }
+
+
+The workstation.yaml file will include settings for all the workstations.  An example yaml file:
+
+.. code-block:: yaml
+
+  ---
+
+  #Set the run level so it will bring up a graphical interface
+  simp::runlevel: 'graphical'
+  timezone::timezone: 'EST'
+
+  #Settings for home server. See HOWTO NFS for more info.
+  nfs::is_server: false
+  simp_nfs::home_dir_server: myhome.server.com
+
+  #The site::workstation manifest will do most of the work.
+  classes:
+    - site::workstation
+    - simp_nfs
 
 
 VNC Setup
