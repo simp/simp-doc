@@ -3,39 +3,36 @@
 HOWTO Manage Workstation Infrastructures
 ========================================
 
-This chapter describes how to manage client workstations with a SIMP
-system including GUIs, repositories, virtualization, Network File System
+This chapter describes example code used to manage client workstations with a
+SIMP system including GUIs, repositories, virtualization, Network File System
 (NFS), printing, and Virtual Network Computing (VNC).
 
-
-Most of the SIMP workstation Puppet modules are not installed on the puppet server by default.
-
-If using the SIMP RPMs, you will need to add these packages to your SIMP **server** using
-something like the following code snippet.
+To begin, install the following Puppet modules:
 
 .. code-block:: puppet
 
-  class site::workstation_packages{
+  class site::workstation_packages {
 
     $package_list = [
       'pupmod-simp-gdm',
+      'pupmod-simp-gnome',
       'pupmod-simp-simp_nfs',
       'pupmod-simp-vnc',
       'pupmod-simp-libvirt',
-      'pupmod-simp-gnome'
     ]
 
     package { $package_list :
-      ensure => 'latest',
+      ensure => installed,
     }
   }
 
-User Workstation Setup
-----------------------
+
+Create A Workstation Profile Class
+----------------------------------
 
 Below is an example class,
-``/etc/puppetlabs/code/environments/simp/modules/site/manifests/workstation.pp``, that could be used to
-set up a user workstation.
+``/etc/puppetlabs/code/environments/simp/modules/site/manifests/workstation.pp``, that could be
+set up a user workstation.  Each ``site::`` class is described in the subsequent sections.
 
 .. code-block:: puppet
 
@@ -57,34 +54,17 @@ set up a user workstation.
      # General Use Packages
      package { [
        'pidgin',
-       'git',
-       'control-center-extra',
-       'gconf-editor',
-       'evince',
-       'libreoffice-writer',
-       'libreoffice-xsltfilter',
-       'libreoffice-calc',
-       'libreoffice-impress',
-       'libreoffice-emailmerge',
-       'libreoffice-base',
-       'libreoffice-math',
-       'libreoffice-pdfimport',
-       'bluefish',
-       'gnome-media',
-       'pulseaudio',
-       'file-roller',
-       'inkscape',
-       'gedit-plugins',
-       'planner'
-     ]: ensure => 'latest'
+       'vim-enhanced',
+       'tmux',
+       'git'
+     ]: ensure => installed
      }
    }
-
 
 .. _Graphical Desktop Setup:
 
 Graphical Desktop Setup
------------------------
+~~~~~~~~~~~~~~~~~~~~~~~
 
 Below is an example manifest called
 ``/etc/puppetlabs/code/environments/simp/modules/site/manifests/gui.pp`` for setting up a graphical
@@ -92,45 +72,60 @@ desktop on a user workstation.
 
 .. code-block:: puppet
 
-   class site::gui {
-     include 'gdm'
-     include 'gnome'
-     include 'vnc::client'
+  class site::gui (
+    Boolean $libreoffice = true
+  ) {
 
-      # Compiz Stuff
-     package { [
-       'fusion-icon',
-       'emerald-themes',
-       'compiz-fusion-extras',
-       'compiz-fusion-extras-gnome',
-       'vinagre'
-     ]:
-       ensure => 'latest'
-     }
-   }
+    include 'gdm'
+    include 'gnome'
+    include 'vnc::client'
+    # Browser and e-mail client are not installed by default.
+    include 'mozilla::firefox'
+    include 'mozilla::thunderbird'
+
+
+    Class['Gnome'] -> Class['Site::gui']
+
+    #SIMP gnome package provides a basic interface.
+    #Add gnome extensions for the users.
+    package { [
+      'gnome-color-manager',
+      'gnome-shell-extension-windowsNavigator',
+      'gnome-shell-extension-alternate-tab',
+      ]:
+       ensure => installed,
+    }
+
+    #Gui applications
+    if $libreoffice {
+      package { 'libreoffice': ensure => installed }
+    }
+  }
+
 
 
 Workstation Repositories
-------------------------
+~~~~~~~~~~~~~~~~~~~~~~~~
 
-Below is an example manifest called
-``/etc/puppetlabs/code/environments/simp/modules/site/manifests/repos.pp`` for setting up workstation
+For the site repos use the puppet resource yumrepo to create repo files to point to
 repositories.
+
 
 .. code-block:: puppet
 
    class site::repos {
-     # Whatever local yumrepo statements you need for installing
-     # your packages and keeping your systems up to date
+     yumrepo { 'myrepo':
+       #what ever parameters you need
+     }
    }
 
 
 Virtualization on User Workstations
------------------------------------
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 Below is an example manifest called
-``/etc/puppetlabs/code/environments/simp/modules/site/manifests/virt.pp`` for allowing virtualization
-on a user workstation.
+``/etc/puppetlabs/code/environments/simp/modules/site/manifests/virt.pp``
+for allowing virtualization on a system.
 
 .. code-block:: puppet
 
@@ -141,8 +136,10 @@ on a user workstation.
    class site::virt {
      include 'libvirt::kvm'
      include 'libvirt::ksm'
+     include 'swap'
      include 'network'
 
+     #set up a local bridge on the network
      network::eth { "em1":
        bridge => 'br0',
        hwaddr => $facts['macaddress_em1']
@@ -154,13 +151,22 @@ on a user workstation.
        require  => Network::Eth['em1']
      }
 
-     exec { 'flush_cache_himem':
-       command => '/bin/echo 1 > /proc/sys/vm/drop_caches',
-       onlyif => inline_template("/bin/<%= @facts['memoryfree'].split(/\s/)[0].
-       to_f/@facts['memorysize'].split(/\s/)[0].to_f < 0.2 ? true : false %>")
+     #add virt-manager package
+     package { 'virt-manager': ensure => 'latest' }
+
+     # Create polkit policy to allow users in virsh users group to use libvirt
+     class { 'libvirt::polkit':
+       ensure => present,
+       group  => 'virshusers',
+       local  => true,
+       active => true
      }
 
-     package { 'virt-manager': ensure => 'latest' }
+     #Create group and add users.
+     group{ 'virshusers':
+       members => ['user1','user2']
+     }
+
    }
 
 To set swappiness values use hiera:
@@ -172,16 +178,16 @@ To set swappiness values use hiera:
   swap::max_swappiness: 100
 
 Printer Setup
--------------
+~~~~~~~~~~~~~
 
 Below are example manifests for setting up a printing environment.
 
 Setting up a Print Client
-~~~~~~~~~~~~~~~~~~~~~~~~~
+^^^^^^^^^^^^^^^^^^^^^^^^^
 
 Below is an example manifest called
 ``/etc/puppetlabs/code/environments/simp/modules/site/manifests/print/client.pp`` for setting up a
-print client.
+print client on EL6.
 
 .. code-block:: puppet
 
@@ -202,7 +208,7 @@ print client.
 
 
 Setting up a Print Server
-~~~~~~~~~~~~~~~~~~~~~~~~~
+^^^^^^^^^^^^^^^^^^^^^^^^^
 
 Below is an example manifest called
 ``/etc/puppetlabs/code/environments/simp/modules/site/manifests/print/server.pp`` for setting up a
@@ -226,11 +232,46 @@ print server.
    }
 
 
+Create A Workstation Hostgroup
+------------------------------
+
+Edit the ``site.pp`` file to create a hostgroup for the workstations.  The
+following will make all nodes whose names start with ``ws`` followed any number
+of digits use the ``hieradata/hostgroup/workstation.yaml`` instead of the default:
+
+.. code-block:: puppet
+
+  case $facts['hostname'] {
+    /^ws\d+.*/: { $hostgroup = 'workstation' }
+    default:    { $hostgroup = 'default'     }
+  }
+
+
+The workstation.yaml file will include settings for all the workstations.  An example yaml file:
+
+.. code-block:: yaml
+
+  ---
+
+  #Set the run level so it will bring up a graphical interface
+  simp::runlevel: 'graphical'
+  timezone::timezone: 'EST'
+
+  #Settings for home server. See HOWTO NFS for more info.
+  nfs::is_server: false
+  simp_nfs::home_dir_server: myhome.server.com
+
+  #The site::workstation manifest will do most of the work.
+  classes:
+    - site::workstation
+    - simp_nfs
+
+
 VNC Setup
 ---------
 
-:term:`Virtual Network Computing` (VNC) is a tool that is used to manage desktops and workstations remotely
-through the standard setup or a proxy.
+:term:`Virtual Network Computing` (VNC) is a tool that is used to manage desktops
+and workstations remotely through the standard setup or a proxy.
 
 VNC Standard Setup
 ~~~~~~~~~~~~~~~~~~
