@@ -9,7 +9,6 @@ Sphinx==1.4.4
 alabaster==0.7.8
 astroid==1.4.5
 docutils>=0.12,<1.0
-ipython
 pdfrw>=0.2,<1.0
 pylint>=1.6,<1.7
 pytz>=2015.4,<2016.0

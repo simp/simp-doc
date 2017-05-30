@@ -11,7 +11,8 @@ def print_release_mapping():
     """ Test the release mapping """
 
     print(known_os_compatibility_rst(
-        '6.X',
+        #'6.X',
+        '6.0.0-0',
         BASEDIR,
         GITHUB_VERSION_TARGETS,
         ON_RTD

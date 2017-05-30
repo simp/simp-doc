@@ -9,7 +9,7 @@ desc 'Munge Prep'
 This task munges the local working directory and Github
 to determine what version and release of the docs should be built.
 The version and release are written to build/rpm_metadata/release.
-If no defaults can be found, the version defaults to 5.1.X-X.
+If no defaults can be found, the version defaults to 6.X.
 EOM
 task 'munge:prep' do
   # Defaults
@@ -23,7 +23,7 @@ task 'munge:prep' do
   specfile = '../../src/build/simp.spec'
   #
   # Default version and release to ensure we build *something*
-  default_simp_version = '5.1.X'
+  default_simp_version = '6.X'
   default_simp_release = 'X'
   #
   # Default header to be written to release metadata file
