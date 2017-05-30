@@ -23,8 +23,7 @@ task 'munge:prep' do
   specfile = '../../src/build/simp.spec'
   #
   # Default version and release to ensure we build *something*
-  default_simp_version = '6.X'
-  default_simp_release = 'X'
+  default_simp_version = '6.0.0-0'
   #
   # Default header to be written to release metadata file
   release_content = <<-EOM
@@ -78,9 +77,9 @@ EOM
       simp_release = %x(rpm -q --undefine="%dist" --queryformat '%{RELEASE}\n' --specfile #{specfile}).lines.first.strip
 
     rescue Exception => e
-      warn("Could not obtain valid version/release information from #{specfile}, please check for consistency.  Defaulting to #{default_simp_version}-#{default_simp_release}")
-      simp_version = default_simp_version
-      simp_release = default_simp_release
+      warn("Could not obtain valid version/release information from #{specfile}, please check for consistency.  Defaulting to #{default_simp_version}")
+      simp_version = default_simp_version.split('-').first
+      simp_release = default_simp_release.split('-').last
     end
 
     # Set the version and release in the rel_file
