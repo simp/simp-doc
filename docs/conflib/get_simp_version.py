@@ -12,7 +12,7 @@ def get_simp_version(basedir, github_base, github_version_targets, on_rtd):
     pulling things from GitHub if they cannot be found locally.
     """
 
-    release_placeholder = 'NEED_FULL_SIMP_BUID_TREE'
+    release_placeholder = 'NEED_FULL_SIMP_BUILD_TREE'
 
     retval = {
         'version': '0.0',
