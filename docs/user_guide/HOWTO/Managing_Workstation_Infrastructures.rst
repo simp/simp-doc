@@ -64,7 +64,7 @@ set up a user workstation.  Each ``site::`` class is described in the subsequent
 .. _Graphical Desktop Setup:
 
 Graphical Desktop Setup
-~~~~~~~~~~~~~~~~~~~~~~~
+^^^^^^^^^^^^^^^^^^^^^^^
 
 Below is an example manifest called
 ``/etc/puppetlabs/code/environments/simp/modules/site/manifests/gui.pp`` for setting up a graphical
@@ -105,7 +105,7 @@ desktop on a user workstation.
 
 
 Workstation Repositories
-~~~~~~~~~~~~~~~~~~~~~~~~
+^^^^^^^^^^^^^^^^^^^^^^^^
 
 For the site repos use the puppet resource yumrepo to create repo files to point to
 repositories.
@@ -121,7 +121,7 @@ repositories.
 
 
 Virtualization on User Workstations
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 Below is an example manifest called
 ``/etc/puppetlabs/code/environments/simp/modules/site/manifests/virt.pp``
@@ -178,12 +178,12 @@ To set swappiness values use hiera:
   swap::max_swappiness: 100
 
 Printer Setup
-~~~~~~~~~~~~~
+^^^^^^^^^^^^^
 
 Below are example manifests for setting up a printing environment.
 
 Setting up a Print Client
-^^^^^^^^^^^^^^^^^^^^^^^^^
+"""""""""""""""""""""""""
 
 Below is an example manifest called
 ``/etc/puppetlabs/code/environments/simp/modules/site/manifests/print/client.pp`` for setting up a
@@ -208,7 +208,7 @@ print client on EL6.
 
 
 Setting up a Print Server
-^^^^^^^^^^^^^^^^^^^^^^^^^
+"""""""""""""""""""""""""
 
 Below is an example manifest called
 ``/etc/puppetlabs/code/environments/simp/modules/site/manifests/print/server.pp`` for setting up a
@@ -239,7 +239,7 @@ Edit the ``site.pp`` file to create a hostgroup for the workstations.  The
 following will make all nodes whose names start with ``ws`` followed any number
 of digits use the ``hieradata/hostgroup/workstation.yaml`` instead of the default:
 
-.. code-block:: puppet
+.. code-block:: ruby
 
   case $facts['hostname'] {
     /^ws\d+.*/: { $hostgroup = 'workstation' }
@@ -274,7 +274,7 @@ VNC Setup
 and workstations remotely through the standard setup or a proxy.
 
 VNC Standard Setup
-~~~~~~~~~~~~~~~~~~
+^^^^^^^^^^^^^^^^^^
 
 .. NOTE::
 
@@ -315,29 +315,29 @@ for examples.
 
 .. IMPORTANT::
 
-    Multiple users can log on to the same system at the same time with
-    no adverse effects; however, none of these sessions are persistent.
+   Multiple users can log on to the same system at the same time with
+   no adverse effects; however, none of these sessions are persistent.
 
-    To maintain a persistent VNC session, use the ``vncserver``
-    application on the remote host. Type ``man vncserver`` to reference
-    the manual for additional details.
+   To maintain a persistent VNC session, use the ``vncserver``
+   application on the remote host. Type ``man vncserver`` to reference
+   the manual for additional details.
 
 VNC Through a Proxy
-~~~~~~~~~~~~~~~~~~~
+^^^^^^^^^^^^^^^^^^^
 
 The section describes the process to VNC through a proxy. This setup
 provides the user with a persistent VNC session.
 
 .. IMPORTANT::
 
-    In order for this setup to work, the system must have a VNC server
-    (``vserver.your.domain``), a VNC client (``vclnt.your.domain``), and a
-    proxy (``proxy.your.domain``). A ``vuser`` account must also be set up
-    as the account being used for the VNC. The ``vuser`` is a common user
-    that has access to the server, client, and proxy.
+   In order for this setup to work, the system must have a VNC server
+   (``vserver.your.domain``), a VNC client (``vclnt.your.domain``), and a
+   proxy (``proxy.your.domain``). A ``vuser`` account must also be set up
+   as the account being used for the VNC. The ``vuser`` is a common user
+   that has access to the server, client, and proxy.
 
 Modify Puppet
-+++++++++++++
+"""""""""""""
 
 If definitions for the machines involved in the VNC do not already exist
 in Hiera, create an ``/etc/puppetlabs/code/environments/simp/hieradata/hosts/vserv.your.domain.yaml``
@@ -368,7 +368,7 @@ VNC client node
 
 
 Run the Server
-++++++++++++++
+""""""""""""""
 
 As ``vuser`` on ``vserv.your.domain``, type ``vncserver``.
 
@@ -379,12 +379,12 @@ The output should mirror the following:
 Starting applications specified in ``/home/vuser/.vnc/xstartup`` Log file
 is ``/home/vuser/.vnc/vserv.your.domain:<Port Number>.log``
 
-.. note::
+.. NOTE::
 
-    Remember the port number; it will be needed to set up an SSH tunnel.
+   Remember the port number; it will be needed to set up an SSH tunnel.
 
 Set up an SSH Tunnel
-++++++++++++++++++++
+""""""""""""""""""""
 
 Set up a tunnel from the client (vclnt), through the proxy server
 (proxy), to the server (vserv). The table below lists the steps to set
@@ -393,29 +393,33 @@ up the tunnel.
 
 1. On the workstation, type ``ssh -l vuser -L 590***<Port Number>*:localhost:590***<Port Number>***proxy.your.domain**``
 
-  .. NOTE:: This command takes the user to the proxy.
+  .. NOTE::
+
+     This command takes the user to the proxy.
 
 2. On the proxy, type ``ssh -l vuser -L 590***<Port Number>*:localhost:590***<Port Number>***vserv.your.domain**``
 
-  .. NOTE:: This command takes the user to the VNC server.
+  .. NOTE::
+
+     This command takes the user to the VNC server.
 
 Table: Set Up SSH Tunnel Procedure
 
 .. NOTE::
 
-    The port number in 590\ *<Port Number>* is the same port number as
-    previously described. For example, if the *<Port Number>* was 6,
-    then all references below to 590\ *<Port Number>* become 5906.
+   The port number in 590\ *<Port Number>* is the same port number as
+   previously described. For example, if the *<Port Number>* was 6,
+   then all references below to 590\ *<Port Number>* become 5906.
 
 
 Set Up Clients
-++++++++++++++
+""""""""""""""
 
 On ``vclnt.your.domain``, type ``vncviewer localhost:590\ ***<Port
 Number>***`` to open the Remote Desktop viewer.
 
 Troubleshooting VNC Issues
-~~~~~~~~~~~~~~~~~~~~~~~~~~
+^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 If nothing appears in the terminal window, X may have crashed. To
 determine if this is the case, type ``ps -ef | grep XKeepsCrashing``
