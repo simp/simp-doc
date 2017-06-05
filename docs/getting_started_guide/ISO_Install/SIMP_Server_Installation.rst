@@ -1,3 +1,5 @@
+.. _ig-simp-server-installation:
+
 SIMP Server Installation
 ========================
 
