@@ -46,7 +46,7 @@ If you find a bug, we'd like to encourage you to file a bug in our
 `JIRA Bug Tracking`_ system. That said, we're happy to hear about issues in
 whatever manner is easiest for you.
 
-.. _SIMP Project HipChat: https://www.hipchat.com/ggkCeNuLk
+.. _SIMP Project HipChat: https://www.hipchat.com/ghofvUiYP
 .. _SIMP Q&A Board: https://groups.google.com/forum/?fromgroups#!forum/simp
 .. _SIMP Users Mailing List: https://groups.google.com/forum/?fromgroups#!forum/simp-users
 .. _SIMP Developers List: https://groups.google.com/forum/?fromgroups#!forum/simp-dev

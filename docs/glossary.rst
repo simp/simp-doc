@@ -204,7 +204,7 @@ Glossary of Terms
        panels with rich visualization options. There is built in support for
        many of the most popular time series data sources.
 
-       Source: `Grafana Homepage <http://grafana.org/>`__
+       Source: `Grafana Homepage <https://grafana.com/>`__
 
    GUI
    Graphical User Interface
@@ -570,7 +570,7 @@ Glossary of Terms
       resource through a common framework that can provide caching and offline
       support to the system.
 
-      Source: `SSSD Homepage <https://fedorahosted.org/sssd/>`__
+      Source: `SSSD Homepage <https://pagure.io/SSSD/sssd>`
 
    STIG
    DISA STIG
@@ -633,7 +633,7 @@ Glossary of Terms
       environment setup time, increases development/production parity, and
       makes the "works on my machine" excuse a relic of the past.
 
-      Source: `Vagrant: About Vagrant <https://www.vagrantup.com/about.html>`__
+      Source: `Vagrant: About Vagrant <https://www.vagrantup.com/intro/index.html>`__
 
    VirtualBox
       A general-purpose full virtualizer for x86 hardware, targeted at server,

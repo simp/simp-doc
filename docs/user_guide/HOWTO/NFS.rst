@@ -117,16 +117,15 @@ In ``hosts/<your_client_fqdn>.yaml``:
 
 .. WARNING::
 
-  Non-wildcard indirect autofs mounts configured via nfs::client::mount
-  are not working properly at this time. See SIMP-2944 in our
-  `JIRA Bug Tracking`_ . You may wish to manually configure the mount
-  via autofs::map::master, and autofs::map::entry instead.
+   Non-wildcard indirect autofs mounts configured via ``nfs::client::mount``
+   are not working properly at this time. See SIMP-2944 in our
+   `JIRA Bug Tracking`_.  You may wish to manually configure the mount via
+   ``autofs::map::master``, and ``autofs::map::entry`` instead.
 
 .. NOTE::
 
-  The ``simp_nfs`` module contains a further example that includes the
-  use of a NFS root on the server and indirect autofs with wildcards on
-  the client.
+   The ``simp_nfs`` module contains a further example that includes the use of
+   a NFS root on the server and indirect autofs with wildcards on the client.
 
 
 Exporting Home Directories

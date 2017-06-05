@@ -135,7 +135,8 @@ Run ``puppet agent -t`` on the Puppet Master to apply the changes.
 
 .. _Certificates:
 
-.. include:: Certificates.rst
+.. include:: Certificates/Certificates.inc
+.. include:: Certificates/Official_Certificates.inc
 
 
 Setting Up the Client
