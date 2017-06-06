@@ -1,3 +1,15 @@
+* Tue Jun 06 2017 Trevor Vaughan <tvaughan@onyxpoint.com>
+- Added information on YUM repo management
+- Added a docs:lint task for checking for broken tags
+- Fixed all of the current warnings
+- Split up some of the structure to make it easier to manage and find
+  things
+- Ensured that all tasks fail on errors and ignore the spurious
+  conf.py error
+- Fixed the linkcheck regexes (again)
+- Removed need for sudo in Travis
+- Moved travis config to Trusty for updated SSL certificates
+
 * Tue Apr 11 2017 Nick Markowski <nmarkowski@keywcorp.com>
 - Created the recommended HOWTO Upgrade SIMP guide.
 
