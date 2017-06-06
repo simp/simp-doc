@@ -1,4 +1,6 @@
 .sw[pnoqst]
+.venv
+**.pyc
 /Gemfile.lock
 _build_v4
 _build_v5

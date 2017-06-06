@@ -23,11 +23,15 @@ Please read our [Contribution Guide](https://simp-project.atlassian.net/wiki/dis
 
 ### Building the docs
 ```bash
-# build HTML docs, dumps the resulting files in doc/
+# build HTML docs, dumps the resulting files in doc/;
 rake docs:html
 
-# build HTML docs, using an alternate Changelog.rst location
-SIMP_CHANGELOG_PATH=$PATH_TO_OTHER/Changelog.rst rake docs:html
+# build HTML docs, specifying a local simp-core location
+SIMP_CORE_PATH=<path to local simp-core git repo> rake docs:html
+
+# build HTML docs for a specific SIMP version, as specified by a
+# tag/branch
+SIMP_BRANCH='6.0.0-0' rake docs:html
 
 # run a local web server to view HTML docs on http://localhost:5000
 rake docs:server[port]
@@ -74,17 +78,29 @@ rake docs:rpm:simp
 
 ## Environment variables
 
-### `SIMP_CHANGELOG_PATH`
+### `SIMP_CORE_PATH`
 
-Sets an alternate path to the simp-core `Changelog.rst` file.  Use this variable to test new revisions of `Changelog.rst`.  This defaults to `../../../Changelog.rst` under the assumption that this repository has been checked out as part of the `simp-core` SIMP ISO build.
+Sets an path to a local simp-core git repository.  Can be used to test new
+revisions of the simp-core `Changelog.rst`.  This defaults to `../..`
+under the assumption that this repository has been checked out as part of
+the `simp-core` SIMP ISO build.
 
 ```bash
-SIMP_CHANGELOG_PATH=$PWD/../simp-core/Changelog.rst rake docs:html
+SIMP_CORE_PATH=$PWD/../simp-core rake docs:html
 ```
 
 ### `SIMP_BRANCH`
 
-`SIMP_BRANCH=5.1.X rake munge:prep`
+Sets the simp-core github tag/branch for the version of docs to build,
+when a local simp-core repository is not to be used. The version, release,
+and changelog information will be downloaded for that version to build the
+docs.  This defaults to `master`.
+
+`SIMP_BRANCH=6.0.0-1 rake docs:html`
+
+CAUTION:  This branch is used **only** to determine version information.
+It does **not** result in the simp-docs version that corresponds to
+SIMP_BRANCH to be downloaded and built.
 
 ## Managing Sphinx prerequisites with `pip`
 
