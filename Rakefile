@@ -6,10 +6,18 @@ require 'find'
 
 desc 'Munge Prep'
   desc <<-EOM
-This task munges the local working directory and Github
-to determine what version and release of the docs should be built.
-The version and release are written to build/rpm_metadata/release.
-If no defaults can be found, the version defaults to 6.X.
+This task extracts the docs version and release from a simp.spec file
+and then writes these values into a local build/rpm_metadata/release
+file. The simp.spec file to use is determined as follows:
+1) First look for a simp.spec file within a local simp-core git repo.
+   The location of that repo can be specified by SIMP_CORE_PATH.
+   Otherwise it defaults to '../..', the location suitable when
+   simp-docs are checkout out as part of a simp-core ISO build.
+2) If a local simp.spec file cannot be found and the SIMP_BRANCH
+   environment variable is specified, pull the simp.spec file
+   from github for that simp-core branch.
+3) Otherwise, pull the simp.spec file from github for the simp-core
+   master branch.
 EOM
 task 'munge:prep' do
   # Defaults
@@ -18,11 +26,19 @@ task 'munge:prep' do
   # by lua simp-doc.spec
   rel_file = './build/rpm_metadata/release'
   #
-  # Location of the simp spec file, which is referenced
-  # for default version and release.
-  specfile = '../../src/build/simp.spec'
+  # Location of the local simp spec file
+  if ENV['SIMP_CORE_PATH']
+    local_simp_core_path = File.expand_path(ENV['SIMP_CORE_PATH'])
+  else
+    local_simp_core_path = File.expand_path(File.join(File.dirname(__FILE__), '..', '..'))
+  end
+  specfile = File.join(local_simp_core_path, 'src', 'build', 'simp.spec')
   #
-  # Default version and release to ensure we build *something*
+  # Default simp-core git tag/branch to use to pull the simp.spec when
+  # a local simp.spec file does not exist.  This ensures we build *something*.
+  default_simp_branch = 'master'
+
+  # Default SIMP version should all other mechanisms to determine it fail
   default_simp_version = '6.0.0-0'
   #
   # Default header to be written to release metadata file
@@ -36,50 +52,58 @@ EOM
   tmpspec = Tempfile.new('docspec')
 
   begin
-
     # Create the release metadata file
     FileUtils.mkdir_p('./build/rpm_metadata')
-    unless File.exist?(rel_file)
-      fh = File.open(rel_file,"w")
+    File.open(rel_file,"w") do |fh|
       fh.puts(release_content)
-      fh.close
     end
 
-    # If the default specfile does not exist, we need to check Github for a usable spec.
-    unless File.exist?(specfile)
-      warn("WARNING: No suitable spec file found at #{specfile}, defaulting to https://raw.githubusercontent.com/simp/simp-core/ENV['SIMP_VERSION']/src/build/simp.spec")
-      require 'open-uri'
-
-      simp_version = ENV['SIMP_VERSION']
-
-      unless simp_version
-        warn("WARNING: Found no ENV['SIMP_VERSION'] set, defaulting to #{default_simp_version}")
-        simp_version = default_simp_version
+    # If the SIMP_BRANCH set or default specfile does not exist,
+    # try to pull it from Github
+    # NOTE:  This code is a (more robust) duplicate of code in
+    # docs/conflib/get_simp_version.py.  Since that Python code is
+    # used to handle error cases in ReadTheDocs, it must NOT be removed.
+    simp_branch = ENV['SIMP_BRANCH']
+    if simp_branch or !File.exist?(specfile)
+      if simp_branch
+        spec_url = "https://raw.githubusercontent.com/simp/simp-core/#{simp_branch}/src/build/simp.spec"
+        puts "Using #{spec_url}"
+      else
+        spec_url = "https://raw.githubusercontent.com/simp/simp-core/#{default_simp_branch}/src/build/simp.spec"
+        warn("WARNING: No suitable spec file found at #{specfile}, defaulting to #{spec_url}")
       end
 
-      spec_url = "https://raw.githubusercontent.com/simp/simp-core/#{simp_version}/src/build/simp.spec"
+      require 'open-uri'
       begin
         open(spec_url) do |specfile|
           tmpspec.write(specfile.read)
         end
-      rescue Exception => e
+      rescue OpenURI::HTTPError => e
         $stderr.puts e.message
-        raise("Could not find a valid spec file at #{spec_url}, check your SIMP_VERSION environment setting!")
+        raise("Could not find a valid spec file at #{spec_url}, check your SIMP_BRANCH environment setting!")
       end
 
       specfile = tmpspec.path
     end
 
-    # Grab the version and release  out of whatever spec we have found.
+    # Grab the version and release out of whatever spec we have found.
     begin
-
       simp_version = %x(rpm -q --undefine="%dist" --queryformat '%{VERSION}\n' --specfile #{specfile}).lines.first.strip
-      simp_release = %x(rpm -q --undefine="%dist" --queryformat '%{RELEASE}\n' --specfile #{specfile}).lines.first.strip
+      simp_version = nil unless $?.exitstatus == 0
 
-    rescue Exception => e
+      simp_release = %x(rpm -q --undefine="%dist" --queryformat '%{RELEASE}\n' --specfile #{specfile}).lines.first.strip
+      simp_release = nil unless $?.exitstatus == 0
+    rescue Errno::ENOENT => e
+      # only error that will throw is if rpm command does not exist
+      warn("Could not extract version/release via rpm: #{e.message}")
+      simp_version = nil
+      simp_release = nil
+    end
+
+    if simp_version.nil? or simp_release.nil?
       warn("Could not obtain valid version/release information from #{specfile}, please check for consistency.  Defaulting to #{default_simp_version}")
       simp_version = default_simp_version.split('-').first
-      simp_release = default_simp_release.split('-').last
+      simp_release = default_simp_version.split('-').last
     end
 
     # Set the version and release in the rel_file

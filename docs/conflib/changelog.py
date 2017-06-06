@@ -1,20 +1,28 @@
 from __future__ import print_function
-import sys
 import os
+import sys
+import time
 import urllib2
 
 from textwrap import dedent
 
-def get_changelog(changelog_name, basedir, github_base, github_version_targets, on_rtd):
+sys.path.append(os.path.abspath(os.path.dirname(os.path.dirname(__file__))))
+
+from conflib.constants import *
+
+def get_changelog(simp_branch, changelog_name, local_simp_core_path,
+     simp_github_raw_base, default_simp_branch, on_rtd):
+
     """ Get the Changelog either from local disk or GitHub """
 
-    disk_changelog = os.getenv('SIMP_CHANGELOG_PATH',
-                               os.path.join(basedir, '..', '..', '..', changelog_name)
-                              )
+    disk_changelog = os.path.join(local_simp_core_path, changelog_name)
 
-    changelog_urls = []
-    for version_target in github_version_targets:
-        changelog_urls.append('/'.join([github_base, 'simp-core', version_target, changelog_name]))
+    if simp_branch:
+        changelog_url = '/'.join([simp_github_raw_base, 'simp-core',
+            simp_branch, changelog_name])
+    else:
+        changelog_url = '/'.join([simp_github_raw_base, 'simp-core',
+            default_simp_branch, changelog_name])
 
     changelog = None
 
@@ -25,18 +33,23 @@ def get_changelog(changelog_name, basedir, github_base, github_version_targets, 
     else:
         # Grab it from the Internet!
         # This is really designed for use with ReadTheDocs
-
-        for changelog_url in changelog_urls:
+        for i in range(0, MAX_SIMP_URL_GET_ATTEMPTS):
             try:
                 print("NOTICE: Downloading Changelog: " + changelog_url, file=sys.stderr)
                 changelog = urllib2.urlopen(changelog_url).read()
                 break
             except urllib2.URLError:
+                print('WARNING:  Could not download ' + changelog_url, file=sys.stderr)
+                time.sleep(1)
                 continue
+            break
 
     return changelog
 
-def changelog_to_rst(changelog_name, basedir, github_base, github_version_targets, on_rtd):
+def changelog_to_rst(simp_branch, changelog_name=CHANGELOG_TGT,
+     local_simp_core_path=LOCAL_SIMP_CORE_PATH,
+     simp_github_raw_base=SIMP_GITHUB_RAW_BASE,
+     default_simp_branch=DEFAULT_SIMP_BRANCH, on_rtd=ON_RTD):
     """ Return a RST representation of the Changelog """
 
     changelog = """
@@ -52,7 +65,9 @@ def changelog_to_rst(changelog_name, basedir, github_base, github_version_target
 
     changelog = dedent(changelog)
 
-    changelog_content = get_changelog(changelog_name, basedir, github_base, github_version_targets, on_rtd)
+    changelog_content = get_changelog(simp_branch, changelog_name,
+        local_simp_core_path, simp_github_raw_base, default_simp_branch,
+        on_rtd)
 
     if changelog_content:
         changelog = changelog_content

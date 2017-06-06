@@ -1,33 +1,40 @@
 from __future__ import print_function
-import copy
-import sys
-import glob
-import os
-import urllib2
-import re
 import base64
+import copy
+import glob
 import json
+import os
+import re
+import sys
+import time
+import urllib2
 from textwrap import dedent
 import yaml
 
+sys.path.append(os.path.abspath(os.path.dirname(os.path.dirname(__file__))))
 
-def get_version_map(basedir, github_version_targets, on_rtd):
-    """
-    Fetch the version map
+from conflib.constants import *
 
-    Local directories are checked first and, if those fail, maps are pulled
-    from GitHub directly
-    """
+def get_version_map(simp_branch, local_simp_core_path, simp_github_api_base,
+    default_simp_branch, on_rtd):
+    """ Fetch the version map either from local disk or GitHub """
 
     ver_map = {}
 
     ver_mapper_name = 'release_mappings.yaml'
 
     if not on_rtd:
-        os_ver_mappers = glob.glob(os.path.join(basedir, '..', '..', '..', 'build', 'distributions', '*', '*', '*', ver_mapper_name))
+        # SIMP 6 and later
+        os_ver_mappers = glob.glob(
+            os.path.join(local_simp_core_path, 'build', 'distributions',
+            '*', '*', '*', ver_mapper_name)
+        )
 
+        # SIMP 4/5
         if not os_ver_mappers:
-            os_ver_mappers = glob.glob(os.path.join(basedir, '..', '..', '..', 'build', ver_mapper_name))
+            os_ver_mappers = glob.glob(
+                os.path.join(local_simp_core_path, 'build', ver_mapper_name)
+            )
 
         if os_ver_mappers:
             for os_ver_mapper in os_ver_mappers:
@@ -35,68 +42,75 @@ def get_version_map(basedir, github_version_targets, on_rtd):
                     __update_ver_map(ver_map, yaml.load(f.read()))
 
     if on_rtd or not ver_map:
-        github_api_base = 'https://api.github.com/repos/simp/simp-core/git/trees/'
+        github_api_base = simp_github_api_base + '/simp-core/git/trees/'
+        if simp_branch:
+            branch_to_query = simp_branch
+        else:
+            branch_to_query = default_simp_branch
 
-        for version_target in github_version_targets:
-            github_api_target = github_api_base + version_target
-            github_opts = '?recursive=1'
+        github_api_target = github_api_base + branch_to_query
+        github_opts = '?recursive=1'
 
-            # We've found it, bail
-            if ver_map:
-                break
+        # only try retrieving each API URL from github once, because API calls
+        # are rate limited
+        try:
+            # Grab the distribution tree
+            distro_json = json.load(urllib2.urlopen(github_api_target + github_opts))
 
-            try:
-                # Grab the distribution tree
-                distro_json = json.load(urllib2.urlopen(github_api_target + github_opts))
+            release_mapping_targets = [x for x in distro_json['tree'] if (
+                x['path'] and re.search(r'release_mappings.yaml$', x['path'])
+            )]
 
-                release_mapping_targets = [x for x in distro_json['tree'] if (
-                    x['path'] and re.search(r'release_mappings.yaml$', x['path'])
-                )]
+            for release_mapping_target in release_mapping_targets:
+                url = SIMP_GITHUB_RAW_BASE + '/simp-core/' + branch_to_query + '/' + release_mapping_target['path']
+                print("NOTICE: Downloading Version Mapper: " + url, file=sys.stderr)
 
-                for release_mapping_target in release_mapping_targets:
-                    print("NOTICE: Downloading Version Mapper: " + release_mapping_target['path'], file=sys.stderr)
-
+                for i in range(0, MAX_SIMP_URL_GET_ATTEMPTS):
                     try:
-                        release_obj = json.load(urllib2.urlopen(release_mapping_target['url']))
-
-                        release_yaml = base64.b64decode(release_obj['content'])
-
+                        release_yaml = urllib2.urlopen(url).read()
+                        print(release_yaml, file=sys.stderr) #debug
                         __update_ver_map(ver_map, yaml.load(release_yaml))
 
                     except urllib2.URLError:
-                        print('Error downloading ' + release_mapping_target['path'], file=sys.stderr)
+                        print('Error downloading ' + url, file=sys.stderr)
+                        time.sleep(1)
                         continue
+                    break
 
-            except urllib2.URLError:
-                print('Error downloading ' + github_api_target + github_opts, file=sys.stderr)
-                continue
+        except urllib2.URLError:
+            print('Error downloading ' + github_api_target + github_opts, file=sys.stderr)
 
     return ver_map
 
-def version_map_to_rst(simp_release, ver_map):
+def version_map_to_rst(full_version, version_family, ver_map):
     """ Return a version of the version map that is suitable for printing. """
 
-    none_found_msg = '* No SIMP Mapping Data Found for "' + simp_release + '"'
+    none_found_msg = '* No SIMP Mapping Data Found for "' + full_version + '"'
 
     # Easy cop out
     if not ver_map:
         return none_found_msg
 
-    simp_release_list = __generate_version_list(simp_release)
+    simp_release_list = __generate_version_list(full_version, version_family)
 
     # Build the Release mapping table for insertion into the docs
     release_mapping_list = []
 
     ver_map_releases = ver_map.keys()
+    simp_release = full_version
     if not simp_release in ver_map_releases:
-        simp_release = [ ver for ver in simp_release_list if ver in ver_map_releases ][0]
-        print("Warning: version mapper falling back to " + simp_release, file=sys.stderr)
+        for ver in simp_release_list:
+            if ver in ver_map_releases:
+                simp_release = ver
+                print("Warning: version mapper falling back to " + simp_release, file=sys.stderr)
+            else:
+                simp_release = None
 
     if simp_release:
         release_mapping_list.append('* **SIMP ' + simp_release + '**')
 
         for os_key in sorted(ver_map[simp_release].keys()):
-            release_mapping_list.append("\n    * **" + os_key + ' ' + '**')
+            release_mapping_list.append("\n    * **" + os_key + '**')
 
             for i, iso in enumerate(ver_map[simp_release][os_key]['isos']):
                 release_mapping_list.append("\n      * **ISO #" + str(i+1) + ":** " + iso['name'])
@@ -110,17 +124,24 @@ def version_map_to_rst(simp_release, ver_map):
 
     return "\n".join(release_mapping_list)
 
-def known_os_compatibility_rst(simp_release, basedir, github_version_targets, on_rtd):
-    """ Output the fullly formatted OS Compatibility RST """
+def known_os_compatibility_rst(simp_version_dict,
+    local_simp_core_path=LOCAL_SIMP_CORE_PATH,
+    simp_github_api_base=SIMP_GITHUB_API_BASE,
+    default_simp_branch=DEFAULT_SIMP_BRANCH, on_rtd=ON_RTD):
 
-    ver_map = get_version_map(basedir, github_version_targets, on_rtd)
+    """ Output the fully formatted OS Compatibility RST """
+
+    ver_map = get_version_map(simp_version_dict['simp_branch'],
+        local_simp_core_path, simp_github_api_base, 
+        default_simp_branch, on_rtd)
 
     os_compat_rst = """
     Known OS Compatibility
     ----------------------
 
     {0}
-    """.format(version_map_to_rst(simp_release, ver_map))
+    """.format(version_map_to_rst(simp_version_dict['full_version'],
+        simp_version_dict['version_family'], ver_map))
 
     return dedent(os_compat_rst)
 
@@ -155,50 +176,19 @@ def __update_ver_map(ver_map, data):
                     if iso not in ver_map[simp_version][os_key]['isos']:
                         ver_map[simp_version][os_key]['isos'].append(iso)
 
-def __generate_version_list(full_version):
+def __generate_version_list(full_version, version_family):
     """
     Put together an ordered list that will provide a quick match for the
     provided version
     """
 
-    version_list = []
+    # From SIMP 6 on, full_version and version_family is sufficient.
+    # For earlier version, custom (odd) version families are needed.
+    version_list = [ full_version ]
+    version_list.extend(version_family)
+    if full_version.startswith('5'):
+      version_list.extend(['5.1.X']) # 5.1.X for a 5.2.2 or later
+    elif full_version.startswith('4'):
+      version_list.extend(['4.2.X']) # 4.2.X for a 4.3.2 or later
 
-    if '-' in full_version:
-        version, release = full_version.split('-')
-    else:
-        release = None
-        version = full_version
-
-    version_parts = version.split('.')
-
-    # This can have all sorts of junk in it
-    if release:
-        try:
-            release = int(release)
-
-            for i in range(0, release+1) + ['X']:
-                version_list.append(version + '-' + str(i))
-        except ValueError:
-            version_list.append(version + '-' + release)
-
-    reverse_version_parts = copy.copy(version_parts)
-    reverse_version_parts.reverse()
-
-    # Three digits, worked in least significant order
-    for i, v in enumerate(reverse_version_parts):
-        # Don't loop the last set
-        if i+1 == len(version_parts):
-            break
-
-        if v == 'X':
-            version_list.append('.'.join(version_parts[0:len(version_parts)-(i+1)] + [v]))
-            break
-
-        v_num = int(v)
-
-        for x in range(0, v_num+1) + ['X']:
-            version_list.append('.'.join(version_parts[0:len(version_parts)-(i+1)] + [str(x)]))
-
-    return version_list
-
-
+    return version_list 

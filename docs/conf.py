@@ -31,7 +31,14 @@ target_dirs = ['dynamic']
 # Allow this to be built up over time
 epilog = []
 
-simp_version_dict = get_simp_version(BASEDIR, GITHUB_BASE, GITHUB_VERSION_TARGETS, ON_RTD)
+# determine version information:
+#   'full_version'  : X.Y.Z-R (e.g., 6.1.0-RC1)
+#   'version'       : X.Y.Z   (e.g., 6.1.0)
+#   'release'       : R       (e.g., RC1)
+#   'version_family': X.X     (e.g., 6.X)
+#   'simp_branch'   : simp-core tag/branch from which the information was
+#                     derived or None, when derived from local files
+simp_version_dict = get_simp_version()
 
 # Just for convenience
 #
@@ -40,40 +47,26 @@ simp_version_dict = get_simp_version(BASEDIR, GITHUB_BASE, GITHUB_VERSION_TARGET
 # built documents
 #
 
-# The short X.Y version
-version = simp_version_dict['version']
-
-# The minor release
-release = simp_version_dict['release']
-
-# The full version, including alpha/beta/rc tags
+# The full version, X.Y.Z-R, where
+# - X.Y.Z is the version in which X, Y, and Z must be numbers
+# - R is the release, which can be alpha-numeric, e.g. '0', 'Beta', 'RC1'
 full_version = simp_version_dict['full_version']
 
-if ON_RTD:
-    _insert_target = 1
-else:
-    _insert_target = 0
-
-# Update the GitHub list with the rest of our 'best guess' content
-# This is in reverse order so that it's easier to insert
-GITHUB_VERSION_TARGETS.insert(_insert_target, simp_version_dict['version_family'])
-GITHUB_VERSION_TARGETS.insert(_insert_target, 'simp-' + simp_version_dict['version_family'])
-
-# If we have some sort of valid release, shove it on the stack too.
-if release != 'NEED_FULL_SIMP_BUILD_TREE':
-    GITHUB_VERSION_TARGETS.insert(0, full_version)
+# The simp tag/branch name. When a branch (e.g., 'master'), the name
+# won't necessarily match the full_version name.
+simp_branch = simp_version_dict['simp_branch']
 
 epilog.append('.. |simp_version| replace:: %s' % full_version)
 
 def setup(app):
     app.add_config_value('simp_version', full_version, 'env') # The third value must always be 'env'
 
-    known_os_compat_content = known_os_compatibility_rst(version, BASEDIR, GITHUB_VERSION_TARGETS, ON_RTD)
-
-    changelog_content = changelog_to_rst(CHANGELOG_TGT, BASEDIR, GITHUB_BASE, GITHUB_VERSION_TARGETS, ON_RTD)
+    # write out dynamic content
+    known_os_compat_content = known_os_compatibility_rst(simp_version_dict)
+    changelog_content = changelog_to_rst(simp_branch)
 
     for target_dir in target_dirs:
-        target_dir = os.path.join(BASEDIR, target_dir)
+        target_dir = os.path.join(DOCSDIR, target_dir)
 
         if not os.path.exists(target_dir):
             os.mkdir(target_dir)
@@ -404,6 +397,6 @@ pdf_use_index = False
 pdf_toc_depth = 3
 
 # tag
-tags.add('simp_%s' % version.split('.')[0])
+tags.add('simp_%s' % full_version.split('.')[0])
 
 rst_epilog = "\n".join(epilog)
