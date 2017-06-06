@@ -1,7 +1,10 @@
 * Tue Jun 06 2017 Trevor Vaughan <tvaughan@onyxpoint.com>
   Tue Jun 06 2017 Liz Nemsick <lnemsick.simp@gmail.com>
+  Tue Jun 06 2017 Nick Markowski <nmarkowski@keywcorp.com>
 - Added error handling to allow simp-doc to build on
   ReadTheDocs despite mapping file errors.
+- Add default logic to build using simp-core master, when
+  the local simp-core git repo is not present
 - Refactored logic in conf.py to a library of functions
   and added unit tests for them
 
