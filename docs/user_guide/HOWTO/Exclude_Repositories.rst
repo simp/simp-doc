@@ -1,4 +1,4 @@
-.. _Exclude_Repos:
+.. _howto-exclude-yum-repos:
 
 HOWTO Exclude YUM Repositories
 ==============================

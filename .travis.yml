@@ -1,16 +1,11 @@
-# build reStructuredText documentation
-# Commented section of this file should eventually build RTD flavored PDFs.
 ---
+dist: trusty
+sudo: false
 language: python
-sudo: true
 python:
-  - "2.7"
+  - 2.7
 install:
-  - sudo pip install -q -r requirements.txt
-  # - sudo apt-get -qq update && sudo apt-get install -y --no-install-recommends texlive-fonts-recommended texlive-latex-extra texlive-fonts-extra dvipng texlive-latex-recommended
+  - pip install -q -r requirements.txt
 script:
-  - sphinx-build -E -n -b linkcheck docs/ linkcheck
-  - sphinx-build -n -t simp_4 -b html -d _build_v4/sphinx_cache docs/ _build_v4/html
-  - sphinx-build -n -t simp_5 -b html -d _build_v5/sphinx_cache docs/ _build_v5/html
-  # - sphinx-build -E -n -b latex -D language=en -d _build/doctrees docs/ latex
-  # - pdflatex -interaction=nonstopmode -halt-on-error ./latex/*.tex
+  - sphinx-build -E -n -b linkcheck docs linkcheck
+  - sphinx-build -n -b html -d sphinx_cache docs html

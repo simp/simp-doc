@@ -117,7 +117,7 @@ describes the security features in place with the default SIMP module settings:
   that password.
 
 -  **Syslog over Stunnel:** The default behavior in SIMP is to encrypt syslog
-   traffic using native :term`TLS` in rsyslog.  The logstash syslog
+   traffic using native :term:`TLS` in rsyslog.  The logstash syslog
    configuration is setup to listen on a stunnel port, which then forwards to
    the local logstash syslog listener.  Unencrypted traffic is also supported
    for network devices.
@@ -423,7 +423,7 @@ different name.
 .. _Elasticsearch: https://www.elastic.co/products/elasticsearch
 .. _Logstash: https://www.elastic.co/products/logstash
 .. _Kibana: https://www.elastic.co/products/kibana
-.. _Grafana: http://grafana.org/
+.. _Grafana: https://grafana.com/
 .. _SIMP Logstash module: https://github.com/simp/pupmod-simp-simp_logstash
 .. _Logstash documentation: https://www.elastic.co/guide/en/logstash/current/index.html
 .. _Elasticsearch scaling: https://www.elastic.co/guide/en/elasticsearch/guide/master/_scale_horizontally.html 

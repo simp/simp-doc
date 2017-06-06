@@ -430,20 +430,31 @@ pygments_style = 'sphinx'
 todo_include_todos = True
 
 # A regex of links that the linkcheck builder should ignore
+linkcheck_anchors = False
 linkcheck_ignore = [
-    # Links with anchors have issues
-    r'^http[s]?:\/\/.*#\w+$',
     # ignore rpms
-    r'^http[s]?:\/\/.*\.rpm$',
+    r'^http[s]?:\/\/.*\.(src\.)?rpm$',
     # ignore pdfs
     r'^http[s]?:\/\/.*\.pdf$',
+    # ignore doc
+    r'^http[s]?:\/\/.*\.doc(x)?$',
+    # ignore isos
+    r'^http[s]?:\/\/.*\.iso$',
+    # ignore tarballs
+    r'^http[s]?:\/\/.*\.tar(\..{2,3})?$',
     # links that the resolver has trouble with
-    r'^http[s]?:\/\/groups\.google\.com\/forum\/\?fromgroups#!forum\/simp',
-    r'^http[s]?:\/\/travis-ci\.org',
+    r'^http[s]?:\/\/groups\.google\.com\/forum\/.+',
+    r'^http[s]?:\/\/travis-ci\.org(/.*|$)',
     r'^http[s]?:\/\/bundler\.io/rationale\.html',
+    # Puppet redirects everything everywhere
+    r'^http[s]?:\/\/.*\.puppet.com(/.*|$)',
+    # NIST redirects everything everywhere
+    r'^http[s]?:\/\/.*\.nist.gov(/.*|$)',
+    # Microsoft redirects everything everywhere
+    r'^http[s]?:\/\/.*\.microsoft.com(/.*|$)',
     # SSL errors
-    r'^http[s]?:\/\/www\.elastic\.co',
-    r'^https?:\/\/opensource\.org'
+    r'^http[s]?:\/\/www\.elastic\.co(/.*|$)',
+    r'^http[s]?:\/\/opensource\.org(/.*|$)'
  ]
 
 # -- Options for HTML output ----------------------------------------------
