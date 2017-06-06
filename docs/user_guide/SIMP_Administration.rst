@@ -15,3 +15,4 @@ to SIMP environments.
   SIMP_Administration/Classification_and_Data
   SIMP_Administration/Integrating_Applications
   SIMP_Administration/General_Administration
+  Certificates

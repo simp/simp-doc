@@ -9,22 +9,22 @@ SIMP system including GUIs, repositories, virtualization, Network File System
 
 To begin, install the following Puppet modules:
 
-.. code-block:: puppet
+.. code-block:: ruby
 
-  class site::workstation_packages {
+   class site::workstation_packages {
 
-    $package_list = [
-      'pupmod-simp-gdm',
-      'pupmod-simp-gnome',
-      'pupmod-simp-simp_nfs',
-      'pupmod-simp-vnc',
-      'pupmod-simp-libvirt',
-    ]
+     $package_list = [
+       'pupmod-simp-gdm',
+       'pupmod-simp-gnome',
+       'pupmod-simp-simp_nfs',
+       'pupmod-simp-vnc',
+       'pupmod-simp-libvirt',
+     ]
 
-    package { $package_list :
-      ensure => installed,
-    }
-  }
+     package { $package_list :
+       ensure => installed,
+     }
+   }
 
 
 Create A Workstation Profile Class
@@ -34,7 +34,7 @@ Below is an example class,
 ``/etc/puppetlabs/code/environments/simp/modules/site/manifests/workstation.pp``, that could be
 set up a user workstation.  Each ``site::`` class is described in the subsequent sections.
 
-.. code-block:: puppet
+.. code-block:: ruby
 
    class site::workstation {
      include 'site::gui'
@@ -64,54 +64,53 @@ set up a user workstation.  Each ``site::`` class is described in the subsequent
 .. _Graphical Desktop Setup:
 
 Graphical Desktop Setup
-~~~~~~~~~~~~~~~~~~~~~~~
+^^^^^^^^^^^^^^^^^^^^^^^
 
 Below is an example manifest called
 ``/etc/puppetlabs/code/environments/simp/modules/site/manifests/gui.pp`` for setting up a graphical
 desktop on a user workstation.
 
-.. code-block:: puppet
+.. code-block:: ruby
 
-  class site::gui (
-    Boolean $libreoffice = true
-  ) {
+   class site::gui (
+     Boolean $libreoffice = true
+   ) {
 
-    include 'gdm'
-    include 'gnome'
-    include 'vnc::client'
-    # Browser and e-mail client are not installed by default.
-    include 'mozilla::firefox'
-    include 'mozilla::thunderbird'
+     include 'gdm'
+     include 'gnome'
+     include 'vnc::client'
+     # Browser and e-mail client are not installed by default.
+     include 'mozilla::firefox'
+     include 'mozilla::thunderbird'
 
 
-    Class['Gnome'] -> Class['Site::gui']
+     Class['Gnome'] -> Class['Site::gui']
 
-    #SIMP gnome package provides a basic interface.
-    #Add gnome extensions for the users.
-    package { [
-      'gnome-color-manager',
-      'gnome-shell-extension-windowsNavigator',
-      'gnome-shell-extension-alternate-tab',
-      ]:
-       ensure => installed,
-    }
+     #SIMP gnome package provides a basic interface.
+     #Add gnome extensions for the users.
+     package { [
+       'gnome-color-manager',
+       'gnome-shell-extension-windowsNavigator',
+       'gnome-shell-extension-alternate-tab',
+       ]:
+        ensure => installed,
+     }
 
-    #Gui applications
-    if $libreoffice {
-      package { 'libreoffice': ensure => installed }
-    }
-  }
-
+     #Gui applications
+     if $libreoffice {
+       package { 'libreoffice': ensure => installed }
+     }
+   }
 
 
 Workstation Repositories
-~~~~~~~~~~~~~~~~~~~~~~~~
+^^^^^^^^^^^^^^^^^^^^^^^^
 
 For the site repos use the puppet resource yumrepo to create repo files to point to
 repositories.
 
 
-.. code-block:: puppet
+.. code-block:: ruby
 
    class site::repos {
      yumrepo { 'myrepo':
@@ -121,13 +120,13 @@ repositories.
 
 
 Virtualization on User Workstations
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 Below is an example manifest called
 ``/etc/puppetlabs/code/environments/simp/modules/site/manifests/virt.pp``
 for allowing virtualization on a system.
 
-.. code-block:: puppet
+.. code-block:: ruby
 
    # We allow users to run VMs on their workstations.
    # If you don't want this, just don't include this class.
@@ -178,18 +177,18 @@ To set swappiness values use hiera:
   swap::max_swappiness: 100
 
 Printer Setup
-~~~~~~~~~~~~~
+^^^^^^^^^^^^^
 
 Below are example manifests for setting up a printing environment.
 
 Setting up a Print Client
-^^^^^^^^^^^^^^^^^^^^^^^^^
+"""""""""""""""""""""""""
 
 Below is an example manifest called
 ``/etc/puppetlabs/code/environments/simp/modules/site/manifests/print/client.pp`` for setting up a
 print client on EL6.
 
-.. code-block:: puppet
+.. code-block:: ruby
 
    class site::print::client inherits site::print::server {
      polkit::local_authority { 'print_support':
@@ -208,13 +207,13 @@ print client on EL6.
 
 
 Setting up a Print Server
-^^^^^^^^^^^^^^^^^^^^^^^^^
+"""""""""""""""""""""""""
 
 Below is an example manifest called
 ``/etc/puppetlabs/code/environments/simp/modules/site/manifests/print/server.pp`` for setting up a
 print server.
 
-.. code-block:: puppet
+.. code-block:: ruby
 
    class site::print::server {
 
@@ -239,7 +238,7 @@ Edit the ``site.pp`` file to create a hostgroup for the workstations.  The
 following will make all nodes whose names start with ``ws`` followed any number
 of digits use the ``hieradata/hostgroup/workstation.yaml`` instead of the default:
 
-.. code-block:: puppet
+.. code-block:: ruby
 
   case $facts['hostname'] {
     /^ws\d+.*/: { $hostgroup = 'workstation' }
@@ -274,12 +273,12 @@ VNC Setup
 and workstations remotely through the standard setup or a proxy.
 
 VNC Standard Setup
-~~~~~~~~~~~~~~~~~~
+^^^^^^^^^^^^^^^^^^
 
 .. NOTE::
 
-    You must have the ``pupmod-simp-vnc`` RPM installed to use VNC on your
-    system!
+   You must have the ``pupmod-simp-vnc`` RPM installed to use VNC on your
+   system!
 
 To enable remote access via VNC on the system, include ``vnc::server``
 in Hiera for the node.
@@ -315,29 +314,29 @@ for examples.
 
 .. IMPORTANT::
 
-    Multiple users can log on to the same system at the same time with
-    no adverse effects; however, none of these sessions are persistent.
+   Multiple users can log on to the same system at the same time with no
+   adverse effects; however, none of these sessions are persistent.
 
-    To maintain a persistent VNC session, use the ``vncserver``
-    application on the remote host. Type ``man vncserver`` to reference
-    the manual for additional details.
+   To maintain a persistent VNC session, use the ``vncserver`` application on
+   the remote host. Type ``man vncserver`` to reference the manual for
+   additional details.
 
 VNC Through a Proxy
-~~~~~~~~~~~~~~~~~~~
+^^^^^^^^^^^^^^^^^^^
 
 The section describes the process to VNC through a proxy. This setup
 provides the user with a persistent VNC session.
 
 .. IMPORTANT::
 
-    In order for this setup to work, the system must have a VNC server
-    (``vserver.your.domain``), a VNC client (``vclnt.your.domain``), and a
-    proxy (``proxy.your.domain``). A ``vuser`` account must also be set up
-    as the account being used for the VNC. The ``vuser`` is a common user
-    that has access to the server, client, and proxy.
+   In order for this setup to work, the system must have a VNC server
+   (``vserver.your.domain``), a VNC client (``vclnt.your.domain``), and a proxy
+   (``proxy.your.domain``). A ``vuser`` account must also be set up as the
+   account being used for the VNC. The ``vuser`` is a common user that has
+   access to the server, client, and proxy.
 
 Modify Puppet
-+++++++++++++
+"""""""""""""
 
 If definitions for the machines involved in the VNC do not already exist
 in Hiera, create an ``/etc/puppetlabs/code/environments/simp/hieradata/hosts/vserv.your.domain.yaml``
@@ -349,42 +348,42 @@ VNC Server node
 
 .. code-block:: yaml
 
-  # vserv.your.domain.yaml
-  classes:
-    - 'gnome'
-    - 'mozilla::firefox'
-    - 'vnc::server'
+   # vserv.your.domain.yaml
+   classes:
+     - 'gnome'
+     - 'mozilla::firefox'
+     - 'vnc::server'
 
 
 VNC client node
 
 .. code-block:: yaml
 
-  # vclnt.your.domain.yaml
-  classes:
-    - 'gnome'
-    - 'mozilla::firefox'
-    - 'vnc::client'
+   # vclnt.your.domain.yaml
+   classes:
+     - 'gnome'
+     - 'mozilla::firefox'
+     - 'vnc::client'
 
 
 Run the Server
-++++++++++++++
+""""""""""""""
 
 As ``vuser`` on ``vserv.your.domain``, type ``vncserver``.
 
 The output should mirror the following:
 
-  New 'vserv.your.domain:<Port Number> (vuser)' desktop is vserv.your.domain:<Port Number>
+    New 'vserv.your.domain:<Port Number> (vuser)' desktop is vserv.your.domain:<Port Number>
 
 Starting applications specified in ``/home/vuser/.vnc/xstartup`` Log file
 is ``/home/vuser/.vnc/vserv.your.domain:<Port Number>.log``
 
-.. note::
+.. NOTE::
 
-    Remember the port number; it will be needed to set up an SSH tunnel.
+   Remember the port number; it will be needed to set up an SSH tunnel.
 
 Set up an SSH Tunnel
-++++++++++++++++++++
+""""""""""""""""""""
 
 Set up a tunnel from the client (vclnt), through the proxy server
 (proxy), to the server (vserv). The table below lists the steps to set
@@ -393,29 +392,33 @@ up the tunnel.
 
 1. On the workstation, type ``ssh -l vuser -L 590***<Port Number>*:localhost:590***<Port Number>***proxy.your.domain**``
 
-  .. NOTE:: This command takes the user to the proxy.
+  .. NOTE::
+
+     This command takes the user to the proxy.
 
 2. On the proxy, type ``ssh -l vuser -L 590***<Port Number>*:localhost:590***<Port Number>***vserv.your.domain**``
 
-  .. NOTE:: This command takes the user to the VNC server.
+  .. NOTE::
+
+     This command takes the user to the VNC server.
 
 Table: Set Up SSH Tunnel Procedure
 
 .. NOTE::
 
-    The port number in 590\ *<Port Number>* is the same port number as
-    previously described. For example, if the *<Port Number>* was 6,
-    then all references below to 590\ *<Port Number>* become 5906.
+   The port number in 590\ *<Port Number>* is the same port number as
+   previously described. For example, if the *<Port Number>* was 6, then all
+   references below to 590\ *<Port Number>* become 5906.
 
 
 Set Up Clients
-++++++++++++++
+""""""""""""""
 
 On ``vclnt.your.domain``, type ``vncviewer localhost:590\ ***<Port
 Number>***`` to open the Remote Desktop viewer.
 
 Troubleshooting VNC Issues
-~~~~~~~~~~~~~~~~~~~~~~~~~~
+^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 If nothing appears in the terminal window, X may have crashed. To
 determine if this is the case, type ``ps -ef | grep XKeepsCrashing``

@@ -221,6 +221,52 @@ are required for system functionality and are specific to an installation on a
   fh.close
 end
 
+## Custom Linting Checks
+
+def lint_files_with_bad_tags
+  file_issues = Hash.new()
+
+  files_with_bad_tags = %x(grep -rne ':[[:alpha:]]\\+`[[:alpha:]]' docs).lines
+
+  files_with_bad_tags.each do |line|
+    line.strip!
+
+    line_parts = line.split(': ')
+
+    file_name = line_parts.shift
+    issue_text = line_parts.join(': ')
+
+    file_issues[file_name] = {
+      :issue_type => 'bad_tag',
+      :issue_text => issue_text
+    }
+  end
+
+  file_issues
+end
+
+def run_build_cmd(cmd)
+  require 'open3'
+
+  puts "== #{cmd}"
+
+  stdout, stderr, status = Open3.capture3(cmd)
+
+  # This message is garbage
+  stderr.gsub!(/WARNING: The config value \S+ has type \S+, defaults to \S+\./,'')
+  stderr.strip!
+
+  unless stderr.empty?
+    $stderr.puts(stderr)
+    exit(1)
+  end
+
+  return status
+end
+
+## End Custom Linting Checks
+
+
 namespace :docs do
   namespace :rpm do
     desc 'Update the RPM lists'
@@ -331,48 +377,69 @@ which are simply available in the repository.
     end
   end
 
+  desc 'basic linting tasks'
+  task :lint do
+    file_issues = Hash.new()
+
+    puts "Starting doc linting"
+    puts "Checking for bad tags..."
+
+    file_issues.merge!(lint_files_with_bad_tags)
+
+    unless file_issues.empty?
+      msg = ["The following issues were found:"]
+
+      file_issues.keys.each do |file|
+        msg << "  * #{file}"
+        msg << "    * Issue Type: #{file_issues[file][:issue_type]}"
+        msg << "    * Issue Message: #{file_issues[file][:issue_text]}"
+        msg << ''
+      end
+
+      $stderr.puts(msg)
+      exit(1)
+    end
+
+    puts "Linting Complete"
+  end
+
   desc 'build HTML docs'
-  task :html do
+  task :html => [:lint] do
     extra_args = ''
     ### TODO: decide how we want this task to work
     ### version = File.open('build/simp-doc.spec','r').readlines.select{|x| x =~ /^%define simp_major_version/}.first.chomp.split(' ').last
     ### extra_args = "-t simp_#{version}" if version
     cmd = "sphinx-build -E -n #{extra_args} -b html -d sphinx_cache docs html"
-    puts "== #{cmd}"
-    %x(#{cmd} > /dev/null)
+    run_build_cmd(cmd)
   end
 
   desc 'build HTML docs (single page)'
-  task :singlehtml do
+  task :singlehtml => [:lint] do
     extra_args = ''
     cmd = "sphinx-build -E -n #{extra_args} -b singlehtml -d sphinx_cache docs html-single"
-    puts "== #{cmd}"
-    %x(#{cmd} > /dev/null)
+    run_build_cmd(cmd)
   end
 
   desc 'build Sphinx PDF docs using the RTD resources (SLOWEST) TODO: BROKEN'
-  task :sphinxpdf do
+  task :sphinxpdf => [:lint] do
     [ "sphinx-build -E -n -b latex -D language=en -d sphinx_cache docs latex",
       "pdflatex -interaction=nonstopmode -halt-on-error ./latex/*.tex"
     ].each do |cmd|
-      puts "== #{cmd}"
-      %x(#{cmd} > /dev/null)
+      run_build_cmd(cmd)
     end
   end
 
   desc 'build PDF docs (SLOWEST)'
-  task :pdf do
+  task :pdf => [:lint] do
     extra_args = ''
     cmd = "sphinx-build -T -E -n #{extra_args} -b pdf -d sphinx_cache docs pdf"
-    puts "== #{cmd}"
-    %x(#{cmd} > /dev/null)
+    run_build_cmd(cmd)
   end
 
   desc 'Check for broken external links'
-  task :linkcheck do
+  task :linkcheck => [:lint] do
     cmd = "sphinx-build -T -E -n -b linkcheck -d sphinx_cache docs linkcheck"
-    puts "== #{cmd}"
-    %x(#{cmd})
+    run_build_cmd(cmd)
   end
 
   desc 'run a local web server to view HTML docs on http://localhost:5000'
