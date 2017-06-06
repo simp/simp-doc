@@ -31,9 +31,10 @@ consoles and the first serial device, you would place the following in
 
 .. IMPORTANT::
 
-   If you are working on a system that was not installed from an ISO, you will
-   probably want to do this so that you can login to your system after running
-   ``simp bootstrap``.
+   If you are working on a system that was not installed from an ISO, you 
+   should do this before running ``simp bootstrap``.  Otherwise, unless you have
+   set up other users, you may not be able to log into your system.
+  
 
 Enabling Remote SSH Logins
 --------------------------
