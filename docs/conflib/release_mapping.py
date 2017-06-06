@@ -68,7 +68,6 @@ def get_version_map(simp_branch, local_simp_core_path, simp_github_api_base,
                 for i in range(0, MAX_SIMP_URL_GET_ATTEMPTS):
                     try:
                         release_yaml = urllib2.urlopen(url).read()
-                        print(release_yaml, file=sys.stderr) #debug
                         __update_ver_map(ver_map, yaml.load(release_yaml))
 
                     except urllib2.URLError:
