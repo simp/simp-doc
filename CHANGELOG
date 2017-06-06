@@ -1,3 +1,10 @@
+* Tue Jun 06 2017 Trevor Vaughan <tvaughan@onyxpoint.com>
+  Tue Jun 06 2017 Liz Nemsick <lnemsick.simp@gmail.com>
+- Added error handling to allow simp-doc to build on
+  ReadTheDocs despite mapping file errors.
+- Refactored logic in conf.py to a library of functions
+  and added unit tests for them
+
 * Tue Apr 11 2017 Nick Markowski <nmarkowski@keywcorp.com>
 - Created the recommended HOWTO Upgrade SIMP guide.
 
