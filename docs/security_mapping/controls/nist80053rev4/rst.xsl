@@ -51,7 +51,10 @@
         </xsl:call-template>
 
         <xsl:text>&#xa;&#xa;</xsl:text>
+        <!--
         <xsl:text>**Description:** </xsl:text>
+        -->
+        <xsl:text>    </xsl:text>
         <xsl:value-of select="c:description"/>
         <xsl:text>&#xa;</xsl:text>
         <xsl:apply-templates select="c:statement"/>
@@ -105,17 +108,23 @@
         </xsl:if>
 
         <xsl:text>&#xa;&#xa;</xsl:text>
+        <!--
         <xsl:text>**Description:** </xsl:text>
+        -->
+        <xsl:text>    </xsl:text>
         <xsl:value-of select="c:statement/c:description"/>
 
         <xsl:if test="string-length(c:supplemental-guidance/c:description)!=0">
           <xsl:text>&#xa;&#xa;</xsl:text>
+          <!--
           <xsl:text>**Supplemental Guidance:**</xsl:text>
 
           <xsl:text>&#xa;&#xa;</xsl:text>
-
+          -->
           <xsl:if test="c:supplemental-guidance/c:description">
-            <xsl:text>    </xsl:text>
+            <xsl:text>.. NOTE::</xsl:text>
+            <xsl:text>&#xa;&#xa;</xsl:text>
+            <xsl:text>   </xsl:text>
             <xsl:value-of select="replace(c:supplemental-guidance/c:description, '&#xa;', '&#xa;    ')"/>
           </xsl:if>
         </xsl:if>
@@ -132,7 +141,10 @@
               <xsl:otherwise>
                 <xsl:text>`</xsl:text>
                 <xsl:value-of select="."/>
-                <xsl:text>`_, </xsl:text>
+                <xsl:text>`_</xsl:text>
+                <xsl:if test="position() != last()">
+                  <xsl:text>, </xsl:text>
+                </xsl:if>
               </xsl:otherwise>
             </xsl:choose>
           </xsl:for-each>
@@ -143,7 +155,9 @@
 
     <xsl:template match="/controls:controls">
       <!-- Add this line to stop the left menu from expanding each control -->
-      <xsl:text>:tocdepth: 2&#xa;&#xa;</xsl:text>
+      <xsl:text>:tocdepth: 2</xsl:text>
+      <xsl:text>&#xa;&#xa;</xsl:text>
+
       <xsl:text>NIST 800-53 Rev4</xsl:text>
       <xsl:text>&#xa;</xsl:text>
       <xsl:text>================</xsl:text>
