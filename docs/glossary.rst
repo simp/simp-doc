@@ -477,6 +477,15 @@ Glossary of Terms
       for Ron Rivest, Adi Shamir and Leonard Adleman, who first publicly
       described it in 1977.
 
+   Rsyslog
+      An open-source software utility used on UNIX and Unix-like computer
+      systems for forwarding log messages in an IP network. It implements the
+      basic syslog protocol, extends it with content-based filtering, rich
+      filtering capabilities, flexible configuration options and adds features
+      such as using TCP for transport.
+
+      Source: `Wikipedia: Rsyslog <https://en.wikipedia.org/wiki/Rsyslog>`__
+
    Ruby
       A dynamic, reflective, general-purpose object-oriented programming
       language that combines syntax inspired by Perl with Smalltalk-like
@@ -579,6 +588,11 @@ Glossary of Terms
 
       Source: `DISA IASE <http://iase.disa.mil/stigs/Pages/index.aspx>`__
 
+   Syslog
+      A set of standards for sending log messages across the network.
+
+      source: `Wikipedia: syslog <https://en.wikipedia.org/wiki/Syslog>`__
+
    TLS
    Transport Layer Security
       A cryptographic protocol that provides network communications security.
@@ -626,6 +640,17 @@ Glossary of Terms
       A Unix command that prints to standard output the name of the terminal
       connected to standard input. The name of the program comes from
       teletypewriter, abbreviated "TTY".
+
+   umask
+      Umask is a command that determines the settings of a mask that controls
+      how file permissions are set for newly created files. It also may refer
+      to a function that sets the mask, or it may refer to the mask itself,
+      which is formally known as the file mode creation mask. The mask is a
+      grouping of bits, each of which restricts how its corresponding
+      permission is set for newly created files. The bits in the mask may be
+      changed by invoking the umask command.
+
+      Source: `Wikipedia: umask <https://en.wikipedia.org/wiki/Umask>`__
 
    Vagrant
       A tool for building complete development environments. With an
