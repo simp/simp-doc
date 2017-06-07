@@ -11,8 +11,9 @@ Please have your environment prepared as specified by :ref:`gsg-environment_prep
 Download the CentOS/RedHat installation media:
 
   * SIMP_6.X:
-    * :term:`EL` 7: `CentOS-7-x86_64-DVD-1611.iso`_
-    * :term:`EL` 6: `DVD1 and DVD2`_ of the :term:`CentOS` 6.8 release. For example, CentOS-6.8-x86_64-bin-DVD1.iso
+   * Refer to the ``release_mapper`` to determine the distribution ISO compatible with the version of SIMP
+     want to build. The ``release_mapper`` is maintained the `simp-core`_ module in the
+     ``build/distributions/<distribution>/<release>/<arch>`` directory.
   * SIMP_5.X: `CentOS-7-x86_64-DVD-1611.iso`_
   * SIMP_4.X: `DVD1 and DVD2`_ of the CentOS 6.8 release. For example, CentOS-6.8-x86_64-bin-DVD1.iso
 
@@ -95,3 +96,4 @@ additional information.
 .. _CentOS-7-x86_64-DVD-1611.iso: http://isoredirect.centos.org/centos/7/isos/x86_64/CentOS-7-x86_64-DVD-1611.iso
 .. _DVD1 and DVD2: http://isoredirect.centos.org/centos/6/isos/x86_64/
 .. _Red Hat Guide to Configuring YUM and YUM Repositories: https://access.redhat.com/documentation/en-US/Red_Hat_Enterprise_Linux/7/html/System_Administrators_Guide/sec-Configuring_Yum_and_Yum_Repositories.html
+.. _simp-core: https://github.com/simp/simp-core

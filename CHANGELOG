@@ -1,3 +1,8 @@
+* Wed Jun 07 2017 Nick Markowski <nmarkowski@keywcorp.com>
+- Ensured no invalid refs to CentOS 6.8
+- Updated building from source docs to reference the
+  release_mapper
+
 * Tue Jun 06 2017 Trevor Vaughan <tvaughan@onyxpoint.com>
   Tue Jun 06 2017 Liz Nemsick <lnemsick.simp@gmail.com>
   Tue Jun 06 2017 Nick Markowski <nmarkowski@keywcorp.com>
