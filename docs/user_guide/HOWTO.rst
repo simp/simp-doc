@@ -10,6 +10,7 @@ with more commonly sought items towards the top.
 .. toctree::
   :maxdepth: 1
 
+  Disable SSH <HOWTO/Disable_Ssh>
   Modify the Nightly Package Update Schedule <HOWTO/Control_Nightly_Update_Schedule>
   Work with the SIMP Rsync Shares <HOWTO/Work_With_Rsync>
   Setup Central Log Collection <HOWTO/Central_Log_Collection>

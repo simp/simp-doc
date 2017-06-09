@@ -1,3 +1,6 @@
+* Fri Jun 09 2017 Nick Markowski <nmarkowski@keywcorp.com>
+- Added HOWTO disable SSH
+
 * Wed Jun 07 2017 Nick Markowski <nmarkowski@keywcorp.com>
 - Ensured no invalid refs to CentOS 6.8
 - Updated building from source docs to reference the
