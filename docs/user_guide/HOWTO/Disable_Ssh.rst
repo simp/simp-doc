@@ -18,5 +18,5 @@ list. If you want svckill to kill running sshd processes, include:
 .. code-block::  yaml
 
   ---
-  svckill::ignore_defaults:
+  svckill::ignore:
     - '--sshd'
