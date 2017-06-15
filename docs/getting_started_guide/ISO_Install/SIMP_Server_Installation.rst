@@ -149,7 +149,7 @@ Installing the SIMP Server
 Performing Post-installation Setup on the SIMP Server
 -----------------------------------------------------
 
-#. Log on as ``root``
+#. Log on as ``simp`` and run ``su -`` to gain root access.
 #. Run puppet for the first time.
 
    Type: ``puppet agent -t``
