@@ -11,9 +11,11 @@ Please have your environment prepared as specified by :ref:`gsg-environment_prep
 Download the CentOS/RedHat installation media:
 
   * SIMP_6.X:
-   * Refer to the ``release_mapper`` to determine the distribution ISO compatible with the version of SIMP
-     want to build. The ``release_mapper`` is maintained the `simp-core`_ module in the
-     ``build/distributions/<distribution>/<release>/<arch>`` directory.
+
+    * Refer to the ``release_mapper`` to determine the distribution ISO compatible with the version of SIMP
+      want to build. The ``release_mapper`` is maintained the `simp-core`_ module in the
+      ``build/distributions/<distribution>/<release>/<arch>`` directory.
+
   * SIMP_5.X: `CentOS-7-x86_64-DVD-1611.iso`_
   * SIMP_4.X: `DVD1 and DVD2`_ of the CentOS 6.8 release. For example, CentOS-6.8-x86_64-bin-DVD1.iso
 
