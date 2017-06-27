@@ -27,6 +27,7 @@ Contents:
   Contributing to SIMP <contributors_guide/index>
   Security Concept of Operations <security_conop/index>
   Security Control Mapping <security_mapping/index>
+  Vulnerability Supplement <vulnerability_supplement/index>
   help/index
   license
   glossary
