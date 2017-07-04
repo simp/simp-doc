@@ -200,6 +200,11 @@ your clients. That script can be aquired in one of two ways:
    This would be the general technique that you would use to auto-bootstrap
    your clients via ``user-data`` scripts in cloud environments.
 
+   You should take care to ensure that your environment is protected prior to
+   running the ``runpuppet`` script across the Internet. You may want to
+   package it as a signed RPM specific to your environment and deploy it
+   independently.
+
    Be ready to sign your client credentials as systems check in with the
    server!
 
@@ -207,7 +212,7 @@ Run the script on a client. This example assumes the first option from above:
 
 .. code-block:: bash
 
-   $ curl http://<puppet.server.fqdn>/ks/runpuppet | bash
+   $ curl https://<puppet.server.fqdn>/ks/runpuppet | bash
 
 .. _official SIMP YUM repositories: https://packagecloud.io/simp-project
 .. _AWS: https://aws.amazon.com/

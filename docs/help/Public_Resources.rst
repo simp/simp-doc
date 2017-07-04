@@ -2,7 +2,8 @@ Public Resources
 ================
 
 Many resources are available for getting help with SIMP. For FOSS support, as
-the community can handle it, you can use one of the following resources.
+the community can handle it, you are welcome to use one of the following
+resources.
 
 Live Chat
 ---------
@@ -12,6 +13,7 @@ Live Chat
   * No account is required for this room. However, if you are going to
     participate regularly, please consider signing up for a HipChat account as
     it will allow you to receive offline messages.
+
   * If you choose to sign up, we recommend using a modifier to your email
     address such as `yourname+simp@gmail.com` since HipChat binds your account
     to the group that you join.
@@ -51,5 +53,5 @@ whatever manner is easiest for you.
 .. _SIMP Users Mailing List: https://groups.google.com/forum/?fromgroups#!forum/simp-users
 .. _SIMP Developers List: https://groups.google.com/forum/?fromgroups#!forum/simp-dev
 .. _SIMP Announcement List: https://groups.google.com/forum/?fromgroups#!forum/simp-announce
-.. _SIMP Security List: https://groups.google.com/forum/?fromgroups#!forum/simp-security
+.. _SIMP Security List: mailto://simp-security@googlegroups.com
 .. _JIRA Bug Tracking: https://simp-project.atlassian.net/
