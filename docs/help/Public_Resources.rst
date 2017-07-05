@@ -37,9 +37,14 @@ Mailing Lists
 
    * Announcements about changes to the SIMP environment
 
- * `SIMP Security List`_
+ * `SIMP Security List`_ (security@simp-project.com)
 
-   * A post-only list for alerting the SIMP team to security issues
+   * A post-only alias for alerting the SIMP team to security issues
+   * Use GPG Key `214BCB69`_ if you would like to encrypt messages
+   * If members of the U.S. Government wish to report a Security issue, please
+     send a message to this alias indicating that you wish to file a report
+     over official channels and someone will contact you with further
+     instructions.
 
 Bug Tracking
 ------------
@@ -48,10 +53,11 @@ If you find a bug, we'd like to encourage you to file a bug in our
 `JIRA Bug Tracking`_ system. That said, we're happy to hear about issues in
 whatever manner is easiest for you.
 
+.. _214BCB69: https://pgp.mit.edu/pks/lookup?op=vindex&search=0x178D18EB214BCB69
+.. _JIRA Bug Tracking: https://simp-project.atlassian.net/
+.. _SIMP Announcement List: https://groups.google.com/forum/?fromgroups#!forum/simp-announce
+.. _SIMP Developers List: https://groups.google.com/forum/?fromgroups#!forum/simp-dev
 .. _SIMP Project HipChat: https://www.hipchat.com/ghofvUiYP
 .. _SIMP Q&A Board: https://groups.google.com/forum/?fromgroups#!forum/simp
+.. _SIMP Security List: mailto://security@simp-project.com
 .. _SIMP Users Mailing List: https://groups.google.com/forum/?fromgroups#!forum/simp-users
-.. _SIMP Developers List: https://groups.google.com/forum/?fromgroups#!forum/simp-dev
-.. _SIMP Announcement List: https://groups.google.com/forum/?fromgroups#!forum/simp-announce
-.. _SIMP Security List: mailto://simp-security@googlegroups.com
-.. _JIRA Bug Tracking: https://simp-project.atlassian.net/

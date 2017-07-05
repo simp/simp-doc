@@ -212,7 +212,10 @@ Run the script on a client. This example assumes the first option from above:
 
 .. code-block:: bash
 
-   $ curl https://<puppet.server.fqdn>/ks/runpuppet | bash
+   # Remove the ``--insecure`` option if your system has a certificate signed
+   # by a well-known CA.
+
+   $ curl --insecure https://<puppet.server.fqdn>/ks/runpuppet | bash
 
 .. _official SIMP YUM repositories: https://packagecloud.io/simp-project
 .. _AWS: https://aws.amazon.com/
