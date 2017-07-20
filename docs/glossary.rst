@@ -623,7 +623,7 @@ Glossary of Terms
       allowing greater control of the launch stack through a Measured Launch
       Environment (MLE) and enabling isolation in the boot process.
 
-      Source: `Intel Trusted Execution Technology: White Paper <http://www.intel.com/content/www/us/en/architecture-and-technology/trusted-execution-technology/trusted-execution-technology-security-paper..html>`_
+      Source: `Intel Trusted Execution Technology: White Paper <https://www.intel.com/content/www/us/en/architecture-and-technology/trusted-execution-technology/trusted-execution-technology-security-paper.html>`_
 
    tboot
    Trusted Boot

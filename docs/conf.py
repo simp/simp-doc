@@ -198,7 +198,9 @@ linkcheck_ignore = [
     r'^http[s]?:\/\/.*\.microsoft.com(/.*|$)',
     # SSL errors
     r'^http[s]?:\/\/www\.elastic\.co(/.*|$)',
-    r'^http[s]?:\/\/opensource\.org(/.*|$)'
+    r'^http[s]?:\/\/opensource\.org(/.*|$)',
+    # Everything from pgp.mit.edu
+    r'^http[s]?:\/\/pgp\.mit\.edu(/.*|$)'
  ]
 
 # -- Options for HTML output ----------------------------------------------

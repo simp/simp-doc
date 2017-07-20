@@ -9,7 +9,8 @@ such as `AWS`_, `Microsoft Azure`_, `Google Cloud`_, or your own internal VM
 stack, this is the method that you will almost definitely want to use.
 
 .. NOTE::
-   This method does *not* modify your system's partitioning scheme or
+
+   This method does **not** modify your system's partitioning scheme or
    encryption scheme to meet any regulatory policies. If you want an example of
    what that should look like either see the :ref:`simp-installation-guide` or
    check out the `Kickstart`_ files in the `simp-core Git repository`_.
@@ -18,20 +19,42 @@ stack, this is the method that you will almost definitely want to use.
 Enable EPEL
 -----------
 
+.. NOTE::
+
+   RHEL systems will need to enable the `EPEL Repositories`_ manually.
+
 .. code-block:: bash
 
    $ sudo yum install epel-release -y
    $ sudo yum install pygpgme yum-utils
 
-Install The SIMP-Project Repository
------------------------------------
+Install The SIMP-Project Repositories
+-------------------------------------
 
-Add the following to ``/etc/yum.repos.d/simp-project.repo``, replacing 
+Add the following to ``/etc/yum.repos.d/simp-project.repo``, replacing
 ``6`` with the appropriate version of SIMP. If the repo file does not exist,
 create it. The repo file contents for ``SIMP 6.X`` is shown below.
 
 If you don't know what versions map together, please see the
 :ref:`faq-simp_version_guide`.
+
+.. IMPORTANT::
+
+   RHEL Users should replace ``$releasever`` below with the actual release
+   version.
+
+   This would be ``7`` for RHEL 7 and ``6`` for RHEL 6
+
+.. NOTE::
+
+   The 'dependencies'repository may contain items from external vendors, most
+   notably Puppet, Inc. and EPEL but may also contain non-SIMP project files
+   that have been compiled for distribution.
+
+.. WARNING::
+
+   The **whitespace** and **alignment** shown before the additional ``gpgkey``
+   values **must be preserved**
 
 .. code-block:: bash
 
@@ -44,27 +67,6 @@ If you don't know what versions map together, please see the
   sslverify=1
   sslcacert=/etc/pki/tls/certs/ca-bundle.crt
   metadata_expire=300
-
-Install The SIMP-project_dependencies Repository
-------------------------------------------------
-
-.. NOTE::
-   The repository may contain items from external vendors, most notably Puppet,
-   Inc. and EPEL but may also contain non-SIMP project files that have been
-   compiled for distribution.
-
-Add the following to ``/etc/yum.repos.d/simp-project_dependencies.repo``,
-replacing ``6`` with the appropriate version of SIMP. If the repo file
-does not exist, create it. The repo file for ``SIMP 6.X`` is shown below.
-
-If you don't know what versions map together, please see the
-:ref:`faq-simp_version_guide`.
-
-.. NOTE::
-   The **whitespace** and **alignment** shown before the additional ``gpgkey``
-   values **must be preserved**
-
-.. code-block:: bash
 
   [simp-project_6_X_dependencies]
   name=simp-project_6_X_dependencies
@@ -122,14 +124,15 @@ Install the SIMP Server
 Configure and Bootstrap the SIMP Server
 ---------------------------------------
 
-1. Login as root
+1. ``su`` to ``root``
 2. Type ``simp config`` and configure the system as prompted.
 
   * ``simp config`` will prompt you for system settings and then apply the
     smallest settings subset that is required to bootstrap the system.
-  * When applicable, ``simp config`` will present you with a
-    recommendation for each setting (variable).  To keep a recommended
-    value, press *Enter*. Otherwise, enter your desired value.
+  * When applicable, ``simp config`` will present you with a recommendation for
+    each setting.
+    To keep a recommended value, press **Enter**.
+    Otherwise, enter your desired value.
   * ``simp config``  generates a log file containing details of the
     configuration selected and actions taken.
   * For more details about the installation variables set by ``simp config``
@@ -147,6 +150,7 @@ Configure and Bootstrap the SIMP Server
       often.
 
 .. NOTE::
+
    Once ``simp config`` has been run, three SIMP configuration files will be
    generated:
 
@@ -162,6 +166,7 @@ Configure and Bootstrap the SIMP Server
 3. Type ``simp bootstrap``
 
 .. NOTE::
+
    If progress bars are of equal length and the bootstrap finishes quickly, a
    problem has occurred. This is most likely due to an error in SIMP
    configuration. Refer to the previous step and make sure that all
@@ -197,6 +202,7 @@ your clients. That script can be aquired in one of two ways:
      }
 
 .. NOTE::
+
    This would be the general technique that you would use to auto-bootstrap
    your clients via ``user-data`` scripts in cloud environments.
 
@@ -217,9 +223,10 @@ Run the script on a client. This example assumes the first option from above:
 
    $ curl --insecure https://<puppet.server.fqdn>/ks/runpuppet | bash
 
-.. _official SIMP YUM repositories: https://packagecloud.io/simp-project
 .. _AWS: https://aws.amazon.com/
-.. _Microsoft Azure: https://azure.microsoft.com
+.. _EPEL Repositories: https://fedoraproject.org/wiki/EPEL
 .. _Google Cloud: https://cloud.google.com
 .. _Kickstart: http://pykickstart.readthedocs.io/en/latest
+.. _Microsoft Azure: https://azure.microsoft.com
+.. _official SIMP YUM repositories: https://packagecloud.io/simp-project
 .. _simp-core Git repository: https://github.com/simp/simp-core/tree/master/build/distributions/CentOS/7/x86_64/DVD/ks
