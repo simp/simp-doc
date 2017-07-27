@@ -112,7 +112,7 @@ Puppetserver auth.conf
 Legacy auth.conf has been deprecated.  The puppetserver's auth.conf is now
 managed by Puppet.
 
-1. Back up legacy puppet auth.conf ``<puppet confdir>/auth.conf``, before
+1. Back up legacy puppet auth.conf ``/etc/puppetlabs/puppet/auth.conf``, before
    upgrade.
 
 2. Re-produce any custom work done to legacy auth.conf in the new auth.conf,
