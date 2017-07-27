@@ -103,8 +103,8 @@ of your new Puppet server into the existing environment.
 Significant Updates
 -------------------
 
-Upgrading From SIMP-6.0.0-0 to SIMP-6.0.0++
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+Upgrading From SIMP-6.0.0-0 to A Later Version
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 Puppetserver auth.conf
 """"""""""""""""""""""
