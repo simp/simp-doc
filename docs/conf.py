@@ -173,8 +173,13 @@ pygments_style = 'sphinx'
 # If true, `todo` and `todoList` produce output, else they produce nothing.
 todo_include_todos = True
 
-# A regex of links that the linkcheck builder should ignore
+# Need this to be > 1 for Travis
+linkcheck_retries = 3
+
+# This causes issues with our documentation
 linkcheck_anchors = False
+
+# A regex of links that the linkcheck builder should ignore
 linkcheck_ignore = [
     # ignore rpms
     r'^http[s]?:\/\/.*\.(src\.)?rpm$',
