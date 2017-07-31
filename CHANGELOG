@@ -2,8 +2,10 @@
 - Added advice on how to recover from a failed boot due to selinux policy
 
 * Thu Jul 27 2017 Nick Markowski <nmarkowski@keywcorp.com>
-- Updated the user guide with instructions to back up legacy auth.conf
-  and modify new auth.conf, need be.
+- User guide updates:
+  - Informed users of legacy auth.conf deprecation
+  - Provided instructions to reproduce custom auth.conf entries
+    in puppet
 
 * Mon Jun 26 2017 Nick Markowski <nmarkowski@keywcorp.com>
 - Added documentation on Stack Clash mitigation
