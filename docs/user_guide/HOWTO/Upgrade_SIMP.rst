@@ -99,3 +99,20 @@ of your new Puppet server into the existing environment.
 
    You should *always* start migration with a small number of
    **least critical** clients!
+
+Significant Updates
+-------------------
+
+Upgrading From SIMP-6.0.0-0 to A Later Version
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Puppetserver auth.conf
+""""""""""""""""""""""
+
+Legacy auth.conf, ``/etc/puppetlabs/puppet/auth.conf``, has been deprecated.
+``pupmod-simp-pupmod`` will back up legacy puppet auth.conf after upgrade.
+
+The puppetserver's auth.conf is now managed by Puppet. You will need to
+re-produce any custom work done to legacy auth.conf in the new auth.conf, via
+the ``puppet_authorization::rule`` define.  The stock rules are managed in
+``pupmod::master::simp_auth``.
