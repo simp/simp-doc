@@ -12,3 +12,4 @@ This chapter addresses some of the frequently asked questions (FAQ) about SIMP.
   FAQ/Root_Logins
   FAQ/Password_Complexity
   FAQ/Rsync
+  FAQ/Selinux
