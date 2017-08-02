@@ -348,7 +348,16 @@ Glossary of Terms
       Security and Privacy Controls for Federal Information Systems and
       Organizations
 
-      See: `SP 800-53 <https://web.nvd.nist.gov/view/800-53/home>`__
+      See: `SP 800-53 <http://nvlpubs.nist.gov/nistpubs/SpecialPublications/NIST.SP.800-53r4.pdf>`__
+
+   NIST 800-171
+   NIST SP 800-171
+   NIST Special Publication 800-171
+      Protecting Controlled Unclassified Information in Nonfederal Information
+      Systems and Organizations
+
+
+      See: `SP 800-171 <http://nvlpubs.nist.gov/nistpubs/SpecialPublications/NIST.SP.800-171.pdf>`__
 
    NFS
    Network File System
