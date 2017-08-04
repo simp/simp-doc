@@ -3,6 +3,9 @@ Common Selinux issues
 
 .. _faq-selinux:
 
+How to recover from SELINUX policy failure
+==========================================
+
 If you experience a failed boot after running ``simp bootstrap`` with an error
 that says something along the lines of ``Failed to load SELINUX policy,
 freezing``, follow these instructions:
