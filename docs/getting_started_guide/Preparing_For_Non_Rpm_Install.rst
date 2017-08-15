@@ -18,9 +18,9 @@ from a fresh install:
   ├── rsync
   └── site_files
 
-* ``rsync`` in a tree that stores data that will be copied over to modules.  We
+* ``rsync`` is a tree that stores data that will be copied over to modules.  We
   have chosen rsync for these applications because of how it handles large
-  files and large amounts of files.  See :ref:`rsync_justification`.
+  files and large amounts of files.  See :ref:`rsync_justification`
 * ``site_files`` is a place to store private files that may not belong in the
   control repo or another data source.  An example of this would be host-based
   x509 certificates (which are used heavily by SIMP).

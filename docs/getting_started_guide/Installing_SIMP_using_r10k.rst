@@ -20,8 +20,8 @@ being used:
   `Setting Up Your Control Repo`_
 
 .. IMPORTANT::
-  This document will assumes the SIMP server has internet access.
-  If your system does not have Internet access, you will need to adjust any paths
+  This document will assume the SIMP server has internet access.
+  If your system does not have internet access, you will need to adjust paths
   to point to your internal mirrors.
 
 .. NOTE::
@@ -72,7 +72,7 @@ Server
 Open Source
 ~~~~~~~~~~~
 
-Because SIMP will manage the puppetserver, just include the following classes:
+To manage the puppetserver, include the following classes:
 
 * ``simp``
 * ``simp::server``
@@ -92,9 +92,13 @@ and require extra configuration to ensure they remain in sync.
 Agents
 ------
 
-Other agent will require the ``simp`` class or profile at a minimum. Other
-classes or profiles may be included on top of this baseline for the desired
-functionality. Check the ``simp`` scenario for a full list of classes.
+Agents will require the ``simp`` class at a minimum. SIMP ships with
+'scenarios', which are essentially pre-bundled groups of modules that profile
+nodes for various tasks.  See the :ref:`Classification and Data` documentation
+for more information. Depending on the function of your production environment,
+and your choice of scenario, you will want to populate Hiera with required
+parameters.  See :ref:`Initial_Configuration` for a list of base parameters and
+their description.
 
 
 Running Puppet For The First Time
@@ -134,16 +138,6 @@ times in order to get the new system in order.
   SIMP also moves the location of the ssh authorized_keys file to
   ``/etc/ssh/local_keys/%u``, so copy it there bofore logging out.
 
-Moving On From Here
-^^^^^^^^^^^^^^^^^^^
-
-SIMP ships with 'scenarios', which are essentially pre-bundled groups of
-modules that profile nodes for various tasks.  See the
-:ref:`Classification and Data` documentation for more information. Depending on
-the function of your production environment, and your choice of scenario, you
-will want to populate Hiera with required parameters.  See
-:ref:`Initial_Configuration` for a list of base parameters and their
-description.
 
 Notes About SIMP Infrastructure
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^

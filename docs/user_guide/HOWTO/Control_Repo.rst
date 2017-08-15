@@ -5,7 +5,7 @@ HOWTO Setup a SIMP Control Repository
 
 A control repository contains the modules, hieradata, and roles/profiles
 required in a Puppet infrastructure.  Managing the control repo with GIT allows
-sysadmins to utilize a workflow when updating and developing the
+sysadmins to utilize a workflow when updating and developing their
 infrastructure.
 
 .. NOTE::
@@ -27,7 +27,7 @@ SIMP distributes a partial control repository:
   ├── manifests
   └── modules
 
-* In our `environment repository`_
+* In our `environment repository`_ :
 
 .. code-block:: bash
 
@@ -102,7 +102,7 @@ base of the ``r10k_production`` directory, and add the following content:
   :json:
     :datadir: '/etc/puppetlabs/code/environments/%{::environment}/hieradata'
 
-Run ``git init .`` at the base of the ``r10k-site`` directory and commit
+Run ``git init .`` at the base of the ``r10k_production`` directory and commit
 changes to a ``production`` branch.  Push the ``production`` branch to a
 repository of your choosing.
 
