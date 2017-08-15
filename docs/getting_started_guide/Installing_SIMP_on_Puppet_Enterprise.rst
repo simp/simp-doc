@@ -46,8 +46,8 @@ XXX TODO Insert further information relevant to the disclaimer
 Pre-install tasks
 ^^^^^^^^^^^^^^^^^
 
-
-.. include:: Creating_A_SIMP_Control_Repo.rst
+.. include:: Preparing_For_Non_Rpm_Install.rst
+.. include:: ../user_guide/HOWTO/Control_Repo.rst
 
 XXX TODO Setting hiera simp_options::server_distribution
 

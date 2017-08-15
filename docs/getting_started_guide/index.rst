@@ -11,6 +11,7 @@ Welcome to SIMP!
   Introduction
   Known OS Compatibility <../dynamic/Known_OS_Compatibility>
   Installing_SIMP_From_A_Repository
+  Preparing_For_Non_Rpm_Install
   Installing_SIMP_using_r10k
   Building_A_SIMP_ISO
   ISO_Install/index
