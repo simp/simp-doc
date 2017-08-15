@@ -1,3 +1,6 @@
+* Thu Aug 03 2017 Nick Markowski <nmarkowski@keywcorp.com>
+- Added a HOWTO modify puppet agent cron-job.
+
 * Mon Jul 31 2017 Nick Miller <nick.miller@onyxpoint.com>
 - Added advice on how to recover from a failed boot due to selinux policy
 - Added tboot docs into the tpm HOWTO
