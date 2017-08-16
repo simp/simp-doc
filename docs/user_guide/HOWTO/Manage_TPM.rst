@@ -1,54 +1,49 @@
 How to Manage a TPM Device With SIMP
 ====================================
 
-A great effort has been placed on automating the usage of :term:`TPM` **1.2**
-devices in SIMP. This document will serve as a guide on how to enable a TPM and
-use it in EL 6/7.
+This document serves as a guide to enable and use TPM devices in SIMP.
+Currently, only :term:`TPM` **1.2** and EL7 are supported.
 
-Supported TPM features in SIMP:
+TPM features in SIMP:
 
-   * Taking ownership (but not clear ownership)
-   * Enable basic :term:`IMA` measuring
+   * Taking ownership
+   * Enabling basic :term:`IMA` measuring
 
      * Setting custom IMA policy (broken)
 
-   * Enable a TPM-based PKCS#11 interface
-   * (Future) Intel TXT and Trusted Boot
+   * Enabling a TPM-based PKCS#11 interface
+   * Intel TXT and Trusted Boot
 
-We do not support EVM or measured boot at this time. The tools (ima-evm-utils)
-are not available on our supported platforms and the kernel provided doesn't
-support it at this time.
+We do not support clearing ownership, EVM, or measured boot at this time. 
+``ima-evm-utils`` and kernel support are not available on SIMP platforms.
 
-Overview
---------
+Requirements
+------------
 
-General hardware requirements:
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+General Requirements:
+^^^^^^^^^^^^^^^^^^^^^
 
    * A host with a TPM 1.2 chip on the motherboard
+   * A legacy, non-UEFI bootloader
+   * A BIOS password (one should be required to enable the TPM)
+   * Easy physical access to the machine to enter the BIOS password
 
 
-Trusted Boot hardware requirements:
+Trusted Boot Hardware Requirements:
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
    * A CPU with Intel Trusted Execution Technology (TXT)
    * A chipset with Intel Trusted Execution Technology (TXT)
 
 
-Other non-puppet requirements:
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+Starting With TPM
+-----------------
 
-   * A legacy, non-UEFI bootloader
-   * A BIOS password (one should be required to enable the TPM)
-   * Easy physical access to the machine to enter the BIOS password
+Follow the steps below to enable and take ownership of the :term:`TPM`.
 
-
-Enable and take ownership
--------------------------
-
-#. You can see if you have a TPM by either checking with the ``has_tpm`` fact,
-   the ``status`` section of the tpm structured fact, or by checking the sys
-   path manually. You can also look for the character device at ``/dev/tpm0``.
+#. Ensure the system has a TPM by checking the ``has_tpm`` fact, the ``status``
+   section of the tpm structured fact, or by checking the sys path manually.
+   You can also look for the character device ``/dev/tpm0``.
 
    .. code-block:: bash
 
@@ -66,8 +61,7 @@ Enable and take ownership
       /dev/tpm0: character special (10/224)
 
 
-#. A TPM would be much less useful if the boot process can't be protected. A
-   BIOS password must be set to make sure no third parties can boot the host.
+#. A BIOS password must be set to make sure no third parties can boot the host.
    Please set the admin password and the user password in the BIOS. If there is
    an option to require password at boot time, enable it. Do not enable Intel
    Platform Trust Techonology (PTT) or Intel TXT at this time.
@@ -76,9 +70,9 @@ Enable and take ownership
    enabled. This has to be done in the BIOS. Refer to the documentation
    provided with the hardware.
 
-#. At this point, the TPM module can take over management of the device. Add
-   ``tpm`` to the host's hieradata according to the example below or use the
-   ``tpm_ownership`` type directly.
+#. At this point, the SIMP TPM module can take over management of the device.
+   Add ``tpm`` to the host's hieradata according to the example below or use
+   the ``tpm_ownership`` type directly.
 
    .. code-block:: yaml
 
@@ -92,7 +86,105 @@ Enable and take ownership
      The ``tpm_ownership`` type does not support clearing the TPM. The process
      could possibly be destructive and has been left to be a manual process.
 
-#. Run puppet!
+#. Run puppet
+
+Enabling Trusted Boot (tboot)
+-----------------------------
+
+General Process
+^^^^^^^^^^^^^^^
+
+The steps in the section below provide guidance and automation to perform the
+following:
+
+#. Set BIOS password
+#. Activate and own the TPM
+#. Install the ``tboot`` package and reboot into the ``tboot no policy`` kernel
+   entry
+#. Download SINIT and put it in ``/boot``
+#. Generate a policy and install it in the TPM NVRAM and ``/boot``
+#. Update GRUB
+#. Reboot into a measured state
+
+For more information about tboot in general, reference external documentation:
+
+*  https://fedoraproject.org/wiki/Tboot
+*  The ``tboot`` docs found in ``/usr/share/tboot-*/*``
+*  https://wiki.gentoo.org/wiki/Trusted_Boot
+*  https://software.intel.com/sites/default/files/managed/2f/7f/Config_Guide_for_Trusted_Compute_Pools_in_RHEL_OpenStack_Platform.pdf
+
+
+Steps
+^^^^^
+
+#. Enable Intel TXT and VT-d in the BIOS
+
+#. Boot into the kernel you want to trust (don't worry, this kernel will be
+   preserved!)
+
+#. Follow the instructions in 'Starting With TPM' and ensure:
+
+   * The TPM is owned
+   * You know the owner password
+   * The SRK password is 'well-known' (``-z``)
+
+
+#. Go to the `Intel site`_ and download the appropriate SINIT binary for your
+   platform. Place this binary on a webserver, on the host itself, or in a
+   profile module. This can't be distributed by SIMP for licensing reasons.
+
+#. Add the following settings to your hieradata for nodes that will be using
+   Trusted Boot. It is reccomended to use a `hostgroup`_ for this.
+
+   * ``tpm::tboot::sinit_name`` - The name of the binary downloaded in the previous step
+   * ``tpm::tboot::sinit_source`` - Where Puppet can find this binary
+   * ``tpm::tboot::owner_password`` - The owner password
+
+   Here is an example used for testing:
+
+   .. code-block:: yaml
+
+      tpm::tboot::sinit_name: 2nd_gen_i5_i7_SINIT_51.BIN
+      tpm::tboot::sinit_source: 'file:///root/txt/2nd_gen_i5_i7-SINIT_51/2nd_gen_i5_i7_SINIT_51.BIN'
+      tpm::tboot::owner_password: "%{alias('tpm::ownership::owner_pass')}"
+
+#. Add the ``tpm::tboot`` class to the classes array with ``tpm``
+
+   * The ``tpm::tboot`` class adds two boot entries to the GRUB configuration.
+     One should read ``tboot``, and there should be one above it called
+     something along the lines of ``tboot, no policy``.
+   * The Trusted Boot process requires booting into the tboot kernel before
+     creating the policy, so we have opted to create both entries. The
+     intermediate, ``no policy`` boot option can later be removed by setting
+     ``tpm::tboot::intermediate_grub_entry`` to ``false`` in hiera.
+
+
+#. Reboot into the ``tboot, no policy`` kernel entry
+
+#. Puppet should run at next boot, and create the policy. Log in, ensure
+   ``/boot/list.data`` exists. If not, run puppet again.
+
+#. Reboot into the ``tboot`` kernel entry.
+
+#. Verify that the system has completed a measured launch by running
+   ``txt-stat`` or checking the ``tboot`` fact
+
+   .. code-block:: bash
+
+   # txt-stat
+   # facter -p tboot
+
+Trusted Boot debugging tips and warnings
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+*  The ``parse_err`` command will show the error code, ready to lookup in the
+   error table included in the zip
+*  The ``tboot`` kernel option ``min_ram=0x2000000`` (which is default) is
+   **REQUIRED** on systems with more than 4GB of memory
+*  Trusted Boot measures the file required to boot into a Linux environment,
+   and updating those file will cause a system to boot into an untrusted state.
+   Be careful updating the ``kernel`` packages and rebuilding the ``initramfs``
+   (or running ``dracut``).
 
 
 Enable basic IMA measuring
@@ -183,3 +275,5 @@ will stop changes to the filesystem if there is a issue detected.
      $ # or add it to a puppet manifest
 
 #. Reboot
+
+.. _Intel Site: https://software.intel.com/en-us/articles/intel-trusted-execution-technology
