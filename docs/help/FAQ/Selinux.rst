@@ -1,3 +1,6 @@
+Common Selinux issues
+=====================
+
 .. _faq-selinux:
 
 If you experience a failed boot after running ``simp bootstrap`` with an error
