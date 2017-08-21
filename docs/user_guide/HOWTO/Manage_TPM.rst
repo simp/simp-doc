@@ -134,7 +134,7 @@ Steps
    profile module. This can't be distributed by SIMP for licensing reasons.
 
 #. Add the following settings to your hieradata for nodes that will be using
-   Trusted Boot. It is reccomended to use a `hostgroup` for this.
+   Trusted Boot. It is recommended to use a `hostgroup` for this.
 
    * ``tpm::tboot::sinit_name`` - The name of the binary downloaded in the previous step
    * ``tpm::tboot::sinit_source`` - Where Puppet can find this binary
