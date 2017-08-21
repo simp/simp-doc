@@ -1,8 +1,8 @@
 Session Auditing
 ----------------
 
-By default, a SIMP system uses :term:`Sudosh` to enable logging of sudo
-sessions to ``Rsyslog``.
+By default, a SIMP system uses :term:`Sudosh` to enable logging the output of
+sudo sessions to ``Rsyslog``.
 
 To open a ``sudo`` session from a regular user to ``root``, you should type
 ``sudo sudosh``.
