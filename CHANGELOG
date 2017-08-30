@@ -1,3 +1,6 @@
+* Tue Aug 15 2017 Jeanne Greulich <jeanne.greulich@onyxpoint.com>
+- Added a HOWTO for SNMPD.
+
 * Thu Aug 03 2017 Nick Markowski <nmarkowski@keywcorp.com>
 - Added a HOWTO modify puppet agent cron-job.
 
