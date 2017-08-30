@@ -445,9 +445,9 @@ and applied if deemed applicable.
 
 Privileged commands are audited as part of the SIMP auditing configuration.
 This is accomplished by monitoring ``sudo`` commands with ``auditd``.
-Session interaction for administrators that use :term:`sudosh` are also logged.
-Each ``sudosh`` session can be reviewed using ``sudosh-replay`` and are also
-sent to ``rsyslog``.
+The output of session interaction for administrators that use :term:`sudosh`
+are also logged. Each ``sudosh`` session can be reviewed using
+``sudosh-replay`` and are also sent to ``rsyslog``.
 [:ref:`AU-2 (4)`]
 
 Content of Audit Records

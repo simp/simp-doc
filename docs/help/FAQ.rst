@@ -13,3 +13,4 @@ This chapter addresses some of the frequently asked questions (FAQ) about SIMP.
   FAQ/Password_Complexity
   FAQ/Rsync
   FAQ/Selinux
+  FAQ/Puppet
