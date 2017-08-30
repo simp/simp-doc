@@ -1,13 +1,11 @@
 HOWTO Configure SNMPD
 =====================
 
-.. contents::
+This document details how to use the ``pupmod-simp-simp_snmpd`` profile
+to configure the SNMP daemon.
 
-  This document details how to use the ``pupmod-simp-simp_snmpd`` profile
-  to configure the SNMP daemon.
-
-  Simple instructions to configure the snmpd daemon using the
-  ``pupmod-simp-simp_snmpd`` profile module are described in its README file.
+Simple instructions to configure the snmpd daemon using the
+``pupmod-simp-simp_snmpd`` profile module are described in its README file.
 
 .. NOTE::
 
