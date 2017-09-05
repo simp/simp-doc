@@ -7,14 +7,32 @@ the SIMP server using the SIMP Utility, ``simp``.
 System Requirements
 -------------------
 
-SIMP scales well, but how much depends on a number of factors, including the
-number of nodes, the processor speed, the total memory, and the complexity of
-the manifests. The following are the minimal system requirements for the
-SIMP server:
+The scalability of SIMP correlates to the scalability of Puppet.  From the
+`Puppet tuning guide <https://docs.puppet.com/puppetserver/latest/tuning_guide.html>`_,
+a number of factors contribute to scalability, including:
 
--  :term:`Central Processing Unit` (CPU) : 2 Cores
--  :term:`Random Access Memory` (RAM) : 2.2 GB
--  :term:`Hard Disk Drive` (HDD) : 50 GB
+* Speed and quantity of available hardware
+* Number of nodes, and frequency of check-in
+* Number of modules in your module path
+* Amount of hieradata
+
+While there are no official
+`hardware requirements <https://docs.puppet.com/puppet/4.8/system_requirements.html>`_,
+Puppet recommends the following:
+
+* ``2`` CPUs and ``1 GB`` of RAM, at a minimum
+* ``2 - 4`` CPUs and ``4 GB`` of RAM to serve up to 1,000 nodes
+
+The SIMP team recommends allocating the latter, in addition to a minimum of
+``50 GB`` HDD space.  Again, these are not hard requirements, but anything less
+may not leave adequate room for logs, applications, rsync data, etc.
+
+.. NOTE::
+  If you want to optimize the Puppet server, the
+  `Puppet tuning guide <https://docs.puppet.com/puppetserver/latest/tuning_guide.html>`_
+  is a good place to start.  Use the
+  `advanced memory debugging guide <https://puppet.com/blog/puppet-server-advanced-memory-debugging>`_ for further optimization.
+
 
 Using the SIMP Utility
 ----------------------
