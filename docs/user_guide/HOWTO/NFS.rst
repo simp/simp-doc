@@ -12,13 +12,13 @@ and ``pupmod-simp-simp``.
   ``pupmod-simp-simp_nfs`` and ``pupmod-simp-nfs`` are not core modules, and
   may need to be installed prior to following this guide.
 
-Known Problems
---------------
+Known Issues
+------------
 
-The autofs package that was released with CentOS 6.8 (autofs-5.0.5-122) worked
+The ``autofs`` package that was released with CentOS 6.8 (**autofs-5.0.5-122**) worked
 properly over a stunnel connection.
 
-The release shipped with CentOS 6.9 (5.0.5-132) prevents any connection from happening
+The release shipped with CentOS 6.9 (**5.0.5-132**) prevents any connection from happening
 to the local stunnel process and breaks mounts to remote systems over stunnel connections.
 
 To use NFS over stunnel and automount directories the old package must be used.
