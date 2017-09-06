@@ -17,7 +17,7 @@ including:
 * Amount of hieradata
 
 While there are no official `hardware requirements`_, we recommend the
-following:
+following **for your SIMP server**:
 
 * **2** CPUs and **3 GB** of RAM, at a minimum
 * **2 - 4** CPUs and **8 GB** of RAM to serve up to *1,000* nodes
