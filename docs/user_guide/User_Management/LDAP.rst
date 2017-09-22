@@ -11,13 +11,13 @@ Prepare SIMP ldifs
 
 SIMP natively uses OpenLDAP for user and group management. Actionable
 copies of the :term:`LDAP` Data Interchange Format (.ldif) files can be found
-on the system in the ``/usr/share/doc/simp-doc-<Version>/ldifs`` directory.
+on the system in the ``/usr/share/simp/ldifs`` directory.
 Copy these files into ``/root/ldifs`` and fix their Distinguished Names:
 
 .. code-block:: bash
 
   $ mkdir /root/ldifs
-  $ cp /usr/share/doc/simp-doc-*/ldifs/* /root/ldifs
+  $ cp /usr/share/simp/ldifs/* /root/ldifs
   $ cd /root/ldifs
   $ sed -i 's/dc=your,dc=domain/<your actual DN information>/g' \*.ldif
 
