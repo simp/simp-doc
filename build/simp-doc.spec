@@ -179,7 +179,7 @@ mv pdf/SIMP_Documentation.pdf pdf/SIMP-%{version}-%{release}.pdf
 
 %files
 %defattr(0644,root,root,0755)
-%doc html html-single pdf ldifs
+%doc html html-single pdf
 
 %post
 # Post install stuff
