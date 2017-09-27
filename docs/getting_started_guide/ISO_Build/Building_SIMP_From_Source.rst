@@ -97,5 +97,5 @@ additional information.
 
 .. _CentOS-7-x86_64-DVD-1611.iso: http://isoredirect.centos.org/centos/7/isos/x86_64/CentOS-7-x86_64-DVD-1611.iso
 .. _DVD1 and DVD2: http://isoredirect.centos.org/centos/6/isos/x86_64/
-.. _Red Hat Guide to Configuring YUM and YUM Repositories: https://access.redhat.com/documentation/en-US/Red_Hat_Enterprise_Linux/7/html/System_Administrators_Guide/sec-Configuring_Yum_and_Yum_Repositories.html
+.. _Red Hat Guide to Configuring YUM and YUM Repositories: https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/7/html/system_administrators_guide/sec-configuring_yum_and_yum_repositories
 .. _simp-core: https://github.com/simp/simp-core
