@@ -6,14 +6,16 @@ Building SIMP From Source
 Getting Started
 ---------------
 
-Please have your environment prepared as specified by :ref:`gsg-environment_preparation` before continuing.
+Please have your environment prepared as specified by
+:ref:`gsg-environment_preparation` before continuing.
 
 Download the CentOS/RedHat installation media:
 
   * SIMP_6.X:
 
-    * Refer to the ``release_mapper`` to determine the distribution ISO compatible with the version of SIMP
-      want to build. The ``release_mapper`` is maintained the `simp-core`_ module in the
+    * Refer to ``release_mappings.yaml`` to determine the distribution ISO
+      compatible with the version of SIMP want to build.
+      ``release_mappings.yaml`` is maintained the `simp-core`_ module in the
       ``build/distributions/<distribution>/<release>/<arch>`` directory.
 
   * SIMP_5.X: `CentOS-7-x86_64-DVD-1611.iso`_
@@ -22,11 +24,12 @@ Download the CentOS/RedHat installation media:
 Generating The ISO!
 -------------------
 
-Change into the ``simp-core`` directory.
+Clone simp-core:
 
-.. code::
+.. code-block:: bash
 
-   $ cd simp-core
+  $ git clone https://github.com/simp/simp-core
+  $ cd simp-core
 
 Check out your desired branch of SIMP:
 
@@ -34,7 +37,7 @@ Check out your desired branch of SIMP:
 
 .. code::
 
-   $ git checkout tags/6.0.0-0
+   $ git checkout tags/6.1.0-0
 
 * To check out an unstable SIMP release, check out the latest ``master``:
 
@@ -42,40 +45,55 @@ Check out your desired branch of SIMP:
 
    $ git checkout master
 
-Run ``bundle`` to make sure that all of the build tools and dependencies are installed and up to date:
+Run ``bundle`` to make sure that all of the build tools and dependencies are
+installed and up to date:
 
 .. code::
 
    $ bundle install
 
-Make sure all of the source materials that were downloaded above are in your current working directory.
+Make an ``ISO`` directory, and copy in the CentOS/RHEL installation media:
 
-Run the ``build:auto`` rake task to create a bootable ISO using the following template:
+.. code-block:: bash
 
-.. code::
+  $ mkdir ISO
+  $ cp </path/to/dvd*.iso> ISO
 
-   $ bundle exec rake build:auto[<Directory containing install media>,<SIMP version>]
+Run the ``rpm_docker`` beaker suite, toggling build options with environment
+variables:
 
-For example:
+.. code-block:: bash
 
-.. code::
+  $ <build ENV vars> bundle exec rake beaker:suites[rpm_docker,default]
 
-   $ # for SIMP 6
-   $ bundle exec rake build:auto[/path/to/ISOs,6.X]
+Build ENV vars:
 
-   $ # for SIMP 5 and CentOS 7
-   $ bundle exec rake build:auto[/path/to/ISOs,5.1.X]
+  * ``SIMP_BUILD_docs`` - (yes|no) - Toggle doc builds. Note that doc builds
+    take a long time.
 
-   $ # for SIMP 4 and CentOS 6
-   $ bundle exec rake build:auto[/path/to/ISOs,4.2.X]
+  * ``RSYNC_NO_SELINUX_DEPS`` - (yes|no) - Force the earliest version of
+    ``policycoreutils<-python>`` and ``selinux-policy<-devel>`` for the major
+    EL release. For more information on why this is useful, see
+    ``build/simp-rsync.spec`` in the ``simp-rsync-skeleton`` project.
 
-Once the process completes, you should have a bootable SIMP ISO ready for installation!
+  * ``BEAKER_copyin`` - (yes|no) - Setting ``BEAKER_copyin=yes`` will copy in
+    your 'simp-core' repo instead of using the one on the filesystem. You
+    probably want to also set ``BEAKER_destroy=no`` if you do this so that you
+    can retrieve any relevant artifacts.  Note that this mode is MUCH slower,
+    but preserves the sanctity of your workspace.
+
+  * ``BEAKER_destroy`` - (yes|no) - Setting ``BEAKER_destroy=no`` will preserve
+    the docker container used to build SIMP, and doing so may be necessary to
+    retrieve your build artifacts (see ``BEAKER_copyin``).
+
+Once the process completes, you should have a bootable SIMP ISO ready for
+installation!
 
 After You Build
 ---------------
 
-If you've built from source, you will probably have noticed that a development
-GPG key has been generated for this build.
+You may have noticed that a development GPG key has been generated for the
+build.
 
 This key is only valid for one week from generation and has been specifically
 generated for your ISO build.
@@ -84,6 +102,7 @@ Doing this allows you to have a validly signed set of RPMs while reducing the
 risk that you will have invalid RPMs distributed around your infrastructure.
 
 .. NOTE::
+
    If you need to build and sign your RPMs with your own key, you can certainly
    do so using the ``rpm --resign`` command.
 
