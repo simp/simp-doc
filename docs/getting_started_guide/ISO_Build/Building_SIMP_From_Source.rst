@@ -28,8 +28,8 @@ Clone simp-core:
 
 .. code-block:: bash
 
-  $ git clone https://github.com/simp/simp-core
-  $ cd simp-core
+   $ git clone https://github.com/simp/simp-core
+   $ cd simp-core
 
 Check out your desired branch of SIMP:
 
@@ -56,25 +56,28 @@ Make an ``ISO`` directory, and copy in the CentOS/RHEL installation media:
 
 .. code-block:: bash
 
-  $ mkdir ISO
-  $ cp </path/to/dvd*.iso> ISO
+   $ mkdir ISO
+   $ cp </path/to/dvd*.iso> ISO
 
 Run the ``rpm_docker`` beaker suite, toggling build options with environment
 variables:
 
 .. code-block:: bash
 
-  $ <build ENV vars> bundle exec rake beaker:suites[rpm_docker,default]
+   $ <build ENV vars> bundle exec rake beaker:suites[rpm_docker,default]
 
 Build ENV vars:
 
-  * ``SIMP_BUILD_docs`` - (yes|no) - Toggle doc builds. Note that doc builds
-    take a long time.
+  * ``SIMP_BUILD_docs`` - (yes|no) - Toggle doc builds.
+
+    * The docs take a long time to build!
 
   * ``RSYNC_NO_SELINUX_DEPS`` - (yes|no) - Force the earliest version of
     ``policycoreutils<-python>`` and ``selinux-policy<-devel>`` for the major
     EL release. For more information on why this is useful, see
     ``build/simp-rsync.spec`` in the ``simp-rsync-skeleton`` project.
+
+    * If you're building with updated OS repositories, you need to set this.
 
   * ``BEAKER_copyin`` - (yes|no) - Setting ``BEAKER_copyin=yes`` will copy in
     your 'simp-core' repo instead of using the one on the filesystem. You
@@ -86,8 +89,8 @@ Build ENV vars:
     the docker container used to build SIMP, and doing so may be necessary to
     retrieve your build artifacts (see ``BEAKER_copyin``).
 
-Once the process completes, you should have a bootable SIMP ISO ready for
-installation!
+Once the process completes, you should have a bootable SIMP ISO, in:
+``build/distributions/<OS>/<rel>/<arch>/SIMP_ISO/``
 
 After You Build
 ---------------

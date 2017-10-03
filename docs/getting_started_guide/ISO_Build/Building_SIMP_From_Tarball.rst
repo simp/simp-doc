@@ -47,6 +47,14 @@ installed and up to date:
 
    $ bundle install
 
+Copy the pre-built tarball to the ``DVD_Overlay`` directory that corresponds
+with the version of base OS you want to build. For instance, if you wanted to
+build with CentOS-7,
+
+.. code::
+
+   $ cp </path/to/.tar> build/distributions/CentOS/7/x86_64/DVD_Overlay
+
 Run the ``build:auto`` rake task to create a bootable ISO:
 
 .. NOTE::
@@ -55,20 +63,25 @@ Run the ``build:auto`` rake task to create a bootable ISO:
 
 .. code::
 
-   $ bundle exec rake build:auto[<directory containing source ISOs>,<SIMP version>,<path to tarball>]
+   $ RSYNC_NO_SELINUX_DEPS=yes bundle exec rake build:auto[<directory containing source ISOs>,6.X]
 
-For example:
+Build ENV vars:
 
-.. code::
+  * ``SIMP_BUILD_docs`` - (yes|no) - Toggle doc builds.
 
-   $ # for SIMP 6 and CentOS 7
-   $ bundle exec rake build:auto[.,6.X,SIMP-6.1.0-0-Overlay-EL-7-x86_64.tar.gz]
+    * The docs take a long time to build!
 
-   $ # for SIMP 6 and CentOS 6
-   $ bundle exec rake build:auto[.,6.X,SIMP-6.1.0-0-Overlay-EL-6-x86_64.tar.gz]
+  * ``RSYNC_NO_SELINUX_DEPS`` - (yes|no) - Force the earliest version of
+    ``policycoreutils<-python>`` and ``selinux-policy<-devel>`` for the major
+    EL release. For more information on why this is useful, see
+    ``build/simp-rsync.spec`` in the ``simp-rsync-skeleton`` project.
 
-Once the process completes, you should have a bootable SIMP ISO ready for
-installation!
+    * This will most likely need to be set to ``yes``, as your system
+      repositories are (probably) not going to contain the base versions of
+      ``policycoreutils<-python>`` and ``selinux-policy<-devel>``
+
+Once the process completes, you should have a bootable SIMP ISO, in:
+``build/distributions/<OS>/<rel>/<arch>/SIMP_ISO/``
 
 
 .. _SIMP artifacts repository: http://simp-project.com/ISO/SIMP/
