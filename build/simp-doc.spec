@@ -84,12 +84,6 @@ if req_file then
 end
 }
 
-%if 0%{?el6}
-%define simp_major_version 4
-%else
-%define simp_major_version 5
-%endif
-
 Summary: SIMP Documentation
 Name: simp-doc
 Version: %{lua: print(package_version)}
@@ -151,14 +145,14 @@ source venv/bin/activate
 pip install -U pip>=8.0 # ancient pips break on these requirements
 pip install --upgrade -r requirements.txt --log dist/pip.log
 
-sphinx-build -E -n -t simp_%{simp_major_version} -b html -d sphinx_cache docs html
-sphinx-build -E -n -t simp_%{simp_major_version} -b singlehtml -d sphinx_cache docs html-single
+sphinx-build -E -n -b html -d sphinx_cache docs html
+sphinx-build -E -n -b singlehtml -d sphinx_cache docs html-single
 
 # Rst2pdf is currently broken on references so we have to remove them.
 # This should be removed when this bug is fixed.
 find docs -name "*.rst" -exec sed -i 's/:ref://g' {} \;
 
-sphinx-build -E -n -t simp_%{simp_major_version} -b pdf -d sphinx_cache docs pdf
+sphinx-build -E -n -b pdf -d sphinx_cache docs pdf
 
 if [ ! -d changelogs ]; then
   mkdir changelogs
