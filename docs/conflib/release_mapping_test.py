@@ -23,38 +23,37 @@ simp_releases:
     flavors:
       CentOS:
         isos:
-          - name:       'CentOS-7-x86_64-DVD-1511.iso'
-            size:     4329570304
+          - name: 'CentOS-7-x86_64-DVD-1511.iso'
+            size: 4329570304
             checksum: '907e5755f824c5848b9c8efbb484f3cd945e93faa024bad6ba875226f9683b16'
         build_command: 'bundle exec rake build:auto[5.1.X,CentOS-7-x86_64-DVD-1511.iso]'
-        mock:            'epel-7-x86_64'
-        os_version:   '7.0'
+        mock: 'epel-7-x86_64'
+        os_version: '7.0'
       RedHat:
         isos:
-          - name:       'rhel-server-7.2-x86_64-dvd.iso'
-            size:     4043309056
+          - name: 'rhel-server-7.2-x86_64-dvd.iso'
+            size: 4043309056
             checksum: '03f3a0291634335f6995534d829bd21ffaa0d000004dfeb1b2fb81052d64a4d5'
         build_command: 'bundle exec rake build:auto[5.1.X,RedHat-7-x86_64-DVD-1511.iso]'
-        mock:            'epel-7-x86_64'
-        os_version:   '7.2'
+        mock: 'epel-7-x86_64'
+        os_version: '7.2'
   5.2.1-0:
     flavors:
       CentOS:
         isos:
-          - name:       'CentOS-7-x86_64-DVD-1511.iso'
-            size:     4329570304
+          - name: 'CentOS-7-x86_64-DVD-1511.iso'
+            size: 4329570304
             checksum: '907e5755f824c5848b9c8efbb484f3cd945e93faa024bad6ba875226f9683b16'
         build_command: 'bundle exec rake build:auto[5.2.1-0,CentOS-7-x86_64-DVD-1511.iso]'
-        mock:            'epel-7-x86_64'
-        os_version:   '7.0'
+        mock: 'epel-7-x86_64'
+        os_version: '7.0'
       RedHat:
         isos:
-          - name:       'rhel-server-7.2-x86_64-dvd.iso'
-            size:     4043309056
+          - name: 'rhel-server-7.2-x86_64-dvd.iso'
+            size: 4043309056
             checksum: '03f3a0291634335f6995534d829bd21ffaa0d000004dfeb1b2fb81052d64a4d5'
         build_command: 'bundle exec rake build:auto[5.2.1-0,RedHat-7-x86_64-DVD-1511.iso]'
-
-        os_version:   '7.2'
+        os_version: '7.2'
 """
   mappings_file = open(os.path.join(build_path, 'release_mappings.yaml'), 'w', 0)
   mappings_file.write(content)
@@ -92,7 +91,7 @@ class TestReleaseMapping(unittest.TestCase):
       False
     )
     if debug: print(doc)
-   
+
     self.assertTrue('Known OS Compatibility' in doc)
     self.assertFalse('No SIMP Mapping Data Found' in doc)
 
