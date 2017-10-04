@@ -49,9 +49,18 @@ def get_simp_version(rootdir=ROOTDIR, simp_github_raw_base=SIMP_GITHUB_RAW_BASE,
     # actual branch that we're using
     if on_rtd:
         rtd_version = os.environ.get('READTHEDOCS_VERSION')
-        url_tgt = '/'.join([
-            simp_github_raw_base, 'simp-core', rtd_version, 'src', 'build', 'simp.spec'
-        ])
+        old_version_regex = re.compile('^4.|^5.|^6.0')
+        if (old_version_regex.match(rtd_version) == None):
+          url_tgt = '/'.join([
+            simp_github_raw_base, 'simp-core', rtd_version, 'src', 'assets',
+            'simp', 'build', 'simp.spec'
+          ])
+        else:
+          url_tgt = '/'.join([
+            simp_github_raw_base, 'simp-core', rtd_version, 'src', 'build',
+            'simp.spec'
+          ])
+
         result = __extract_from_url(url_tgt)
         if  valid_version_and_release(result['version'], result['release']):
             retval['version'] = result['version']
@@ -71,7 +80,7 @@ def get_simp_version(rootdir=ROOTDIR, simp_github_raw_base=SIMP_GITHUB_RAW_BASE,
         # Fall back to something valid
         url_tgt = '/'.join([
             simp_github_raw_base, 'simp-core', default_simp_branch, 'src',
-           'build', 'simp.spec'
+           'assets', 'simp', 'build', 'simp.spec'
         ])
         result = __extract_from_url(url_tgt)
         if valid_version_and_release(result['version'],result['release']):

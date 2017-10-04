@@ -67,8 +67,24 @@ def get_version_map(simp_branch, local_simp_core_path, simp_github_api_base,
 
                 for i in range(0, MAX_SIMP_URL_GET_ATTEMPTS):
                     try:
-                        release_yaml = urllib2.urlopen(url).read()
-                        __update_ver_map(ver_map, yaml.load(release_yaml))
+                        release_yaml_string = urllib2.urlopen(url).read()
+                        release_yaml = yaml.load(release_yaml_string)
+                        if isinstance(release_yaml, basestring):
+                          # This is ugly...
+                          # A string is returned when the release mapping file
+                          # is actually a link.  So, need to pull down the
+                          # content of the link, instead.
+                          parts = release_yaml.split('/')
+                          partial_url = '/'.join(filter(lambda a: a != '..', parts))
+                          for target in release_mapping_targets:
+                            if partial_url in target['path']:
+                              url = SIMP_GITHUB_RAW_BASE + '/simp-core/' + branch_to_query + \
+                                '/' + target['path']
+                              release_yaml_string = urllib2.urlopen(url).read()
+                              release_yaml = yaml.load(release_yaml_string)
+                              break
+
+                        __update_ver_map(ver_map, release_yaml)
 
                     except urllib2.URLError:
                         print('Error downloading ' + url, file=sys.stderr)

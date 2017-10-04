@@ -1,9 +1,14 @@
 #!/usr/bin/rake -T
 
+ENV['SIMP_INTERNAL_pkg_ignore'] = 'build/rpm_metadata'
+
 require 'ostruct'
+require 'rake/clean'
 require 'simp/rake'
 require 'yaml'
 require 'find'
+
+CLEAN.include 'build/rpm_metadata'
 
 desc 'Munge Prep'
   desc <<-EOM
@@ -34,6 +39,13 @@ task 'munge:prep' do
     local_simp_core_path = File.expand_path(File.join(File.dirname(__FILE__), '..', '..'))
   end
   specfile = File.join(local_simp_core_path, 'src', 'assets', 'simp', 'build', 'simp.spec')
+  if File.exist?(specfile)
+    # Tell python code where simp-core is during the RPM build process.
+    # In the RPM build, it builds the source RPM and then installs it
+    # in a temporary location. So, the relative relationship is broken.
+    ENV['SIMP_CORE_PATH'] = local_simp_core_path
+  end
+
   #
   # Default simp-core git tag/branch to use to pull the simp.spec when
   # a local simp.spec file does not exist.  This ensures we build *something*.
@@ -425,6 +437,5 @@ end
 
 # We want to prep for build if possible, but not when running `rake -T`, etc...
 Rake.application.tasks.select{|task| task.name.start_with?('docs:', 'pkg:')}.each do |task|
-  task.enhance ['munge:prep'] do
-  end
+  task.enhance ['munge:prep']
 end
