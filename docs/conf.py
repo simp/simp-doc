@@ -146,6 +146,16 @@ language = None
 # directories to ignore when looking for source files.
 exclude_patterns = ['_build', '**/*.inc']
 
+# Set a parameter that will strip out certain items that cause the build to be
+# slow. Should not be used for real documentation builds but is great for 90%
+# of all testing.
+#
+# In testing the 'html' target, this took the build time on a fast system from
+# 40s to 9s.
+
+if os.environ.get('SIMP_FAST_DOCS', 'false') == 'true':
+    exclude_patterns.append('security_mapping')
+
 # The reST default role (used for this markup: `text`) to use for all
 # documents.
 #default_role = None
