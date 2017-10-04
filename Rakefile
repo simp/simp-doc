@@ -1,5 +1,7 @@
 #!/usr/bin/rake -T
 
+ENV['SIMP_INTERNAL_pkg_ignore'] = 'build/rpm_metadata'
+
 require 'ostruct'
 require 'rake/clean'
 require 'simp/rake'
@@ -435,6 +437,5 @@ end
 
 # We want to prep for build if possible, but not when running `rake -T`, etc...
 Rake.application.tasks.select{|task| task.name.start_with?('docs:', 'pkg:')}.each do |task|
-  task.enhance ['munge:prep'] do
-  end
+  task.enhance ['munge:prep']
 end
