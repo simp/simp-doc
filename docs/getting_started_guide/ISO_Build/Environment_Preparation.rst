@@ -22,8 +22,9 @@ and use **haveged**.
 
 .. code-block:: bash
 
-  $ yum install haveged
-  $ systemctl start haveged
+  $ sudo yum install haveged
+  $ sudo systemctl start haveged
+  $ sudo systemctl enable haveged
 
 Set Up Ruby
 -----------
@@ -81,21 +82,21 @@ repository depending on your distribution.
 
 .. code-block:: bash
 
-  $ yum install docker
+  $ sudo yum install docker
 
 Allow your (non-root) user to run docker:
 
 .. code-block:: bash
 
-  $ usermod -aG dockerroot <user>
+  $ sudo usermod -aG dockerroot <user>
 
 .. NOTE::
 
   You may need to log out and log back in before your user is able to run as
   dockerroot.
 
-Edit ``/etc/docker/daemon.json`` and change the ownership of the docker daemon
-socket:
+As root, edit ``/etc/docker/daemon.json`` and change the ownership of the
+docker daemon socket:
 
 .. code-block:: json
 
@@ -108,8 +109,8 @@ Start the docker daemon:
 
 .. code-block:: bash
 
-  $ systmectl start docker
-  $ systemctl enable docker
+  $ sudo systemctl start docker
+  $ sudo systemctl enable docker
 
 .. _Bundler Rationale Page: http://bundler.io/rationale.html
 .. _Bundler: http://bundler.io/

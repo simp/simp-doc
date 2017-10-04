@@ -14,7 +14,7 @@ Download the CentOS/RedHat installation media:
   * SIMP_6.X:
 
     * Refer to ``release_mappings.yaml`` to determine the distribution ISO
-      compatible with the version of SIMP want to build.
+      compatible with the version of SIMP you want to build.
       ``release_mappings.yaml`` is maintained the `simp-core`_ module in the
       ``build/distributions/<distribution>/<release>/<arch>`` directory.
 
@@ -64,7 +64,7 @@ variables:
 
 .. code-block:: bash
 
-   $ <build ENV vars> bundle exec rake beaker:suites[rpm_docker,default]
+   $ <build ENV vars> bundle exec rake beaker:suites[rpm_docker]
 
 Build ENV vars:
 
@@ -74,20 +74,17 @@ Build ENV vars:
 
   * ``RSYNC_NO_SELINUX_DEPS`` - (yes|no) - Force the earliest version of
     ``policycoreutils<-python>`` and ``selinux-policy<-devel>`` for the major
-    EL release. For more information on why this is useful, see
-    ``build/simp-rsync.spec`` in the ``simp-rsync-skeleton`` project.
+    EL release.
 
-    * If you're building with updated OS repositories, you need to set this.
-
-  * ``BEAKER_copyin`` - (yes|no) - Setting ``BEAKER_copyin=yes`` will copy in
-    your 'simp-core' repo instead of using the one on the filesystem. You
-    probably want to also set ``BEAKER_destroy=no`` if you do this so that you
-    can retrieve any relevant artifacts.  Note that this mode is MUCH slower,
-    but preserves the sanctity of your workspace.
+    * In order to maintain the backward compatability of simp-rsync with each
+      major EL release, we must bring in the selinux policies supplied by the
+      original major EL release being built.  SELinux policies are forward
+      compatible during a major release, but not necessarily backwards
+      compatible.  If you opt to use repositories that bring in updated selinux
+      policies, you will need to set this to ``YES``.
 
   * ``BEAKER_destroy`` - (yes|no) - Setting ``BEAKER_destroy=no`` will preserve
-    the docker container used to build SIMP, and doing so may be necessary to
-    retrieve your build artifacts (see ``BEAKER_copyin``).
+    the docker container used to build SIMP.
 
 Once the process completes, you should have a bootable SIMP ISO, in:
 ``build/distributions/<OS>/<rel>/<arch>/SIMP_ISO/``

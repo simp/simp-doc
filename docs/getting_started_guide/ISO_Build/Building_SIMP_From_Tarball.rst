@@ -73,12 +73,17 @@ Build ENV vars:
 
   * ``RSYNC_NO_SELINUX_DEPS`` - (yes|no) - Force the earliest version of
     ``policycoreutils<-python>`` and ``selinux-policy<-devel>`` for the major
-    EL release. For more information on why this is useful, see
-    ``build/simp-rsync.spec`` in the ``simp-rsync-skeleton`` project.
+    EL release.
 
-    * This will most likely need to be set to ``yes``, as your system
-      repositories are (probably) not going to contain the base versions of
-      ``policycoreutils<-python>`` and ``selinux-policy<-devel>``
+    * In order to maintain the backward compatability of simp-rsync with each
+      major EL release, we must bring in the selinux policies supplied by the
+      original major EL release being built.  SELinux policies are forward
+      compatible during a major release, but not necessarily backwards
+      compatible.  If you opt to use repositories that bring in updated selinux
+      policies, you will need to set this to ``YES``.
+
+  * ``BEAKER_destroy`` - (yes|no) - Setting ``BEAKER_destroy=no`` will preserve
+    the docker container used to build SIMP.
 
 Once the process completes, you should have a bootable SIMP ISO, in:
 ``build/distributions/<OS>/<rel>/<arch>/SIMP_ISO/``
