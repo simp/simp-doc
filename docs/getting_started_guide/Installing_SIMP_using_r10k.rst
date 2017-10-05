@@ -45,14 +45,14 @@ install the ``r10k`` ruby gem into the vendor ruby that comes with the
 
 .. code-block:: bash
 
-  $ /opt/puppetlabs/puppet/bin/gem install r10k
+   $ /opt/puppetlabs/puppet/bin/gem install r10k
 
 ``r10k`` can be used by calling the absolute path of the executable (unless
 added to ``$PATH``):
 
 .. code-block:: bash
 
-  $ /opt/puppetlabs/puppet/bin/r10k help
+   $ /opt/puppetlabs/puppet/bin/r10k help
 
 
 
@@ -110,7 +110,7 @@ port, so the first time the puppet agent is run, you may have to specify the
 
 .. code-block:: bash
 
-  $ puppet agent -t --ca_port 8141 --server puppet.your.domain
+   $ puppet agent -t --ca_port 8141 --server puppet.your.domain
 
 SIMP also provides a provisioning script called `runpuppet`_. Run this script
 during provisioning and it will (provided autosign is configured) attempt to
@@ -125,15 +125,15 @@ times in order to get the new system in order.
 
     .. code-block:: puppet
 
-      pam::access::rule { 'ec2user':
-        origins    => ['ALL'],
-        permission => '+',
-        users      => ['ec2user']
-      }
-      sudo::user_specification { 'ec2user':
-        user_list => ['ec2user'],
-        cmnd      => ['ALL']
-      }
+       pam::access::rule { 'ec2user':
+         origins    => ['ALL'],
+         permission => '+',
+         users      => ['ec2user']
+       }
+       sudo::user_specification { 'ec2user':
+         user_list => ['ec2user'],
+         cmnd      => ['ALL']
+       }
 
   SIMP also moves the location of the ssh authorized_keys file to
   ``/etc/ssh/local_keys/%u``, so copy it there bofore logging out.
