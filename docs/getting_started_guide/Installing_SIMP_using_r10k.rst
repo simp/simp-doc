@@ -11,8 +11,8 @@ tools, with a little tweaking.
 Read the introduction documentation on whichever of these technologies that is
 being used:
 
-  * Code Manager: https://docs.puppet.com/pe/latest/code_mgr.html
-  * r10k: https://github.com/puppetlabs/r10k/blob/master/README.mkd
+* Code Manager: https://docs.puppet.com/pe/latest/code_mgr.html
+* r10k: https://github.com/puppetlabs/r10k/blob/master/README.mkd
 
 .. NOTE::
   r10k will be used to reference both r10k itself and Code Manager throughout
