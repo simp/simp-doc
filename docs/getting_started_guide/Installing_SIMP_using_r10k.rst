@@ -15,14 +15,14 @@ being used:
 * r10k: https://github.com/puppetlabs/r10k/blob/master/README.mkd
 
 .. NOTE::
-  r10k will be used to reference both r10k itself and Code Manager throughout
-  this document. If you are using Code Manager, skip to
-  `Setting Up Your Control Repo`_
+   r10k will be used to reference both r10k itself and Code Manager throughout
+   this document. If you are using Code Manager, skip to
+   `Setting Up Your Control Repo`_
 
 .. IMPORTANT::
-  This document will assume the SIMP server has internet access.
-  If your system does not have internet access, you will need to adjust paths
-  to point to your internal mirrors.
+   This document will assume the SIMP server has internet access.
+   If your system does not have internet access, you will need to adjust paths
+   to point to your internal mirrors.
 
 .. NOTE::
    This method does *not* modify your system's partitioning scheme or
@@ -118,22 +118,22 @@ connect to your puppetserver as defined in ``simp_options`` and run puppet a few
 times in order to get the new system in order.
 
 .. WARNING::
-  SIMP, by default, implements ``tcpwrappers`` and PAM access restrictions.
-  The root user should always be able to log in at a console, but if there is no
-  console, like in `AWS`_, be sure to add a user to the PAM whitelist and give
-  it sudo powers:
+   SIMP, by default, implements ``tcpwrappers`` and PAM access restrictions.
+   The root user should always be able to log in at a console, but if there is no
+   console, like in `AWS`_, be sure to add a user to the PAM whitelist and give
+   it sudo powers:
 
-    .. code-block:: puppet
+   .. code-block:: puppet
 
-       pam::access::rule { 'ec2user':
-         origins    => ['ALL'],
-         permission => '+',
-         users      => ['ec2user']
-       }
-       sudo::user_specification { 'ec2user':
-         user_list => ['ec2user'],
-         cmnd      => ['ALL']
-       }
+      pam::access::rule { 'ec2user':
+        origins    => ['ALL'],
+        permission => '+',
+        users      => ['ec2user']
+      }
+      sudo::user_specification { 'ec2user':
+        user_list => ['ec2user'],
+        cmnd      => ['ALL']
+      }
 
   SIMP also moves the location of the ssh authorized_keys file to
   ``/etc/ssh/local_keys/%u``, so copy it there bofore logging out.
