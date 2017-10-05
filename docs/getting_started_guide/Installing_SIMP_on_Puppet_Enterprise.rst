@@ -7,7 +7,7 @@ Installing SIMP on Puppet Enterprise
   :local:
 
 Overview
-^^^^^^^^^^^^^
+^^^^^^^^
 
 As of 6.0, SIMP can now be installed on top of an existing
 Puppet Enterprise installation. Once installed SIMP will 
