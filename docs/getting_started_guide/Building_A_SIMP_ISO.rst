@@ -17,4 +17,3 @@ The following guides provide an overview of the supported build methods.
   ISO_Build/Environment_Preparation
   ISO_Build/Building_SIMP_From_Tarball
   ISO_Build/Building_SIMP_From_Source
-  ISO_Build/Building_SIMP_Via_Rake

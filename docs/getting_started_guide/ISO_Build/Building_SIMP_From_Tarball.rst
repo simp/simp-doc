@@ -14,21 +14,23 @@ Getting Started
   Please have your environment prepared as specified by
   :ref:`gsg-environment_preparation` before continuing.
 
-.. NOTE::
-  You do **not** need ``mock`` on your system if you are generating an ISO
-  based on the SIMP Tarball!
-
 Download the SIMP release tarball, found on our `SIMP artifacts repository`_.
 
 Download the latest tarball according to your needs. If you are not sure what
 version you need, check the :ref:`faq-simp_version_guide`.
 
-  * The `latest 6.0.0-0 release (for CentOS 6)`_
-  * The `latest 6.0.0-0 release (for CentOS 7)`_
+  * The `latest 6.1.0-0 release (for CentOS 6)`_
+  * The `latest 6.1.0-0 release (for CentOS 7)`_
   * The `latest checksums`_
 
-Generating The ISO!
--------------------
+Generating The ISO
+------------------
+
+Clone simp-core:
+
+.. code-block:: bash
+
+  $ git clone https://github.com/simp/simp-core
 
 Change into the ``simp-core`` directory and make sure you are on the correct
 branch for your target SIMP version:
@@ -36,7 +38,7 @@ branch for your target SIMP version:
 .. code::
 
    $ cd simp-core
-   $ git checkout tags/6.0.0-0 # for SIMP 6
+   $ git checkout tags/6.1.0-0 # for SIMP 6.1
 
 Run ``bundle install`` to make sure that all of the build tools and dependencies are
 installed and up to date:
@@ -45,8 +47,13 @@ installed and up to date:
 
    $ bundle install
 
-Make sure all of the source materials that were downloaded above are in your
-current working directory.
+Copy the pre-built tarball to the ``DVD_Overlay`` directory that corresponds
+with the version of base OS you want to build. For instance, if you wanted to
+build with CentOS-7,
+
+.. code::
+
+   $ cp </path/to/.tar> build/distributions/CentOS/7/x86_64/DVD_Overlay
 
 Run the ``build:auto`` rake task to create a bootable ISO:
 
@@ -56,23 +63,33 @@ Run the ``build:auto`` rake task to create a bootable ISO:
 
 .. code::
 
-   $ bundle exec rake build:auto[<directory containing source ISOs>,<SIMP version>,<path to tarball>]
+   $ RSYNC_NO_SELINUX_DEPS=yes bundle exec rake build:auto[<directory containing source ISOs>,6.X]
 
-For example:
+Build ENV vars:
 
-.. code::
+  * ``SIMP_BUILD_docs`` - (yes|no) - Toggle doc builds.
 
-   $ # for SIMP 6 and CentOS 7
-   $ bundle exec rake build:auto[.,6.X,SIMP-6.0.0-0-Overlay-EL-7-x86_64.tar.gz]
+    * The docs take a long time to build!
 
-   $ # for SIMP 6 and CentOS 6
-   $ bundle exec rake build:auto[.,6.X,SIMP-6.0.0-0-Overlay-EL-6-x86_64.tar.gz]
+  * ``RSYNC_NO_SELINUX_DEPS`` - (yes|no) - Force the earliest version of
+    ``policycoreutils<-python>`` and ``selinux-policy<-devel>`` for the major
+    EL release.
 
-Once the process completes, you should have a bootable SIMP ISO ready for
-installation!
+    * In order to maintain the backward compatability of simp-rsync with each
+      major EL release, we must bring in the selinux policies supplied by the
+      original major EL release being built.  SELinux policies are forward
+      compatible during a major release, but not necessarily backwards
+      compatible.  If you opt to use repositories that bring in updated selinux
+      policies, you will need to set this to ``YES``.
+
+  * ``BEAKER_destroy`` - (yes|no) - Setting ``BEAKER_destroy=no`` will preserve
+    the docker container used to build SIMP.
+
+Once the process completes, you should have a bootable SIMP ISO, in:
+``build/distributions/<OS>/<rel>/<arch>/SIMP_ISO/``
 
 
 .. _SIMP artifacts repository: http://simp-project.com/ISO/SIMP/
-.. _latest 6.0.0-0 release (for CentOS 6): http://simp-project.com/ISO/SIMP/SIMP-6.0.0-0-Powered-By-CentOS-6.8-x86_64.iso
-.. _latest 6.0.0-0 release (for CentOS 7): http://simp-project.com/ISO/SIMP/SIMP-6.0.0-0-Powered-By-CentOS-7.0-x86_64.iso
+.. _latest 6.1.0-0 release (for CentOS 6): http://simp-project.com/ISO/SIMP/SIMP-6.1.0-0-Powered-By-CentOS-6.8-x86_64.iso
+.. _latest 6.1.0-0 release (for CentOS 7): http://simp-project.com/ISO/SIMP/SIMP-6.1.0-0-Powered-By-CentOS-7.0-x86_64.iso
 .. _latest checksums: http://simp-project.com/ISO/SIMP/SHA512SUM
