@@ -7,46 +7,78 @@ This chapter provides instruction for getting a basic configuration of
 :term:`Logstash` working in a SIMP environment.
 
 If these instructions don't work for you, please take a look at the README in
-the `SIMP Logstash module`_, particularly the acceptance tests in the
+the `simp_logstash` profile module, particularly the acceptance tests in the
 ``spec/acceptance`` directory.
+
+Known Issues
+------------
+#. Per Elasticsearch, you may have issues retaining existing data, when
+   you upgrade from Elasticsearch 2.X to 5.X.  See the
+   `Elasticsearch Upgrade Guide`_ for detailed instructions on how
+   to safely upgrade, *before* you upgrade SIMP's :term:`ELG` stack.
+
+#. The current ``simp_grafana`` module, version 1.0.4, only works if
+   ``simp_options::ldap`` is set to ``true``.
+
+#. SIMP's Grafana dashboards have not been updated to work with the
+   latest ELG stack.
+
+The ``simp_grafana`` and SIMP Grafana dashboard issues will be
+addressed in upcoming releases of these components.
 
 Obtaining the Required Packages
 -------------------------------
 
-As an optional component in the SIMP infrastructure, the :term:`ELG` packages
-are not included in the SIMP distribution.
+Because SIMP's :term:`ELG` profile modules are optional components in the SIMP
+infrastructure, the ELG packages are not included in the SIMP distribution.
 
-You will need to proceed to the vendor sites to obtain the require RPMs and
+You will need to proceed to the vendor sites to obtain the required RPMs and
 **put them in an accessible** :term:`YUM` **repository**. The SIMP modules were
 designed with the assumption that you would be using a repository for all of
 your installations.
 
 The following versions have been tested against the SIMP ELG Stack:
 
-  * `Elasticsearch`_ : **2.3**
-  * `Logstash`_ : **2.3**
-  * `Grafana`_ : **3.1**
++------------------------+---------+
+| Package                | Version |
++========================+=========+
+| elasticsearch_         | 5.6     |
++------------------------+---------+
+| elasticsearch-curator_ | 5.0     |
++------------------------+---------+
+| logstash_              | 5.6     |
++------------------------+---------+
+| grafana_               | 4.2     |
++------------------------+---------+
 
 Logstash
 --------
 
 `Logstash`_ is an Open Source tool that provides a means for SIMP
 implementations to have logs and events collected, filtered, and forwarded
-to another host. SIMP comes with three separate but related modules. The
-modules are:
+to another host. SIMP comes with three separate but related modules:
 
-* **Logstash:** Installs the RPMs and configuration needed for log inputs,
-  filters, and outputs.
+* **simp_logstash:**
 
-* **Grafana:** Installs the RPMs and configuration needed for the Grafana web
-  interface.
+  * SIMP profile module that installs the RPMs and configuration needed
+    for log inputs, filters, and outputs.
+  * Uses the `logstash module`_.
 
-* **Elasticsearch:** Installs the RPMs and configuration needed for
-  Elasticsearch.
+* **simp_elasticsearch:**
+
+  * SIMP profile module that installs the RPMs and configuration needed
+    for Elasticsearch.
+  * Uses the `elasticsearch module`_.
+
+* **simp_grafana:**
+
+  * SIMP profile module that installs the RPMs and configuration needed
+    for the Grafana web interface.
+  * Uses the `grafana module`_.
 
 .. WARNING::
-   The Logstash class is incompatible with the SIMP ``rsyslog::stock::server``
-   class!
+   The simp_logstash class is incompatible with the SIMP
+   ``simp_rsyslog::server`` class!
 
    You cannot enable both of them on the same sever.
 
@@ -67,7 +99,7 @@ manipulation that is desired, there is likely a filter and
 SIMP Logstash Architecture
 --------------------------
 
-Combining the SIMP :term:`Logstash`, :term:`Elasticsearch`, and :term:`Grafana`
+Combining the simp_logstash_, simp_elasticsearch_, and simp_grafana_
 modules provides a functioning log collection, reduction, and search
 capability. Unless scale dictates otherwise, these three modules can easily be
 applied to a single host.
@@ -76,11 +108,13 @@ The intent of providing Logstash in SIMP is to replace the default
 :ref:`Rsyslog` server with a capability that is easier to search and analyze
 over time. Once your Logstash server is set up, you simply need to direct your
 hosts to forward logs to your Logstash server. In a default SIMP configuration,
-this can be done by setting the ``$log_server`` variable in :term:`Hiera`.
+this can be done by setting the ``$simp_options::syslog::log_servers`` variable
+in :term:`Hiera`.
 
 It is up to each implementation to define and apply filters that meet their
-local requirements. While multiple output targets may be defined, SIMP only
-defines the Elasticsearch output by default. Please see the Elasticsearch
+local requirements. While multiple Logstash output targets may be defined,
+simp_logstash_ only defines the Elasticsearch output by default. Please see
+the Elasticsearch
 Puppet module for details on how to define additional output targets.
 
 The following diagram depicts the standard SIMP data flow through the Logstash
@@ -103,32 +137,38 @@ adversely affect the security of the logging infrastructure. The following list
 describes the security features in place with the default SIMP module settings:
 
 .. WARNING::
-   The native (Java) Elasticsearch connections are not encrypted!
+   The native (Java) Elasticsearch connections, e.g., node-to-node
+   connections, are not encrypted!
 
-   This will be remedied in the future as sufficient methods are found.
-   Presently, you can look at the `SIMP IPSec`_ implementation to encrypt
-   communication between your Elasticsearch nodes.
+   This will be remedied in SIMP in the future, as sufficient methods
+   are found. Presently, you can look at the `SIMP IPSec`_ implementation
+   to encrypt communication between your Elasticsearch nodes.
+   Alternatively, you can purchase a subscription to the Elasticsearch
+   Security plugin as part of Elasticsearch X-Pack.
 
-* **User Name and Password Protection for Grafana:** The Grafana web can be
-  exposed to a defined list of hosts. If you are connecting to Grafana from
-  anything other than the localhost, a user name and password is required for
-  authentication. Both :term:`LDAP` and local database users are supported.  By
-  default, only an admin account is created.  SIMP will automatically generate
-  that password.
+* **User Name and Password Protection for Grafana:**
+    The Grafana web can be
+    exposed to a defined list of hosts. If you are connecting to Grafana from
+    anything other than the localhost, a user name and password is required for
+    authentication. Both :term:`LDAP` and local database users are supported.  By
+    default, only an admin account is created.  SIMP will automatically generate
+    that password.
 
--  **Syslog over Stunnel:** The default behavior in SIMP is to encrypt syslog
-   traffic using native :term:`TLS` in rsyslog.  The logstash syslog
-   configuration is setup to listen on a stunnel port, which then forwards to
-   the local logstash syslog listener.  Unencrypted traffic is also supported
-   for network devices.
+* **Syslog over Stunnel:**
+    The default behavior in SIMP is to encrypt syslog
+    traffic using native :term:`TLS` in rsyslog.  The logstash syslog
+    configuration is setup to listen on a stunnel port, which then forwards to
+    the local logstash syslog listener.  Unencrypted traffic is also supported
+    for network devices.
 
--  **Limiting Web Actions:** The Grafana module restricts what HTTP commands a
-   user can perform on the Elasticsearch data store. Full **POST** action must
-   be given to the Logstash nodes and some nodes may require **DELETE**
-   capabilities. Logstash hosts should be tightly controlled so that
-   administrative users cannot modify data inside of Elasticsearch with
-   carefully crafted commands. This is one reason that we use syslog on the
-   local hosts.
+* **Limiting Web Actions:**
+    The Grafana module restricts what HTTP commands a
+    user can perform on the Elasticsearch data store. Full **POST** action must
+    be given to the Logstash nodes and some nodes may require **DELETE**
+    capabilities. Logstash hosts should be tightly controlled so that
+    administrative users cannot modify data inside of Elasticsearch with
+    carefully crafted commands. This is one reason that we use syslog on the
+    local hosts.
 
 .. IMPORTANT::
    The Puppet modules for Logstash, Grafana, and Elasticsearch contain dozens
@@ -184,6 +224,9 @@ cluster in production.
 We would recommend a search on `Elasticsearch Scaling`_ prior to setting up
 your initial cluster.
 
+The following configuration assumes Logstash and one Elasticsearch node
+are collocated on one host, ``es1.<your domain>``:
+
 .. code-block:: yaml
 
   ---
@@ -191,52 +234,58 @@ your initial cluster.
 
   ## Set up Logstash ##
 
-  # This is required due to a bug in the 'elastic' logstash module
-  logstash::logstash_user : 'logstash'
-  logstash::logstash_group : 'logstash'
-
   # Listen on unencrypted UDP for legacy network devices
-
+  #
   simp_logstash::input::syslog::listen_plain_udp
 
-  # Send all output to the local Elasticsearch instance
 
+  # Send all output to the local Elasticsearch instance
+  #
   simp_logstash::outputs :
     - 'elasticsearch'
 
   # Keep 30 days of logs
-
+  #
   simp_logstash::clean::keep_days: '30'
 
   ## Set up Elasticsearch ##
 
-  # Make this unique per cluster!
-
+  # Make this unique per cluster!  The elasticsearch service
+  # for the cluster will be named
+  #
+  #    elasticsearch-<cluster_name>
+  #
   simp_elasticsearch::cluster_name : 'some_unique_cluster_name'
 
-  # We're assuming that you only have one interface here. If you don't, set
-  # this to the appropriate value for your system
-
+  # The default value for simp_elasticsearch::bind_host assumes
+  # an Elasticsearch host only has one interface. If this is not
+  # true, set this to the appropriate value for each Elasticsearch
+  # host in your system.
+  #
   simp_elasticsearch::bind_host : "%{::ipaddress}"
 
-  # This needs to be a list of *all* of the Elasticsearch nodes in the cluster.
+  # This needs to be a list of *all* of the Elasticsearch nodes in the
+  # cluster, (including the host with Logstash and Elasticsearch).
   # This is done to restrict communications to only trusted nodes
   #
-  # Any node not entered here will not be connected to and will not be allowed
-  # to communicate with this host.
+  # Any node not entered here will not be connected to and will not
+  # be allowed to communicate with the cluster.
   #
-  # SIMP does not support multicast connectivity for security reasons.
+  simp_elasticsearch::unicast_hosts :
+    - "es1.%{::domain}:9300"
 
-  # You need to add your grafana hosts to the apache ACL
+  # Add your Grafana hosts to the apache ACL.
   simp_elasticsearch::http_method_acl :
     'limits' :
       'hosts' :
         'grafana.%{::domain}' : 'defaults'
 
-  simp_elasticsearch::unicast_hosts :
-    - "%{::fqdn}:9300"
-    - "es1.%{::domain}:9300"
-    - "es2.%{::domain}:9300"
+  # Turn off client SSL verification *only* if you are connecting
+  # to Grafana.  Otherwise, the default setting of 'require'
+  # is best!
+  #
+  simp_elasticsearch::simp_apache::ssl_verify_client: 'none'
+
 
   ## Classes that you need to include for this setup
 
@@ -249,9 +298,10 @@ your initial cluster.
 Deploying Additional Elasticsearch Nodes
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-In the case of the Elasticsearch node setup below, it may be better to use a
-group match to pull your :term:`Hiera` settings. To do this, you should add the
-following to your ``site.pp`` file for your environment.
+When more than one Elasticsearch node are to be deployed in your system,
+configuration of these nodes may be more easily handled using a group
+match to pull your :term:`Hiera` settings. To do this, you should add
+the following to your ``site.pp`` file for your environment.
 
 .. code-block:: ruby
 
@@ -260,8 +310,8 @@ following to your ``site.pp`` file for your environment.
   }
 
 Then, ensure that a file called 'elasticsearch.yaml' is present in the
-``/etc/puppetlabs/code/environments/simp/hieradata/hostgroups/`` directory and contains the following
-content.
+``/etc/puppetlabs/code/environments/simp/hieradata/hostgroups/``
+directory and contains the following content.
 
 .. code-block:: yaml
 
@@ -271,23 +321,23 @@ content.
 
   simp_elasticsearch::cluster_name: 'some_unique_cluster_name'
 
-  # The replicas can be no more than the total number of Elasticsearch nodes
-  # that you have in your cluster.
-
-  simp_elasticsearch::replicas: '2'
-
+  # Remember, this must be the *complete* list of Elasticsearch nodes.
+  #
   simp_elasticsearch::unicast_hosts :
-    - "%{::fqdn}:9300"
     - "es1.%{::domain}:9300"
     - "es2.%{::domain}:9300"
+    - "es3.%{::domain}:9300"
+    - "es4.%{::domain}:9300"
 
   classes:
     - 'simp_elasticsearch'
 
 Make sure you point your clients to the Logstash server by setting the
-``log_server`` variable to the ``fqdn`` of the Logstash server in
-:term:`Hiera`.  You will also need to set ``rsyslog::enable_tls_logging: true``
-to ensure logs are sent to Logstash stunnel listener.
+``$simp_options::syslog::log_servers`` variable to the FQDN of the
+Logstash server in :term:`Hiera`.  You will also need to set
+``simp_rsyslog::forward_logs: true`` and
+``rsyslog::enable_tls_logging: true``,
+to ensure logs are sent to Logstash Stunnel listener.
 
 Deploying Grafana
 ^^^^^^^^^^^^^^^^^
@@ -337,13 +387,15 @@ settings.
 .. code-block:: yaml
 
   ---
-  # Array of networks that are allowed to access your Grafana dashboard. Uses
-  # the standard SIMP 'client_nets' semantics.
+  # Array of networks that are allowed to access your Grafana dashboard.
+  # Uses the standard SIMP 'simp_options::trusted_nets' semantics.
   #
-  # In this case, we're allowing everyone in and trusting that Grafana will do
-  # its job properly.
+  # In this case, instead of using the default of
+  # ``simp_options::trusted_nets``, we're allowing everyone in and
+  # trusting that Grafana will do properly authenticate users using
+  # the LDAP configured via the ``simp_options::ldap`` parameters.
 
-  simp_grafana::client_nets:
+  simp_grafana::trusted_nets:
     - 'ALL'
 
   classes:
@@ -359,8 +411,8 @@ SIMP uses Grafana roles and maps them to :term:`LDAP` groups to provide access
 control.
 
 When you apply the SIMP Grafana class, Grafana will be configured for LDAP
-authentication (if you are using SIMP LDAP).  The table below describes the
-Grafana roles.
+authentication (assuming you are using SIMP LDAP).  The table below describes
+the Grafana roles.
 
 .. list-table:: Grafana Roles
    :widths: 15 30 55
@@ -380,11 +432,12 @@ Grafana roles.
      - Can view, update and create dashboards.
    * - Admin
      - simp_grafana_admins
-     - Everything an Editor can plus edit and add data sources and organization
-       users.
+     - Everything an Editor can plus edit and add data sources and
+       organization users.
 
-All that remains is to create the LDAP groups and assign users to those groups.
-An example of creating the viewers group would be:
+All the system administrator needs to do is to create the LDAP groups
+and assign users to those groups.  An example ``ldif`` for creating
+the viewers group is as follows:
 
 .. code-block:: ruby
 
@@ -395,7 +448,8 @@ An example of creating the viewers group would be:
    gidNumber: <Unique GID number>
    description: "Grafana Viewers"
 
-You would then add users to that group using:
+An ``ldif`` such as the one below could then be used to add users
+to that group:
 
 .. code-block:: ruby
 
@@ -414,18 +468,30 @@ configuration.
 
 Grafana Dashboards
 ``````````````````
-SIMP can optionally install default Grafana dashboards.  To install the
-dashboards, use hiera to apply ``simp_grafana::simp_dashboards: true`` to your
-grafana node.  They will be installed in ``/var/lib/grafana/dashboards``.  The
-dashboards are read-only.  If you want to modify them, save each one with a
-different name.
+SIMP can optionally install default Grafana dashboards, contained in
+the ``simp_grafana`` RPM.  To install the dashboards in Grafana, set
+``simp_grafana::simp_dashboards: true`` in the Hiera configuration for
+your Grafana node.  The dashboards will reside in
+``/var/lib/grafana/dashboards`` and will be read-only. If you want to
+modify any of them, via the Grafana GUI, you must first save a copy of
+each dashboard you want to customize.
 
 .. _Elasticsearch: https://www.elastic.co/products/elasticsearch
-.. _Logstash: https://www.elastic.co/products/logstash
-.. _Kibana: https://www.elastic.co/products/kibana
+.. _elasticsearch: https://www.elastic.co/products/elasticsearch
+.. _elasticsearch-curator: https://www.elastic.co/products/elasticsearch
+.. _elasticsearch module: https://github.com/elastic/puppet-elasticsearch
+.. _Elasticsearch scaling: https://www.elastic.co/guide/en/elasticsearch/guide/master/_scale_horizontally.html
+.. _Elasticsearch Upgrade Guide: https://www.elastic.co/guide/en/elasticsearch/reference/current/setup-upgrade.html
 .. _Grafana: https://grafana.com/
-.. _SIMP Logstash module: https://github.com/simp/pupmod-simp-simp_logstash
+.. _grafana: https://grafana.com/
+.. _grafana module: https://github.com/voxpupuli/puppet-grafana
+.. _Kibana: https://www.elastic.co/products/kibana
+.. _Logstash: https://www.elastic.co/products/logstash
+.. _logstash: https://www.elastic.co/products/logstash
 .. _Logstash documentation: https://www.elastic.co/guide/en/logstash/current/index.html
-.. _Elasticsearch scaling: https://www.elastic.co/guide/en/elasticsearch/guide/master/_scale_horizontally.html 
+.. _logstash module: https://github.com/elastic/puppet-logstash
+.. _simp_elasticsearch: https://github.com/simp/pupmod-simp-simp_elasticsearch
+.. _simp_logstash: https://github.com/simp/pupmod-simp-simp_logstash
+.. _simp_grafana: https://github.com/simp/pupmod-simp-simp_grafana
 .. _SIMP IPSec: https://github.com/simp/pupmod-simp-libreswan
 .. _simplib passgen(): https://github.com/simp/pupmod-simp-simplib/blob/master/lib/puppet/parser/functions/passgen.rb
