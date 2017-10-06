@@ -63,7 +63,14 @@ Glossary of Terms
        Source: `Wikipedia: Command Line Interface <https://en.wikipedia.org/wiki/Command-line_interface>`__
 
    Code Manager
-      See :term:`r10k`.
+     [Puppet] Code Manager automates the management and deployment of
+     your :term:`Puppet` code. Push code updates to your source control repo,
+     and then Puppet syncs the code to your masters, so that all your servers
+     start running the new code at the same time, without interrupting agent
+     runs.
+
+     Source: `Managing code with Code Manager <https://docs.puppet.com/pe/latest/code_mgr.html>`__
+     See Also: :term:`r10k`
 
    Control Repo
       A version control repository containing all of the required modules, data,

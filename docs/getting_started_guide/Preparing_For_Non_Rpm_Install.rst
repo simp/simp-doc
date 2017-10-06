@@ -79,4 +79,4 @@ You may need to bring in the SIMP dependencies repository:
 
 .. code-block:: bash
 
-  $ curl -s https://packagecloud.io/install/repositories/simp-project/6_X_Dependencies/script.rpm.sh.rpm | bash 
+  $ curl -s https://packagecloud.io/install/repositories/simp-project/6_X_Dependencies/script.rpm.sh.rpm | bash
