@@ -13,9 +13,6 @@ install:
 
 jobs:
   include:
-    - stage: Sphinx link check
-      script: sphinx-build -E -n -b linkcheck docs linkcheck
-
     - stage: Python unit tests
       script: pytest -x --capture=no docs/conflib/changelog_test.py
     - script: pytest -x --capture=no docs/conflib/get_simp_version_test.py
@@ -26,3 +23,7 @@ jobs:
 
     - stage: Sphinx HTML build
       script: sphinx-build -n -b html -d sphinx_cache docs html
+
+    - stage: Sphinx link check
+      script: sphinx-build -E -n -b linkcheck docs linkcheck
+
