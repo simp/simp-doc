@@ -181,7 +181,9 @@ pygments_style = 'sphinx'
 #keep_warnings = False
 
 # If true, `todo` and `todoList` produce output, else they produce nothing.
-todo_include_todos = True
+todo_include_todos = False
+if os.environ.get('SIMP_DOCS_TODO', 'false') == 'true':
+    todo_include_todos = True
 
 # Need this to be > 1 for Travis
 linkcheck_retries = 3

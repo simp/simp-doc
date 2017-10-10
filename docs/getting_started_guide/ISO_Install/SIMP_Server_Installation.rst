@@ -118,7 +118,7 @@ Installing the SIMP Server
 1. Log on as ``simp`` and run ``su -`` to gain root access.
 2. Type ``simp config`` and configure the system as prompted.
 
-  - ``simp config`` will prompt you for system settings and then apply the 
+  - ``simp config`` will prompt you for system settings and then apply the
     smallest settings subset that is required to bootstrap the system.
   - When applicable, ``simp config`` will present you with a
     recommendation for each setting (variable).  To keep a recommended
