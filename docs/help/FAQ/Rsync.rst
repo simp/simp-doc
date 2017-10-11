@@ -1,3 +1,5 @@
+.. _rsync_justification:
+
 Why does SIMP use rsync?
 ========================
 

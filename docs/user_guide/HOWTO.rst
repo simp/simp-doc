@@ -10,6 +10,7 @@ with more commonly sought items towards the top.
 .. toctree::
   :maxdepth: 1
 
+  Set Up a SIMP Control Repository <HOWTO/Control_Repo>
   Disable SSH <HOWTO/Disable_Ssh>
   Modify the Nightly Package Update Schedule <HOWTO/Control_Nightly_Update_Schedule>
   Modify The Puppet Cron Schedule <HOWTO/Modify_Puppet_Cron>

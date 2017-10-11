@@ -18,3 +18,5 @@ linkcheck
 rst/_build
 sphinx_cache
 build/rpm_metadata
+vendor/*
+.bundle/*
