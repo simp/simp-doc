@@ -6,10 +6,11 @@ SIMP Scenarios
 SIMP scenarios are groups of classes, settings, and simp_options that ensure the
 system is compliant and secure.
 
-There are currently three SIMP scenarios:
+There are currently four SIMP scenarios:
 - *simp*
 - *simp_lite*
 - *poss*
+- *remote_access*
 
 The *simp* scenario includes all security features enabled by default, including
 iptables and svckill. This scenario is what stock SIMP used to look like in
@@ -24,6 +25,11 @@ The *poss* option is the barebones option. It only includes the ``pupmod``
 class, to configure Puppet agent on clients. All of the simp_options default to
 false, so SIMP will not do a lot of modification to clients through Puppet when
 using this scenario.
+
+The *remote_access* scenario includes the SSH module and the authentication
+stack, namely PAM and nsswitch. This scenario is useful for those who want
+to retain remote access to their machine while leaving virtually everything
+else untouched.
 
 .. NOTE::
 

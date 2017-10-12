@@ -10,8 +10,10 @@ with more commonly sought items towards the top.
 .. toctree::
   :maxdepth: 1
 
+  Set Up a SIMP Control Repository <HOWTO/Control_Repo>
   Disable SSH <HOWTO/Disable_Ssh>
   Modify the Nightly Package Update Schedule <HOWTO/Control_Nightly_Update_Schedule>
+  Modify The Puppet Cron Schedule <HOWTO/Modify_Puppet_Cron>
   Work with the SIMP Rsync Shares <HOWTO/Work_With_Rsync>
   Setup Central Log Collection <HOWTO/Central_Log_Collection>
   Change Puppet Masters <HOWTO/Changing_Puppet_Masters>
@@ -19,6 +21,7 @@ with more commonly sought items towards the top.
   Exclude YUM Repositories from Nightly Updates <HOWTO/Exclude_Repositories>
   Configure NFS <HOWTO/NFS>
   Configure IPTables NAT Rules <HOWTO/IPTables_NAT_Rules>
+  Configure SNMPD <HOWTO/SNMPD>
   Enable Kerberos <HOWTO/Kerberos>
   Manage Workstation Infrastructures <HOWTO/Managing_Workstation_Infrastructures>
   Backup the Puppet Master <HOWTO/Puppetmaster_Backup>

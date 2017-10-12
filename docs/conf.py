@@ -146,6 +146,16 @@ language = None
 # directories to ignore when looking for source files.
 exclude_patterns = ['_build', '**/*.inc']
 
+# Set a parameter that will strip out certain items that cause the build to be
+# slow. Should not be used for real documentation builds but is great for 90%
+# of all testing.
+#
+# In testing the 'html' target, this took the build time on a fast system from
+# 40s to 9s.
+
+if os.environ.get('SIMP_FAST_DOCS', 'false') == 'true':
+    exclude_patterns.append('security_mapping')
+
 # The reST default role (used for this markup: `text`) to use for all
 # documents.
 #default_role = None
@@ -171,7 +181,9 @@ pygments_style = 'sphinx'
 #keep_warnings = False
 
 # If true, `todo` and `todoList` produce output, else they produce nothing.
-todo_include_todos = True
+todo_include_todos = False
+if os.environ.get('SIMP_DOCS_TODO', 'false') == 'true':
+    todo_include_todos = True
 
 # Need this to be > 1 for Travis
 linkcheck_retries = 3

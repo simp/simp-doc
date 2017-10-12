@@ -1,8 +1,14 @@
 #!/usr/bin/rake -T
 
+ENV['SIMP_INTERNAL_pkg_ignore'] = 'build/rpm_metadata'
+
+require 'ostruct'
+require 'rake/clean'
 require 'simp/rake'
 require 'yaml'
 require 'find'
+
+CLEAN.include 'build/rpm_metadata'
 
 desc 'Munge Prep'
   desc <<-EOM
@@ -32,14 +38,21 @@ task 'munge:prep' do
   else
     local_simp_core_path = File.expand_path(File.join(File.dirname(__FILE__), '..', '..'))
   end
-  specfile = File.join(local_simp_core_path, 'src', 'build', 'simp.spec')
+  specfile = File.join(local_simp_core_path, 'src', 'assets', 'simp', 'build', 'simp.spec')
+  if File.exist?(specfile)
+    # Tell python code where simp-core is during the RPM build process.
+    # In the RPM build, it builds the source RPM and then installs it
+    # in a temporary location. So, the relative relationship is broken.
+    ENV['SIMP_CORE_PATH'] = local_simp_core_path
+  end
+
   #
   # Default simp-core git tag/branch to use to pull the simp.spec when
   # a local simp.spec file does not exist.  This ensures we build *something*.
   default_simp_branch = 'master'
 
   # Default SIMP version should all other mechanisms to determine it fail
-  default_simp_version = '6.0.0-0'
+  default_simp_version = '6.1.0-0'
   #
   # Default header to be written to release metadata file
   release_content = <<-EOM
@@ -66,10 +79,10 @@ EOM
     simp_branch = ENV['SIMP_BRANCH']
     if simp_branch or !File.exist?(specfile)
       if simp_branch
-        spec_url = "https://raw.githubusercontent.com/simp/simp-core/#{simp_branch}/src/build/simp.spec"
+        spec_url = "https://raw.githubusercontent.com/simp/simp-core/#{simp_branch}/src/assets/simp/build/simp.spec"
         puts "Using #{spec_url}"
       else
-        spec_url = "https://raw.githubusercontent.com/simp/simp-core/#{default_simp_branch}/src/build/simp.spec"
+        spec_url = "https://raw.githubusercontent.com/simp/simp-core/#{default_simp_branch}/src/assets/simp/build/simp.spec"
         warn("WARNING: No suitable spec file found at #{specfile}, defaulting to #{spec_url}")
       end
 
@@ -87,28 +100,20 @@ EOM
     end
 
     # Grab the version and release out of whatever spec we have found.
-    begin
-      simp_version = %x(rpm -q --undefine="%dist" --queryformat '%{VERSION}\n' --specfile #{specfile}).lines.first.strip
-      simp_version = nil unless $?.exitstatus == 0
+    rpm_metadata = OpenStruct.new
+    rpm_metadata.version, rpm_metadata.release  = default_simp_version.split('-')
 
-      simp_release = %x(rpm -q --undefine="%dist" --queryformat '%{RELEASE}\n' --specfile #{specfile}).lines.first.strip
-      simp_release = nil unless $?.exitstatus == 0
-    rescue Errno::ENOENT => e
-      # only error that will throw is if rpm command does not exist
-      warn("Could not extract version/release via rpm: #{e.message}")
-      simp_version = nil
-      simp_release = nil
-    end
-
-    if simp_version.nil? or simp_release.nil?
-      warn("Could not obtain valid version/release information from #{specfile}, please check for consistency.  Defaulting to #{default_simp_version}")
-      simp_version = default_simp_version.split('-').first
-      simp_release = default_simp_version.split('-').last
+    if File.exist?(specfile)
+      begin
+        rpm_metadata = Simp::RPM.new(specfile)
+      rescue StandardError
+        warn("Could not obtain valid version/release information from #{specfile}, please check for consistency. Defaulting to: '#{default_simp_version}'")
+      end
     end
 
     # Set the version and release in the rel_file
-    %x(sed -i s/version:.*/version:#{simp_version}/ #{rel_file})
-    %x(sed -i s/release:.*/release:#{simp_release}/ #{rel_file})
+    %x(sed -i s/version:.*/version:#{rpm_metadata.version}/ #{rel_file})
+    %x(sed -i s/release:.*/release:#{rpm_metadata.release.split(rpm_metadata.dist).first}/ #{rel_file})
   ensure
     tmpspec.close
     tmpspec.unlink
@@ -117,30 +122,11 @@ end
 
 class DocPkg < Simp::Rake::Pkg
   # We need to inject the SCL Python repos for RHEL6 here if necessary
-  def mock_pre_check(chroot, *args)
-    mock_cmd = super(chroot, *args)
-
-    rh_version = %x(#{mock_cmd} -r #{chroot} -q --chroot 'cat /etc/redhat-release | cut -f3 -d" " | cut -f1 -d"."').chomp
-
-    # This is super fragile
-    if rh_version.to_i == 6
-      puts "NOTICE: You can ignore any errors relating to RPM commands that don't result in failure"
-      %x(#{mock_cmd} -q -r #{chroot} --chroot 'rpmdb --rebuilddb')
-      sh  %(#{mock_cmd} -q -r #{chroot} --chroot 'rpm --quiet -q yum') do |ok,res|
-        unless ok
-          %x(#{mock_cmd} -q -r #{chroot} --install yum)
-        end
-      end
-    end
-
-    mock_cmd
-  end
-
   def define_clean
     task :clean do
       find_erb_files.each do |erb|
         short_name = "#{File.dirname(erb)}/#{File.basename(erb,'.erb')}"
-        if File.exist?(short_name) then
+        if File.exist?(short_name)
           rm(short_name)
         end
       end
@@ -157,7 +143,7 @@ class DocPkg < Simp::Rake::Pkg
   def find_erb_files(dir=@base_dir)
     to_ret = []
     Find.find(dir) do |erb|
-      if erb =~ /\.erb$/ then
+      if erb =~ /\.erb$/
         to_ret << erb
       end
     end
@@ -183,7 +169,7 @@ DocPkg.new( File.dirname( __FILE__ ) ) do |t|
   end
 end
 
-def process_rpm_yaml(rel,simp_version)
+def process_rpm_yaml(rel, simp_version)
   fail("Must pass release to 'process_rpm_yaml'") unless rel
 
       header = <<-EOM
@@ -265,7 +251,6 @@ def run_build_cmd(cmd)
 end
 
 ## End Custom Linting Checks
-
 
 namespace :docs do
   namespace :rpm do
@@ -452,6 +437,5 @@ end
 
 # We want to prep for build if possible, but not when running `rake -T`, etc...
 Rake.application.tasks.select{|task| task.name.start_with?('docs:', 'pkg:')}.each do |task|
-  task.enhance ['munge:prep'] do
-  end
+  task.enhance ['munge:prep']
 end

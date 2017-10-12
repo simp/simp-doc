@@ -15,6 +15,14 @@ sys.path.append(os.path.abspath(os.path.dirname(os.path.dirname(__file__))))
 
 from conflib.constants import *
 
+def github_api_get(url):
+	token = os.environ.get('GITHUB_API_KEY')
+	request = urllib2.Request(url)
+	request.add_header('User-Agent', 'Mozilla/55.0')
+	if token is not None:
+		request.add_header('Authorization','token %s' % token)
+	return urllib2.urlopen(request)
+
 def get_version_map(simp_branch, local_simp_core_path, simp_github_api_base,
     default_simp_branch, on_rtd):
     """ Fetch the version map either from local disk or GitHub """
@@ -55,7 +63,7 @@ def get_version_map(simp_branch, local_simp_core_path, simp_github_api_base,
         # are rate limited
         try:
             # Grab the distribution tree
-            distro_json = json.load(urllib2.urlopen(github_api_target + github_opts))
+            distro_json = json.load(github_api_get(github_api_target + github_opts))
 
             release_mapping_targets = [x for x in distro_json['tree'] if (
                 x['path'] and re.search(r'release_mappings.yaml$', x['path'])
@@ -67,17 +75,37 @@ def get_version_map(simp_branch, local_simp_core_path, simp_github_api_base,
 
                 for i in range(0, MAX_SIMP_URL_GET_ATTEMPTS):
                     try:
-                        release_yaml = urllib2.urlopen(url).read()
-                        __update_ver_map(ver_map, yaml.load(release_yaml))
+                        release_yaml_string = urllib2.urlopen(url).read()
+                        release_yaml = yaml.load(release_yaml_string)
+                        if isinstance(release_yaml, basestring):
+                          # This is ugly...
+                          # A string is returned when the release mapping file
+                          # is actually a link.  So, need to pull down the
+                          # content of the link, instead.
+                          parts = release_yaml.split('/')
+                          partial_url = '/'.join(filter(lambda a: a != '..', parts))
+                          for target in release_mapping_targets:
+                            if partial_url in target['path']:
+                              url = SIMP_GITHUB_RAW_BASE + '/simp-core/' + branch_to_query + \
+                                '/' + target['path']
+                              release_yaml_string = github_api_get(url).read()
+                              release_yaml = yaml.load(release_yaml_string)
+                              break
 
-                    except urllib2.URLError:
+                        __update_ver_map(ver_map, release_yaml)
+
+                    except urllib2.URLError as url_obj:
                         print('Error downloading ' + url, file=sys.stderr)
+                        r = re.compile("^Status:")
+                        print('Error status: ' + filter(r.match,url_obj.info().headers)[0])
                         time.sleep(1)
                         continue
                     break
 
-        except urllib2.URLError:
+        except urllib2.URLError as url_obj:
             print('Error downloading ' + github_api_target + github_opts, file=sys.stderr)
+            r = re.compile("^Status:")
+            print('Error status: ' + filter(r.match,url_obj.info().headers)[0])
 
     return ver_map
 
@@ -131,7 +159,7 @@ def known_os_compatibility_rst(simp_version_dict,
     """ Output the fully formatted OS Compatibility RST """
 
     ver_map = get_version_map(simp_version_dict['simp_branch'],
-        local_simp_core_path, simp_github_api_base, 
+        local_simp_core_path, simp_github_api_base,
         default_simp_branch, on_rtd)
 
     os_compat_rst = """
@@ -190,4 +218,4 @@ def __generate_version_list(full_version, version_family):
     elif full_version.startswith('4'):
       version_list.extend(['4.2.X']) # 4.2.X for a 4.3.2 or later
 
-    return version_list 
+    return version_list

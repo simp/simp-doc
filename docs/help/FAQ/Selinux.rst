@@ -1,3 +1,6 @@
+Common Selinux issues
+=====================
+
 .. _faq-selinux:
 
 How to recover from SELINUX policy failure
@@ -18,4 +21,4 @@ freezing``, follow these instructions:
 4. Reboot
 
 .. _EL6: https://access.redhat.com/documentation/en-US/Red_Hat_Enterprise_Linux/6/html/Deployment_Guide/sec-Single-User_Mode.html
-.. _EL7: https://access.redhat.com/documentation/en-US/Red_Hat_Enterprise_Linux/7/html/System_Administrators_Guide/sec-Terminal_Menu_Editing_During_Boot.html
+.. _EL7: https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/7/html/system_administrators_guide/sec-terminal_menu_editing_during_boot

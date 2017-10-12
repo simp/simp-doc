@@ -1,2 +1,0 @@
-dn: cn=<groupname>,ou=Group,dc=your,dc=domain
-changeType: delete
