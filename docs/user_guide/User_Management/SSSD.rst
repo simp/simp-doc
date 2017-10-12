@@ -45,9 +45,9 @@ In ``default.yaml``:
 
 In :term:`Hiera`, you will need to add the LOCAL sssd domain to
 ``sssd::domains`` if it does not already exist.  If you wish to include the
-LOCAL domain in all of ``$::client_nets``, simply modify the existing
-``sssd::domains`` variable in simp_def.yaml. Include ``site::sssd_local`` in
-``default.yaml``, and set ``local`` as the domain ``id_provider``.
+LOCAL domain in all of ``$::trusted_nets``, simply add ``sssd::domains`` variable
+to ``default.yaml``, copy existing domains from ``simp_config_settings.yaml``
+and add ``local`` to the list of domain ``id_providers``.
 
 In ``default.yaml``:
 
@@ -56,7 +56,7 @@ In ``default.yaml``:
   sssd::domains:
     - 'LOCAL'
     - <existing domains, ex. LDAP>
-      
+
 Run ``puppet``. A LOCAL domain should be created and referenced in
 ``/etc/sssd/sssd.conf``.  The sssd service should be running.
 
