@@ -27,6 +27,32 @@ that variables beginning with 'cli::' are only used internally by
 ``simp config``, itself.  The 'cli::' variables are written to
 ``simp_conf.yaml``, but not persisted to any Puppet hieradata files.
 
+.. IMPORTANT::
+
+   - Not all the settings listed below can be preset in a
+     configuration file input to ``simp config``, via either
+     ``-a <Config File>`` or ``-A <Config File>``.  Only settings
+     for which you would be prompted, if you ran ``simp config``
+     interactively, can be preset.  All other settings will be
+     automatically determined by ``simp config``, disregarding your
+     input.
+
+   - ``simp config`` behaves differently (asks different questions,
+     automatically determines different settings) depending on the SIMP
+     installation type.  This is because it can safely assume certain
+     server setup has been done, only if SIMP has been installed from
+     the SIMP-provided ISO. For example, consider a ``simp`` local
+     user.  When SIMP is installed from ISO, ``simp config`` can safely
+     assume that this user is the backup user installed by the ISO
+     to prevent server lockout.  As such, ``su`` and ``ssh`` privileges
+     for the ``simp`` user should be allowed.  For non-ISO installs,
+     however, it would not be prudent for ``simp config`` to grant 
+     just any ``simp`` user both ``su`` and ``ssh`` privileges.
+
+   - ``simp config`` detects that SIMP has been installed from a
+     SIMP-provided ISO by the presence of
+     ``/etc/yum.repos.d/simp_filesystem.repo``.
+
 +--------------------------------+-------------------------------------------+
 | Variable                       | Description                               |
 +================================+===========================================+
@@ -125,8 +151,19 @@ that variables beginning with 'cli::' are only used internally by
 +--------------------------------+-------------------------------------------+
 | simp::runlevel                 | Default system run level; 1-5             |
 +--------------------------------+-------------------------------------------+
+| simp::server::allow_simp_user  | Whether to allow local 'simp' user su and |
+|                                | ssh privileges.                           |
++--------------------------------+-------------------------------------------+
+| simp::yum::repo::\             | Whether to enable the SIMP-managed, OS    |
+| local_os_updates::enable_repo  | Update YUM repository that the SIMP ISO   |
+|                                | installs on the SIMP server.              |
++--------------------------------+-------------------------------------------+
 | simp::yum::repo::\             | YUM server(s) for SIMP-managed, OS Update |
 | local_os_updates::servers      | packages                                  |
++--------------------------------+-------------------------------------------+
+| simp::yum::repo::\             | Whether to enable the SIMP-managed, SIMP  |
+| local_simp::enable_repo        | and SIMP dependency YUM repository that   |
+|                                | the SIMP ISO installs on the SIMP server. |
 +--------------------------------+-------------------------------------------+
 | simp::yum::repo::\             | YUM server(s) for SIMP-managed, SIMP and  |
 | local_simp::servers            | SIMP dependency packages                  |
@@ -141,6 +178,9 @@ that variables beginning with 'cli::' are only used internally by
 |                                | report what undeclared services should be |
 |                                | shut down and disabled, without actually  |
 |                                | making the changes to the system          |
++--------------------------------+-------------------------------------------+
+| useradd::securetty             | A list of TTYs for which the root user    |
+|                                | can login                                 |
 +--------------------------------+-------------------------------------------+
 
 .. _simp config Actions:
