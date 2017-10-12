@@ -208,7 +208,7 @@ Remove a Node or Demote a Master
 
 To demote a master, simply configure it as slave in either of the
 configurations above after the new master has been configured and put in place.
-then run the Puppet agent. Lastly, manually remove the active database from
+Then run the Puppet agent. Lastly, manually remove the active database from
 the server. (Check the setting ``simp_openldap::server::conf::directory``
 setting for the location of the files.)
 
