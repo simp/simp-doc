@@ -19,7 +19,7 @@ including:
 While there are no official `hardware requirements`_, we recommend the
 following **for your SIMP server**:
 
-* **2** CPUs and **3 GB** of RAM, at a minimum
+* **2** CPUs and **4 GB** of RAM, at a minimum
 * **2 - 4** CPUs and **8 GB** of RAM to serve up to *1,000* nodes
 
 The SIMP team recommends allocating the latter, in addition to a minimum of
@@ -27,6 +27,7 @@ The SIMP team recommends allocating the latter, in addition to a minimum of
 may not leave adequate room for logs, applications, rsync data, etc.
 
 .. NOTE::
+
    If you want to optimize the Puppet server, the `Puppet tuning guide`_ is a
    good place to start.  Use the `advanced memory debugging guide`_ for further
    optimization.
@@ -41,6 +42,7 @@ assist users through the entire configuration process; however, it does
 make the initial configuration easier and more repeatable.
 
 .. NOTE::
+
    For a list of the commands ``simp`` provides, type ``simp help``. Type
    ``simp help <Command>`` for more information on a specific command.
 
@@ -103,17 +105,18 @@ Installing the SIMP Server
 --------------------------
 
 .. IMPORTANT::
-    Correct time across all systems is important to the proper functioning of
-    SIMP and Puppet in general.
+   Correct time across all systems is important to the proper functioning of
+   SIMP and Puppet in general.
 
-    If a user has trouble connecting to the Puppet server and errors regarding
-    certificate validation appear, check the Puppet server and client times to
-    ensure they are synchronized.
+   If a user has trouble connecting to the Puppet server and errors regarding
+   certificate validation appear, check the Puppet server and client times to
+   ensure they are synchronized.
 
 .. WARNING::
-    Keep in mind as the installation process begins that Puppet does not
-    work well with capital letters in host names. Therefore, they should
-    not be used.
+
+   Keep in mind as the installation process begins that Puppet does not
+   work well with capital letters in host names. Therefore, they should
+   not be used.
 
 1. Log on as ``simp`` and run ``su -`` to gain root access.
 2. Type ``simp config`` and configure the system as prompted.
@@ -135,30 +138,36 @@ Installing the SIMP Server
       ``simp config`` or generate a configuration file to be used as
       a template for subsequent ``simp config`` runs.
     - ``simp config -a <Config File>`` will load a previously generated
-      configuration in lieu of prompting for settings, and then apply the
-      settings.  This is the option to run for systems that will be rebuilt
-      often.
+      configuration (aka the 'answers' file) in lieu of prompting for
+      settings, and then apply the settings.  This is the option to run
+      for systems that will be rebuilt often. Please note, however,
+      if you edit the answers file, only configuration settings for
+      which you would be prompted by ``simp config`` can be modified
+      in that file.  Any changes made to settings that ``simp config``
+      automatically determines will be ignored.
 
 .. NOTE::
-  Once ``simp config`` has been run, three SIMP configuration files
-  will be generated:
 
-  - ``/root/.simp/simp_conf.yaml``: File containing  all your
-    ``simp config`` settings; can include additional settings related
-    to ones you entered and other settings required for SIMP.
-  - ``/etc/puppetlabs/code/environments/simp/hieradata/simp_config_settings.yaml``:
-    File containing global hieradata relevant to SIMP clients and
-    the SIMP server.
-  - ``/etc/puppetlabs/code/environments/simp/hieradata/hosts/<host>.yaml``:
-    SIMP server host YAML file.
+   Once ``simp config`` has been run, three SIMP configuration files
+   will be generated:
+
+   - ``/root/.simp/simp_conf.yaml``: File containing  all your
+     ``simp config`` settings; can include additional settings related
+     to ones you entered and other settings required for SIMP.
+   - ``/etc/puppetlabs/code/environments/simp/hieradata/simp_config_settings.yaml``:
+     File containing global hieradata relevant to SIMP clients and
+     the SIMP server.
+   - ``/etc/puppetlabs/code/environments/simp/hieradata/hosts/<host>.yaml``:
+     SIMP server host YAML file.
 
 3. Type ``simp bootstrap``
 
 .. NOTE::
-  If progress bars are of equal length and the bootstrap finishes quickly, a
-  problem has occurred. This is most likely due to an error in SIMP
-  configuration. Refer to the previous step and make sure that all
-  configuration options are correct.
+
+   If progress bars are of equal length and the bootstrap finishes quickly, a
+   problem has occurred. This is most likely due to an error in SIMP
+   configuration. Refer to the previous step and make sure that all
+   configuration options are correct.
 
 4. Type ``reboot``
 
