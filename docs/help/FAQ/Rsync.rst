@@ -37,7 +37,7 @@ Large Numbers of Files
 they may manage large numbers of files.  Typically, like above, Puppet would
 have to checksum every file and see if it needed changing, with each file
 setting up a new connection to the Puppet server transferring each file
-indivudually.  A small number of file resources wouldn't be the end of the
+individually.  A small number of file resources wouldn't be the end of the
 world when managing something with Puppet, but rsync limits every one of these
 files to one transaction and one resource. If you have a highly complex site,
 without rsync, this could grow your catalog to the point where Puppet would
@@ -49,7 +49,7 @@ of the Puppet space.
 Where are the rsync files?
 --------------------------
 
-SIMP disributes the rsync materials in the ``simp-rsync`` rpm, which installs a
+SIMP distributes the rsync materials in the ``simp-rsync`` rpm, which installs a
 file tree in ``/var/simp/environments/simp/rsync``. These directories are
 shared by the ``simp::server::rsync_shares`` class, which is included on the
 SIMP server if the ``simp_options::rsync`` catalyst is enabled.

@@ -60,7 +60,7 @@ On the New Puppet Server
    Puppet Server. If it is not, you will need to verify that the artifacts in
    the ``tar`` file are correctly placed.
 
-Unpack the ``<client-hostname>_tansfer.tar`` archive onto the system:
+Unpack the ``<client-hostname>_transfer.tar`` archive onto the system:
 
 .. code-block:: shell
 

@@ -20,7 +20,7 @@ sudo.  SIMP installs the following sudo rules
     - root
     - no
   * - administrators
-    - /usr/sbin/puppeca
+    - /usr/sbin/puppetca
     - root
     - no
   * - administrators

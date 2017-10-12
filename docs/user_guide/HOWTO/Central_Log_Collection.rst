@@ -1,5 +1,5 @@
-HOWTO Setup Central Log Collection
-==================================
+HOWTO Set up Central Log Collection
+===================================
 
 This section covers methods of centralized log collection supported by SIMP.
 

@@ -4,7 +4,7 @@ HOWTO Upgrade SIMP
 ==================
 
 SIMP follows Semantic Versioning 2.0.0 and, has the following versioning
-structure: ``X.Y.Z``. ``X`` inidicates breaking changes, ``Y`` indicates new
+structure: ``X.Y.Z``. ``X`` indicates breaking changes, ``Y`` indicates new
 features, and ``Z`` indicates bug fixes.
 
 Incremental Updates
@@ -46,13 +46,13 @@ Puppet server, create a new server, and transfer your clients.
    .. NOTE::
 
       You must ensure that this node can be reached by any client that is to be
-      migrated. The new sysetm will not interfere with your existing Puppet
+      migrated. The new system will not interfere with your existing Puppet
       system unless you specifically configure it to do so.
 
    .. IMPORTANT::
 
       Do **NOT** destroy your old Puppet server until everything has been
-      successfuly migrated and is in production under the new server.
+      successfully migrated and is in production under the new server.
 
 #. Consider vital services other than Puppet that are housed on your current
    Puppet server node (eg. DNS, DHCP, LDAP, custom kickstart, YUM, NFS, etc.).

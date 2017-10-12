@@ -15,7 +15,7 @@ with more commonly sought items towards the top.
   Modify the Nightly Package Update Schedule <HOWTO/Control_Nightly_Update_Schedule>
   Modify The Puppet Cron Schedule <HOWTO/Modify_Puppet_Cron>
   Work with the SIMP Rsync Shares <HOWTO/Work_With_Rsync>
-  Setup Central Log Collection <HOWTO/Central_Log_Collection>
+  Set up Central Log Collection <HOWTO/Central_Log_Collection>
   Change Puppet Masters <HOWTO/Changing_Puppet_Masters>
   Discard Mail to Root <HOWTO/Discard_Mail_to_Root>
   Exclude YUM Repositories from Nightly Updates <HOWTO/Exclude_Repositories>

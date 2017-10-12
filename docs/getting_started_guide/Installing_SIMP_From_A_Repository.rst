@@ -47,7 +47,7 @@ If you don't know what versions map together, please see the
 
 .. NOTE::
 
-   The 'dependencies'repository may contain items from external vendors, most
+   The 'dependencies' repository may contain items from external vendors, most
    notably Puppet, Inc. and EPEL but may also contain non-SIMP project files
    that have been compiled for distribution.
 
@@ -184,7 +184,7 @@ Bootstrap SIMP Clients
 ----------------------
 
 Use the ``runpuppet`` script from the newly created SIMP server to bootstrap
-your clients. That script can be aquired in one of two ways:
+your clients. That script can be acquired in one of two ways:
 
 1. Use a SIMP server as a kickstart server, see :ref:`Client_Management` for
    details on how to take advantage of SIMP to make this easier.
@@ -192,8 +192,8 @@ your clients. That script can be aquired in one of two ways:
 2. If another server is to be used as a kickstart server, you can still use our
    distributed and tested provisioning script, ``runpuppet``.
 
-   Add the ``simp::server::kickstart::runpuppet`` class to you kickstart server
-   node to use ``runpuppet``. The file can be placed in an exising web server by
+   Add the ``simp::server::kickstart::runpuppet`` class to your kickstart server
+   node to use ``runpuppet``. The file can be placed in an existing web server by
    setting the ``location`` parameter. Here's an example that could be placed
    in a kickstarting profile class:
 

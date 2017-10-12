@@ -2,7 +2,7 @@ Content of Audit Records
 ------------------------
 
 The SIMP Apache configuration uses the following string to populate the Apache
-logs: ``%h %l %u %t "%r" %>s %b "%{Referer}i" "%{User-Agent}i"``
+logs: ``%h %l %u %t "%r" %>s %b "%{Referrer}i" "%{User-Agent}i"``
 
 That will capture the remote hostname, the request log ID, the remote username,
 the time of the request, the first line of the request, the request status, the

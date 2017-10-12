@@ -34,5 +34,5 @@ The general workflow to keep your system properly up to date would be as follows
 #. If all goes well, migrate the changes to the **Production** repository
 #. Let Puppet do the rest
 
-See :ref:`ug-sa-ga-nightly-updates` for more information on setting up the repostiories
-and providing pacakges to your clients.
+See :ref:`ug-sa-ga-nightly-updates` for more information on setting up the repositories
+and providing packages to your clients.
