@@ -201,8 +201,8 @@ The following audit rules are applied to SIMP systems:
   -w /etc/pki/private -p wa -k PKI
   -w /etc/pki/public -p wa -k PKI
   -w /etc/pki/cacerts -p wa -k PKI
-  -w /etc/pki/private/blade01.tasty.bacon.pem -p wa -k PKI
-  -w /etc/pki/public/blade01.tasty.bacon.pub -p wa -k PKI
+  -w /etc/pki/private/blade01.my.domain.pem -p wa -k PKI
+  -w /etc/pki/public/blade01.my.domain.pub -p wa -k PKI
   -a always,exit -F dir=/etc/puppet -F uid!=puppet -p wa -k Puppet_Config
   -a always,exit -F dir=/var/log/puppet -F uid!=puppet -p wa -k Puppet_Log
   -a always,exit -F dir=/var/run/puppet -F uid!=puppet -p wa -k Puppet_Run

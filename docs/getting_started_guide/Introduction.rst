@@ -18,10 +18,6 @@ Getting Started
 This document provides a quick overview of how to get started with building and
 setting up your SIMP environment.
 
-Please be aware that this is a snapshot in time and, while it should remain
-accurate, if you find any issues, please check the `SIMP How-To Articles`_ on
-the `SIMP Confluence Page`_.
-
 Once you're done setting up your environment, you should proceed to the
 :ref:`simp-user-guide` for utilizing SIMP to its full potential.
 

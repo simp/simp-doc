@@ -9,6 +9,11 @@ requirements, which can be used to document a system's security conformance.
 
 .. include:: common/SIMP_Overview.rst
 
+Level of Knowledge
+------------------
+
+.. include:: common/Level_of_Knowledge.rst
+
 Contents:
 
 .. toctree::

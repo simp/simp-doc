@@ -52,5 +52,5 @@ The example below demonstrates this in a manifest, assuming that the
 
 .. code-block:: ruby
 
-   #Ppreventing a service from being killed by svckill
+   #Preventing a service from being killed by svckill
    service { "keepmealive": }

@@ -17,7 +17,7 @@ list contains the conditions to be met for the SIMP logs to be sent to syslog.
 - $syslogfacility-text == 'kern' and $msg startswith 'IPT:'
 
 SIMP also has a stock :term:`rsyslog` module which is able to configure an
-``rsyslog`` server for centralized collection. The stock ``rsylsog`` server
+``rsyslog`` server for centralized collection. The stock ``rsyslog`` server
 configures the ``rsyslog`` daemon to accept logs from SIMP clients and places
 them in ``/var/log/hosts/``. The following files are created for each host in
 that directory:

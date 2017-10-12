@@ -90,6 +90,15 @@ Allow your (non-root) user to run docker:
 
   $ sudo usermod -aG dockerroot <user>
 
+When you build your system make sure you set the default size for the docker container or the iso build may not work properly:
+
+in ``/etc/sysconfig/docker-storage``:
+
+.. code-block:: bash
+
+DOCKER_STORAGE_OPTIONS= --storage-opt dm.basesize=100G
+
+
 .. NOTE::
 
   You may need to log out and log back in before your user is able to run as

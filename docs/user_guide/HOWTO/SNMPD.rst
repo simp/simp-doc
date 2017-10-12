@@ -68,7 +68,7 @@ the ports.
 .. NOTE::
 
   If the agent address is set in a conf file in the user directory, but not in
-  hiera or in the simp_snmpd resource call, ``pumod-simp-simp_snmpd`` will not
+  hiera or in the simp_snmpd resource call, ``pupmod-simp-simp_snmpd`` will not
   open the ports in the firewall.
 
 
@@ -186,7 +186,7 @@ Access Hash
    addition to anything anything configured in the hash.
 
 
-Remove Valuse From Default Hash
+Remove Values From Default Hash
 """""""""""""""""""""""""""""""
 
 If you do not want the default user, or any of the views, groups, or access
