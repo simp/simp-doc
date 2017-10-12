@@ -35,20 +35,6 @@ SIMP, you may experience difficulties.
     }
   }
 
-In :term:`Hiera`, you will need to add the LOCAL sssd domain to
-``sssd::domains`` if it does not already exist.  If you wish to include the
-LOCAL domain in all of ``$::client_nets``, simply modify the existing
-``sssd::domains`` variable in simp_def.yaml. Include ``site::sssd_local`` in
-``default.yaml``, and set ``local`` as the domain ``id_provider``.
-
-In ``simp_def.yaml``:
-
-.. code-block:: yaml
-
-  sssd::domains:
-    - 'LOCAL'
-    - <existing domains, ex. LDAP>
-
 In ``default.yaml``:
 
 .. code-block:: yaml
@@ -57,6 +43,20 @@ In ``default.yaml``:
   classes:
     - 'site::sssd_local'
 
+In :term:`Hiera`, you will need to add the LOCAL sssd domain to
+``sssd::domains`` if it does not already exist.  If you wish to include the
+LOCAL domain in all of ``$::client_nets``, simply modify the existing
+``sssd::domains`` variable in simp_def.yaml. Include ``site::sssd_local`` in
+``default.yaml``, and set ``local`` as the domain ``id_provider``.
+
+In ``default.yaml``:
+
+.. code-block:: yaml
+
+  sssd::domains:
+    - 'LOCAL'
+    - <existing domains, ex. LDAP>
+      
 Run ``puppet``. A LOCAL domain should be created and referenced in
 ``/etc/sssd/sssd.conf``.  The sssd service should be running.
 
@@ -93,11 +93,11 @@ Giving The User Access
 
 .. code-block:: ruby
 
-  pam::access::manage { '<user> access':
+  pam::access::rule { '<user> access':
     permission => '+',
-    users      => '<user>',
+    users      => ['<user>'],
     origins    => ['ALL'],
-    order      => '1000'
+    order      => 1000
   }
 
   sudo::user_specification { '<user> privs':
