@@ -161,7 +161,7 @@ Utilize the SIMP profile module ``simp_nfs``:
 
 .. NOTE::
 
-   The NFS deamon may take time to reload after module application.  If your
+   The NFS daemon may take time to reload after module application.  If your
    users do not have home directories immediately after application or it takes
    a while to log in, don't panic!
 

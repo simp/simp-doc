@@ -16,7 +16,7 @@ The *simp* scenario includes all security features enabled by default, including
 iptables and svckill. This scenario is what stock SIMP used to look like in
 previous releases.
 
-The *simp_lite* scenario offers many security features, with a few explicity
+The *simp_lite* scenario offers many security features, with a few explicitly
 turned off. This scenario was designed to make it easier to implement SIMP in an
 existing environment, because it might not be trivial to flip SELinux to
 Enforcing on all nodes.

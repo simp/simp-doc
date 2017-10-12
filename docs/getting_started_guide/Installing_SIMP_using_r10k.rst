@@ -136,7 +136,7 @@ times in order to get the new system in order.
       }
 
   SIMP also moves the location of the ssh authorized_keys file to
-  ``/etc/ssh/local_keys/%u``, so copy it there bofore logging out.
+  ``/etc/ssh/local_keys/%u``, so copy it there before logging out.
 
 
 Notes About SIMP Infrastructure

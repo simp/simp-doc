@@ -22,4 +22,4 @@ will be merged with the 'unique' strategy by the ``lookup`` function noted
 above.
 
 The SIMP profile module also includes other classes needed for a secure
-baseline, which are discused below in the `simp scenarios`_ section.
+baseline, which are discussed below in the `simp scenarios`_ section.

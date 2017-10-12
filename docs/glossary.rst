@@ -121,7 +121,7 @@ Glossary of Terms
 
    DSL
    Domain Specific Language
-      A computer language specalized to a particular application domain.
+      A computer language specialized to a particular application domain.
 
       Source: `Wikipedia: Domain-specific language <https://en.wikipedia.org/wiki/Domain-specific_language>`__
 

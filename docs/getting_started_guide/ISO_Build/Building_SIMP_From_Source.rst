@@ -76,7 +76,7 @@ Build ENV vars:
     ``policycoreutils<-python>`` and ``selinux-policy<-devel>`` for the major
     EL release.
 
-    * In order to maintain the backward compatability of simp-rsync with each
+    * In order to maintain the backward compatibility of simp-rsync with each
       major EL release, we must bring in the selinux policies supplied by the
       original major EL release being built.  SELinux policies are forward
       compatible during a major release, but not necessarily backwards

@@ -64,7 +64,7 @@ Follow the steps below to enable and take ownership of the :term:`TPM`.
 #. A BIOS password must be set to make sure no third parties can boot the host.
    Please set the admin password and the user password in the BIOS. If there is
    an option to require password at boot time, enable it. Do not enable Intel
-   Platform Trust Techonology (PTT) or Intel TXT at this time.
+   Platform Trust Technology (PTT) or Intel TXT at this time.
 
 #. Before a TPM can be accessed by the operating system, it must first be
    enabled. This has to be done in the BIOS. Refer to the documentation

@@ -2,7 +2,7 @@ Service Kill
 ------------
 
 To ensure that the system does not run unnecessary services, the SIMP team
-implemented a ``svckill.rb`` script has been implemented to stop any service
+implemented a ``svckill.rb`` script to stop any service
 (not process) that is not properly defined in the Puppet catalog.
 
 To prevent services from stopping, refer to the instructions in the
