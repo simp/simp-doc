@@ -39,7 +39,6 @@ In ``default.yaml``:
 
 .. code-block:: yaml
 
-  sssd::domain::id_provider: 'local'
   classes:
     - 'site::sssd_local'
 
