@@ -45,7 +45,7 @@ In ``default.yaml``:
 
 In :term:`Hiera`, you will need to add the LOCAL sssd domain to
 ``sssd::domains`` if it does not already exist.  If you wish to include the
-LOCAL domain in all of ``$::trusted_nets``, simply add ``sssd::domains`` variable
+LOCAL domain in all of ``$simp_options::trusted_nets``, simply add ``sssd::domains`` variable
 to ``default.yaml``, copy existing domains from ``simp_config_settings.yaml``
 and add ``local`` to the list of domain ``id_providers``.
 
