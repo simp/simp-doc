@@ -1,16 +1,10 @@
-.. _ug-howto-upgrade-simp:
-
-HOWTO Upgrade SIMP
-==================
-
-SIMP follows Semantic Versioning 2.0.0 and, has the following versioning
-structure: ``X.Y.Z``. ``X`` indicates breaking changes, ``Y`` indicates new
-features, and ``Z`` indicates bug fixes.
+General Upgrade Instructions
+============================
 
 Incremental Updates
 -------------------
 
-For ``Y`` and ``Z`` changes, you should feel comfortable dropping the changes
+For ``Y`` and ``Z`` SIMP changes, you should feel comfortable dropping the changes
 directly into your test systems. The promotion cycle from test to production
 should be short and painless.
 
@@ -18,6 +12,11 @@ For RPM-based systems, a simple ``yum update`` should suffice. If you are using
 ``r10k`` or Code Manager, you will need to work with the upstream Git
 repositories as appropriate for your workflow.
 
+.. IMPORTANT::
+   Be sure to review any version-specific upgrade instructions prior to
+   executing the incremental upgrade. Although this type of upgrade will
+   not contain any breaking changes, there may be specific instructions
+   that you should follow to facilitate the upgrade process.
 
 Breaking Changes
 ----------------
@@ -33,7 +32,7 @@ your production environment.
    core services move to the new Puppet node.  All software configurations can
    be updated in Puppet, as needed.
 
-New Server Creation And Client Migration
+New Server Creation and Client Migration
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 The recommended method for upgrading breaking changes is to create a new Puppet
@@ -59,16 +58,16 @@ Puppet server, create a new server, and transfer your clients.
    You may choose to keep many of these services running on your old Puppet
    server node. Anything not preserved must be migrated to a new system.
 
-Back Up The Existing Puppet Server
+Back Up the Existing Puppet Server
 """"""""""""""""""""""""""""""""""
 
 Prior to any modifications to your infrastructure, we **highly** recommend
 following :ref:`ug-howto-back-up-the-puppet-master`.
 
-Create A New Server
+Create a New Server
 """""""""""""""""""
 
-Obtain an `official iso <https://simp-project.com/ISO/SIMP/>`_ or point your
+Obtain an `official SIMP ISO <https://simp-project.com/ISO/SIMP/>`_ or point your
 server at the latest `YUM Repositories <https://packagecloud.io/simp-project>`_
 and follow the :ref:`simp-installation-guide`.
 
@@ -89,7 +88,7 @@ the new server.  If you are using the FakeCA and still wish to preserve the
 certificates, follow the :ref:`ug-apply-certificates-official-certificates`
 guidance, and treat the existing Puppet server as your 'proper CA'.
 
-Promote The New Puppet Server and Transfer Your Clients
+Promote the New Puppet Server and Transfer Your Clients
 """""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 Follow the :ref:`ug-howto-change-puppet-servers` guide to begin integration
@@ -100,19 +99,8 @@ of your new Puppet server into the existing environment.
    You should *always* start migration with a small number of
    **least critical** clients!
 
-Significant Updates
--------------------
+Retire the Old Puppet Server
+""""""""""""""""""""""""""""
 
-Upgrading From SIMP-6.0.0-0 to A Later Version
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-Puppetserver auth.conf
-""""""""""""""""""""""
-
-Legacy auth.conf, ``/etc/puppetlabs/puppet/auth.conf``, has been deprecated.
-``pupmod-simp-pupmod`` will back up legacy puppet auth.conf after upgrade.
-
-The puppetserver's auth.conf is now managed by Puppet. You will need to
-re-produce any custom work done to legacy auth.conf in the new auth.conf, via
-the ``puppet_authorization::rule`` define.  The stock rules are managed in
-``pupmod::master::simp_auth``.
+Once you have transferred the management of all your clients over to
+the new Puppet server, you may safely retire the old Puppet server.

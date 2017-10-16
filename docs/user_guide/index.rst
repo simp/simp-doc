@@ -12,6 +12,7 @@ Contents:
   Client_Management
   SIMP_Administration
   User_Management
+  Upgrading SIMP <Upgrade_SIMP.rst>
   Troubleshooting
   HOWTO
   SIMP_Package_Data
