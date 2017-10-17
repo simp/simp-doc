@@ -6,6 +6,6 @@ to allow all hosts to connect to the slapd service.
 
 The OpenLDAP module explicitly opens up ports 389 (LDAP) and 636 (LDAPS)
 using IPTables rules.  The connecting source IPs are limited to the value of
-``$client_nets`` which for most installs is the local network.
+``$simp_options::trusted_nets`` which for most installs is the local network.
 
 References: :ref:`AC-4`

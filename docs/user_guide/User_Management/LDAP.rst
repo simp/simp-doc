@@ -88,8 +88,8 @@ that user:
   shadowLastChange: 10701
   sshPublicKey: <some SSH public key>
   loginShell: /bin/bash
-  uidNumber: <some UID number above 500>
-  gidNumber: <some GID number above 500>
+  uidNumber: <some UID number above 1000>
+  gidNumber: <GID number from above>
   homeDirectory: /home/<username>
   userPassword: <slappasswd generated SSHA hash>
   pwdReset: TRUE
@@ -153,7 +153,7 @@ for that user
   objectClass: ldapPublicKey
   sshPublicKey: <some SSH public key>
   loginShell: /bin/bash
-  uidNumber: <some UID number above 500>
+  uidNumber: <some UID number above 1000>
   gidNumber: <GID number from above>
   homeDirectory: /home/<username>
 
