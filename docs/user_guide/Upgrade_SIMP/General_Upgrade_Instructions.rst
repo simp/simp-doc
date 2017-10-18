@@ -8,11 +8,19 @@ For ``Y`` and ``Z`` SIMP changes, you should feel comfortable dropping the chang
 directly into your test systems. The promotion cycle from test to production
 should be short and painless.
 
-For RPM-based systems, a simple ``yum update`` should suffice. If you are using
-``r10k`` or Code Manager, you will need to work with the upstream Git
-repositories as appropriate for your workflow.
+For RPM-based systems, a simple ``yum update`` should suffice after adding the
+necessary packages to your site ``yum`` repositories. If you are using ``r10k``
+or Code Manager, you will need to work with the upstream Git repositories as
+appropriate for your workflow.
+
+.. NOTE::
+
+   If you started with an ISO installation, an easy way to get your entire
+   local SIMP distribution updated is to download the new SIMP ISO and run
+   ``unpack_dvd </path/to/ISO>``.
 
 .. IMPORTANT::
+
    Be sure to review any version-specific upgrade instructions prior to
    executing the incremental upgrade. Although this type of upgrade will
    not contain any breaking changes, there may be specific instructions
