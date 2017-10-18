@@ -14,5 +14,5 @@ Welcome to SIMP!
   Preparing_For_Non_Rpm_Install
   Installing_SIMP_using_r10k
   Building_A_SIMP_ISO
-  Installing SIMP from an ISO <ISO_Install/index>
+  ISO_Install/index
   Initial_Configuration

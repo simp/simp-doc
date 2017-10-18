@@ -1,7 +1,7 @@
 .. _simp-installation-guide:
 
-SIMP Server ISO Installation Guide
-==================================
+Installing SIMP from an ISO
+===========================
 
 Contents:
 
