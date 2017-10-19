@@ -12,6 +12,7 @@ Contents:
   Client_Management
   SIMP_Administration
   User_Management
+  Upgrade_SIMP
   Troubleshooting
   HOWTO
   SIMP_Package_Data
