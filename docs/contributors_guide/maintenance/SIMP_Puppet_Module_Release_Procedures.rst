@@ -1,3 +1,5 @@
+.. _gsg-contributors_guide-simp-puppet-module-release-procedures:
+
 SIMP-Owned Puppet Module Tag And Release Procedures
 ===================================================
 

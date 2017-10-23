@@ -1,3 +1,5 @@
+.. _gsg-contributors_guide-other-iso-related-release-procedures:
+
 Other ISO-Related Project Release Procedures
 ============================================
 

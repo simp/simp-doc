@@ -4,7 +4,9 @@ Release to GitHub and Deploy to PuppetForge
 Each SIMP component is configured to automatically create a `GitHub`_
 release and push the release to `PuppetForge`_, when an annotated tag
 is created for the `GitHub`_ project **and** the `TravisCI`_ tests for
-the annotated tag push succeed.  To create the annotated tag:
+the annotated tag push succeed.
+
+To create the releases from an annotated tag:
 
 #. Clone the component repository and checkout the development
    branch to be tagged

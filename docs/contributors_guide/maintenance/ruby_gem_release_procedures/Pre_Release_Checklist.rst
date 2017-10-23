@@ -39,7 +39,7 @@ properly updated:
       git fetch -t origin
 
       # manually figure out which is last tag
-       
+
       git diff tags/<last release tag> --name-only
 
       # manually verify mission-impacting changes have been
@@ -53,7 +53,7 @@ Verify the changelog
 This check verifies that the changelog information is available
 and can be extracted
 
-* Manually inspect the appropriate file (e.g., CHANGELOG.md) 
+* Manually inspect the appropriate file (e.g., CHANGELOG.md)
   (The existing rake task ``changelog_annotation`` won't
   necessarily work here.)
 
@@ -119,9 +119,9 @@ Verify gem works for SIMP projects
 ----------------------------------
 
 This check verifies that SIMP components can use this gem for build
-and test tasks. 
+and test tasks.
 
-#. Install the gem you just built, locally.  
+#. Install the gem you just built, locally.
 
    .. code-block:: bash
 
@@ -138,11 +138,10 @@ and test tasks.
       bundle exec rake deps:checkout
 
 #. If the major version number for the gem has increased, for the
-   following projects, update the Gemfile to permit the newer version
+   following projects, update their Gemfiles to permit the newer version
 
    - All projects in ``src/assets/``
-   - All projects in ``src/rsync``
-   - All projects in ``src/rubygems/``
+   - The ``simp-doc`` project in ``src/doc``
    - All SIMP-owned projects in ``src/puppet/modules/``
 
 #. In each project listed above, execute the rake tasks affected

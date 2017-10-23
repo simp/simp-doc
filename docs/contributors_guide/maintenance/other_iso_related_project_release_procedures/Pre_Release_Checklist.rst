@@ -64,14 +64,36 @@ extracted:
 
 Verify RPMs can be created
 --------------------------
-This check verifies that CentOS 6 and CentOS 7 RPMs can be generated
-for this module:
 
-.. code-block:: bash
+This check verifies that an RPM can be generated for this module from
+``simp-core``:
 
-   bundle update
-   bundle exec rake pkg:rpm[epel-6-x86_64]
-   bundle exec rake pkg:rpm[epel-7-x86_64]
+#. Clone ``simp-core``
+
+   .. code-block:: bash
+
+      git clone https://github.com/simp/simp-core.git``
+
+#. Update the URL for the component under test ``Puppetfile.tracking``,
+   if needed
+
+   .. code-block:: bash
+
+      cd simp-core
+      vi Puppetfile.tracking
+
+#.  Build RPM
+
+   .. code-block:: bash
+
+      bundle update
+      bundle exec rake deps:checkout
+      bundle exec rake pkg:single[adapter]
+
+.. NOTE::
+
+   This command will build the RPM for the OS of the server
+   on which it was executed.
 
 Verify unit tests pass
 ----------------------
@@ -125,8 +147,10 @@ do the following:
 
    .. NOTE::
 
-      The `simp-packer`_ project is the easiest way to create a SIMP
-      VM that has been bootstrapped.
+      If the VirtualBox for the last SIMP ISO was created by the
+      `simp-packer`_ project, you can simply setup the appropriate
+      VirtualBox network for that box and then bring up that
+      bootstrapped image with ``vagrant up``.
 
 #. Copy the component RPM generated from the above RPM verification
    step to the server and install with yum.  For example,
@@ -156,6 +180,14 @@ to be valid when a SIMP server can be booted from it, configured via
 ``simp config``, and then bootstrapped via ``simp bootstrap``.  For
 CentOS 6 and CentOS 7:
 
+#. Login to a machine that has `Docker`_ installed and the ``docker``
+   service running.
+
+   .. IMPORTANT::
+
+      In our development environment, the version of Docker
+      that is available with CentOS works best.
+
 #. Checkout the ``simp-core`` project for the last SIMP release.
    For this discussion, we will assume it is ``6.0.0-0``.
 
@@ -171,23 +203,40 @@ CentOS 6 and CentOS 7:
    any of its updated dependencies have been updated to reference
    the versions under test.
 
-#. Build each ISO for CentOS 6 and CentOS 7.  For example
+#. Populate ``simp-core/ISO`` directory with CentOS6/7 distribution ISOs
 
    .. code-block:: bash
 
-      PUPPET_VERSION="~> 4.8.2" \
+      mkdir ISO
+      cp /net/ISO/Distribution_ISOs/CentOS-6.9-x86_64-bin-DVD*.iso ISO/
+      cp /net/ISO/Distribution_ISOs/CentOS-7-x86_64-1708.iso ISO/
+
+#. Build each ISO for CentOS 6 and CentOS 7.  For example,
+
+   .. code-block:: bash
+
+      bundle update
+      SIMP_BUILD_docs=no \
       SIMP_BUILD_verbose=yes \
       SIMP_PKG_verbose=yes \
-      SIMP_BUILD_distro=CentOS/7/x86 _64 \
-      bundle exec rake build:auto[/net/ISO/Distribution_ISOs]
+      bundle exec rake beaker:suites[rpm_docker]
 
    .. IMPORTANT::
-      The most reliable way to build each ISO is from a clean
-      checkout of ``simp-core``.
 
-#. Use `simp-packer`_ to verify the SIMP ISO can be bootstrapped
+      #. By default, the ``default.yml`` for the ``rpm_docker`` suite
+         builds an ISO for CentOS 7.  You must manually edit the
+         ``default.yml`` file to disable the ``el7-build-server``
+         instead of the ``el6-build-server``, in order to create
+         a CentOS 6 ISO.
+
+      #. The most reliable way to build each ISO is from a clean checkout
+         of ``simp-core``.
+
+#. Use `simp-packer`_ to verify the SIMP ISO can be bootstrapped, when
+   booted with the default options.
 
 
+.. _Docker: https://www.docker.com
 .. _GitHub: https://github.com
 .. _packagecloud: https://packagecloud.io/simp-project
 .. _simp-packer: https://github.com/simp/simp-packer

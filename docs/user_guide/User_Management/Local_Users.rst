@@ -121,7 +121,7 @@ Service Account
       group   => $_svc_account_group,
       content => $_svc_account_ssh_private_key
     }
-    
+
      # In SIMP sshd is configured to use authorized_keys files in /etc/ssh/local_keys
     file { "/etc/ssh/local_keys/${_svc_account_user}":
       owner  => 'root',

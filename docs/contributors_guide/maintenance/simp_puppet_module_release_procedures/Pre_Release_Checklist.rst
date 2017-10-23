@@ -18,7 +18,6 @@ you can proceed with the tag and release steps.
 * `Verify the component RPM upgrade succeeds`_
 * `Verify the component yields valid SIMP ISOs`_
 * `Verify the component works in an actual SIMP system`_
-  
 
 Verify a release is warranted
 -----------------------------
@@ -44,7 +43,7 @@ properly update:
 
    .. IMPORTANT::
 
-      If this check fails because no release is required, there
+      If this check indicates no new tag is required, there
       is no reason to continue with the release procedures.
 
 Verify the CHANGELOG
@@ -61,8 +60,17 @@ extracted:
 
 #. Manually verify the changelog information is emitted.
 
-   * It should begin with 'Release of x.y.z' and then be followed by
-     one or more comment blocks.
+   * It should begin with ``Release of x.y.z`` and then be followed by
+     one or more comment blocks. For example,
+
+     .. code-block:: none
+
+      Release of 6.0.3
+
+      * Thu Aug 10 2017 Nick Markowski <nmarkowski@keywcorp.com> - 6.0.3-0
+        - Updated iptables::listen::tcp_stateful example to pass valid
+          Iptables::DestPort types to dports
+
    * It should be understandable.
    * It should be free from typos.
    * Any parsing error messages emitted should *only* be for changelog
@@ -77,23 +85,22 @@ Verify the component's dependencies
 -----------------------------------
 
 This check verifies the component's dependencies are correct in the
-``metadata.json`` and ``build/rpm_metadata/requires`` files:
+``metadata.json``:
 
-* Verify there are no dependencies in the ``metadata.json`` file
-  that do not exist in the ``build/rpm_metadata/requires`` and
-  vice versa, except for ``puppetlabs/stdlib`` and ``simp/simplib``.
+* Verify that the dependencies in the ``metadata.json`` file
+  are complete.  This means that the sources of all external
+  functions/classes used within the module are  listed in
+  the ``metadata.json``.
 
 * Verify that the version constraints for each dependency are
-  the same in both files.
+  correct.
 
 .. IMPORTANT::
 
-   The ``puppetlabs/stdlib`` and ``simp/simplib`` dependencies are
-   automatically added to the compenent's RPM requires list, when the
-   RPM is built.  So, these dependencies **only** have to be listed
-   in the ``build/rpm_metadata/requires`` file, **if** the version(s)
-   the module requires are newer than than those specified in the
-   `RPM spec file template`_ .
+   Beginning with ``simp-rake-helpers-4.1.0``, the RPM dependencies
+   for a component will determined from its ``metadata.json`` file,
+   and if present, the component's entry in the
+   ``simp-core/build/rpm/dependencies.yaml``.
 
 Verify a Puppet module can be created
 -------------------------------------
@@ -109,13 +116,35 @@ be created:
 Verify RPMs can be created
 --------------------------
 
-This check verifies that CentOS 6 and CentOS 7 RPMs can be generated
-for this module:
+This check verifies that an RPM can be generated for this module from
+``simp-core``:
 
-.. code-block:: bash
+#. Clone ``simp-core``
 
-   bundle exec rake pkg:rpm[epel-6-x86_64]
-   bundle exec rake pkg:rpm[epel-7-x86_64]
+   .. code-block:: bash
+
+      git clone https://github.com/simp/simp-core.git``
+
+#. Update the URL for the component under test ``Puppetfile.tracking``,
+   if needed
+
+   .. code-block:: bash
+
+      cd simp-core
+      vi Puppetfile.tracking
+
+#.  Build RPM
+
+   .. code-block:: bash
+
+      bundle update
+      bundle exec rake deps:checkout
+      bundle exec rake pkg:single[iptables]
+
+.. NOTE::
+
+   This command will build the RPM for the OS of the server
+   on which it was executed.
 
 Verify unit tests pass
 ----------------------
@@ -137,7 +166,7 @@ in `TravisCI`_:
 Verify acceptance tests pass
 ----------------------------
 
-This check verifies that the component's acceptance tests have 
+This check verifies that the component's acceptance tests have
 succeeded:
 
 * Run the ``beaker:suites`` rake task with and without FIPS enabled
@@ -163,28 +192,49 @@ Verify interoperability with last SIMP release
 
 This check verifies that this version of the component interoperates
 with the last full SIMP release. For many components, the best
-automated way of doing this is by running the ``pupmod-simp-simp``
-acceptance tests, as these tests provide extensive, multi-component,
-integration tests.
+automated way of doing this is by running the ``simp-core`` and
+``pupmod-simp-simp`` acceptance tests, as these tests provide
+extensive, multi-component, integration tests.
 
-#. Determine the version of ``pupmod-simp-simp`` used in the last SIMP
-   release.  This version can be pulled from the ``Puppetfile.stable``
-   file of the ``simp-core`` project tag for the last release.
+.. NOTE:
 
-#. Checkout the ``pupmod-simp-simp`` project for the last SIMP release.
-   For this discussion, we will assume it is ``4.0.0``.
+   If this component release is not expected to interoperate
+   with the last release, substitute the ``simp-core`` and
+   and ``pupmod-simp-simp`` versions, below, with the correct
+   versions.
+
+#. Checkout the ``simp-core`` project for the last SIMP release.
+   For this discussion, we will assume it is ``6.0.0``.
 
    .. code-block:: bash
 
-      git clone https://github.com/simp/pupmod-simp-simp.git``
-      cd pupmod-simp-simp
+      git clone https://github.com/simp/simp-core.git``
+      cd simp-core
       git fetch -t origin
-      git checkout tags/4.0.0  # can use a ref spec in lieu of a tag
+      git checkout tags/6.0.0  # can use a ref spec in lieu of a tag
+
+#. Create a ``Puppetfile.tracking`` file that is a copy of the
+   ``Puppetfile.stable`` file for which this component version and any
+   newer dependencies this version itself requires have been updated.
+
+#. Run the default ``simp-core`` acceptance tests
+
+   .. code-block:: bash
+
+       bundle update
+       bundle exec rake beaker:suites
+
+#. Checkout the version of ``pupmod-simp-simp`` corresponding to the
+   last ``simp-core`` release
+
+   .. code-block:: bash
+
+       bundle exec rake deps:checkout
+       cd src/puppet/modules/pupmod-simp-simp
 
 #. Create a ``.fixtures.yml`` file that overlays the contents of the
-   ``Puppetfile.stable`` file  of the ``simp-core`` project tag for
-   the last release, with this component version and any newer
-   dependencies this version itself requires.
+   ``Puppetfile.stable`` file 3 directories above, with this component
+   version and any newer dependencies this version itself requires.
 
    .. NOTE::
 
@@ -197,8 +247,25 @@ integration tests.
    .. code-block:: bash
 
       bundle update
-      BEAKER_fips-yes bundle exec rake beaker:suites
+
+      BEAKER_fips=yes bundle exec rake beaker:suites
       bundle exec rake beaker:suites
+
+      BEAKER_fips=yes bundle exec rake beaker:suites[base_apps]
+      bundle exec rake beaker:suites[base_apps]
+
+      BEAKER_fips=yes bundle exec rake beaker:suites[no_simp_server]
+      bundle exec rake beaker:suites[no_simp_server]
+
+      BEAKER_fips=yes bundle exec rake beaker:suites[scenario_one_shot]
+      bundle exec rake beaker:suites[scenario_one_shot]
+
+      BEAKER_fips=yes bundle exec rake beaker:suites[scenario_poss]
+      bundle exec rake beaker:suites[scenario_poss]
+
+      BEAKER_fips=yes bundle exec rake beaker:suites[scenario_remote_access]
+      bundle exec rake beaker:suites[scenario_remote_access]
+
 
 Verify the component RPM upgrade succeeds
 -----------------------------------------
@@ -207,21 +274,23 @@ This check verifies that the RPM for this component can be used to
 upgrade the last full SIMP release.  For both CentOS 6 and CentOS 7,
 do the following:
 
-#. Bring up a CentOS server that was booted from the appropriate SIMP
-   ISO and for which ``simp config`` and ``simp bootstrap`` has been
-   run.
+#. Bring up a CentOS server that was booted from the last SIMP ISO
+   release and for which ``simp config`` and ``simp bootstrap`` has
+   been run.
 
    .. NOTE::
 
-      The `simp-packer`_ project is the easiest way to create a SIMP
-      VM that has been bootstrapped.
+      If the VirtualBox for the last SIMP ISO was created by the
+      `simp-packer`_ project, you can simply setup the appropriate
+      VirtualBox network for that box and then bring up that
+      bootstrapped image with ``vagrant up``.
 
 #. Copy the component RPM generated from the above RPM verification
    check to the server and install with yum.  For example,
 
    .. code-block:: bash
 
-      sudo yum install pupmod-simp-iptables-6.0.2-2016.1.noarch.rpm
+      sudo yum install pupmod-simp-iptables-6.0.3-1.noarch.rpm
 
    .. NOTE::
 
@@ -240,6 +309,14 @@ to be valid when a SIMP server can be booted from it, configured via
 ``simp config``, and then bootstrapped via ``simp bootstrap``.  For
 CentOS 6 and CentOS 7:
 
+#. Login to a machine that has `Docker`_ installed and the ``docker``
+   service running.
+
+   .. IMPORTANT::
+
+      In our development environment, the version of Docker
+      that is available with CentOS works best.
+
 #. Checkout the ``simp-core`` project for the last SIMP release.
    For this discussion, we will assume it is ``6.0.0-0``.
 
@@ -255,19 +332,34 @@ CentOS 6 and CentOS 7:
    any of its updated dependencies have been updated to reference
    the versions under test.
 
-#. Build each ISO for CentOS 6 and CentOS 7.  For example
+#. Populate ``simp-core/ISO`` directory with CentOS6/7 distribution ISOs
 
    .. code-block:: bash
 
-      PUPPET_VERSION="~> 4.8.2" \
+      mkdir ISO
+      cp /net/ISO/Distribution_ISOs/CentOS-6.9-x86_64-bin-DVD*.iso ISO/
+      cp /net/ISO/Distribution_ISOs/CentOS-7-x86_64-1708.iso ISO/
+
+#. Build each ISO for CentOS 6 and CentOS 7.  For example,
+
+   .. code-block:: bash
+
+      bundle update
+      SIMP_BUILD_docs=no \
       SIMP_BUILD_verbose=yes \
       SIMP_PKG_verbose=yes \
-      SIMP_BUILD_distro=CentOS/7/x86 _64 \
-      bundle exec rake build:auto[/net/ISO/Distribution_ISOs]
+      bundle exec rake beaker:suites[rpm_docker]
 
    .. IMPORTANT::
-      The most reliable way to build each ISO is from a clean checkout
-      of ``simp-core``.
+
+      #. By default, the ``default.yml`` for the ``rpm_docker`` suite
+         builds an ISO for CentOS 7.  You must manually edit the
+         ``default.yml`` file to disable the ``el7-build-server``
+         instead of the ``el6-build-server``, in order to create
+         a CentOS 6 ISO.
+
+      #. The most reliable way to build each ISO is from a clean checkout
+         of ``simp-core``.
 
 #. Use `simp-packer`_ to verify the SIMP ISO can be bootstrapped, when
    booted with the default options.
@@ -294,6 +386,7 @@ development environment:
 #. Verify ``puppet agent -t`` successfully runs for each node
    assigned to the test environment.
 
+.. _Docker: https://www.docker.com
 .. _GitHub: https://github.com
 .. _PuppetForge: https://forge.puppet.com
 .. _simp-packer: https://github.com/simp/simp-packer

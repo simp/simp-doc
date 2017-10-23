@@ -1,10 +1,20 @@
 Release To GitHub and Deploy to RubyGems.org
 ============================================
 
-Each SIMP Ruby gem is configured to automatically create a `GitHub`_
-release and push the release to `RubyGems.org`_, when an annotated tag
-is created for the `GitHub`_ project **and** the `TravisCI`_ tests for
-the annotated tag push succeed.  To create the annotated tag:
+At this time, most but not all of the SIMP Ruby build and test gems
+are configured to automatically release from an annotated tag.  So,
+this section will describe both the automated steps and the manual
+steps required to release SIMP Ruby gems to `GitHub`_ and `RubyGems.org`_.
+
+Automated Release Steps
+-----------------------
+
+Most of the SIMP Ruby gems are configured to automatically create a
+`GitHub`_ release and push the release to `RubyGems.org`_, when an
+annotated tag is created for the `GitHub`_ project **and** the
+`TravisCI`_ tests for the annotated tag push succeed.
+
+To create the releases from an annotated tag:
 
 #. Clone the component repository and checkout the development
    branch to be tagged
@@ -49,7 +59,63 @@ the annotated tag push succeed.  To create the annotated tag:
 #. Verify release exists on `GitHub`_.  This release will have been created by
    ``simp-auto``.
 
-#. Verify release exists on `RubyGems.org`_. 
+#. Verify release exists on `RubyGems.org`_.
+
+Manual Release Steps
+--------------------
+
+For any gem that has not been configured to automatically release
+from an annotated tag, you must manually release the gem.
+
+To create the releases from an annotated tag:
+
+#. Clone the component repository and checkout the development
+   branch to be tagged
+
+   .. code-block:: bash
+
+      git clone git@github.com:simp/rubygem-simp-build-helpers.git
+      cd rubygem-simp-build-helpers
+      git checkout master # this step isn't needed for master branch
+
+#. Generate the changelog content
+
+   * Manually extract the changelog content from the ``CHANGELOG.md``,
+     file and write into a file.  In this example, the written file
+     will be ``foo``.
+
+#. Create the annotated tag.  In this example the content of 'foo' is::
+
+      Release of 0.0.1
+
+      * Bug fix:
+        - Removed extraneous require 'pry' from release_mapper.rb
+
+   .. code-block:: bash
+
+      git tag -a 0.0.1 -F foo
+      git push origin 0.0.1
+
+   .. NOTE::
+
+      For markdown-style changelogs, you will need to specify
+      ``--cleanup=whitespace`` so comment headers are not stripped.
+
+#. Verify `TravisCi`_ completes successfully
+
+#. Create a release of the annotated tag on GitHub.
+
+   * Select the ``Draft a new release`` button.
+   * Click in the ``Tag version`` box and then select the annotated
+     release version from the drop-down menu.
+   * Select the ``Publish release`` button.  The changelog information
+     for the annotated tag will automatically appear as the release
+     notes.
+
+#. Publish to RubyGems.org
+
+   * FILL-ME-IN
+
 
 .. _GitHub: https://github.com
 .. _RubyGems.org: https://rubygems.org/

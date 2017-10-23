@@ -1,10 +1,12 @@
-Release ``simp-core`` to GitHub
-===============================
+Release ``simp-core`` to GitHub and PuppetForge
+===============================================
 
-``simp-core`` is configured to to automatically create a `GitHub`_ 
-release, when an annotated tag is created for the `GitHub`_
-project **and** the `TravisCI`_ tests for the annotated tag push succeed.
-(Once SIMP-3402 is addressed.) To create the annotated tag:
+``simp-core`` is configured to to automatically create a `GitHub`_
+release and push the (meta-module) release to `PuppetForge`_, when an
+annotated tag is created for the `GitHub`_ project **and** the
+`TravisCI`_ tests for the annotated tag push succeed.
+
+To create the releases from an annotated tag:
 
 #. Clone the component repository and checkout the development
    branch to be tagged
@@ -37,6 +39,5 @@ project **and** the `TravisCI`_ tests for the annotated tag push succeed.
 
 .. _GitHub: https://github.com
 .. _packagecloud: https://packagecloud.io/simp-project
-.. _simp-project: http://simp-project.com/ISO/SIMP
-.. _simp-packer: https://github.com/simp/simp-packer
+.. _PuppetForge: https://forge.puppet.com
 .. _TravisCI: https://travis-ci.org
