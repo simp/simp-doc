@@ -11,6 +11,7 @@ and release steps.
 * `Verify RPMs are available in packagecloud`_
 * `Verify a valid Puppetfile exists`_
 * `Verify the Changelog.rst`_
+* `Verify the dependencies.yaml`_
 * `Verify the simp-core RPMs can be created`_
 * `Verify simp-core tests pass`_
 * `Verify ISOs can be created`_
@@ -101,6 +102,27 @@ This check is to verify that the ``simp-core`` Changelog.rst has
 been updated:
 
 * Manually inspect
+
+Verify the dependencies.yaml
+----------------------------
+
+This check is to verify that ``simp-core/build/rpm/dependencies.yaml``
+contains the correct adjustments to the RPM dependencies, obsoletes,
+requires, and/or release fields for any of the components listed
+in the ``Puppetfile.tracking`` file.
+
+Manually inspect the file to verify there are entries for
+
+* All non-SIMP Puppet modules that have more dependencies listed in
+  their ``metadata.json`` files than are actually required on a SIMP
+  system. Each entry must list all the relevant dependencies in a
+  ``:requires`` element.
+* Any component that has changed name (e.g. ``pupmod-saz-timezone``
+  changing to ``pupmod-simp-timezone``). Each entry must list the
+  package and version obsoleted in an ``:obsoletes`` element.
+* Any component for which for which the RPM release field must be
+  specified (e.g. a component with a RPM-packaging-only change).
+  Each entry must list a ``:requires`` element.
 
 Verify the simp-core RPMs can be created
 ----------------------------------------
