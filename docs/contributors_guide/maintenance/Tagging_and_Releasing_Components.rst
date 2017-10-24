@@ -3,40 +3,38 @@ Tagging and Releasing Components
 
 .. WARNING::
 
-   ``!!!! THIS SECTION IS UNDER CONSTRUCTION !!!!``
-
-   The intent of this section is to list the current state of the SIMP
-   Team's release processes.  Some details that are only handled by a
-   few team members are not yet documented (FILL-ME-INs).  Also, since
-   these processes are constantly being improved and automated, you can
-   expect this section content to evolve as well.
-
+   The intent of this section is to list the current state of the SIMP Team's
+   release processes. Since these processes are constantly being improved and
+   automated, you can expect this section content to evolve as well and may be
+   best served by reading the version from the ``master`` branch of the
+   ``simp-doc`` repository.
 
 This section describes the release procedures for SIMP.  The SIMP
 Team releases:
 
 * Individual Puppet modules as tar files to `PuppetForge`_
-* Individual Puppet modules as signed RPMs to `packagecloud`_
+* Individual Puppet modules as signed RPMs to `packagecloud`_ and the `SIMP Archive`_
 * Ruby gems for building and testing to `RubyGems.org`_
-* Miscellaneous projects required to create a SIMP-system ISO as
-  signed RPMs to `packagecloud`_
-
+* SIMP system dependencies as signed RPMs to `packagecloud`_ and the `SIMP Archive`_
 * SIMP-system ISOs to `simp-project.com`_
 
-Each component release listed above is based off of an official
-`GitHub`_ release the Simp Team has made to a corresponding GitHub
+SIMP component releases listed above are based off of an official
+`GitHub`_ release the SIMP Team has made to a corresponding `SIMP GitHub`_
 project. In the case of a SIMP ISO, the component release tag is
 for the ``simp-core`` project, which compiles existing, released
-component RPMs into an ISO.
+component RPMs and dependencies into an ISO.
 
 .. NOTE::
 
-  The SIMP ISO includes RPMs for Puppet modules that are not maintained
-  by SIMP. When a suitable signed RPM does not already exist for such
-  a module (e.g., ``kmod`` Puppet module maintained by ``camptocamp``),
-  SIMP builds a signed RPM for that project, using one of that project's
-  GitHub release tags.
+   The SIMP ISO includes RPMs for Puppet modules that are not maintained by
+   SIMP. When a suitable signed RPM does not already exist for such a module
+   (e.g., ``kmod`` Puppet module maintained by ``camptocamp``), SIMP builds a
+   signed RPM for that project, using one of that project's GitHub release
+   tags.
 
+   All modules provided by the SIMP Project, are directly sourced from
+   SIMP-controlled repository forks. We do not pull directly from upstream
+   sources.
 
 .. toctree::
    :maxdepth: 1
@@ -50,6 +48,8 @@ component RPMs into an ISO.
 
 .. _GitHub: https://github.com
 .. _PuppetForge: https://forge.puppet.com
-.. _packagecloud: https://packagecloud.io/simp-project
 .. _RubyGems.org: https://rubygems.org/
+.. _SIMP Archive: https://simp-project.com/yum/SIMP
+.. _SIMP GitHub: https://github.com/simp
+.. _packagecloud: https://packagecloud.io/simp-project
 .. _simp-project.com: http://simp-project.com/ISO/SIMP

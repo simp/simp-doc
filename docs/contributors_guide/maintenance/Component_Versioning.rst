@@ -91,7 +91,7 @@ version/changelog-related linters for SIMP Puppet modules:
 * ``compare_latest_tag``:
   Compares mission-impacting files with the latest tag and identifies
   the relevant files that have changed.  When mission-impacting files
-  have changed, fails if
+  have changed, fails if:
 
   #. Latest version cannot be extracted from the top-most
      ``CHANGELOG`` entry.
@@ -111,4 +111,4 @@ version/changelog-related linters for SIMP Puppet modules:
 
    Moving forward, these linters will be enhanced to handle the
    version/changelog nuances of the other projects SIMP releases and
-   will be included as tests in all project TravisCI builds.
+   will be included as tests in all TravisCI builds.

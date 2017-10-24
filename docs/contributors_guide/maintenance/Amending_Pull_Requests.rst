@@ -12,13 +12,14 @@ Amending Changes to Submitted Pull Requests
    * ``git clone https://github.com/simp/simp-doc doc``
 
      .. IMPORTANT::
-        We use 'git clone' instead of 'hub clone' so that we can't accidentally
-        push to the main SIMP repositories. While we have protected branches
-        for the critical components, one wrong command and and life can get
-        unpleasant.
 
-#. Pull down the pull request as found on the GitHub GUI. The local branch should
-   match the branch in the PR (for example, branch SIMP-XXXX):
+        We use ``git clone`` instead of ``hub clone`` so that we can't
+        accidentally push to the main SIMP repositories. While we have
+        `protected branches`_ for the critical components, one wrong command
+        and and life can get unpleasant.
+
+#. Pull down the pull request (PR) as found on the GitHub GUI. The local branch
+   should match the branch in the PR (for example, branch SIMP-XXXX):
 
    * ``hub checkout https://github.com/simp/simp-doc/pull/9999 SIMP-XXXX``
 
@@ -41,3 +42,4 @@ Amending Changes to Submitted Pull Requests
 #. The pull request has been updated, and participants have received an email
 
 .. _hub: https://hub.github.com/
+.. _protected branches: https://help.github.com/articles/about-protected-branches/
