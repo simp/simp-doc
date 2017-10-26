@@ -152,10 +152,16 @@ SIMP does not provide any direct support for contingency planning. Some of the
 mechanisms provided by SIMP might be used to support an implementation's
 contingency plan.
 
-System Backup
--------------
+System Backup and Recovery
+--------------------------
 
-SIMP comes with a module called ``backuppc``. This module provides a base
-configuration of the `BackupPC <http://backuppc.sourceforge.net/>`__ software
-and allows Puppet servers and clients to perform backups.
-[:ref:`CP-10 (6)`]
+SIMP does not directly support any particular backup and recovery
+product.  Solutions vary widely, and should be determined as part of an
+implementation's broader contingency plan. SIMP provides mechanisms that might
+be used to support backup and recovery procedures.
+
+Administrators seeking FOSS software to implement backup and recovery solutions
+may be interested in products such as `Bacula <https://www.bacula.org/>`__,
+`BackupPC <http://backuppc.sourceforge.net/>`__, `duplicity
+<http://duplicity.nongnu.org/>`__, and `scat
+<https://github.com/Roman2K/scat>`__.
