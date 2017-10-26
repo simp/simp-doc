@@ -1,38 +1,40 @@
 Other Puppet Module Release Procedures
 ======================================
 
-This section will describe the release procedures for Puppet module
-projects for which SIMP is not the owner.  In these procedures, the
-SIMP Team will release RPMs of these projects, using SIMP forks to
-which no SIMP modifications have been made.  The purpose of these
-forks is simply to retain a backup copy of the official repositories.
+This section will describe the release procedures for Puppet module projects
+for which SIMP is not the owner.  In these procedures, the SIMP Team will
+release RPMs of these projects, using SIMP forks to which **no SIMP
+modifications have been made**.  The purpose of these forks is simply to retain
+a backup copy of the official repositories in the case that the upstream
+repositories are compromised or taken down unexpectedly.
 
-.. Important::
+.. NOTE::
 
-   If the owner has made unreleased modifications to the project that
-   are essential to SIMP *OR* the SIMP Team has an outstanding pull
-   request for the project with essential changes, the SIMP Team must
-   take ownership of this version of the Puppet module to release it.
-   This is the only way for SIMP to release the modified version to
-   `PuppetForge`_.
+   We **highly** recommend that you keep copies of all external repositories as
+   a clone in your internal systems if you are deploying via ``r10k`` or Code
+   Manager.
 
-.. Note::
+.. IMPORTANT::
 
-   You can identify whether a Puppet module is owned by SIMP, by
-   examining the outer-most ``name`` entry in the module's
-   ``metadata.json`` file.  The value for the ``name`` key will be
-   of the form *<owner>*-*<module name>*.
+   If the owner has made unreleased modifications to the project that are
+   essential to SIMP *OR* the SIMP Team has an outstanding pull request for the
+   project with essential changes, the SIMP Team must take ownership of this
+   version of the Puppet module to release it.  This is the only way for SIMP
+   to release the modified version to `PuppetForge`_.
 
-* `Pre-Release Checklist`_
-* `Build Signed RPM and Deploy to packagecloud`_
+.. NOTE::
+
+   You can identify whether a Puppet module is owned by SIMP, by examining the
+   outer-most ``name`` entry in the module's ``metadata.json`` file.  The value
+   for the ``name`` key will be of the form *<owner>*-*<module name>*.
 
 Pre-Release Checklist
 ---------------------
 
-For each project, the only verification required is to ensure the
-version desired has already been released to `GitHub`_ and
-`PuppetForge`_ by the project owner and has been used for testing
-SIMP components in unit, acceptance, and SIMP ISO validation tests:
+For each project, the verification required is to ensure the version desired
+has already been released to `GitHub`_ and `PuppetForge`_ by the project owner
+and has been used for testing SIMP components in unit (rspec), acceptance
+(beaker), and SIMP ISO validation (packer) tests:
 
 #. Verify the version required has an official `GitHub`_ release.
 
@@ -45,23 +47,7 @@ SIMP components in unit, acceptance, and SIMP ISO validation tests:
 #. Verify the ``Puppetfile.tracking`` file of the ``simp-core``
    project match the version being released.
 
-Build Signed RPM and Deploy to packagecloud
--------------------------------------------
-
-FILL-ME-IN
-
-#. Obtain/build the RPM
-
-   * If the owner has already released a suitable signed RPM for the
-     version of the component SIMP requires, we will use that RPM.
-
-   * Otherwise, we will
-
-     - Obtain the official key
-     - Build a signed RPM from the owner-provided GitHub release tag
-
-#. Publish the RPM to `packagecloud`_
+.. include:: common/Build_RPM_and_Deploy_packagecloud.inc
 
 .. _GitHub: https://github.com
-.. _packagecloud: https://packagecloud.io/simp-project
 .. _PuppetForge: https://forge.puppet.com

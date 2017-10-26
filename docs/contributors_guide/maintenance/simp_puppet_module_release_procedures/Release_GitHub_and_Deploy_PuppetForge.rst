@@ -24,7 +24,7 @@ To create the releases from an annotated tag:
       bundle update
       bundle exec rake changelog_annotation > foo
 
-#. Create the annotated tag.  In this example the content of 'foo' is::
+#. Create the annotated tag.  In this example the content of 'foo' is:
 
       Release of 6.0.2
 

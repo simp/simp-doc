@@ -1,10 +1,9 @@
 Build Signed simp-core RPM and Deploy to packagecloud
 =====================================================
 
-FILL-ME-IN
+.. NOTE::
 
-* Obtain the official key
-* Build a signed ``simp-core`` RPM  from its release tag using the official key
-* Publish signed RPM to `packagecloud`_
+   For ``simp-core``, the ``pkg:single`` path will need to be used.
+   Specifically, ``src/assets/simp``
 
-.. _packagecloud: https://packagecloud.io/simp-project
+.. include:: ../common/Build_RPM_and_Deploy_packagecloud.inc

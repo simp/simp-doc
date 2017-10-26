@@ -1,33 +1,18 @@
 Pre-Release Checklist
 =====================
 
-The bulk of the work to release both CentOS 6 and CentOS 7 versions of
+The bulk of the work to release both :term:`EL` 6 and :term:`EL` 7 versions of
 a SIMP ISO is to verify that each ISO is ready for release. Below is
-the list of verifications that must be executed *for each ISO*, before
+the list of verifications that must be executed **for each ISO**, before
 proceeding with the release of that ISO. If any of these steps fail,
 the problem identified must be fixed before you can proceed with the tag
 and release steps.
 
-* `Verify RPMs are available in packagecloud`_
-* `Verify a valid Puppetfile exists`_
-* `Verify the Changelog.rst`_
-* `Verify the dependencies.yaml`_
-* `Verify the simp-core RPMs can be created`_
-* `Verify simp-core tests pass`_
-* `Verify ISOs can be created`_
-* `Verify SIMP ISO boot options work`_
-* `Verify component interoperability`_
-* `Verify otherwise untested capabilities`_
-* `Verify SIMP server is compliant with security standards`_
-* `Verify SIMP server RPM install`_
-* `Verify SIMP server RPM upgrade`_
-* `Verify SIMP server R10K install`_
-
-Verify RPMs are available in packagecloud
+Verify RPMs are available in PackageCloud
 -----------------------------------------
 
 This check is to verify that all artifacts used to create the ISO
-exist as signed RPMs in `packagecloud`_.   This will include:
+exist as signed RPMs in `PackageCloud`_.   This will include:
 
 * SIMP-owned Puppet modules
 * Other Puppet modules
@@ -68,18 +53,27 @@ the RPMs for those projects exist by executing the ``pkg:check_published`` Rake 
      Found Existing Remote RPM: pupmod-simp-sudosh-6.0.1-0.noarch.rpm
      ...
 
-   .. Important::
+   .. IMPORTANT::
 
       If you see a message like
       ``Warning:  Unable to generate build-specific YUM cache``, your
-      results are invalid, as connection to `packagecloud`_ failed.
+      results are invalid, as connection to `PackageCloud`_ failed.
 
-#. Manually verify the appropriate ``simp-doc`` RPM exists at `packagecloud`_.
+#. Manually verify the appropriate ``simp-doc`` RPM exists at `PackageCloud`_.
 
 
-For the external verndor RPMs and OS RPMs:
+For the external vendor RPMs
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-* FILL-ME-IN
+* Upload all vendor RPMs to the ``VERSION_Dependencies`` repository in
+  `PackageCloud`_. Any existing RPMs will not be overwritten.
+
+  * ``package_cloud push simp-project/VERSION_Dependencies/el/OS_MAJOR_VERSION /path/to/packages``
+
+.. WARNING::
+
+   **DO NOT** push any Operating System RPMs up to PackageCloud, those should
+   be retrieved from official vendor sources.
 
 
 Verify a valid Puppetfile exists
@@ -89,7 +83,7 @@ This check is to verify that that ``Puppetfile.tracking`` file for the
 ``simp-core`` project is complete and accurate:
 
 * It includes all the SIMP-owed Puppet modules, other Puppet modules
-  that are depenencies of SIMP-owned Puppet modules, and utilities
+  that are dependencies of SIMP-owned Puppet modules, and utilities
   to configure the SIMP system when installed from ISO.
 
 * The URL for each artifact corresponds to the tag for its signed,
@@ -189,7 +183,7 @@ Verify ISOs can be created
 --------------------------
 
 This check verifies that SIMP ISOs for CentOS 6 and CentOS 7 can be
-built from the local ``simp-core`` clone  and RPMs pushed to packagecloud.
+built from the local ``simp-core`` clone  and RPMs pushed to PackageCloud.
 For CentOS 6 and CentOS 7:
 
 #. Login to a machine that has `Docker`_ installed and the ``docker``
@@ -206,7 +200,7 @@ For CentOS 6 and CentOS 7:
 
       git clone https://github.com/simp/simp-core.git``
       cd simp-core
-#. Populate ``simp-core/ISO`` directory with CentOS6/7 distribution ISOs
+#. Populate ``simp-core/ISO`` directory with CentOS 6/7 distribution ISOs
 
    .. code-block:: bash
 
@@ -242,13 +236,10 @@ For CentOS 6 and CentOS 7:
    .. code-block:: bash
 
       cd build/distributions/CentOS/7/x86_64/SIMP/RPMS/noarch
-      <...>
-        FILL-ME-IN
-        For each RPM, run rpm -qpi <rpm> and verify there is a Signature and
-        the signature key ID is <???>
-      <...>
 
-
+      # The 7da6f216 key ID may change as the SIMP signing keys get updated over time
+      # The output of this command should be *EMPTY*
+      rpm -q --qf '%{NAME}-%{VERSION}-%{RELEASE} %{SIGPGP:pgpsig} %{SIGGPG:pgpsig}\n' -p * | grep -v 7da6f216
 
 Verify SIMP ISO boot options work
 ---------------------------------
@@ -378,7 +369,8 @@ Verify otherwise untested capabilities
 --------------------------------------
 This check verifies that all other major capabilities (not otherwise
 tested in acceptance/simp-packer tests) do function as advertised:
-(TODO:  Detailed test procedures need to be included in this section.)
+
+.. todo:: Detailed test procedures need to be included in this section
 
 .. NOTE::
 
@@ -439,41 +431,7 @@ tested in acceptance/simp-packer tests) do function as advertised:
   - ``gen_ldap_update``
   - ``updaterepos``
 
-* The HOWTO documentation is still correct.
-
-  - HOWTO Back up the Puppet Master
-  - HOWTO Change Puppet Servers
-  - HOWTO Configure a Puppet Server Behind a NAT
-  - HOWTO Configure iptables NAT Rules
-  - HOWTO Configure NFS
-  - HOWTO Configure SNMPD
-  - HOWTO Disable SSH
-  - HOWTO Discard Mail to Root
-  - HOWTO Enable Kerberos
-  - HOWTO Enable Redundant LDAP
-  - HOWTO Enable SFTP Restricted Accounts
-  - HOWTO Exclude YUM Repositories
-  - HOWTO Manage Workstation Infrastructures
-  - HOWTO Modify the Nightly Update Schedule
-  - HOWTO Modify The Puppet Cron Schedule
-  - HOWTO Restrict Network Access to SSH
-  - HOWTO Setup a SIMP Control Repository
-  - HOWTO Set up Central Log Collection
-  - HOWTO Setup SSH Authorized Keys
-  - HOWTO Upgrade SIMP
-  - HOWTO Work with the SIMP Rsync Shares
-
-Verify SIMP server is compliant with security standards
--------------------------------------------------------
-
-This check verifies that a SCAP scan only finds non-compliance
-that SIMP has already noted as exceptions in the ``compliance_markup``
-configurations. In other words, the scan should not find new
-deficiencies.
-
-Procedures:
-
-FILL-ME-IN
+* The :ref:`howto-guides`_ are still correct.
 
 Verify SIMP server RPM install
 ------------------------------
@@ -482,7 +440,7 @@ This check verifies that CentOS 6 and CentOS 7 SIMP servers can be
 installed using the set of RPMs contained in the SIMP ISOs
 The verification steps largely follow the details in
 :ref:`gsg-installing_simp_from_a_repository`.  All RPMs except
-the ``simp-core`` RPM should be able to be pulled from `packagecloud`_.
+the ``simp-core`` RPM should be able to be pulled from `PackageCloud`_.
 
 Verify SIMP server RPM upgrade
 ------------------------------
@@ -500,7 +458,6 @@ the last full SIMP release.
       `simp-packer`_ project, you can simply setup the appropriate
       VirtualBox network for that box and then bring up that
       bootstrapped image with ``vagrant up``.
-
 
 #. Copy the SIMP and system RPMs packaged in the SIMP ISO to the
    server and install with yum.
@@ -535,7 +492,7 @@ tested in a ``simp-core`` acceptance test, all verification is handled by
 
 .. _Docker: https://www.docker.com
 .. _GitHub: https://github.com
-.. _packagecloud: https://packagecloud.io/simp-project
-.. _simp-project: http://simp-project.com/ISO/SIMP
-.. _simp-packer: https://github.com/simp/simp-packer
+.. _PackageCloud: https://packagecloud.io/simp-project
 .. _TravisCI: https://travis-ci.org
+.. _simp-packer: https://github.com/simp/simp-packer
+.. _simp-project: http://simp-project.com/ISO/SIMP

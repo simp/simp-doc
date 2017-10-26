@@ -6,8 +6,8 @@ are configured to automatically release from an annotated tag.  So,
 this section will describe both the automated steps and the manual
 steps required to release SIMP Ruby gems to `GitHub`_ and `RubyGems.org`_.
 
-Automated Release Steps
------------------------
+Common Release Steps
+--------------------
 
 Most of the SIMP Ruby gems are configured to automatically create a
 `GitHub`_ release and push the release to `RubyGems.org`_, when an
@@ -23,15 +23,13 @@ To create the releases from an annotated tag:
 
       git clone git@github.com:simp/rubygem-simp-rake-helpers.git
       cd rubygem-simp-rake-helpers
-      git checkout master # this step isn't needed for master branch
+      git checkout BRANCH # this step isn't needed for master branch
 
 #. Generate the changelog content
 
-   * Manually extract the changelog content from the ``CHANGELOG.md``,
-     file and write into a file.  In this example, the written file
-     will be ``foo``.
+   * ``rake changelog_annotation > foo``
 
-#. Create the annotated tag.  In this example the content of 'foo' is::
+#. Create the annotated tag.  In this example the content of ``foo`` is:
 
       Release of 4.0.1
 
@@ -51,10 +49,17 @@ To create the releases from an annotated tag:
 #. Verify `TravisCi`_ completes successfully
 
    .. IMPORTANT::
+
       If any of the required TravisCI builds for the project fail, for
       example due to intermittent connectivity problems with `GitHub`_,
       you can complete the release process by manually restarting the
       failed build on the Travis page for that build.
+
+Automated Release Steps
+-----------------------
+
+This section applies to gems that have a ``deploy`` stage with a ``releases``
+provider in their ``.travis.yml`` file.
 
 #. Verify release exists on `GitHub`_.  This release will have been created by
    ``simp-auto``.
@@ -69,40 +74,6 @@ from an annotated tag, you must manually release the gem.
 
 To create the releases from an annotated tag:
 
-#. Clone the component repository and checkout the development
-   branch to be tagged
-
-   .. code-block:: bash
-
-      git clone git@github.com:simp/rubygem-simp-build-helpers.git
-      cd rubygem-simp-build-helpers
-      git checkout master # this step isn't needed for master branch
-
-#. Generate the changelog content
-
-   * Manually extract the changelog content from the ``CHANGELOG.md``,
-     file and write into a file.  In this example, the written file
-     will be ``foo``.
-
-#. Create the annotated tag.  In this example the content of 'foo' is::
-
-      Release of 0.0.1
-
-      * Bug fix:
-        - Removed extraneous require 'pry' from release_mapper.rb
-
-   .. code-block:: bash
-
-      git tag -a 0.0.1 -F foo
-      git push origin 0.0.1
-
-   .. NOTE::
-
-      For markdown-style changelogs, you will need to specify
-      ``--cleanup=whitespace`` so comment headers are not stripped.
-
-#. Verify `TravisCi`_ completes successfully
-
 #. Create a release of the annotated tag on GitHub.
 
    * Select the ``Draft a new release`` button.
@@ -114,8 +85,14 @@ To create the releases from an annotated tag:
 
 #. Publish to RubyGems.org
 
-   * FILL-ME-IN
+   .. NOTE::
 
+      This requires that you have a GPG key in place that allows you to publish
+      to `RubyGems.org`_ and is valid for the Gem that you are attempting to
+      push.
+
+   * Run ``gem build simp-rake-helpers.gemspec``
+   * Run ``gem push simp-rake-helpers-4.0.1.gem``
 
 .. _GitHub: https://github.com
 .. _RubyGems.org: https://rubygems.org/
