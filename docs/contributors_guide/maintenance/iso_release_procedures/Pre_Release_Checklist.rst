@@ -8,6 +8,8 @@ proceeding with the release of that ISO. If any of these steps fail,
 the problem identified must be fixed before you can proceed with the tag
 and release steps.
 
+.. contents:: :local:
+
 Verify RPMs are available in PackageCloud
 -----------------------------------------
 
@@ -72,8 +74,8 @@ For the external vendor RPMs
 
 .. WARNING::
 
-   **DO NOT** push any Operating System RPMs up to PackageCloud, those should
-   be retrieved from official vendor sources.
+   **DO NOT** push any Core Operating System RPMs up to PackageCloud, those
+   should be retrieved from official vendor sources.
 
 
 Verify a valid Puppetfile exists
@@ -431,7 +433,7 @@ tested in acceptance/simp-packer tests) do function as advertised:
   - ``gen_ldap_update``
   - ``updaterepos``
 
-* The :ref:`howto-guides`_ are still correct.
+* The :ref:`howto-guides` are still correct.
 
 Verify SIMP server RPM install
 ------------------------------

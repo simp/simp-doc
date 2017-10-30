@@ -217,7 +217,10 @@ linkcheck_ignore = [
     r'^http[s]?:\/\/www\.elastic\.co(/.*|$)',
     r'^http[s]?:\/\/opensource\.org(/.*|$)',
     # Everything from pgp.mit.edu
-    r'^http[s]?:\/\/pgp\.mit\.edu(/.*|$)'
+    r'^http[s]?:\/\/pgp\.mit\.edu(/.*|$)',
+    # These are for the templates in the release emails
+    r'VERSION.*Upgrade_SIMP',
+    r'VERSION-.*NUM.*Changelog\.html'
  ]
 
 # -- Options for HTML output ----------------------------------------------

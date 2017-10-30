@@ -44,7 +44,7 @@ Final Release
 
     All,
 
-    We're pleased to announce the general available of SIMP {VERSION}!
+    We're pleased to announce the general availability of `SIMP {VERSION}`_!
 
     IMPORTANT: Please read the `{old version} to {new version} upgrade guide`_ in
     detail!
@@ -59,9 +59,10 @@ Final Release
     {Your Name}
 
 
-.. _{old version} to {new version} upgrade guide: https://simp.readthedocs.io/en/NEW_VERSION/user_guide/Upgrade_SIMP/Version_Specific_Upgrade_Instructions.html#upgrading-from-OLD_VERSION-to-NEW_VERSION
 .. _PackageCloud: https://packagecloud.io/simp-project/
 .. _Release Candidate for SIMP {VERSION}: https://simp.readthedocs.io/en/VERSION-rcNUM/dynamic/Changelog.html
+.. _SIMP {VERSION}: https://simp.readthedocs.io/en/VERSION-NUM/dynamic/Changelog.html
 .. _download an ISO: https://simp-project.com/ISO/SIMP/
 .. _feedback: https://simp.readthedocs.io/en/latest/help/Public_Resources.html
 .. _release repository: https://simp-project.com/yum/SIMP/6.X/
+.. _{old version} to {new version} upgrade guide: https://simp.readthedocs.io/en/NEW_VERSION/user_guide/Upgrade_SIMP/Version_Specific_Upgrade_Instructions.html#upgrading-from-OLD_VERSION-to-NEW_VERSION
