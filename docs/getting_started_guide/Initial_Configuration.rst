@@ -46,7 +46,7 @@ that variables beginning with 'cli::' are only used internally by
      assume that this user is the backup user installed by the ISO
      to prevent server lockout.  As such, ``su`` and ``ssh`` privileges
      for the ``simp`` user should be allowed.  For non-ISO installs,
-     however, it would not be prudent for ``simp config`` to grant 
+     however, it would not be prudent for ``simp config`` to grant
      just any ``simp`` user both ``su`` and ``ssh`` privileges.
 
    - ``simp config`` detects that SIMP has been installed from a

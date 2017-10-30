@@ -4,8 +4,8 @@ Contribution Procedure
 ======================
 
 We use the standard `GitHub workflow`_ for SIMP development with the exception
-that we use a `Squash and Merge`_ merge method for pulling in changes, in order
-to maintain a more legible commit history on `master`.
+that we use a `Squash and Merge`_ merge method for pulling in changes. This is
+done to to maintain a more legible commit history on `master`.
 
 #. Search the `SIMP JIRA`_ for an open ticket that is relevant to the issue or
    open a new one.
@@ -38,7 +38,7 @@ to maintain a more legible commit history on `master`.
 
 #. `Travis-CI`_ will run the spec tests for the branch and a member of the SIMP
    team will `review`_ your submission. You should receive emails from Github as
-   the code reviews progress.
+   code reviews progress.
 
 Commit Message Conventions
 --------------------------

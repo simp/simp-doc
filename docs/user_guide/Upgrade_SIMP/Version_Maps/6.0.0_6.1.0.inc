@@ -4,7 +4,7 @@ Upgrading from SIMP-6.0.0 to SIMP-6.1.0
 .. IMPORTANT::
 
    It is *highly recommended* that you read the information in this section
-   in its entirety. 
+   in its entirety.
 
 Upgrade Script
 ^^^^^^^^^^^^^^

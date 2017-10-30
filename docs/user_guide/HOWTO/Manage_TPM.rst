@@ -14,7 +14,7 @@ TPM features in SIMP:
    * Enabling a TPM-based PKCS#11 interface
    * Intel TXT and Trusted Boot
 
-We do not support clearing ownership, EVM, or measured boot at this time. 
+We do not support clearing ownership, EVM, or measured boot at this time.
 ``ima-evm-utils`` and kernel support are not available on SIMP platforms.
 
 Requirements

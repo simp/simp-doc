@@ -12,7 +12,7 @@ infrastructure.
 
   Refer to Puppet, Inc's `control repository documentation`_ for more
   information.
-  
+
 SIMP distributes a partial control repository:
 
 * On the filesystem of an installed SIMP system:
@@ -72,7 +72,7 @@ base of the ``r10k_production`` directory, and add the following content:
 .. code-block:: yaml
 
   ---
-  
+
   # This is the default hiera.yaml file
   # Feel free to modify the hierarchy to suit your needs but please
   # leave the simp* entries in place at the bottom of the list

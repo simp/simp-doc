@@ -107,7 +107,7 @@ Access is configured by ``/etc/snmp/simp_snmpd.d/access.conf``
   To remove a user, or modify their password, the ``snmpusm`` utility must be
   used, or remove ``/var/lib/net-simp`` and run puppet.  Changing the password
   in the hash or removing the keys will not change the password of an existing
-  user. 
+  user.
 
 
 Example hashes  used to create users, views, group and give access:

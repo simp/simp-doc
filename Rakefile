@@ -9,6 +9,7 @@ require 'yaml'
 require 'find'
 
 CLEAN.include 'build/rpm_metadata'
+CLEAN.include 'linkcheck'
 
 desc 'Munge Prep'
   desc <<-EOM

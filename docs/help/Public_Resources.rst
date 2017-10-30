@@ -1,3 +1,5 @@
+.. _help-public-resources:
+
 Public Resources
 ================
 
