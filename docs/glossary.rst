@@ -254,7 +254,14 @@ Glossary of Terms
       The integrity subsystem is to detect if files have been
       accidentally or maliciously altered, both remotely and locally.
 
-      Source: `IMA Sourceforge Page <http://linux-ima.sourceforge.net/linux-ima-content.html-20110907>`_
+      Source: `IMA Sourceforge Page <http://linux-ima.sourceforge.net/linux-ima-content.html-20110907>`__
+
+   InSpec
+     An open-source testing framework for infrastructure with a human-readable
+     language for specifying compliance, security and other policy
+     requirements.
+
+     Source: `InSpec Homepage <https://www.inspec.io/>`__
 
    IP
    IP Address

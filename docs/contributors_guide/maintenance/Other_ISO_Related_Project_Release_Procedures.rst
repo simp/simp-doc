@@ -22,5 +22,5 @@ project, which uses the ``master`` branch as its development branch.
    :maxdepth: 1
 
    other_iso_related_project_release_procedures/Pre_Release_Checklist
-   other_iso_related_project_release_procedures/Release_GitHub.rst
+   other_iso_related_project_release_procedures/Release_GitHub
    other_iso_related_project_release_procedures/Build_RPM_and_Deploy_packagecloud

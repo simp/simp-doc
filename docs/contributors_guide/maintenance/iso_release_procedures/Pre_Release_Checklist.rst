@@ -10,11 +10,26 @@ and release steps.
 
 .. contents:: :local:
 
+Update Policy Evaluation Response Reports
+-----------------------------------------
+
+Since one of the main goals of SIMP is to assist with compliance of various
+standards, we should add a response to the latest security scans that we use.
+
+Given that most scanners are only one view on the world and often are not
+flexible enough to meet all possible solutions to a given policy, it is
+expected that there will be explanations of both false positives as well as
+helpful material on why the SIMP framework is compliant for the benefit of our
+users.
+
+These scans should be added, as applicable, to the
+:ref:`security-conop-evaluation-artifacts` section of the documentation.
+
 Verify RPMs are available in PackageCloud
 -----------------------------------------
 
 This check is to verify that all artifacts used to create the ISO
-exist as signed RPMs in `PackageCloud`_.   This will include:
+exist as signed RPMs in `PackageCloud`_.  This will include:
 
 * SIMP-owned Puppet modules
 * Other Puppet modules
