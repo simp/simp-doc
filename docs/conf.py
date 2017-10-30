@@ -219,8 +219,8 @@ linkcheck_ignore = [
     # Everything from pgp.mit.edu
     r'^http[s]?:\/\/pgp\.mit\.edu(/.*|$)',
     # These are for the templates in the release emails
-    r'VERSION.*Upgrade_SIMP',
-    r'VERSION-.*NUM.*Changelog\.html'
+    r'.*VERSION.*Upgrade_SIMP.*',
+    r'.*VERSION-.*NUM.*Changelog\.html'
  ]
 
 # -- Options for HTML output ----------------------------------------------
