@@ -1,3 +1,8 @@
+* Thu Nov 02 2017 Jeanne Greulich <jeanne.greulich@onyxpoint.com>
+- updated NFS section to indicate known errors with autofs and
+  stunnel
+- fixed a minor typo
+
 * Tue Oct 31 2017 Nick Markowski <nicholas.markowski@onyxpoint.com>
 - Updated docker installation guide
 

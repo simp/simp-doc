@@ -15,20 +15,60 @@ and ``pupmod-simp-simp``.
 Known Issues
 ------------
 
-The ``autofs`` package that was released with CentOS 6.8 (**autofs-5.0.5-122**) worked
-properly over a stunnel connection.
+Stunnel and Autofs
+^^^^^^^^^^^^^^^^^^
+The ``autofs`` packages that were released with CentOS 6.8 (**autofs-5.0.5-122**)
+and CentOS 7.3 (**autofs-5.0.7-56**) worked properly over a stunnel connection.
 
-The release shipped with CentOS 6.9 (**5.0.5-132**) prevents any connection from happening
-to the local stunnel process and breaks mounts to remote systems over stunnel connections.
+The release shipped with CentOS 6.9 (**5.0.5-132**)  and with CentOS 7.4 (**5.0.7-69**)
+prevents any connection from happening to the local stunnel process and breaks mounts to
+remote systems over stunnel connections.
 
 To use NFS over stunnel and automount directories the old package must be used.
+To determine what version of autofs is installed, run ``automount -V``.
 
-To determine what package is installed on the system, run ``automount -V``.
+To force the package to the version wanted despite the fact that a newer version is available:
 
-This does not effect CentOS 7.
+First make sure the package is available via your package-management facility then
+set the package version in hiera:
 
-This has been identified as a bug in autofs and is being publicly
-tracked at https://bugs.centos.org/view.php?id=13575.
+In CentOS 7.4:
+
+.. code-block:: puppet
+
+  ---
+  autofs::autofs_package_ensure:  '5.0.7-56'
+
+In Centos 6.9
+
+.. code-block:: puppet
+
+  ---
+  autofs::autofs_package_ensure:  '5.0.5-122'
+
+
+This problem has been identified as bugs in autofs and are being publicly
+tracked.
+
+- CentOS 6.9  https://bugs.centos.org/view.php?id=13575.
+- CentOS 7.4  https://bugs.centos.org/view.php?id=14080.
+
+If you have any further questions about this please contact the SIMP Team.
+
+Autofs Option in nfs::client::mount
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+The autofs option in nfs::client::mount resource currently only works with indirect wild-card
+mounts.  For all other autofs options use the autofs module directly.
+
+SIMP-2944 in `JIRA Bug Tracking`_.
+
+Kerberos and Home Directories
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+The kerberos module is not fully integrated with home directories at this time.
+
+SIMP-1407 in `JIRA Bug Tracking`_.
 
 Exporting Arbitrary Directories
 -------------------------------
@@ -49,7 +89,7 @@ In ``site/manifests/nfs_server.pp``:
 .. code-block:: puppet
 
   class site::nfs_server (
-    Boolean                                          $data_dir     = '/var/nfs_share',
+    Stdlib::AbsolutePath                             $data_dir     = '/var/nfs_share',
     Simplib::Netlist                                 $trusted_nets = simplib::lookup('simp_options::trusted_nets', { 'default_value' => ['127.0.0.1'] }),
     Array[Enum['none','sys','krb5','krb5i','krb5p']] $sec          = ['sys']
   ){
@@ -237,9 +277,8 @@ Enabling Kerberos
 
 .. WARNING::
 
-  This functionality is incomplete. See ticket SIMP-1400 in our
-  `JIRA Bug Tracking`_ . Until that ticket is resolved, it is HIGHLY
-  recommended you continue to use stunnel for encrypted nfs traffic.
+  This functionality is incomplete. It does not work with home directories.
+  See ticket SIMP-1407 in our `JIRA Bug Tracking`_ .
 
 In addition to the sharing code (not the stunnel code) above, add the following:
 
