@@ -37,14 +37,14 @@ In CentOS 7.4:
 .. code-block:: puppet
 
   ---
-  autofs::autofs_package_ensure:  '5.0.7-56'
+  autofs::autofs_package_ensure:  '5.0.7-56.el7'
 
 In Centos 6.9
 
 .. code-block:: puppet
 
   ---
-  autofs::autofs_package_ensure:  '5.0.5-122'
+  autofs::autofs_package_ensure:  '5.0.5-122.el6'
 
 
 This problem has been identified as bugs in autofs and are being publicly
