@@ -178,7 +178,7 @@ To verify that the ``simp-core`` acceptance tests have succeeded
 
    .. code-block:: bash
 
-      git clone https://github.com/simp/simp-core.git``
+      git clone https://github.com/simp/simp-core.git
       cd simp-core
 
 #. Run the default ``simp-core`` acceptance tests
@@ -215,7 +215,7 @@ For CentOS 6 and CentOS 7:
 
    .. code-block:: bash
 
-      git clone https://github.com/simp/simp-core.git``
+      git clone https://github.com/simp/simp-core.git
       cd simp-core
 #. Populate ``simp-core/ISO`` directory with CentOS 6/7 distribution ISOs
 
