@@ -189,14 +189,14 @@ CentOS 6 and CentOS 7:
       that is available with CentOS works best.
 
 #. Checkout the ``simp-core`` project for the last SIMP release.
-   For this discussion, we will assume it is ``6.0.0-0``.
+   For this discussion, we will assume it is ``6.0.0-1``.
 
    .. code-block:: bash
 
       git clone https://github.com/simp/simp-core.git``
       cd simp-core
       git fetch -t origin
-      git checkout tags/6.0.0-0
+      git checkout tags/6.0.0-1
 
 #. Create a ``Puppetfile.tracking`` file that contains the contents
    of ``Puppetfile.stable`` in which the URLs for the component and

@@ -132,7 +132,7 @@ and test tasks.
 
    .. code-block:: bash
 
-      git clone https://github.com/simp/simp-core.git``
+      git clone https://github.com/simp/simp-core.git
       cd simp-core
       bundle update
       bundle exec rake deps:checkout

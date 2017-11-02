@@ -123,7 +123,7 @@ This check verifies that an RPM can be generated for this module from
 
    .. code-block:: bash
 
-      git clone https://github.com/simp/simp-core.git``
+      git clone https://github.com/simp/simp-core.git
 
 #. Update the URL for the component under test ``Puppetfile.tracking``,
    if needed
@@ -204,14 +204,14 @@ extensive, multi-component, integration tests.
    versions.
 
 #. Checkout the ``simp-core`` project for the last SIMP release.
-   For this discussion, we will assume it is ``6.0.0``.
+   For this discussion, we will assume it is ``6.0.0-1``.
 
    .. code-block:: bash
 
-      git clone https://github.com/simp/simp-core.git``
+      git clone https://github.com/simp/simp-core.git
       cd simp-core
       git fetch -t origin
-      git checkout tags/6.0.0  # can use a ref spec in lieu of a tag
+      git checkout tags/6.0.0-1  # can use a ref spec in lieu of a tag
 
 #. Create a ``Puppetfile.tracking`` file that is a copy of the
    ``Puppetfile.stable`` file for which this component version and any
@@ -318,14 +318,14 @@ CentOS 6 and CentOS 7:
       that is available with CentOS works best.
 
 #. Checkout the ``simp-core`` project for the last SIMP release.
-   For this discussion, we will assume it is ``6.0.0-0``.
+   For this discussion, we will assume it is ``6.0.0-1``.
 
    .. code-block:: bash
 
-      git clone https://github.com/simp/simp-core.git``
+      git clone https://github.com/simp/simp-core.git
       cd simp-core
       git fetch -t origin
-      git checkout tags/6.0.0-0
+      git checkout tags/6.0.0-1
 
 #. Create a ``Puppetfile.tracking`` file that contains the contents
    of ``Puppetfile.stable`` in which the URLs for the component and
