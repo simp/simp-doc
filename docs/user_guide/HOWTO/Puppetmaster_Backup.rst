@@ -11,8 +11,6 @@ This section details the steps required to back up the Puppet Master.
    the Puppet master. If a different method is preferred, the user must install
    and configure it first.
 
-.. WARNING::
-
 1. Backup ``/etc/puppetlabs/puppet/ssl``
 2. Backup ``/etc/puppetlabs/puppet``
 3. Backup ``/srv/rsync``
