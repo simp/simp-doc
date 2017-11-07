@@ -13,10 +13,9 @@ This section details the steps required to back up the Puppet Master.
 
 1. Backup ``/etc/puppetlabs/puppet/ssl``
 2. Backup ``/etc/puppetlabs/puppet``
-3. Backup ``/srv/rsync``
-4. Backup ``/var/simp``
-5. Backup ``\`puppet config --section master print vardir\`/simp``
-6. **Optional:** Backup ``/var/www``
+3. Backup ``/var/simp``
+4. Backup ``\`puppet config --section master print vardir\`/simp``
+5. **Optional:** Backup ``/var/www``
 
 
 **Simple Full Backup Command**
