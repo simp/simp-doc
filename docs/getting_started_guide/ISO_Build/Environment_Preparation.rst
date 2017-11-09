@@ -84,6 +84,13 @@ repository depending on your distribution.
 
   $ sudo yum install docker
 
+The Docker package may not provide a `dockerroot` group.  If it does not exist
+post installation, create it:
+
+.. code-block:: bash
+
+  $ sudo groupadd dockerroot
+
 Allow your (non-root) user to run docker:
 
 .. code-block:: bash
