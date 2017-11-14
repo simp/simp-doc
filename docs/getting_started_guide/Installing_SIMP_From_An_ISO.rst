@@ -7,10 +7,10 @@ The benefits of using a SIMP ISO are:
 
 * Suitable for enclave or offline environments
 * It is the easiest way to get started and ensure that all files are present
-* Your SIMP load will have a partitioning scheme compatible with most security
-  guides
+* Your SIMP load will have a disk partitioning scheme compatible with most
+  security guides
 * Your system will start in :term:`FIPS` mode
-* Your disks will be encrypted
+* Your disks can be encrypted
   * Note the caveats in the :ref:`ig-disk-encryption` section
 
 Obtaining the ISO
