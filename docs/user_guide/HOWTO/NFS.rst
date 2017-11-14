@@ -17,8 +17,8 @@ Known Issues
 
 Stunnel and Autofs
 ^^^^^^^^^^^^^^^^^^
-The ``autofs`` packages that were released with CentOS 6.8 (**autofs-5.0.5-122**)
-and CentOS 7.3 (**autofs-5.0.7-56**) worked properly over a stunnel connection.
+The ``autofs`` packages that were released with CentOS 6.8 (`autofs-5.0.5-122`_)
+and CentOS 7.3 (`autofs-5.0.7-56`_) worked properly over a stunnel connection.
 
 The release shipped with CentOS 6.9 (**5.0.5-132**)  and with CentOS 7.4 (**5.0.7-69**)
 prevents any connection from happening to the local stunnel process and breaks mounts to
@@ -314,4 +314,6 @@ Clients
   classes:
     - 'simp_nfs'
 
+.. _autofs-5.0.5-122: https://vault.centos.org/6.8/os/x86_64/Packages/autofs-5.0.5-122.el6.x86_64.rpm
+.. _autofs-5.0.7-56: https://vault.centos.org/7.3.1611/os/x86_64/Packages/autofs-5.0.7-56.el7.x86_64.rpm
 .. _JIRA Bug Tracking: https://simp-project.atlassian.net/
