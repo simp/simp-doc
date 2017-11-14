@@ -10,6 +10,7 @@ TEMPLATE - SSG Scan - EL 7 STIG
 ===============================
 
 * Scan Date: 1/1/1970
+* SIMP Version: ``6.1.0-RC1``
 * SSG Version: ``0.1.36``
 * Data Stream: ``ssh-centos7-ds.xml``
 * SIMP Enforcement Profile: ``disa_stig``
