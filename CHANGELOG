@@ -1,3 +1,7 @@
+* Tue Nov 14 2017 Trevor Vaughan <tvaughan@onyxpoint.com>
+- Added information on performing system scans as well as a SSG response
+  template to the Security CONOP
+
 * Thu Nov 02 2017 Jeanne Greulich <jeanne.greulich@onyxpoint.com>
 - updated NFS section to indicate known errors with autofs and
   stunnel
