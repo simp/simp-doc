@@ -11,7 +11,9 @@ The benefits of using a SIMP ISO are:
   security guides
 * Your system will start in :term:`FIPS` mode
 * Your disks can be encrypted
-  * Note the caveats in the :ref:`ig-disk-encryption` section
+
+  * Please pay attention to the caveats in the :ref:`ig-disk-encryption`
+    section
 
 Obtaining the ISO
 -----------------
@@ -23,7 +25,7 @@ Installation
 
 The ISO will install on any system that supports the underlying operating system.
 
-When you first boot the ISO, there will be a menu of options, you can either
+When you first boot the ISO, there will be a menu of options. You can either
 modify the installation according to those instructions or simply hit
 ``<Enter>`` to proceed with the automated installation.
 
