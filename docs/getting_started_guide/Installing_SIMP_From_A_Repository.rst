@@ -4,9 +4,9 @@ Installing SIMP From A Repository
 =================================
 
 Using the `official SIMP YUM repositories`_ is the simplest method for getting
-up and running with a SIMP system. If you are using a virtual infrastructure,
-such as `AWS`_, `Microsoft Azure`_, `Google Cloud`_, or your own internal VM
-stack, this is the method that you will almost definitely want to use.
+up and running with SIMP on an existing infrastructure. If you are using a
+virtual infrastructure, such as `AWS`_, `Microsoft Azure`_, `Google Cloud`_, or
+your own internal VM stack, this is the method that you will want to use.
 
 .. NOTE::
 
