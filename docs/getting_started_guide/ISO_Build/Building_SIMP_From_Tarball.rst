@@ -63,7 +63,7 @@ Run the ``build:auto`` rake task to create a bootable ISO:
 
 .. code::
 
-   $ RSYNC_NO_SELINUX_DEPS=yes bundle exec rake build:auto[<directory containing source ISOs>,6.X]
+   $ SIMP_ENV_NO_SELINUX_DEPS=yes bundle exec rake build:auto[<directory containing source ISOs>,6.X]
 
 Build ENV vars:
 
@@ -71,7 +71,7 @@ Build ENV vars:
 
     * The docs take a long time to build!
 
-  * ``RSYNC_NO_SELINUX_DEPS`` - (yes|no) - Force the earliest version of
+  * ``SIMP_ENV_NO_SELINUX_DEPS`` - (yes|no) - Force the earliest version of
     ``policycoreutils<-python>`` and ``selinux-policy<-devel>`` for the major
     EL release.
 

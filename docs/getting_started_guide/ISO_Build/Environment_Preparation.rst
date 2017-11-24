@@ -103,7 +103,7 @@ in ``/etc/sysconfig/docker-storage``:
 
 .. code-block:: bash
 
-DOCKER_STORAGE_OPTIONS= --storage-opt dm.basesize=100G
+  DOCKER_STORAGE_OPTIONS= --storage-opt dm.basesize=100G
 
 
 .. NOTE::
