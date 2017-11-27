@@ -21,8 +21,8 @@ Download the CentOS/RedHat installation media:
   * SIMP_5.X: `CentOS-7-x86_64-DVD-1611.iso`_
   * SIMP_4.X: `DVD1 and DVD2`_ of the CentOS 6.8 release. For example, CentOS-6.8-x86_64-bin-DVD1.iso
 
-Generating The ISO Using Docker (recommended) ! 
------------------------------------------------
+Generating The ISO Using Docker (recommended)! 
+----------------------------------------------
 
 Clone simp-core:
 
