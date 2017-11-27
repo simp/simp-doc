@@ -36,7 +36,11 @@ As always, back up your system prior to upgrading!
 To perform the upgrade, with ``root`` permissions:
 
 #. Upgrade the ``simp-utils`` package, *only*, by executing ``yum update -y simp-utils``.
-#. Run the script.  It will:
+#. Run the script: ``/usr/share/simp/upgrade_scripts/upgrade_simp_6.0.0_to_6.1.0``
+
+.. NOTE::
+
+   This script will:
 
    #. Run a ``yum -y update``.
    #. Reinstall ``simp-gpgkeys`` and ``pupmod-simp-timezone`` due to RPM issues.

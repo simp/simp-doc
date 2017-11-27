@@ -21,8 +21,8 @@ Download the CentOS/RedHat installation media:
   * SIMP_5.X: `CentOS-7-x86_64-DVD-1611.iso`_
   * SIMP_4.X: `DVD1 and DVD2`_ of the CentOS 6.8 release. For example, CentOS-6.8-x86_64-bin-DVD1.iso
 
-Generating The ISO!
--------------------
+Generating The ISO Using Docker (recommended)! 
+----------------------------------------------
 
 Clone simp-core:
 
@@ -72,7 +72,7 @@ Build ENV vars:
 
     * The docs take a long time to build!
 
-  * ``RSYNC_NO_SELINUX_DEPS`` - (yes|no) - Force the earliest version of
+  * ``SIMP_ENV_NO_SELINUX_DEPS`` - (yes|no) - Force the earliest version of
     ``policycoreutils<-python>`` and ``selinux-policy<-devel>`` for the major
     EL release.
 

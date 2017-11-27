@@ -418,13 +418,13 @@ which are simply available in the repository.
   desc 'build PDF docs (SLOWEST)'
   task :pdf => [:lint] do
     extra_args = ''
-    cmd = "sphinx-build -T -E -n #{extra_args} -b pdf -d sphinx_cache docs pdf"
+    cmd = "sphinx-build -E -n #{extra_args} -b pdf -d sphinx_cache docs pdf"
     run_build_cmd(cmd)
   end
 
   desc 'Check for broken external links'
   task :linkcheck => [:lint] do
-    cmd = "sphinx-build -T -E -n -b linkcheck -d sphinx_cache docs linkcheck"
+    cmd = "sphinx-build -E -n -b linkcheck -d sphinx_cache docs linkcheck"
     run_build_cmd(cmd)
   end
 
