@@ -1,4 +1,5 @@
-[![License](http://img.shields.io/:license-apache-blue.svg)](http://www.apache.org/licenses/LICENSE-2.0.html) [![Build Status](https://travis-ci.org/simp/simp-doc.svg)](https://travis-ci.org/simp/simp-doc)
+[![License](http://img.shields.io/:license-apache-blue.svg)](http://www.apache.org/licenses/LICENSE-2.0.html)
+[![Build Status](https://travis-ci.org/simp/simp-doc.svg)](https://travis-ci.org/simp/simp-doc)
 
 * [SIMP Documentation](#simp-documentation)
 * [Usage](#usage)
@@ -13,11 +14,13 @@
 
 The repository for the SIMP documentation.
 
-It is a component of the [System Integrity Management Platform](https://github.com/NationalSecurityAgency/SIMP), a compliance-management framework built on Puppet.
+It is a component of the [System Integrity Management Platform](https://github.com/NationalSecurityAgency/SIMP), a
+compliance-management framework built on Puppet.
 
 If you find any issues, they can be submitted to our [JIRA](https://simp-project.atlassian.net/).
 
-Please read our [Contribution Guide](https://simp-project.atlassian.net/wiki/display/SD/Contributing+to+SIMP) and visit our [developer wiki](https://simp-project.atlassian.net/wiki/display/SD/SIMP+Development+Home).
+Please read our [Contribution Guide](https://simp-project.atlassian.net/wiki/display/SD/Contributing+to+SIMP)
+and visit our [developer wiki](https://simp-project.atlassian.net/wiki/display/SD/SIMP+Development+Home).
 
 ## Usage
 
@@ -38,10 +41,8 @@ rake docs:server[port]
 ```
 
 If you want to build the RPM on EL6 systems, you will need to ensure that the
-SCL and python versions are appropriately available.
-
-To do this, you will need to make sure that the following is in your
-/etc/mock/epel-6-x86_64.cfg file:
+SCL and python versions are appropriately available using the following
+repositories and check the RPM spec file for the relevant required packages.
 
 ```python
 [centos-sclo-sclo]
@@ -64,8 +65,6 @@ baseurl=http://mirror.centos.org/centos/$releasever/extras/$basearch/
 gpgcheck=1
 gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-CentOS-6
 ```
-In addition, you must make sure ```/etc/pki/rpm-gpg/RPM-GPG-KEY-CentOS-SIG-SCLo```
-has been installed.
 
 ### Maintaining the data
 ```
