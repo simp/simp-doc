@@ -17,35 +17,31 @@ TEMPLATE - SSG Scan - EL 7 STIG
 
 -------------------------------------------------------------------------------
 
-**Terminology:**
+**Format:**
 
-Finding
-  Valid issues found by the scanner
-
-Alternate Implementation
-  Valid implementations per policy that do not match the scan
-
-Exception
-  Items that will need to be declared as a policy exception for the stated reason
-
-False Positive
-  Bugs in the scanner that should be reported
+-  Rule ID: OvalID in xccdf notation corresponding to the failed test
+-  Type:
+  -  Finding: Valid issues found by the scanner
+  -  Alternate Implementation: Valid implementations per policy that do not
+     match the scan
+  -  Exception: Items that will need to be declared as a policy exception for
+     the stated reason
+  -  False Positive: Bugs in the scanner that should be reported
+-  Notes: Provide recommended feedback to SIMP, SSG, RedHat, etc. and any other
+   miscellany
+-  Remediation: Provide guidance for fixing or justifying failed test
 
 -------------------------------------------------------------------------------
 
-Ensure gpgcheck Enabled for Repository Metadata
------------------------------------------------
-
 * Rule ID: ``xccdf_org.ssgproject.content_rule_ensure_gpgcheck_repo_metadata``
 * Type: **Exception**
-* **Recommend SSG Feedback**
-
-  * This should not be a ``high`` severity if using TLS
-  * This opens potential vulnerabilities to all client systems
-  * Discussion ongoing on SSG mailing list and `OpenSCAP/scap-security-guide#2455`_
-
-Justification
-^^^^^^^^^^^^^
+* Notes:
+    - **Recommend SSG Feedback**
+      -  This should not be a ``high`` severity if using TLS
+      -  This opens potential vulnerabilities to all client systems
+      -  Discussion ongoing on SSG mailing list and
+         `OpenSCAP/scap-security-guide#2455`_
+* Remediation:
 
 The way that YUM works means that all GPG keys become **trusted** by the entire
 system. Enabling repository metadata signatures globally means that RPMs will
@@ -54,20 +50,14 @@ software to be installed on systems that does not come from the vendor.
 
 -------------------------------------------------------------------------------
 
-Configure Periodic Execution of AIDE
-------------------------------------
-
 * Rule ID: ``xccdf_org.ssgproject.content_rule_aide_periodic_cron_checking``
 * Type: **Alternate Implementation**
-
-Notes
-^^^^^
+* Remediation:
 
 We use the Puppet ``cron`` resource to add the AIDE rule to the ``root`` user's
 ``crontab``.
 
-System Result
-^^^^^^^^^^^^^
+System result:
 
 .. code-block:: bash
 
@@ -78,14 +68,11 @@ System Result
 
 -------------------------------------------------------------------------------
 
-Build and Test AIDE Database
-----------------------------
-
 * Rule ID: ``xccdf_org.ssgproject.content_rule_aide_build_database``
 * Type: **False Positive**
+* Remediation:
 
-System Result
-^^^^^^^^^^^^^
+System result:
 
 .. code-block:: bash
 
@@ -94,14 +81,9 @@ System Result
 
 -------------------------------------------------------------------------------
 
-Record Attempts to Alter Logon and Logout Events - faillock
------------------------------------------------------------
-
 * Rule ID: ``xccdf_org.ssgproject.content_rule_audit_rules_login_events_faillock``
 * Type: **Finding**
-
-Notes
-^^^^^
+* Remediation:
 
 Marked as a valid finding and tracked as `SIMP-4047`_
 

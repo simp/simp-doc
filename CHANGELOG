@@ -1,3 +1,13 @@
+* Fri Dec 29 2017 Nick Markowski <nicholas.markowski@onyxpoint.com>
+- Modified the openscap scan template to be easily parsable, while
+  maintaining readability
+- Added an SSG scan report for CentOS 7 + STIG
+  - Includes remedies and justifications to address failures in
+    the openscap scan
+  - There are a few TODO remediations which should be addressed
+  - Many of the notes include development items; if they are completed before
+    this is committed, be sure to update the report.
+
 * Tue Nov 14 2017 Trevor Vaughan <tvaughan@onyxpoint.com>
 - Added information on performing system scans as well as a SSG response
   template to the Security CONOP
