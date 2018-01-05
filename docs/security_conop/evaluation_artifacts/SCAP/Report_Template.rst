@@ -39,8 +39,7 @@ TEMPLATE - SSG Scan - EL 7 STIG
     - **Recommend SSG Feedback**
       -  This should not be a ``high`` severity if using TLS
       -  This opens potential vulnerabilities to all client systems
-      -  Discussion ongoing on SSG mailing list and
-         `OpenSCAP/scap-security-guide#2455`_
+      -  Discussion ongoing on SSG mailing list and `OpenSCAP/scap-security-guide#2455`_
 * Remediation:
 
 The way that YUM works means that all GPG keys become **trusted** by the entire

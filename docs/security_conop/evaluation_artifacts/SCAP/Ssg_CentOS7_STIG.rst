@@ -13,24 +13,27 @@ SSG Scan - CentOS 7 STIG
 -  Type: Finding
 -  Remediation:
 
-This is not yet managed by SIMP and was not a finding until the RHEL 7
-baseline. Given that the baseline is in Draft form, it has not been
-marked as a priority.
+   This is not yet managed by SIMP and was not a finding until the RHEL 7
+   baseline. Given that the baseline is in Draft form, it has not been
+   marked as a priority.
 
 --------------
 
 -  Rule ID: ``xccdf_org.ssgproject.content_rule_ensure_gpgcheck_repo_metadata``
 -  Type: Exception
 -  Notes:
+
   -  Recommend SSG Feedback
+
     -  This should not be a High finding if using TLS
     -  This opens potential vulnerabilities to the system
+
 -  Remediation:
 
-Unfortunately, the way that YUM works means that all GPG keys become
-*trusted* by the entire system. Enabling repository metadata signatures
-means that RPMs will be trusted that come from any of these GPG systems
-and may allow inappropriate software to be installed on systems.
+   Unfortunately, the way that YUM works means that all GPG keys become
+   *trusted* by the entire system. Enabling repository metadata signatures
+   means that RPMs will be trusted that come from any of these GPG systems
+   and may allow inappropriate software to be installed on systems.
 
 --------------
 
