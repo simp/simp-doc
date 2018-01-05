@@ -21,12 +21,14 @@ TEMPLATE - SSG Scan - EL 7 STIG
 
 -  Rule ID: OvalID in xccdf notation corresponding to the failed test
 -  Type:
+
   -  Finding: Valid issues found by the scanner
   -  Alternate Implementation: Valid implementations per policy that do not
      match the scan
   -  Exception: Items that will need to be declared as a policy exception for
      the stated reason
   -  False Positive: Bugs in the scanner that should be reported
+
 -  Notes: Provide recommended feedback to SIMP, SSG, RedHat, etc. and any other
    miscellany
 -  Remediation: Provide guidance for fixing or justifying failed test
