@@ -106,15 +106,12 @@ the resources in the tftpboot.pp manifest examples.
    to kickstart machines, you must also upgrade the images in the tftp directory.
    If they do not match you can get an error such as "unknown file system type 'xfs'"
 
-Next you need to set up the boot files for either legacy boot mode, UEFI mode or
-both.  Legacy boot can be handled by the tftpboot module but UEFI is a manual set up
-at this time.
+Next you need to set up the boot files for either legacy boot mode, UEFI mode,
+or both.  Legacy boot can be handled by the ``tftpboot`` module but UEFI must
+be manually set up at this time.
 
 Legacy Boot
 ^^^^^^^^^^^
-
-The tftpboot module can be used to configure your TFTP server to boot systems
-in Legacy Boot mode.
 
 Create a site manifest for the TFTP server on the Puppet server.
 
@@ -188,17 +185,19 @@ Create a site manifest for the TFTP server on the Puppet server.
    individual systems to them by adding assign_host lines with their MAC
    pointing to the appropriate model name.
 
-4. In the DHCP configuration file use linux-install/pxelinux.0 for the filename directive.
+4. In the DHCP configuration file use ``linux-install/pxelinux.0`` for the ``filename``.
 
 UEFI
 ^^^^
-To configure the TFTP to kickstart systems in UEFI mode do the following:
 
-1.  Install the grub2-efi-x64 and shim-x64 packages and copy the
-    shim*.efi and grub2*.efi installed under /boot/efi/EFI/<os name> directory to
-    a directory under the TFTP server. (ie linux-install).
+To configure the TFTP to kickstart systems in UEFI mode:
 
-2. In the same directory create a grub.cfg file with the needed options. An example would be:
+1.  Install the ``grub2-efi-x64`` and ``shim-x64`` packages and copy the
+    ``shim*.efi`` and ``grub2*.efi`` installed under
+    ``/boot/efi/EFI/<os name>`` directory to a directory under the TFTP server.
+    (i.e. ``linux-install``)
+
+2. In the same directory create a ``grub.cfg`` file with the needed options. For example:
 
 .. code-block:: sh
 
@@ -216,5 +215,3 @@ For more information see the `RedHat 6 PXE`_ or `RedHat 7 PXE`_ Installation Gui
 .. _RedHat 7 PXE: https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/7/html/installation_guide/chap-installation-server-setup#sect-network-boot-setup-uefi
 
 .. _RedHat 6 PXE: https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/6/html/installation_guide/s1-netboot-pxe-config-efi
-
-3.  In the DHCP configuration file use linux-install/shimx64.efi for the filename directive.
