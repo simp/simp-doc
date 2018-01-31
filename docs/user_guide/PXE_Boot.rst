@@ -177,7 +177,6 @@ Create a site manifest for the TFTP server on the Puppet server.
     - 'site::tftpboot'
 
 
-
 3. After updating the above file, type ``puppet agent -t --tags tftpboot`` on
    the Puppet server.
 
@@ -189,8 +188,7 @@ Create a site manifest for the TFTP server on the Puppet server.
    individual systems to them by adding assign_host lines with their MAC
    pointing to the appropriate model name.
 
-4. For this method the DHCP filename directive in the configuration file would be
-   filename = linux-install/pxelinux.0
+4. In the DHCP configuration file use linux-install/pxelinux.0 for the filename directive.
 
 UEFI
 ^^^^
@@ -219,4 +217,4 @@ For more information see the `RedHat 6 PXE`_ or `RedHat 7 PXE`_ Installation Gui
 
 .. _RedHat 6 PXE: https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/6/html/installation_guide/s1-netboot-pxe-config-efi
 
-3.  In the DHCP configuration file you will use linux-install/shimx64.efi for the filename directive.
+3.  In the DHCP configuration file use linux-install/shimx64.efi for the filename directive.
