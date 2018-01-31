@@ -97,16 +97,24 @@ Under OSTYPE-MAJORRELEASE.MINORRELEASE-ARCH you should find the files:
 
 If these are not there then you must create the directories as needed and copy
 the files from ``/var/www/yum/<OSTYPE>/<MAJORRELEASE>/<ARCH>/images/pxeboot``
-or from the images directory on the SIMP DVD.
+or from the images directory on the SIMP DVD.  The link name is what is used in
+the resources in the tftpboot.pp manifest examples.
 
+.. NOTE::
+   The images in the tftp directory need to match the distribution.  For example,
+   if you upgrade your repo from CentOS 7.3 to 7.4 and will be using this repo
+   to kickstart machines, you must also upgrade the images in the tftp directory.
+   If they do not match you can get an error such as "unknown file system type 'xfs'"
 
-.. IMPORTANT::
+Next you need to set up the boot files for either legacy boot mode, UEFI mode or
+both.  Legacy boot can be handled by the tftpboot module but UEFI is a manual set up
+at this time.
 
-   The link is what is used in the TFTP configuration files.
+Legacy Boot
+^^^^^^^^^^^
 
-
-Manifest
-^^^^^^^^
+The tftpboot module can be used to configure your TFTP server to boot systems
+in Legacy Boot mode.
 
 Create a site manifest for the TFTP server on the Puppet server.
 
@@ -168,6 +176,8 @@ Create a site manifest for the TFTP server on the Puppet server.
   classes:
     - 'site::tftpboot'
 
+
+
 3. After updating the above file, type ``puppet agent -t --tags tftpboot`` on
    the Puppet server.
 
@@ -178,3 +188,35 @@ Create a site manifest for the TFTP server on the Puppet server.
    and kickstart files created using the notes in previous sections. Point
    individual systems to them by adding assign_host lines with their MAC
    pointing to the appropriate model name.
+
+4. For this method the DHCP filename directive in the configuration file would be
+   filename = linux-install/pxelinux.0
+
+UEFI
+^^^^
+To configure the TFTP to kickstart systems in UEFI mode do the following:
+
+1.  Install the grub2-efi-x64 and shim-x64 packages and copy the
+    shim*.efi and grub2*.efi installed under /boot/efi/EFI/<os name> directory to
+    a directory under the TFTP server. (ie linux-install).
+
+2. In the same directory create a grub.cfg file with the needed options. An example would be:
+
+.. code-block:: sh
+
+  set timeout=1
+
+  search --no-floppy --set=root -l 'CentOS 7 x86_64'
+
+  menuentry 'Linux Install CentOS 7' {
+    linuxefi /linux-install/centos-7-x86_64/vmlinuz inst.gpt fips=1 inst.noverifyssl ks=https://1.2.3.4/ks/pupclient_x86_64.cfg
+    initrdefi /linux-install/centos-7-x86_64/initrd.img
+  }
+
+For more information see the `RedHat 6 PXE`_ or `RedHat 7 PXE`_ Installation Guides.
+
+.. _RedHat 7 PXE: https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/7/html/installation_guide/chap-installation-server-setup#sect-network-boot-setup-uefi
+
+.. _RedHat 6 PXE: https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/6/html/installation_guide/s1-netboot-pxe-config-efi
+
+3.  In the DHCP configuration file you will use linux-install/shimx64.efi for the filename directive.
