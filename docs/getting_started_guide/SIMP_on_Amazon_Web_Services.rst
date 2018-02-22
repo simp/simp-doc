@@ -15,25 +15,26 @@ Provision a New EC2-Instance
 
 To provision a new ec2-instance in the AWS cloud running the official SIMP AMI,
 follow these steps:
-   - Launch a new instance in the normal way, and navigate to the AWS 
-     Marketplace tab when prompted to choose a Machine Image. 
-   - Search the marketplace for the SIMP AMI, and locate the official published
-     SIMP AMI. You can also find the AMI by the following ID: ``ami-efbf8ef9``
-   - Your ec2-instance should be **at least** ``t2.medium``, with 2 cpus and 
-     4GB of memory. Less than 4GB of memory will significantly slow down the 
-     bootstrapping process, and might cause problems in the future. See the 
-     AWS documentation_ for details on instance sizes, and the Puppet 
-     `Installation Guide`_ for details on hardware requirements. 
-   - When selecting security group rules for your instance, ensure that you 
-     have the necessary ports open. At the very least, you need to ensure that
-     you can SSH into the instance after it is running (port 22), and that the 
-     PuppetServer service (port 8140) is accessible from any Puppet agents that
-     will connect to your SIMP Server. 
-   - Upon launching the instance you will be prompted to provide a key pair 
-     that will be used to allow access to the system. you **must** provide a 
-     key that you have access to, as the key you provide will be the only key 
-     that you can log in to the instance with. The key will be automatically 
-     assigned to the ``ec2-user``. 
+
+- Launch a new instance in the normal way, and navigate to the AWS 
+  Marketplace tab when prompted to choose a Machine Image. 
+- Search the marketplace for the SIMP AMI, and locate the official published
+  SIMP AMI. You can also find the AMI by the following ID: ``ami-efbf8ef9``
+- Your ec2-instance should be **at least** ``t2.medium``, with 2 cpus and 
+  4GB of memory. Less than 4GB of memory will significantly slow down the 
+  bootstrapping process, and might cause problems in the future. See the 
+  AWS documentation_ for details on instance sizes, and the Puppet 
+  `Installation Guide`_ for details on hardware requirements. 
+- When selecting security group rules for your instance, ensure that you 
+  have the necessary ports open. At the very least, you need to ensure that
+  you can SSH into the instance after it is running (port 22), and that the 
+  PuppetServer service (port 8140) is accessible from any Puppet agents that
+  will connect to your SIMP Server. 
+- Upon launching the instance you will be prompted to provide a key pair 
+  that will be used to allow access to the system. you **must** provide a 
+  key that you have access to, as the key you provide will be the only key 
+  that you can log in to the instance with. The key will be automatically 
+  assigned to the ``ec2-user``. 
 
 Sign in with the EC2-User
 -------------------------
@@ -46,15 +47,16 @@ Installing SIMP with a Partially Complete Answers File
 
 Follow these steps to populate an answers file, and use it to complete the SIMP
 installation:
-   - When you are ready to enable SIMP on the system, navigate to the 
-     ``/usr/share/simp`` directory and run the ``generate_answers.sh`` 
-     bash script. This script leverages cloud-init to populate an answers file 
-     with the network settings that AWS has defined for the system. 
-   - After reviewing the answers file that is in the same directory, run 
-     ``simp config -A simp_conf.yaml`` to begin the configuration process,
-     with a subset of the answers already provided. You will be prompted for
-     answers to keys that have not been filled. 
-   - Complete the installation with the ``simp bootstrap`` command. 
+
+- When you are ready to enable SIMP on the system, navigate to the 
+  ``/usr/share/simp`` directory and run the ``generate_answers.sh`` 
+  bash script. This script leverages cloud-init to populate an answers file 
+  with the network settings that AWS has defined for the system. 
+- After reviewing the answers file that is in the same directory, run 
+  ``simp config -A simp_conf.yaml`` to begin the configuration process,
+  with a subset of the answers already provided. You will be prompted for
+  answers to keys that have not been filled. 
+- Complete the installation with the ``simp bootstrap`` command. 
 
 Ensuring Users Have Access
 --------------------------

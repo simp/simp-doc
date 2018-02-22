@@ -62,7 +62,7 @@ Final Release
 .. _PackageCloud: https://packagecloud.io/simp-project/
 .. _Release Candidate for SIMP {VERSION}: https://simp.readthedocs.io/en/VERSION-rcNUM/dynamic/Changelog.html
 .. _SIMP {VERSION}: https://simp.readthedocs.io/en/VERSION-NUM/dynamic/Changelog.html
-.. _download an ISO: https://simp-project.com/ISO/SIMP/
+.. _download an ISO: https://download.simp-project.com/simp/ISO
 .. _feedback: https://simp.readthedocs.io/en/latest/help/Public_Resources.html
-.. _release repository: https://simp-project.com/yum/SIMP/6.X/
+.. _release repository: https://download.simp-project.com/simp/archive/yum/6.X/
 .. _{old version} to {new version} upgrade guide: https://simp.readthedocs.io/en/NEW_VERSION/user_guide/Upgrade_SIMP/Version_Specific_Upgrade_Instructions.html#upgrading-from-OLD_VERSION-to-NEW_VERSION
