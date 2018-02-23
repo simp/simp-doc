@@ -512,4 +512,4 @@ tested in a ``simp-core`` acceptance test, all verification is handled by
 .. _PackageCloud: https://packagecloud.io/simp-project
 .. _TravisCI: https://travis-ci.org
 .. _simp-packer: https://github.com/simp/simp-packer
-.. _simp-project: http://simp-project.com/ISO/SIMP
+.. _simp-project: http://download.simp-project.com/simp/ISO

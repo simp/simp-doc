@@ -89,7 +89,7 @@ Once the process completes, you should have a bootable SIMP ISO, in:
 ``build/distributions/<OS>/<rel>/<arch>/SIMP_ISO/``
 
 
-.. _SIMP artifacts repository: http://simp-project.com/ISO/SIMP/
-.. _latest 6.1.0-0 release (for CentOS 6): http://simp-project.com/ISO/SIMP/SIMP-6.1.0-0-Powered-By-CentOS-6.8-x86_64.iso
-.. _latest 6.1.0-0 release (for CentOS 7): http://simp-project.com/ISO/SIMP/SIMP-6.1.0-0-Powered-By-CentOS-7.0-x86_64.iso
-.. _latest checksums: http://simp-project.com/ISO/SIMP/SHA512SUM
+.. _SIMP artifacts repository: https://download.simp-project.com/simp/ISO
+.. _latest 6.1.0-0 release (for CentOS 6): https://download.simp-project.com/simp/ISO/SIMP-6.1.0-0-Powered-By-CentOS-6.9-x86_64.iso
+.. _latest 6.1.0-0 release (for CentOS 7): https://download.simp-project.com/simp/ISO/SIMP-6.1.0-0-Powered-By-CentOS-7.0-x86_64.iso
+.. _latest checksums: https://download.simp-project.com/simp/ISO/SHA512SUM

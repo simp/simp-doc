@@ -75,7 +75,7 @@ following :ref:`ug-howto-back-up-the-puppet-master`.
 Create a New Server
 """""""""""""""""""
 
-Obtain an `official SIMP ISO <https://simp-project.com/ISO/SIMP/>`_ or point your
+Obtain an `official SIMP ISO <https://download.simp-project.com/simp/ISO/>`_ or point your
 server at the latest `YUM Repositories <https://packagecloud.io/simp-project>`_
 and follow the :ref:`simp-installation-guide`.
 

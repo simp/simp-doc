@@ -71,11 +71,6 @@ clients. One or all of the following can help automate flaw remediation
      will ensure packages on all clients are updated.  Otherwise, a cron job
      will perform a daily update of packages with YUM.
 
-*  **MCollective:**
-
-   * Allow users to execute **specific** commands across large numbers of nodes
-     in an auditable, distributed, and scalable, fashion.
-
 The extent of security verification that is performed currently is based on
 changes to files that Puppet or the Advanced Intrusion Detection Environment
 (AIDE) provides. There are also Security Content Automation Protocol (SCAP)
@@ -140,9 +135,6 @@ help provide security functionality such as dynamic reconfigurations and
 wide-scale consistent mitigation application. If an implementation chooses,
 they can leverage Puppet's ability to reconfigure systems as part of incident
 response.
-
-SIMP also delivers an MCollective infrastructure which can be used to rapidly
-query for system state or apply hotfixes in a scalable manner.
 [:ref:`IR-1`]
 
 Contingency Planning

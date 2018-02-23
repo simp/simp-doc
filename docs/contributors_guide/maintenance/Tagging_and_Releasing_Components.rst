@@ -49,7 +49,7 @@ component RPMs and dependencies into an ISO.
 .. _GitHub: https://github.com
 .. _PuppetForge: https://forge.puppet.com
 .. _RubyGems.org: https://rubygems.org/
-.. _SIMP Archive: https://simp-project.com/yum/SIMP
+.. _SIMP Archive: https://download.simp-project.com/simp/archive/yum
 .. _SIMP GitHub: https://github.com/simp
 .. _packagecloud: https://packagecloud.io/simp-project
-.. _simp-project.com: http://simp-project.com/ISO/SIMP
+.. _simp-project.com: https://download.simp-project.com/simp/ISO

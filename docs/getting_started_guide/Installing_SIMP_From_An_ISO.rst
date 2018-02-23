@@ -31,4 +31,4 @@ modify the installation according to those instructions or simply hit
 
 Afterwards, you should proceed with the :ref:`simp-installation-guide`.
 
-.. _official SIMP ISO Share: https://simp-project.com/ISO/SIMP
+.. _official SIMP ISO Share: https://download.simp-project.com/simp/ISO

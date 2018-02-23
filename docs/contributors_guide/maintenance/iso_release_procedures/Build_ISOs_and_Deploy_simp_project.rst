@@ -24,4 +24,4 @@ Publishing to simp-project.com
 ------------------------------
 
 The final ISO should be provided to personnel with upload access to the
-``ISO/SIMP`` directory of ``https://simp-project.com`` for final delivery.
+``simp/ISO`` directory of ``https://download.simp-project.com`` for final delivery.
