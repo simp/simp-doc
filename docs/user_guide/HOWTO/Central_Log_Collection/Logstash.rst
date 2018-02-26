@@ -367,6 +367,10 @@ to your Kibana node.
    On your puppet master, you can install the toml gem by executing
    ``puppetserver gem install toml``.
 
+   Alternatively, if internet access is not available, the gem can be installed
+   with the ``rubygem-puppetserver-toml`` RPM, available on SIMP ISOs starting
+   with version 6.2. ``yum install rubygem-puppetserver-toml``
+
    If you do not install this via Kickstart, you will need two runs of Puppet
    to complete the Grafana installation since the TOML Ruby Gem will not be
    able to be installed prior to Puppet loading.
