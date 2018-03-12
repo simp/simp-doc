@@ -14,3 +14,4 @@ This chapter addresses some of the frequently asked questions (FAQ) about SIMP.
   FAQ/Rsync
   FAQ/Selinux
   FAQ/Puppet
+  FAQ/Ssh

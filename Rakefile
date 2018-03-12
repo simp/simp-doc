@@ -243,8 +243,9 @@ def run_build_cmd(cmd)
   stderr.gsub!(/WARNING: The config value \S+ has type \S+, defaults to \S+\./,'')
   stderr.strip!
 
-  unless stderr.empty?
-    $stderr.puts(stderr)
+  unless status.success?
+#require 'pry'; binding.pry
+    $stderr.puts( "== ERROR: `#{cmd}` returned '#{status.exitstatus}'",'STDERR:', '-'*80 , stderr, '-'*80 )
     exit(1)
   end
 
