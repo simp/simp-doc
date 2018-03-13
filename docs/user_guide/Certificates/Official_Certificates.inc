@@ -47,8 +47,9 @@ Generating Certificates from the Fake CA
 ----------------------------------------
 
 The Fake (self signing) Certificate Authority (Fake CA) is provided by SIMP
-as a way to obtain server certificates if officail certificates could not be
-obtained at the time of client installation or in testing environments.
+as a way to obtain server certificates if official certificates could not be
+obtained at the time of client installation or the servers are operating in
+testing environments.
 
 .. NOTE::
 
