@@ -121,9 +121,15 @@ from declaring them automatically with ``ssh::client::add_default_entry: false``
 and declare ``Host *`` manually with the defined type
 ``ssh::client::host_config_entry``:
 
-.. code-block:: puppet
+In Hiera:
 
-   class{ 'ssh::client': add_default_entry => false }
+.. code-block:: yaml
+
+   ssh::client::add_default_entry: false
+
+In Puppet:
+
+.. code-block:: puppet
 
    ssh::client::host_config_entry{ '*':
      gssapiauthentication      => true,
