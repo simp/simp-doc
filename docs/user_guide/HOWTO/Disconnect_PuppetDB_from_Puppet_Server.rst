@@ -1,4 +1,4 @@
-.. _ht-disable-puppetdb:
+.. _ht-disconnect-puppetdb:
 
 How to Disconnect PuppetDB from the Puppet Server
 =================================================
