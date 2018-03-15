@@ -64,7 +64,7 @@ use the ``sshd_config`` resource from `augeasproviders_ssh`_.  This is what the
 SIMP ``ssh`` module uses internally to manage the ``/etc/ssh/sshd_config``
 file, and you can use it to set any options ``ssh::server::conf`` doesn't manage.
 
-For instance, to set the sshd `LogLevel`_ option to ``VERBOSE``:
+For instance, to set the sshd ``LogLevel`` option to ``VERBOSE``:
 
 .. code-block:: puppet
 
