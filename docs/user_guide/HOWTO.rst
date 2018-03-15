@@ -28,7 +28,7 @@ with more commonly sought items towards the top.
   Manage Workstation Infrastructures <HOWTO/Managing_Workstation_Infrastructures>
   Backup the Puppet Master <HOWTO/Puppetmaster_Backup>
   Configure a Puppet Server Behind a NAT <HOWTO/Puppet_Server_NAT>
-  Temporarily Disable PuppetDB <HOWTO/Temporarily_Disable_PuppetDB>
+  Disconnect PuppetDB from the Puppet Server <HOWTO/Disconnect_PuppetDB_from_Puppet_Server>
   Enable Redundent LDAP <HOWTO/Redundant_LDAP>
   Enable SFTP Restricted Accounts <HOWTO/SFTP_Restricted_Accounts>
   Setup SSH Authorized Keys <HOWTO/SSH_Keys>
