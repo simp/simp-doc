@@ -39,22 +39,38 @@ Follow the :ref:`preparing_for_non_rpm_install` guide.
 Installation of r10k
 ^^^^^^^^^^^^^^^^^^^^
 
-On the system intended to be the Puppet server, run the following command to
-install the ``r10k`` ruby gem into the vendor ruby that comes with the
-```puppet-agent`` AIO package:
+r10k is a Ruby gem that only needs to be installed on hosts running
+``puppetserver``.  This gem can be installed in one of two ways:
+
+* Gem install into the ``puppetserver`` gem set.
+
+  .. code-block:: bash
+
+     $ /opt/puppetlabs/puppet/bin/gem install r10k
+
+* RPM package install of SIMP-provided r10k RPMs into ``/usr/share/simp``
+  without modifying the ``puppetserver`` gem set.  These RPMs are available
+  from the `official SIMP YUM repositories`_, and, beginning with SIMP 6.2.0
+  the SIMP ISO.
+
+  .. code-block:: bash
+
+     $ yum install simp-vendored-r10k
+
+
+``r10k`` can be used by calling the executable
 
 .. code-block:: bash
 
-   $ /opt/puppetlabs/puppet/bin/gem install r10k
-
-``r10k`` can be used by calling the absolute path of the executable (unless
-added to ``$PATH``):
-
-.. code-block:: bash
-
+   # If installed from Puppet gem
    $ /opt/puppetlabs/puppet/bin/r10k help
 
+or
 
+.. code-block:: bash
+
+   # If installed from simp-vendored-r10k
+   $ /usr/share/simp/bin/r10k help
 
 .. _Setting Up Your Control Repo:
 
@@ -148,6 +164,7 @@ assumes this. You will have to set ``simp::yum::os_update_url`` to a CentOS
 Updates URL.
 
 
+.. _official SIMP YUM repositories: https://packagecloud.io/simp-project
 .. _AWS: https://aws.amazon.com/
 .. _documentation of a control repo online: https://docs.puppet.com/pe/latest/cmgmt_control_repo.html
 .. _Kickstart: http://pykickstart.readthedocs.io/en/latest

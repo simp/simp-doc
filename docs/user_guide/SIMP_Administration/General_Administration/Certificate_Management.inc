@@ -4,71 +4,41 @@ Certificate Management
 ----------------------
 
 This section describes the two different types of certificates used in a SIMP
-system and how to manage them. For information on initial certificate setup,
-refer to the :ref:`Certificates` section of :ref:`Client_Management`.
-
-
-Infrastructure Certificates
-^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-Server certificates are the standard :term:`PKI` certificates assigned either
-by an official :term:`CA` (preferred) or generated using the FakeCA utility
-offered by SIMP. Generated certificates are placed in the ``/etc/pki/simp``
-directory of all managed systems.  These certificates are set to expire
-annually. To change this, edit the following files with the number of days for
-the desired lifespan of the certificates:
-
-.. NOTE::
-
-    This assumes that the user has generated Certificates with the FakeCA
-    provided by SIMP. If official certificates are being used, these settings
-    **must be changed within the official CA, not on the SIMP system**.
-
--  ``/var/simp/environments/simp/FakeCA/CA``
-
--  ``/var/simp/environments/simp/FakeCA/ca.cnf``
-
--  ``/var/simp/environments/simp/FakeCA/default\_altnames.cnf``
-
--  ``/var/simp/environments/simp/FakeCA/default.cnf``
-
--  ``/var/simp/environments/simp/FakeCA/user.cnf``
-
-In addition, any certificates that have already been created and signed will
-have a config file containing all of its details in
-``/var/simp/environments/simp/FakeCA/output/conf/``.
-
-.. IMPORTANT::
-
-    Editing any entries in the above mentioned config files will **not** affect
-    existing certificates. Existing certificates must be regenerated if you need
-    to make changes.
-
-The following is an example of how to change the expiration time from one year
-(the default) to five years for any newly created certificate.
-
-.. code-block:: bash
-
-   for file in $(grep -rl 365 /var/simp/environments/simp/FakeCA/)
-   do
-      sed -i 's/365/1825/' $file
-   done
+and provides links to further information.
 
 
 Puppet Certificates
 ^^^^^^^^^^^^^^^^^^^
 
-Puppet certificates are issued and maintained strictly within Puppet.  They are
-different from the server certificates and should be managed with the
-``puppet cert`` utility.
+Puppet certificates are issued and maintained strictly within Puppet.  Communication
+between the master and agents is granted and secured with HTTPS, which
+requires valid identifying SSL certificates. The Puppet master acts as the certificate
+authority for managing these certificates.
 
-For documentation on the ``puppet cert`` tool, visit the `Puppet Inc. cert manual`_.
-
-You can find the location for the Puppet certificates on your system by running
-``puppet config print ssldir``.
+The client will automatically send a certificate request to the server if it can not find
+a valid certificate. The puppetserver will automatically sign a certificate request if the
+the client's name is in the  ``autosign.conf`` file, otherwise an administrator must sign
+the request using the ``puppet cert`` tool.
 
 .. NOTE::
 
    By default, Puppet certificates expire every five (5) years.
 
-.. _Puppet Inc. cert manual: https://docs.puppet.com/puppet/latest/man/cert.html
+Infrastructure Certificates
+^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Infrastructure certificates, commonly refered to as server certificates,
+are the standard :term:`PKI` certificates assigned by an official :term:`CA`.
+These are used by all other applications that require certificates.
+
+SIMP offers capabilities to help manage these certificates including a FakeCA
+utility that will provide self-signed certificates for use  on testing systems
+or until official certificates can be obtained.
+
+The modules in SIMP have been designed so that infrastructure certificates
+can be managed from a central location and SIMP will distribute them to the applications
+that need them.
+
+For more information on how to manage infrastructure certificates and how to use the
+FakeCA utility refer to the :ref:`Certificates` section of :ref:`Client_Management`.
+

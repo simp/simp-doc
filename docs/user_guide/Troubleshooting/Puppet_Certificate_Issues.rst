@@ -1,3 +1,5 @@
+.. _ug-puppet-certificate-issues:
+
 Puppet Certificate Issues
 =========================
 

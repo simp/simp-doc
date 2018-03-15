@@ -140,7 +140,7 @@ Run ``puppet agent -t`` on the Puppet Master to apply the changes.
 
 
 Setting Up the Client
----------------------
+=====================
 
 The following lists the steps to :term:`PXE` boot the system and set up the
 client.
