@@ -244,7 +244,6 @@ def run_build_cmd(cmd)
   stderr.strip!
 
   unless status.success?
-#require 'pry'; binding.pry
     $stderr.puts( "== ERROR: `#{cmd}` returned '#{status.exitstatus}'",'STDERR:', '-'*80 , stderr, '-'*80 )
     exit(1)
   end

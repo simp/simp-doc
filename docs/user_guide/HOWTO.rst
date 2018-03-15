@@ -13,6 +13,8 @@ with more commonly sought items towards the top.
   :maxdepth: 1
 
   Set Up a SIMP Control Repository <HOWTO/Control_Repo>
+  Customize settings for SSH <HOWTO/Configure_Ssh>
+  Setup SSH Authorized Keys <HOWTO/SSH_Keys>
   Disable SSH <HOWTO/Disable_Ssh>
   Modify the Nightly Package Update Schedule <HOWTO/Control_Nightly_Update_Schedule>
   Modify The Puppet Cron Schedule <HOWTO/Modify_Puppet_Cron>
@@ -31,7 +33,6 @@ with more commonly sought items towards the top.
   Disconnect PuppetDB from the Puppet Server <HOWTO/Disconnect_PuppetDB_from_Puppet_Server>
   Enable Redundent LDAP <HOWTO/Redundant_LDAP>
   Enable SFTP Restricted Accounts <HOWTO/SFTP_Restricted_Accounts>
-  Setup SSH Authorized Keys <HOWTO/SSH_Keys>
   Restrict SSH Network Access <HOWTO/SSH_Restrict_Network_Access.rst>
   Upgrade SIMP <HOWTO/Upgrade_SIMP>
   Manage TPM <HOWTO/Manage_TPM>
