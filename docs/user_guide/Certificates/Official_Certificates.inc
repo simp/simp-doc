@@ -6,35 +6,53 @@ official certificate authority on the puppetserver for distribution to client
 servers.  You need to have simp_options::pki set to ``simp`` on the client for
 this to work.
 
-The key distribution directory on the puppetserver is located under the site_files directory.
-The site_files directory is an alternate module path set in each environment's environment.conf file.
-By default the site_files directory is ``/var/simp/environments/simp/site_files/``
-and the key distribution directory is ``pki_files/files/keydist``.  The system expects each client
-to have a directory that is its FQDN and the certs should be named with the FQDN.
+The key distribution directory on the puppetserver is the ``pki_files/files/keydist``
+sub-directory located under the SIMP-specific, alternate module path,
+``/var/simp/environments/<environment>/site_files``. Within the ``keydist``
+directory, the SIMP system expects there to be
 
-To install official certificates on the puppetserver do the following:
+  * A directory named ``cacerts`` that contains the :term:`CA` public certificates.
+  * Client-specific directories, each of which contains the public and private
+    certificates for an individual client.  The name of each client directory must
+    be the ``certname`` of that client, which by default is the client's FQDN.
+
+Here is an example key distribution directory for a ``simp`` environment:
+
+.. code-block:: shell
+
+   /var/simp/environments/simp/site_files/pki_files/files/keydist/cacerts/
+   /var/simp/environments/simp/site_files/pki_files/files/keydist/cacerts/cacert_a7a23f33.pem
+   /var/simp/environments/simp/site_files/pki_files/files/keydist/cacerts/cca9a35.0
+   /var/simp/environments/simp/site_files/pki_files/files/keydist/mycomputer.my.domain/
+   /var/simp/environments/simp/site_files/pki_files/files/keydist/mycomputer.my.domain/mycomputer.my.domain.pem
+   /var/simp/environments/simp/site_files/pki_files/files/keydist/mycomputer.my.domain/mycomputer.my.domain.pub
+   /var/simp/environments/simp/site_files/pki_files/files/keydist/yourcomputer.your.domain/
+   /var/simp/environments/simp/site_files/pki_files/files/keydist/yourcomputer.your.domain/yourcomputer.your.domain.pem
+   /var/simp/environments/simp/site_files/pki_files/files/keydist/yourcomputer.your.domain/yourcomputer.your.domain.pub
+
+To install official certificates on the puppetserver, do the following:
 
 1. Copy the certificates received from a proper :term:`CA` to the SIMP server.
-2. Add the certificates for the node to key disttibution directory in the site_files.
+2. Add the certificates for the node to the key distribution directory in ``site_files``.
 
-   a) Make the directory  under the key distribution directory for the clients certificates using the clients FQDN.
-   b) Copy the official certificate to that directory using the FQDN and the correct extension.
-   c) Make sure the permissions are correct.
+   a) Make the directory under the key distribution directory for the clients certificates using
+      the client's ``certname``.
+   b) Copy the official public and private certificates to that directory.
 
-   For example to install certificates for a system named mycomputer.my.domain:
+   For example to install certificates for a system named ``mycomputer.my.domain`` into the ``simp`` environment:
 
    .. code-block:: shell
 
-     mkdir -p /var/simp/environments/simp/site_files/pki_files/files/keydist/mycomuter.my.domain
-     mv /dir/where/the/certs/were/myprivatecert.pem /var/simp/environments/simp/site_files/pki_files/files/keydist/mycomupter.my.domain.pem
-     mv /dir/where/the/certs/were/mypubliccert.pub /var/simp/environments/simp/site_files/pki_files/files/keydist/mycomupter.my.domain.pub
-     chown -R root.puppet /var/simp/environments/simp/site_files/pki_files/files/keydist
-     chmod -R u=rwX,g=rX,o-rwx /var/simp/environments/simp/site_files/pki_files/files/keydist
+     mkdir -p /var/simp/environments/simp/site_files/pki_files/files/keydist/mycomputer.my.domain
+     mv /dir/where/the/certs/were/myprivatecert.pem \
+        /var/simp/environments/simp/site_files/pki_files/files/keydist/mycomputer.my.domain/mycomputer.my.domain.pem
+     mv /dir/where/the/certs/were/mypubliccert.pub \
+        /var/simp/environments/simp/site_files/pki_files/files/keydist/mycomputer.my.domain/mycomputer.my.domain.pub
 
-3. Create and populate the certificate authority certs directory.
+3. Create and populate the :term:`CA` certificates directory.
 
-   a) Make the CA directory.
-   b) Copy the root CA public certificates into cacerts in Privacy Enhanced Mail (PEM) format (one per file).
+   a) Make the CA directory, ``cacerts``.
+   b) Copy the root CA public certificates into ``cacerts`` in Privacy Enhanced Mail (PEM) format, one per file.
 
    .. code-block:: shell
 
@@ -43,8 +61,26 @@ To install official certificates on the puppetserver do the following:
      cd cacerts
      for file in *.pem; do ln -s $file `openssl x509 -in $file -hash -noout`.0; done
 
-Generating Certificates from the Fake CA
-----------------------------------------
+4.  Make sure the permissions are correct
+
+   .. code-block:: shell
+
+     chown -R root.puppet /var/simp/environments/simp/site_files/pki_files/files/keydist
+     chmod -R u=rwX,g=rX,o-rwx /var/simp/environments/simp/site_files/pki_files/files/keydist
+
+.. NOTE::
+
+   The SIMP-specific alternate modules path is configured in each environment's
+   ``environment.conf`` file.  For example, for the ``simp`` environment,
+   ``/etc/puppetlabs/code/environments/simp/environment.conf``, would contain:
+
+   .. code-block:: shell
+
+      modulepath = modules:/var/simp/environments/simp/site_files:$basemodulepath
+
+
+Generating Infrastructure Certificates from the Fake CA
+-------------------------------------------------------
 
 The Fake (self signing) Certificate Authority (Fake CA) is provided by SIMP
 as a way to obtain server certificates if official certificates could not be

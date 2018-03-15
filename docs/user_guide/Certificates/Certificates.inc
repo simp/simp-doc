@@ -24,12 +24,16 @@ applications need to hande certificates differently.
    the ``/etc/pki/simp/x509`` directory on the client. Any applications using them will
    then make a copy in ``/etc/pki/simp_apps/<app name>/x509`` with the correct permissions
    for an application to use.
-2. ``true`` -  Applicatons on the clients will copy the keypairs from a local directory
+2. ``true`` -  Applications on the clients will copy the keypairs from a local directory
    on the client to ``/etc/pki/simp_apps/<app name>/x509``. The default local directory to
    copy from is ``/etc/pki/simp/x509`` but this can be overidden by setting the ``simp_options::pki::source``
    variable.
 3. ``false`` -  The user will have to manage keypairs themselves. You will need to look at
-   each module that uses pki on a client to determine what variables need to be set.
-   NOTE: This does not disable the use of pki in a module.
+   each module that uses PKI on a client to determine what variables need to be set.
 
-The following sections describe how to use manage certificate when using the ``simp`` option.
+   .. NOTE::
+
+     A setting of ``false`` does **not** disable the use of PKI in a module.
+
+The following sections describe how to populate the cental key distribution directory
+that ``pupmod-simp-pki`` uses, when ``simp_options::pki`` is set to ``simp``.
