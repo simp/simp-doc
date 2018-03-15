@@ -13,9 +13,9 @@ like this:
 .. code-block:: yaml
 
    ---
-     classes:
-       - 'site::example_class'
-   ---
+   classes:
+     - 'site::example_class'
+
 
 A similar array could be created in any other layer in the hierarchy, and it
 will be merged with the 'unique' strategy by the ``lookup`` function noted
