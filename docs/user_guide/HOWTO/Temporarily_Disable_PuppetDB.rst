@@ -1,32 +1,34 @@
 .. _ht-disable-puppetdb:
 
-How to temporarily disable Puppetdb
-===================================
+How to Disconnect PuppetDB from the Puppet Server
+=================================================
 
-`Puppetdb`_ is a storage service for Puppet-produced data. It is not required to run
-puppetserver.  This section covers how to disconnect puppetdb from the puppetserver
-temporarily for troubleshooting.
+This section covers how to disconnect :term:`PuppetDB` from the
+:term:`Puppet Server` for troubleshooting or to allow SIMP to repair the
+configuration.
 
-.. _Puppetdb: https://puppet.com/blog/introducing-puppetdb-put-your-data-to-work
-
-Run the following script on the puppetserver to stop puppetdb and restart puppetserver without it.
+Run the following script on the :term:`Puppet Master` to stop ``puppetdb`` and
+restart the ``puppetserver`` process without the connection.
 
 .. code-block:: shell
 
   puppet resource service puppetdb ensure=stopped
-  pkill -9 -f puppetdb
+
   # The following line assumes the puppet server configuration directory is
   # /etc/puppetlabs/puppet (the default).
   mv /etc/puppetlabs/puppet/routes.yaml /etc/puppetlabs/puppet/routes.yaml.backup
+
   puppet config set --section master storeconfigs false
   puppet config set --section main storeconfigs false
-  # use service puppetserver restart on Centos/RedHat 6
-  systemctl restart puppetserver
 
+  puppet resource service puppetserver ensure=stopped
+  puppet resource service puppetserver ensure=running
 
 .. Note::
 
-  When puppet is run on the puppetserver again it will reconfigure it to use
-  puppetdb and restart the puppetdb service. Run ``puppet agent --disable`` to stop puppet
-  from updating your system while you are debugging.
+  When ``puppet`` is run on the Puppet Master again, it will reconfigure the
+  ``puppetserver`` and ``PuppetDB`` to reconnect and restart the appropriate
+  services.  If you are debugging an issue, you may want to run ``puppet agent
+  --disable`` to prevent Puppet from resetting the system while you are
+  debugging.
 
