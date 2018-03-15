@@ -39,35 +39,38 @@ Follow the :ref:`preparing_for_non_rpm_install` guide.
 Installation of r10k
 ^^^^^^^^^^^^^^^^^^^^
 
-The r10k gem only needs to be installed on hosts running puppetserver.
+r10k is a Ruby gem that only needs to be installed on hosts running
+``puppetserver``.  This gem can be installed in one of two ways:
 
-SIMP has a package for r10k available from the ISO and in the
-`official SIMP YUM repositories`_. It can be installed via rpm by running:
+* Gem install into the ``puppetserver`` gem set.
 
-.. code-block:: bash
+  .. code-block:: bash
 
-   $ yum install simp-vendored-r10k
+     $ /opt/puppetlabs/puppet/bin/gem install r10k
+
+* RPM package install of SIMP-provided r10k RPMs into ``/usr/share/simp``
+  without modifying the ``puppetserver`` gem set.  These RPMs are available
+  from the `official SIMP YUM repositories`_, and, beginning with SIMP 6.2.0
+  the SIMP ISO.
+
+  .. code-block:: bash
+
+     $ yum install simp-vendored-r10k
 
 
-The gem can also be installed directly into the Puppet agent's vendored ruby.
-Run the following command to install the gem into Puppet's ruby:
-
-.. code-block:: bash
-
-   $ /opt/puppetlabs/puppet/bin/gem install r10k
-
-
-``r10k`` can be used by calling the absolute path of the executable (unless
-added to ``$PATH``):
+``r10k`` can be used by calling the executable
 
 .. code-block:: bash
 
    # If installed from Puppet gem
    $ /opt/puppetlabs/puppet/bin/r10k help
+
+or
+
+.. code-block:: bash
+
    # If installed from simp-vendored-r10k
    $ /usr/share/simp/bin/r10k help
-
-
 
 .. _Setting Up Your Control Repo:
 
