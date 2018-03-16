@@ -243,8 +243,8 @@ def run_build_cmd(cmd)
   stderr.gsub!(/WARNING: The config value \S+ has type \S+, defaults to \S+\./,'')
   stderr.strip!
 
-  unless stderr.empty?
-    $stderr.puts(stderr)
+  unless status.success?
+    $stderr.puts( "== ERROR: `#{cmd}` returned '#{status.exitstatus}'",'STDERR:', '-'*80 , stderr, '-'*80 )
     exit(1)
   end
 
@@ -391,24 +391,22 @@ which are simply available in the repository.
 
   desc 'build HTML docs'
   task :html => [:lint] do
-    extra_args = ''
-    ### TODO: decide how we want this task to work
-    ### version = File.open('build/simp-doc.spec','r').readlines.select{|x| x =~ /^%define simp_major_version/}.first.chomp.split(' ').last
-    ### extra_args = "-t simp_#{version}" if version
+    extra_args = ENV.fetch('SIMP_DOC_extra_sphinx_args', '')
     cmd = "sphinx-build -E -n #{extra_args} -b html -d sphinx_cache docs html"
     run_build_cmd(cmd)
   end
 
   desc 'build HTML docs (single page)'
   task :singlehtml => [:lint] do
-    extra_args = ''
+    extra_args = ENV.fetch('SIMP_DOC_extra_sphinx_args', '')
     cmd = "sphinx-build -E -n #{extra_args} -b singlehtml -d sphinx_cache docs html-single"
     run_build_cmd(cmd)
   end
 
   desc 'build Sphinx PDF docs using the RTD resources (SLOWEST) TODO: BROKEN'
   task :sphinxpdf => [:lint] do
-    [ "sphinx-build -E -n -b latex -D language=en -d sphinx_cache docs latex",
+    extra_args = ENV.fetch('SIMP_DOC_extra_sphinx_args', '')
+    [ "sphinx-build -E -n #{extra_args} -b latex -D language=en -d sphinx_cache docs latex",
       "pdflatex -interaction=nonstopmode -halt-on-error ./latex/*.tex"
     ].each do |cmd|
       run_build_cmd(cmd)
@@ -417,14 +415,15 @@ which are simply available in the repository.
 
   desc 'build PDF docs (SLOWEST)'
   task :pdf => [:lint] do
-    extra_args = ''
+    extra_args = ENV.fetch('SIMP_DOC_extra_sphinx_args', '')
     cmd = "sphinx-build -E -n #{extra_args} -b pdf -d sphinx_cache docs pdf"
     run_build_cmd(cmd)
   end
 
   desc 'Check for broken external links'
   task :linkcheck => [:lint] do
-    cmd = "sphinx-build -E -n -b linkcheck -d sphinx_cache docs linkcheck"
+    extra_args = ENV.fetch('SIMP_DOC_extra_linkcheck_args', '')
+    cmd = "sphinx-build -E -n #{extra_args} -b linkcheck -d sphinx_cache docs linkcheck"
     run_build_cmd(cmd)
   end
 
