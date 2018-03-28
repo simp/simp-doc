@@ -132,4 +132,4 @@ Start the docker daemon:
 .. _Bundler: http://bundler.io/
 .. _RVM Installation Page: https://rvm.io/rvm/install
 .. _RVM: https://rvm.io/
-.. _Rubygems.org: http://guides.rubygems.org/what-is-a-gem/
+.. _Rubygems.org: http://guides.rubygems.org/what-is-a-gem

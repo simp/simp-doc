@@ -87,7 +87,7 @@ can use an existing DNS infrastructure.
    the changes.
 #. Validate DNS and ensure the ``/etc/resolv.conf`` is updated appropriately.
 #. If an error about the ``rndc.key`` appears when starting ``named``, see the
-   `Bind Documentation <https://www.isc.org/downloads/bind/>`_.  Once you have
+   `Bind Documentation <https://www.isc.org/downloads/bind/>`__.  Once you have
    resolved the issue, re-run the puppet command ``puppet agent -t`` on the
    Puppet Master to apply.
 

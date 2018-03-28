@@ -188,6 +188,9 @@ if os.environ.get('SIMP_DOCS_TODO', 'false') == 'true':
 # Need this to be > 1 for Travis
 linkcheck_retries = 3
 
+# Some sites are slow
+linkcheck_timeout = 5
+
 # This causes issues with our documentation
 linkcheck_anchors = False
 
