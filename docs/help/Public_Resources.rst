@@ -10,15 +10,10 @@ resources.
 Live Chat
 ---------
 
-* `SIMP Project HipChat`_
+* `SIMP Project Chat`_
 
-  * No account is required for this room. However, if you are going to
-    participate regularly, please consider signing up for a HipChat account as
-    it will allow you to receive offline messages.
-
-  * If you choose to sign up, we recommend using a modifier to your email
-    address such as `yourname+simp@gmail.com` since HipChat binds your account
-    to the group that you join.
+  * The SIMP Project wants to ensure that active communication is available to
+    all SIMP users. Please join us to discuss SIMP use and development.
 
 Mailing Lists
 -------------
@@ -59,7 +54,7 @@ whatever manner is easiest for you.
 .. _JIRA Bug Tracking: https://simp-project.atlassian.net/
 .. _SIMP Announcement List: https://groups.google.com/forum/?fromgroups#!forum/simp-announce
 .. _SIMP Developers List: https://groups.google.com/forum/?fromgroups#!forum/simp-dev
-.. _SIMP Project HipChat: https://www.hipchat.com/ghofvUiYP
+.. _SIMP Project Chat: https://chat.simp-project.com
 .. _SIMP Q&A Board: https://groups.google.com/forum/?fromgroups#!forum/simp
 .. _SIMP Security List: mailto://security@simp-project.com
 .. _SIMP Users Mailing List: https://groups.google.com/forum/?fromgroups#!forum/simp-users
