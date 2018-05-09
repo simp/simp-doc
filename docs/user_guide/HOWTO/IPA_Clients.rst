@@ -4,13 +4,16 @@ HOWTO Enroll Hosts into an IPA Domain
 =====================================
 
 Host should be able to join an IPA domain with a few catches. SIMP already uses
-the login stack that IPA uses, but it also actively manages the same resources
-that IPA provides automation for, like:
+the login stack that IPA uses (PAM, SSSD), but it also optionally manages the
+same resources that IPA provides automation for, like:
 
-#. autofs
-#. sudoers
-#. SELinux
-#. krb5
+=========== =============================== ===============
+Technology  Related SIMP features           Related tickets
+=========== =============================== ===============
+``sudoers`` simp-simp and simp-sudo modules `SIMP-4898`_
+``autofs``  optional simp-simp_nfs module   `SIMP-4168`_
+``krb5``    optional simp-krb5 module       `SIMP-4167`_
+=========== =============================== ===============
 
 These features may work in the future, but logins via SSSD or LDAP should work
 without issue.
@@ -25,6 +28,11 @@ Adding clients requires two steps:
 #. Running ``ipa-client-install`` on the host, using the password generated in
    the previous step
 
+   .. NOTE::
+
+   	  There may be issues running ``ipa-client-install`` on EL6 with FIPS mode
+      enabled.
+
 
 Add hosts to IPA
 ^^^^^^^^^^^^^^^^
@@ -38,7 +46,7 @@ Only option 2 will be covered here.
 
 To be able to add hosts from the command line:
 
-#. Log onto a machine that already has join an IPA domain
+#. Log onto a machine that already has joined an IPA domain
 #. ``kinit`` into an account with the appropriate priviliges
 #. Use the script below as an example to generate host accounts in bulk
 
@@ -48,7 +56,7 @@ To be able to add hosts from the command line:
       require 'securerandom'
 
       password_suffix = SecureRandom.urlsafe_base64(8)
-      puts 'Looking for a file called `hosts` with lines that look like "test1.domain.local,192.168.1.3"'
+      puts 'Looking for a file called `hosts` with lines that look like "host1.domain.local,192.168.1.3"'
       puts 'Using passwords in the form of <hostname>-' + password_suffix
 
       File.readlines('hosts').each do|h|
@@ -74,7 +82,13 @@ To be able to add hosts from the command line:
       simp::ipa::install::domain: example.domain
       simp::ipa::install::realm: EXAMPLE.DOMAIN
 
-      ###### Optional settings
+
+Some optional settings that may be needed, depending on the configuration of the
+IPA server and the environment:
+
+   .. code-block:: yaml
+
+      ---
       # If the IPA server is a DNS server, this will allow you to use the DNS
       # SRV records to discover other IPA provided services, like LDAP and krb5
       simp_options::dns::servers:
@@ -83,4 +97,9 @@ To be able to add hosts from the command line:
       # IPA's default uid's are in the millions while SIMP's max is much lower
       simp_options::uid::max: 0
 
-#. Run puppet on each node, or wait for it to run via cron job.
+#. Next time Puppet runs via cron job, your node will be part of the IPA domain.
+
+
+.. _SIMP-4898: https://simp-project.atlassian.net/browse/SIMP-4898
+.. _SIMP-4168: https://simp-project.atlassian.net/browse/SIMP-4168
+.. _SIMP-4167: https://simp-project.atlassian.net/browse/SIMP-4167
