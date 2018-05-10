@@ -26,4 +26,3 @@ jobs:
 
     - stage: Sphinx link check
       script: sphinx-build -E -n -b linkcheck docs linkcheck
-

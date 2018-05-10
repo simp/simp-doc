@@ -17,7 +17,7 @@ portions are explicitly marked within the source of this documentation.
 
 This material may only be distributed subject to the terms and
 conditions set forth in the Apache License, Version 2.0 (the latest version is
-available at `the Apache License website <http://www.apache.org/licenses/LICENSE-2.0>`_.
+available at `the Apache License website <https://www.apache.org/licenses/LICENSE-2.0>`_.
 
 The SIMP Development Team makes no representation about the suitability of the
 SIMP product for any purpose. It is provided "as is" without expressed or
