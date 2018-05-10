@@ -16,7 +16,7 @@ Technology  Related SIMP features           Related tickets
 =========== =============================== ===============
 
 These features may work in the future, but logins via SSSD or LDAP should work
-without issue.
+without issue, now.
 
 
 Adding clients
@@ -30,7 +30,7 @@ Adding clients requires two steps:
 
    .. NOTE::
 
-   	  There may be issues running ``ipa-client-install`` on EL6 with FIPS mode
+   	There may be issues running ``ipa-client-install`` on EL6 with FIPS mode
       enabled.
 
 
@@ -47,7 +47,7 @@ Only option 2 will be covered here.
 To be able to add hosts from the command line:
 
 #. Log onto a machine that already has joined an IPA domain
-#. ``kinit`` into an account with the appropriate priviliges
+#. ``kinit`` into an account with the appropriate privileges
 #. Use the script below as an example to generate host accounts in bulk
 
    .. code-block:: ruby
@@ -83,8 +83,8 @@ To be able to add hosts from the command line:
       simp::ipa::install::realm: EXAMPLE.DOMAIN
 
 
-Some optional settings that may be needed, depending on the configuration of the
-IPA server and the environment:
+   Some optional settings that may be needed, depending on the configuration of the
+   IPA server and the environment:
 
    .. code-block:: yaml
 
