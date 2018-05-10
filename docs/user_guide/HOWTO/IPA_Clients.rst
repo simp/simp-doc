@@ -30,8 +30,9 @@ Adding clients requires two steps:
 
    .. NOTE::
 
-   	There may be issues running ``ipa-client-install`` on EL6 with FIPS mode
-      enabled.
+     Using ``ipa-client-install`` on EL6 with FIPS mode isn't currently supported
+     and will result in the following error message:
+     ``Cannot install IPA client in FIPS mode``
 
 
 Add hosts to IPA
@@ -97,7 +98,17 @@ To be able to add hosts from the command line:
       # IPA's default uid's are in the millions while SIMP's max is much lower
       simp_options::uid::max: 0
 
-#. Next time Puppet runs via cron job, your node will be part of the IPA domain.
+#. Next time Puppet runs via cron job, your node will be part of the IPA domain
+   and logins should work.
+
+.. NOTE::
+   Only users that are in an IPA group of type ``POSIX`` will be able to
+   log into Linux systems.
+
+.. NOTE::
+   The default UID and GID ranges are very high in IPA (in the low billions), so
+   they are a lot higher than both the SIMP and SSSD default max. Set
+   ``simp_options::uid::max`` appropriately to avoid this issue.
 
 
 .. _SIMP-4898: https://simp-project.atlassian.net/browse/SIMP-4898
