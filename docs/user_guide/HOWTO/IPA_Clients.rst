@@ -25,7 +25,7 @@ Adding clients
 Adding clients requires two steps:
 
 #. Add the hosts on the IPA server, setting a one time password
-#. Running ``ipa-client-install`` on the host, using the password generated in
+#. Run ``ipa-client-install`` on the host, using the password generated in
    the previous step
 
    .. NOTE::
@@ -83,7 +83,7 @@ To be able to add hosts from the command line:
       simp::ipa::install::realm: EXAMPLE.DOMAIN
 
 
-   Some optional settings that may be needed, depending on the configuration of the
+   Some optional settings may be needed, depending on the configuration of the
    IPA server and the environment:
 
    .. code-block:: yaml
