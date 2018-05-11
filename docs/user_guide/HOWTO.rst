@@ -36,3 +36,4 @@ with more commonly sought items towards the top.
   Restrict SSH Network Access <HOWTO/SSH_Restrict_Network_Access.rst>
   Upgrade SIMP <HOWTO/Upgrade_SIMP>
   Manage TPM <HOWTO/Manage_TPM>
+  Enroll hosts in an IPA domain <HOWTO/IPA_Clients>

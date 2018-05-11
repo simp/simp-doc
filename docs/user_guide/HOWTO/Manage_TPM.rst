@@ -269,7 +269,7 @@ will stop changes to the filesystem if there is a issue detected.
      ``enforce``. For now, ``enforce`` is all we have. Be aware, this may cause
      your system not to boot.
 
-  .. code-block:: bash
+   .. code-block:: bash
 
      $ puppet resource kernel_parameter ima_appraise ensure=present value=enforce
      $ # or add it to a puppet manifest
