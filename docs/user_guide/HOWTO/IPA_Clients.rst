@@ -18,6 +18,9 @@ Technology  Related SIMP features           Related tickets
 These features may work in the future, but logins via SSSD or LDAP should work
 without issue, now.
 
+IPA should work in both the ``simp`` and ``simp-lite`` scenario. There may be
+issues with logins if the ``sssd`` module is not included.
+
 
 Adding clients
 --------------
@@ -40,7 +43,7 @@ Add hosts to IPA
 
 There are two ways to complete this step:
 
-#. Use the IPA web interface, and write down the one time password
+#. Use the IPA web interface, and take note of the one time password
 #. Run ``ipa host-add`` on the command line and pregenerate the password
 
 Only option 2 will be covered here.
@@ -74,15 +77,18 @@ To be able to add hosts from the command line:
       # In <domain>.yaml or whichever level is most specific
       ---
       classes:
-      - simp::ipa::install
-      - simp::ipa::client
+      - simp_ipa::client::install
 
-      simp::ipa::install::ensure: present
-      simp::ipa::install::password: "%{trusted.certname}-<password from script above>"
-      simp::ipa::install::server: ipa.example.domain
-      simp::ipa::install::domain: example.domain
-      simp::ipa::install::realm: EXAMPLE.DOMAIN
+      simp_ipa::client::install::ensure: present
+      simp_ipa::client::install::password: "%{trusted.certname}-<password from script above>"
+      simp_ipa::client::install::server: ipa.example.domain
+      simp_ipa::client::install::domain: example.domain
+      simp_ipa::client::install::realm: EXAMPLE.DOMAIN
 
+      # This setting should already exist, it needs to be modified
+      sssd::domains:
+        - LOCAL
+        - <IPA Domain>
 
    Some optional settings may be needed, depending on the configuration of the
    IPA server and the environment:
@@ -90,13 +96,24 @@ To be able to add hosts from the command line:
    .. code-block:: yaml
 
       ---
+      # IPA's default uid's are in the millions while SIMP's max is much lower
+      simp_options::uid::max: 0
+
+      # IPA uses both of these technologies, so they need to be enabled
+      # Do not need to set in any 'simp' scenario
+      simp_options::sssd: true
+      simp_options::ldap: true
+
       # If the IPA server is a DNS server, this will allow you to use the DNS
       # SRV records to discover other IPA provided services, like LDAP and krb5
       simp_options::dns::servers:
       - <IP address of IPA server>
+      simp_options::dns::search:
+      - <IPA Domain>
+      resolv::named_autoconf: false
+      resolv::caching: false
+      resolv::resolv_domain: <IPA Domain>
 
-      # IPA's default uid's are in the millions while SIMP's max is much lower
-      simp_options::uid::max: 0
 
 #. Next time Puppet runs via cron job, your node will be part of the IPA domain
    and logins should work.
@@ -108,7 +125,11 @@ To be able to add hosts from the command line:
 .. NOTE::
    The default UID and GID ranges are very high in IPA (in the low billions), so
    they are a lot higher than both the SIMP and SSSD default max. Set
-   ``simp_options::uid::max`` appropriately to avoid this issue.
+   ``simp_options::uid::max`` appropriately to avoid this issue. This can be
+   avoided by installing the IPA server with the argument ``--idstart=5000``
+
+.. NOTE::
+   Users still have to be added to PAM to be able to log in!
 
 
 .. _SIMP-4898: https://simp-project.atlassian.net/browse/SIMP-4898
