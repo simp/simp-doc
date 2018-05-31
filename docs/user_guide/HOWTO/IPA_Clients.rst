@@ -85,10 +85,6 @@ To be able to add hosts from the command line:
       simp_ipa::client::install::domain: example.domain
       simp_ipa::client::install::realm: EXAMPLE.DOMAIN
 
-      # This setting should already exist, it needs to be modified
-      sssd::domains:
-        - LOCAL
-        - <IPA Domain>
 
    Some optional settings may be needed, depending on the configuration of the
    IPA server and the environment:
@@ -96,11 +92,8 @@ To be able to add hosts from the command line:
    .. code-block:: yaml
 
       ---
-      # IPA's default uid's are in the millions while SIMP's max is much lower
-      simp_options::uid::max: 0
-
       # IPA uses both of these technologies, so they need to be enabled
-      # Do not need to set in any 'simp' scenario
+      # They are already enabled in the 'simp' and 'simp-lite' scenarios
       simp_options::sssd: true
       simp_options::ldap: true
 
@@ -108,6 +101,8 @@ To be able to add hosts from the command line:
       # SRV records to discover other IPA provided services, like LDAP and krb5
       simp_options::dns::servers:
       - <IP address of IPA server>
+
+      # Other DNS-related settings that may fix issues that map pop up
       simp_options::dns::search:
       - <IPA Domain>
       resolv::named_autoconf: false
@@ -125,11 +120,12 @@ To be able to add hosts from the command line:
 .. NOTE::
    The default UID and GID ranges are very high in IPA (in the low billions), so
    they are a lot higher than both the SIMP and SSSD default max. Set
-   ``simp_options::uid::max`` appropriately to avoid this issue. This can be
-   avoided by installing the IPA server with the argument ``--idstart=5000``
+   ``simp_options::uid::max`` appropriately to avoid this issue. Alternatively,
+   this can be avoided by installing the IPA server with the argument
+   ``--idstart=5000`` or by changing the UID ranges in the GUI.
 
 .. NOTE::
-   Users still have to be added to PAM to be able to log in!
+   Users and groups still have to be added to PAM to be able to log in!
 
 
 .. _SIMP-4898: https://simp-project.atlassian.net/browse/SIMP-4898
