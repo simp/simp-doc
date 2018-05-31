@@ -102,7 +102,7 @@ To be able to add hosts from the command line:
       simp_options::dns::servers:
       - <IP address of IPA server>
 
-      # Other DNS-related settings that may fix issues that map pop up
+      # Other DNS-related settings that may fix issues that pop up
       simp_options::dns::search:
       - <IPA Domain>
       resolv::named_autoconf: false
