@@ -1,5 +1,5 @@
 Auditd
-========
+======
 
 **Module Name**: ``pupmod-simp-auditd``
 

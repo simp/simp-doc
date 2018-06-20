@@ -1,3 +1,7 @@
+* Wed Jun 20 2018 Nick Miller <nick.miller@onyxpoint.com>
+- Added justification for V-71849 results, when SIMP changes vendored
+  permissions on RPM provided files
+
 * Sun May 06 2018 Trevor Vaughan <tvaughan@onyxpoint.com>
 - Update chat link to the new alias
 

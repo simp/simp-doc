@@ -1,5 +1,5 @@
 AIDE
-========
+====
 
 **Module Name**: ``pupmod-simp-aide``
 

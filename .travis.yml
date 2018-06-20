@@ -25,4 +25,4 @@ jobs:
       script: sphinx-build -n -b html -d sphinx_cache docs html
 
     - stage: Sphinx link check
-      script: sphinx-build -E -n -b linkcheck docs linkcheck
+      script: sphinx-build -E -n -b linkcheck docs linkcheck || cat linkcheck/output.txt

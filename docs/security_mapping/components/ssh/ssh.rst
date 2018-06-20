@@ -1,5 +1,5 @@
 SSH
-====
+===
 
 **Module Name**: ``pupmod-simp-ssh``
 

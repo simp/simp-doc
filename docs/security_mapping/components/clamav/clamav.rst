@@ -1,5 +1,5 @@
 ClamAV
-========
+======
 
 **Module Name**: ``pupmod-simp-clamav``
 

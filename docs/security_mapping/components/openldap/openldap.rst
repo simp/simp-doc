@@ -1,5 +1,5 @@
 OpenLDAP
-=========
+========
 
 **Module Name**: ``pupmod-simp-openldap``
 

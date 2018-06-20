@@ -1,5 +1,5 @@
 Sudo
-========
+====
 
 **Module Name**: ``pupmod-simp-sudo``
 

@@ -1,5 +1,5 @@
 IPTables
-=========
+========
 
 **Module Name**: ``pupmod-simp-iptables``
 
