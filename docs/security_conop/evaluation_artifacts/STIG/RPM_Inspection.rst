@@ -1,11 +1,16 @@
-RPM Inspection Results
-======================
+Verify and Correct File Permissions with RPM
+============================================
 
-SIMP components may change file permissions and ownership than what is provided
-by the vendor by RPM. The DISA STIG control `V-71849`_ states that the command
-``rpm -Va | grep '^.M'`` returns no values.
+* Rule ID: xccdf_org.ssgproject.content_rule_rpm_verify_permissions
+* Type: Mixed - Mostly False Positives
+* Recommend SSG Feedback: Permissions that are obviously more restrictive should not be flagged
+* Identifier: `V-71849`_
 
-The following results are a combination of running the above command on an EL 6
+Most files have more restrictive permissions than provided by the RPMs. Some
+services, like ``openldap``, run as a service specific system user.
+
+
+The following exceptions are a combination of running the above command on an EL 6
 and EL 7 SIMP system:
 
 .. csv-table::
