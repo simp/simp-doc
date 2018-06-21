@@ -14,5 +14,6 @@ our :ref:`help-public-resources` or enter a PR against the `simp-doc`_ project.
 
    evaluation_artifacts/SCAP
    evaluation_artifacts/InSpec
+   evaluation_artifacts/RPM_Inspection
 
 .. _simp-doc: https://github.com/simp/simp-doc
