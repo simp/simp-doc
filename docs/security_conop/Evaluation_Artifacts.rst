@@ -12,7 +12,6 @@ our :ref:`help-public-resources` or enter a PR against the `simp-doc`_ project.
 .. toctree::
    :maxdepth: 2
 
-   evaluation_artifacts/STIG
    evaluation_artifacts/SCAP
    evaluation_artifacts/InSpec
 
