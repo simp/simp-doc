@@ -4,6 +4,9 @@
 /Gemfile.lock
 _build_v4
 _build_v5
+# This is here because the Rakefile rewrites part of it and we don't want those
+# changes checked in.
+build/simp-doc.spec
 builderrors
 dist
 docs/_build
@@ -17,8 +20,3 @@ sphinx_cache
 build/rpm_metadata
 vendor/*
 .bundle/*
-.pytest_cache
-
-# This is here because the Rakefile rewrites part of it and we don't want those
-# changes checked in.
-build/simp-doc.spec
