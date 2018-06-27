@@ -1,5 +1,5 @@
 Named/Bind
-===========
+==========
 
 **Module Name**: ``pupmod-simp-named``
 

@@ -16,6 +16,7 @@ The following scan results are available for the various subsystems:
    :titlesonly:
    :glob:
 
+   common.rst
    SCAP/*
 
 How to Run a SCAN
