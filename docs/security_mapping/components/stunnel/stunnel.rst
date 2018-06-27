@@ -1,5 +1,5 @@
 Stunnel
-========
+=======
 
 **Module Name**: ``pupmod-simp-stunnel``
 

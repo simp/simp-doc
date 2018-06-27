@@ -1,5 +1,5 @@
 Rsync
-========
+=====
 
 **Module Name**: ``pupmod-simp-rsync``
 

@@ -1,5 +1,5 @@
 PAM
-====
+===
 
 **Module Name**: ``pupmod-simp-pam``
 

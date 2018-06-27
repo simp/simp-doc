@@ -1,5 +1,5 @@
 Compliance
-===========
+==========
 
 **Module Name**: ``pupmod-simp-compliance_markup``
 

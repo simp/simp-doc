@@ -1,5 +1,5 @@
 SIMP
-========
+====
 
 **Module Name**: ``pupmod-simp-simp``
 

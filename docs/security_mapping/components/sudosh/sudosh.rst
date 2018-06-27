@@ -1,5 +1,5 @@
 Sudosh
-========
+======
 
 **Module Name**: ``pupmod-simp-sudosh``
 
