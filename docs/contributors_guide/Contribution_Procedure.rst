@@ -78,11 +78,11 @@ The first commit message should be the following format:
       after the issue is merged
 
 .. _GitHub Workflow: https://guides.github.com/introduction/flow/
-.. _Squash and Merge: https://github.com/blog/2141-squash-your-commits
+.. _Squash and Merge: https://blog.github.com/2016-04-01-squash-your-commits
 .. _SIMP JIRA: https://simp-project.atlassian.net
 .. _GitHub GUI to fork and clone: https://help.github.com/articles/fork-a-repo/
 .. _feature branch: https://www.atlassian.com/git/tutorials/comparing-workflows#feature-branch-workflow
-.. _squash: https://github.com/blog/2141-squash-your-commits
+.. _squash: https://blog.github.com/2016-04-01-squash-your-commits
 .. _pull request: https://help.github.com/articles/using-pull-requests
 .. _Allow edits from maintainers: https://help.github.com/articles/allowing-changes-to-a-pull-request-branch-created-from-a-fork/
 .. _Travis-CI: http://travis-ci.org/simp

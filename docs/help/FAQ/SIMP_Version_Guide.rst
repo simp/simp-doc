@@ -48,4 +48,4 @@ Sub-Component Versioning
 
 For all versions of SIMP, sub-components follow `Semantic Versioning 2.0.0`_.
 
-.. _Semantic Versioning 2.0.0: http://semver.org/spec/v2.0.0.html
+.. _Semantic Versioning 2.0.0: https://semver.org/spec/v2.0.0.html
