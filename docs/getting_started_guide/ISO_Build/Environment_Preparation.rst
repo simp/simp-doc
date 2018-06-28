@@ -128,8 +128,8 @@ Start the docker daemon:
   $ sudo systemctl start docker
   $ sudo systemctl enable docker
 
-.. _Bundler Rationale Page: http://bundler.io/rationale.html
-.. _Bundler: http://bundler.io/
+.. _Bundler Rationale Page: https://bundler.io/rationale.html
+.. _Bundler: https://bundler.io/
 .. _RVM Installation Page: https://rvm.io/rvm/install
 .. _RVM: https://rvm.io/
-.. _Rubygems.org: http://guides.rubygems.org/what-is-a-gem/
+.. _Rubygems.org: https://guides.rubygems.org/what-is-a-gem/

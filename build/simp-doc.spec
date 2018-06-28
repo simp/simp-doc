@@ -142,7 +142,8 @@ source /opt/rh/python27/enable
 virtualenv venv
 source venv/bin/activate
 
-pip install -U pip>=8.0 # ancient pips break on these requirements
+# ancient pips break on these requirements
+pip install --upgrade pip setuptools --log dist/pip_setup.log
 pip install --upgrade -r requirements.txt --log dist/pip.log
 
 sphinx-build -E -n -b html -d sphinx_cache docs html

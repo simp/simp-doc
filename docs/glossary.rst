@@ -582,7 +582,7 @@ Glossary of Terms
       together with :term:`OpenSCAP` tools, can be used for auditing your
       system in an automated way.
 
-      Source: `OpenSCAP Homepage <http://www.open-scap.org/security-policies/scap-security-guide/>`__
+      Source: `OpenSCAP Homepage <https://www.open-scap.org/security-policies/scap-security-guide/>`__
 
       See Also: :term:`SCAP`
 
@@ -653,7 +653,7 @@ Glossary of Terms
    Defense Information Systems Agency Secure Technical Implementation Guide
       Configuration standards for DOD IA and IA-enabled devices/systems.
 
-      Source: `DISA IASE <http://iase.disa.mil/stigs/Pages/index.aspx>`__
+      Source: `DISA IASE <https://iase.disa.mil/stigs/Pages/index.aspx>`__
 
    Syslog
       A set of standards for sending log messages across the network.
