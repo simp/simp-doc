@@ -117,7 +117,7 @@ Glossary of Terms
       that the software will always run the same, regardless of its
       environment.
 
-      Source: `Docker: What is Docker? <https://www.docker.com/what-docker>`__
+      Source: `Docker: What is Docker? <https://www.docker.com/why-docker>`__
 
    DSL
    Domain Specific Language

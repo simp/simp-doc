@@ -220,7 +220,12 @@ linkcheck_ignore = [
     r'^http[s]?:\/\/pgp\.mit\.edu(/.*|$)',
     # These are for the templates in the release emails
     r'.*VERSION.*Upgrade_SIMP.*',
-    r'.*VERSION-.*NUM.*Changelog\.html'
+    r'.*VERSION-.*NUM.*Changelog\.html',
+    # Ignore github searches since they'll cause the API to timeout
+    r'^http[s]:\/\/github\.com\/search\?.*',
+    # FIXME: Puppet is redirecting permanently instead of temporarily which
+    # they need to fix
+    r'^http[s]:\/\/puppet.com\/docs\/.+\/latest\/.+'
  ]
 
 # -- Options for HTML output ----------------------------------------------
