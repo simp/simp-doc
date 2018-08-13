@@ -1,3 +1,8 @@
+* Mon Aug 13 2018 Jeanne Greulich <jeanne.greulich@onyxpoint.com>
+- Updated PXE boot instructions for UEFI.
+- Added section for 6.1.0 -> 6.2.0 upgrade for files that need to be updated.
+- Changed For Impatient to Quick Start
+
 * Wed Jun 20 2018 Nick Miller <nick.miller@onyxpoint.com>
 - Added justification for V-71849 results, when SIMP changes vendored
   permissions on RPM provided files

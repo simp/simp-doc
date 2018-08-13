@@ -1,4 +1,4 @@
-For The Impatient
+Quick Start
 =================
 
 What is SIMP?

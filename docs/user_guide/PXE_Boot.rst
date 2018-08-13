@@ -35,15 +35,27 @@ This section describes how to configure the kickstart server.
 #. Open each of the files and follow the instructions provided within them to
    replace the variables.  You need to know the IP Addresses of the YUM,
    Kickstart, and TFTPserver. (They default to the simp server in
-   ``simp config``).
+   ``simp config``).  You may need to make several copies of this file depending
+   on the different configurations of your clients.
 
    - ``pupclient_x86_64.cfg``: Replace the variables noted at the top and
      generate and enter the passwords.
+     You  need to set up seperate files for clients that will be booting in UEFI
+     mode as opposed to Leagacy (BIOS) mode.  There are also different files for
+     sysvinit systems and systemd systems.
+
    - ``diskdetect.sh``:  The ``diskdetect.sh`` script is responsible for
      detecting the first active disk and applying a disk configuration. Edit
      this file to meet any necessary requirements or use this file as a
      starting point for further work. It will work as is for most systems as
      long as your disk device names are in the list.
+
+.. NOTE:
+
+   In SIMP 6.2 EFI PXE boot was automted.  UEFI and Legacy boot modes require
+   different ``bootloader`` lines in the kickstart file.  You will need to create
+   seperate kickstart files if you wish to boot systems in both modes and point to
+   the correct one in the linux model you create for it in the .
 
 #. Type ``chown root.apache /var/www/ks/*`` to ensure that all files are owned
    by ``root`` and in the ``apache`` group.
@@ -74,6 +86,12 @@ Setting up TFTP
 
 This section describes the process of setting up static files and manifests for
 :term:`TFTP`.
+
+.. NOTE::
+  The tftp root directory was changed in SIMP 6.2.  In previous versions it was
+  ``/tftproot``, and in 6.2 and later it is ``/var/lib/tftpboot``.  If you are upgrading
+  to 6.2 from a prior release and wish the files to remain in the ``/tftpboot`` directory
+  set ``tftpboot::tftpboot_root_dir`` to ``/tftpboot`` in hiera.
 
 Static Files
 ^^^^^^^^^^^^
@@ -106,18 +124,23 @@ the resources in the tftpboot.pp manifest examples.
    to kickstart machines, you must also upgrade the images in the tftp directory.
    If they do not match you can get an error such as "unknown file system type 'xfs'"
 
-Next you need to set up the boot files for either legacy boot mode, UEFI mode,
-or both.  Legacy boot can be handled by the ``tftpboot`` module but UEFI must
-be manually set up at this time.
+Next you need to set up the boot files for either legacy boot mode, UEFI mode, or both.
 
-Legacy Boot
-^^^^^^^^^^^
+.. NOTE::
+  UEFI support was automated in SIMP 6.2.  If you are using an older version of
+  SIMP please refer to that documentation for setting up UEFI manually.
 
-Create a site manifest for the TFTP server on the Puppet server.
+For more information see the `RedHat 7 Installation Source`_  or `RedHat 6 Installation Source`_ Istallation Guides
+
+Dynamic Linux Model Files
+^^^^^^^^^^^^^^^^^^^^^^^^^
+Create a site manifest for the TFTP server on the Puppet server to set up the various
+files to model different systems.
 
 1. Create the file
    ``/etc/puppetlabs/code/environments/simp/modules/site/manifests/tftpboot.pp``.
-   Use the source code example below.
+   Use the source code example below.  Examples are given for Centos 6 and 7 for both
+   UEFI and legacy boot mode.
 
    * Replace ``KSSERVER`` with the IP address of Kickstart server (or the code
      to look up the IP Address using :term:`Hiera`).
@@ -128,38 +151,75 @@ Create a site manifest for the TFTP server on the Puppet server.
    * ``MODEL NAME`` is usually of the form ``OSTYPE-MAJORRELEASE-ARCH`` for
      consistency.
 
+   * You will need to know what kickstart file you are using.  UEFI and Legacy mode
+     require seperate kickstart files.  Other things that might require a different
+     kickstart file to be configure are disk drive configurations, if FIPS is being
+     used and other things.  Create a different linux model file for each different
+     kickstart file you have to use.  (See the ``pupclient_x86_64.cfg`` file for
+     comments on how to change that file to handle different system types.
+
+
 .. code-block:: ruby
 
-   # for CentOS/RedHat 7
    class site::tftpboot {
      include '::tftpboot'
 
+     #--------
+     # LEGACY MODE EXAMPLES
+
+     # for CentOS/RedHat 7 Legacy/BIOS boot
      tftpboot::linux_model { 'el7_x86_64':
        kernel => 'OSTYPE-MAJORRELEASE-ARCH/vmlinuz',
        initrd => 'OSTYPE-MAJORRELEASE-ARCH/initrd.img',
-       ks     => "https://KSSERVER/ks/pupclient_x86_64.cfg",
+       ks     => "https://KSSERVER/ks/pupclient_x86_64_el7.cfg",
        extra  => "inst.noverifyssl ksdevice=bootif\nipappend 2"
      }
 
-     ::tftpboot::assign_host { 'default': model => 'el7_x86_64' }
-   }
-
-.. code-block:: ruby
-
-   # For CentOS/RedHat 6
-   # Note the difference in the `extra` arguments here.
-   class site::tftpboot {
-     include '::tftpboot'
-
+     # For CentOS/RedHat 6 Legacy/BIOS boot
+     # Note the difference in the `extra` arguments here.
      tftpboot::linux_model { 'el6_x86_64':
        kernel => 'OSTYPE-MAJORRELEASE-ARCH/vmlinuz',
        initrd => 'OSTYPE-MAJORRELEASE-ARCH/initrd.img',
-       ks     => "https://KSSERVER/ks/pupclient_x86_64.cfg",
+       ks     => "https://KSSERVER/ks/pupclient_x86_64_el6.cfg",
        extra  => "noverifyssl ksdevice=bootif\nipappend 2"
      }
 
-     tftpboot::assign_host { 'default': model => 'el6_x86_64' }
+     #------
+     # UEFI MODE EXAMPLES
+
+     # NOTE for UEFI boot you need a different kickstart file from legacy
+     # mode because the bootloader command is different.  Read the instructions
+     # in the pupclient_x86_64 file and make sure you have the correct bootloader
+     # line.
+     # For CentOS/RedHat 7 UEFI boot
+     tftpboot::linux_model_efi { 'el7_x86_64_efi':
+       kernel => 'OSTYPE-MAJORRELEASE-ARCH/vmlinuz',
+       initrd => 'OSTYPE-MAJORRELEASE-ARCH/initrd.img',
+       ks     => "https://KSSERVER/ks/pupclient_x86_64_efi_el7.cfg",
+       extra  => "inst.noverifyssl"
+     }
+
+     # For CentOS/RedHat 6 UEFI boot
+     # Note the extra attribute legacy_grub.
+     tftpboot::linux_model_efi { 'el6_x86_64_efi':
+       kernel      => 'OSTYPE-MAJORRELEASE-ARCH/vmlinuz',
+       initrd      => 'OSTYPE-MAJORRELEASE-ARCH/initrd.img',
+       ks          => "https://KSSERVER/ks/pupclient_x86_64_el6.cfg",
+       extra       => "noverifyssl",
+       legacy_grub => true
+     }
+
+     #------
+     # All systems need the following
+
+     # For each system define what module you want to use by pointing
+     # its macaddress to the appropriate model.  Note that the macaddress
+     # is preceded by ``01-``.
+     tftpboot::assign_host { 'default': model => 'el7_x86_64' }
+     tftpboot::assign_host { 01-aa-bb-cc-dd-00-11: model => 'el7_x86_64_efi' }
+     tftpboot::assign_host { 01-aa-ab-ac-1d-05-11: model => 'el6_x86_64' }
    }
+
 
 2. Add the tftpboot site manifest on your puppet server node via Hiera.  Create
    the file (or edit if it exists):
@@ -185,33 +245,16 @@ Create a site manifest for the TFTP server on the Puppet server.
    individual systems to them by adding assign_host lines with their MAC
    pointing to the appropriate model name.
 
-4. In the DHCP configuration file use ``linux-install/pxelinux.0`` for the ``filename``.
-
-UEFI
-^^^^
-
-To configure the TFTP to kickstart systems in UEFI mode:
-
-1.  Install the ``grub2-efi-x64`` and ``shim-x64`` packages and copy the
-    ``shim*.efi`` and ``grub2*.efi`` installed under
-    ``/boot/efi/EFI/<os name>`` directory to a directory under the TFTP server.
-    (i.e. ``linux-install``)
-
-2. In the same directory create a ``grub.cfg`` file with the needed options. For example:
-
-.. code-block:: sh
-
-  set timeout=1
-
-  search --no-floppy --set=root -l 'CentOS 7 x86_64'
-
-  menuentry 'Linux Install CentOS 7' {
-    linuxefi /linux-install/centos-7-x86_64/vmlinuz inst.gpt fips=1 inst.noverifyssl ks=https://1.2.3.4/ks/pupclient_x86_64.cfg
-    initrdefi /linux-install/centos-7-x86_64/initrd.img
-  }
+Lastly, make sure DHCP is set up correctly.  In SIMP 6.2 the DHCP template was updated to
+include a test for architecture type.  These changes are needed if you booting
+UEFI systems.
 
 For more information see the `RedHat 6 PXE`_ or `RedHat 7 PXE`_ Installation Guides.
 
-.. _RedHat 7 PXE: https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/7/html/installation_guide/chap-installation-server-setup#sect-network-boot-setup-uefi
+.. _RedHat 7 PXE: https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/7/html/installation_guide/chap-installation-server-setup#sect-network-boot-setup
 
-.. _RedHat 6 PXE: https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/6/html/installation_guide/s1-netboot-pxe-config-efi
+.. _RedHat 7 Installation Source: https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/7/html/installation_guide/sect-making-media-additional-sources#sect-making-media-sources-network
+
+.. _RedHat 6 PXE: https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/6/html/installation_guide/s1-netboot-pxe-config
+
+.. _RedHat 6 Installation Source: https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/6/html/installation_guide/ch-Preparing-x86#s1-steps-network-installs-x86

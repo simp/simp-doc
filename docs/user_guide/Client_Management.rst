@@ -103,6 +103,13 @@ can use an existing DNS infrastructure.
 Configure DHCP
 ^^^^^^^^^^^^^^
 
+.. NOTE::
+
+  The dhcpd.conf header was updated in SIMP 6.2 to include lines the enable the DHCP
+  server to determine if a client is booting in UEFI or Lagacy mode and select the
+  appropriate tftp directory.  Make sure you have updated the rsync directory with
+  this file.
+
 Perform the following actions as ``root`` on the Puppet Master system
 prior to attempting to install a client.
 
@@ -124,6 +131,10 @@ Make sure the following is done in the ``dhcpd.conf`` :
       additional ones as needed.)
     - Enter the domain name for option **domain-name**
     - Enter the IP Address of the DNS server for option **domain-name-servers**
+    - If PXE booting is being done with this DHCP server, make sure the filename
+      entries  corresponds to the correct file in the tftpserver.
+      If the defaults were used setting up the tftpserver, the default here will
+      be corret.
 
 Save and close the file.
 
@@ -172,6 +183,9 @@ server, try the following options:
   serious issues with certificates.
 * Remove ``/etc/puppetlabs/puppet/ssl`` on the client system; run ``puppet cert
   --clean ***<Client Host Name>***`` on the Puppet server and try again.
+
+If you are getting permission errors make sure the selinux context is correct on all
+files as well as the owner and group permissions.
 
 .. _cm-troubleshoot-cert-issues:
 

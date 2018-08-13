@@ -10,3 +10,4 @@ gem_sources.each { |gem_source| source gem_source }
 gem 'rake'
 gem 'simp-rake-helpers', ENV.fetch('SIMP_RAKE_HELPERS_VERSION', ['>= 5.0.2', '< 6'])
 gem 'pry'
+gem 'net-telnet', ['< 0.2.0']

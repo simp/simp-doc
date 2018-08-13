@@ -25,7 +25,7 @@ Contents:
   :numbered:
   :maxdepth: 2
 
-  For the Impatient <getting_started_guide/Just_Install>
+  Quick Start <getting_started_guide/Just_Install>
   Changelog <dynamic/Changelog>
   Getting Started <getting_started_guide/index>
   User Guide <user_guide/index>
