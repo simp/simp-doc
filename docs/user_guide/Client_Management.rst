@@ -30,7 +30,7 @@ to attempting to install a client.
 Add the Kickstart server profile
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-In the Puppet server-specific hiera file (by default located at
+In the Puppet server-specific :term:`Hiera` file (by default located at
 ``/etc/puppetlabs/code/environments/simp/hieradata/hosts/puppet.<your.domain>.yaml``),
 add the ``simp::server::kickstart`` class.
 
@@ -132,9 +132,7 @@ Make sure the following is done in the ``dhcpd.conf`` :
     - Enter the domain name for option **domain-name**
     - Enter the IP Address of the DNS server for option **domain-name-servers**
     - If PXE booting is being done with this DHCP server, make sure the filename
-      entries  corresponds to the correct file in the tftpserver.
-      If the defaults were used setting up the tftpserver, the default here will
-      be corret.
+      entries  corresponds to the correct file in the TFTP server.
 
 Save and close the file.
 
