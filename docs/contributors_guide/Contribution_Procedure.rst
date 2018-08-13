@@ -21,6 +21,9 @@ done to to maintain a more legible commit history on `master`.
 
 #. Do your work! `(Including tests, of course)`
 
+   * See `gsg-contributors_guide-contribution_procedure-testing_your_submissions`_
+     for detailed guidance on test procedures.
+
 #. Commit your work. We will `squash`_ your `pull request`_ into one commit
    when we merge it, so you can use as many commits as you'd like.
 
@@ -76,6 +79,106 @@ The first commit message should be the following format:
       ``#close``
     * Avoid ``#resolve`` and ``#time`` as it will not update JIRA until
       after the issue is merged
+
+.. _gsg-contributors_guide-contribution_procedure-testing_your_submissions:
+
+Testing Your Submissions
+------------------------
+
+First off, thank you again for your contribution! Things don't get better
+without your help!
+
+This section contains two sets of guidelines. First, ones that are recommended
+for external contributions from the community. Second, ones that are expected
+to be adhered to by the core development team.
+
+External Contributors
+^^^^^^^^^^^^^^^^^^^^^
+
+We will happily accept all levels of contributions, small, medium, or large
+without any tests.
+
+However, for us to quickly and effectively assess your contribution you should
+either add unit (``rspec-puppet``) and/or acceptance (``beaker``) tests.
+
+As the size of the contribution increases, this becomes increasingly important
+and for very large contributions, it may simply be too difficult to do a timely
+assessment without added tests. In these cases, it would be best to split your
+contribution into smaller pull requests that are easier to assess.
+
+Core Development Contributions
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+The core development team is expected to follow these guidelines when adding
+code to the project.
+
+Trivial Contributions
+"""""""""""""""""""""
+
+Trivial contributions are those that constitute a small documentation update,
+code correction, or bug fix consisting of only a few lines. These contributions
+must not negatively impact the behavior of the user experience or code.
+
+Trivial contributions do not require an associated ticket and may be covered
+under a ``SIMP-MAINT`` branch.
+
+Trivial contributions require **one maintenance team member** review and may
+optionally add additional unit or acceptance testing.
+
+Minor Contributions
+"""""""""""""""""""
+
+Minor contributions are those that add a feature or fix a larger bug in
+component that are more than five or ten lines and/or are not only
+documentation updates.
+
+Minor contributions must have unit tests and should have acceptance tests.
+Acceptance tests may be deferred but a ticket must be filed with an explanation
+and a link in the PR if the acceptance test addition is deferred.
+
+Minor contributions require **one maintenance team member** review. The
+reviewing team member may decide that acceptance tests are required based on
+the understandability of the contribution.
+
+Major Contributions
+"""""""""""""""""""
+
+Major contributions are any changes that affect multiple parts of the system,
+any contribution of moderate or higher cyclomatic complexity, or anything that
+adds a breaking change to the system.
+
+Major contributions must have unit tests that cover all major code paths and
+pay particular attention to edge cases.
+
+Acceptance tests must also be provided that cover the primary usage of the code
+that, at a minimum, test the code in a way that end users would use it.
+
+User facing changes should also contain documentation updates that cover the
+expected use cases.
+
+Major contributions require **two maintenance team member** reviews.
+
+Emergency Contributions
+"""""""""""""""""""""""
+
+On occasion, a fix or patch will need to be made with a very short turn around
+time. These may include up to `Minor Contributions`_ and may be added after
+**two code reviews** without the addition of tests. However, a ticket must be
+added that notes a requirement for tests to be added to the specified
+capability.  This ticket should link directly to the PR that added the code for
+later reference.
+
+Experimental Contributions
+""""""""""""""""""""""""""
+
+Experimental contributions are changes that may not be ready for the end user,
+but that need reviews and/or attention.
+
+For items that are not end-user facing, such as the testing components or
+frameworks, there may be a need to try out different techniques prior to
+releasing a full update. These may be added to the unstable ``master`` branch
+without testing but tests should be added if the changes will be released in
+the future.
 
 .. _GitHub Workflow: https://guides.github.com/introduction/flow/
 .. _Squash and Merge: https://blog.github.com/2016-04-01-squash-your-commits
