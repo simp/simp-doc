@@ -106,11 +106,19 @@ and for very large contributions, it may simply be too difficult to do a timely
 assessment without added tests. In these cases, it would be best to split your
 contribution into smaller pull requests that are easier to assess.
 
-Core Development Contributions
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+Core Developer Contributions
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 The core development team is expected to follow these guidelines when adding
 code to the project.
+
+In all cases, a cursory ``grep`` through the `simp-doc`_ project should be done
+and a ticket should be entered if the overall project documentation may be
+affected by your change.
+
+This should also be done by the core development team for any external
+contributions since it is unreasonable to expect them to take the effort to dig
+through the `simp-doc`_ project.
 
 Trivial Contributions
 """""""""""""""""""""
@@ -180,15 +188,16 @@ releasing a full update. These may be added to the unstable ``master`` branch
 without testing but tests should be added if the changes will be released in
 the future.
 
-.. _GitHub Workflow: https://guides.github.com/introduction/flow/
-.. _Squash and Merge: https://blog.github.com/2016-04-01-squash-your-commits
-.. _SIMP JIRA: https://simp-project.atlassian.net
-.. _GitHub GUI to fork and clone: https://help.github.com/articles/fork-a-repo/
-.. _feature branch: https://www.atlassian.com/git/tutorials/comparing-workflows#feature-branch-workflow
-.. _squash: https://blog.github.com/2016-04-01-squash-your-commits
-.. _pull request: https://help.github.com/articles/using-pull-requests
 .. _Allow edits from maintainers: https://help.github.com/articles/allowing-changes-to-a-pull-request-branch-created-from-a-fork/
-.. _Travis-CI: http://travis-ci.org/simp
-.. _review: https://help.github.com/articles/reviewing-proposed-changes-in-a-pull-request/
-.. _JIRA issues can be referenced: https://confluence.atlassian.com/bitbucket/processing-jira-software-issues-with-smart-commit-messages-298979931.html
+.. _GitHub GUI to fork and clone: https://help.github.com/articles/fork-a-repo/
+.. _GitHub Workflow: https://guides.github.com/introduction/flow/
 .. _JIRA Smart Commit Tags: https://confluence.atlassian.com/bitbucket/processing-jira-software-issues-with-smart-commit-messages-298979931.html
+.. _JIRA issues can be referenced: https://confluence.atlassian.com/bitbucket/processing-jira-software-issues-with-smart-commit-messages-298979931.html
+.. _SIMP JIRA: https://simp-project.atlassian.net
+.. _Squash and Merge: https://blog.github.com/2016-04-01-squash-your-commits
+.. _Travis-CI: http://travis-ci.org/simp
+.. _feature branch: https://www.atlassian.com/git/tutorials/comparing-workflows#feature-branch-workflow
+.. _pull request: https://help.github.com/articles/using-pull-requests
+.. _review: https://help.github.com/articles/reviewing-proposed-changes-in-a-pull-request/
+.. _simp-doc: https://github.com/simp/simp-doc
+.. _squash: https://blog.github.com/2016-04-01-squash-your-commits
