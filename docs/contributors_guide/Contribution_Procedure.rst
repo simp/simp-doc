@@ -101,10 +101,11 @@ without any tests.
 However, for us to quickly and effectively assess your contribution you should
 either add unit (``rspec-puppet``) and/or acceptance (``beaker``) tests.
 
-As the size of the contribution increases, this becomes increasingly important
-and for very large contributions, it may simply be too difficult to do a timely
-assessment without added tests. In these cases, it would be best to split your
-contribution into smaller pull requests that are easier to assess.
+As the size of the contribution increases, this becomes increasingly important,
+because, depending upon the complexity of the changes, it may simply be too
+difficult to do a timely assessment of such a contribution without corresponding
+tests. In these cases, it would be best if you split your contribution into
+smaller pull requests that are easier to assess.
 
 Core Developer Contributions
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -117,7 +118,7 @@ and a ticket should be entered if the overall project documentation may be
 affected by your change.
 
 This should also be done by the core development team for any external
-contributions since it is unreasonable to expect external contributors
+contributions, since it is unreasonable to expect external contributors
 to take the effort to dig through the `simp-doc`_ project.
 
 Trivial Contributions
