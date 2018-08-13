@@ -119,6 +119,7 @@ or from the images directory on the SIMP DVD.  The link name is what is used in
 the resources in the tftpboot.pp manifest examples.
 
 .. NOTE::
+
    The images in the tftp directory need to match the distribution.  For example,
    if you upgrade your repo from CentOS 7.3 to 7.4 and will be using this repo
    to kickstart machines, you must also upgrade the images in the tftp directory.
@@ -127,10 +128,11 @@ the resources in the tftpboot.pp manifest examples.
 Next you need to set up the boot files for either legacy boot mode, UEFI mode, or both.
 
 .. NOTE::
+
   UEFI support was automated in SIMP 6.2.  If you are using an older version of
   SIMP please refer to that documentation for setting up UEFI manually.
 
-For more information see the `RedHat 7 Installation Source`_  or `RedHat 6 Installation Source`_ Istallation Guides
+For more information see the `RedHat 7 Installation Source`_  or `RedHat 6 Installation Source`_ Installation Guides
 
 Dynamic Linux Model Files
 ^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -152,7 +154,7 @@ files to model different systems.
      consistency.
 
    * You will need to know what kickstart file you are using.  UEFI and Legacy mode
-     require seperate kickstart files.  Other things that might require a different
+     require separate kickstart files.  Other things that might require a different
      kickstart file to be configure are disk drive configurations, if FIPS is being
      used and other things.  Create a different linux model file for each different
      kickstart file you have to use.  (See the ``pupclient_x86_64.cfg`` file for
