@@ -117,8 +117,8 @@ and a ticket should be entered if the overall project documentation may be
 affected by your change.
 
 This should also be done by the core development team for any external
-contributions since it is unreasonable to expect them to take the effort to dig
-through the `simp-doc`_ project.
+contributions since it is unreasonable to expect external contributors
+to take the effort to dig through the `simp-doc`_ project.
 
 Trivial Contributions
 """""""""""""""""""""
