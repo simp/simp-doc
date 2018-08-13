@@ -22,5 +22,5 @@ as components).
   components/ssh/ssh.rst
   components/stunnel/stunnel.rst
   components/sudo/sudo.rst
-  components/sudosh/sudosh.rst
+  components/tlog/tlog.rst
   components/tcpwrappers/tcpwrappers.rst

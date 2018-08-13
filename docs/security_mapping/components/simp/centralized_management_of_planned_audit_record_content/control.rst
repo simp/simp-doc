@@ -3,8 +3,9 @@ Centralized Management of Planned Audit Record Content
 
 SIMP centrally controls what audit events are recorded on the clients.  The
 SIMP module controls which of the those events are sent to local :term:`syslog`
-daemon so that they may be forwarded to a central syslog server. The following
-list contains the conditions to be met for the SIMP logs to be sent to syslog.
+daemon so that they may be optionally forwarded to a central syslog server. The
+following orthogonal list contains the conditions to be met for the SIMP logs
+to be sent to syslog.
 
 - $programname == 'sudosh'
 - $programname =='yum'
