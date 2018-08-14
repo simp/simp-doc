@@ -138,7 +138,7 @@ Minor Contributions
 """""""""""""""""""
 
 Minor contributions are those that add a feature or fix a larger bug in
-component that are more than five or ten lines and/or are not only
+components that are more than five or ten lines and/or are not only
 documentation updates.
 
 Minor contributions must have unit tests and should have acceptance tests.
