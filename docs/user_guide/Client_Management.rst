@@ -105,10 +105,11 @@ Configure DHCP
 
 .. NOTE::
 
-  The dhcpd.conf header was updated in SIMP 6.2 to include lines the enable the DHCP
-  server to determine if a client is booting in UEFI or Lagacy mode and select the
-  appropriate tftp directory.  Make sure you have updated the rsync directory with
-  this file.
+  The ``dhcpd.conf`` file was updated in SIMP 6.2 to include lines the enable the
+  DHCP server to determine if a client is booting in UEFI or Legacy mode, and then
+  select the appropriate initial boot file on the TFTP server.  If you have
+  configured DHCPD using an earlier version of SIMP, make sure you update the
+  your version of dhcpd.conf in the rsync directory, appropriately.
 
 Perform the following actions as ``root`` on the Puppet Master system
 prior to attempting to install a client.
@@ -131,10 +132,11 @@ Make sure the following is done in the ``dhcpd.conf`` :
       additional ones as needed.)
     - Enter the domain name for option **domain-name**
     - Enter the IP Address of the DNS server for option **domain-name-servers**
-    - If PXE booting is being done with this DHCP server, make sure the filename
-      entries  corresponds to the correct file in the tftpserver.
-      If the defaults were used setting up the tftpserver, the default here will
-      be corret.
+    - If PXE booting is being done with this DHCP server, make sure each ``filename``
+      parameter corresponds to the correct file on the TFTP server.  If you are using
+      SIMP's ``simp::server::kickstart`` class to manage the TFTP server, the
+      default ``filename`` values listed at the top of the sample ``dhpcd.conf``
+      will be correct.
 
 Save and close the file.
 
@@ -170,7 +172,6 @@ client.
 Upon successful deployment of a new client, it is highly recommended that
 :ref:`LDAP administrative accounts <Managing LDAP Users>` be created.
 
-
 Troubleshooting Puppet Issues
 -----------------------------
 
@@ -184,7 +185,7 @@ server, try the following options:
 * Remove ``/etc/puppetlabs/puppet/ssl`` on the client system; run ``puppet cert
   --clean ***<Client Host Name>***`` on the Puppet server and try again.
 
-If you are getting permission errors make sure the selinux context is correct on all
+If you are getting permission errors, make sure the selinux context is correct on all
 files as well as the owner and group permissions.
 
 .. _cm-troubleshoot-cert-issues:
