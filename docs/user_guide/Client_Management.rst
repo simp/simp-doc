@@ -30,7 +30,7 @@ to attempting to install a client.
 Add the Kickstart server profile
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-In the Puppet server-specific hiera file (by default located at
+In the Puppet server-specific :term:`Hiera` file (by default located at
 ``/etc/puppetlabs/code/environments/simp/hieradata/hosts/puppet.<your.domain>.yaml``),
 add the ``simp::server::kickstart`` class.
 

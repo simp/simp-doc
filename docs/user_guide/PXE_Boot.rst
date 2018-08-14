@@ -34,15 +34,15 @@ This section describes how to configure the kickstart server.
 
 #. Open each of the files and follow the instructions provided within them to
    replace the variables.  You need to know the IP Addresses of the YUM,
-   Kickstart, and TFTPserver. (They default to the simp server in
+   Kickstart, and TFTP servers. (They default to the SIMP server in
    ``simp config``).  You may need to make several copies of this file depending
    on the different configurations of your clients.
 
    - ``pupclient_x86_64.cfg``: Replace the variables noted at the top and
      generate and enter the passwords.
-     You  need to set up seperate files for clients that will be booting in UEFI
-     mode as opposed to Leagacy (BIOS) mode.  There are also different files for
-     sysvinit systems and systemd systems.
+     You  need to set up separate files for clients that will be booting in UEFI
+     mode as opposed to Legacy (BIOS) mode.  There are also different files for
+     SysVinit systems and systemd systems.
 
    - ``diskdetect.sh``:  The ``diskdetect.sh`` script is responsible for
      detecting the first active disk and applying a disk configuration. Edit
@@ -52,9 +52,9 @@ This section describes how to configure the kickstart server.
 
 .. NOTE:
 
-   In SIMP 6.2 EFI PXE boot was automted.  UEFI and Legacy boot modes require
+   In SIMP 6.2 UEFI PXE boot was automated.  UEFI and Legacy boot modes require
    different ``bootloader`` lines in the kickstart file.  You will need to create
-   seperate kickstart files if you wish to boot systems in both modes and point to
+   separate kickstart files if you wish to boot systems in both modes and point to
    the correct one in the linux model you create for it in the .
 
 #. Type ``chown root.apache /var/www/ks/*`` to ensure that all files are owned
@@ -91,7 +91,7 @@ This section describes the process of setting up static files and manifests for
   The tftp root directory was changed in SIMP 6.2.  In previous versions it was
   ``/tftproot``, and in 6.2 and later it is ``/var/lib/tftpboot``.  If you are upgrading
   to 6.2 from a prior release and wish the files to remain in the ``/tftpboot`` directory
-  set ``tftpboot::tftpboot_root_dir`` to ``/tftpboot`` in hiera.
+  set ``tftpboot::tftpboot_root_dir`` to ``/tftpboot`` in :term:`Hiera`.
 
 Static Files
 ^^^^^^^^^^^^
@@ -119,6 +119,7 @@ or from the images directory on the SIMP DVD.  The link name is what is used in
 the resources in the tftpboot.pp manifest examples.
 
 .. NOTE::
+
    The images in the tftp directory need to match the distribution.  For example,
    if you upgrade your repo from CentOS 7.3 to 7.4 and will be using this repo
    to kickstart machines, you must also upgrade the images in the tftp directory.
@@ -127,10 +128,11 @@ the resources in the tftpboot.pp manifest examples.
 Next you need to set up the boot files for either legacy boot mode, UEFI mode, or both.
 
 .. NOTE::
+
   UEFI support was automated in SIMP 6.2.  If you are using an older version of
   SIMP please refer to that documentation for setting up UEFI manually.
 
-For more information see the `RedHat 7 Installation Source`_  or `RedHat 6 Installation Source`_ Istallation Guides
+For more information see the `RedHat 7 Installation Source`_  or `RedHat 6 Installation Source`_ Installation Guides
 
 Dynamic Linux Model Files
 ^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -139,10 +141,13 @@ files to model different systems.
 
 1. Create the file
    ``/etc/puppetlabs/code/environments/simp/modules/site/manifests/tftpboot.pp``.
-   Use the source code example below.  Examples are given for Centos 6 and 7 for both
-   UEFI and legacy boot mode.
+   This file will contain linux models for different types of systems and
+   a list mac addresses assigned to that model.
 
-   * Replace ``KSSERVER`` with the IP address of Kickstart server (or the code
+   Use the source code example below.  Linux model examples are given for
+   CentOS 6 and 7 using both UEFI and legacy boot mode.
+
+   * Replace ``KSSERVER`` with the IP address of kickstart server (or the code
      to look up the IP Address using :term:`Hiera`).
 
    * Replace ``OSTYPE``, ``MAJORRELEASE`` and ``ARCH`` with the correct values
@@ -152,11 +157,9 @@ files to model different systems.
      consistency.
 
    * You will need to know what kickstart file you are using.  UEFI and Legacy mode
-     require seperate kickstart files.  Other things that might require a different
-     kickstart file to be configure are disk drive configurations, if FIPS is being
-     used and other things.  Create a different linux model file for each different
-     kickstart file you have to use.  (See the ``pupclient_x86_64.cfg`` file for
-     comments on how to change that file to handle different system types.
+     require separate kickstart files.  Other things that might require a different
+     kickstart file to be configure are disk drive configurations and FIPS configuration.
+     Create a different linux model file for each different kickstart file needed.
 
 
 .. code-block:: ruby
@@ -187,10 +190,12 @@ files to model different systems.
      #------
      # UEFI MODE EXAMPLES
 
-     # NOTE for UEFI boot you need a different kickstart file from legacy
-     # mode because the bootloader command is different.  Read the instructions
+     # NOTE UEFI boot uses the linux_model_efi module.
+     # You also would use a different kickstart file because the bootloader command
+     # is different.  Read the instructions
      # in the pupclient_x86_64 file and make sure you have the correct bootloader
      # line.
+     #
      # For CentOS/RedHat 7 UEFI boot
      tftpboot::linux_model_efi { 'el7_x86_64_efi':
        kernel => 'OSTYPE-MAJORRELEASE-ARCH/vmlinuz',
@@ -221,7 +226,7 @@ files to model different systems.
    }
 
 
-2. Add the tftpboot site manifest on your puppet server node via Hiera.  Create
+2. Add the tftpboot site manifest on your puppet server node via :term:`Hiera`.  Create
    the file (or edit if it exists):
    ``/etc/puppetlabs/code/environments/simp/hieradata/hosts/<tftp.server.fqdn>.yaml``.
    (By default the TFTP server is the same as your puppet server so it should
