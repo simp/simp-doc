@@ -67,7 +67,6 @@ the RPMs for those projects exist by executing the ``pkg:check_published`` Rake 
      ...
      Found Existing Remote RPM: pupmod-simp-stunnel-6.1.0-0.noarch.rpm
      Found Existing Remote RPM: pupmod-simp-sudo-5.0.3-0.noarch.rpm
-     Found Existing Remote RPM: pupmod-simp-sudosh-6.0.1-0.noarch.rpm
      ...
 
    .. IMPORTANT::
@@ -422,7 +421,7 @@ tested in acceptance/simp-packer tests) do function as advertised:
 * Local and LDAP users can change their passwords on both the SIMP
   server and client on CentOS 6 and CentOS 7.
 * The Rsyslog rules from ``simp_rsyslog``, ``syslog`` and
-  SIMP application modules (``aide``, ``sudosh``, etc.) result
+  SIMP application modules (``aide``, ``tlog``, etc.) result
   in application log messages being written to the correct local
   and remote log files.
 

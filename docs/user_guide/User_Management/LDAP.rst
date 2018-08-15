@@ -22,7 +22,7 @@ Copy these files into ``/root/ldifs`` and fix their Distinguished Names:
   $ sed -i 's/dc=your,dc=domain/<your actual DN information>/g' \*.ldif
 
 .. WARNING::
-  Do not leave any extraneous spaces in LDIF files!
+   Do not leave any extraneous spaces in LDIF files!
 
 .. code-block:: bash
 
@@ -35,8 +35,7 @@ Copy these files into ``/root/ldifs`` and fix their Distinguished Names:
      file.ldif
 
 .. NOTE::
-  Use the ``[`` and ``]`` characters to scroll right when using
-  ELinks.
+   Use the ``[`` and ``]`` characters to scroll horizontally when using ELinks.
 
 Add a User
 ----------
@@ -49,8 +48,8 @@ in the following sections.
    belong to one or more, secondary groups.
 
 .. WARNING::
-    This process should not be used to create users or groups for daemon
-    processes unless the user has experience.
+   This process should not be used to create users or groups for daemon
+   processes unless the user has experience.
 
 Add a User with a Password
 ^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -104,8 +103,8 @@ that user:
 
 Ensure that an administrative account is created as soon as the SIMP system has
 been properly configured. Administrative accounts should belong to the
-``administrators`` LDAP group (gidNumber 700). Members of this LDAP group can
-utilize sudo sudosh for privilege escalation.
+``administrators`` LDAP group (gidNumber 700). By default, Members of this
+group can directly access a privileged shell via ``sudo su -``.
 
 .. NOTE::
    The ``pwdReset: TRUE`` command causes the user to change the
@@ -200,8 +199,8 @@ Add a Group
 
 SIMP systems are preconfigured with two groups:
 
-- ``administrators`` (700):  Group that has both sudosh and ssh privileges
-- ``users`` (100): Group that does not have sudosh or ssh privileges
+- ``administrators`` (700):  Group that has ssh and privilege escalation privileges
+- ``users`` (100): Group that does not have ssh or privilege escalation privileges
 
 To add another group:
 
@@ -381,8 +380,8 @@ To lock an LDAP account:
   -f /root/ldifs/lock_user.ldif
 
 .. NOTE::
-    The ``ldapmodify`` command is only effective when using the
-    *ppolicy* overlay.
+   The ``ldapmodify`` command is only effective when using the *ppolicy*
+   overlay.
 
 .. _unlock-ldap-label:
 
@@ -409,8 +408,8 @@ To unlock an LDAP account:
    -f /root/ldifs/unlock_account.ldif
 
 .. NOTE::
-    The ``ldapmodify`` command is only effective when using the
-    *ppolicy* overlay.
+   The ``ldapmodify`` command is only effective when using the *ppolicy*
+   overlay.
 
 Troubleshooting Issues
 ----------------------
