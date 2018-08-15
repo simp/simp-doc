@@ -7,7 +7,8 @@ daemon so that they may be optionally forwarded to a central syslog server. The
 following orthogonal list contains the conditions to be met for the SIMP logs
 to be sent to syslog.
 
-- $programname == 'sudosh'
+- $programname == 'tlog-rec-session'
+- $programname == 'tlog'
 - $programname =='yum'
 - $syslogfacility-text == 'cron'
 - $syslogfacility-text == 'authpriv'
@@ -23,7 +24,7 @@ configures the ``rsyslog`` daemon to accept logs from SIMP clients and places
 them in ``/var/log/hosts/``. The following files are created for each host in
 that directory:
 
-- sudosh.log
+- tlog.log
 - httpd.log
 - dhcpd.log
 - puppet-agent-err.log
