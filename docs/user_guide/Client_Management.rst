@@ -30,7 +30,7 @@ to attempting to install a client.
 Add the Kickstart server profile
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-In the Puppet server-specific hiera file (by default located at
+In the Puppet server-specific :term:`Hiera` file (by default located at
 ``/etc/puppetlabs/code/environments/simp/hieradata/hosts/puppet.<your.domain>.yaml``),
 add the ``simp::server::kickstart`` class.
 
@@ -40,7 +40,7 @@ add the ``simp::server::kickstart`` class.
   classes:
     - simp::server::kickstart
 
-This profile class adds management of bind_dns and named, as well as sets up the
+This profile class adds management of ``bind_dns`` and ``named``, as well as sets up the
 example provisioning script.
 
 After adding the above class, run puppet: ``puppet agent -t``.
@@ -55,7 +55,7 @@ include DNS configuration files and can be found at
 ``/var/simp/environments/simp/rsync/<OSTYPE>/<MAJORRELEASE>/bind_dns/default``.
 
 This section is not a complete manual for named. For more complete documentation
-on how to set up named, see named(8) and named.conf(5).
+on how to set up ``named``, see named(8) and named.conf(5).
 
 The following configuration steps are for a SIMP-managed setup. However, you
 can use an existing DNS infrastructure.
@@ -103,6 +103,15 @@ can use an existing DNS infrastructure.
 Configure DHCP
 ^^^^^^^^^^^^^^
 
+.. NOTE::
+
+  The ``dhcpd.conf`` file was updated in SIMP 6.2 to include logic in the
+  ``pxeclients`` class that determines the appropriate boot loader file on the
+  TFTP server, based on whether the client is booting in :term:`UEFI` or
+  :term:`BIOS` mode.  If you have configured DHCP using an earlier version
+  of SIMP and need to add UEFI support, make sure you update your ``dhcpd.conf``
+  in the rsync directory, appropriately.
+
 Perform the following actions as ``root`` on the Puppet Master system
 prior to attempting to install a client.
 
@@ -124,6 +133,11 @@ Make sure the following is done in the ``dhcpd.conf`` :
       additional ones as needed.)
     - Enter the domain name for option **domain-name**
     - Enter the IP Address of the DNS server for option **domain-name-servers**
+    - If PXE booting is being done with this DHCP server, make sure each ``filename``
+      parameter corresponds to the correct boot loader file on the TFTP server.
+      If you are using SIMP's ``simp::server::kickstart`` class to manage the
+      TFTP server, the default ``filename`` values listed in the ``pxeclients``
+      class of the sample ``dhpcd.conf`` will be correct.
 
 Save and close the file.
 
@@ -145,20 +159,19 @@ Setting Up the Client
 The following lists the steps to :term:`PXE` boot the system and set up the
 client.
 
-#. Set up your client's :term:`BIOS` or virtual settings to boot off the
-   network.
+#. Set up your client's boot settings to boot off of the network.
 #. Make sure the :term:`MAC` address of the client is set up in :term:`DHCP`
    (see `Configure DHCP`_ for more info.)
 #. Restart the system.
 #. Once the client installs, reboots, and begins to bootstrap, it will check in
    for the first time.
-#. Puppet will not autosign puppet certificates by default and waitforcert is
-   enabled. The client will check in every 30 seconds for a signed cert. Log on
-   to the puppet server and run ``puppet cert sign <puppet.client.fqdn>``.
+#. Puppet will not autosign puppet certificates, by default, and ``waitforcert`` is
+   enabled. This means the client will check in every 30 seconds for a signed
+   certificate.  Log on to the puppet server and run
+   ``puppet cert sign <puppet.client.fqdn>``.
 
 Upon successful deployment of a new client, it is highly recommended that
 :ref:`LDAP administrative accounts <Managing LDAP Users>` be created.
-
 
 Troubleshooting Puppet Issues
 -----------------------------
@@ -172,6 +185,9 @@ server, try the following options:
   serious issues with certificates.
 * Remove ``/etc/puppetlabs/puppet/ssl`` on the client system; run ``puppet cert
   --clean ***<Client Host Name>***`` on the Puppet server and try again.
+
+If you are getting permission errors, make sure the selinux context is correct on all
+files as well as the owner and group permissions.
 
 .. _cm-troubleshoot-cert-issues:
 

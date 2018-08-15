@@ -696,6 +696,14 @@ Glossary of Terms
    Trusted Boot
      See :term:`TXT`.
 
+   UEFI
+   Unified Extensive Firmware Interface
+      A specification that defines a software interface between an operating system
+      and platform firmware. UEFI replaces the Basic Input/Output System (BIOS)
+      firmware interface.
+
+      Source: `Wikipedia: UEFI <https://en.wikipedia.org/wiki/Unified_Extensible_Firmware_Interface>`__
+
    UUID
    Universally Unique Identifier
       A 128-bit unique value that is generally written as groups of hexadecimal
