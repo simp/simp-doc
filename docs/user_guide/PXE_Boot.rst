@@ -8,8 +8,8 @@ located in the DVD under ``/images/pxeboot``.  If you have an existing
 SIMP client. Follow your own sites procedures for this.
 
 In this section we describe how to configure the Kickstart and TFTP servers to
-PXE boot a SIMP client.  (The DHCP server setup, also required for PXE booting,
-is discussed in and earlier chapter.)
+PXE boot a SIMP client.  (The DNS and DHCP server setup, also required for PXE
+booting, are discussed in an earlier chapter.)
 
 .. NOTE::
 
