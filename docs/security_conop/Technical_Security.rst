@@ -142,8 +142,9 @@ have several default settings including:
 *  Assignment of users into groups locally or centrally via LDAP. [:ref:`AC-2 (7)`]
 
    * By default, SIMP will have an administrators groups that has the ability
-     to run ``sudosh``. Implementations should further define administrators or
-     user groups and limit them with the Puppet ``sudo`` class.
+     to run ``sudo su - root``. Implementations should further define
+     administrators or user groups and limit them with the Puppet ``sudo``
+     class.
 
 Access Enforcement
 ------------------
@@ -231,7 +232,7 @@ Least Privilege
 SIMP does not allow ``root`` to directly :term:`SSH` into a system. Direct
 access to the ``root`` user must occur via a console (or at a virtual instance
 of the physical console) to log on. Otherwise, users must log on as themselves
-and perform privileged commands using ``sudo`` or ``sudosh``.
+and perform privileged commands using ``sudo``.
 [:ref:`AC-6`]
 
 :term:`NIST 800-53` least privilege security controls give people access to
@@ -305,7 +306,7 @@ OpenSSH software. OpenSSH provides both confidentiality and integrity of remote
 access sessions. The SSH :term:`IPTables` rules allow connections from any
 host. SSH relies on other Linux mechanisms to provide identification and
 authentication of a user.  As discussed in the auditing section, user actions
-are audited with the audit daemon (``auditd``) and :term:`sudosh`.
+are audited with the audit daemon (``auditd``) and :term:`Tlog`.
 [:ref:`AC-17`]
 
 Systems and Communications Protection
@@ -328,7 +329,7 @@ performing non-administrative activities. In both cases, general users with
 accounts on an individual host are allowed access to the host using the
 ``pam::access`` module, so long as they have an account on the target host. No
 user may perform or have access to administrative functions unless given
-``sudo`` or :term:`sudosh` privileges via Puppet.
+``sudo`` privileges via Puppet.
 
 Shared Resources
 ----------------
@@ -445,9 +446,9 @@ and applied if deemed applicable.
 
 Privileged commands are audited as part of the SIMP auditing configuration.
 This is accomplished by monitoring ``sudo`` commands with ``auditd``.
-The output of session interaction for administrators that use :term:`sudosh`
-are also logged. Each ``sudosh`` session can be reviewed using
-``sudosh-replay`` and are also sent to ``rsyslog``.
+The output of session interaction for administrative login shells is also
+collected using :term:`Tlog`. :term:`Tlog` session recordings are sent to
+:term:`Syslog` for further processing.
 [:ref:`AU-2 (4)`]
 
 Content of Audit Records
