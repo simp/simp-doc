@@ -69,5 +69,29 @@ to the new directory.  Make sure the permissions, including selinux context, are
 correct. TFTP boot will fail to find boot files that have the incorrect selinux
 context.
 
+Optionally remove OBE logrotate configuration files
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+SIMP-managed ``logrotate`` rules are now in ``/etc/logrotate.simp.d`` instead of
+``/etc/logrotate.d``.  The rules in ``/etc/logrotate.d`` are still applied, but
+``logrotate`` is configured to read the rules in ``/etc/logrotate.simp.d``,
+first.
+
+This change was made to ensure SIMP-managed rules take precedence over
+vendor-supplied rules, because, when there are multiple rules specified for the
+same file, only the first rule is applied.  Any subsequent rules are discarded.
+In fact, for some versions of ``logrotate``, a rule with a duplicate log file
+is discarded *in its entirety*, even if only one of the managed log files is a
+duplicate.  This means the remaining log files specified in that discarded rule
+will *not* be rotated!
+
+Because of the location of the SIMP-managed ``logrotate`` rules has changed,
+existing, but now OBE, SIMP rules will still reside in ``/etc/logrotate.d``.
+Although these rules cause no issues with ``logrotate``, they may be confusing
+to system administrators.  So, you may wish to manually remove these rules.
+
+You can easily identify OBE SIMP rules in ``/etc/logrotate.d`` by their
+``This file managed by puppet.`` comment lines.
+
 .. _simp-core repository: https://github.com/simp/simp-core
 .. _simp-rsync-skeleton repository: https://github.com/simp/simp-rsync-skeleton
