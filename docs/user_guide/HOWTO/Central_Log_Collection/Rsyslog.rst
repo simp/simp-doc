@@ -85,7 +85,7 @@ Using the following example ``Hash``:
 
 The ``programs`` line would match the following due to the highlighted section:
 
-* 2017-03-14T15:26:53.589793+00:00 sample.host.name **sudo**: test_user : TTY=pts/0 ; PWD=/home/test_user ; USER=root ; COMMAND=/usr/sbin/visudo
+* 2017-03-14T15:26:53.589793+00:00 sample.host.name **sudo**: test_user : TTY=pts/0 ; PWD=/home/test_user ; USER=root ; COMMAND=/bin/sudosh
 
 The ``facilities`` line would match the following because the listed facility is ``cron``:
 

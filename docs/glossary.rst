@@ -629,21 +629,10 @@ Glossary of Terms
       transfer capability, but is also intended to be usable with other
       protocols.
 
-   Sudo
-      ``sudo`` allows a permitted user to execute a command as the superuser or
-      another user, as specified by the security policy.  The invoking user's
-      real (not effective) user ID is used to determine the user name with
-      which to query the security policy.
-
-      Source: The ``SUDO(8)`` man page
-
    Sudosh
       An application that acts as an echo logger to enhance the auditing of
       privileged activities at the command line of the operating system.
       Utilities are available for playing back sudosh sessions in real time.
-
-      Sudosh has been replaced by :term:`Tlog` in the latest SIMP
-      distributions.
 
    SYN cookies
    syncookies
@@ -670,15 +659,6 @@ Glossary of Terms
       A set of standards for sending log messages across the network.
 
       source: `Wikipedia: syslog <https://en.wikipedia.org/wiki/Syslog>`__
-
-   Tlog
-      Tlog is a terminal I/O recording and playback package suitable for
-      implementing centralized user session recording.
-
-      Tlog has replaced :term:`Sudosh` as the preferred terminal logging
-      program in SIMP.
-
-      source: `The Tlog home page <https://github.com/Scribery/tlog/blob/master/README.md>`__
 
    TLS
    Transport Layer Security
