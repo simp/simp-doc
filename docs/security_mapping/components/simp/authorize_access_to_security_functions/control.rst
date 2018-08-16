@@ -2,11 +2,7 @@ Authorize Access to Security Functions
 --------------------------------------
 
 One of the main mechanisms to control access to security functions is the use of
-sudo.  SIMP installs the following :term:`sudo` rules:
-
-.. NOTE:
-   The lack of a required password is due to the presumption that users will be
-   using SSH keys, and not passwords, to access their systems.
+sudo.  SIMP installs the following sudo rules
 
 .. list-table::
   :header-rows: 1
@@ -16,7 +12,7 @@ sudo.  SIMP installs the following :term:`sudo` rules:
     - Run As Account
     - Password Required
   * - administrators
-    - /bin/su - root -l
+    - /usr/bin/sudosh
     - root
     - no
   * - administrators
