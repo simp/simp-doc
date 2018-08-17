@@ -85,7 +85,7 @@ is discarded *in its entirety*, even if only one of the managed log files is a
 duplicate.  This means the remaining log files specified in that discarded rule
 will *not* be rotated!
 
-Because of the location of the SIMP-managed ``logrotate`` rules has changed,
+Because the location of the SIMP-managed ``logrotate`` rules has changed,
 existing, but now OBE, SIMP rules will still reside in ``/etc/logrotate.d``.
 Although these rules cause no issues with ``logrotate``, they may be confusing
 to system administrators.  So, you may wish to manually remove these rules.
