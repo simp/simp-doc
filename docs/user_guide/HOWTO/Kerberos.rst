@@ -121,4 +121,4 @@ Once the Puppet Agent runs on the clients, your keytabs will copied to
 place as the default system keytab.
 
 .. _SIMP KRB5 Puppet Module: https://github.com/simp/pupmod-simp-krb5
-.. _official Red Hat documentation: https://access.redhat.com/documentation/en-US/Red_Hat_Enterprise_Linux/6/html/Managing_Smart_Cards/Configuring_a_Kerberos_5_Server.html
+.. _official Red Hat documentation: https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/6/html/managing_smart_cards/configuring_a_kerberos_5_server.html

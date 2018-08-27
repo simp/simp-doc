@@ -21,6 +21,9 @@ done to to maintain a more legible commit history on `master`.
 
 #. Do your work! `(Including tests, of course)`
 
+   * See `gsg-contributors_guide-contribution_procedure-testing_your_submissions`_
+     for detailed guidance on test procedures.
+
 #. Commit your work. We will `squash`_ your `pull request`_ into one commit
    when we merge it, so you can use as many commits as you'd like.
 
@@ -77,15 +80,125 @@ The first commit message should be the following format:
     * Avoid ``#resolve`` and ``#time`` as it will not update JIRA until
       after the issue is merged
 
-.. _GitHub Workflow: https://guides.github.com/introduction/flow/
-.. _Squash and Merge: https://blog.github.com/2016-04-01-squash-your-commits
-.. _SIMP JIRA: https://simp-project.atlassian.net
-.. _GitHub GUI to fork and clone: https://help.github.com/articles/fork-a-repo/
-.. _feature branch: https://www.atlassian.com/git/tutorials/comparing-workflows#feature-branch-workflow
-.. _squash: https://blog.github.com/2016-04-01-squash-your-commits
-.. _pull request: https://help.github.com/articles/using-pull-requests
+.. _gsg-contributors_guide-contribution_procedure-testing_your_submissions:
+
+Testing Your Submissions
+------------------------
+
+First off, thank you again for your contribution! Things don't get better
+without your help!
+
+This section contains two sets of guidelines. First, ones that are recommended
+for external contributions from the community. Second, ones that are expected
+to be adhered to by the core development team.
+
+External Contributors
+^^^^^^^^^^^^^^^^^^^^^
+
+We will happily accept all levels of contributions, small, medium, or large
+without any tests.
+
+However, for us to quickly and effectively assess your contribution you should
+either add unit (``rspec-puppet``) and/or acceptance (``beaker``) tests.
+
+As the size of the contribution increases, this becomes increasingly important,
+because, depending upon the complexity of the changes, it may simply be too
+difficult to do a timely assessment of such a contribution without corresponding
+tests. In these cases, it would be best if you split your contribution into
+smaller pull requests that are easier to assess.
+
+Core Developer Contributions
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+The core development team is expected to follow these guidelines when adding
+code to the project.
+
+In all cases, a cursory ``grep`` through the `simp-doc`_ project should be done
+and a ticket should be entered if the overall project documentation may be
+affected by your change.
+
+This should also be done by the core development team for any external
+contributions, since it is unreasonable to expect external contributors
+to take the effort to dig through the `simp-doc`_ project.
+
+Trivial Contributions
+"""""""""""""""""""""
+
+Trivial contributions are those that constitute a small documentation update,
+code correction, or bug fix consisting of only a few lines. These contributions
+must not negatively impact the behavior of the user experience or code.
+
+Trivial contributions do not require an associated ticket and may be covered
+under a ``SIMP-MAINT`` branch.
+
+Trivial contributions require **one maintenance team member** review and may
+optionally add additional unit or acceptance testing.
+
+Minor Contributions
+"""""""""""""""""""
+
+Minor contributions are those that add a feature or fix a larger bug in
+components that are more than five or ten lines and/or are not only
+documentation updates.
+
+Minor contributions must have unit tests and should have acceptance tests.
+Acceptance tests may be deferred but a ticket must be filed with an explanation
+and a link in the PR if the acceptance test addition is deferred.
+
+Minor contributions require **one maintenance team member** review. The
+reviewing team member may decide that acceptance tests are required based on
+the understandability of the contribution.
+
+Major Contributions
+"""""""""""""""""""
+
+Major contributions are any changes that affect multiple parts of the system,
+any contribution of moderate or higher cyclomatic complexity, or anything that
+adds a breaking change to the system.
+
+Major contributions must have unit tests that cover all major code paths and
+pay particular attention to edge cases.
+
+Acceptance tests must also be provided that cover the primary usage of the code
+that, at a minimum, test the code in a way that end users would use it.
+
+User facing changes should also contain documentation updates that cover the
+expected use cases.
+
+Major contributions require **two maintenance team member** reviews.
+
+Emergency Contributions
+"""""""""""""""""""""""
+
+On occasion, a fix or patch will need to be made with a very short turn around
+time. These may include up to `Minor Contributions`_ and may be added after
+**two code reviews** without the addition of tests. However, a ticket must be
+added that notes a requirement for tests to be added to the specified
+capability.  This ticket should link directly to the PR that added the code for
+later reference.
+
+Experimental Contributions
+""""""""""""""""""""""""""
+
+Experimental contributions are changes that may not be ready for the end user,
+but that need reviews and/or attention.
+
+For items that are not end-user facing, such as the testing components or
+frameworks, there may be a need to try out different techniques prior to
+releasing a full update. These may be added to the unstable ``master`` branch
+without testing but tests should be added if the changes will be released in
+the future.
+
 .. _Allow edits from maintainers: https://help.github.com/articles/allowing-changes-to-a-pull-request-branch-created-from-a-fork/
-.. _Travis-CI: http://travis-ci.org/simp
-.. _review: https://help.github.com/articles/reviewing-proposed-changes-in-a-pull-request/
-.. _JIRA issues can be referenced: https://confluence.atlassian.com/bitbucket/processing-jira-software-issues-with-smart-commit-messages-298979931.html
+.. _GitHub GUI to fork and clone: https://help.github.com/articles/fork-a-repo/
+.. _GitHub Workflow: https://guides.github.com/introduction/flow/
 .. _JIRA Smart Commit Tags: https://confluence.atlassian.com/bitbucket/processing-jira-software-issues-with-smart-commit-messages-298979931.html
+.. _JIRA issues can be referenced: https://confluence.atlassian.com/bitbucket/processing-jira-software-issues-with-smart-commit-messages-298979931.html
+.. _SIMP JIRA: https://simp-project.atlassian.net
+.. _Squash and Merge: https://blog.github.com/2016-04-01-squash-your-commits
+.. _Travis-CI: http://travis-ci.org/simp
+.. _feature branch: https://www.atlassian.com/git/tutorials/comparing-workflows#feature-branch-workflow
+.. _pull request: https://help.github.com/articles/using-pull-requests
+.. _review: https://help.github.com/articles/reviewing-proposed-changes-in-a-pull-request/
+.. _simp-doc: https://github.com/simp/simp-doc
+.. _squash: https://blog.github.com/2016-04-01-squash-your-commits

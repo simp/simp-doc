@@ -35,8 +35,7 @@ Copy these files into ``/root/ldifs`` and fix their Distinguished Names:
      file.ldif
 
 .. NOTE::
-  Use the ``[`` and ``]`` characters to scroll right when using
-  ELinks.
+  Use the ``[`` and ``]`` characters to scroll horizontally when using ELinks.
 
 Add a User
 ----------
