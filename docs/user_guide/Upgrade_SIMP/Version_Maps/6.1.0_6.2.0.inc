@@ -11,45 +11,43 @@ Upgrading from SIMP-6.1.0 to SIMP-6.2.0
 Update kickstart files
 ^^^^^^^^^^^^^^^^^^^^^^
 
-The kickstart example file, ``pupclient_x86_64.cfg``,  was updated.  Changes in this
-file should be used to create any new kickstart files and backported to any existing
-kickstart files.  The new, OS-specific versions of this file are included in the
-SIMP-6.2.0 ISOs, but may also be found in the `simp-core repository`_ under
-``build/distributions/<OS>/<OS Major Version>/<Architecture>/DVD/ks``.
+The example kickstart file (``pupclient_86_64.cfg``—see
+:ref:`Setting_Up_Kickstart`) was updated.  Existing kickstart files that are
+modeled on older versions of this file should backport these changes.  New,
+OS-specific versions of this file are included in the SIMP-6.2.0 ISOs, but may
+also be found in the `simp-core repository`_ under
+``build/distributions/<OS>/<OS Major Version>/<Architecture>/DVD/ks/``.
 
 Two major changes were made:
 
-#. ``pupclient_86_64.cfg``, was updated to include instructions for changing the
-   file to accomodate UEFI boot.  Appropriate configuration lines are commented-out
-   by default.
+#. ``pupclient_86_64.cfg`` was updated to include instructions regarding what
+   to change in order to accommodate UEFI boot.  The associated configuration
+   lines are commented out by default.
 
-#. ``pupclient_86_64.cfg``, was updated to download and use new bootstrap service
-   files.  These files, managed by ``simp::server::kickstart``, are
+#. ``pupclient_86_64.cfg`` was updated to download and use new bootstrap service
+   files.  These files, managed by ``simp::server::kickstart``, are:
 
      - A ``systemd`` unit file for CentOS 7 (``simp_client_bootstrap.service``)
        or a ``systemv`` init script for CentOS 6 (``simp_client_bootstrap``).
      - A common bootstrap script (``bootstrap_simp_client``) used by both.
 
-   The pair of files replace the deprecated ``runpuppet`` script. This replacement
-   is required in order to solve two timeout problems on particularly loaded
+   This pair of files replaces the deprecated ``runpuppet`` script. They
+   are required in order to solve two timeout problems on particularly loaded
    systems, both of which can cause client Puppet bootstrapping to fail and
-   require subsequent manual intervention in order to fix. The problems solved
-   are the following:
+   require subsequent manual intervention in order to fix:
 
-   - On CentOS 7 ``systemd`` was killing ``runpuppet``, when it ran longer
-     than 5 minutes. The use of an actual ``systemd`` unit file,
-     ``simp_client_bootstrap.service``, with a default timeout of 30 minutes
-     has solved this problem.
+   - On CentOS 7, ``systemd`` was killing ``runpuppet``, when it ran longer
+     than 5 minutes.  This was solved by using an actual ``systemd`` unit file
+     (``simp_client_bootstrap.service``) with a default timeout of 30 minutes.
    - On CentOS 7, if the DHCP lease expired in the middle of bootstrapping,
-     ``localhost`` being erroneously used for the client hostname within
-     generated Puppet configuration.  Setting the static hostname of the client
-     at the beginning of the client Puppet bootstrap process has solved this
-     problem.
+     ``localhost`` the generated Puppet configuration would erroneously use the
+     client hostname.  This was solved by setting the static hostname of the
+     client at the beginning of the client Puppet bootstrap process.
 
-   In addition to solving specific timeout problems, the new bootstrap scripts use
-   a configurable, backoff algorithm in order prevent flooding a heavily-loaded
-   Puppet master with requests. See ``simp::server::kickstart::`simp_client_bootstrap``
-   for details.
+   In addition to solving these specific problems, the new bootstrap scripts
+   use a configurable backoff algorithm in order prevent flooding a
+   heavily-loaded Puppet master with requests. See the
+   ``simp::server::kickstart::simp_client_bootstrap`` class for details.
 
 .. IMPORTANT::
 
