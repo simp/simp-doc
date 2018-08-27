@@ -19,30 +19,44 @@ SIMP-6.2.0 ISOs, but may also be found in the `simp-core repository`_ under
 
 Two major changes were made:
 
-#. To solve two timeout problems on particularly loaded systems, both of which
-   caused client Puppet bootstrapping to fail and require manual intervention,
-   the ``runpuppet`` script was completely rewritten.  Although ``runpuppet`` is
-   still available, it is deprecated and has been replaced with a pair of scripts:
+#. ``pupclient_86_64.cfg``, was updated to include instructions for changing the
+   file to accomodate UEFI boot.  Appropriate configuration lines are commented-out
+   by default.
+
+#. ``pupclient_86_64.cfg``, was updated to download and use new bootstrap service
+   files.  These files, managed by ``simp::server::kickstart``, are
 
      - A ``systemd`` unit file for CentOS 7 (``simp_client_bootstrap.service``)
        or a ``systemv`` init script for CentOS 6 (``simp_client_bootstrap``).
      - A common bootstrap script (``bootstrap_simp_client``) used by both.
 
-   The use of an actual ``systemd`` unit file for CentOS 7 solved the problem in
-   which ``systemd`` on CentOS 7 was killing ``runpuppet``, when it ran longer
-   than 5 minutes.  By default, setting the static hostname of the client on
-   CentOS 7 at the beginning of the client Puppet bootstrap process solved
-   the problem whereby the DHCP lease may expire in the middle of bootstrapping,
-   resulting in ``localhost`` being erroneously used for the client hostname
-   within generated Puppet configuration.
+   The pair of files replace the deprecated ``runpuppet`` script. This replacement
+   is required in order to solve two timeout problems on particularly loaded
+   systems, both of which can cause client Puppet bootstrapping to fail and
+   require subsequent manual intervention in order to fix. The problems solved
+   are the following:
 
-   The sample kickstart files for CentOS 6 and CentOS 7 were updated to download
-   the appropriate pair of files, and then enable the service at boot.
+   - On CentOS 7 ``systemd`` was killing ``runpuppet``, when it ran longer
+     than 5 minutes. The use of an actual ``systemd`` unit file,
+     ``simp_client_bootstrap.service``, with a default timeout of 30 minutes
+     has solved this problem.
+   - On CentOS 7, if the DHCP lease expired in the middle of bootstrapping,
+     ``localhost`` being erroneously used for the client hostname within
+     generated Puppet configuration.  Setting the static hostname of the client
+     at the beginning of the client Puppet bootstrap process has solved this
+     problem.
 
-#. The sample client kickstart file, ``pupclient_86_64.cfg``, was updated to
-   include instructions for changing the file to accomodate UEFI boot.  Also,
-   an error in that configuration file that prevented UEFI systems from booting
-   was fixed.
+   In addition to solving specific timeout problems, the new bootstrap scripts use
+   a configurable, backoff algorithm in order prevent flooding a heavily-loaded
+   Puppet master with requests. See ``simp::server::kickstart::`simp_client_bootstrap``
+   for details.
+
+.. IMPORTANT::
+
+   Careful examination of ``pupclient_86_64.cfg`` is recommended, if you have
+   customized it for your site beyond token replacement. The latest version
+   contains a few subtle bug fixes, such as fixing an incorrect path that would
+   prevent UEFI systems from booting.
 
 Update dhcpd.conf
 ^^^^^^^^^^^^^^^^^
