@@ -1,3 +1,6 @@
+.. _Configure_PXE_Boot:
+
+
 Configure PXE Boot
 ==================
 
@@ -21,6 +24,7 @@ booting, are discussed in an earlier chapter.)
    understand DHCP, KS, YUM and TFTP relationships for PXE booting before
    attempting this.
 
+.. _Setting_Up_Kickstart:
 
 Setting Up Kickstart
 --------------------
