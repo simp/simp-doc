@@ -40,9 +40,10 @@ Two major changes were made:
      than 5 minutes.  This was solved by using an actual ``systemd`` unit file
      (``simp_client_bootstrap.service``) with a default timeout of 30 minutes.
    - On CentOS 7, if the DHCP lease expired in the middle of bootstrapping,
-     ``localhost`` the generated Puppet configuration would erroneously use the
-     client hostname.  This was solved by setting the static hostname of the
-     client at the beginning of the client Puppet bootstrap process.
+     the generated Puppet configuration would erroneously use ``localhost`` for
+     the client hostname.  This problem was solved by setting the static
+     hostname of the client at the beginning of the client Puppet bootstrap
+     process.
 
    In addition to solving these specific problems, the new bootstrap scripts
    use a configurable backoff algorithm in order prevent flooding a
