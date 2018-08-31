@@ -236,7 +236,7 @@ Create A Workstation Hostgroup
 
 Edit the ``site.pp`` file to create a hostgroup for the workstations.  The
 following will make all nodes whose names start with ``ws`` followed any number
-of digits use the ``hieradata/hostgroup/workstation.yaml`` instead of the default:
+of digits use the ``hieradata/hostgroups/workstation.yaml`` instead of the default:
 
 .. code-block:: ruby
 

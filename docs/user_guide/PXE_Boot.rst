@@ -250,8 +250,8 @@ files to model different systems.
      # For each system define what module you want to use by pointing
      # its MAC address to the appropriate model.  Note that the MAC
      # address is preceded by ``01-``.
-     tftpboot::assign_host { 01-aa-ab-ac-1d-05-11: model => 'el6_x86_64' }
-     tftpboot::assign_host_efi { 01-aa-bb-cc-dd-00-11: model => 'el7_x86_64_efi' }
+     tftpboot::assign_host { '01-aa-ab-ac-1d-05-11': model => 'el6_x86_64' }
+     tftpboot::assign_host_efi { '01-aa-bb-cc-dd-00-11': model => 'el7_x86_64_efi' }
    }
 
 
