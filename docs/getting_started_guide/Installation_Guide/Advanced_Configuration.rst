@@ -1,7 +1,7 @@
-.. _Initial_Configuration:
+.. _gsg-advanced-configuration:
 
-Initial Configuration
-=====================
+Advanced Configuration
+======================
 The goal of ``simp config`` is to allow the user to quickly configure the
 SIMP server with minimal user input/operations.  To that end ``simp config``
 sets installation variables based on information gathered from the user,

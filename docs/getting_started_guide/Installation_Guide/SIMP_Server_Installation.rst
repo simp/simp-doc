@@ -131,7 +131,7 @@ Installing the SIMP Server
   - ``simp config``  generates a log file containing details of the
     configuration selected and actions taken.
   - For more details about the installation variables set by ``simp config``
-    and the corresponding actions, see :ref:`Initial_Configuration`.
+    and the corresponding actions, see :ref:`gsg-advanced-configuration`.
   - For a list of additional options, type ``simp help config``.
 
     - ``simp config --dry-run`` will run through all of the ``simp config``
