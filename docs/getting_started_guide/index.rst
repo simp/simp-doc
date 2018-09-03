@@ -1,4 +1,4 @@
-.. _getting-started-guide:
+.. _gsg_index:
 
 SIMP Getting Started Guide
 ==========================
@@ -10,11 +10,7 @@ Welcome to SIMP!
 
   Introduction
   Known OS Compatibility <../dynamic/Known_OS_Compatibility>
-  Installing_SIMP_From_An_ISO
-  SIMP_on_Amazon_Web_Services
-  Installing_SIMP_From_A_Repository
-  Preparing_For_Non_Rpm_Install
-  Installing_SIMP_using_r10k
-  Building_A_SIMP_ISO
-  ISO_Install/index
-  Initial_Configuration
+  Installation_Options/index
+  Installation_Guide/index
+
+.. _gsg_installation_options:

@@ -113,7 +113,7 @@ Agents will require the ``simp`` class at a minimum. SIMP ships with
 nodes for various tasks.  See the :ref:`Classification and Data` documentation
 for more information. Depending on the function of your production environment,
 and your choice of scenario, you will want to populate Hiera with required
-parameters.  See :ref:`Initial_Configuration` for a list of base parameters and
+parameters.  See :ref:`gsg-advanced-configuration` for a list of base parameters and
 their description.
 
 

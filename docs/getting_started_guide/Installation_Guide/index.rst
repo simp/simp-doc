@@ -1,7 +1,7 @@
 .. _simp-installation-guide:
 
-Installing SIMP from an ISO
-===========================
+SIMP Installation Walkthrough
+=============================
 
 Contents:
 
@@ -10,4 +10,5 @@ Contents:
 
   Introduction
   SIMP_Server_Installation
-  Disk Encryption <Disk_Encryption>
+  Advanced_Configuration
+  Disk_Encryption
