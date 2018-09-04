@@ -1,5 +1,5 @@
 Session Lock
--------------
+------------
 
 Sessions do not "lock".  Instead, when there is a shell open and idle for 15
 minutes, the session will timeout.  This applies only when the shell is not

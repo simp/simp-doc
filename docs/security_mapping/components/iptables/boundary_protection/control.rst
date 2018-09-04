@@ -1,5 +1,5 @@
 Boundary Protection
---------------------
+-------------------
 
 The SIMP IPTables module adds an IPtables rule that will prevent external IP
 addresses from being able to send spoofed packets to your system.  This applies

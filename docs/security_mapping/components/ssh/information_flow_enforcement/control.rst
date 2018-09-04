@@ -1,5 +1,5 @@
 Information Flow Enforcement
------------------------------
+----------------------------
 
 The SSH module explicitly opens up port 22 for the SSH server by
 using IPTables rules.

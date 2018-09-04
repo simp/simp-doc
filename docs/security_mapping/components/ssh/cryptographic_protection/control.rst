@@ -1,5 +1,5 @@
 Cryptographic Protection
--------------------------
+------------------------
 
 In the default FIPS mode, the SSH daemon limits the key exchange algorithms to:
 

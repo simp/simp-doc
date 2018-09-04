@@ -1,5 +1,5 @@
 Baseline Configuration
------------------------
+----------------------
 
 SIMP uses ``crond`` to schedule a number of jobs that help keep systems in a
 consistent and known baseline.  The ``simp`` module ensures that the ``cron``

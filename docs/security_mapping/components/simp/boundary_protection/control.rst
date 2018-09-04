@@ -1,5 +1,5 @@
 Boundary Protection
---------------------
+-------------------
 
 The ``simp::sysctl`` class uses the kernel's sysctl ``rp_filter`` (reverse path)
 setting to drop spoofed IPv4 packets.

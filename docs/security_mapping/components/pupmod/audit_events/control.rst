@@ -1,5 +1,5 @@
 Audit Events
-------------------------
+------------
 
 The following puppet files are added to the audit rules so that modifications to
 them are audited by auditd.

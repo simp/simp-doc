@@ -1,5 +1,5 @@
 Automated Central Management / Application / Verification
-----------------------------------------------------------
+---------------------------------------------------------
 
 SIMP has a custom function that is embedded within the module code to validate
 each variable.  Those variables are then verified against SIMP default

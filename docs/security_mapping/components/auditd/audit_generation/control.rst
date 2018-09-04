@@ -1,5 +1,5 @@
 Audit Generation
------------------
+----------------
 
 SIMP enables auditd on all systems.
 Auditd is the userspace component to the Linux Auditing System. It's responsible

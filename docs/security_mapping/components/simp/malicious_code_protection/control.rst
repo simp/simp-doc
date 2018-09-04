@@ -1,5 +1,5 @@
 Malicious Code Protection
----------------------------
+-------------------------
 
 SIMP installs the chkrootkit tool.  Chkrootkit scans systems for the presence of
 rootkits.  A cron job runs chkrootrootkit once per day.

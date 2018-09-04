@@ -145,7 +145,7 @@ Run ``puppet agent -t`` on the Puppet Master to apply the changes.
 
 .. _PXE_Boot:
 
-.. include:: PXE_Boot.rst
+.. include:: PXE_Boot.inc
 
 .. _Certificates:
 
