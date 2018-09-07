@@ -24,5 +24,5 @@ networks or hosts from which you would like to connect.
 
 You can find more information on ``trusted_nets`` in the
 :ref:`List of Installation Variables` in the :ref:`gsg-advanced-configuration`
-section of the :ref:`getting-started-guide`.
+section of the :ref:`gsg_index`.
 

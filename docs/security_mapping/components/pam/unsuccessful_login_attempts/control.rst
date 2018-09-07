@@ -1,5 +1,5 @@
 Unsuccessful Login Attempts
-----------------------------
+---------------------------
 
 A user is allowed three failed logins per session.  After the third unsuccessful
 login attempt, the user is disconnected and must initiate a new session in order

@@ -1,5 +1,5 @@
 Privileged Accounts
---------------------
+-------------------
 
 Linux historically uses the wheel group to as an administrators group.  SIMP
 makes use of the sudoers file with more granular group permissions.  The PAM

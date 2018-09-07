@@ -1,7 +1,7 @@
 .. _SIMP_Security_Control_Mapping:
 
 SIMP Security Control Mapping
-================================
+=============================
 
 This is the security control mapping for SIMP.  The document has two main
 sections.  The first section contains the security components, which in our

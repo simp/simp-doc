@@ -1,5 +1,5 @@
 Least Functionality
---------------------
+-------------------
 
 Whenever possible, SIMP prevents kernel modules that could cause harm or are
 unnecessary from loading.  The operating system's modprobe blacklist feature is

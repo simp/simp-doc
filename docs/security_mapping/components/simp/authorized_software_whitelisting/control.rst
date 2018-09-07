@@ -1,5 +1,5 @@
 Authorized Software
---------------------
+-------------------
 
 SIMP builds and configures centralized YUM repositories which are hosted on the
 SIMP server.  These repositories host all of the packages that are needed to

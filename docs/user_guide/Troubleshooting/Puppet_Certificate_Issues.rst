@@ -101,7 +101,7 @@ to regenerate all the puppet certificates and the puppet CA do the following:
    the client using the :ref:`rereg-puppet-client-certs` instructions.
 
 Puppetserver and PuppetDB certificate mismatch
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 If the puppetserver CA has been updated and the puppetdb
 certificates are not cleaned a puppet agent run produces an

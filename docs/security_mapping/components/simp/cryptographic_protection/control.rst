@@ -1,5 +1,5 @@
 Cryptographic Protection
--------------------------
+------------------------
 
 SIMP enables Federal Information Processing Standard( :term:`FIPS` ) mode.
 FIPS Publication 140-2, is a computer security standard, developed by a U.S.

@@ -1,5 +1,5 @@
 Denial of Service Protection
------------------------------
+----------------------------
 
 SIMP takes several measures to reduce the chances of Denial of Service (DoS)
 attacks. The primary measures in place are to limit traffic with IPTables

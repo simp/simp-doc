@@ -1,5 +1,5 @@
 System Use Notification
-------------------------
+-----------------------
 
 A default SIMP warning banner is presented to the user prior to login.  The
 content of that banner is:

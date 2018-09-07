@@ -1,5 +1,5 @@
 Group Authentication
-----------------------
+--------------------
 
 SIMP does not use group accounts for authenticators.  Instead, users are added
 to a group.  In the case of the ``administrators`` group, a user first

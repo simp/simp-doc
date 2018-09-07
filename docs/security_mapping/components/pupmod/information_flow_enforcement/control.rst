@@ -1,5 +1,5 @@
 Information Flow Enforcement
------------------------------
+----------------------------
 
 The pupmod module explicitly opens up ports 8140 and 8141
 using IPTables rules.  Port 8140 is the puppet master port and 8141 is the

@@ -1,5 +1,5 @@
 Authenticator Management
----------------------------
+------------------------
 
 The operating system protects locally stored passwords by hashing them.  SIMP
 maximizes that protection by using the SHA512 algorithm.

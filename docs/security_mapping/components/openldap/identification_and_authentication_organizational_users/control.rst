@@ -1,5 +1,5 @@
 Identification and Authentication (Organizational Users)
----------------------------------------------------------
+--------------------------------------------------------
 
 The pam_ldap module ensures that the username is mapped to the uid portion of
 the DN in LDAP.

@@ -12,5 +12,3 @@ Welcome to SIMP!
   Known OS Compatibility <../dynamic/Known_OS_Compatibility>
   Installation_Options/index
   Installation_Guide/index
-
-.. _gsg_installation_options:
