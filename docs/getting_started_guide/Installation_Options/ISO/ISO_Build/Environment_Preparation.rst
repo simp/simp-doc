@@ -43,22 +43,22 @@ install :term:`RVM` for your user.
 
    $ gpg2 --keyserver hkp://keys.gnupg.net --recv-keys \
        409B6B1796C275462A1703113804BB82D39DC0E3
-   $ \curl -sSL https://get.rvm.io | bash -s stable --ruby=2.1.9
+   $ \curl -sSL https://get.rvm.io | bash -s stable --ruby=2.4.1
    $ source ~/.rvm/scripts/rvm
 
 Set the Default Ruby
 ^^^^^^^^^^^^^^^^^^^^
 
-You'll want to use :term:`Ruby` 2.1.9 as your default :term:`RVM` for SIMP
+You'll want to use :term:`Ruby` 2.4.1 as your default :term:`RVM` for SIMP
 development.
 
 .. code-block:: bash
 
-   $ rvm use --default 2.1.9
+   $ rvm use --default 2.4.1
 
 .. NOTE::
 
-   Once this is done, you can simply type ``rvm use 2.1.9``.
+   Once this is done, you can simply type ``rvm use 2.4.1``.
 
 Bundler
 ^^^^^^^
@@ -128,8 +128,25 @@ Start the docker daemon:
   $ sudo systemctl start docker
   $ sudo systemctl enable docker
 
+Build Your Build Containers
+---------------------------
+
+The `simp-core`_ project provides suitable build Dockerfiles for both EL6 and
+EL7 in the ``build/Dockerfiles`` directory.
+
+These work well for building both CentOS 6 and 7 artifacts and the usage is
+noted at the top of those files.
+
+Unfortunately, getting this to work with RHEL has proven to be a challlenge so
+you should use the Dockerfile to see what packages you need to install to
+successfully build.
+
+A simple way to get a quick list is to run ``grep "yum .* -y"`` on the
+appropriate Dockerfile.
+
 .. _Bundler Rationale Page: https://bundler.io/rationale.html
 .. _Bundler: https://bundler.io/
 .. _RVM Installation Page: https://rvm.io/rvm/install
 .. _RVM: https://rvm.io/
 .. _Rubygems.org: https://guides.rubygems.org/what-is-a-gem/
+.. _simp-core: https://github.com/simp/simp-core

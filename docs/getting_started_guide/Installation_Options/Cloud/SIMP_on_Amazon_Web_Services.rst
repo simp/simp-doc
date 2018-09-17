@@ -74,5 +74,7 @@ is granting that user the requisite access.
 See the :ref:`User_Management` section for more details on managing user
 access in SIMP.
 
+.. include:: ../jump_to_config.inc
+
 .. _documentation: https://aws.amazon.com/ec2/instance-types/
 .. _Installation Guide: https://docs.puppet.com/pe/latest/sys_req_hw.html

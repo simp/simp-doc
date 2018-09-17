@@ -15,16 +15,19 @@ being used:
 * r10k: https://github.com/puppetlabs/r10k/blob/master/README.mkd
 
 .. NOTE::
+
    r10k will be used to reference both r10k itself and Code Manager throughout
    this document. If you are using Code Manager, skip to
    `Setting Up Your Control Repo`_
 
 .. IMPORTANT::
+
    This document will assume the SIMP server has internet access.
    If your system does not have internet access, you will need to adjust paths
    to point to your internal mirrors.
 
 .. NOTE::
+
    This method does *not* modify your system's partitioning scheme or
    encryption scheme to meet any regulatory policies. If you want an example of
    what that should look like either see the :ref:`simp-installation-guide` or
@@ -134,10 +137,10 @@ connect to your puppetserver as defined in ``simp_options`` and run puppet a few
 times in order to get the new system in order.
 
 .. WARNING::
-   SIMP, by default, implements ``tcpwrappers`` and PAM access restrictions.
-   The root user should always be able to log in at a console, but if there is no
-   console, like in `AWS`_, be sure to add a user to the PAM whitelist and give
-   it sudo powers:
+
+   SIMP, by default, implements :term:`tcpwrappers` and :term:`PAM` access
+   restrictions.  Be sure to add a user to the PAM whitelist and give it
+   ``sudo`` powers:
 
    .. code-block:: puppet
 
@@ -152,7 +155,7 @@ times in order to get the new system in order.
       }
 
   SIMP also moves the location of the ssh authorized_keys file to
-  ``/etc/ssh/local_keys/%u``, so copy it there before logging out.
+  ``/etc/ssh/local_keys/%u``, so make sure to copy it there before logging out.
 
 
 Notes About SIMP Infrastructure
@@ -163,6 +166,7 @@ creates a ``yum`` repo in itself. SIMP modules, notably the ``simp::yum`` class,
 assumes this. You will have to set ``simp::yum::os_update_url`` to a CentOS
 Updates URL.
 
+.. include:: ../jump_to_config.inc
 
 .. _official SIMP YUM repositories: https://packagecloud.io/simp-project
 .. _AWS: https://aws.amazon.com/

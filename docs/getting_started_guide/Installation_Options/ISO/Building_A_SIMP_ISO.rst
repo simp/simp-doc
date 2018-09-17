@@ -1,3 +1,5 @@
+.. _gsg-building_a_simp_iso:
+
 Building a SIMP ISO
 ===================
 
@@ -8,12 +10,13 @@ SIMP ISO.
 The following guides provide an overview of the supported build methods.
 
 .. WARNING::
-  Prior to starting any build method, you will need to ensure that you follow
-  the instructions in :ref:`gsg-environment_preparation`.
+
+    Prior to starting any build method, you will need to ensure that you follow
+    the instructions in :ref:`gsg-environment_preparation`.
 
 .. toctree::
-  :maxdepth: 2
+   :maxdepth: 2
 
-  ../ISO_Build/Environment_Preparation
-  ../ISO_Build/Building_SIMP_From_Tarball
-  ../ISO_Build/Building_SIMP_From_Source
+   ISO_Build/Environment_Preparation
+   ISO_Build/Building_SIMP_From_Tarball
+   ISO_Build/Building_SIMP_From_Source

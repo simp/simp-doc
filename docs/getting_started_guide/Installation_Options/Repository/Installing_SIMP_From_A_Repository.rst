@@ -225,6 +225,8 @@ Run the script on a client. This example assumes the first option from above:
 
    $ curl --insecure https://<puppet.server.fqdn>/ks/runpuppet | bash
 
+.. include:: ../jump_to_config.inc
+
 .. _AWS: https://aws.amazon.com/
 .. _EPEL Repositories: https://fedoraproject.org/wiki/EPEL
 .. _Google Cloud: https://cloud.google.com
