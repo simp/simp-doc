@@ -179,11 +179,11 @@ directory with your custom name.
 For example, if you wanted to create the standard dev/test/prod structure, and
 assuming that ``production`` is already symlinked to ``simp``:
 
-```bash
-cd /var/simp/environments
-cp -a simp dev
-cp -a simp test
-```
+.. code-block:: bash
+
+  cd /var/simp/environments
+  cp -a simp dev
+  cp -a simp test
 
 After this, you will now have an enhanced ``simp_rsync_environments`` data
 structure that holds all of the information for the ``dev``, ``test``,

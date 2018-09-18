@@ -39,7 +39,7 @@ In CentOS 7.4:
   ---
   autofs::autofs_package_ensure:  '5.0.7-56.el7'
 
-In Centos 6.9
+In CentOS 6.9
 
 .. code-block:: puppet
 
@@ -70,8 +70,8 @@ The kerberos module is not fully integrated with home directories at this time.
 
 SIMP-1407 in `JIRA Bug Tracking`_.
 
-Exporting Arbitrary Directories
--------------------------------
+Exporting Directories
+---------------------
 
 **Goal:** Export ``/var/nfs_share`` on the server, mount as ``/mnt/nfs`` on the
 client.
@@ -184,6 +184,7 @@ In ``hosts/<your_client_fqdn>.yaml``:
    The ``simp_nfs`` module contains a further example that includes the use of
    a NFS root on the server and indirect autofs with wildcards on the client.
 
+.. _Exporting Home Directories:
 
 Exporting Home Directories
 --------------------------
@@ -210,8 +211,12 @@ Utilize the SIMP profile module ``simp_nfs``:
    Any users logged onto a host at the time of module application will not have
    their home directories re-mounted until they log out and log back in.
 
-default.yaml
-^^^^^^^^^^^^
+Client
+^^^^^^
+
+The following block of code should be entered in the hiera yaml files of
+all systems that need to mount home directories.  The default.yaml
+file will affect all systems.
 
 .. code-block:: yaml
 
@@ -231,6 +236,157 @@ Server
 
   classes:
     - simp_nfs::export::home
+
+Exporting additional directories on the NFS home server
+-------------------------------------------------------
+
+**Goal:** Export ``/var/nfs/share1`` located on the server
+which is also sharing home directories set up by the simp_nfs
+module.  Mount the share to ``/share`` on client systems.
+
+The ``pupmod-simp-simp_nfs`` module utilizes a NFS root share.
+Any directories shared out in addition to the home directories must
+be mounted to the NFS root and shared from there.  To see how the NFS root
+is created see the simp_nfs::export::home module.
+
+The following example assumes you have set up the home server already
+following the instructions in the previous section.
+
+Server
+^^^^^^
+Create a manifest in the site module. In this example
+the manifest is called nfs_server.pp.
+
+.. code-block:: puppet
+
+  class site::nfs_server (
+  #  Make sure the data_dir is the same as in simp_nfs.
+  Stdlib::Absolutepath                             $data_dir     = '/var',
+  Simplib::Netlist                                 $trusted_nets = simplib::lookup('simp_options::trusted_nets', { 'default_value' => ['127.0.0.1'] }),
+  Array[Enum['none','sys','krb5','krb5i','krb5p']] $sec = ['sys'],
+  ) {
+
+  #
+  #  Exporting directories from the home directory server when
+  #  using the simp_nfs module.
+  #
+    include '::nfs::server'
+
+  # Create the directory where the data exists.
+    file { '/var/nfs/share1':
+      ensure => 'directory',
+      mode   => '0755',
+      owner  => 'root',
+      group  => 'root'
+    }
+
+  # Create a mount point under the nfs root created in simp_nfs.
+    file { "${data_dir}/nfs/exports/share1":
+      ensure => 'directory',
+      mode   => '0755',
+      owner  => 'root',
+      group  => 'root'
+    }
+
+  # Mount the share to the nfs_root created in simp_nfs.
+    mount { "${data_dir}/nfs/exports/share1":
+      ensure   => 'mounted',
+      fstype   => 'none',
+      device   => "/var/nfs/share1",
+      remounts => true,
+      options  => 'rw,bind',
+      require  => [
+        File["${data_dir}/nfs/exports/share1"],
+        File['/var/nfs/share1']
+      ]
+    }
+
+  # Export the directory
+    if !$::nfs::stunnel {
+      nfs::server::export { 'share1':
+        clients     => nets2cidr($trusted_nets),
+        export_path => "${data_dir}/nfs/exports/share1",
+        rw          => true,
+        sec         => $sec
+      }
+    } else {
+        nfs::server::export { 'share1':
+        clients     => ['127.0.0.1'],
+        export_path => "${data_dir}/nfs/exports/home",
+        rw          => true,
+        sec         => $sec,
+        insecure    => true
+      }
+    }
+  }
+
+Include this manifest in the servers hiera file.
+
+.. code-block:: yaml
+
+  ---
+  classes:
+    - site::nfs_server
+
+  nfs::is_server: true
+
+Client
+^^^^^^
+
+To mount this directory to the client create a manifest in the site
+module that will create the mount point and mount the share. In this
+example it is called nfs_client.pp.
+
+.. code-block:: puppet
+
+  class site::nfs_client (
+    Simplib::Host                      $nfs_server,
+    Enum['sys','krb5','krb5i','krb5p'] $sec           = 'sys',
+  ){
+
+    include nfs
+
+    $mount_point = '/share'
+
+    # Since it the nfs server uses a nfs_root, you onlt put the path
+    # relative to the root.
+    $remote_path = '/share1'
+
+
+    if getvar('::nfs::client::is_server') {
+      $_target = '127.0.0.1'
+    }
+    else {
+      $_target = $nfs_server
+    }
+
+    file { "${mount_point}":
+      ensure => 'directory',
+      mode   => '0755',
+      owner  => 'root',
+    }
+
+    nfs::client::mount { "${mount_point}":
+      nfs_server         => $nfs_server,
+      remote_path        => "${remote_path}",
+      nfs_version        => 'nfs4',
+      sec                => $sec,
+      autofs             => false,
+      at_boot            => true,
+    }
+  }
+
+Then include this manifest in hiera for any system that
+should mount this share.
+
+.. code-block:: yaml
+
+---
+  classes:
+    - site::nfs_client
+
+  nfs::is_server: false
+  site::nfs_client::nfs_server: server21.simp.test
 
 
 Enabling/Disabling Stunnel

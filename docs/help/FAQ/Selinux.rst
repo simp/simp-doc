@@ -1,6 +1,3 @@
-Common Selinux issues
-=====================
-
 .. _faq-selinux:
 
 How to recover from SELINUX policy failure

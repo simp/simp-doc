@@ -4,9 +4,11 @@ HOWTO Manage Workstation Infrastructures
 ========================================
 
 This chapter describes example code used to manage client workstations with a
-SIMP system including GUIs, repositories, virtualization, Network File System
-(NFS), printing, and Virtual Network Computing (VNC).
+SIMP system including GUIs, repositories, virtualization,
+printing, and Virtual Network Computing (VNC).
 
+Install Extra Puppet Modules
+----------------------------
 To begin, install the following Puppet modules:
 
 .. code-block:: ruby
@@ -14,6 +16,7 @@ To begin, install the following Puppet modules:
    class site::workstation_packages {
 
      $package_list = [
+       'pupmod-simp-dconf',
        'pupmod-simp-gdm',
        'pupmod-simp-gnome',
        'pupmod-simp-simp_nfs',
@@ -25,6 +28,46 @@ To begin, install the following Puppet modules:
        ensure => installed,
      }
    }
+
+
+Create A Workstation Hostgroup
+------------------------------
+
+Edit the ``site.pp`` file to create a hostgroup for the workstations.  The
+following will make all nodes whose names start with ``ws`` followed any number
+of digits use the ``hieradata/hostgroups/workstation.yaml`` instead of the default:
+
+.. code-block:: ruby
+
+  case $facts['hostname'] {
+    /^ws\d+.*/: { $hostgroup = 'workstation' }
+    default:    { $hostgroup = 'default'     }
+  }
+
+
+The workstation.yaml file will include settings for all the workstations.  An example yaml file:
+
+
+.. code-block:: yaml
+
+  ---
+
+  #Set the run level so it will bring up a graphical interface
+  simp::runlevel: 'graphical'
+  timezone::timezone: 'EST'
+
+  #Settings for home server. See HOWTO NFS for more info.
+  nfs::is_server: false
+  simp_nfs::home_dir_server: myhome.server.com
+
+  #The site::workstation manifest will do most of the work.
+  classes:
+    - site::workstation
+    - simp_nfs
+
+
+This includes the settings for NFS mounted home directories.
+See  :ref:`Exporting Home Directories` for more information.
 
 
 Create A Workstation Profile Class
@@ -42,6 +85,11 @@ set up a user workstation.  Each ``site::`` class is described in the subsequent
      include 'site::virt'
      include 'site::print::client'
 
+     # make sure any repos are installed before they
+     # are needed.  Include dependencies to 
+     # other classes if needed.
+     Class[Site::Repos] -> Class[Site::Gui]
+
      # Make sure everyone can log into all nodes.
      # If you want to change this, simply remove this line and add
      # individual entries to your nodes as appropriate
@@ -51,13 +99,28 @@ set up a user workstation.  Each ``site::`` class is described in the subsequent
        origins => ['ALL']
      }
 
-     # General Use Packages
+     # Example list of General Use Packages
      package { [
        'pidgin',
        'vim-enhanced',
        'tmux',
        'git'
-     ]: ensure => installed
+     ]: ensure => installed,
+        require => Class[Site::Repos]
+     }
+   }
+
+
+Workstation Repositories
+^^^^^^^^^^^^^^^^^^^^^^^^
+Create any repos needed to install extra software.
+
+
+.. code-block:: ruby
+
+   class site::repos {
+     yumrepo { 'myrepo':
+       #what ever parameters you need
      }
    }
 
@@ -103,22 +166,6 @@ desktop on a user workstation.
    }
 
 
-Workstation Repositories
-^^^^^^^^^^^^^^^^^^^^^^^^
-
-For the site repos use the puppet resource yumrepo to create repo files to point to
-repositories.
-
-
-.. code-block:: ruby
-
-   class site::repos {
-     yumrepo { 'myrepo':
-       #what ever parameters you need
-     }
-   }
-
-
 Virtualization on User Workstations
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
@@ -128,8 +175,8 @@ for allowing virtualization on a system.
 
 .. code-block:: ruby
 
-   # We allow users to run VMs on their workstations.
-   # If you don't want this, just don't include this class.
+   # If you want users to be able to run VMs on their workstations
+   # include a class like this.
    # If this is installed, VM creation and management is still limited by PolicyKit
 
    class site::virt {
@@ -229,42 +276,6 @@ print server.
        require    => Package['cups']
      }
    }
-
-
-Create A Workstation Hostgroup
-------------------------------
-
-Edit the ``site.pp`` file to create a hostgroup for the workstations.  The
-following will make all nodes whose names start with ``ws`` followed any number
-of digits use the ``hieradata/hostgroups/workstation.yaml`` instead of the default:
-
-.. code-block:: ruby
-
-  case $facts['hostname'] {
-    /^ws\d+.*/: { $hostgroup = 'workstation' }
-    default:    { $hostgroup = 'default'     }
-  }
-
-
-The workstation.yaml file will include settings for all the workstations.  An example yaml file:
-
-.. code-block:: yaml
-
-  ---
-
-  #Set the run level so it will bring up a graphical interface
-  simp::runlevel: 'graphical'
-  timezone::timezone: 'EST'
-
-  #Settings for home server. See HOWTO NFS for more info.
-  nfs::is_server: false
-  simp_nfs::home_dir_server: myhome.server.com
-
-  #The site::workstation manifest will do most of the work.
-  classes:
-    - site::workstation
-    - simp_nfs
-
 
 VNC Setup
 ---------
