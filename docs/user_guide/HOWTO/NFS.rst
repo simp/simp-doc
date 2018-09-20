@@ -202,14 +202,14 @@ Utilize the SIMP profile module ``simp_nfs``:
 
 .. NOTE::
 
-   The NFS daemon may take time to reload after module application.  If your
-   users do not have home directories immediately after application or it takes
-   a while to log in, don't panic!
+   Any users logged onto a host at the time of module application will not have
+   their home directories re-mounted until they log out and log back in.
 
 .. NOTE::
 
-   Any users logged onto a host at the time of module application will not have
-   their home directories re-mounted until they log out and log back in.
+   The simp_nfs module utilizes an NFS root mount which must be used to export
+   any further directories from this server.
+   See :ref:`Additional_Directories` for and example of how to do this.
 
 Client
 ^^^^^^
@@ -236,6 +236,8 @@ Server
 
   classes:
     - simp_nfs::export::home
+
+.. _Additional_Directories:
 
 Exporting additional directories on the NFS home server
 -------------------------------------------------------
@@ -327,6 +329,7 @@ Include this manifest in the servers hiera file.
   ---
   classes:
     - site::nfs_server
+    - simp_nfs
 
   nfs::is_server: true
 

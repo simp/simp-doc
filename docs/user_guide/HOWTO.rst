@@ -16,6 +16,8 @@ with more commonly sought items towards the top.
   Customize settings for SSH <HOWTO/Configure_Ssh>
   Setup SSH Authorized Keys <HOWTO/SSH_Keys>
   Disable SSH <HOWTO/Disable_Ssh>
+  Restrict SSH Network Access <HOWTO/SSH_Restrict_Network_Access.rst>
+  Enable SFTP Restricted Accounts <HOWTO/SFTP_Restricted_Accounts>
   Modify the Nightly Package Update Schedule <HOWTO/Control_Nightly_Update_Schedule>
   Modify The Puppet Cron Schedule <HOWTO/Modify_Puppet_Cron>
   Work with the SIMP Rsync Shares <HOWTO/Work_With_Rsync>
@@ -32,8 +34,6 @@ with more commonly sought items towards the top.
   Configure a Puppet Server Behind a NAT <HOWTO/Puppet_Server_NAT>
   Disconnect PuppetDB from the Puppet Server <HOWTO/Disconnect_PuppetDB_from_Puppet_Server>
   Enable Redundent LDAP <HOWTO/Redundant_LDAP>
-  Enable SFTP Restricted Accounts <HOWTO/SFTP_Restricted_Accounts>
-  Restrict SSH Network Access <HOWTO/SSH_Restrict_Network_Access.rst>
-  Upgrade SIMP <HOWTO/Upgrade_SIMP>
-  Manage TPM <HOWTO/Manage_TPM>
   Enroll hosts in an IPA domain <HOWTO/IPA_Clients>
+  Manage TPM <HOWTO/Manage_TPM>
+  Upgrade SIMP <HOWTO/Upgrade_SIMP>

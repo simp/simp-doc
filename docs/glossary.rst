@@ -620,6 +620,15 @@ Glossary of Terms
 
       See: :term:`Puppet Master`
 
+   Site Manifest
+     Puppet always starts compiling with either a single manifest file or a
+     directory of manifests that get treated like a single file. This main
+     starting point is called the main manifest or site manifest.
+     By default, the main manifest for a given environment is
+     <ENVIRONMENTS DIRECTORY>/<ENVIRONMENT>/manifests.
+
+     Source: `Puppet Documentation: Main manifest directory <https://puppet.com/docs/puppet/5.5/dirs_manifest.html>`__
+
    SFTP
    SSH File Transfer Protocol
       A network protocol that provides file access, file transfer, and file
