@@ -70,6 +70,41 @@ On a SIMP server, the example ``dhcpd.conf`` file is installed in
 `simp-rsync-skeleton repository`_ under
 ``environments/simp/rsync/RedHat/Global/dhcpd``.
 
+.. NOTE::
+
+   When the ``simp-rsync`` RPM is upgraded, a message may be displayed that
+   indicates
+
+   .. code-block:: bash
+
+      warning: /var/simp/environments/simp/rsync/RedHat/Global/dhcpd/dhcpd.conf\
+      created as /var/simp/environments/simp/rsync/RedHat/Global/dhcpd/\
+      dhcpd.conf.rpmnew
+
+   Because the contents of the ``/var/simp/environments/simp/rsync/`` directory
+   are pushed to remote systems, files ending with ``.rpmnew`` are deleted from
+   the directory as part of the RPM deployment.
+   
+   The commands below can be used to extract the new config file from the RPM,
+   which can then be merged with the existing ``dhcpd.conf`` file.
+   
+   #. Run ``$ rpm2cpio simp-rsync-6.2.1-0.el7.noarch.rpm |cpio -ir
+      "*dhcpd.conf"``
+
+       *  rpm2cpio converts the RPM file to cpio archive.  In this example, the
+          command is being run from the directory containing the RPM file; if
+          the file is not in the current working directory, the full path to the
+          file must be provided.
+       *  cpio extracts files from the cpio archive.  In this case, the cpio
+          options *-i*, *-r*, and *"\*dhcpd.conf"* direct cpio to extract one or
+          more files from the archive, interactively rename the file, and the
+          path and filename of files to be extracted should end with dhcpd.conf.
+   #. When prompted ``rename ./var/simp/environments/simp/rsync/RedHat/Global/
+      dhcpd/dhcpd.conf ->``, enter the desired path and name of the file to be
+      exttracted, such as ``/tmp/dhcpd.conf.rpmnew``.  Paths can be either
+      absolute or relative, depending whether they start with a ``/`` or ``./``.
+
+
 Update the TFTP root directory
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
