@@ -99,6 +99,7 @@ On a SIMP server, the example ``dhcpd.conf`` file is installed in
           options *-i*, *-r*, and *"\*dhcpd.conf"* direct cpio to extract one or
           more files from the archive, interactively rename the file, and the
           path and filename of files to be extracted should end with dhcpd.conf.
+
    #. When prompted ``rename ./var/simp/environments/simp/rsync/RedHat/Global/
       dhcpd/dhcpd.conf ->``, enter the desired path and name of the file to be
       exttracted, such as ``/tmp/dhcpd.conf.rpmnew``.  Paths can be either
