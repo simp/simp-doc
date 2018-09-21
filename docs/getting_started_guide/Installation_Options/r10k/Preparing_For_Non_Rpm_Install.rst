@@ -6,10 +6,10 @@ Preparing For Non-RPM Install
 Keydist, Rsync, and The Alternate Module Path
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-SIMP uses an alternative module path, ``/var/simp/environments/<environment>/``
-, which is set in each environment`s ``environment.conf``.  Currently, it
-contains rsync assets and PKI data, custom to each host.  Here is an example
-from a fresh install:
+SIMP uses a secondary module path, ``/var/simp/environments/<environment>/``,
+which is set in each environment`s ``environment.conf``.  Currently, it
+contains :term:`rsync` assets and :term:`PKI` data, custom to each host.  Here
+is an example from a fresh install:
 
 .. code-block:: bash
 

@@ -28,16 +28,51 @@ Installation
 
 The ISO will install on any system that supports the underlying operating system.
 
-When you first boot the ISO, there will be a menu of options. You can either
-modify the installation according to those instructions or simply hit
-``<Enter>`` to proceed with the automated installation.
-
 .. WARNING::
 
    There are default passwords present on the system that should be changed
    prior to deploying the system.
 
    **Please make sure that you change these passwords!**
+
+Preparing the SIMP Server Environment
+-------------------------------------
+
+#. Boot the system using the SIMP ISO
+
+#. Press *Enter* to run the standard SIMP install, or choose from the
+   customized options list.
+
+   - For a detailed description of the the disk encryption enabled via the
+     ``simp_disk_crypt`` boot option, see :ref:`ig-disk-encryption`.
+
+   .. NOTE::
+
+      Once installation starts, you may see the graphical interface spawn. You
+      should not interact with the GUI unless you have selected the option to
+      manage your own disk partitions.
+
+      Also, if you have chosen to encrypt your disks, you may want to generate
+      some system entropy by smashing on the keyboard for a bit.
+
+#. When the installation is complete, the system will restart automatically.
+#. Change the ``root`` user password
+
+   a. At the console, log on as ``root`` and type the default password shown
+      in :ref:`ig-default-passwords`
+   b. Follow the prompts to complete the password change
+
+      * See the :ref:`faq-password-complexity` FAQ for tips on setting a
+        functional password.
+
+#. Change the ``simp`` user password
+
+   a. At the console, log on as ``simp`` and type the default password shown
+      in :ref:`ig-default-passwords`
+   b. Follow the prompts to complete the password change
+
+      * See the :ref:`faq-password-complexity` FAQ for tips on setting a
+        functional password.
 
 .. _ig-default-passwords:
 
@@ -48,8 +83,9 @@ Below is a table containing the default passwords found on a basic SIMP server
 upon install.
 
 .. IMPORTANT::
-    All default passwords must be changed during the initial configuration
-    process.
+
+   All default passwords must be changed during the initial configuration
+   process.
 
 ========= ============
 Utility   Password
@@ -60,38 +96,6 @@ Simp User UserPassword
 ========= ============
 
 Table: SIMP Default Passwords
-
-Preparing the SIMP Server Environment
--------------------------------------
-
-#. Boot the system and ensure the SIMP ISO is selected.
-
-   - If you do not have a SIMP ISO, see :ref:`gsg-building_simp_from_tarball`.
-
-#. Press *Enter* to run the standard SIMP install, or choose from the
-   customized options list.
-
-   - For a detailed description of the the disk encryption enabled via the
-     ``simp_disk_crypt`` boot option, see :ref:`ig-disk-encryption`.
-
-#. When the installation is complete, the system will restart automatically.
-#. Change the ``root`` user password
-
-   a. At the console, log on as ``root`` and type the default password shown
-      in **Table 2.1.**
-   b. Type the default password again when prompted for the (current) UNIX
-      password.
-   c. Type a new password when prompted for the New Password. Retype the
-      password when prompted.
-
-#. Change the ``simp`` user password
-
-   a. At the console, log on as ``simp`` and type the default password shown
-      in **Table 2.1.**
-   b. Type the default password again when prompted for the (current) UNIX
-      password.
-   c. Type a new password when prompted for the New Password. Retype the
-      password when prompted.
 
 .. include:: ../jump_to_config.inc
 

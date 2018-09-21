@@ -131,12 +131,10 @@ port, so the first time the puppet agent is run, you may have to specify the
 
    $ puppet agent -t --ca_port 8141 --server puppet.your.domain
 
-SIMP also provides a provisioning script called `runpuppet`_. Run this script
-during provisioning and it will (provided autosign is configured) attempt to
-connect to your puppetserver as defined in ``simp_options`` and run puppet a few
-times in order to get the new system in order.
-
 .. WARNING::
+
+   **YOU MUST CREATE A LOCAL USER TO LOGIN AND THAT USER MUST HAVE SOMETHING LIKE THE FOLLOWING IN PLACE**
+   **IF YOU DO NOT DO THIS YOU WILL BE LOCKED OUT OF YOUR SYSTEM**
 
    SIMP, by default, implements :term:`tcpwrappers` and :term:`PAM` access
    restrictions.  Be sure to add a user to the PAM whitelist and give it

@@ -1,3 +1,8 @@
+.. WARNING::
+
+   This documentation is being actively updated. If you find issues or have
+   improvements, please put in a `ticket`_ or `pull request`_!
+
 .. _gsg-simp_on_aws:
 
 SIMP on Amazon Web Services
@@ -76,5 +81,7 @@ access in SIMP.
 
 .. include:: ../jump_to_config.inc
 
-.. _documentation: https://aws.amazon.com/ec2/instance-types/
 .. _Installation Guide: https://docs.puppet.com/pe/latest/sys_req_hw.html
+.. _documentation: https://aws.amazon.com/ec2/instance-types/
+.. _pull request: https://github.com/simp/simp-doc
+.. _ticket: https://simp-project.atlassian.net

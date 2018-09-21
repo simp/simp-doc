@@ -26,7 +26,7 @@ Enable EPEL
 .. code-block:: bash
 
    $ sudo yum install epel-release -y
-   $ sudo yum install pygpgme yum-utils
+   $ sudo yum install pygpgme yum-utils -y
 
 Install The SIMP-Project Repositories
 -------------------------------------
@@ -58,31 +58,31 @@ If you don't know what versions map together, please see the
 
 .. code-block:: bash
 
-  [simp-project_6_X]
-  name=simp-project_6_X
-  baseurl=https://packagecloud.io/simp-project/6_X/el/$releasever/$basearch
-  gpgcheck=1
-  enabled=1
-  gpgkey=https://raw.githubusercontent.com/NationalSecurityAgency/SIMP/master/GPGKEYS/RPM-GPG-KEY-SIMP
-  sslverify=1
-  sslcacert=/etc/pki/tls/certs/ca-bundle.crt
-  metadata_expire=300
+   [simp-project_6_X]
+   name=simp-project_6_X
+   baseurl=https://packagecloud.io/simp-project/6_X/el/$releasever/$basearch
+   gpgcheck=1
+   enabled=1
+   gpgkey=https://raw.githubusercontent.com/NationalSecurityAgency/SIMP/master/GPGKEYS/RPM-GPG-KEY-SIMP
+   sslverify=1
+   sslcacert=/etc/pki/tls/certs/ca-bundle.crt
+   metadata_expire=300
 
-  [simp-project_6_X_dependencies]
-  name=simp-project_6_X_dependencies
-  baseurl=https://packagecloud.io/simp-project/6_X_Dependencies/el/$releasever/$basearch
-  gpgcheck=1
-  enabled=1
-  gpgkey=https://raw.githubusercontent.com/NationalSecurityAgency/SIMP/master/GPGKEYS/RPM-GPG-KEY-SIMP
-         https://yum.puppet.com/RPM-GPG-KEY-puppetlabs
-         https://yum.puppet.com/RPM-GPG-KEY-puppet
-         https://apt.postgresql.org/pub/repos/yum/RPM-GPG-KEY-PGDG-96
-         https://artifacts.elastic.co/GPG-KEY-elasticsearch
-         https://grafanarel.s3.amazonaws.com/RPM-GPG-KEY-grafana
-         https://dl.fedoraproject.org/pub/epel/RPM-GPG-KEY-EPEL-$releasever
-  sslverify=1
-  sslcacert=/etc/pki/tls/certs/ca-bundle.crt
-  metadata_expire=300
+   [simp-project_6_X_dependencies]
+   name=simp-project_6_X_dependencies
+   baseurl=https://packagecloud.io/simp-project/6_X_Dependencies/el/$releasever/$basearch
+   gpgcheck=1
+   enabled=1
+   gpgkey=https://raw.githubusercontent.com/NationalSecurityAgency/SIMP/master/GPGKEYS/RPM-GPG-KEY-SIMP
+          https://yum.puppet.com/RPM-GPG-KEY-puppetlabs
+          https://yum.puppet.com/RPM-GPG-KEY-puppet
+          https://apt.postgresql.org/pub/repos/yum/RPM-GPG-KEY-PGDG-96
+          https://artifacts.elastic.co/GPG-KEY-elasticsearch
+          https://grafanarel.s3.amazonaws.com/RPM-GPG-KEY-grafana
+          https://dl.fedoraproject.org/pub/epel/RPM-GPG-KEY-EPEL-$releasever
+   sslverify=1
+   sslcacert=/etc/pki/tls/certs/ca-bundle.crt
+   metadata_expire=300
 
 Rebuild The Yum Cache
 ---------------------
@@ -94,25 +94,26 @@ Rebuild The Yum Cache
 Install the SIMP Server
 -----------------------
 
-1. Select the simp-adapter package appropriate for the version of Puppet
+#. Select the simp-adapter package appropriate for the version of Puppet
    you will be using
 
    * **simp-adapter-foss**:  Version appropriate for FOSS Puppet
    * **simp-adapter-pe**:   Version appropriate for Puppet Enterprise
 
-2. Install the simp-adapter package
+#. Install the simp-adapter package
 
-.. code-block:: bash
+   .. code-block:: bash
 
-   $ sudo yum install -y simp-adapter-foss
+      $ sudo yum install -y simp-adapter-foss
 
-3. Install the remaining SIMP packages
+#. Install the remaining SIMP packages
 
-.. code-block:: bash
+   .. code-block:: bash
 
-   $ sudo yum install -y simp
+      $ sudo yum install -y simp
 
 .. NOTE::
+
    The ``simp`` RPM installs the SIMP core Puppet modules. Breaking changes in
    these modules trigger a breaking change update in SIMP itself.
 
@@ -126,8 +127,8 @@ Install the SIMP Server
 Configure and Bootstrap the SIMP Server
 ---------------------------------------
 
-1. ``su`` to ``root``
-2. Type ``simp config`` and configure the system as prompted.
+#. ``su`` to ``root``
+#. Type ``simp config`` and configure the system as prompted.
 
   * ``simp config`` will prompt you for system settings and then apply the
     smallest settings subset that is required to bootstrap the system.
@@ -151,30 +152,30 @@ Configure and Bootstrap the SIMP Server
       settings.  This is the option to run for systems that will be rebuilt
       often.
 
-.. NOTE::
+    .. NOTE::
 
-   Once ``simp config`` has been run, three SIMP configuration files will be
-   generated:
+       Once ``simp config`` has been run, three SIMP configuration files will
+       be generated:
 
-   * ``/root/.simp/simp_conf.yaml``: File containing  all your ``simp config``
-     settings; can include additional settings related to ones you entered and
-     other settings required for SIMP.
-   * ``/etc/puppetlabs/code/environments/simp/hieradata/simp_config_settings.yaml``:
-     File containing global hieradata relevant to SIMP clients and the SIMP
-     server.
-   * ``/etc/puppetlabs/code/environments/simp/hieradata/hosts/<host>.yaml``:
-     SIMP server host YAML file.
+       * ``/root/.simp/simp_conf.yaml``: File containing  all your ``simp
+         config`` settings; can include additional settings related to ones you
+         entered and other settings required for SIMP.
+       * ``/etc/puppetlabs/code/environments/simp/hieradata/simp_config_settings.yaml``:
+         File containing global hieradata relevant to SIMP clients and the SIMP
+         server.
+       * ``/etc/puppetlabs/code/environments/simp/hieradata/hosts/<host>.yaml``:
+         SIMP server host YAML file.
 
-3. Type ``simp bootstrap``
+#. Type ``simp bootstrap``
 
-.. NOTE::
+   .. NOTE::
 
-   If progress bars are of equal length and the bootstrap finishes quickly, a
-   problem has occurred. This is most likely due to an error in SIMP
-   configuration. Refer to the previous step and make sure that all
-   configuration options are correct.
+      If progress bars are of equal length and the bootstrap finishes quickly,
+      a problem has occurred. This is most likely due to an error in SIMP
+      configuration. Refer to the previous step and make sure that all
+      configuration options are correct.
 
-4. Reboot your system
+#. Reboot your system
 
 .. code-block:: bash
 
@@ -186,10 +187,10 @@ Bootstrap SIMP Clients
 Use the ``runpuppet`` script from the newly created SIMP server to bootstrap
 your clients. That script can be acquired in one of two ways:
 
-1. Use a SIMP server as a kickstart server, see :ref:`Client_Management` for
+#. Use a SIMP server as a kickstart server, see :ref:`Client_Management` for
    details on how to take advantage of SIMP to make this easier.
 
-2. If another server is to be used as a kickstart server, you can still use our
+#. If another server is to be used as a kickstart server, you can still use our
    distributed and tested provisioning script, ``runpuppet``.
 
    Add the ``simp::server::kickstart::runpuppet`` class to your kickstart server
@@ -199,9 +200,9 @@ your clients. That script can be acquired in one of two ways:
 
    .. code-block:: puppet
 
-     class { 'simp::server::kickstart::runpuppet':
-       location => '/var/www/web/server/path/runpuppet'
-     }
+      class { 'simp::server::kickstart::runpuppet':
+        location => '/var/www/web/server/path/runpuppet'
+      }
 
 .. NOTE::
 

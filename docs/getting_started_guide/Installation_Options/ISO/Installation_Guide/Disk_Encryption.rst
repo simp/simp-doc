@@ -3,17 +3,19 @@
 Disk Encryption
 ---------------
 
-The default :term:`ISO` and kickstart files in SIMP now encrypt the first
-physical volume if the ``simp_disk_crypt`` option is provided at the boot
-command line.
+The default :term:`ISO` and kickstart files in SIMP encrypt the first physical
+volume if the ``simp_disk_crypt`` option is provided at the boot command line
+or, on an EFI system, the menu option is selected that enable disk encryption.
 
-.. warning::
-  The system is set to **automatically** decrypt at boot! This means that the
-  password is embedded in the :term:`initrd` file.
+.. WARNING::
 
-.. note::
-  The ``/boot`` directory is **not** encrypted, since that would prevent the
-  system from booting automatically.
+   The system is set to **automatically** decrypt at boot! This means that the
+   password is embedded in the :term:`initrd` file.
+
+.. NOTE::
+
+   The ``/boot`` directory is **not** encrypted, since that would prevent the
+   system from booting automatically.
 
 Method
 ^^^^^^
@@ -45,35 +47,38 @@ successfully boot the system.
 The ``/etc/dracut.conf`` file is also updated to ensure that any new kernel
 loads will be able to boot successfully.
 
-.. warning::
-  The ``/etc/.cryptcreds`` file **is** encrypted when the system is off.
-  However, a copy is in the unencrypted :term:`initrd` files in ``/boot`` and
-  should not be considered secure from physical access to the raw disk image.
+.. WARNING::
 
-.. note::
-  Please be aware that **all** characters in the ``/etc/.cryptcreds`` file are
-  part of the password. The lack of a trailing newline is **very** important.
+   The ``/etc/.cryptcreds`` file **is** encrypted when the system is off.
+   However, a copy is in the unencrypted :term:`initrd` files in ``/boot`` and
+   should not be considered secure from physical access to the raw disk image.
+
+.. NOTE::
+
+   Please be aware that **all** characters in the ``/etc/.cryptcreds`` file are
+   part of the password. The lack of a trailing newline is **very** important.
 
 Replacing the Current Password
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-.. note::
-  The underlying system uses :term:`LUKS`, so any usage outside of this
-  document should refer to the :term:`LUKS` implementation that matches your
-  system version.
+.. NOTE::
+
+   The underlying system uses :term:`LUKS`, so any usage outside of this
+   document should refer to the :term:`LUKS` implementation that matches your
+   system version.
 
 To change the password, you will need to perform the following steps.
 
-1. Back up the original password file
+#. Back up the original password file
 
   * If something goes amiss, you're seriously going to need this
 
-2. Get the :term:`UUID` of your partition
+#. Get the :term:`UUID` of your partition
 
   * This will be in the ``/etc/crypttab`` file. You'll want the entire
     ``UUID=<uuid>`` string
 
-3. Create the new password
+#. Create the new password
 
   * Remember that this needs to be **exactly** what you will use. If you ever
     expect to type this at the command line, don't forget to strip your
@@ -81,21 +86,21 @@ To change the password, you will need to perform the following steps.
 
     .. code-block:: python
 
-      #!/usr/bin/python
+       #!/usr/bin/python
 
-      import sys
-      import random
-      import string
+       import sys
+       import random
+       import string
 
-      # The length of the new password
-      length = 1024
+       # The length of the new password
+       length = 1024
 
-      # What the password should consist of
-      charset = string.lowercase+string.uppercase+string.digits
+       # What the password should consist of
+       charset = string.lowercase+string.uppercase+string.digits
 
-      passfile = open('/etc/.cryptcreds.new','w')
+       passfile = open('/etc/.cryptcreds.new','w')
 
-      passfile.write("".join(random.choice(charset) for i in range(length)))
+       passfile.write("".join(random.choice(charset) for i in range(length)))
 
 4. Update the key
 
@@ -104,14 +109,14 @@ To change the password, you will need to perform the following steps.
 
     .. code-block:: bash
 
-      $ cryptsetup luksAddKey --key-slot 1 --key-file /etc/.cryptcreds UUID=<uuid> /etc/.cryptcreds.new
-      $ cryptsetup luksKillSlot --key-file /etc/.cryptcreds 0
+       $ cryptsetup luksAddKey --key-slot 1 --key-file /etc/.cryptcreds UUID=<uuid> /etc/.cryptcreds.new
+       $ cryptsetup luksKillSlot --key-file /etc/.cryptcreds 0
 
-      $ cryptsetup luksAddKey --key-slot 0 --key-file /etc/.cryptcreds.new UUID=<uuid> /etc/.cryptcreds.new
-      $ cryptsetup luksKillSlot --key-file /etc/.cryptcreds.new 1
+       $ cryptsetup luksAddKey --key-slot 0 --key-file /etc/.cryptcreds.new UUID=<uuid> /etc/.cryptcreds.new
+       $ cryptsetup luksKillSlot --key-file /etc/.cryptcreds.new 1
 
-      # Only do this step if the previous steps succeeded!
-      $ mv /etc/.cryptcreds.new /etc/.cryptcreds
+       # Only do this step if the previous steps succeeded!
+       $ mv /etc/.cryptcreds.new /etc/.cryptcreds
 
 5. Update your :term:`initrd` files
 
@@ -120,10 +125,10 @@ To change the password, you will need to perform the following steps.
 
     .. code-block:: bash
 
-      for x in `ls -d /lib/modules/*`; do
-        installed_kernel=`basename $x`
-        dracut -f "/boot/initramfs-${installed_kernel}.img" $installed_kernel
-      done
+       for x in `ls -d /lib/modules/*`; do
+         installed_kernel=`basename $x`
+         dracut -f "/boot/initramfs-${installed_kernel}.img" $installed_kernel
+       done
 
 Removing the Password File
 ^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -131,21 +136,21 @@ Removing the Password File
 If you wish to remove the password file from your system, you will need to
 perform the following steps:
 
-1. Back up the password file!
+#. Back up the password file!
 
   * If you lose this, you won't be able to get into your system after reboot
 
-2. Using your favorite text editor, remove the `install_items` line in
+#. Using your favorite text editor, remove the `install_items` line in
    `/etc/dracut.conf` that contains the reference to `/etc/.cryptcreds`
-3. Remove the `/etc/.cryptcreds` file from the system
-4. Update your :term:`initrd` files
+#. Remove the `/etc/.cryptcreds` file from the system
+#. Update your :term:`initrd` files
 
   * You want to make sure to update **all** of your :term:`initrd` files since
     you'll want to be able to boot from any kernel.
 
     .. code-block:: bash
 
-      for x in `ls -d /lib/modules/*`; do
-        installed_kernel=`basename $x`
-        dracut -f "/boot/initramfs-${installed_kernel}.img" $installed_kernel
-      done
+       for x in `ls -d /lib/modules/*`; do
+         installed_kernel=`basename $x`
+         dracut -f "/boot/initramfs-${installed_kernel}.img" $installed_kernel
+       done

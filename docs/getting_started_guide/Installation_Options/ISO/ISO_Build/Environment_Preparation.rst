@@ -22,9 +22,9 @@ and use **haveged**.
 
 .. code-block:: bash
 
-  $ sudo yum install haveged
-  $ sudo systemctl start haveged
-  $ sudo systemctl enable haveged
+   $ sudo yum install haveged
+   $ sudo systemctl start haveged
+   $ sudo systemctl enable haveged
 
 Set Up Ruby
 -----------
@@ -82,64 +82,66 @@ repository depending on your distribution.
 
 .. code-block:: bash
 
-  $ sudo yum install docker
+   $ sudo yum install docker
 
 The Docker package may not provide a `dockerroot` group.  If it does not exist
 post installation, create it:
 
 .. code-block:: bash
 
-  $ sudo groupadd dockerroot
+   $ sudo groupadd dockerroot
 
 Allow your (non-root) user to run docker:
 
 .. code-block:: bash
 
-  $ sudo usermod -aG dockerroot <user>
+   $ sudo usermod -aG dockerroot <user>
 
-When you build your system make sure you set the default size for the docker container or the iso build may not work properly:
+When you build your system make sure you set the default size for the docker
+container or the ISO build may not work properly.
 
-in ``/etc/sysconfig/docker-storage``:
+To do this on a :term:`EL` system, set the following in
+``/etc/sysconfig/docker-storage`` and restart the ``docker`` service.
 
 .. code-block:: bash
 
-  DOCKER_STORAGE_OPTIONS= --storage-opt dm.basesize=100G
+   DOCKER_STORAGE_OPTIONS= --storage-opt dm.basesize=100G
 
 
 .. NOTE::
 
-  You may need to log out and log back in before your user is able to run as
-  dockerroot.
+   You may need to log out and log back in before your user is able to run as
+   ``dockerroot``.
 
 As root, edit ``/etc/docker/daemon.json`` and change the ownership of the
 docker daemon socket:
 
 .. code-block:: json
 
-  {
-    "live-restore": true,
-    "group": "dockerroot"
-  }
+   {
+     "live-restore": true,
+     "group": "dockerroot"
+   }
 
 Start the docker daemon:
 
 .. code-block:: bash
 
-  $ sudo systemctl start docker
-  $ sudo systemctl enable docker
+   $ sudo systemctl start docker
+   $ sudo systemctl enable docker
 
 Build Your Build Containers
 ---------------------------
 
-The `simp-core`_ project provides suitable build Dockerfiles for both EL6 and
-EL7 in the ``build/Dockerfiles`` directory.
+The `simp-core`_ project provides suitable build Dockerfiles for both
+:term:`EL` 6 and :term:`EL` 7 in the ``build/Dockerfiles`` directory.
 
-These work well for building both CentOS 6 and 7 artifacts and the usage is
-noted at the top of those files.
+These work well for building both :term:`CentOS` 6 and 7 artifacts and the
+usage is noted at the top of those files.
 
-Unfortunately, getting this to work with RHEL has proven to be a challlenge so
-you should use the Dockerfile to see what packages you need to install to
-successfully build.
+Unfortunately, getting this to work with :term:`RHEL` has proven to be a
+challenge so you should use the Dockerfiles to see what packages you need to
+install on your local host to be able to successfully build.
 
 A simple way to get a quick list is to run ``grep "yum .* -y"`` on the
 appropriate Dockerfile.
