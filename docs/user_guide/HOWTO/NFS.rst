@@ -2,15 +2,15 @@ HOWTO Configure NFS
 ===================
 
 .. contents:: This chapter describes multiple configurations of NFS including:
-  :local:
+   :local:
 
 All implementations are based on ``pupmod-simp-nfs``, ``pupmod-simp-simp_nfs``,
 and ``pupmod-simp-simp``.
 
 .. NOTE::
 
-  ``pupmod-simp-simp_nfs`` and ``pupmod-simp-nfs`` are not core modules, and
-  may need to be installed prior to following this guide.
+   ``pupmod-simp-simp_nfs`` and ``pupmod-simp-nfs`` are not core modules, and
+   may need to be installed prior to following this guide.
 
 Known Issues
 ------------
@@ -18,28 +18,30 @@ Known Issues
 Stunnel and Autofs
 ^^^^^^^^^^^^^^^^^^
 The ``autofs`` packages that were released with CentOS 6.8 (`autofs-5.0.5-122`_)
-and CentOS 7.3 (`autofs-5.0.7-56`_) worked properly over a stunnel connection.
+and CentOS 7.3 (`autofs-5.0.7-56`_) worked properly over a :term:`stunnel`
+connection.
 
 The release shipped with CentOS 6.9 (**5.0.5-132**)  and with CentOS 7.4 (**5.0.7-69**)
 prevents any connection from happening to the local stunnel process and breaks mounts to
 remote systems over stunnel connections.
 
-To use NFS over stunnel and automount directories the old package must be used.
-To determine what version of autofs is installed, run ``automount -V``.
+To use :term:`NFS` over stunnel and automount directories the old package must
+be used.  To determine what version of autofs is installed, run ``automount -V``.
 
-To force the package to the version wanted despite the fact that a newer version is available:
+To force the package to the version wanted despite the fact that a newer
+version is available:
 
 First make sure the package is available via your package-management facility then
-set the package version in hiera:
+set the package version in :term:`Hiera`:
 
-In CentOS 7.4:
+In :term:`EL` 7:
 
 .. code-block:: puppet
 
   ---
   autofs::autofs_package_ensure:  '5.0.7-56.el7'
 
-In CentOS 6.9
+In :term:`EL` 6
 
 .. code-block:: puppet
 
@@ -50,8 +52,8 @@ In CentOS 6.9
 This problem has been identified as bugs in autofs and are being publicly
 tracked.
 
-- CentOS 6.9  https://bugs.centos.org/view.php?id=13575.
-- CentOS 7.4  https://bugs.centos.org/view.php?id=14080.
+- CentOS 6  https://bugs.centos.org/view.php?id=13575.
+- CentOS 7  https://bugs.centos.org/view.php?id=14080.
 
 If you have any further questions about this please contact the SIMP Team.
 
@@ -66,7 +68,8 @@ SIMP-2944 in `JIRA Bug Tracking`_.
 Kerberos and Home Directories
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-The kerberos module is not fully integrated with home directories at this time.
+The kerberos module is not fully integrated with NFS home directories at this
+time.
 
 SIMP-1407 in `JIRA Bug Tracking`_.
 
@@ -88,47 +91,47 @@ In ``site/manifests/nfs_server.pp``:
 
 .. code-block:: puppet
 
-  class site::nfs_server (
-    Stdlib::AbsolutePath                             $data_dir     = '/var/nfs_share',
-    Simplib::Netlist                                 $trusted_nets = simplib::lookup('simp_options::trusted_nets', { 'default_value' => ['127.0.0.1'] }),
-    Array[Enum['none','sys','krb5','krb5i','krb5p']] $sec          = ['sys']
-  ){
-    include '::nfs::server'
+   class site::nfs_server (
+     Stdlib::AbsolutePath                             $data_dir     = '/var/nfs_share',
+     Simplib::Netlist                                 $trusted_nets = simplib::lookup('simp_options::trusted_nets', { 'default_value' => ['127.0.0.1'] }),
+     Array[Enum['none','sys','krb5','krb5i','krb5p']] $sec          = ['sys']
+   ){
+     include '::nfs::server'
 
-    file { $data_dir:
-      ensure => 'directory',
-      owner  => 'root',
-      group  => 'root',
-      mode   => '0644'
-    }
+     file { $data_dir:
+       ensure => 'directory',
+       owner  => 'root',
+       group  => 'root',
+       mode   => '0644'
+     }
 
-    if !$::nfs::stunnel {
-      nfs::server::export { 'nfs_share':
-        clients     => $trusted_nets,
-        export_path => $data_dir,
-        sec         => $sec,
-        require     => File[$data_dir]
-      }
-    }
-    else {
-      # Stunnel needs to point at the local host
-      nfs::server::export { 'nfs_share':
-        clients     => ['127.0.0.1'],
-        export_path => $data_dir,
-        sec         => $sec,
-        require     => File[$data_dir]
-      }
-    }
-  }
+     if !$::nfs::stunnel {
+       nfs::server::export { 'nfs_share':
+         clients     => $trusted_nets,
+         export_path => $data_dir,
+         sec         => $sec,
+         require     => File[$data_dir]
+       }
+     }
+     else {
+       # Stunnel needs to point at the local host
+       nfs::server::export { 'nfs_share':
+         clients     => ['127.0.0.1'],
+         export_path => $data_dir,
+         sec         => $sec,
+         require     => File[$data_dir]
+       }
+     }
+   }
 
 In ``hosts/<your_server_fqdn>.yaml``:
 
 .. code-block:: puppet
 
-  nfs::is_server: true
+   nfs::is_server: true
 
-  classes:
-    - 'site::nfs_server'
+   classes:
+     - 'site::nfs_server'
 
 Client
 ^^^^^^
@@ -166,11 +169,11 @@ In ``hosts/<your_client_fqdn>.yaml``:
 
 .. code-block:: yaml
 
-  nfs::is_server: false
-  site::nfs_client::nfs_server: <your nfs server>
+   nfs::is_server: false
+   site::nfs_client::nfs_server: <your nfs server>
 
-  classes:
-    - 'site::nfs_client'
+   classes:
+     - 'site::nfs_client'
 
 .. WARNING::
 
@@ -220,22 +223,22 @@ file will affect all systems.
 
 .. code-block:: yaml
 
-  nfs::is_server: false
-  simp_nfs::home_dir_server: <your nfs server>
+   nfs::is_server: false
+   simp_nfs::home_dir_server: <your nfs server>
 
-  classes:
-    - simp_nfs
+   classes:
+     - simp_nfs
 
 Server
 ^^^^^^
 
 .. code-block:: yaml
 
-  nfs::is_server: true
-  simp_nfs::export_home::create_home_dirs: true
+   nfs::is_server: true
+   simp_nfs::export_home::create_home_dirs: true
 
-  classes:
-    - simp_nfs::export::home
+   classes:
+     - simp_nfs::export::home
 
 .. _Additional_Directories:
 
@@ -261,77 +264,77 @@ the manifest is called nfs_server.pp.
 
 .. code-block:: puppet
 
-  class site::nfs_server (
-  #  Make sure the data_dir is the same as in simp_nfs.
-  Stdlib::Absolutepath                             $data_dir     = '/var',
-  Simplib::Netlist                                 $trusted_nets = simplib::lookup('simp_options::trusted_nets', { 'default_value' => ['127.0.0.1'] }),
-  Array[Enum['none','sys','krb5','krb5i','krb5p']] $sec = ['sys'],
-  ) {
+   class site::nfs_server (
+   #  Make sure the data_dir is the same as in simp_nfs.
+   Stdlib::Absolutepath                             $data_dir     = '/var',
+   Simplib::Netlist                                 $trusted_nets = simplib::lookup('simp_options::trusted_nets', { 'default_value' => ['127.0.0.1'] }),
+   Array[Enum['none','sys','krb5','krb5i','krb5p']] $sec = ['sys'],
+   ) {
 
-  #
-  #  Exporting directories from the home directory server when
-  #  using the simp_nfs module.
-  #
-    include '::nfs::server'
+   #
+   #  Exporting directories from the home directory server when
+   #  using the simp_nfs module.
+   #
+     include '::nfs::server'
 
-  # Create the directory where the data exists.
-    file { '/var/nfs/share1':
-      ensure => 'directory',
-      mode   => '0755',
-      owner  => 'root',
-      group  => 'root'
-    }
+   # Create the directory where the data exists.
+     file { '/var/nfs/share1':
+       ensure => 'directory',
+       mode   => '0755',
+       owner  => 'root',
+       group  => 'root'
+     }
 
-  # Create a mount point under the nfs root created in simp_nfs.
-    file { "${data_dir}/nfs/exports/share1":
-      ensure => 'directory',
-      mode   => '0755',
-      owner  => 'root',
-      group  => 'root'
-    }
+   # Create a mount point under the nfs root created in simp_nfs.
+     file { "${data_dir}/nfs/exports/share1":
+       ensure => 'directory',
+       mode   => '0755',
+       owner  => 'root',
+       group  => 'root'
+     }
 
-  # Mount the share to the nfs_root created in simp_nfs.
-    mount { "${data_dir}/nfs/exports/share1":
-      ensure   => 'mounted',
-      fstype   => 'none',
-      device   => "/var/nfs/share1",
-      remounts => true,
-      options  => 'rw,bind',
-      require  => [
-        File["${data_dir}/nfs/exports/share1"],
-        File['/var/nfs/share1']
-      ]
-    }
+   # Mount the share to the nfs_root created in simp_nfs.
+     mount { "${data_dir}/nfs/exports/share1":
+       ensure   => 'mounted',
+       fstype   => 'none',
+       device   => "/var/nfs/share1",
+       remounts => true,
+       options  => 'rw,bind',
+       require  => [
+         File["${data_dir}/nfs/exports/share1"],
+         File['/var/nfs/share1']
+       ]
+     }
 
-  # Export the directory
-    if !$::nfs::stunnel {
-      nfs::server::export { 'share1':
-        clients     => nets2cidr($trusted_nets),
-        export_path => "${data_dir}/nfs/exports/share1",
-        rw          => true,
-        sec         => $sec
-      }
-    } else {
-        nfs::server::export { 'share1':
-        clients     => ['127.0.0.1'],
-        export_path => "${data_dir}/nfs/exports/home",
-        rw          => true,
-        sec         => $sec,
-        insecure    => true
-      }
-    }
-  }
+   # Export the directory
+     if !$::nfs::stunnel {
+       nfs::server::export { 'share1':
+         clients     => nets2cidr($trusted_nets),
+         export_path => "${data_dir}/nfs/exports/share1",
+         rw          => true,
+         sec         => $sec
+       }
+     } else {
+         nfs::server::export { 'share1':
+         clients     => ['127.0.0.1'],
+         export_path => "${data_dir}/nfs/exports/home",
+         rw          => true,
+         sec         => $sec,
+         insecure    => true
+       }
+     }
+   }
 
 Include this manifest in the servers hiera file.
 
 .. code-block:: yaml
 
-  ---
-  classes:
-    - site::nfs_server
-    - simp_nfs
+   ---
+   classes:
+     - site::nfs_server
+     - simp_nfs
 
-  nfs::is_server: true
+   nfs::is_server: true
 
 Client
 ^^^^^^
@@ -342,54 +345,54 @@ example it is called nfs_client.pp.
 
 .. code-block:: puppet
 
-  class site::nfs_client (
-    Simplib::Host                      $nfs_server,
-    Enum['sys','krb5','krb5i','krb5p'] $sec           = 'sys',
-  ){
+   class site::nfs_client (
+     Simplib::Host                      $nfs_server,
+     Enum['sys','krb5','krb5i','krb5p'] $sec           = 'sys',
+   ){
 
-    include nfs
+     include nfs
 
-    $mount_point = '/share'
+     $mount_point = '/share'
 
-    # Since it the nfs server uses a nfs_root, you onlt put the path
-    # relative to the root.
-    $remote_path = '/share1'
+     # Since it the nfs server uses a nfs_root, you onlt put the path
+     # relative to the root.
+     $remote_path = '/share1'
 
 
-    if getvar('::nfs::client::is_server') {
-      $_target = '127.0.0.1'
-    }
-    else {
-      $_target = $nfs_server
-    }
+     if getvar('::nfs::client::is_server') {
+       $_target = '127.0.0.1'
+     }
+     else {
+       $_target = $nfs_server
+     }
 
-    file { "${mount_point}":
-      ensure => 'directory',
-      mode   => '0755',
-      owner  => 'root',
-    }
+     file { "${mount_point}":
+       ensure => 'directory',
+       mode   => '0755',
+       owner  => 'root',
+     }
 
-    nfs::client::mount { "${mount_point}":
-      nfs_server         => $nfs_server,
-      remote_path        => "${remote_path}",
-      nfs_version        => 'nfs4',
-      sec                => $sec,
-      autofs             => false,
-      at_boot            => true,
-    }
-  }
+     nfs::client::mount { "${mount_point}":
+       nfs_server         => $nfs_server,
+       remote_path        => "${remote_path}",
+       nfs_version        => 'nfs4',
+       sec                => $sec,
+       autofs             => false,
+       at_boot            => true,
+     }
+   }
 
-Then include this manifest in hiera for any system that
-should mount this share.
+Then include this manifest in hiera for any system that should mount this
+share.
 
 .. code-block:: yaml
 
----
-  classes:
-    - site::nfs_client
+   ---
+   classes:
+     - site::nfs_client
 
-  nfs::is_server: false
-  site::nfs_client::nfs_server: server21.simp.test
+   nfs::is_server: false
+   site::nfs_client::nfs_server: server21.simp.test
 
 
 Enabling/Disabling Stunnel
@@ -405,19 +408,19 @@ following, in the server's :term:`YAML` file:
 
 .. NOTE::
 
-  The following is set to prevent a cyclical connection of stunnel to itself,
-  in the event the server is a client of itself.
+   The following is set to prevent a cyclical connection of stunnel to itself,
+   in the event the server is a client of itself.
 
 .. code-block:: yaml
 
-  nfs::client::stunnel::nfs_server: <your nfs server>
+   nfs::client::stunnel::nfs_server: <your nfs server>
 
 If ``simp_options::stunnel`` is set to ``false`` and you don't wish to globally
 enable stunnel, you will also need to set the following, in default.yaml:
 
 .. code-block:: yaml
 
-  nfs::stunnel: true
+   nfs::stunnel: true
 
 Disable
 ^^^^^^^
@@ -427,7 +430,7 @@ traffic to go through stunnel, set the following, in default.yaml:
 
 .. code-block:: yaml
 
-  nfs::stunnel: false
+   nfs::stunnel: false
 
 If ``simp_options::stunnel`` is set to ``false`` then stunnel is already disabled.
 
@@ -436,8 +439,8 @@ Enabling Kerberos
 
 .. WARNING::
 
-  This functionality is incomplete. It does not work with home directories.
-  See ticket SIMP-1407 in our `JIRA Bug Tracking`_ .
+   This functionality is incomplete. It does not work with home directories.
+   See ticket SIMP-1407 in our `JIRA Bug Tracking`_ .
 
 In addition to the sharing code (not the stunnel code) above, add the following:
 
@@ -446,32 +449,32 @@ default.yaml
 
 .. code-block:: yaml
 
-  classes:
-    - 'krb5::keytab'
+   classes:
+     - 'krb5::keytab'
 
-  nfs::secure_nfs: true
-  simp_options::krb5: true
+   nfs::secure_nfs: true
+   simp_options::krb5: true
 
-  krb5::kdc::auto_keytabs::global_services:
-    - 'nfs'
+   krb5::kdc::auto_keytabs::global_services:
+     - 'nfs'
 
 Server
 ^^^^^^
 
 .. code-block:: yaml
 
-  classes:
-    - 'krb5::kdc'
+   classes:
+     - 'krb5::kdc'
 
 Clients
 ^^^^^^^
 
 .. code-block:: yaml
 
-  nfs::is_server: false
+   nfs::is_server: false
 
-  classes:
-    - 'simp_nfs'
+   classes:
+     - 'simp_nfs'
 
 .. _autofs-5.0.5-122: https://vault.centos.org/6.8/os/x86_64/Packages/autofs-5.0.5-122.el6.x86_64.rpm
 .. _autofs-5.0.7-56: https://vault.centos.org/7.3.1611/os/x86_64/Packages/autofs-5.0.7-56.el7.x86_64.rpm
