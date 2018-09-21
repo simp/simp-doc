@@ -538,6 +538,11 @@ Glossary of Terms
       for Ron Rivest, Adi Shamir and Leonard Adleman, who first publicly
       described it in 1977.
 
+   Rsync
+      An open source utility that provides fast incremental file transfer.
+
+      Source: `Rsync Home Page <https://rsync.samba.org/>`__
+
    Rsyslog
       An open-source software utility used on UNIX and Unix-like computer
       systems for forwarding log messages in an IP network. It implements the
@@ -637,6 +642,12 @@ Glossary of Terms
       Secure Shell protocol (:term:`SSH`) version 2.0 to provide secure file
       transfer capability, but is also intended to be usable with other
       protocols.
+
+   Stunnel
+      A proxy designed to add :term:`TLS` encryption functionality to existing
+      clients and servers without any changes in the programs' code.
+
+      Source: `Stunnel Home Page <https://www.stunnel.org/>`__
 
    Sudosh
       An application that acts as an echo logger to enhance the auditing of

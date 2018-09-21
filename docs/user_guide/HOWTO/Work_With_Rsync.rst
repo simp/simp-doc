@@ -16,17 +16,17 @@ replicate something like what we've done for your custom directories.
 Why SIMP Uses Rsync
 -------------------
 
-Rsync support was introduced in SIMP in the early days due to the fact that the
-Puppet native file synchronization mechanisms were relatively horrible at
-syncing large files (too much in memory) and large numbers of files in a
+:term:`Rsync` support was introduced in SIMP in the early days due to the fact
+that the Puppet native file synchronization mechanisms were relatively horrible
+at syncing large files (too much in memory) and large numbers of files in a
 directory tree (too many resources and system load).
 
 Rsync neatly solves both of these issues and is present on all SIMP systems by
 default.
 
-By default, SIMP wraps all rsync connections in an Stunnel connection to
-provide encrypted connections. Additionally, SIMP adds randomly generated
-passwords to sensitive shares to prevent unauthorized connections.
+By default, SIMP wraps all ``rsync`` connections in an :term:`Stunnel`
+connection to provide encrypted connections. Additionally, SIMP adds randomly
+generated passwords to sensitive shares to prevent unauthorized connections.
 
 You can restrict this as far as necessary in your environment but the defaults
 should suit most needs.
@@ -174,6 +174,7 @@ directory structure that we have and simply copy the entire data structure to a
 directory with your custom name.
 
 .. WARNING::
+
    Be sure not to copy any sensitive information into the space!
 
 For example, if you wanted to create the standard dev/test/prod structure, and
@@ -181,9 +182,9 @@ assuming that ``production`` is already symlinked to ``simp``:
 
 .. code-block:: bash
 
-  cd /var/simp/environments
-  cp -a simp dev
-  cp -a simp test
+   cd /var/simp/environments
+   cp -a simp dev
+   cp -a simp test
 
 After this, you will now have an enhanced ``simp_rsync_environments`` data
 structure that holds all of the information for the ``dev``, ``test``,
@@ -207,25 +208,26 @@ If you decide to disable stunnel, you will need to specify your rsync server in
 :term:`Hiera`, if it is not already specified.
 
 .. WARNING::
+
    If you disable stunnel, your data and any rsync access credentials will be
    passed in the clear!
 
 .. code-block:: yaml
 
-  ---
-  simp_options::rsync::server: <rsync_server_fqdn>
+   ---
+   simp_options::rsync::server: <rsync_server_fqdn>
 
 Additionally, you will need to ensure your firewall is open on the rsync port.
 Include the following on the node acting as the rsync server.
 
 .. code-block:: ruby
 
-  class site::rsync_iptables (
-    Simplib::Netlist $allow      = simplib::lookup('simp_options::trusted_nets'),
-    Simplib::Port    $rsync_port = 873
-  ){
-    iptables::listen::tcp_stateful { "rsync_shares":
-      trusted_nets => $allow,
-      dports       => $rsync_port
-    }
-  }
+   class site::rsync_iptables (
+     Simplib::Netlist $allow      = simplib::lookup('simp_options::trusted_nets'),
+     Simplib::Port    $rsync_port = 873
+   ){
+     iptables::listen::tcp_stateful { "rsync_shares":
+       trusted_nets => $allow,
+       dports       => $rsync_port
+     }
+   }
