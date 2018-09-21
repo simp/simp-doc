@@ -78,6 +78,7 @@ set up a user workstation.  Each ``site::`` class is described in the subsequent
 
 Workstation Repositories
 ^^^^^^^^^^^^^^^^^^^^^^^^
+
 Create any repos needed to install extra software.
 
 
@@ -94,9 +95,9 @@ Create any repos needed to install extra software.
 Graphical Desktop Setup
 ^^^^^^^^^^^^^^^^^^^^^^^
 
-Below is an example manifest called
-``/etc/puppetlabs/code/environments/simp/modules/site/manifests/gui.pp`` for setting up a graphical
-desktop on a user workstation.
+The following is an example that may be used to set up a graphical desktop. The
+class name assumes that the file has been placed at
+``/etc/puppetlabs/code/environments/simp/modules/site/manifests/gui.pp``
 
 .. code-block:: ruby
 
@@ -130,14 +131,20 @@ desktop on a user workstation.
 
 
 Apply the Settings
-------------------------------
+------------------
 
 Once the profiles have been created and tested, one way of applying the
-profile to all workstations is to create a hiera hostgroup.
+profile to all workstations is to use the SIMP ``hostgroup`` :term:`Hiera`
+configuration capability.
 
-Edit the ``site.pp`` file in the :term:`Site Manifest` directory.  The
-following will make all nodes whose names start with ``ws`` followed by any number
-of digits use the ``hieradata/hostgroups/workstation.yaml`` instead of the default:
+To do use ``hostgroups``, you will need to edit the ``site.pp`` in the target
+environment's :term:`site manifest`.
+
+Adding the following to
+``/etc/puppetlabs/code/environments/simp/manifests/site.pp`` will will make all
+nodes whose names start with ``ws`` followed by any number of digits use the
+``hieradata/hostgroups/workstation.yaml``. All other nodes will fall back to
+the ``default.yaml``.
 
 .. code-block:: ruby
 
@@ -147,8 +154,10 @@ of digits use the ``hieradata/hostgroups/workstation.yaml`` instead of the defau
   }
 
 
-The workstation.yaml file will include settings for all the workstations.  An example yaml file:
+The ``workstation.yaml`` file will include settings for all the workstations.
 
+The following example includes the settings for NFS mounted home directories.
+See  :ref:`Exporting Home Directories` for more information.
 
 .. code-block:: yaml
 
@@ -168,15 +177,15 @@ The workstation.yaml file will include settings for all the workstations.  An ex
     - simp_nfs
 
 
-The above example includes the settings for NFS mounted home directories.
-See  :ref:`Exporting Home Directories` for more information.
-
 Virtualization on User Workstations
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Below is an example manifest called
+Below is an example manifest at
 ``/etc/puppetlabs/code/environments/simp/modules/site/manifests/virt.pp``
-for allowing virtualization on a system.
+that would allow users to run ``libvirt`` virtual machines.
+
+Importantly, note the ``libvirt::polkit`` class being called that sets the
+users that are allowed to use ``libvirt`` from the command line.
 
 .. code-block:: ruby
 
@@ -220,7 +229,7 @@ for allowing virtualization on a system.
 
    }
 
-To set swappiness values use hiera:
+To set specific :term:`swappiness` values use :term:`Hiera` as follows:
 
 .. code-block:: yaml
 
@@ -236,9 +245,9 @@ Below are example manifests for setting up a printing environment.
 Setting up a Print Client
 """""""""""""""""""""""""
 
-Below is an example manifest called
-``/etc/puppetlabs/code/environments/simp/modules/site/manifests/print/client.pp`` for setting up a
-print client on EL6.
+The following example sets up client-side printing and is expected to be
+located at
+``/etc/puppetlabs/code/environments/simp/modules/site/manifests/print/client.pp``.
 
 .. code-block:: ruby
 
@@ -261,9 +270,9 @@ print client on EL6.
 Setting up a Print Server
 """""""""""""""""""""""""
 
-Below is an example manifest called
-``/etc/puppetlabs/code/environments/simp/modules/site/manifests/print/server.pp`` for setting up a
-print server.
+The following example sets up a server-side printing and is expected to be
+located at
+``/etc/puppetlabs/code/environments/simp/modules/site/manifests/print/server.pp``.
 
 .. code-block:: ruby
 
@@ -285,8 +294,8 @@ print server.
 VNC Setup
 ---------
 
-:term:`Virtual Network Computing` (VNC) is a tool that is used to manage desktops
-and workstations remotely through the standard setup or a proxy.
+:term:`Virtual Network Computing` (VNC) can be enabled to provide remote GUI
+access to systems.
 
 VNC Standard Setup
 ^^^^^^^^^^^^^^^^^^
@@ -356,9 +365,9 @@ Modify Puppet
 
 If definitions for the machines involved in the VNC do not already exist
 in Hiera, create an ``/etc/puppetlabs/code/environments/simp/hieradata/hosts/vserv.your.domain.yaml``
-file. In the client hosts file, modify or create the entries shown in
-the examples below. These additional modules will allow vserv to act as
-a VNC server and vclnt to act as a client.
+file. In the client hosts file, modify or create the entries shown in the
+examples below. These additional modules will allow the ``vserv`` system to act
+as a VNC server and the ``vclnt`` system to act as a client.
 
 VNC Server node
 
@@ -406,13 +415,13 @@ Set up a tunnel from the client (vclnt), through the proxy server
 up the tunnel.
 
 
-1. On the workstation, type ``ssh -l vuser -L 590***<Port Number>*:localhost:590***<Port Number>***proxy.your.domain**``
+#. On the workstation, type ``ssh -l vuser -L 590***<Port Number>*:localhost:590***<Port Number>***proxy.your.domain**``
 
   .. NOTE::
 
      This command takes the user to the proxy.
 
-2. On the proxy, type ``ssh -l vuser -L 590***<Port Number>*:localhost:590***<Port Number>***vserv.your.domain**``
+#. On the proxy, type ``ssh -l vuser -L 590***<Port Number>*:localhost:590***<Port Number>***vserv.your.domain**``
 
   .. NOTE::
 
@@ -436,7 +445,7 @@ Number>***`` to open the Remote Desktop viewer.
 Troubleshooting VNC Issues
 ^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-If nothing appears in the terminal window, X may have crashed. To
+If nothing appears in the terminal window, the :term:`X Windows` may have crashed. To
 determine if this is the case, type ``ps -ef | grep XKeepsCrashing``
 
 If any matches result, stop the process associated with the command and

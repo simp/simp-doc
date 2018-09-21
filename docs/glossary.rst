@@ -664,6 +664,13 @@ Glossary of Terms
 
       Source: `DISA IASE <https://iase.disa.mil/stigs/Pages/index.aspx>`__
 
+   Swappiness
+      Swappiness is a Linux kernel parameter that controls the relative weight
+      given to swapping out of runtime memory, as opposed to dropping pages
+      from the system page cache.
+
+      Source: `Wikipedia: Swappiness <https://en.wikipedia.org/wiki/Swappiness>`__
+
    Syslog
       A set of standards for sending log messages across the network.
 
@@ -777,6 +784,15 @@ Glossary of Terms
       algorithm.
 
       Source: `Wikipedia: X.509 <https://en.wikipedia.org/wiki/X.509>`__
+
+   X
+   X11
+   X Windows
+   X Window System
+      The X Window System (X11, or shortened to simply X) is a windowing system
+      for bitmap displays, common on UNIX-like computer operating systems.
+
+      Source: `Wikipedia: X Window System <https://en.wikipedia.org/wiki/X_Window_System>`__
 
    YAML
    YAML Ain't Markup Language
