@@ -4,16 +4,24 @@ HOWTO Manage Workstation Infrastructures
 ========================================
 
 This chapter describes example code used to manage client workstations with a
-SIMP system including GUIs, repositories, virtualization, Network File System
-(NFS), printing, and Virtual Network Computing (VNC).
+SIMP system including GUIs, repositories, virtualization,
+printing, and Virtual Network Computing (VNC).
 
-To begin, install the following Puppet modules:
+Install Extra Puppet Modules
+----------------------------
+
+The examples on this page use modules that are part of SIMP Extras and may not
+be installed on the puppet server by default.  The following is an example manifest
+that can be applied to the puppet server to install the extra modules if RPMs are being
+used to distribute the modules:
+
 
 .. code-block:: ruby
 
    class site::workstation_packages {
 
      $package_list = [
+       'pupmod-simp-dconf',
        'pupmod-simp-gdm',
        'pupmod-simp-gnome',
        'pupmod-simp-simp_nfs',
@@ -25,7 +33,6 @@ To begin, install the following Puppet modules:
        ensure => installed,
      }
    }
-
 
 Create A Workstation Profile Class
 ----------------------------------
@@ -42,6 +49,11 @@ set up a user workstation.  Each ``site::`` class is described in the subsequent
      include 'site::virt'
      include 'site::print::client'
 
+     # make sure any repos are installed before they
+     # are needed.  Include dependencies to
+     # other classes if needed.
+     Class[Site::Repos] -> Class[Site::Gui]
+
      # Make sure everyone can log into all nodes.
      # If you want to change this, simply remove this line and add
      # individual entries to your nodes as appropriate
@@ -51,13 +63,30 @@ set up a user workstation.  Each ``site::`` class is described in the subsequent
        origins => ['ALL']
      }
 
-     # General Use Packages
+     # Install additional packages on the workstations.
+     # Example list of General Use Packages
      package { [
        'pidgin',
        'vim-enhanced',
        'tmux',
        'git'
-     ]: ensure => installed
+     ]: ensure => installed,
+        require => Class[Site::Repos]
+     }
+   }
+
+
+Workstation Repositories
+^^^^^^^^^^^^^^^^^^^^^^^^
+
+Create any repos needed to install extra software.
+
+
+.. code-block:: ruby
+
+   class site::repos {
+     yumrepo { 'myrepo':
+       #what ever parameters you need
      }
    }
 
@@ -66,9 +95,9 @@ set up a user workstation.  Each ``site::`` class is described in the subsequent
 Graphical Desktop Setup
 ^^^^^^^^^^^^^^^^^^^^^^^
 
-Below is an example manifest called
-``/etc/puppetlabs/code/environments/simp/modules/site/manifests/gui.pp`` for setting up a graphical
-desktop on a user workstation.
+The following is an example that may be used to set up a graphical desktop. The
+class name assumes that the file has been placed at
+``/etc/puppetlabs/code/environments/simp/modules/site/manifests/gui.pp``
 
 .. code-block:: ruby
 
@@ -81,8 +110,6 @@ desktop on a user workstation.
      include 'vnc::client'
      # Browser and e-mail client are not installed by default.
      include 'mozilla::firefox'
-     include 'mozilla::thunderbird'
-
 
      Class['Gnome'] -> Class['Site::gui']
 
@@ -103,33 +130,67 @@ desktop on a user workstation.
    }
 
 
-Workstation Repositories
-^^^^^^^^^^^^^^^^^^^^^^^^
+Apply the Settings
+------------------
 
-For the site repos use the puppet resource yumrepo to create repo files to point to
-repositories.
+Once the profiles have been created and tested, one way of applying the
+profile to all workstations is to use the SIMP ``hostgroup`` :term:`Hiera`
+configuration capability.
 
+To do use ``hostgroups``, you will need to edit the ``site.pp`` in the target
+environment's :term:`site manifest`.
+
+Adding the following to
+``/etc/puppetlabs/code/environments/simp/manifests/site.pp`` will will make all
+nodes whose names start with ``ws`` followed by any number of digits use the
+``hieradata/hostgroups/workstation.yaml``. All other nodes will fall back to
+the ``default.yaml``.
 
 .. code-block:: ruby
 
-   class site::repos {
-     yumrepo { 'myrepo':
-       #what ever parameters you need
-     }
-   }
+  case $facts['hostname'] {
+    /^ws\d+.*/: { $hostgroup = 'workstation' }
+    default:    { $hostgroup = 'default'     }
+  }
+
+
+The ``workstation.yaml`` file will include settings for all the workstations.
+
+The following example includes the settings for NFS mounted home directories.
+See  :ref:`Exporting Home Directories` for more information.
+
+.. code-block:: yaml
+
+  ---
+
+  #Set the run level so it will bring up a graphical interface
+  simp::runlevel: 'graphical'
+  timezone::timezone: 'EST'
+
+  #Settings for home server. See HOWTO NFS for more info.
+  nfs::is_server: false
+  simp_nfs::home_dir_server: myhome.server.com
+
+  #The site::workstation manifest will do most of the work.
+  classes:
+    - site::workstation
+    - simp_nfs
 
 
 Virtualization on User Workstations
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Below is an example manifest called
+Below is an example manifest at
 ``/etc/puppetlabs/code/environments/simp/modules/site/manifests/virt.pp``
-for allowing virtualization on a system.
+that would allow users to run ``libvirt`` virtual machines.
+
+Importantly, note the ``libvirt::polkit`` class being called that sets the
+users that are allowed to use ``libvirt`` from the command line.
 
 .. code-block:: ruby
 
-   # We allow users to run VMs on their workstations.
-   # If you don't want this, just don't include this class.
+   # If you want users to be able to run VMs on their workstations
+   # include a class like this.
    # If this is installed, VM creation and management is still limited by PolicyKit
 
    class site::virt {
@@ -168,7 +229,7 @@ for allowing virtualization on a system.
 
    }
 
-To set swappiness values use hiera:
+To set specific :term:`swappiness` values use :term:`Hiera` as follows:
 
 .. code-block:: yaml
 
@@ -184,9 +245,9 @@ Below are example manifests for setting up a printing environment.
 Setting up a Print Client
 """""""""""""""""""""""""
 
-Below is an example manifest called
-``/etc/puppetlabs/code/environments/simp/modules/site/manifests/print/client.pp`` for setting up a
-print client on EL6.
+The following example sets up client-side printing and is expected to be
+located at
+``/etc/puppetlabs/code/environments/simp/modules/site/manifests/print/client.pp``.
 
 .. code-block:: ruby
 
@@ -209,9 +270,9 @@ print client on EL6.
 Setting up a Print Server
 """""""""""""""""""""""""
 
-Below is an example manifest called
-``/etc/puppetlabs/code/environments/simp/modules/site/manifests/print/server.pp`` for setting up a
-print server.
+The following example sets up a server-side printing and is expected to be
+located at
+``/etc/puppetlabs/code/environments/simp/modules/site/manifests/print/server.pp``.
 
 .. code-block:: ruby
 
@@ -230,47 +291,11 @@ print server.
      }
    }
 
-
-Create A Workstation Hostgroup
-------------------------------
-
-Edit the ``site.pp`` file to create a hostgroup for the workstations.  The
-following will make all nodes whose names start with ``ws`` followed any number
-of digits use the ``hieradata/hostgroups/workstation.yaml`` instead of the default:
-
-.. code-block:: ruby
-
-  case $facts['hostname'] {
-    /^ws\d+.*/: { $hostgroup = 'workstation' }
-    default:    { $hostgroup = 'default'     }
-  }
-
-
-The workstation.yaml file will include settings for all the workstations.  An example yaml file:
-
-.. code-block:: yaml
-
-  ---
-
-  #Set the run level so it will bring up a graphical interface
-  simp::runlevel: 'graphical'
-  timezone::timezone: 'EST'
-
-  #Settings for home server. See HOWTO NFS for more info.
-  nfs::is_server: false
-  simp_nfs::home_dir_server: myhome.server.com
-
-  #The site::workstation manifest will do most of the work.
-  classes:
-    - site::workstation
-    - simp_nfs
-
-
 VNC Setup
 ---------
 
-:term:`Virtual Network Computing` (VNC) is a tool that is used to manage desktops
-and workstations remotely through the standard setup or a proxy.
+:term:`Virtual Network Computing` (VNC) can be enabled to provide remote GUI
+access to systems.
 
 VNC Standard Setup
 ^^^^^^^^^^^^^^^^^^
@@ -340,9 +365,9 @@ Modify Puppet
 
 If definitions for the machines involved in the VNC do not already exist
 in Hiera, create an ``/etc/puppetlabs/code/environments/simp/hieradata/hosts/vserv.your.domain.yaml``
-file. In the client hosts file, modify or create the entries shown in
-the examples below. These additional modules will allow vserv to act as
-a VNC server and vclnt to act as a client.
+file. In the client hosts file, modify or create the entries shown in the
+examples below. These additional modules will allow the ``vserv`` system to act
+as a VNC server and the ``vclnt`` system to act as a client.
 
 VNC Server node
 
@@ -390,13 +415,13 @@ Set up a tunnel from the client (vclnt), through the proxy server
 up the tunnel.
 
 
-1. On the workstation, type ``ssh -l vuser -L 590***<Port Number>*:localhost:590***<Port Number>***proxy.your.domain**``
+#. On the workstation, type ``ssh -l vuser -L 590***<Port Number>*:localhost:590***<Port Number>***proxy.your.domain**``
 
   .. NOTE::
 
      This command takes the user to the proxy.
 
-2. On the proxy, type ``ssh -l vuser -L 590***<Port Number>*:localhost:590***<Port Number>***vserv.your.domain**``
+#. On the proxy, type ``ssh -l vuser -L 590***<Port Number>*:localhost:590***<Port Number>***vserv.your.domain**``
 
   .. NOTE::
 
@@ -420,7 +445,7 @@ Number>***`` to open the Remote Desktop viewer.
 Troubleshooting VNC Issues
 ^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-If nothing appears in the terminal window, X may have crashed. To
+If nothing appears in the terminal window, the :term:`X Windows` may have crashed. To
 determine if this is the case, type ``ps -ef | grep XKeepsCrashing``
 
 If any matches result, stop the process associated with the command and

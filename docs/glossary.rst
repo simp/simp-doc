@@ -538,6 +538,11 @@ Glossary of Terms
       for Ron Rivest, Adi Shamir and Leonard Adleman, who first publicly
       described it in 1977.
 
+   Rsync
+      An open source utility that provides fast incremental file transfer.
+
+      Source: `Rsync Home Page <https://rsync.samba.org/>`__
+
    Rsyslog
       An open-source software utility used on UNIX and Unix-like computer
       systems for forwarding log messages in an IP network. It implements the
@@ -620,6 +625,15 @@ Glossary of Terms
 
       See: :term:`Puppet Master`
 
+   Site Manifest
+     Puppet always starts compiling with either a single manifest file or a
+     directory of manifests that get treated like a single file. This main
+     starting point is called the main manifest or site manifest.
+     By default, the main manifest for a given environment is
+     <ENVIRONMENTS DIRECTORY>/<ENVIRONMENT>/manifests.
+
+     Source: `Puppet Documentation: Main manifest directory <https://puppet.com/docs/puppet/5.5/dirs_manifest.html>`__
+
    SFTP
    SSH File Transfer Protocol
       A network protocol that provides file access, file transfer, and file
@@ -628,6 +642,12 @@ Glossary of Terms
       Secure Shell protocol (:term:`SSH`) version 2.0 to provide secure file
       transfer capability, but is also intended to be usable with other
       protocols.
+
+   Stunnel
+      A proxy designed to add :term:`TLS` encryption functionality to existing
+      clients and servers without any changes in the programs' code.
+
+      Source: `Stunnel Home Page <https://www.stunnel.org/>`__
 
    Sudosh
       An application that acts as an echo logger to enhance the auditing of
@@ -654,6 +674,13 @@ Glossary of Terms
       Configuration standards for DOD IA and IA-enabled devices/systems.
 
       Source: `DISA IASE <https://iase.disa.mil/stigs/Pages/index.aspx>`__
+
+   Swappiness
+      Swappiness is a Linux kernel parameter that controls the relative weight
+      given to swapping out of runtime memory, as opposed to dropping pages
+      from the system page cache.
+
+      Source: `Wikipedia: Swappiness <https://en.wikipedia.org/wiki/Swappiness>`__
 
    Syslog
       A set of standards for sending log messages across the network.
@@ -768,6 +795,15 @@ Glossary of Terms
       algorithm.
 
       Source: `Wikipedia: X.509 <https://en.wikipedia.org/wiki/X.509>`__
+
+   X
+   X11
+   X Windows
+   X Window System
+      The X Window System (X11, or shortened to simply X) is a windowing system
+      for bitmap displays, common on UNIX-like computer operating systems.
+
+      Source: `Wikipedia: X Window System <https://en.wikipedia.org/wiki/X_Window_System>`__
 
    YAML
    YAML Ain't Markup Language
