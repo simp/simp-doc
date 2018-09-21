@@ -1,11 +1,11 @@
-HOWTO Configure a Puppet Server Behind a NAT
+HOWTO Configure a Puppet Master behind a NAT
 ============================================
 
 .. ATTENTION::
 
   This page was written for Puppet 3 and SIMP versions less than 6.
 
-This section provides guidance for when the Puppet server is behind a
+This section provides guidance for when the Puppet master is behind a
 NAT but is managing hosts outside the NAT.
 
 Your puppet server certificate must have all names in it that are used by

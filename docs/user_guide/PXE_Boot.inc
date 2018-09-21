@@ -26,7 +26,7 @@ booting, are discussed in an earlier chapter.)
 
 .. _Setting_Up_Kickstart:
 
-Setting Up Kickstart
+Setting up Kickstart
 --------------------
 
 This section describes how to configure the kickstart server.
@@ -41,7 +41,7 @@ This section describes how to configure the kickstart server.
 #. Open the ``pupclient_x86_64.cfg`` file and follow the instructions provided
    within it to replace the variables listed and to customize for
    :term:`BIOS`/:term:`UEFI` boot and/or FIPS/non-FIPS mode.  If you have servers
-   that require different boot mode or FIPS options, you will need to make make
+   that require different boot mode or FIPS options, you will need to make
    customized copies of this file to provide those distinct configurations. You
    will also have to configure TFTP to point to the appropriate files.
 
@@ -83,7 +83,7 @@ This section describes how to configure the kickstart server.
 
 .. NOTE::
 
-   The URLs and locations in the file are setup for a default SIMP install.
+   The URLs and locations in the file are set up for a default SIMP install.
    That means the same OS and version as the SIMP server, all servers in one
    location (on the SIMP server) and in specific directories. If you have
    installed these servers in a different location than the defaults, you may
@@ -120,7 +120,7 @@ Verify the static files are in the correct location:
 
 Type ``cd /var/simp/environments/simp/rsync/<OSTYPE>/Global/tftpboot``
 
-(<OSTYPE> and <MAJORRELEASE> under rsync are the type and version of the SIMP **server**)
+(<OSTYPE> and <MAJORRELEASE> under rsync are the type and version of the SIMP **server**.)
 
 Verify there is a ``linux-install`` directory and cd to this directory.
 
@@ -152,16 +152,16 @@ Next you need to set up the boot files for either BIOS boot mode, UEFI mode, or 
   UEFI support was automated in SIMP 6.2.  If you are using an older version of
   SIMP please refer to that documentation for setting up UEFI manually.
 
-For more information see the `RedHat 7 Installation Source`_  or `RedHat 6 Installation Source`_ Installation Guides
+For more information see the `RedHat 7 Installation Source`_  or `RedHat 6 Installation Source`_ Installation Guides.
 
 Dynamic Linux Model Files
 ^^^^^^^^^^^^^^^^^^^^^^^^^
-Create a site manifest for the TFTP server on the Puppet server to set up the various
-files to model different systems.
+Create a site manifest for the TFTP server on the Puppet master to set up the
+various files to model different systems.
 
 1. Create the file
    ``/etc/puppetlabs/code/environments/simp/modules/site/manifests/tftpboot.pp``.
-   This file will contain linux models for different types of systems and
+   This file will contain Linux models for different types of systems and
    a mapping of MAC addresses to each model.
 
    Use the source code example below.  Linux model examples are given for
@@ -176,10 +176,10 @@ files to model different systems.
    * ``MODEL NAME`` is usually of the form ``OSTYPE-MAJORRELEASE-ARCH`` for
      consistency.
 
-   * You will need to know what kickstart file you are using.  UEFI and BIOS mode
-     require separate kickstart files.  Other things that might require a different
-     kickstart file to be configure are disk drive configurations and FIPS
-     configuration.  Create a different linux model file for each different
+   * You will need to know what kickstart file you are using.  UEFI and BIOS
+     mode require separate kickstart files.  Other things that might require a
+     different kickstart file to be configured are disk drive configurations and
+     FIPS configuration.  Create a different Linux model file for each different
      kickstart file needed.
 
 .. code-block:: ruby
@@ -269,7 +269,7 @@ files to model different systems.
 
 
 3. After updating the above file, type ``puppet agent -t --tags tftpboot`` on
-   the Puppet server.
+   the Puppet master.
 
 .. NOTE::
 

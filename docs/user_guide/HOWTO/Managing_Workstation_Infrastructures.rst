@@ -34,12 +34,12 @@ used to distribute the modules:
      }
    }
 
-Create A Workstation Profile Class
+Create a Workstation Profile Class
 ----------------------------------
 
 Below is an example class,
 ``/etc/puppetlabs/code/environments/simp/modules/site/manifests/workstation.pp``, that could be
-set up a user workstation.  Each ``site::`` class is described in the subsequent sections.
+set up on a user workstation.  Each ``site::`` class is described in the subsequent sections.
 
 .. code-block:: ruby
 
@@ -279,7 +279,7 @@ located at
    class site::print::server {
 
      # Note, this is *not* set up for being a central print server.
-     # You'll need to add the appropriate IPTables rules for that to work.
+     # You will need to add the appropriate IPTables rules for that to work.
      package { 'cups': ensure => 'latest' }
 
      service { 'cups':
@@ -427,7 +427,7 @@ up the tunnel.
 
      This command takes the user to the VNC server.
 
-Table: Set Up SSH Tunnel Procedure
+Table: Set up SSH Tunnel Procedure
 
 .. NOTE::
 
@@ -436,7 +436,7 @@ Table: Set Up SSH Tunnel Procedure
    references below to 590\ *<Port Number>* become 5906.
 
 
-Set Up Clients
+Set up Clients
 """"""""""""""
 
 On ``vclnt.your.domain``, type ``vncviewer localhost:590\ ***<Port

@@ -3,7 +3,7 @@ HOWTO Disable SSH
 
 If SSH is included in your SIMP scenario and you wish to cherry-pick
 it out of the class list and cease to manage its configuration, add
-the following hiera:
+the following Hiera:
 
 .. code-block::  yaml
 

@@ -1,6 +1,6 @@
 .. _sssd_local_user_management:
 
-Managing SSSD LOCAL Domain And Users
+Managing SSSD LOCAL Domain and Users
 ====================================
 
 Though the SIMP team **highly recommends** using :ref:`LDAP <Managing LDAP Users>`
@@ -67,7 +67,7 @@ for more options.
 
 .. code-block:: shell
 
-  sss_useradd <user> -h </path/to/home/dir> -u <uid> -m -k /etc/skell
+  sss_useradd <user> -h </path/to/home/dir> -u <uid> -m -k /etc/skel
 
 
 .. NOTE:
@@ -87,7 +87,7 @@ Next, set the user's password.  As root, run:
 
   passwd <user>
 
-Giving The User Access
+Giving the User Access
 ----------------------
 
 .. code-block:: ruby
@@ -107,11 +107,11 @@ Giving The User Access
     passwd    => false
   }
 
-You're done! You should be able to ``id <user>``, ``su - <user>``, and run
+You are done! You should be able to ``id <user>``, ``su - <user>``, and run
 commands allowed by sudo rules.
 
 Test authentication by ssh-ing as the ``user`` onto the host machine, with the
-password specified after user creation.  If you want to set up an ssh key,
+password specified after user creation.  If you want to set up a ssh key,
 you may want to follow the relevant `GitHub documentation`_.
 
 .. _GitHub documentation: https://help.github.com/articles/generating-ssh-keys

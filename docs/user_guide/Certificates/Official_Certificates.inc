@@ -2,19 +2,21 @@ Installing Official Certificates
 --------------------------------
 
 This section describes how to install infrastructure certificates from an
-official certificate authority on the puppetserver for distribution to client
+official certificate authority on the Puppet master for distribution to client
 servers.  You need to have simp_options::pki set to ``simp`` on the client for
 this to work.
 
-The key distribution directory on the puppetserver is the ``pki_files/files/keydist``
+The key distribution directory on the Puppet master is the ``pki_files/files/keydist``
 sub-directory located under the SIMP-specific, alternate module path,
 ``/var/simp/environments/<environment>/site_files``. Within the ``keydist``
-directory, the SIMP system expects there to be
+directory, the SIMP system expects there to be:
 
-  * A directory named ``cacerts`` that contains the :term:`CA` public certificates.
+  * A directory named ``cacerts`` that contains the :term:`CA` public
+    certificates.
   * Client-specific directories, each of which contains the public and private
-    certificates for an individual client.  The name of each client directory must
-    be the ``certname`` of that client, which by default is the client's FQDN.
+    certificates for an individual client.  The name of each client directory
+    must be the ``certname`` of that client, which by default is the client's
+    FQDN.
 
 Here is an example key distribution directory for a ``simp`` environment:
 
@@ -30,16 +32,17 @@ Here is an example key distribution directory for a ``simp`` environment:
    /var/simp/environments/simp/site_files/pki_files/files/keydist/yourcomputer.your.domain/yourcomputer.your.domain.pem
    /var/simp/environments/simp/site_files/pki_files/files/keydist/yourcomputer.your.domain/yourcomputer.your.domain.pub
 
-To install official certificates on the puppetserver, do the following:
+To install official certificates on the Puppet master, do the following:
 
 1. Copy the certificates received from a proper :term:`CA` to the SIMP server.
 2. Add the certificates for the node to the key distribution directory in ``site_files``.
 
-   a) Make the directory under the key distribution directory for the clients certificates using
-      the client's ``certname``.
+   a) Make the directory under the key distribution directory for the client's
+      certificates using the client's ``certname``.
    b) Copy the official public and private certificates to that directory.
 
-   For example to install certificates for a system named ``mycomputer.my.domain`` into the ``simp`` environment:
+   For example to install certificates for a system named ``mycomputer.my.domain``
+   into the ``simp`` environment:
 
    .. code-block:: shell
 
@@ -61,7 +64,7 @@ To install official certificates on the puppetserver, do the following:
      cd cacerts
      for file in *.pem; do ln -s $file `openssl x509 -in $file -hash -noout`.0; done
 
-4.  Make sure the permissions are correct
+4.  Make sure the permissions are correct.
 
    .. code-block:: shell
 

@@ -16,23 +16,23 @@ Copy these files into ``/root/ldifs`` and fix their Distinguished Names:
 
 .. code-block:: bash
 
-  $ mkdir /root/ldifs
-  $ cp /usr/share/simp/ldifs/* /root/ldifs
-  $ cd /root/ldifs
-  $ sed -i 's/dc=your,dc=domain/<your actual DN information>/g' \*.ldif
+  # mkdir /root/ldifs
+  # cp /usr/share/simp/ldifs/* /root/ldifs
+  # cd /root/ldifs
+  # sed -i 's/dc=your,dc=domain/<your actual DN information>/g' \*.ldif
 
 .. WARNING::
   Do not leave any extraneous spaces in LDIF files!
 
+  Use `:set list` in vim to see hidden spaces at the end of lines.
+
+  Use the following to strip out inappropriate characters:
+
 .. code-block:: bash
 
-   # Use `:set list` in vim to see hidden spaces at the end of lines.
-
-   # Use the following to strip out inappropriate characters
-
-   sed -i \
-     's/\\(^[[:graph:]]\*:\\)[[:space:]]\*\\ ([[:graph:]]\*\\) \\[[:space:]]\*$/\\1\\2/' \
-     file.ldif
+  # sed -i \
+      's/\\(^[[:graph:]]\*:\\)[[:space:]]\*\\ ([[:graph:]]\*\\) \\[[:space:]]\*$/\\1\\2/' \
+      file.ldif
 
 .. NOTE::
   Use the ``[`` and ``]`` characters to scroll horizontally when using ELinks.
@@ -98,8 +98,8 @@ that user:
 
 .. code-block:: bash
 
-  $ ldapadd -Z -x -W -D "cn=LDAPAdmin,ou=People,dc=your,dc=domain" \
-  -f /root/ldifs/add_user_with_password.ldif
+  # ldapadd -Z -x -W -D "cn=LDAPAdmin,ou=People,dc=your,dc=domain" \
+    -f /root/ldifs/add_user_with_password.ldif
 
 Ensure that an administrative account is created as soon as the SIMP system has
 been properly configured. Administrative accounts should belong to the
@@ -161,8 +161,8 @@ for that user
 
 .. code-block:: bash
 
-   $ ldapadd -Z -x -W -D "cn=LDAPAdmin,ou=People,dc=your,dc=domain" \
-   -f /root/ldifs/add_user_no_password.ldif
+   # ldapadd -Z -x -W -D "cn=LDAPAdmin,ou=People,dc=your,dc=domain" \
+     -f /root/ldifs/add_user_no_password.ldif
 
 Remove a User
 -------------
@@ -185,8 +185,8 @@ To remove a user from the system, along with a unique group for that user:
 
 .. code-block:: bash
 
-  $ ldapmodify -Z -x -W -D "cn=LDAPAdmin,ou=People,dc=your,dc=domain" \
-  -f /root/ldifs/del_user.ldif
+  # ldapmodify -Z -x -W -D "cn=LDAPAdmin,ou=People,dc=your,dc=domain" \
+    -f /root/ldifs/del_user.ldif
 
 Additional Common LDAP Operations
 ---------------------------------
@@ -221,8 +221,8 @@ To add another group:
 
 .. code-block:: bash
 
-  $ ldapadd -Z -x -W -D "cn=LDAPAdmin,ou=People,dc=your,dc=domain" \
-  -f /root/ldifs/add_group.ldif
+  # ldapadd -Z -x -W -D "cn=LDAPAdmin,ou=People,dc=your,dc=domain" \
+    -f /root/ldifs/add_group.ldif
 
 Remove a Group
 ^^^^^^^^^^^^^^
@@ -242,8 +242,8 @@ To remove a group:
 
 .. code-block:: bash
 
-  $ ldapmodify -Z -x -W -D "cn=LDAPAdmin,ou=People,dc=your,dc=domain" \
-  -f /root/ldifs/del_group.ldif
+  # ldapmodify -Z -x -W -D "cn=LDAPAdmin,ou=People,dc=your,dc=domain" \
+    -f /root/ldifs/del_group.ldif
 
 Add Users to a Group
 ^^^^^^^^^^^^^^^^^^^^
@@ -268,8 +268,8 @@ To add users to a group:
 
 .. code-block:: bash
 
-  $ ldapmodify -Z -x -W -D "cn=LDAPAdmin,ou=People,dc=your,dc=domain" \
-  -f /root/ldifs/add_to_group.ldif
+  # ldapmodify -Z -x -W -D "cn=LDAPAdmin,ou=People,dc=your,dc=domain" \
+    -f /root/ldifs/add_to_group.ldif
 
 Remove Users from a Group
 ^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -294,8 +294,8 @@ To remove users from a group:
 
 .. code-block:: bash
 
-  $ ldapmodify -Z -x -W -D "cn=LDAPAdmin,ou=People,dc=your,dc=domain" \
-  -f /root/ldifs/del_from_group.ldif
+  # ldapmodify -Z -x -W -D "cn=LDAPAdmin,ou=People,dc=your,dc=domain" \
+    -f /root/ldifs/del_from_group.ldif
 
 Update a User's SSH Public Key
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -343,8 +343,8 @@ To force a password reset for a user:
 
 .. code-block:: bash
 
-  $ ldapmodify -Z -x -W -D "cn=LDAPAdmin,ou=People,dc=your,dc=domain" \
-  -f /root/ldifs/force_password_reset.ldif
+  # ldapmodify -Z -x -W -D "cn=LDAPAdmin,ou=People,dc=your,dc=domain" \
+    -f /root/ldifs/force_password_reset.ldif
 
 .. NOTE::
     The ``ldapmodify`` command is only effective when using the *ppolicy*
@@ -376,8 +376,8 @@ To lock an LDAP account:
 
 .. code-block:: bash
 
-  $ ldapmodify -Z -x -W -D "cn=LDAPAdmin,ou=People,dc=your,dc=domain" \
-  -f /root/ldifs/lock_user.ldif
+  # ldapmodify -Z -x -W -D "cn=LDAPAdmin,ou=People,dc=your,dc=domain" \
+    -f /root/ldifs/lock_user.ldif
 
 .. NOTE::
     The ``ldapmodify`` command is only effective when using the
@@ -404,7 +404,7 @@ To unlock an LDAP account:
 
 .. code-block:: bash
 
-  $ ldapmodify -Z -x -W -D "cn=LDAPAdmin,ou=People,dc=your,dc=domain" \
+  # ldapmodify -Z -x -W -D "cn=LDAPAdmin,ou=People,dc=your,dc=domain" \
    -f /root/ldifs/unlock_account.ldif
 
 .. NOTE::
@@ -415,6 +415,6 @@ Troubleshooting Issues
 ----------------------
 
 If a user's password is changed in LDAP or the user changes it shortly after
-its initial setup, the "Password too young to change" error may appear. In this
+its initial set up, the "Password too young to change" error may appear. In this
 situation, apply the ``pwdReset:TRUE`` option to the user's account as
 described in `Add a User with a Password`_.

@@ -8,7 +8,7 @@ Upgrading from SIMP-6.1.0 to SIMP-6.2.0
    It is *highly recommended* that you read the information in this section
    in its entirety.
 
-Update kickstart files
+Update Kickstart Files
 ^^^^^^^^^^^^^^^^^^^^^^
 
 The example kickstart file (``pupclient_86_64.cfg``—see
@@ -102,23 +102,23 @@ On a SIMP server, the example ``dhcpd.conf`` file is installed in
 
    #. When prompted ``rename ./var/simp/environments/simp/rsync/RedHat/Global/
       dhcpd/dhcpd.conf ->``, enter the desired path and name of the file to be
-      exttracted, such as ``/tmp/dhcpd.conf.rpmnew``.  Paths can be either
+      extracted, such as ``/tmp/dhcpd.conf.rpmnew``.  Paths can be either
       absolute or relative, depending whether they start with a ``/`` or ``./``.
 
 
-Update the TFTP root directory
+Update the TFTP Root Directory
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 The default TFTP root directory was changed to ``/var/lib/tftpboot`` to
 conform to DISA STIG standards.  To continue using ``/tftpboot`` set
-``tftpboot::tftpboot_root_dir`` in hiera to ``/tftpboot``.  Alternately, to use
+``tftpboot::tftpboot_root_dir`` in Hiera to ``/tftpboot``.  Alternately, to use
 the new directory, copy any files not managed by the ``rsync`` module (i.e., not
 stored in ``/var/simp/environments/<environment>/rsync/<OS>/Global/tftpboot``)
 to the new directory.  Make sure the permissions, including selinux context, are
 correct. TFTP boot will fail to find boot files that have the incorrect selinux
 context.
 
-Optionally remove OBE logrotate configuration files
+Optionally Remove OBE Logrotate Configuration Files
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 SIMP-managed ``logrotate`` rules are now in ``/etc/logrotate.simp.d`` instead of

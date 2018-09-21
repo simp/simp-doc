@@ -12,7 +12,20 @@ SIMP.
 
 The following examples assume that you are using the ``site`` module to manage
 site-specific puppet manifests. The examples may easily be extrapolated into
-defined types if you wish but are presented as classes for simplicity.
+defined types if you wish but are presented as classes for simplicity. Save the
+files below in ``/etc/puppetlabs/code/environments/simp/modules/site/`` as
+``local_account.pp`` and ``service_account.pp``, ensuring the correct ownership,
+group, and permissions.  
+
+In ``default.yaml``:
+
+.. code-block:: yaml
+
+  classes:
+    - 'site::local_account'
+    - 'site::service_account'
+
+Run ``puppet``. The new accounts should be included in the /etc/passwd file.
 
 If you are not familiar with setting up :term:`SSH` keys, you may want to
 follow the relevant `GitHub documentation`_.
@@ -30,10 +43,10 @@ Local User Account
     $_local_account_group = 'localgroup'
     $_local_account_id    = '1778'
 
-    # You'll probably want this in /home unless you're using NFS
+    # You will probably want this in /home unless you are using NFS
     $_local_account_homedir = "/home/${_local_account_user}"
 
-    # You'll need to get this from the user as it is their public key.
+    # You will need to get this from the user as it is their public key.
     $_local_account_ssh_public_key = 'AAA...=='
 
     group { $_local_account_group:

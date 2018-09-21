@@ -1,7 +1,7 @@
 Node Classification in SIMP
 ---------------------------
 
-From the Puppet, Inc website:
+From the Puppet, Inc. website:
 
   Hiera is a key/value lookup tool for configuration data, built to set
   node-specific data without repeating yourself.

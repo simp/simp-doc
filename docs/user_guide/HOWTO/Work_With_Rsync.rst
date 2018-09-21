@@ -10,8 +10,8 @@ This will guide you through the new rsync layout as well as providing guidance
 on setting up new rsync shares for your various components.
 
 This is very SIMP-specific and does not preclude you from using rsync however
-you like. However, if you want multi-environment support, you'll need to
-replicate something like what we've done for your custom directories.
+you like. However, if you want multi-environment support, you will need to
+replicate something like what we have done for your custom directories.
 
 Why SIMP Uses Rsync
 -------------------
@@ -24,7 +24,7 @@ directory tree (too many resources and system load).
 Rsync neatly solves both of these issues and is present on all SIMP systems by
 default.
 
-By default, SIMP wraps all ``rsync`` connections in an :term:`Stunnel`
+By default, SIMP wraps all ``rsync`` connections in a :term:`Stunnel`
 connection to provide encrypted connections. Additionally, SIMP adds randomly
 generated passwords to sensitive shares to prevent unauthorized connections.
 

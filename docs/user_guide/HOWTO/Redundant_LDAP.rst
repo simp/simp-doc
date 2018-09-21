@@ -7,11 +7,11 @@ servers are also referred to as "slave" servers.
 Set up the Master
 -----------------
 
-The easiest way to set up an LDAP master is to set it up on the Puppet server
-using ``simp config`` during the initial configuration of the Puppet server.
+The easiest way to set up an LDAP master is to set it up on the Puppet master
+using ``simp config`` during the initial configuration of the Puppet master.
 This is done by answering "yes" when asked if you want to use LDAP during your
 initial ``simp config`` run and answering the basic questions it asks you. If
-it is not desirable to have the LDAP server on the Puppet server, a LDAP server
+it is not desirable to have the LDAP server on the Puppet master, a LDAP server
 can be set up on an alternate server by including the ``simp::server::ldap`` on
 the node of your choice.
 
@@ -20,7 +20,7 @@ the node of your choice.
    If you use another node, you may want to re-run ``simp config`` and answer
    the questions with this new LDAP master server in mind.
 
-If you don't want to run ``simp config`` again, you will need to configure the
+If you do not want to run ``simp config`` again, you will need to configure the
 following settings in :term:`Hiera`:
 
 .. code-block:: yaml
@@ -85,7 +85,7 @@ Hiera, for example: ``hieradata/hosts/ldap_server1.your.domain.yaml``:
 
 Leave any other classes that are there if they are needed. Run the Puppet
 agent on the LDAP server until it runs cleanly. Run the agent on the Puppet
-server. Once all the other clients update against the Puppet server, they will
+server. Once all the other clients update against the Puppet master, they will
 be able to authenticate against the LDAP server. Adding users and groups is
 described in the :ref:`User_Management`.
 
@@ -176,7 +176,7 @@ Place this file in the ``site`` module's  ``manifests/`` directory using the nam
 
 
 Lastly, add the server to the URI_ listing in ``default.yaml`` so all the
-clients know about it once they have updated from the Puppet server.
+clients know about it once they have updated from the Puppet master.
 
 Promote a Slave Node
 --------------------
@@ -185,7 +185,7 @@ Slave nodes can be promoted to act as the LDAP master node. To do this, change
 the node classifications of the relevant hosts. For a node with the default
 settings, just remove the ``simp::server::ldap::is_slave : true`` from the
 server's Hiera YAML file and change the setting for the master LDAP in Hiera.
-This setting is needed by all LDAP servers. (It defaults to the Puppet server
+This setting is needed by all LDAP servers. (It defaults to the Puppet master
 if it is not set.)
 
 .. code-block:: yaml
@@ -193,9 +193,9 @@ if it is not set.)
   # This is the LDAP master in URI form (ldap://server)
   simp_options::ldap::master: ldap://ldap_server2.your.domain
 
-For a redundant server set up using custom settings, remove the call to the
-custom class and replace it with the call to the ``site::ldap_server`` class in the
-servers yaml file and set the master setting in the Hiera as shown above.
+For a redundant server setup using custom settings, remove the call to the
+custom class and replace it with the call to the ``site::ldap_server`` class in
+the servers yaml file and set the master setting in the Hiera as shown above.
 
 In both cases, if the current master is not down, make sure it has completed
 replication before changing the settings. Once the settings are changed, run
@@ -212,10 +212,10 @@ Then run the Puppet agent. Lastly, manually remove the active database from
 the server. (Check the setting ``simp_openldap::server::conf::directory``
 setting for the location of the files.)
 
-To remove an LDAP server, first remove the server from the ``simp_options::ldap::uri``
-settings in Hiera. Give the clients time to update from the Puppet server so
-they do not attempt to call it. Then remove relevant settings from it's Hiera
-.yaml file and run the Puppet agent.
+To remove an LDAP server, first remove the server from the
+``simp_options::ldap::uri`` settings in Hiera. Give the clients time to update
+from the Puppet master so they do not attempt to call it. Then remove relevant
+settings from it's hiera.yaml file and run the Puppet agent.
 
 Troubleshooting
 ---------------
@@ -224,7 +224,7 @@ If the system is not replicating, it is possible that another user has updated
 the ``simp_options::ldap::sync_pw`` and ``simp_options::ldap::sync_hash``
 entries in Hiera file without also updating the value in LDAP itself;
 this is the most common issue reported by users. If simp config was used to
-to set up the server these values are in the ``simp_config_settings.yaml`` file.
+set up the server these values are in the ``simp_config_settings.yaml`` file.
 
 Currently, SIMP cannot self-modify the LDAP database directly; therefore, the
 LDAP Administrator needs to perform this action. Refer to the

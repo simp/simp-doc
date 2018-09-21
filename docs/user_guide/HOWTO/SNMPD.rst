@@ -68,7 +68,7 @@ the ports.
 .. NOTE::
 
   If the agent address is set in a conf file in the user directory, but not in
-  hiera or in the simp_snmpd resource call, ``pupmod-simp-simp_snmpd`` will not
+  Hiera or in the simp_snmpd resource call, ``pupmod-simp-simp_snmpd`` will not
   open the ports in the firewall.
 
 
@@ -86,7 +86,7 @@ The profile module, by default, installs two users:
   * ``snmp_ro`` is configured for read only access to system view
   * ``snmp_rw`` is configured for read/write access to everything
 
-User passwords are auto-generated and stored on the puppet server in the
+User passwords are auto-generated and stored on the Puppet master in the
 passgen directory:
 
 ``/opt/puppetlabs/server/data/puppetserver/simp/environments/production/simp_autofile/gen_passwd``.
@@ -96,21 +96,21 @@ Access is configured by ``/etc/snmp/simp_snmpd.d/access.conf``
   * To create the ``access.conf`` file, the profile modules uses a set of
     hashes.
   * The default hashes are in the ``data/common.yaml`` file.
-  * These hashes are merged with any hash you defined in the hiera files on the
-    puppetserver.  Merging is described in
-    ` Puppet docs <https://docs.puppet.com/puppet/4.10/hiera_merging.html>`_
+  * These hashes are merged with any hash you defined in the Hiera files on the
+    Puppet master.  Merging is described in
+    `Puppet docs <https://docs.puppet.com/puppet/4.10/hiera_merging.html>`_
   * To remove something from the default hash add the name of object with no
     keys
 
 .. NOTE::
 
   To remove a user, or modify their password, the ``snmpusm`` utility must be
-  used, or remove ``/var/lib/net-simp`` and run puppet.  Changing the password
-  in the hash or removing the keys will not change the password of an existing
-  user.
+  used, or remove ``/var/lib/net-simp`` and run ``puppet``.  Changing the
+  password in the hash or removing the keys will not change the password of an
+  existing user.
 
 
-Example hashes  used to create users, views, group and give access:
+Example hashes used to create users, views, group and give access:
 
 User Hash
 """""""""
@@ -183,10 +183,10 @@ Access Hash
 .. NOTE::
 
    Any views, groups, or access lines set up in user conf files will be in
-   addition to anything anything configured in the hash.
+   addition to anything configured in the hash.
 
 
-Remove Values From Default Hash
+Remove Values from Default Hash
 """""""""""""""""""""""""""""""
 
 If you do not want the default user, or any of the views, groups, or access
@@ -210,7 +210,7 @@ created, you can pass and empty hash and it will ignore that setting:
 * It will override the default definition of readonly_group
 * The quickest way to delete users or change the password is to configure
   the hashes and the remove the /var/lib/net-simp directory, stop the
-  snmpd daemon, and run puppet.
+  snmpd daemon, and run ``puppet``.
 
 
 Client
@@ -250,8 +250,8 @@ to the fully qualified path.
 as the destination, creating a dlmod directory.  In order to load dlmods, you
 must add the name of the module to the ``isimp_snmpd::dlmods`` list. This will
 create a ``dlmod.conf`` file in ``simp_snmpd``.  The ``.so`` extension will be
-added.  See the ``Dynamically Loadable Modules`` modules section in man page
-of ``snmpd.conf`` for more information.
+added.  See the ``Dynamically Loadable Modules`` section in man page of
+``snmpd.conf`` for more information.
 
 Below is an example showing how to activate rsync of ``MIBS`` and ``dlmods``:
 

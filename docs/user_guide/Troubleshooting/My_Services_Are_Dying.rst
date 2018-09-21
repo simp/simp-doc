@@ -39,7 +39,7 @@ Avoiding Destruction
 --------------------
 
 If certain services should not be killed, declare them in the node
-manifest space or in the `svckill::ignore` array in hiera.
+manifest space or in the `svckill::ignore` array in Hiera.
 
 .. NOTE::
 

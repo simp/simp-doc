@@ -32,7 +32,7 @@ This space also holds FakeCA. See `Infrastructure Certificates`_.
 /opt/puppetlabs/server/data/puppetserver/simp
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-This space holds all non-static, Puppet **server** created files. This is used
+This space holds all non-static, Puppet **Server** created files. This is used
 by both `passgen()`_ and the ``krb5`` Puppet module for storing dynamically
 generated server-side content.
 

@@ -31,9 +31,9 @@ The ``simp_rsyslog`` class is included on systems if the ``simp`` or
 configures local logging.
 
 If scenarios are not being used, include the ``simp_rsyslog`` class on all
-systems including the log server. If you're using the default SIMP install, you
-can add it to the ``simp::classes`` array. Otherwise, you'll need to use a
-standard Puppet ``include`` mechanism.
+systems including the log server. If you are using the default SIMP install,
+you can add it to the ``simp::classes`` array. Otherwise, you will need to use
+a standard Puppet ``include`` mechanism.
 
 What is Logged
 ^^^^^^^^^^^^^^
@@ -130,7 +130,7 @@ Failover log servers are optional.
 .. NOTE::
    It is common in big environments to use :term:`DNS` aliases or to cluster
    servers so determining the name a server is using for logging is not
-   straightforward. Because of this SIMP can not reliably determine if a host
+   straightforward. Because of this SIMP cannot reliably determine if a host
    is forwarding to itself.
 
 TLS

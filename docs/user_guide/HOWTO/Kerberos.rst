@@ -74,7 +74,7 @@ You can now do everything remotely using this principal. Load it using:
 
 .. code:: bash
 
-  $ /usr/bin/kinit <username>/admin
+  # /usr/bin/kinit <username>/admin
 
 Creating Host Principals
 ^^^^^^^^^^^^^^^^^^^^^^^^
@@ -107,7 +107,7 @@ Propagate the Keytabs
 
 Move all of the resulting keytab files SECURELY to
 ``/var/simp/environments/<client_environment>/site_files/krb5_files/keytabs/<fqdn>``
-on the Puppet server as appropriate for each file.
+on the Puppet master as appropriate for each file.
 
 .. NOTE::
 

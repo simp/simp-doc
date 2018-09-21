@@ -38,15 +38,23 @@ When validating certificates, you want to make sure that there are no errors
 regarding your certificate or :term:`CA`. Ideally, the command will simply
 return the string 'OK'.
 
+Change directories to the *keydist* directory.
+
 .. code-block:: bash
 
-  $ cd /var/simp/environments/`puppet config print environment`/site_files/pki_files/files/keydist
+  # cd /var/simp/environments/`puppet config print environment`/site_files/pki_files/files/keydist
 
-  # Validate the client system
-  $ openssl verify -CApath cacerts system.my.domain
+Validate the client system.
 
-  # Validate the LDAP system
-  $ openssl verify -CApath cacerts ldap.my.domain
+.. code-block:: bash
+
+  # openssl verify -CApath cacerts system.my.domain/system.my.domain.pub
+
+Validate the LDAP system.
+
+.. code-block:: bash
+
+  # openssl verify -CApath cacerts ldap.my.domain/ldap.my.domain.pub
 
 If there are any issues, you may need to follow the steps in :ref:`Certificates` to generate
 new certificates for one or more of your hosts.

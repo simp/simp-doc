@@ -15,19 +15,19 @@ System Requirements
 
 Client systems should meet the following minimum requirements:
 
--  Hardware/:term:`Virtual Machine` (VM) : Capable of running RHEL 6 or 7 x86_64
--  RAM: 512 MB
--  HDD: 20 GB
+-  Hardware/:term:`Virtual Machine` (VM): Capable of running RHEL 6 or 7 x86_64
+-  RAM: 2048 MB
+-  HDD: 22 GB
 
 
 Configuring the Puppet Master
 -----------------------------
 
-Perform the following actions as ``root`` on the Puppet Master system **prior**
+Perform the following actions as ``root`` on the Puppet master system **prior**
 to attempting to install a client.
 
 
-Add the Kickstart server profile
+Add the Kickstart Server Profile
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 In the Puppet server-specific :term:`Hiera` file (by default located at
@@ -83,20 +83,20 @@ can use an existing DNS infrastructure.
      ``named/var/named/reverse/0.0.10.db`` and then rename these files
      to appropriately match your environment.
 
-#. Type ``puppet agent -t --tags named`` on the Puppet Master to apply
+#. Type ``puppet agent -t --tags named`` on the Puppet master to apply
    the changes.
 #. Validate DNS and ensure the ``/etc/resolv.conf`` is updated appropriately.
 #. If an error about the ``rndc.key`` appears when starting ``named``, see the
    `Bind Documentation <https://www.isc.org/downloads/bind/>`_.  Once you have
    resolved the issue, re-run the puppet command ``puppet agent -t`` on the
-   Puppet Master to apply.
+   Puppet master to apply.
 
 .. NOTE::
 
    You can adjust the list of clients in your
    ``named/var/named/forward/<your.domain>.db`` and
    ``named/var/named/reverse/<your reverse domain>.db`` files at any time.
-   Just remember to run ``puppet agent -t --tags named`` on the Puppet Server
+   Just remember to run ``puppet agent -t --tags named`` on the Puppet master
    to propagate these updates.
 
 
@@ -112,7 +112,7 @@ Configure DHCP
   of SIMP and need to add UEFI support, make sure you update your ``dhcpd.conf``
   in the rsync directory, appropriately.
 
-Perform the following actions as ``root`` on the Puppet Master system
+Perform the following actions as ``root`` on the Puppet master system
 prior to attempting to install a client.
 
 Open the ``/var/simp/environments/simp/rsync/<OSTYPE>/Global/dhcpd/dhcpd.conf`` file
@@ -141,7 +141,7 @@ Make sure the following is done in the ``dhcpd.conf`` :
 
 Save and close the file.
 
-Run ``puppet agent -t`` on the Puppet Master to apply the changes.
+Run ``puppet agent -t`` on the Puppet master to apply the changes.
 
 .. _PXE_Boot:
 
@@ -153,7 +153,7 @@ Run ``puppet agent -t`` on the Puppet Master to apply the changes.
 .. include:: Certificates/Official_Certificates.inc
 
 
-Setting Up the Client
+Setting up the Client
 =====================
 
 The following lists the steps to :term:`PXE` boot the system and set up the
@@ -165,9 +165,9 @@ client.
 #. Restart the system.
 #. Once the client installs, reboots, and begins to bootstrap, it will check in
    for the first time.
-#. Puppet will not autosign puppet certificates, by default, and ``waitforcert`` is
+#. Puppet will not autosign Puppet certificates, by default, and ``waitforcert`` is
    enabled. This means the client will check in every 30 seconds for a signed
-   certificate.  Log on to the puppet server and run
+   certificate.  Log on to the Puppet master and run
    ``puppet cert sign <puppet.client.fqdn>``.
 
 Upon successful deployment of a new client, it is highly recommended that
@@ -177,14 +177,14 @@ Troubleshooting Puppet Issues
 -----------------------------
 
 If the client has been kickstarted, but is not communicating with the Puppet
-server, try the following options:
+master, try the following options:
 
 * Check the forward and reverse :term:`DNS` entries on the client and server;
   both must be correct. The ``nslookup`` command will help here.
 * Check the time on the systems. More than an hour's difference will cause
   serious issues with certificates.
 * Remove ``/etc/puppetlabs/puppet/ssl`` on the client system; run ``puppet cert
-  --clean ***<Client Host Name>***`` on the Puppet server and try again.
+  --clean ***<Client Host Name>***`` on the Puppet master and try again.
 
 If you are getting permission errors, make sure the selinux context is correct on all
 files as well as the owner and group permissions.
@@ -211,10 +211,12 @@ which are not.
    If the ``TXT_DB`` error number **2** appears, revoke the certificate that is
    being regenerated. The table below lists the steps to revoke the certificate.
 
-#. Navigate to ``/var/simp/environments/simp/site_files/pki_files/files/keydist``
+#. Navigate to the directory containing the CA certficates.  For the FakeCA,
+   it is ``/var/simp/environments/simp/FakeCA``.  The directory should contain
+   the file ``default.cnf``.
 #. Run
 
    .. code-block:: bash
 
-     OPENSSL_CONF=default.cnf openssl ca -revoke \
-     keydist/*<Host to Revoke>*/*<Host to Revoke>*.pub
+     OPENSSL_CONF=default.cnf openssl ca -revoke /var/simp/environments/simp\
+     /site_files/pki_files/files/keydist/*<Host to Revoke>*/*<Host to Revoke>*.pub

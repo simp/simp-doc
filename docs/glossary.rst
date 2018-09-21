@@ -76,7 +76,7 @@ Glossary of Terms
       A version control repository containing all of the required modules, data,
       and configuration for a Puppet environment.
 
-      See Puppet, Inc documentation: https://docs.puppet.com/pe/latest/cmgmt_control_repo.html
+      See Puppet, Inc. documentation: https://docs.puppet.com/pe/latest/cmgmt_control_repo.html
 
    CPU
    Central Processing Unit
@@ -453,7 +453,7 @@ Glossary of Terms
 
    Puppet
       An :term:`Open Source` configuration management tool written and
-      maintained by `Puppet, Inc <https://puppet.com>`__. Written as a
+      maintained by `Puppet, Inc. <https://puppet.com>`__. Written as a
       Ruby :term:`DSL`, Puppet provides a declarative language that allows
       system administrators to provide a consistently applied management
       infrastructure. Users describes system resource and resource state in the

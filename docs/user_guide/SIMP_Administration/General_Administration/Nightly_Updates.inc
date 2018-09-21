@@ -45,7 +45,7 @@ The Operating System Repos
 ^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 The default location for the :term:`Operating System` (OS) repositories, on the
-Puppet server, is ``/var/www/yum/<OSTYPE>/<MAJORRELEASE>/x86_64``.
+Puppet master, is ``/var/www/yum/<OSTYPE>/<MAJORRELEASE>/x86_64``.
 
 An ``Updates`` repository has been configured in this space. All OS updates
 should be placed within this directory.
@@ -55,10 +55,10 @@ addition or removal within that directory.
 
 .. code-block:: bash
 
-   $ createrepo .
-   $ chown -R root.apache ./*
-   $ find . -type f -exec chmod 640 {} \;
-   $ find . -type d -exec chmod 750 {} \;
+   # createrepo .
+   # chown -R root.apache ./*
+   # find . -type f -exec chmod 640 {} \;
+   # find . -type d -exec chmod 750 {} \;
 
 
 Adding a Custom Repository
@@ -69,14 +69,14 @@ you would like to expose to your systems. To do this, perform the following:
 
    .. code-block:: bash
 
-       $ cd /var/www/yum
-       $ mkdir foo
-       $ cd foo
-       $ -- copy all RPMs into the folder
-       $ createrepo .
-       $ chown -R root.apache ./*
-       $ find . -type f -exec chmod 640 {} \;
-       $ find . -type d -exec chmod 750 {} \;
+       # cd /var/www/yum
+       # mkdir foo
+       # cd foo
+       # -- copy all RPMs into the folder
+       # createrepo .
+       # chown -R root.apache ./*
+       # find . -type f -exec chmod 640 {} \;
+       # find . -type d -exec chmod 750 {} \;
 
 .. NOTE::
 
@@ -87,7 +87,7 @@ you would like to expose to your systems. To do this, perform the following:
 Configuring the Clients
 ^^^^^^^^^^^^^^^^^^^^^^^
 
-Now that you've added this repository, you're going to want to add it to your
+Now that you have added this repository, you are going to want to add it to your
 clients.
 
 The best way to do this is to make it part of your site profile. You **can**

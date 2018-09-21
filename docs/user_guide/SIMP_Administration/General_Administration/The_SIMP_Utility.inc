@@ -15,7 +15,7 @@ simp passgen
 Throughout the SIMP codebase, you may find references to the ``passgen()``
 function. This function auto-generates passwords and stores them in
 ``/opt/puppetlabs/server/data/puppetserver/simp/environments/<environment>/simp_autofiles/gen_passwd``
-on the Puppet server.
+on the Puppet master.
 
 For more information, see the `passgen()`_ documentation.
 
