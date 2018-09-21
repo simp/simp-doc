@@ -73,7 +73,7 @@ that variables beginning with 'cli::' are only used internally by
 | cli::network::netmask          | Netmask of the system                     |
 +--------------------------------+-------------------------------------------+
 | cli::network::set_up_nic       | Whether to set up the network interface;  |
-|                                | *yes* or *no*                             |
+|                                | *true* or *false*                         |
 +--------------------------------+-------------------------------------------+
 | cli::set_grub_password         | Whether to set a GRUB password on the     |
 |                                | server; *true* or *false*                 |
