@@ -42,7 +42,7 @@ Ensure gpgcheck Enabled for Repository Metadata
 
   * This should not be a ``high`` severity if using TLS
   * This opens potential vulnerabilities to all client systems
-  * Discussion ongoing on SSG mailing list and `OpenSCAP/scap-security-guide#2455`_
+  * Discussion ongoing on SSG mailing list and `ComplianceAsCode/content#2455`_
 
 Justification
 ^^^^^^^^^^^^^
@@ -105,5 +105,5 @@ Notes
 
 Marked as a valid finding and tracked as `SIMP-4047`_
 
-.. _OpenSCAP/scap-security-guide#2455: https://github.com/OpenSCAP/scap-security-guide/issues/2455
+.. _ComplianceAsCode/content#2455: https://github.com/ComplianceAsCode/content/issues/2455
 .. _SIMP-4047: https://simp-project.atlassian.net/browse/SIMP-4047

@@ -7,7 +7,7 @@ This chapter provides notes and guidance on using the official SIMP Amazon
 Machine Image (AMI) to run the SIMP server in the cloud.
 
 The SIMP AMI is built from the SIMP ISO, so much of the information contained
-in the ISO installation section :ref:`ig-simp-server-installation` applies
+in the ISO installation section :ref:`ug-initial_server_configuration` applies
 here.
 
 Provision a New EC2-Instance

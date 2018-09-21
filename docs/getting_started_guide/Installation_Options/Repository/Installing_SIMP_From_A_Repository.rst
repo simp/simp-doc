@@ -12,8 +12,8 @@ your own internal VM stack, this is the method that you will want to use.
 
    This method does **not** modify your system's partitioning scheme or
    encryption scheme to meet any regulatory policies. If you want an example of
-   what that should look like either see the :ref:`simp-installation-guide` or
-   check out the `Kickstart`_ files in the `simp-core Git repository`_.
+   what that should look like see the :term:`Kickstart` files in the
+   `simp-core Git repository`_.
 
 
 Enable EPEL
@@ -230,7 +230,6 @@ Run the script on a client. This example assumes the first option from above:
 .. _AWS: https://aws.amazon.com/
 .. _EPEL Repositories: https://fedoraproject.org/wiki/EPEL
 .. _Google Cloud: https://cloud.google.com
-.. _Kickstart: http://pykickstart.readthedocs.io/en/latest
 .. _Microsoft Azure: https://azure.microsoft.com
 .. _official SIMP YUM repositories: https://packagecloud.io/simp-project
 .. _simp-core Git repository: https://github.com/simp/simp-core/tree/master/build/distributions/CentOS/7/x86_64/DVD/ks

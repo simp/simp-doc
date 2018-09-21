@@ -86,7 +86,7 @@ method.
      server.
 
    - ``/etc/puppetlabs/code/environments/simp/hieradata/hosts/<server_fqdn>.yaml``:
-   SIMP server host specific Hiera configuration.
+     SIMP server host specific Hiera configuration.
 
 #. Type ``simp bootstrap``
 
@@ -126,5 +126,3 @@ packages, you can use the following procedure to extract the vendor ISOs.
    Type: ``yum clean all; yum makecache``
 
 .. _official SIMP ISO Share: https://download.simp-project.com/simp/ISO
-.. _ig-simp-server-installation:
-

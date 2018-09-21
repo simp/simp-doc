@@ -77,7 +77,8 @@ Create a New Server
 
 Obtain an `official SIMP ISO <https://download.simp-project.com/simp/ISO/>`_ or point your
 server at the latest `YUM Repositories <https://packagecloud.io/simp-project>`_
-and follow the :ref:`simp-installation-guide`.
+and follow the :ref:`gsg_iso_installation_options` or
+:ref:`gsg-installing_simp_from_a_repository` as appropriate.
 
 Follow the :ref:`Client_Management` guide, and set up services as needed.
 Remember, you can opt-out of any core services (DNS, DHCP, etc.)  you want your
@@ -88,8 +89,8 @@ the ``rsync`` directories from the old system.
 .. WARNING::
 
    Do not blindly drop ``rsync`` (or other) materials from the old Puppet
-   server onto the new one. This is a breaking version and the required
-   structures for these components may have changed.
+   server onto the new one. The required structures for these components may
+   have changed.
 
 When you :ref:`ug-apply-certificates` you may wish to transfer client certs to
 the new server.  If you are using the FakeCA and still wish to preserve the

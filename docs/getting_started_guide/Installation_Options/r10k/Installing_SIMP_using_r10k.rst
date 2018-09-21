@@ -30,8 +30,8 @@ being used:
 
    This method does *not* modify your system's partitioning scheme or
    encryption scheme to meet any regulatory policies. If you want an example of
-   what that should look like either see the :ref:`simp-installation-guide` or
-   check out the `Kickstart`_ files in the `simp-core Git repository`_.
+   what that should look like see the :term:`Kickstart` files in the
+   `simp-core Git repository`_.
 
 
 Preparing Your System
@@ -171,7 +171,6 @@ Updates URL.
 .. _official SIMP YUM repositories: https://packagecloud.io/simp-project
 .. _AWS: https://aws.amazon.com/
 .. _documentation of a control repo online: https://docs.puppet.com/pe/latest/cmgmt_control_repo.html
-.. _Kickstart: http://pykickstart.readthedocs.io/en/latest
 .. _runpuppet: https://github.com/simp/pupmod-simp-simp/blob/master/manifests/server/kickstart/runpuppet.pp
 .. _simp-core Git repository: https://github.com/simp/simp-core/tree/master/build/distributions/CentOS/7/x86_64/DVD/ks
 .. _simp-core: https://github.com/simp/simp-core/

@@ -8,5 +8,5 @@ Installation Options
 
   ISO/index
   Repository/Installing_SIMP_From_A_Repository
-  r10k/Installing_SIMP_using_r10k
+  r10k/index
   Cloud/SIMP_on_Amazon_Web_Services

@@ -1,4 +1,4 @@
-.. _gsg_installation_options:
+.. _gsg_iso_installation_options:
 
 ISO Installation (Preferred)
 ============================
@@ -7,6 +7,5 @@ ISO Installation (Preferred)
   :maxdepth: 2
 
   Installing_SIMP_From_An_ISO
-  Installation_Guide/SIMP_Server_Installation
-  Installation_Guide/Disk_Encryption
-  Installation_Guide/Advanced_Configuration
+  Installation_Guide/index
+  Building_A_SIMP_ISO

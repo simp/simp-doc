@@ -396,6 +396,12 @@ Glossary of Terms
 
       See: `The Open Source Definition <https://opensource.org/osd-annotated>`__
 
+   Kickstart
+      Automated installation procedure for Red Hat Linux and other Linux
+      distributions.
+
+      See: `Kickstart <http://pykickstart.readthedocs.io/en/latest>`__
+
    OpenSCAP
       The OpenSCAP project provides tools that are free to use anywhere you
       like, for any purpose. Availability of the code results in greater
@@ -685,7 +691,17 @@ Glossary of Terms
    Syslog
       A set of standards for sending log messages across the network.
 
-      source: `Wikipedia: syslog <https://en.wikipedia.org/wiki/Syslog>`__
+      Source: `Wikipedia: syslog <https://en.wikipedia.org/wiki/Syslog>`__
+
+   TCPWrappers
+   TCP Wrappers
+      A host-based networking :term:`ACL` system, used to filter network access
+      to Internet Protocol servers on (Unix-like) operating systems such as
+      Linux or BSD. It allows host or subnetwork :term:`IP` addresses, names
+      and/or ident query replies, to be used as tokens on which to filter for
+      access control purposes.
+
+      Source: `Wikipedia: TCP Wrappers <https://en.wikipedia.org/wiki/TCP_Wrappers>`__
 
    TLS
    Transport Layer Security
