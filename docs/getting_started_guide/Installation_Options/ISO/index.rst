@@ -7,5 +7,5 @@ ISO Installation (Preferred)
   :maxdepth: 2
 
   Installing_SIMP_From_An_ISO
-  Installation_Guide/index
+  Installation_Advanced_Topics/index
   Building_A_SIMP_ISO

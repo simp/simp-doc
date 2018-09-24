@@ -4,8 +4,9 @@ Disk Encryption
 ---------------
 
 The default :term:`ISO` and kickstart files in SIMP encrypt the first physical
-volume if the ``simp_disk_crypt`` option is provided at the boot command line
-or, on an EFI system, the menu option is selected that enable disk encryption.
+volume, if the ``simp_disk_crypt`` option is provided at the boot command line
+or, on an EFI system, one of the menu options that enable disk encryption is
+selected.
 
 .. WARNING::
 

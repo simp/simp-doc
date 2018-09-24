@@ -125,4 +125,5 @@ packages, you can use the following procedure to extract the vendor ISOs.
 
    Type: ``yum clean all; yum makecache``
 
-.. _official SIMP ISO Share: https://download.simp-project.com/simp/ISO
+.. include::  Initial_Server_Configuration/Advanced_Configuration.inc
+

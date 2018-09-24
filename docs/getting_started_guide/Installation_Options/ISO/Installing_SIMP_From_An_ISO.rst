@@ -1,6 +1,6 @@
 .. _gsg-installing_simp_from_an_iso:
 
-Installing SIMP From An ISO
+Installing SIMP from an ISO
 ===========================
 
 The benefits of using a SIMP ISO are:
@@ -35,25 +35,33 @@ The ISO will install on any system that supports the underlying operating system
 
    **Please make sure that you change these passwords!**
 
-Preparing the SIMP Server Environment
--------------------------------------
+Install as follows:
 
 #. Boot the system using the SIMP ISO
 
 #. Press *Enter* to run the standard SIMP install, or choose from the
    customized options list.
 
-   - For a detailed description of the the disk encryption enabled via the
-     ``simp_disk_crypt`` boot option, see :ref:`ig-disk-encryption`.
-
    .. NOTE::
 
-      Once installation starts, you may see the graphical interface spawn. You
-      should not interact with the GUI unless you have selected the option to
-      manage your own disk partitions.
+      * For a detailed description of the disk encryption enabled via boot options,
+        see :ref:`ig-disk-encryption`.
 
-      Also, if you have chosen to encrypt your disks, you may want to generate
-      some system entropy by smashing on the keyboard for a bit.
+      * Once installation starts, you may see the graphical interface spawn. You
+        should not interact with the GUI **unless** you have selected the option
+        to manage your own disk partitions.
+
+      * When you have opted to manage your own disk partitions, follow the GUI
+        instructions to enter your partition scheme. For example, for SIMP for
+        CentOS 7, select the ``INSTALLATION DESTINATION`` menu, enter the
+        selected partitioning, select the ``DONE`` button to finalize your disk
+        selections, and then select the ``Begin Installation`` button on the
+        main GUI page to continue. No further GUI interaction will be required.
+
+      * If you have chosen to encrypt your disks, your installation seems to
+        be paused, and a messages about increasing entropy appears on the
+        screen, you may want to generate some system entropy by pressing random
+        keys on the keyboard for a bit.  This will speed up the installation.
 
 #. When the installation is complete, the system will restart automatically.
 #. Change the ``root`` user password
