@@ -1,7 +1,7 @@
 .. _gsg-advanced-configuration:
 
 Advanced Configuration
-======================
+----------------------
 The goal of ``simp config`` is to allow the user to quickly configure the
 SIMP server with minimal user input/operations.  To that end ``simp config``
 sets installation variables based on information gathered from the user,
@@ -14,7 +14,7 @@ follow.
 .. _List of Installation Variables:
 
 Installation Variables
-----------------------
+^^^^^^^^^^^^^^^^^^^^^^
 This section describes the installation variables set by ``simp config``.
 Although the table that follows lists all possible installation variables,
 the user will not be prompted for all of them, nor will all of them
@@ -186,7 +186,7 @@ that variables beginning with 'cli::' are only used internally by
 .. _simp config Actions:
 
 simp config Actions
--------------------
+^^^^^^^^^^^^^^^^^^^
 
 In addition to creating the three configuration, YAML files, ``simp config``
 performs a limited set of actions in order to prepare the system for

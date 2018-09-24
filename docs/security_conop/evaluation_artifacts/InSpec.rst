@@ -14,7 +14,6 @@ The following scan results are available:
    :titlesonly:
    :glob:
 
-   common.rst
    InSpec/*
 
-.. _SCAP Security Guide: https://github.com/OpenSCAP/scap-security-guide
+.. _SCAP Security Guide: https://github.com/ComplianceAsCode/content

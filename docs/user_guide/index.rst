@@ -9,6 +9,7 @@ Contents:
   :maxdepth: 2
 
   Introduction
+  Initial_Server_Configuration
   Client_Management
   SIMP_Administration
   User_Management

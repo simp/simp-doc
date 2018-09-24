@@ -1,3 +1,8 @@
+.. WARNING::
+
+   This documentation is being actively updated. If you find issues or have
+   improvements, please put in a `ticket`_ or `pull request`_!
+
 .. _gsg-simp_on_aws:
 
 SIMP on Amazon Web Services
@@ -7,7 +12,7 @@ This chapter provides notes and guidance on using the official SIMP Amazon
 Machine Image (AMI) to run the SIMP server in the cloud.
 
 The SIMP AMI is built from the SIMP ISO, so much of the information contained
-in the ISO installation section :ref:`ig-simp-server-installation` applies
+in the ISO installation section :ref:`ug-initial_server_configuration` applies
 here.
 
 Provision a New EC2-Instance
@@ -74,5 +79,9 @@ is granting that user the requisite access.
 See the :ref:`User_Management` section for more details on managing user
 access in SIMP.
 
-.. _documentation: https://aws.amazon.com/ec2/instance-types/
+.. include:: ../jump_to_config.inc
+
 .. _Installation Guide: https://docs.puppet.com/pe/latest/sys_req_hw.html
+.. _documentation: https://aws.amazon.com/ec2/instance-types/
+.. _pull request: https://github.com/simp/simp-doc
+.. _ticket: https://simp-project.atlassian.net

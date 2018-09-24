@@ -16,7 +16,6 @@ The following scan results are available for the various subsystems:
    :titlesonly:
    :glob:
 
-   common.rst
    SCAP/*
 
 How to Run a SCAN
@@ -34,5 +33,5 @@ How to Run a SCAN
 
         oscap xccdf eval --profile xccdf_org.ssgproject.content_profile_stig-rhel7-disa --results ~/scan-output.xml --report ~/scan-output.html ssg-centos7-ds.xml
 
-.. _SCAP Security Guide: https://github.com/OpenSCAP/scap-security-guide
-.. _SSG Release OVAL ZIP file: https://github.com/OpenSCAP/scap-security-guide/releases
+.. _SCAP Security Guide: https://github.com/ComplianceAsCode/content
+.. _SSG Release OVAL ZIP file: https://github.com/ComplianceAsCode/content/releases

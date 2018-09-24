@@ -10,5 +10,5 @@ Welcome to SIMP!
 
   Introduction
   Known OS Compatibility <../dynamic/Known_OS_Compatibility>
+  System_Requirements
   Installation_Options/index
-  Installation_Guide/index
