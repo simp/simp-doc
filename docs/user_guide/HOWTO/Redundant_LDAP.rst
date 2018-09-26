@@ -215,7 +215,7 @@ setting for the location of the files.)
 To remove an LDAP server, first remove the server from the
 ``simp_options::ldap::uri`` settings in Hiera. Give the clients time to update
 from the Puppet master so they do not attempt to call it. Then remove relevant
-settings from it's hiera.yaml file and run the Puppet agent.
+settings from its hiera.yaml file and run the Puppet agent.
 
 Troubleshooting
 ---------------
