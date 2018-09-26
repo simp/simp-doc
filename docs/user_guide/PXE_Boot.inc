@@ -107,11 +107,11 @@ This section describes the process of setting up static files and manifests for
 
 .. NOTE::
 
-  The tftp root directory was changed in SIMP 6.2 to conform to DISA STIG
-  standards.  In previous versions it was ``/tftpboot``, and in 6.2 and later
-  it is ``/var/lib/tftpboot``.  If you are upgrading to 6.2 from a prior
-  release and wish the files to remain in the ``/tftpboot`` directory, set
-  ``tftpboot::tftpboot_root_dir`` to ``/tftpboot`` in :term:`Hiera`.
+   The tftp root directory was changed in SIMP 6.2 to conform to DISA STIG
+   standards.  In previous versions it was ``/tftpboot``, and in 6.2 and later
+   it is ``/var/lib/tftpboot``.  If you are upgrading to 6.2 from a prior
+   release and wish the files to remain in the ``/tftpboot`` directory, set
+   ``tftpboot::tftpboot_root_dir`` to ``/tftpboot`` in :term:`Hiera`.
 
 Static Files
 ^^^^^^^^^^^^
@@ -149,17 +149,18 @@ Next you need to set up the boot files for either BIOS boot mode, UEFI mode, or 
 
 .. NOTE::
 
-  UEFI support was automated in SIMP 6.2.  If you are using an older version of
-  SIMP please refer to that documentation for setting up UEFI manually.
+   UEFI support was automated in SIMP 6.2.  If you are using an older version of
+   SIMP please refer to that documentation for setting up UEFI manually.
 
-For more information see the `RedHat 7 Installation Source`_  or `RedHat 6 Installation Source`_ Installation Guides.
+For more information see the `RedHat 7 Installation Source`_  or `RedHat 6 Installation Source`_
+Installation Guides.
 
 Dynamic Linux Model Files
 ^^^^^^^^^^^^^^^^^^^^^^^^^
 Create a site manifest for the TFTP server on the Puppet master to set up the
 various files to model different systems.
 
-1. Create the file
+#. Create the file
    ``/etc/puppetlabs/code/environments/simp/modules/site/manifests/tftpboot.pp``.
    This file will contain Linux models for different types of systems and
    a mapping of MAC addresses to each model.
@@ -182,113 +183,110 @@ various files to model different systems.
      FIPS configuration.  Create a different Linux model file for each different
      kickstart file needed.
 
-.. code-block:: ruby
+     .. code-block:: ruby
 
-   class site::tftpboot {
-     include '::tftpboot'
+        class site::tftpboot {
+          include '::tftpboot'
 
-     #--------
-     # BIOS MODE MODEL EXAMPLES
+          #--------
+          # BIOS MODE MODEL EXAMPLES
 
-     # for CentOS/RedHat 7 Legacy/BIOS boot
-     tftpboot::linux_model { 'el7_x86_64':
-       kernel => 'OSTYPE-MAJORRELEASE-ARCH/vmlinuz',
-       initrd => 'OSTYPE-MAJORRELEASE-ARCH/initrd.img',
-       ks     => "https://KSSERVER/ks/pupclient_x86_64_el7.cfg",
-       extra  => "inst.noverifyssl ksdevice=bootif\nipappend 2"
-     }
+          # for CentOS/RedHat 7 Legacy/BIOS boot
+          tftpboot::linux_model { 'el7_x86_64':
+            kernel => 'OSTYPE-MAJORRELEASE-ARCH/vmlinuz',
+            initrd => 'OSTYPE-MAJORRELEASE-ARCH/initrd.img',
+            ks     => "https://KSSERVER/ks/pupclient_x86_64_el7.cfg",
+            extra  => "inst.noverifyssl ksdevice=bootif\nipappend 2"
+          }
 
-     # For CentOS/RedHat 6 Legacy/BIOS boot
-     # Note the difference in the `extra` arguments here.
-     tftpboot::linux_model { 'el6_x86_64':
-       kernel => 'OSTYPE-MAJORRELEASE-ARCH/vmlinuz',
-       initrd => 'OSTYPE-MAJORRELEASE-ARCH/initrd.img',
-       ks     => "https://KSSERVER/ks/pupclient_x86_64_el6.cfg",
-       extra  => "noverifyssl ksdevice=bootif\nipappend 2"
-     }
+          # For CentOS/RedHat 6 Legacy/BIOS boot
+          # Note the difference in the `extra` arguments here.
+          tftpboot::linux_model { 'el6_x86_64':
+            kernel => 'OSTYPE-MAJORRELEASE-ARCH/vmlinuz',
+            initrd => 'OSTYPE-MAJORRELEASE-ARCH/initrd.img',
+            ks     => "https://KSSERVER/ks/pupclient_x86_64_el6.cfg",
+            extra  => "noverifyssl ksdevice=bootif\nipappend 2"
+          }
 
-     #------
-     # UEFI MODE MODEL EXAMPLES
+          #------
+          # UEFI MODE MODEL EXAMPLES
 
-     # NOTE UEFI boot uses the linux_model_efi module and has different
-     # `extra` arguments.  You also would use a different kickstart file
-     # because the bootloader command within the kickstart file is
-     # different.  Read the instructions in the default pupclient_x86_64.cfg
-     # file and make sure you have the correct bootloader line.
-     #
-     # For CentOS/RedHat 7 UEFI boot
-     tftpboot::linux_model_efi { 'el7_x86_64_efi':
-       kernel => 'OSTYPE-MAJORRELEASE-ARCH/vmlinuz',
-       initrd => 'OSTYPE-MAJORRELEASE-ARCH/initrd.img',
-       ks     => "https://KSSERVER/ks/pupclient_x86_64_efi_el7.cfg",
-       extra  => "inst.noverifyssl"
-     }
+          # NOTE UEFI boot uses the linux_model_efi module and has different
+          # `extra` arguments.  You also would use a different kickstart file
+          # because the bootloader command within the kickstart file is
+          # different.  Read the instructions in the default pupclient_x86_64.cfg
+          # file and make sure you have the correct bootloader line.
+          #
+          # For CentOS/RedHat 7 UEFI boot
+          tftpboot::linux_model_efi { 'el7_x86_64_efi':
+            kernel => 'OSTYPE-MAJORRELEASE-ARCH/vmlinuz',
+            initrd => 'OSTYPE-MAJORRELEASE-ARCH/initrd.img',
+            ks     => "https://KSSERVER/ks/pupclient_x86_64_efi_el7.cfg",
+            extra  => "inst.noverifyssl"
+          }
 
-     # For CentOS/RedHat 6 UEFI boot
-     # Note the extra attribute legacy_grub.
-     tftpboot::linux_model_efi { 'el6_x86_64_efi':
-       kernel      => 'OSTYPE-MAJORRELEASE-ARCH/vmlinuz',
-       initrd      => 'OSTYPE-MAJORRELEASE-ARCH/initrd.img',
-       ks          => "https://KSSERVER/ks/pupclient_x86_64_el6.cfg",
-       extra       => "noverifyssl",
-       legacy_grub => true
-     }
+          # For CentOS/RedHat 6 UEFI boot
+          # Note the extra attribute legacy_grub.
+          tftpboot::linux_model_efi { 'el6_x86_64_efi':
+            kernel      => 'OSTYPE-MAJORRELEASE-ARCH/vmlinuz',
+            initrd      => 'OSTYPE-MAJORRELEASE-ARCH/initrd.img',
+            ks          => "https://KSSERVER/ks/pupclient_x86_64_el6.cfg",
+            extra       => "noverifyssl",
+            legacy_grub => true
+          }
 
-     #------
-     # DEFAULT HOST BOOT CONFIGURATION EXAMPLES
+          #------
+          # DEFAULT HOST BOOT CONFIGURATION EXAMPLES
 
-     # If desired, create defaults boot configuration for BIOS and UEFI.
-     # Note that the name of the default UEFI configuration file needs
-     # to be 'grub.cfg'.
-     tftpboot::assign_host { 'default': model => 'el7_x86_64' }
-     tftpboot::assign_host_efi { 'grub.cfg': model => 'el7_x86_64_efi' }
-
-
-     #------
-     # HOST BOOT CONFIGURATION ASSIGNMENT EXAMPLES
-
-     # For each system define what module you want to use by pointing
-     # its MAC address to the appropriate model.  Note that the MAC
-     # address is preceded by ``01-``.
-     tftpboot::assign_host { '01-aa-ab-ac-1d-05-11': model => 'el6_x86_64' }
-     tftpboot::assign_host_efi { '01-aa-bb-cc-dd-00-11': model => 'el7_x86_64_efi' }
-   }
+          # If desired, create defaults boot configuration for BIOS and UEFI.
+          # Note that the name of the default UEFI configuration file needs
+          # to be 'grub.cfg'.
+          tftpboot::assign_host { 'default': model => 'el7_x86_64' }
+          tftpboot::assign_host_efi { 'grub.cfg': model => 'el7_x86_64_efi' }
 
 
-2. Add the tftpboot site manifest on your puppet server node via :term:`Hiera`.  Create
-   the file (or edit if it exists):
+          #------
+          # HOST BOOT CONFIGURATION ASSIGNMENT EXAMPLES
+
+          # For each system define what module you want to use by pointing
+          # its MAC address to the appropriate model.  Note that the MAC
+          # address is preceded by ``01-``.
+          tftpboot::assign_host { '01-aa-ab-ac-1d-05-11': model => 'el6_x86_64' }
+          tftpboot::assign_host_efi { '01-aa-bb-cc-dd-00-11': model => 'el7_x86_64_efi' }
+        }
+
+
+#. Add the ``tftpboot`` site manifest on your puppet server node via
+   :term:`Hiera`.  Create the file (or edit if it exists):
    ``/etc/puppetlabs/code/environments/simp/hieradata/hosts/<tftp.server.fqdn>.yaml``.
    (By default the TFTP server is the same as your puppet server so it should
    exist.) Add the following example code to that yaml file.
 
-.. code-block:: yaml
+   .. code-block:: yaml
 
-  ---
-  classes:
-    - 'site::tftpboot'
+      ---
+      classes:
+        - 'site::tftpboot'
 
 
-3. After updating the above file, type ``puppet agent -t --tags tftpboot`` on
+#. After updating the above file, type ``puppet agent -t --tags tftpboot`` on
    the Puppet master.
 
-.. NOTE::
+   .. NOTE::
+      To provide PXE boot configuration for more OSs, create, in the
+      ``tftpboot.pp`` file, a ``tftpboot::linux_model`` or
+      ``tftpboot::linux_model_efi`` block for each OS type. Then, assign
+      individual hosts to each model by adding ``tftpboot::assign_host`` or
+      ``tftpboot::assign_host_efi`` resources.
 
-   To provide PXE boot configuration for more OSs, create, in the ``tftpboot.pp``
-   file, a ``tftpboot::linux_model`` or ``tftpboot::linux_model_efi`` block for
-   each OS type. Then, assign individual hosts to each model by adding
-   ``tftpboot::assign_host`` or ``tftpboot::assign_host_efi`` resources.
-
-Lastly, make sure DHCP is set up correctly.  In SIMP 6.2 the example ``dhcpd.conf``
-was updated to determine the appropriate boot loader file to use, depending upon
-the boot mode of the PXE client.  These changes are needed if you booting UEFI
-systems.
+#. Finally, make sure DHCP is set up correctly.  In SIMP 6.2 the example
+   ``dhcpd.conf`` was updated to determine the appropriate boot loader file to
+   use, depending upon the boot mode of the PXE client.  These changes are
+   needed if you booting UEFI systems.
 
 For more information see the `RedHat 6 PXE`_ or `RedHat 7 PXE`_ Installation Guides.
 
 .. _RedHat 7 PXE: https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/7/html/installation_guide/chap-installation-server-setup#sect-network-boot-setup
-
 .. _RedHat 7 Installation Source: https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/7/html/installation_guide/sect-making-media-additional-sources#sect-making-media-sources-network
-
 .. _RedHat 6 PXE: https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/6/html/installation_guide/s1-netboot-pxe-config
-
 .. _RedHat 6 Installation Source: https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/6/html/installation_guide/ch-Preparing-x86#s1-steps-network-installs-x86
