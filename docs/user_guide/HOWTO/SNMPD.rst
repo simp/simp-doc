@@ -44,7 +44,7 @@ snmpd will listen on.
 
 .. NOTE::
 
-  ``simp_snmpd::agentaddress`` is an array of strings, that should follow the
+  ``simp_snmpd::agentaddress`` is an array of strings that should follow the
   format defined in the man page for snmpd, under the ``LISTENING ADDRESS``
   section.
 
@@ -171,7 +171,7 @@ Access Hash
       level:  priv|auth|noauth (default is defsecuritylevel)
       model: the model to use (default is defsecuritymodel)
       context: context to use (default "")
-      prefx:  prefix for the context exact| prefix (default exact)
+      prefix:  prefix for the context exact| prefix (default exact)
       groups: [array of groups to create this access for]
 
 
