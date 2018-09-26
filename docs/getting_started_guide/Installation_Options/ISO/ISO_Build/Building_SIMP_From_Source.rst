@@ -81,7 +81,7 @@ Build ENV vars:
       policies, you will need to set this to ``YES``.
 
   * ``BEAKER_destroy`` - (yes|no) - Setting ``BEAKER_destroy=no`` will preserve
-    the docker container used to build SIMP.
+    the Docker container used to build SIMP.
 
 Once the process completes, you should have a bootable SIMP ISO, in:
 ``build/distributions/<OS>/<rel>/<arch>/SIMP_ISO/``
