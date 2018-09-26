@@ -106,7 +106,7 @@ Optional: Extract the full OS Package Set
 -----------------------------------------
 
 The SIMP ISO attempts to contain everything that you need to run a base system.
-However, if you did not install via ISO, or your require additional stock
+However, if you did not install via ISO, or you require additional stock
 packages, you can use the following procedure to extract the vendor ISOs.
 
 #. Log on as ``simp`` and run ``su -`` to gain root access.
