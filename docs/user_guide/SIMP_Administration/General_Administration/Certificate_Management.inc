@@ -15,8 +15,8 @@ between the master and agents is granted and secured with HTTPS, which
 requires valid identifying SSL certificates. The Puppet master acts as the certificate
 authority for managing these certificates.
 
-The client will automatically send a certificate request to the server if it can not find
-a valid certificate. The puppetserver will automatically sign a certificate request if the
+The client will automatically send a certificate request to the server if it cannot find
+a valid certificate. The Puppet master will automatically sign a certificate request if
 the client's name is in the  ``autosign.conf`` file, otherwise an administrator must sign
 the request using the ``puppet cert`` tool.
 
@@ -27,7 +27,7 @@ the request using the ``puppet cert`` tool.
 Infrastructure Certificates
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Infrastructure certificates, commonly refered to as server certificates,
+Infrastructure certificates, commonly referred to as server certificates,
 are the standard :term:`PKI` certificates assigned by an official :term:`CA`.
 These are used by all other applications that require certificates.
 

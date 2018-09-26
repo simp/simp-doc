@@ -1,6 +1,6 @@
 .. _howto-modify-puppet-cron:
 
-HOWTO Modify The Puppet Cron Schedule
+HOWTO Modify the Puppet Cron Schedule
 =====================================
 
 SIMP deploys a cron-job, via ``pupmod::agent::cron``, to run a non-daemonized

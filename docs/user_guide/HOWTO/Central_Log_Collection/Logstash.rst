@@ -6,7 +6,7 @@ Elasticsearch, Logstash, and Grafana
 This chapter provides instruction for getting a basic configuration of
 :term:`Logstash` working in a SIMP environment.
 
-If these instructions don't work for you, please take a look at the README in
+If these instructions do not work for you, please take a look at the README in
 the `simp_logstash` profile module, particularly the acceptance tests in the
 ``spec/acceptance`` directory.
 
@@ -114,8 +114,8 @@ in :term:`Hiera`.
 It is up to each implementation to define and apply filters that meet their
 local requirements. While multiple Logstash output targets may be defined,
 simp_logstash_ only defines the Elasticsearch output by default. Please see
-the Elasticsearch
-Puppet module for details on how to define additional output targets.
+the Elasticsearch Puppet module for details on how to define additional output
+targets.
 
 The following diagram depicts the standard SIMP data flow through the Logstash
 system.
@@ -157,7 +157,7 @@ describes the security features in place with the default SIMP module settings:
 * **Syslog over Stunnel:**
     The default behavior in SIMP is to encrypt syslog
     traffic using native :term:`TLS` in rsyslog.  The logstash syslog
-    configuration is setup to listen on a stunnel port, which then forwards to
+    configuration is set up to listen on a stunnel port, which then forwards to
     the local logstash syslog listener.  Unencrypted traffic is also supported
     for network devices.
 
@@ -342,12 +342,12 @@ to ensure logs are sent to Logstash Stunnel listener.
 Deploying Grafana
 ^^^^^^^^^^^^^^^^^
 
-Now that you have a functional logging setup, you'll probably want to deploy a
+Now that you have a functional logging setup, you will probably want to deploy a
 GUI to provide the ability to generate user dashboards as well as dynamic log
 analysis.
 
 The SIMP team chose to support the Open Source `Grafana`_ project due to its
-builtin authentication and access control support.  While the Grafana is great
+built-in authentication and access control support.  While the Grafana is great
 at visualizing data, it can be challenging to explore your logs.  You could
 easily point `Kibana`_ or another tool of your choosing at your
 `Elasticsearch`_ cluster. You could also install Kibana alongside Grafana.
@@ -361,8 +361,8 @@ to your Kibana node.
    the password for your environment.
 
 .. NOTE::
-   The ``rubygem-toml`` package must be present on your puppet compile servers
-   for the Grafana puppet module to function properly.
+   The ``rubygem-toml`` package must be present on your Puppet compile servers
+   for the Grafana Puppet module to function properly.
 
    Starting with SIMP version 6.2, the ``pupmod-simp-simp_grafana`` rpm will
    automatically install this gem, by pulling in ``rubygem-puppetserver-toml``
@@ -392,7 +392,7 @@ settings.
   # Uses the standard SIMP 'simp_options::trusted_nets' semantics.
   #
   # In this case, instead of using the default of
-  # ``simp_options::trusted_nets``, we're allowing everyone in and
+  # ``simp_options::trusted_nets``, we are allowing everyone in and
   # trusting that Grafana will do properly authenticate users using
   # the LDAP configured via the ``simp_options::ldap`` parameters.
 
@@ -464,7 +464,7 @@ to that group:
 
 More information on managing LDAP users can be found in the
 :ref:`User_Management` section.  Refer to the ``simp_grafana`` module for
-additional information on using the puppet module to manage Grafana LDAP
+additional information on using the Puppet module to manage Grafana LDAP
 configuration.
 
 Grafana Dashboards

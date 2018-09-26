@@ -42,63 +42,63 @@ method.
 #. Log on as ``simp`` and run ``su -`` to gain root access.
 #. Type ``simp config`` and configure the system as prompted.
 
-  - ``simp config`` will prompt you for system settings and then apply them as
-    appropriate for bootstrapping the system.
+   - ``simp config`` will prompt you for system settings and then apply them as
+     appropriate for bootstrapping the system.
 
-  - When applicable, ``simp config`` will present you with a
-    recommendation for each setting (variable).  To keep a recommended
-    value, press *Enter*. Otherwise, enter your desired value.
+   - When applicable, ``simp config`` will present you with a recommendation
+     for each setting (variable).  To keep a recommended value, press *Enter*.
+     Otherwise, enter your desired value.
 
-  - ``simp config``  generates a log file in ``/root/.simp`` containing details
-    of the configuration selected and actions taken.
+   - ``simp config``  generates a log file in ``/root/.simp`` containing
+     details of the configuration selected and actions taken.
 
-  - For more details about the installation variables set by ``simp config``
-    and the corresponding actions, see :ref:`gsg-advanced-configuration`.
+   - For more details about the installation variables set by ``simp config``
+     and the corresponding actions, see :ref:`gsg-advanced-configuration`.
 
-  - For a list of additional options, type ``simp help config``.
+   - For a list of additional options, type ``simp help config``.
 
-    - ``simp config --dry-run`` will run through all of the ``simp config``
-      prompts without applying any changes to the system. This is the
-      option to run to become familiar with the variables set by
-      ``simp config`` or generate a configuration file to be used as
-      a template for subsequent ``simp config`` runs.
+     - ``simp config --dry-run`` will run through all of the ``simp config``
+       prompts without applying any changes to the system. This is the option
+       to run to become familiar with the variables set by ``simp config`` or
+       generate a configuration file to be used as a template for subsequent
+       ``simp config`` runs.
 
-    - ``simp config -a <Config File>`` will load a previously generated
-      configuration (aka the 'answers' file) in lieu of prompting for
-      settings, and then apply the settings.  This is the option to run
-      for systems that will be rebuilt often. Please note, however,
-      if you edit the answers file, only configuration settings for
-      which you would be prompted by ``simp config`` can be modified
-      in that file.  Any changes made to settings that ``simp config``
-      automatically determines will be ignored.
+     - ``simp config -a <Config File>`` will load a previously generated
+       configuration (aka the 'answers' file) in lieu of prompting for
+       settings, and then apply the settings.  This is the option to run for
+       systems that will be rebuilt often. Please note, however, if you edit
+       the answers file, only configuration settings for which you would be
+       prompted by ``simp config`` can be modified in that file.  Any changes
+       made to settings that ``simp config`` automatically determines will be
+       ignored.
 
-.. NOTE::
+   .. NOTE::
 
-   Once ``simp config`` has been run, three SIMP configuration files
-   will be generated:
+      Once ``simp config`` has been run, three SIMP configuration files will
+      be generated:
 
-   - ``/root/.simp/simp_conf.yaml``: File containing  all your
-     ``simp config`` settings; can include additional settings related
-     to ones you entered and other settings required for SIMP.
+      #. ``/root/.simp/simp_conf.yaml``: File containing  all your ``simp
+         config`` settings; can include additional settings related to ones
+         you entered and other settings required for SIMP.
 
-   - ``/etc/puppetlabs/code/environments/simp/hieradata/simp_config_settings.yaml``:
-     File containing global Hiera data relevant to SIMP clients and the SIMP
-     server.
+      #. ``/etc/puppetlabs/code/environments/simp/hieradata/simp_config_settings.yaml``:
+         File containing global Hiera data relevant to SIMP clients and the SIMP
+         server.
 
-   - ``/etc/puppetlabs/code/environments/simp/hieradata/hosts/<server_fqdn>.yaml``:
-     SIMP server host specific Hiera configuration.
+      #. ``/etc/puppetlabs/code/environments/simp/hieradata/hosts/<server_fqdn>.yaml``:
+         SIMP server host specific Hiera configuration.
 
 #. Type ``simp bootstrap``
 
-.. NOTE::
+   .. NOTE::
 
-   If progress bars are of equal length and the bootstrap finishes quickly, a
-   problem has occurred. This is most likely due to an error in SIMP
-   configuration. Refer to the previous step and make sure that all
-   configuration options are correct.
+      If progress bars are of equal length and the bootstrap finishes quickly,
+      a problem has occurred. This is most likely due to an error in SIMP
+      configuration. Refer to the previous step and make sure that all
+      configuration options are correct.
 
-   If this happens, you can debug by either looking at the log files or by
-   running ``puppet agent -t --masterport=8150``.
+      If this happens, you can debug by either looking at the log files or by
+      running ``puppet agent -t --masterport=8150``.
 
 #. Type ``reboot`` to reboot and apply the necessary kernel configuration items.
 
@@ -106,7 +106,7 @@ Optional: Extract the full OS Package Set
 -----------------------------------------
 
 The SIMP ISO attempts to contain everything that you need to run a base system.
-However, if you did not install via ISO, or your require additional stock
+However, if you did not install via ISO, or you require additional stock
 packages, you can use the following procedure to extract the vendor ISOs.
 
 #. Log on as ``simp`` and run ``su -`` to gain root access.
@@ -126,4 +126,3 @@ packages, you can use the following procedure to extract the vendor ISOs.
    Type: ``yum clean all; yum makecache``
 
 .. include::  Initial_Server_Configuration/Advanced_Configuration.inc
-

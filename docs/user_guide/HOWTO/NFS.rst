@@ -57,11 +57,12 @@ tracked.
 
 If you have any further questions about this please contact the SIMP Team.
 
-Autofs Option in nfs::client::mount
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+Autofs Option in ``nfs::client::mount``
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-The autofs option in nfs::client::mount resource currently only works with indirect wild-card
-mounts.  For all other autofs options use the autofs module directly.
+The autofs option in ``nfs::client::mount`` resource currently only works with 
+indirect wild-card mounts.  For all other autofs options use the autofs module
+directly.
 
 SIMP-2944 in `JIRA Bug Tracking`_.
 
@@ -415,7 +416,7 @@ following, in the server's :term:`YAML` file:
 
    nfs::client::stunnel::nfs_server: <your nfs server>
 
-If ``simp_options::stunnel`` is set to ``false`` and you don't wish to globally
+If ``simp_options::stunnel`` is set to ``false`` and you do not wish to globally
 enable stunnel, you will also need to set the following, in default.yaml:
 
 .. code-block:: yaml
@@ -425,7 +426,7 @@ enable stunnel, you will also need to set the following, in default.yaml:
 Disable
 ^^^^^^^
 
-If ``simp_options::stunnel`` is set to ``true``, but you don't want your NFS
+If ``simp_options::stunnel`` is set to ``true``, but you do not want your NFS
 traffic to go through stunnel, set the following, in default.yaml:
 
 .. code-block:: yaml

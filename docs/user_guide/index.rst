@@ -17,9 +17,3 @@ Contents:
   Troubleshooting
   HOWTO
   SIMP_Package_Data
-
-Indices and tables
-------------------
-
-* :ref:`genindex`
-* :ref:`search`

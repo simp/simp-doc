@@ -37,10 +37,4 @@ Contents:
   license
   glossary
 
-Indices and tables
-------------------
-
-* :ref:`genindex`
-* :ref:`search`
-
 .. todolist::

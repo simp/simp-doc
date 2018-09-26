@@ -1,7 +1,7 @@
 .. _howto-setup-a-simp-control-repository:
 
-HOWTO Setup a SIMP Control Repository
-=====================================
+HOWTO Set up a SIMP Control Repository
+======================================
 
 A control repository contains the modules, hieradata, and roles/profiles
 required in a Puppet infrastructure.  Managing the control repo with GIT allows
@@ -10,7 +10,7 @@ infrastructure.
 
 .. NOTE::
 
-  Refer to Puppet, Inc's `control repository documentation`_ for more
+  Refer to Puppet, Inc.'s `control repository documentation`_ for more
   information.
 
 SIMP distributes a partial control repository:
@@ -19,7 +19,7 @@ SIMP distributes a partial control repository:
 
 .. code-block:: bash
 
-  $ tree -L 1 /usr/share/simp/environments/simp/
+  # tree -L 1 /usr/share/simp/environments/simp/
   /usr/share/simp/environments/simp/
   ├── environment.conf
   ├── FakeCA
@@ -31,7 +31,7 @@ SIMP distributes a partial control repository:
 
 .. code-block:: bash
 
-  $ tree -L 1 src/assets/simp-environment/environments/simp
+  # tree -L 1 src/assets/simp-environment/environments/simp
   src/assets/simp-environment/environments/simp
   ├── environment.conf
   ├── hieradata/
@@ -48,7 +48,7 @@ following snippet:
 
 .. code-block:: bash
 
-  $ curl -o Puppetfile https://github.com/simp/simp-core/blob/<release>/Puppetfile.stable
+  # curl -o Puppetfile https://github.com/simp/simp-core/blob/<release>/Puppetfile.stable
 
 .. NOTE::
 

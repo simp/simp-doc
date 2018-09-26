@@ -16,8 +16,8 @@ By default, including the **ssh** module will include ``ssh::server`` and
    for ``ssh::server`` and ``ssh::client`` via Hiera.
 
 
-How do I manage settings for the SSH server?
---------------------------------------------
+Managing Settings for the SSH Server
+------------------------------------
 
 Including ``ssh::server`` with the default options will manage the server with
 reasonable settings for each host's environment.
@@ -56,13 +56,14 @@ In Puppet:
    include 'ssh'
 
 
-Managing additional settings with ``sshd_config``
+Managing Additional Settings with ``sshd_config``
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-To manage SSH server settings that aren't managed by the SIMP ``ssh`` module,
+To manage SSH server settings that are not managed by the SIMP ``ssh`` module,
 use the ``sshd_config`` resource from `augeasproviders_ssh`_.  This is what the
 SIMP ``ssh`` module uses internally to manage the ``/etc/ssh/sshd_config``
-file, and you can use it to set any options ``ssh::server::conf`` doesn't manage.
+file, and you can use it to set any options ``ssh::server::conf`` does not
+manage.
 
 For instance, to set the sshd ``LogLevel`` option to ``VERBOSE``:
 
@@ -107,14 +108,14 @@ In Puppet:
 
 
 
-How do I manage settings for the SSH client?
---------------------------------------------
+Managing Settings for the SSH Client
+------------------------------------
 
 Including ``ssh::client`` will automatically manage client settings as the
 default for all hosts (``Host *``).
 
 
-Managing settings for the default Host entry (``Host *``)
+Managing Settings for the Default Host Entry (``Host *``)
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 If you want to customize the default settings, you must prevent ``ssh::client``
@@ -139,7 +140,7 @@ In Puppet:
    }
 
 
-Managing client settings for specific hosts
+Managing Client Settings for Specific Hosts
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 Different settings for particular hosts can be managed by using the defined
@@ -153,19 +154,19 @@ type ``ssh::client::host_config_entry``:
    }
 
 
-Managing additional settings with ``ssh_config``
+Managing Additional Settings with ``ssh_config``
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 Starting with version **6.4.0** of the **simp-ssh** module, you can use the
 ``sshd_config`` resource from `augeasproviders_ssh`_ to manage settings that the
-module doesn't cover.
+module does not cover.
 
 For instance, to ensure that the default host entry's ``RequestTTY`` option is
 set to ``auto``:
 
 .. code-block:: puppet
 
-   # RequestTTY isn't managed by ssh::client::host_config_entry
+   # RequestTTY is not managed by ssh::client::host_config_entry
    ssh_config { 'Global RequestTTY':
      ensure => present,
      key    => 'RequestTTY',

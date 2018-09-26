@@ -13,7 +13,7 @@ Upgrade Script
 
 There were several issues found during the SIMP 6.0.0 to 6.1.0 upgrade that
 necessitated the creation of an upgrade script that is to be run on your SIMP
-puppet servers.
+Puppet masters.
 
 .. NOTE::
 
@@ -28,10 +28,10 @@ As always, back up your system prior to upgrading!
 
 .. NOTE::
 
-   This script assumes that you're upgrading from the SIMP RPMs!
+   This script assumes that you are upgrading from the SIMP RPMs!
 
-   If you have chosen some other installation method, you'll need to follow the
-   general steps outlined in the script.
+   If you have chosen some other installation method, you will need to follow
+   the general steps outlined in the script.
 
 To perform the upgrade, with ``root`` permissions:
 
@@ -59,7 +59,7 @@ The legacy ``auth.conf``, ``/etc/puppetlabs/puppet/auth.conf``, has been
 deprecated. ``pupmod-simp-pupmod`` will back up the legacy ``auth.conf`` after
 the upgrade.
 
-The puppetserver's ``auth.conf`` is now managed by Puppet. You will need to
+The Puppet master's ``auth.conf`` is now managed by Puppet. You will need to
 reproduce any custom work done to legacy ``auth.conf`` via the new
 ``puppet_authorization::rule`` define.  The stock rules are managed in
 ``pupmod::master::simp_auth``.
@@ -76,7 +76,7 @@ we highly recommend updating your DAT files from the authoritative upstream
 sources.  See the `ClamAV Virus Database FAQ`_ for instructions on how to
 automatically update these files.
 
-Prepare system for PostgreSQL upgrade
+Prepare System for PostgreSQL Upgrade
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 During the Puppet-managed upgrade, from PostgreSQL 9.4 to PostgreSQL 9.6,

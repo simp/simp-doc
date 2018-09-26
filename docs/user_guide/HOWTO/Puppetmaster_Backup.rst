@@ -3,7 +3,7 @@
 HOWTO Back up the Puppet Master
 ===============================
 
-This section details the steps required to back up the Puppet Master.
+This section details the steps required to back up the Puppet master.
 
 .. NOTE::
 

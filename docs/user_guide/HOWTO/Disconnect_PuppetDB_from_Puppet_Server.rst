@@ -26,7 +26,7 @@ restart the ``puppetserver`` process without the connection.
 
 .. Note::
 
-  When ``puppet`` is run on the Puppet Master again, it will reconfigure the
+  When ``puppet`` is run on the Puppet master again, it will reconfigure the
   ``puppetserver`` and ``PuppetDB`` to reconnect and restart the appropriate
   services.  If you are debugging an issue, you may want to run ``puppet agent
   --disable`` to prevent Puppet from resetting the system while you are

@@ -1,43 +1,43 @@
-.. _ug-howto-change-puppet-servers:
+.. _ug-howto-change-puppet-masters:
 
-HOWTO Change Puppet Servers
+HOWTO Change Puppet Masters
 ===========================
 
-It may be necessary to change the Puppet Server. To point a particular
-client to a new Puppet Server, follow the steps in the sections below.
+It may be necessary to change the Puppet master. To point a particular
+client to a new Puppet master, follow the steps in the sections below.
 
 .. NOTE::
 
    All commands in this section should be run as the ``root`` user.
 
-On the Old Puppet Server
+On the Old Puppet Master
 ------------------------
 
 Collect the Client's Server-Side Artifacts
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Until SIMP implements a shared Puppet data store (expected 2017-Q2), you will
-need to manually copy some artifacts from the old server to the new server
+Until SIMP implements a shared Puppet data store, you will need to manually
+copy some artifacts from the old server to the new server.
 
 To do this, run:
 
 .. code-block:: shell
 
-   $ find `puppet config --section master print vardir`/simp -name "*<client-fqdn>*" -exec tar --selinux --xattrs -rpvf <client-fqdn>_transfer.tar {} \;
-   $ find /var/simp/environments -name "*<client-fqdn>*" -exec tar --selinux --xattrs -rpvf <client-fqdn>_transfer.tar {} \;
+   # find `puppet config --section master print vardir`/simp -name "*<client-fqdn>*" -exec tar --selinux --xattrs -rpvf <client-fqdn>_transfer.tar {} \;
+   # find /var/simp/environments -name "*<client-fqdn>*" -exec tar --selinux --xattrs -rpvf <client-fqdn>_transfer.tar {} \;
 
 Then, pull all of the relevant Hiera configuration for the node:
 
 .. code-block:: shell
 
-   $ find /etc/puppetlabs/code/environments -name "<client-hostname>.yaml" -exec tar --selinux --xattrs -rpvf <client-hostname>_transfer.tar {} \;
-   $ find /etc/puppetlabs/code/environments -name "<client-fqdn>.yaml" -exec tar --selinux --xattrs -rpvf <client-hostname>_transfer.tar {} \;
+   # find /etc/puppetlabs/code/environments -name "<client-hostname>.yaml" -exec tar --selinux --xattrs -rpvf <client-hostname>_transfer.tar {} \;
+   # find /etc/puppetlabs/code/environments -name "<client-fqdn>.yaml" -exec tar --selinux --xattrs -rpvf <client-hostname>_transfer.tar {} \;
 
 Remove all of the node specific Hiera data:
 
 .. code-block:: shell
 
-   $ find /etc/puppetlabs/code/environments -name "<client-fqdn>.yaml" --delete
+   # find /etc/puppetlabs/code/environments -name "<client-fqdn>.yaml" --delete
 
 .. NOTE::
 
@@ -49,15 +49,15 @@ Reload the ``puppetserver`` process:
 
 .. code-block:: shell
 
-   $ puppetserver_reload
+   # puppetserver_reload
 
-On the New Puppet Server
+On the New Puppet Master
 ------------------------
 
 .. WARNING::
 
-   This assumes that the new Puppet Server is set up identically to the old
-   Puppet Server. If it is not, you will need to verify that the artifacts in
+   This assumes that the new Puppet master is set up identically to the old
+   Puppet master. If it is not, you will need to verify that the artifacts in
    the ``tar`` file are correctly placed.
 
 Unpack the ``<client-hostname>_transfer.tar`` archive onto the system:
@@ -90,7 +90,7 @@ Update the Puppet Config
 ^^^^^^^^^^^^^^^^^^^^^^^^
 .. NOTE::
   If upgrading from SIMP 4 or 5 to SIMP 6 you will need to upgrade your puppet agent
-  to the Puppet 4.0 agent before it can connect to the new puppet server.  A fix is being
+  to the Puppet 4.0 agent before it can connect to the new Puppet master.  A fix is being
   worked under SIMP-3049.  If you installed from the ISO, the simp repo on the SIMP 6
   server contains the correct rpm.  Point to the correct repo and run
   ``yum install puppet-agent``.  This will also remove the old version.
@@ -106,11 +106,11 @@ Enter the following changes into ``/etc/puppetlabs/puppet/puppet.conf``.
 Run Puppet
 ^^^^^^^^^^
 
-Assuming the new Puppet Server has been set up to properly accept the
+Assuming the new Puppet master has been set up to properly accept the
 client, execute a full Puppet run using ``puppet agent --test``.
 
 If everything was done properly, the client will now be synchronized with the
-new Puppet Server.
+new Puppet master.
 
 If you find issues, refer to the :ref:`Client_Management` section of the
-documentation and ensure that the new Puppet Server was set up properly.
+documentation and ensure that the new Puppet master was set up properly.

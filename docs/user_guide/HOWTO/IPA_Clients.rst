@@ -22,7 +22,7 @@ IPA should work in both the ``simp`` and ``simp-lite`` scenario. There may be
 issues with logins if the ``sssd`` module is not included.
 
 
-Adding clients
+Adding Clients
 --------------
 
 Adding clients requires two steps:
@@ -33,12 +33,12 @@ Adding clients requires two steps:
 
    .. NOTE::
 
-     Using ``ipa-client-install`` on EL6 with FIPS mode isn't currently supported
-     and will result in the following error message:
+     Using ``ipa-client-install`` on EL6 with FIPS mode is not currently
+     supported and will result in the following error message:
      ``Cannot install IPA client in FIPS mode``
 
 
-Add hosts to IPA
+Add Hosts to IPA
 ^^^^^^^^^^^^^^^^
 
 There are two ways to complete this step:
@@ -70,7 +70,7 @@ To be able to add hosts from the command line:
         exit unless system(cmd)
       end
 
-#. Set the password, add IPA server settings, and include the classes in hiera:
+#. Set the password, add IPA server settings, and include the classes in Hiera:
 
    .. code-block:: yaml
 

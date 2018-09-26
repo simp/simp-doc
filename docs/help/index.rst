@@ -16,9 +16,3 @@ Please see the following for a list of resources.
   FAQ
   Public_Resources
   Commercial_Resources
-
-Indices and tables
-------------------
-
-* :ref:`genindex`
-* :ref:`search`

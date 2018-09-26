@@ -1,11 +1,11 @@
 Why Can't I Login?!
 ===================
 
-If you've reached this page, you're having issues logging into your system with
-a newly created account.
+If you have reached this page, you are having issues logging into your system
+with a newly created account.
 
 In almost all cases, this is because either your user has not been placed in a
-group allowed to access the system, your :term:`DNS` is setup incorrectly, or
+group allowed to access the system, your :term:`DNS` is set up incorrectly, or
 your :term:`PKI` certificates are invalid.
 
 SSSD Password Checks
@@ -26,7 +26,7 @@ PAM Access Restrictions
 
 By default, SIMP uses the ``pam_access.so`` :term:`PAM` module to restrict
 access on each individual host. While this may not seem as flexible as some
-methods, it is the most failsafe method for ensuring that you don't
+methods, it is the most failsafe method for ensuring that you do not
 accidentally interrupt services due to network issues connecting to your
 :term:`LDAP` server.
 
@@ -60,7 +60,7 @@ will need to reset ``faillock`` before authentication can occur.  To do so, run
 
 .. code-block:: bash
 
-   $ faillock --reset --user <user>
+   # faillock --reset --user <user>
 
 LDAP Lockout
 ------------
@@ -73,7 +73,7 @@ To determine if the account is locked, run the following on the LDAP server:
 
 .. code-block:: bash
 
-  $ slapcat -a uid=<user>
+  # slapcat -a uid=<user>
 
 If you see ``pwdAccountLockedTime`` then the account is locked, and you will
 need to follow the instructions in :ref:`unlock-ldap-label` to unlock it.

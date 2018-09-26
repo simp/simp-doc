@@ -43,6 +43,6 @@ To find the particular package list for your version of SIMP, you can go to:
 
 ``https://github.com/simp/simp-core/blob/<version>/build/distributions/<os>/<os_version>/<arch>/yum_data/packages.yaml``
 
-So, if you're using SIMP 6.0.0-0 on CentOS 6 and an x86_64 architecture, you would navigate to:
+So, if you are using SIMP 6.0.0-0 on CentOS 6 and x86_64 architecture, you would navigate to:
 
 ``https://github.com/simp/simp-core/blob/6.0.0-0/build/distributions/CentOS/6/x86_64/yum_data/packages.yaml``

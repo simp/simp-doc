@@ -1,4 +1,4 @@
-How to Manage a TPM Device With SIMP
+How to Manage a TPM Device with SIMP
 ====================================
 
 This document serves as a guide to enable and use TPM devices in SIMP.
@@ -36,7 +36,7 @@ Trusted Boot Hardware Requirements:
    * A chipset with Intel Trusted Execution Technology (TXT)
 
 
-Starting With TPM
+Starting with TPM
 -----------------
 
 Follow the steps below to enable and take ownership of the :term:`TPM`.
@@ -47,17 +47,17 @@ Follow the steps below to enable and take ownership of the :term:`TPM`.
 
    .. code-block:: bash
 
-      $ facter -p has_tpm
+      # facter -p has_tpm
       true
-      $ facter -p tpm.status
+      # facter -p tpm.status
       ...
       owned: 0,
       enabled: 1,
       active: 1,
       ...
-      $ cat /sys/class/tpm/tpm0/device/active
+      # cat /sys/class/tpm/tpm0/device/active
       1
-      $ file /dev/tpm0
+      # file /dev/tpm0
       /dev/tpm0: character special (10/224)
 
 
@@ -117,9 +117,9 @@ For more information about tboot in general, reference external documentation:
 Steps
 ^^^^^
 
-#. Enable Intel TXT and VT-d in the BIOS
+#. Enable Intel TXT and VT-d in the BIOS.
 
-#. Boot into the kernel you want to trust (don't worry, this kernel will be
+#. Boot into the kernel you want to trust (do not worry, this kernel will be
    preserved!)
 
 #. Follow the instructions in 'Starting With TPM' and ensure:
@@ -131,7 +131,7 @@ Steps
 
 #. Go to the `Intel site`_ and download the appropriate SINIT binary for your
    platform. Place this binary on a webserver, on the host itself, or in a
-   profile module. This can't be distributed by SIMP for licensing reasons.
+   profile module. This cannot be distributed by SIMP for licensing reasons.
 
 #. Add the following settings to your hieradata for nodes that will be using
    Trusted Boot. It is recommended to use a `hostgroup` for this.
@@ -148,7 +148,7 @@ Steps
       tpm::tboot::sinit_source: 'file:///root/txt/2nd_gen_i5_i7-SINIT_51/2nd_gen_i5_i7_SINIT_51.BIN'
       tpm::tboot::owner_password: "%{alias('tpm::ownership::owner_pass')}"
 
-#. Add the ``tpm::tboot`` class to the classes array with ``tpm``
+#. Add the ``tpm::tboot`` class to the classes array with ``tpm``.
 
    * The ``tpm::tboot`` class adds two boot entries to the GRUB configuration.
      One should read ``tboot``, and there should be one above it called
@@ -156,10 +156,10 @@ Steps
    * The Trusted Boot process requires booting into the tboot kernel before
      creating the policy, so we have opted to create both entries. The
      intermediate, ``no policy`` boot option can later be removed by setting
-     ``tpm::tboot::intermediate_grub_entry`` to ``false`` in hiera.
+     ``tpm::tboot::intermediate_grub_entry`` to ``false`` in Hiera.
 
 
-#. Reboot into the ``tboot, no policy`` kernel entry
+#. Reboot into the ``tboot, no policy`` kernel entry.
 
 #. Puppet should run at next boot, and create the policy. Log in, ensure
    ``/boot/list.data`` exists. If not, run puppet again.
@@ -167,27 +167,27 @@ Steps
 #. Reboot into the ``tboot`` kernel entry.
 
 #. Verify that the system has completed a measured launch by running
-   ``txt-stat`` or checking the ``tboot`` fact
+   ``txt-stat`` or checking the ``tboot`` fact.
 
    .. code-block:: bash
 
-   # txt-stat
-   # facter -p tboot
+      # txt-stat
+      # facter -p tboot
 
-Trusted Boot debugging tips and warnings
+Trusted Boot Debugging Tips and Warnings
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 *  The ``parse_err`` command will show the error code, ready to lookup in the
-   error table included in the zip
+   error table included in the zip.
 *  The ``tboot`` kernel option ``min_ram=0x2000000`` (which is default) is
-   **REQUIRED** on systems with more than 4GB of memory
+   **REQUIRED** on systems with more than 4GB of memory.
 *  Trusted Boot measures the file required to boot into a Linux environment,
    and updating those file will cause a system to boot into an untrusted state.
    Be careful updating the ``kernel`` packages and rebuilding the ``initramfs``
    (or running ``dracut``).
 
 
-Enable basic IMA measuring
+Enable Basic IMA Measuring
 --------------------------
 
 This section assumes the previous section is complete, the TPM in the host is
@@ -197,7 +197,7 @@ IMA is a neat tool that hashes the contents of a system, and stores that hash in
 the TPM. IMA is a kernel-level tool, and needs a few kernel parameters and
 reboots to be completely set up.
 
-#. Follow the above steps ensure the tpm is owned
+#. Follow the above steps ensure the tpm is owned.
 
 #. Modify the hieradata and add just one line:
 
@@ -212,8 +212,8 @@ Managing IMA policy
 ^^^^^^^^^^^^^^^^^^^
 
 .. WARNING::
-  This automated management of IMA policy is disabled for now. The policy generated tends to cause
-  systems to become read only.
+  This automated management of IMA policy is disabled for now. The policy 
+  generated tends to cause systems to become read only.
 
 This module can also support modifying what files IMA watching by editing the
 ``/sys/kernel/security/ima/policy``. Reference the module source file, located
@@ -232,26 +232,26 @@ IMA Appraisal
 ^^^^^^^^^^^^^
 
 IMA Appraisal is the process that actually measures the state of the file and
-will stop changes to the filesystem if there is a issue detected.
+will stop changes to the filesystem if there is an issue detected.
 
 #. Run puppet once with ``tpm::use_ima: true``, like it was set up earlier.
 
-#. Disable the puppet agent on the host
+#. Disable the puppet agent on the host.
 
    .. code-block:: bash
 
-      $ puppet agent --disable
+      # puppet agent --disable
 
 #. Make sure ``/`` and ``/home`` are mounted with the ``i_version option``. They
    are created by default with these options enabled.
 
-#. Add the ``ima_appraise=fix`` kernel parameter temporarily
+#. Add the ``ima_appraise=fix`` kernel parameter temporarily.
 
    .. code-block:: bash
 
-      $ puppet resource kernel_parameter ima_appraise ensure=present value=fix
+      # puppet resource kernel_parameter ima_appraise ensure=present value=fix
 
-#. Reboot
+#. Reboot.
 
 #. The files on the system must now be measured and saved. In order to do this,
    every file owned by root and included in the policy must be touched. This
@@ -259,7 +259,7 @@ will stop changes to the filesystem if there is a issue detected.
 
    .. code-block:: bash
 
-      $ find / \( -fstype rootfs -o -fstype ext4 \) -type f -uid 0 -exec head -n 1 '{}' > /dev/null \;
+      # find / \( -fstype rootfs -o -fstype ext4 \) -type f -uid 0 -exec head -n 1 '{}' > /dev/null \;
 
 #. After that process finishes, set the ``ima_appraise`` kernel parameter to
    ``enforce``.
@@ -271,9 +271,9 @@ will stop changes to the filesystem if there is a issue detected.
 
    .. code-block:: bash
 
-     $ puppet resource kernel_parameter ima_appraise ensure=present value=enforce
-     $ # or add it to a puppet manifest
+     # puppet resource kernel_parameter ima_appraise ensure=present value=enforce
+     # # or add it to a puppet manifest
 
-#. Reboot
+#. Reboot.
 
 .. _Intel Site: https://software.intel.com/en-us/articles/intel-trusted-execution-technology

@@ -25,7 +25,7 @@ follow these steps:
   Marketplace tab when prompted to choose a Machine Image.
 - Search the marketplace for the SIMP AMI, and locate the official published
   SIMP AMI. You can also find the AMI by the following ID: ``ami-efbf8ef9``
-- Your ec2-instance should be **at least** ``t2.medium``, with 2 cpus and
+- Your ec2-instance should be **at least** ``t2.medium``, with 2 CPUs and
   4GB of memory. Less than 4GB of memory will significantly slow down the
   bootstrapping process, and might cause problems in the future. See the
   AWS documentation_ for details on instance sizes, and the Puppet
@@ -36,7 +36,7 @@ follow these steps:
   PuppetServer service (port 8140) is accessible from any Puppet agents that
   will connect to your SIMP Server.
 - Upon launching the instance you will be prompted to provide a key pair
-  that will be used to allow access to the system. you **must** provide a
+  that will be used to allow access to the system. You **must** provide a
   key that you have access to, as the key you provide will be the only key
   that you can log in to the instance with. The key will be automatically
   assigned to the ``ec2-user``.
