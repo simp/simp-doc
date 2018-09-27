@@ -30,3 +30,10 @@ tar --selinux --xattrs -czpvf simp_backup-$(date +%Y-%m-%d).tar.gz /etc/puppetla
 # WARNING: This will overwrite your current system files!
 tar --selinux --xattrs -C / -xzpvf simp_backup-<date>.tar.gz
 ```
+
+.. NOTE:: 
+  
+  This will not back up the data in the LDAP Server.  That must be done
+  seperately.  If after a restore clients can not connect to the LDAP server
+  make sure the BIND and SYNC passwords are set correctly.  See the
+  :ref:`LDAP_Troubleshooting` section for more information.

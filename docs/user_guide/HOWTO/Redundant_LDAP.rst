@@ -217,6 +217,8 @@ To remove an LDAP server, first remove the server from the
 from the Puppet master so they do not attempt to call it. Then remove relevant
 settings from its hiera.yaml file and run the Puppet agent.
 
+.. _LDAP_Troubleshooting:
+
 Troubleshooting
 ---------------
 
@@ -231,17 +233,29 @@ LDAP Administrator needs to perform this action. Refer to the
 :ref:`User_Management` chapter for more information on manipulating entries in
 LDAP.
 
-The example below shows the changes necessary to update the
-``simp_options::ldap::sync`` information in LDAP.
-
-Update ``simp_options::ldap::sync`` Information in LDAP Examples:
+The example below shows an example ldif used to update the
+sync user information in LDAP.
 
 .. code-block:: yaml
 
-  dn: cn=LDAPSync,ou=People,dc=your,dc=domain
+  dn: cn=LDAPSync,ou=Hosts,dc=your,dc=domain
   changetype: modify
   replace: userPassword
   userPassword: <Hash from simp_options::ldap::sync_hash>
+
+Likewise if the  bind password has changed in heira,  the
+``simp_options::ldap::bind_pw`` and ``simp_options::ldap::bind_hash`` in 
+the ``simp_config_settings.yaml`` file, the password must be updated
+in LDAP.  If it is not, the clients will not be able to connect to the
+LDAP server.   Use the following ldif to update the bind entry in LDAP:
+
+.. code-block:: yaml
+
+  dn: cn=hostAuth,ou=Hosts,dc=simp,dc=test
+  changetype: modify
+  replace: userPassword
+  userPassword: <Hash from simp_options::ldap::bind_hash>
+
 
 Further Information
 --------------------
