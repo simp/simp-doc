@@ -1,3 +1,9 @@
+* Wed Sep 26 2018 Michael Morrone <michael.morrone@onyxpoint.com>
+- Updated System minimum requirements
+- Changed prompts for root commands in User Guide to #
+- Added implementation details to Managing Local/Service Users
+- Removed Indices and tables from index pages
+
 * Mon Aug 13 2018 Jeanne Greulich <jeanne.greulich@onyxpoint.com>
 - Updated PXE boot instructions for UEFI.
 - Added section for 6.1.0 -> 6.2.0 upgrade for files that need to be updated.
