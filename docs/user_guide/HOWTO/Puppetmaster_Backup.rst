@@ -35,4 +35,5 @@ This section details the steps required to back up the Puppet master.
 .. NOTE::
 
   This will not back up the data in the LDAP Server.  That must be done
-  seperately.
+  separately.
+  
