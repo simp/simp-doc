@@ -26,7 +26,6 @@ with more commonly sought items towards the top.
   Discard Mail to Root <HOWTO/Discard_Mail_to_Root>
   Exclude YUM Repositories from Nightly Updates <HOWTO/Exclude_Repositories>
   Configure NFS <HOWTO/NFS>
-  Configure IPTables NAT Rules <HOWTO/IPTables_NAT_Rules>
   Configure SNMPD <HOWTO/SNMPD>
   Enable Kerberos <HOWTO/Kerberos>
   Manage Workstation Infrastructures <HOWTO/Managing_Workstation_Infrastructures>
