@@ -21,16 +21,14 @@ the upgrade.
    * This problem affects ISO/RPM-based installations of SIMP when
      upgrading from 6.1.0, unless precautions are taken (detailed below).
 
-   *  by :ref:`Exclude puppet-agent from the yum update<Alternate Name>`,
-
-   * SIMP installations that are upgraded using :term:`r10k` and :term:`Code
-     Manager are unlikely to be affected, unless the SIMP master's
-     `puppet-agent` package is updated independently.
+   * SIMP installations that are upgraded using :term:`r10k` and :term:`Code Manager`
+     are unlikely to be affected, unless the SIMP master's
+     ``puppet-agent`` package is updated independently.
 
    * These instructions only apply to the SIMP master—no changes are required on
      clients.
 
-#. Before upgrading anything, add the following line to `/etc/yum.conf`:
+#. Before upgrading anything, add the following line to ``/etc/yum.conf``:
 
    .. code-block:: ini
 
