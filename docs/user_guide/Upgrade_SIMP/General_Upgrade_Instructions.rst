@@ -28,9 +28,9 @@ should be short and painless.
 
 .. IMPORTANT::
 
-  Review any :ref:`ug-version-specific-upgrade-instructions` prior to executing
-  an Incremental Upgrade. There may be specific instructions regarding the
-  upgrade process that you should follow.
+   Review any :ref:`ug-version-specific-upgrade-instructions` prior to
+   executing an Incremental Upgrade. There may be specific instructions
+   regarding the upgrade process that you should follow.
 
 .. _ug-incremental-upgrades-w-yum
 
@@ -40,21 +40,22 @@ Incrementally upgrading an ISO installation
 If you built your SIMP server by :ref:`gsg-installing_simp_from_an_iso`,
 updating your entire local SIMP distribution should be as simple as:
 
-1. Copy the new SIMP's ISO file to the SIMP master
-2. From the SIMP master (as ``root``):
-  .. code-block:: sh
+#. Copy the new SIMP's ISO file to the SIMP master
+#. From the SIMP master (as ``root``):
 
-    # Unpack the new SIMP ISO's RPMs into yum repositories
-    unpack_dvd </path/to/ISO>
+   .. code-block:: sh
 
-    # Make sure yum picks up the new RPMs
-    yum clean all; yum makecache
+      # Unpack the new SIMP ISO's RPMs into yum repositories
+      unpack_dvd </path/to/ISO>
 
-    # Apply updates to the local master
-    yum update -y
+      # Make sure yum picks up the new RPMs
+      yum clean all; yum makecache
 
-    # Apply updated Puppet modules to the local master
-    puppet agent -t
+      # Apply updates to the local master
+      yum update -y
+
+      # Apply updated Puppet modules to the local master
+      puppet agent -t
 
 
 .. _ug-incremental-upgrades-w-yum
@@ -64,19 +65,20 @@ Incrementally upgrading a yum/RPM-based installation
 
 If you built your SIMP server by :ref:`gsg-installing_simp_from_a_repository`,
 
-1. Update your site's ``yum`` repositories with packages for the new version of
+#. Update your site's ``yum`` repositories with packages for the new version of
    SIMP.
-2. From the SIMP master (as ``root``):
-  .. code-block:: sh
+#. From the SIMP master (as ``root``):
 
-    # Make sure yum picks up the new RPMs
-    yum clean all; yum makecache
+   .. code-block:: sh
 
-    # Apply updates to the local master
-    yum update -y
+      # Make sure yum picks up the new RPMs
+      yum clean all; yum makecache
 
-    # Apply updated Puppet modules to the local master
-    puppet agent -t
+      # Apply updates to the local master
+      yum update -y
+
+      # Apply updated Puppet modules to the local master
+      puppet agent -t
 
 
 Incrementally upgrading systems using r10k or Code Manager

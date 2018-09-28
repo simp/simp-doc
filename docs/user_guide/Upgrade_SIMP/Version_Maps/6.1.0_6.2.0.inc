@@ -18,90 +18,91 @@ the upgrade.
 
 .. NOTE::
 
-  * This problem affects ISO/RPM-based installations of SIMP when
-    upgrading from 6.1.0, unless precautions are taken (detailed below).
+   * This problem affects ISO/RPM-based installations of SIMP when
+     upgrading from 6.1.0, unless precautions are taken (detailed below).
 
-  *  by :ref:`Exclude puppet-agent from the yum update<Alternate Name>`,
+   *  by :ref:`Exclude puppet-agent from the yum update<Alternate Name>`,
 
-  * SIMP installations that are upgraded using :term:`r10k` and :term:`Code
-    Manager are unlikely to be affected, unless the SIMP master's
-    `puppet-agent` package is updated independently.
+   * SIMP installations that are upgraded using :term:`r10k` and :term:`Code
+     Manager are unlikely to be affected, unless the SIMP master's
+     `puppet-agent` package is updated independently.
 
-  * These instructions only apply to the SIMP master—no changes are required on
-    clients.
+   * These instructions only apply to the SIMP master—no changes are required on
+     clients.
 
-1. Before upgrading anything, add the following line to `/etc/yum.conf`:
+#. Before upgrading anything, add the following line to `/etc/yum.conf`:
 
-  .. code-block:: ini
+   .. code-block:: ini
 
-    exclude=puppet-agent
+      exclude=puppet-agent
 
-  Assuming you aren't already using ``/etc/yum.conf`` to exclude other
-  packages, you can add this line automatically by running:
+   Assuming you aren't already using ``/etc/yum.conf`` to exclude other
+   packages, you can add this line automatically by running:
 
-  .. code-block:: sh
+   .. code-block:: sh
 
-    puppet resource file_line workaround path=/etc/yum.conf line='exclude=puppet-agent'
+      puppet resource file_line workaround path=/etc/yum.conf line='exclude=puppet-agent'
 
 
-2. Proceed with the upgrade as outlined in :ref:`ug-incremental-upgrades`,
+#. Proceed with the upgrade as outlined in :ref:`ug-incremental-upgrades`,
    up through the ``yum update``:
 
-  .. code-block:: sh
+   .. code-block:: sh
 
-    # (ISO Installations only:) Unpack the new ISO's RPMs into yum repositories
-    unpack_dvd </path/to/ISO>
+      # (ISO Installations only:) Unpack the new ISO's RPMs into yum repositories
+      unpack_dvd </path/to/ISO>
 
-    # Make sure yum picks up the new RPMs
-    yum clean all; yum makecache
+      # Make sure yum picks up the new RPMs
+      yum clean all; yum makecache
 
-    # Apply updates to the local master
-    yum update -y
+      # Apply updates to the local master
+      yum update -y
 
-3. After running ``yum update``, remove the ``exclude=puppet-agent`` line from `/etc/yum.conf`.
+#. After running ``yum update``, remove the ``exclude=puppet-agent`` line from `/etc/yum.conf`.
 
-  If you added the line using ``puppet resource``, you can remove it the same way:
+   If you added the line using ``puppet resource``, you can remove it the same way:
 
-  .. code-block:: sh
+   .. code-block:: sh
 
-     puppet resource file_line workaround path=/etc/yum.conf line='exclude=puppet-agent' ensure=absent
+      puppet resource file_line workaround path=/etc/yum.conf line='exclude=puppet-agent' ensure=absent
 
 
-4. Run ``puppet agent -t`` to upgrade the **puppet-agent** package
+#. Run ``puppet agent -t`` to upgrade the **puppet-agent** package
 
-5. Run ``puppet agent -t`` again to ensure that everything runs cleanly.
+#. Run ``puppet agent -t`` again to ensure that everything runs cleanly.
 
 
 .. admonition:: Recovering if the **puppeserver** fails to restart
 
-  If, during the upgrade, the ``puppetserver`` service fails to start with the
-  error:
+   If, during the upgrade, the ``puppetserver`` service fails to start with the
+   error:
 
-  .. code-block:: ini
+   .. code-block:: ini
 
-     Puppet::Error: Cannot determine basic system flavour
+      Puppet::Error: Cannot determine basic system flavour
 
-  You should be able to recover by running the command:
+   You should be able to recover by running the command:
 
-  .. code-block:: sh
+   .. code-block:: sh
 
-   puppet resource file /opt/puppetlabs/puppet/cache owner=puppet group=puppet
+      puppet resource file /opt/puppetlabs/puppet/cache owner=puppet group=puppet
 
-   # The service should now restart
-   puppet resource service puppetserver ensure=running
+      # The service should now restart
+      puppet resource service puppetserver ensure=running
 
-  After you have recovered in this manner, it is safe to proceed re-running the
-  step you had been attempting when the puppetserver failed.
+   After you have recovered in this manner, it is safe to proceed re-running
+   the step you had been attempting when the puppetserver failed.
 
 
 Update Kickstart Files
 ^^^^^^^^^^^^^^^^^^^^^^
 
-The example kickstart file (``pupclient_86_64.cfg``—see
-:ref:`Setting_Up_Kickstart`) was updated.  Existing kickstart files that are
-modeled on older versions of this file should backport these changes.  New,
-OS-specific versions of this file are included in the SIMP-6.2.0 ISOs, but may
-also be found in the `simp-core repository`_ under
+The example :term:`kickstart` file
+(``pupclient_86_64.cfg``—see :ref:`Setting_Up_Kickstart`)
+was updated.  Existing kickstart files that are modeled on older versions of
+this file should backport these changes.  New, OS-specific versions of this
+file are included in the SIMP-6.2.0 ISOs, but may also be found in the
+`simp-core repository`_ under
 ``build/distributions/<OS>/<OS Major Version>/<Architecture>/DVD/ks/``.
 
 .. IMPORTANT::
@@ -120,9 +121,9 @@ Two major changes were made:
 #. ``pupclient_86_64.cfg`` was updated to download and use new bootstrap service
    files.  These files, managed by ``simp::server::kickstart``, are:
 
-     - A ``systemd`` unit file for CentOS 7 (``simp_client_bootstrap.service``)
-       or a ``systemv`` init script for CentOS 6 (``simp_client_bootstrap``).
-     - A common bootstrap script (``bootstrap_simp_client``) used by both.
+   - A ``systemd`` unit file for CentOS 7 (``simp_client_bootstrap.service``)
+     or a ``systemv`` init script for CentOS 6 (``simp_client_bootstrap``).
+   - A common bootstrap script (``bootstrap_simp_client``) used by both.
 
    This pair of files replaces the deprecated ``runpuppet`` script. They
    are required in order to solve two timeout problems on particularly loaded
@@ -196,7 +197,7 @@ On a SIMP server, the example ``dhcpd.conf`` file is installed in
 Update the TFTP Root Directory
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-The default TFTP root directory was changed to ``/var/lib/tftpboot`` to
+The default :term:`TFTP` root directory was changed to ``/var/lib/tftpboot`` to
 conform to DISA STIG standards.  To continue using ``/tftpboot`` set
 ``tftpboot::tftpboot_root_dir`` in Hiera to ``/tftpboot``.  Alternately, to use
 the new directory, copy any files not managed by the ``rsync`` module (i.e., not
