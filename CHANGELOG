@@ -1,5 +1,6 @@
 * Fri Sep 28 2018 Jeanne Greulich <jeanne.greulich@onyxpoint.com>
 - Remove obsolete 'HOWTO Configure a Puppet Master behind a NAT'
+  and 'HOWTO Configure iptables NAT Rules'
 
 * Wed Sep 26 2018 Michael Morrone <michael.morrone@onyxpoint.com>
 - Updated System minimum requirements
