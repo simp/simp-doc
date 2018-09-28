@@ -148,10 +148,10 @@ the ``default.yaml``.
 
 .. code-block:: ruby
 
-  case $facts['hostname'] {
-    /^ws\d+.*/: { $hostgroup = 'workstation' }
-    default:    { $hostgroup = 'default'     }
-  }
+   case $facts['hostname'] {
+     /^ws\d+.*/: { $hostgroup = 'workstation' }
+     default:    { $hostgroup = 'default'     }
+   }
 
 
 The ``workstation.yaml`` file will include settings for all the workstations.
@@ -161,20 +161,20 @@ See  :ref:`Exporting Home Directories` for more information.
 
 .. code-block:: yaml
 
-  ---
+   ---
 
-  #Set the run level so it will bring up a graphical interface
-  simp::runlevel: 'graphical'
-  timezone::timezone: 'EST'
+   #Set the run level so it will bring up a graphical interface
+   simp::runlevel: 'graphical'
+   timezone::timezone: 'EST'
 
-  #Settings for home server. See HOWTO NFS for more info.
-  nfs::is_server: false
-  simp_nfs::home_dir_server: myhome.server.com
+   #Settings for home server. See HOWTO NFS for more info.
+   nfs::is_server: false
+   simp_nfs::home_dir_server: myhome.server.com
 
-  #The site::workstation manifest will do most of the work.
-  classes:
-    - site::workstation
-    - simp_nfs
+   #The site::workstation manifest will do most of the work.
+   classes:
+     - site::workstation
+     - simp_nfs
 
 
 Virtualization on User Workstations
@@ -233,9 +233,9 @@ To set specific :term:`swappiness` values use :term:`Hiera` as follows:
 
 .. code-block:: yaml
 
-  # Settings for swap for creating/running virtual machines
-  swap::high_swappiness: 80
-  swap::max_swappiness: 100
+   # Settings for swap for creating/running virtual machines
+   swap::high_swappiness: 80
+   swap::max_swappiness: 100
 
 Printer Setup
 ^^^^^^^^^^^^^
@@ -417,15 +417,15 @@ up the tunnel.
 
 #. On the workstation, type ``ssh -l vuser -L 590***<Port Number>*:localhost:590***<Port Number>***proxy.your.domain**``
 
-  .. NOTE::
+   .. NOTE::
 
-     This command takes the user to the proxy.
+      This command takes the user to the proxy.
 
 #. On the proxy, type ``ssh -l vuser -L 590***<Port Number>*:localhost:590***<Port Number>***vserv.your.domain**``
 
-  .. NOTE::
+   .. NOTE::
 
-     This command takes the user to the VNC server.
+      This command takes the user to the VNC server.
 
 Table: Set up SSH Tunnel Procedure
 

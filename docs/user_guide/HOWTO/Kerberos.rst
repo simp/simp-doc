@@ -52,10 +52,10 @@ user that is **probably** appropriate for your organization.
 
 .. code:: puppet
 
-  krb5_acl { "${facts['domain']}_admin":
-    principal       => "*/admin@${facts['domain']}",
-    operation_mask  => '*'
-  }
+   krb5_acl { "${facts['domain']}_admin":
+     principal       => "*/admin@${facts['domain']}",
+     operation_mask  => '*'
+   }
 
 Create Your Admin Principal
 """""""""""""""""""""""""""
@@ -68,13 +68,13 @@ Run the following command, as root, to create your principal:
 
 .. code:: bash
 
-  # /usr/sbin/kadmin.local -r YOUR.DOMAIN -q "addprinc <username>/admin"
+   # /usr/sbin/kadmin.local -r YOUR.DOMAIN -q "addprinc <username>/admin"
 
 You can now do everything remotely using this principal. Load it using:
 
 .. code:: bash
 
-  # /usr/bin/kinit <username>/admin
+   # /usr/bin/kinit <username>/admin
 
 Creating Host Principals
 ^^^^^^^^^^^^^^^^^^^^^^^^
@@ -90,7 +90,7 @@ following command:
 
 .. code:: bash
 
-  # /usr/sbin/kadmin.local -r YOUR.DOMAIN -q 'addprinc -randkey host/<fqdn>'
+   # /usr/sbin/kadmin.local -r YOUR.DOMAIN -q 'addprinc -randkey host/<fqdn>'
 
 Create Your Keytabs
 """""""""""""""""""
@@ -100,7 +100,7 @@ following command:
 
 .. code:: bash
 
-  # /usr/sbin/kadmin.local -r YOUR.DOMAIN -q 'ktadd -k <fqdn>.keytab host/<fqdn>'
+   # /usr/sbin/kadmin.local -r YOUR.DOMAIN -q 'ktadd -k <fqdn>.keytab host/<fqdn>'
 
 Propagate the Keytabs
 ^^^^^^^^^^^^^^^^^^^^^

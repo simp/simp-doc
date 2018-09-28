@@ -35,17 +35,17 @@ To allow a user to access a particular system, you need to use the
 
 .. code-block:: ruby
 
-  pam::access::rule { 'Allow the security group into the system':
-    users   => ['(security)'],
-    origins => ['ALL'],
-    comment => 'The core security team'
-  }
+   pam::access::rule { 'Allow the security group into the system':
+     users   => ['(security)'],
+     origins => ['ALL'],
+     comment => 'The core security team'
+   }
 
-  pam::access::rule { 'Allow bob into the system from the proxy only':
-    users   => ['bob'],
-    origins => ["proxy.${facts['domain']}"],
-    comment => 'Bob the proxied'
-  }
+   pam::access::rule { 'Allow bob into the system from the proxy only':
+     users   => ['bob'],
+     origins => ["proxy.${facts['domain']}"],
+     comment => 'Bob the proxied'
+   }
 
 Faillock
 --------
@@ -73,7 +73,7 @@ To determine if the account is locked, run the following on the LDAP server:
 
 .. code-block:: bash
 
-  # slapcat -a uid=<user>
+   # slapcat -a uid=<user>
 
 If you see ``pwdAccountLockedTime`` then the account is locked, and you will
 need to follow the instructions in :ref:`unlock-ldap-label` to unlock it.
@@ -104,7 +104,7 @@ The following should return the expected IP address for your system.
 
 .. code-block:: bash
 
-  $ dig +short system.my.domain
+   $ dig +short system.my.domain
 
 Testing a Reverse Lookup
 ~~~~~~~~~~~~~~~~~~~~~~~~
@@ -115,7 +115,7 @@ a valid alternate name.
 
 .. code-block:: bash
 
-  $ dig +short -x 1.2.3.4
+   $ dig +short -x 1.2.3.4
 
 PKI Issues
 ----------

@@ -31,9 +31,9 @@ To customize the SSH server, edit the parameters of ``ssh::server::conf`` using
 
 .. NOTE::
 
-    Unlike many SIMP modules, these customizations cannot be made
-    directly with a resource-style class declaration―they *must* be
-    made via automatic parameter lookup provided by Hiera or ENC.
+   Unlike many SIMP modules, these customizations cannot be made
+   directly with a resource-style class declaration―they *must* be
+   made via automatic parameter lookup provided by Hiera or ENC.
 
 In Hiera:
 

@@ -26,12 +26,10 @@ with more commonly sought items towards the top.
   Discard Mail to Root <HOWTO/Discard_Mail_to_Root>
   Exclude YUM Repositories from Nightly Updates <HOWTO/Exclude_Repositories>
   Configure NFS <HOWTO/NFS>
-  Configure IPTables NAT Rules <HOWTO/IPTables_NAT_Rules>
   Configure SNMPD <HOWTO/SNMPD>
   Enable Kerberos <HOWTO/Kerberos>
   Manage Workstation Infrastructures <HOWTO/Managing_Workstation_Infrastructures>
   Backup the Puppet Master <HOWTO/Puppetmaster_Backup>
-  Configure a Puppet Master behind a NAT <HOWTO/Puppet_Master_NAT>
   Disconnect PuppetDB from the Puppet Server <HOWTO/Disconnect_PuppetDB_from_Puppet_Server>
   Enable Redundent LDAP <HOWTO/Redundant_LDAP>
   Enroll hosts in an IPA domain <HOWTO/IPA_Clients>

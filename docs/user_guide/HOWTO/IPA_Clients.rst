@@ -33,9 +33,9 @@ Adding clients requires two steps:
 
    .. NOTE::
 
-     Using ``ipa-client-install`` on EL6 with FIPS mode is not currently
-     supported and will result in the following error message:
-     ``Cannot install IPA client in FIPS mode``
+      Using ``ipa-client-install`` on EL6 with FIPS mode is not currently
+      supported and will result in the following error message:
+      ``Cannot install IPA client in FIPS mode``
 
 
 Add Hosts to IPA

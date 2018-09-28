@@ -7,9 +7,9 @@ the following Hiera:
 
 .. code-block::  yaml
 
-  ---
-  simp::classes:
-    - '--ssh'
+   ---
+   simp::classes:
+     - '--ssh'
 
 SVCKill will *not* automatically kill sshd when you cease management
 of the module; it is whitelisted in the default ``svckill::ignore_default``
@@ -17,6 +17,6 @@ list. If you want svckill to kill running sshd processes, include:
 
 .. code-block::  yaml
 
-  ---
-  svckill::ignore:
-    - '--sshd'
+   ---
+   svckill::ignore:
+     - '--sshd'
