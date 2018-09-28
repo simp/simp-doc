@@ -17,12 +17,12 @@ M..F, twice every hour, in random intervals.
 
 .. code-block:: ruby
 
-  # Restrict puppet runs during working hours
-  pupmod::agent::cron::weekday: ['1-5']
-  pupmod::agent::cron::hour: ['9-17']
-  pupmod::agent::cron::minute: 'rand'
-  pupmod::agent::cron::run_timeframe: 60
-  pupmod::agent::cron::runs_per_timeframe: 2
+   # Restrict puppet runs during working hours
+   pupmod::agent::cron::weekday: ['1-5']
+   pupmod::agent::cron::hour: ['9-17']
+   pupmod::agent::cron::minute: 'rand'
+   pupmod::agent::cron::run_timeframe: 60
+   pupmod::agent::cron::runs_per_timeframe: 2
 
 For more information about timing parameters, refer to the
 ``pupmod::agent::cron`` class documentation.

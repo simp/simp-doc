@@ -11,29 +11,27 @@ This section details the steps required to back up the Puppet master.
    the Puppet master. If a different method is preferred, the user must install
    and configure it first.
 
-
-1. Backup **/etc/puppetlabs/puppet/ssl**
-2. Backup **/etc/puppetlabs/puppet**
-3. Backup **/var/simp**
-4. Backup **\`puppet config --section master print vardir\`/simp**
-5. *Optional:* Backup **/var/www**
+#. Backup **/etc/puppetlabs/puppet/ssl**
+#. Backup **/etc/puppetlabs/puppet**
+#. Backup **/var/simp**
+#. Backup **\`puppet config --section master print vardir\`/simp**
+#. *Optional:* Backup **/var/www**
 
 
 **Simple Full Backup Command**
 
 .. code-block:: bash
 
-  tar --selinux --xattrs -czpvf simp_backup-$(date +%Y-%m-%d).tar.gz /etc/puppetlabs /var/simp `puppet config --section master print vardir`/simp /var/www /var/simp
+   # tar --selinux --xattrs -czpvf simp_backup-$(date +%Y-%m-%d).tar.gz /etc/puppetlabs /var/simp `puppet config --section master print vardir`/simp /var/www /var/simp
 
 **Simple Full Restore Command**
 
 .. code-block:: bash
 
-  # WARNING: This will overwrite your current system files!
-  tar --selinux --xattrs -C / -xzpvf simp_backup-<date>.tar.gz
+   # WARNING: This will overwrite your current system files!
+   tar --selinux --xattrs -C / -xzpvf simp_backup-<date>.tar.gz
 
 .. NOTE::
 
-  This will not back up the data in the LDAP Server.  That must be done
-  separately.
-  
+   This will not back up the data in the LDAP Server.  That must be done
+   separately.

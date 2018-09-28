@@ -11,11 +11,11 @@ Create a user account based on the following example.
 
 .. code-block:: puppet
 
-  user { "foo":
-    uid   => <UID>,
-    gid   => <GID>,
-    shell => '/usr/libexec/openssh/sftp-server'
-  }
+   user { "foo":
+     uid   => <UID>,
+     gid   => <GID>,
+     shell => '/usr/libexec/openssh/sftp-server'
+   }
 
 Modify ``/etc/shells``
 ----------------------

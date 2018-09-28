@@ -18,16 +18,16 @@ SNMPD Configuration
 
 There are two primary configuration directories:
 
-  * ``/etc/snmp/simp_snmpd.d``
+* ``/etc/snmp/simp_snmpd.d``
 
-    * Files managed by ``puppet``
+  * Files managed by ``puppet``
 
-  * ``/etc/snmp/user_snmpd.d``
+* ``/etc/snmp/user_snmpd.d``
 
-    * Files not managed by ``puppet``
-    * Extended configurations should be placed here
-    * Settings in this directory will override settings in the ``simp_snmpd.d``
-      directory
+  * Files not managed by ``puppet``
+  * Extended configurations should be placed here
+  * Settings in this directory will override settings in the ``simp_snmpd.d``
+    directory
 
 ``snmptrapd`` is disabled by default.  The daemon can be enabled, but
 ``pupmod-simp-simp_snmpd`` will not configure it.  If you need to run
@@ -44,19 +44,19 @@ snmpd will listen on.
 
 .. NOTE::
 
-  ``simp_snmpd::agentaddress`` is an array of strings that should follow the
-  format defined in the man page for snmpd, under the ``LISTENING ADDRESS``
-  section.
+   ``simp_snmpd::agentaddress`` is an array of strings that should follow the
+   format defined in the man page for snmpd, under the ``LISTENING ADDRESS``
+   section.
 
 
 The following is an example agent address:
 
 .. code-block:: yaml
 
-  ---
-  simp_snmpd::agentaddress:
-    - upd:161
-    - tcp:%{facts.fqdn}:161
+   ---
+   simp_snmpd::agentaddress:
+     - upd:161
+     - tcp:%{facts.fqdn}:161
 
 
 If ``simp_options::firewall`` is turned on, ``pupmod-simp-simp_snmpd``  will
@@ -67,9 +67,9 @@ the ports.
 
 .. NOTE::
 
-  If the agent address is set in a conf file in the user directory, but not in
-  Hiera or in the simp_snmpd resource call, ``pupmod-simp-simp_snmpd`` will not
-  open the ports in the firewall.
+   If the agent address is set in a conf file in the user directory, but not in
+   Hiera or in the simp_snmpd resource call, ``pupmod-simp-simp_snmpd`` will not
+   open the ports in the firewall.
 
 
 Access
@@ -77,14 +77,14 @@ Access
 
 ``pupmod-simp-simp_snmpd`` configures ``SNMP v3``, with
 
-  * User-based Security Model (USM)
-  * View-based Access Control Model (VACM).
+* User-based Security Model (USM)
+* View-based Access Control Model (VACM).
 
 
 The profile module, by default, installs two users:
 
-  * ``snmp_ro`` is configured for read only access to system view
-  * ``snmp_rw`` is configured for read/write access to everything
+* ``snmp_ro`` is configured for read only access to system view
+* ``snmp_rw`` is configured for read/write access to everything
 
 User passwords are auto-generated and stored on the Puppet master in the
 passgen directory:
@@ -93,21 +93,19 @@ passgen directory:
 
 Access is configured by ``/etc/snmp/simp_snmpd.d/access.conf``
 
-  * To create the ``access.conf`` file, the profile modules uses a set of
-    hashes.
-  * The default hashes are in the ``data/common.yaml`` file.
-  * These hashes are merged with any hash you defined in the Hiera files on the
-    Puppet master.  Merging is described in
-    `Puppet docs <https://docs.puppet.com/puppet/4.10/hiera_merging.html>`_
-  * To remove something from the default hash add the name of object with no
-    keys
+* To create the ``access.conf`` file, the profile modules uses a set of hashes.
+* The default hashes are in the ``data/common.yaml`` file.
+* These hashes are merged with any hash you defined in the Hiera files on the
+  Puppet master.  Merging is described in
+  `Puppet docs <https://docs.puppet.com/puppet/4.10/hiera_merging.html>`_
+* To remove something from the default hash add the name of object with no keys
 
 .. NOTE::
 
-  To remove a user, or modify their password, the ``snmpusm`` utility must be
-  used, or remove ``/var/lib/net-simp`` and run ``puppet``.  Changing the
-  password in the hash or removing the keys will not change the password of an
-  existing user.
+   To remove a user, or modify their password, the ``snmpusm`` utility must be
+   used, or remove ``/var/lib/net-simp`` and run ``puppet``.  Changing the
+   password in the hash or removing the keys will not change the password of an
+   existing user.
 
 
 Example hashes used to create users, views, group and give access:
@@ -117,12 +115,12 @@ User Hash
 
 .. code-block:: yaml
 
-  simp_snmpd::v3_users_hash
-    username:
-      authtype: MD5|SHA
-      privtype: DES|AES
-      privpass: 'your priv password'
-      authpass: 'your auth password'
+   simp_snmpd::v3_users_hash
+     username:
+       authtype: MD5|SHA
+       privtype: DES|AES
+       privpass: 'your priv password'
+       authpass: 'your auth password'
 
 
 * If authtype or privtype is missing, it will use the modules ``$defauthtype``
@@ -135,10 +133,10 @@ View Hash
 
 .. code-block:: yaml
 
-  simp_snmpd::view_hash:
-    viewname:
-      included: [array of oids to include]
-      excluded: [array of oids to exclude]
+   simp_snmpd::view_hash:
+     viewname:
+       included: [array of oids to include]
+       excluded: [array of oids to exclude]
 
 
 * One or both of included, excluded needs to be specified.  Any number of OIDs
@@ -150,10 +148,10 @@ Group Hash
 
 .. code-block:: yaml
 
-  simp_snmpd::group_hash:
-    groupname:
-      model: The security model to use (default to defsecuritymodel)
-      secname: [array of user names to include in this group]
+   simp_snmpd::group_hash:
+     groupname:
+       model: The security model to use (default to defsecuritymodel)
+       secname: [array of user names to include in this group]
 
 
 * It does not verify the user exists
@@ -163,16 +161,16 @@ Access Hash
 
 .. code-block:: yaml
 
-  simp_snmpd::access _hash:
-    accessname:
-      vread: view to use for reading access (default none)
-      vwrite: view to use for write access (default none)
-      vnotify: view to use for notify (default none)
-      level:  priv|auth|noauth (default is defsecuritylevel)
-      model: the model to use (default is defsecuritymodel)
-      context: context to use (default "")
-      prefix:  prefix for the context exact| prefix (default exact)
-      groups: [array of groups to create this access for]
+   simp_snmpd::access _hash:
+     accessname:
+       vread: view to use for reading access (default none)
+       vwrite: view to use for write access (default none)
+       vnotify: view to use for notify (default none)
+       level:  priv|auth|noauth (default is defsecuritylevel)
+       model: the model to use (default is defsecuritymodel)
+       context: context to use (default "")
+       prefix:  prefix for the context exact| prefix (default exact)
+       groups: [array of groups to create this access for]
 
 
 * It does not verify the group exists
@@ -194,15 +192,15 @@ created, you can pass and empty hash and it will ignore that setting:
 
 .. code-block:: yaml
 
-  ---
-  simp_snmpd::v3_user_hash:
-   snmp_ro:
-   myuser:
-     authpass: 'HardToBreakPassword'
-     privpass: 'OtherPassword'
-  simp_snmpd::group:
-   readonly_group:
-     secname: myuser
+   ---
+   simp_snmpd::v3_user_hash:
+    snmp_ro:
+    myuser:
+      authpass: 'HardToBreakPassword'
+      privpass: 'OtherPassword'
+   simp_snmpd::group:
+    readonly_group:
+      secname: myuser
 
 
 * The above example will not create the snmp_ro user and add myuser. If the
@@ -222,13 +220,13 @@ snmpd utilities like snmpget, snmpset, snmpwalk. Set
 
 .. code-block:: yaml
 
-  simp_snmpd::manage_client: true
+   simp_snmpd::manage_client: true
 
 
 .. NOTE::
 
-  After installation, the default security model, level, authentication, and
-  privacy types will be configured.  No default passwords will be configured.
+   After installation, the default security model, level, authentication, and
+   privacy types will be configured.  No default passwords will be configured.
 
 
 Rsync MIBS and DLMODS
@@ -243,8 +241,8 @@ to the fully qualified path.
 
 .. NOTE::
 
-  The module will rsync the files to a ``MIBS`` directory under that path and
-  add the directory to the ``MIBS`` path.
+   The module will rsync the files to a ``MIBS`` directory under that path and
+   add the directory to the ``MIBS`` path.
 
 ``DLMODS`` are copied the same way as ``MIBS``, using the ``rsync_dlmod_dir``
 as the destination, creating a dlmod directory.  In order to load dlmods, you
@@ -257,11 +255,11 @@ Below is an example showing how to activate rsync of ``MIBS`` and ``dlmods``:
 
 .. code-block:: yaml
 
-  ---
-  simp_snmpd::rsync_dlmod: true
-  simp_snmpd::rsync_mibs: true
-  simp_snmpd::dlmods:
-    - mymodulename
+   ---
+   simp_snmpd::rsync_dlmod: true
+   simp_snmpd::rsync_mibs: true
+   simp_snmpd::dlmods:
+     - mymodulename
 
 
 .. _JIRA Bug Tracking: https://simp-project.atlassian.net/

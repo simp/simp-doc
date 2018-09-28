@@ -43,9 +43,9 @@ manifest space or in the `svckill::ignore` array in Hiera.
 
 .. NOTE::
 
-    The key is to declare the services and not set them to any other
-    option. By adding them to the manifest, the *svckill* module will
-    ignore them.
+   The key is to declare the services and not set them to any other
+   option. By adding them to the manifest, the *svckill* module will
+   ignore them.
 
 The example below demonstrates this in a manifest, assuming that the
 *keepmealive* service is added to the *chkconfig*.

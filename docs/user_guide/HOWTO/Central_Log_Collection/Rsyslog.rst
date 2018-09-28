@@ -42,8 +42,8 @@ The ``simp_rsyslog`` module uses the following parameters:
 
 .. code-block:: yaml
 
-  simp_rsyslog::default_logs     # A Hash of the default system logs to be collected
-  simp_rsyslog::log_collection   # Use this Hash to add logs to the default set
+   simp_rsyslog::default_logs     # A Hash of the default system logs to be collected
+   simp_rsyslog::log_collection   # Use this Hash to add logs to the default set
 
 There are also Booleans available to enable collection of certain logs, such as
 those from OpenLDAP. See the ``simp_rsyslog`` module for more details.
@@ -110,12 +110,12 @@ the values below can be overridden in ``default.yaml``:
 
 .. code-block:: yaml
 
-  simp_options::syslog::log_servers:
-    - 'logserver1.fullyqualified.domain'
-    - 'logserver2.fullyqualified.domain'
-  simp_options::syslog::failover_log_servers:
-    - 'failoverserver1.fullyqualified.domain'
-    - 'failoverserver2.fullyqualified.domain'
+   simp_options::syslog::log_servers:
+     - 'logserver1.fullyqualified.domain'
+     - 'logserver2.fullyqualified.domain'
+   simp_options::syslog::failover_log_servers:
+     - 'failoverserver1.fullyqualified.domain'
+     - 'failoverserver2.fullyqualified.domain'
 
 If you list more than one primary log server your logs will be forwarded to
 **all** of the log servers in the array.
@@ -151,18 +151,18 @@ similar :term:`Hiera` file to reach all clients:
 
 .. code-block:: yaml
 
-  #If using TLS
-  simp_rsyslog::forward_logs: true
-  rsyslog::enable_tls_logging: true
+   #If using TLS
+   simp_rsyslog::forward_logs: true
+   rsyslog::enable_tls_logging: true
 
 or
 
 .. code-block:: yaml
 
-  #If not using TLS
-  simp_rsyslog::forward_logs: true
-  rsyslog::pki: false
-  rsyslog::enable_tls_logging: false
+   #If not using TLS
+   simp_rsyslog::forward_logs: true
+   rsyslog::pki: false
+   rsyslog::enable_tls_logging: false
 
 Enable the Server
 -----------------
@@ -171,20 +171,20 @@ To set up the server enter the following in the server's :term:`Hiera` file:
 
 .. code-block:: yaml
 
-  # If using TLS
-  simp_rsyslog::is_server: true
-  simp_rsyslog::forward_logs: false
-  rsyslog::tls_tcp_server: true
+   # If using TLS
+   simp_rsyslog::is_server: true
+   simp_rsyslog::forward_logs: false
+   rsyslog::tls_tcp_server: true
 
 or
 
 .. code-block:: yaml
 
-  # If NOT using TLS
-  simp_rsyslog::is_server: true
-  simp_rsyslog::forward_logs: false
-  rsyslog::tcp_server: true
-  rsyslog::tls_tcp_server: false
+   # If NOT using TLS
+   simp_rsyslog::is_server: true
+   simp_rsyslog::forward_logs: false
+   rsyslog::tcp_server: true
+   rsyslog::tls_tcp_server: false
 
 After ``puppet`` has run on all the systems, the logs from the clients will be
 stored in ``/var/log/hosts/<client name>`` directory on the log server.
@@ -202,13 +202,13 @@ list. For example for a server using TLS:
 
 .. code-block:: yaml
 
-  simp_rsyslog::is_server: true
-  simp_rsyslog::forward_logs: true
-  rsyslog::tls_tcp_server: true
-  simp_options::syslog::log_servers:
-    - 'some-other-log-server.that.is.not.me'
-  simp_options::syslog::failover_log_servers:
-    - 'some-other-failover-server.that.is.not.me'
+   simp_rsyslog::is_server: true
+   simp_rsyslog::forward_logs: true
+   rsyslog::tls_tcp_server: true
+   simp_options::syslog::log_servers:
+     - 'some-other-log-server.that.is.not.me'
+   simp_options::syslog::failover_log_servers:
+     - 'some-other-failover-server.that.is.not.me'
 
 This will forward the server's own logs, and all received client logs, to the
 specified servers.
