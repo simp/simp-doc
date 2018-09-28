@@ -1,3 +1,5 @@
+.. _gsg-installing_simp_using_r10k_or_code_manager:
+
 Installing SIMP Using r10k or Code Manager
 ==========================================
 

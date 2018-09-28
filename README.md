@@ -1,14 +1,18 @@
 [![License](http://img.shields.io/:license-apache-blue.svg)](http://www.apache.org/licenses/LICENSE-2.0.html)
 [![Build Status](https://travis-ci.org/simp/simp-doc.svg)](https://travis-ci.org/simp/simp-doc)
 
+<!-- vim-markdown-toc GFM -->
+
 * [SIMP Documentation](#simp-documentation)
 * [Usage](#usage)
   * [Building the docs](#building-the-docs)
   * [Maintaining the data](#maintaining-the-data)
 * [Environment variables](#environment-variables)
-  * [`SIMP_CHANGELOG_PATH`](#simp_changelog_path)
-  * [`SIMP_BRANCH`](#simp_version)
+  * [`SIMP_CORE_PATH`](#simp_core_path)
+  * [`SIMP_BRANCH`](#simp_branch)
 * [Managing Sphinx prerequisites with `pip`](#managing-sphinx-prerequisites-with-pip)
+
+<!-- vim-markdown-toc -->
 
 ## SIMP Documentation
 

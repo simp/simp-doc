@@ -6,7 +6,93 @@ Upgrading from SIMP-6.1.0 to SIMP-6.2.0
 .. IMPORTANT::
 
    It is *highly recommended* that you read the information in this section
-   in its entirety.
+   in its entirety before upgrading.
+
+Exclude `puppet-agent` from the `yum update`
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+A bug (`SIMP-5021`_) was identified in SIMP 6.1.0 that will prevent the
+``puppetserver`` service from starting after the ``puppet-agent`` package is
+upgraded. The issue is fixed in 6.2.0, but special handling is necessary during
+the upgrade.
+
+.. NOTE::
+
+  * This problem affects ISO/RPM-based installations of SIMP when
+    upgrading from 6.1.0, unless precautions are taken (detailed below).
+
+  *  by :ref:`Exclude puppet-agent from the yum update<Alternate Name>`,
+
+  * SIMP installations that are upgraded using :term:`r10k` and :term:`Code
+    Manager are unlikely to be affected, unless the SIMP master's
+    `puppet-agent` package is updated independently.
+
+  * These instructions only apply to the SIMP master—no changes are required on
+    clients.
+
+1. Before upgrading anything, add the following line to `/etc/yum.conf`:
+
+  .. code-block:: ini
+
+    exclude=puppet-agent
+
+  Assuming you aren't already using ``/etc/yum.conf`` to exclude other
+  packages, you can add this line automatically by running:
+
+  .. code-block:: sh
+
+    puppet resource file_line workaround path=/etc/yum.conf line='exclude=puppet-agent'
+
+
+2. Proceed with the upgrade as outlined in :ref:`ug-incremental-upgrades`,
+   up through the ``yum update``:
+
+  .. code-block:: sh
+
+    # (ISO Installations only:) Unpack the new ISO's RPMs into yum repositories
+    unpack_dvd </path/to/ISO>
+
+    # Make sure yum picks up the new RPMs
+    yum clean all; yum makecache
+
+    # Apply updates to the local master
+    yum update -y
+
+3. After running ``yum update``, remove the ``exclude=puppet-agent`` line from `/etc/yum.conf`.
+
+  If you added the line using ``puppet resource``, you can remove it the same way:
+
+  .. code-block:: sh
+
+     puppet resource file_line workaround path=/etc/yum.conf line='exclude=puppet-agent' ensure=absent
+
+
+4. Run ``puppet agent -t`` to upgrade the **puppet-agent** package
+
+5. Run ``puppet agent -t`` again to ensure that everything runs cleanly.
+
+
+.. admonition:: Recovering if the **puppeserver** fails to restart
+
+  If, during the upgrade, the ``puppetserver`` service fails to start with the
+  error:
+
+  .. code-block:: ini
+
+     Puppet::Error: Cannot determine basic system flavour
+
+  You should be able to recover by running the command:
+
+  .. code-block:: sh
+
+   puppet resource file /opt/puppetlabs/puppet/cache owner=puppet group=puppet
+
+   # The service should now restart
+   puppet resource service puppetserver ensure=running
+
+  After you have recovered in this manner, it is safe to proceed re-running the
+  step you had been attempting when the puppetserver failed.
+
 
 Update Kickstart Files
 ^^^^^^^^^^^^^^^^^^^^^^
@@ -17,6 +103,13 @@ modeled on older versions of this file should backport these changes.  New,
 OS-specific versions of this file are included in the SIMP-6.2.0 ISOs, but may
 also be found in the `simp-core repository`_ under
 ``build/distributions/<OS>/<OS Major Version>/<Architecture>/DVD/ks/``.
+
+.. IMPORTANT::
+
+   Careful examination of ``pupclient_86_64.cfg`` is recommended, if you have
+   customized it for your site beyond token replacement. The latest version
+   contains a few subtle bug fixes, such as fixing an incorrect path that would
+   prevent UEFI systems from booting.
 
 Two major changes were made:
 
@@ -50,12 +143,6 @@ Two major changes were made:
    heavily-loaded Puppet master with requests. See the
    ``simp::server::kickstart::simp_client_bootstrap`` class for details.
 
-.. IMPORTANT::
-
-   Careful examination of ``pupclient_86_64.cfg`` is recommended, if you have
-   customized it for your site beyond token replacement. The latest version
-   contains a few subtle bug fixes, such as fixing an incorrect path that would
-   prevent UEFI systems from booting.
 
 Update dhcpd.conf
 ^^^^^^^^^^^^^^^^^
@@ -84,10 +171,10 @@ On a SIMP server, the example ``dhcpd.conf`` file is installed in
    Because the contents of the ``/var/simp/environments/simp/rsync/`` directory
    are pushed to remote systems, files ending with ``.rpmnew`` are deleted from
    the directory as part of the RPM deployment.
-   
+
    The commands below can be used to extract the new config file from the RPM,
    which can then be merged with the existing ``dhcpd.conf`` file.
-   
+
    #. Run ``$ rpm2cpio simp-rsync-6.2.1-0.el7.noarch.rpm |cpio -ir
       "*dhcpd.conf"``
 
@@ -144,3 +231,4 @@ You can easily identify OBE SIMP rules in ``/etc/logrotate.d`` by their
 
 .. _simp-core repository: https://github.com/simp/simp-core
 .. _simp-rsync-skeleton repository: https://github.com/simp/simp-rsync-skeleton
+.. _SIMP-5021: https://simp-project.atlassian.net/browse/SIMP-5021

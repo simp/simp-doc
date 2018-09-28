@@ -3,23 +3,15 @@
 Upgrading SIMP
 ==============
 
-SIMP follows Semantic Versioning 2.0.0 and has the following versioning
-structure: ``X.Y.Z``, where
-
-* ``X`` indicates breaking changes
-* ``Y`` indicates new features
-* ``Z`` indicates bug fixes.
-
 This section describes both the general, recommended upgrade procedures
-for ``X``, ``Y``, or ``Z`` releases, as well as any version-specific
-upgrade procedures.
+as well as any version-specific upgrade procedures.
 
 .. IMPORTANT::
 
    To minimize upgrade problems in your production environment, we
-   strongly recommend you
+   strongly recommend that you:
 
-   * Carefully read the Changelog for the version to which you are
+   * Carefully read the CHANGELOG for the SIMP version to which you are
      upgrading, as well as the Changelogs for any interim versions
      you are skipping over.
    * Test your upgrades in a development environment before deploying

@@ -1,33 +1,95 @@
-General Upgrade Instructions
-============================
+.. _ug-general-upgrade-instructions:
 
-Incremental Updates
--------------------
+General Upgrade Instructions
+----------------------------
+
+SIMP follows Semantic Versioning 2.0.0, using the Puppet modules' parameters as
+the "API" (in terms of compatibility).
+
+A SIMP release version (e.g., "|simp_version|") can be separated into three
+major numbers, in the format `X.Y.Z`:
+
+* ``X`` is the MAJOR release number, and indicates API-breaking changes
+* ``Y`` is the MINOR release number, and indicates the addition of features.
+* ``Z`` is the PATCH release number, and indicates backwards-compatible
+  changes, such as bug fixes and improvements.
+
+This section describes both the general, recommended upgrade procedures
+for ``X``, ``Y``, or ``Z`` releases.
+
+.. _ug-incremental-upgrades:
+
+Incremental Upgrades
+~~~~~~~~~~~~~~~~~~~~
 
 For ``Y`` and ``Z`` SIMP changes, you should feel comfortable dropping the changes
 directly into your test systems. The promotion cycle from test to production
 should be short and painless.
 
-For RPM-based systems, a simple ``yum update`` should suffice after adding the
-necessary packages to your site ``yum`` repositories. If you are using ``r10k``
-or Code Manager, you will need to work with the upstream Git repositories as
-appropriate for your workflow.
-
-.. NOTE::
-
-   If you started with an ISO installation, an easy way to get your entire
-   local SIMP distribution updated is to download the new SIMP ISO and run
-   ``unpack_dvd </path/to/ISO>``.
-
 .. IMPORTANT::
 
-   Be sure to review any version-specific upgrade instructions prior to
-   executing the incremental upgrade. Although this type of upgrade will
-   not contain any breaking changes, there may be specific instructions
-   that you should follow to facilitate the upgrade process.
+  Review any :ref:`ug-version-specific-upgrade-instructions` prior to executing
+  an Incremental Upgrade. There may be specific instructions regarding the
+  upgrade process that you should follow.
+
+.. _ug-incremental-upgrades-w-yum
+
+Incrementally upgrading an ISO installation
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+If you built your SIMP server by :ref:`gsg-installing_simp_from_an_iso`,
+updating your entire local SIMP distribution should be as simple as:
+
+1. Copy the new SIMP's ISO file to the SIMP master
+2. From the SIMP master (as ``root``):
+  .. code-block:: sh
+
+    # Unpack the new SIMP ISO's RPMs into yum repositories
+    unpack_dvd </path/to/ISO>
+
+    # Make sure yum picks up the new RPMs
+    yum clean all; yum makecache
+
+    # Apply updates to the local master
+    yum update -y
+
+    # Apply updated Puppet modules to the local master
+    puppet agent -t
+
+
+.. _ug-incremental-upgrades-w-yum
+
+Incrementally upgrading a yum/RPM-based installation
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+If you built your SIMP server by :ref:`gsg-installing_simp_from_a_repository`,
+
+1. Update your site's ``yum`` repositories with packages for the new version of
+   SIMP.
+2. From the SIMP master (as ``root``):
+  .. code-block:: sh
+
+    # Make sure yum picks up the new RPMs
+    yum clean all; yum makecache
+
+    # Apply updates to the local master
+    yum update -y
+
+    # Apply updated Puppet modules to the local master
+    puppet agent -t
+
+
+Incrementally upgrading systems using r10k or Code Manager
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+If you built/manage your SIMP server after
+:ref:`gsg-installing_simp_using_r10k_or_code_manager`, you will need to work
+with the upstream Git repositories as appropriate for your workflow.
+
+
 
 Breaking Changes
-----------------
+~~~~~~~~~~~~~~~~
 
 If the ``X`` version number has changed then you should expect **major**
 breaking changes to the way SIMP works. Please carefully read the Changelog and
@@ -44,11 +106,11 @@ New Server Creation and Client Migration
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 The recommended method for upgrading breaking changes is to create a new Puppet
-master and migrate your data and clients to it. This process follows the path
+Server and migrate your data and clients to it. This process follows the path
 of least destruction; we will guide you through how to back up the existing
-Puppet master, create a new server, and transfer your clients.
+Puppet server, create a new server, and transfer your clients.
 
-#. Set up a new Puppet master that will house your new SIMP environment.
+#. Set up a new Puppet server that will house your new SIMP environment.
 
    .. NOTE::
 
@@ -58,15 +120,15 @@ Puppet master, create a new server, and transfer your clients.
 
    .. IMPORTANT::
 
-      Do **NOT** destroy your old Puppet master until everything has been
+      Do **NOT** destroy your old Puppet server until everything has been
       successfully migrated and is in production under the new server.
 
 #. Consider vital services other than Puppet that are housed on your current
-   Puppet master node (e.g. DNS, DHCP, LDAP, custom kickstart, YUM, NFS, etc.).
+   Puppet server node (eg. DNS, DHCP, LDAP, custom kickstart, YUM, NFS, etc.).
    You may choose to keep many of these services running on your old Puppet
-   master node. Anything not preserved must be migrated to a new system.
+   server node. Anything not preserved must be migrated to a new system.
 
-Back up the Existing Puppet Master
+Back Up the Existing Puppet Server
 """"""""""""""""""""""""""""""""""
 
 Prior to any modifications to your infrastructure, we **highly** recommend
@@ -82,26 +144,26 @@ and follow the :ref:`gsg_iso_installation_options` or
 
 Follow the :ref:`Client_Management` guide, and set up services as needed.
 Remember, you can opt-out of any core services (DNS, DHCP, etc.)  you want your
-clients or old Puppet master to run! If you want the new Puppet master to run
-services the existing Puppet master ran, you may be able to use the backup of
+clients or old Puppet server to run! If you want the new Puppet server to run
+services the existing Puppet server ran, you may be able to use the backup of
 the ``rsync`` directories from the old system.
 
 .. WARNING::
 
    Do not blindly drop ``rsync`` (or other) materials from the old Puppet
-   master onto the new one. The required structures for these components may
+   server onto the new one. The required structures for these components may
    have changed.
 
 When you :ref:`ug-apply-certificates` you may wish to transfer client certs to
 the new server.  If you are using the FakeCA and still wish to preserve the
 certificates, follow the :ref:`ug-apply-certificates-official-certificates`
-guidance, and treat the existing Puppet master as your 'proper CA'.
+guidance, and treat the existing Puppet server as your 'proper CA'.
 
-Promote the New Puppet Master and Transfer Your Clients
+Promote the New Puppet Server and Transfer Your Clients
 """""""""""""""""""""""""""""""""""""""""""""""""""""""
 
-Follow the :ref:`ug-howto-change-puppet-masters` guide to begin integration
-of your new Puppet master into the existing environment.
+Follow the :ref:`ug-howto-change-puppet-servers` guide to begin integration
+of your new Puppet server into the existing environment.
 
 .. NOTE::
 
@@ -112,4 +174,4 @@ Retire the Old Puppet Server
 """"""""""""""""""""""""""""
 
 Once you have transferred the management of all your clients over to
-the new Puppet master, you may safely retire the old Puppet master.
+the new Puppet server, you may safely retire the old Puppet server.

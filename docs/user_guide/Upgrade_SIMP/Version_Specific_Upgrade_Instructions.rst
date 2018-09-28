@@ -1,3 +1,5 @@
+.. _ug-version-specific-upgrade-instructions:
+
 Version-Specific Upgrade Instructions
 =====================================
 
