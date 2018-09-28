@@ -6,13 +6,13 @@ Currently, only :term:`TPM` **1.2** and EL7 are supported.
 
 TPM features in SIMP:
 
-   * Taking ownership
-   * Enabling basic :term:`IMA` measuring
+  * Taking ownership
+  * Enabling basic :term:`IMA` measuring
 
-     * Setting custom IMA policy (broken)
+    * Setting custom IMA policy (broken)
 
-   * Enabling a TPM-based PKCS#11 interface
-   * Intel TXT and Trusted Boot
+  * Enabling a TPM-based PKCS#11 interface
+  * Intel TXT and Trusted Boot
 
 We do not support clearing ownership, EVM, or measured boot at this time.
 ``ima-evm-utils`` and kernel support are not available on SIMP platforms.
@@ -23,17 +23,17 @@ Requirements
 General Requirements:
 ^^^^^^^^^^^^^^^^^^^^^
 
-   * A host with a TPM 1.2 chip on the motherboard
-   * A legacy, non-UEFI bootloader
-   * A BIOS password (one should be required to enable the TPM)
-   * Easy physical access to the machine to enter the BIOS password
+  * A host with a TPM 1.2 chip on the motherboard
+  * A legacy, non-UEFI bootloader
+  * A BIOS password (one should be required to enable the TPM)
+  * Easy physical access to the machine to enter the BIOS password
 
 
 Trusted Boot Hardware Requirements:
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-   * A CPU with Intel Trusted Execution Technology (TXT)
-   * A chipset with Intel Trusted Execution Technology (TXT)
+  * A CPU with Intel Trusted Execution Technology (TXT)
+  * A chipset with Intel Trusted Execution Technology (TXT)
 
 
 Starting with TPM
@@ -83,8 +83,8 @@ Follow the steps below to enable and take ownership of the :term:`TPM`.
      tpm::ownership::advanced_facts: true
 
    .. NOTE::
-     The ``tpm_ownership`` type does not support clearing the TPM. The process
-     could possibly be destructive and has been left to be a manual process.
+      The ``tpm_ownership`` type does not support clearing the TPM. The process
+      could possibly be destructive and has been left to be a manual process.
 
 #. Run puppet
 
@@ -108,10 +108,10 @@ following:
 
 For more information about tboot in general, reference external documentation:
 
-*  https://fedoraproject.org/wiki/Tboot
-*  The ``tboot`` docs found in ``/usr/share/tboot-*/*``
-*  https://wiki.gentoo.org/wiki/Trusted_Boot
-*  https://software.intel.com/sites/default/files/managed/2f/7f/Config_Guide_for_Trusted_Compute_Pools_in_RHEL_OpenStack_Platform.pdf
+* https://fedoraproject.org/wiki/Tboot
+* The ``tboot`` docs found in ``/usr/share/tboot-*/*``
+* https://wiki.gentoo.org/wiki/Trusted_Boot
+* https://software.intel.com/sites/default/files/managed/2f/7f/Config_Guide_for_Trusted_Compute_Pools_in_RHEL_OpenStack_Platform.pdf
 
 
 Steps
@@ -203,7 +203,7 @@ reboots to be completely set up.
 
    .. code-block:: yaml
 
-     tpm::ima: true
+      tpm::ima: true
 
 #. Run puppet, then reboot.
 
@@ -212,8 +212,8 @@ Managing IMA policy
 ^^^^^^^^^^^^^^^^^^^
 
 .. WARNING::
-  This automated management of IMA policy is disabled for now. The policy 
-  generated tends to cause systems to become read only.
+   This automated management of IMA policy is disabled for now. The policy 
+   generated tends to cause systems to become read only.
 
 This module can also support modifying what files IMA watching by editing the
 ``/sys/kernel/security/ima/policy``. Reference the module source file, located
@@ -265,14 +265,14 @@ will stop changes to the filesystem if there is an issue detected.
    ``enforce``.
 
    .. NOTE::
-     In kernels above 4.0, we would opt for the ``log`` parameter instead of
-     ``enforce``. For now, ``enforce`` is all we have. Be aware, this may cause
-     your system not to boot.
+      In kernels above 4.0, we would opt for the ``log`` parameter instead of
+      ``enforce``. For now, ``enforce`` is all we have. Be aware, this may cause
+      your system not to boot.
 
    .. code-block:: bash
 
-     # puppet resource kernel_parameter ima_appraise ensure=present value=enforce
-     # # or add it to a puppet manifest
+      # puppet resource kernel_parameter ima_appraise ensure=present value=enforce
+      ## or add it to a puppet manifest
 
 #. Reboot.
 

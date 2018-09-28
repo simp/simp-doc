@@ -12,6 +12,7 @@ the `simp_logstash` profile module, particularly the acceptance tests in the
 
 Known Issues
 ------------
+
 #. Per Elasticsearch, you may have issues retaining existing data, when
    you upgrade from Elasticsearch 2.X to 5.X.  See the
    `Elasticsearch Upgrade Guide`_ for detailed instructions on how
@@ -229,71 +230,71 @@ are collocated on one host, ``es1.<your domain>``:
 
 .. code-block:: yaml
 
-  ---
-  # Add these settings to your Logstash node
+   ---
+   # Add these settings to your Logstash node
 
-  ## Set up Logstash ##
+   ## Set up Logstash ##
 
-  # Listen on unencrypted UDP for legacy network devices
-  #
-  simp_logstash::input::syslog::listen_plain_udp
-
-
-  # Send all output to the local Elasticsearch instance
-  #
-  simp_logstash::outputs :
-    - 'elasticsearch'
-
-  # Keep 30 days of logs
-  #
-  simp_logstash::clean::keep_days: '30'
-
-  ## Set up Elasticsearch ##
-
-  # Make this unique per cluster!  The elasticsearch service
-  # for the cluster will be named
-  #
-  #    elasticsearch-<cluster_name>
-  #
-  simp_elasticsearch::cluster_name : 'some_unique_cluster_name'
-
-  # The default value for simp_elasticsearch::bind_host assumes
-  # an Elasticsearch host only has one interface. If this is not
-  # true, set this to the appropriate value for each Elasticsearch
-  # host in your system.
-  #
-  simp_elasticsearch::bind_host : "%{::ipaddress}"
-
-  # This needs to be a list of *all* of the Elasticsearch nodes in the
-  # cluster, (including the host with Logstash and Elasticsearch).
-  # This is done to restrict communications to only trusted nodes
-  #
-  # Any node not entered here will not be connected to and will not
-  # be allowed to communicate with the cluster.
-  #
-  simp_elasticsearch::unicast_hosts :
-    - "es1.%{::domain}:9300"
-
-  # Add your Grafana hosts to the apache ACL.
-  simp_elasticsearch::http_method_acl :
-    'limits' :
-      'hosts' :
-        'grafana.%{::domain}' : 'defaults'
-
-  # Turn off client SSL verification *only* if you are connecting
-  # to Grafana.  Otherwise, the default setting of 'require'
-  # is best!
-  #
-  simp_elasticsearch::simp_apache::ssl_verify_client: 'none'
+   # Listen on unencrypted UDP for legacy network devices
+   #
+   simp_logstash::input::syslog::listen_plain_udp
 
 
-  ## Classes that you need to include for this setup
+   # Send all output to the local Elasticsearch instance
+   #
+   simp_logstash::outputs :
+     - 'elasticsearch'
 
-  classes:
-    - 'simp_elasticsearch'
-    - 'simp_logstash'
-    # Include this if you wish to auto-purge your Elasticsearch records
-    - 'simp_logstash::clean'
+   # Keep 30 days of logs
+   #
+   simp_logstash::clean::keep_days: '30'
+
+   ## Set up Elasticsearch ##
+
+   # Make this unique per cluster!  The elasticsearch service
+   # for the cluster will be named
+   #
+   #    elasticsearch-<cluster_name>
+   #
+   simp_elasticsearch::cluster_name : 'some_unique_cluster_name'
+
+   # The default value for simp_elasticsearch::bind_host assumes
+   # an Elasticsearch host only has one interface. If this is not
+   # true, set this to the appropriate value for each Elasticsearch
+   # host in your system.
+   #
+   simp_elasticsearch::bind_host : "%{::ipaddress}"
+
+   # This needs to be a list of *all* of the Elasticsearch nodes in the
+   # cluster, (including the host with Logstash and Elasticsearch).
+   # This is done to restrict communications to only trusted nodes
+   #
+   # Any node not entered here will not be connected to and will not
+   # be allowed to communicate with the cluster.
+   #
+   simp_elasticsearch::unicast_hosts :
+     - "es1.%{::domain}:9300"
+
+   # Add your Grafana hosts to the apache ACL.
+   simp_elasticsearch::http_method_acl :
+     'limits' :
+       'hosts' :
+         'grafana.%{::domain}' : 'defaults'
+
+   # Turn off client SSL verification *only* if you are connecting
+   # to Grafana.  Otherwise, the default setting of 'require'
+   # is best!
+   #
+   simp_elasticsearch::simp_apache::ssl_verify_client: 'none'
+
+
+   ## Classes that you need to include for this setup
+
+   classes:
+     - 'simp_elasticsearch'
+     - 'simp_logstash'
+     # Include this if you wish to auto-purge your Elasticsearch records
+     - 'simp_logstash::clean'
 
 Deploying Additional Elasticsearch Nodes
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -305,9 +306,9 @@ the following to your ``site.pp`` file for your environment.
 
 .. code-block:: ruby
 
-  if $trusted['certname'] =~ /es\d+\.your\.domain/ {
-    $hostgroup = 'elasticsearch'
-  }
+   if $trusted['certname'] =~ /es\d+\.your\.domain/ {
+     $hostgroup = 'elasticsearch'
+   }
 
 Then, ensure that a file called 'elasticsearch.yaml' is present in the
 ``/etc/puppetlabs/code/environments/simp/hieradata/hostgroups/``
@@ -315,22 +316,22 @@ directory and contains the following content.
 
 .. code-block:: yaml
 
-  ---
-  # All nodes running elasticsearch in your cluster should use
-  # these settings.
+   ---
+   # All nodes running elasticsearch in your cluster should use
+   # these settings.
 
-  simp_elasticsearch::cluster_name: 'some_unique_cluster_name'
+   simp_elasticsearch::cluster_name: 'some_unique_cluster_name'
 
-  # Remember, this must be the *complete* list of Elasticsearch nodes.
-  #
-  simp_elasticsearch::unicast_hosts :
-    - "es1.%{::domain}:9300"
-    - "es2.%{::domain}:9300"
-    - "es3.%{::domain}:9300"
-    - "es4.%{::domain}:9300"
+   # Remember, this must be the *complete* list of Elasticsearch nodes.
+   #
+   simp_elasticsearch::unicast_hosts :
+     - "es1.%{::domain}:9300"
+     - "es2.%{::domain}:9300"
+     - "es3.%{::domain}:9300"
+     - "es4.%{::domain}:9300"
 
-  classes:
-    - 'simp_elasticsearch'
+   classes:
+     - 'simp_elasticsearch'
 
 Make sure you point your clients to the Logstash server by setting the
 ``$simp_options::syslog::log_servers`` variable to the FQDN of the
@@ -387,20 +388,20 @@ settings.
 
 .. code-block:: yaml
 
-  ---
-  # Array of networks that are allowed to access your Grafana dashboard.
-  # Uses the standard SIMP 'simp_options::trusted_nets' semantics.
-  #
-  # In this case, instead of using the default of
-  # ``simp_options::trusted_nets``, we are allowing everyone in and
-  # trusting that Grafana will do properly authenticate users using
-  # the LDAP configured via the ``simp_options::ldap`` parameters.
+   ---
+   # Array of networks that are allowed to access your Grafana dashboard.
+   # Uses the standard SIMP 'simp_options::trusted_nets' semantics.
+   #
+   # In this case, instead of using the default of
+   # ``simp_options::trusted_nets``, we are allowing everyone in and
+   # trusting that Grafana will do properly authenticate users using
+   # the LDAP configured via the ``simp_options::ldap`` parameters.
 
-  simp_grafana::trusted_nets:
-    - 'ALL'
+   simp_grafana::trusted_nets:
+     - 'ALL'
 
-  classes:
-    - 'simp_grafana'
+   classes:
+     - 'simp_grafana'
 
 After your Puppet run, you should be able to connect to port ``8443`` on your
 Grafana host and authenticate with the administrative user.
@@ -454,13 +455,13 @@ to that group:
 
 .. code-block:: ruby
 
-  dn: cn=simp_grafana_viewers,ou=Group,dc=your,dc=domain
-  changetype: modify
-  add: memberUid
-  memberUid: <UID1>
-  memberUid: <UID2>
-  ...
-  memberUid: <UIDX>
+   dn: cn=simp_grafana_viewers,ou=Group,dc=your,dc=domain
+   changetype: modify
+   add: memberUid
+   memberUid: <UID1>
+   memberUid: <UID2>
+   ...
+   memberUid: <UIDX>
 
 More information on managing LDAP users can be found in the
 :ref:`User_Management` section.  Refer to the ``simp_grafana`` module for

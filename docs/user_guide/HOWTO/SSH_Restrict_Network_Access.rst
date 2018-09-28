@@ -16,13 +16,12 @@ networks or hosts from which you would like to connect.
 
 .. code:: yaml
 
-  ---
-  ssh::server::conf::trusted_nets :
-    - 1.2.3.4
-    - 10.1.2.0/24
-    - 192.168.0.0/16
+   ---
+   ssh::server::conf::trusted_nets :
+     - 1.2.3.4
+     - 10.1.2.0/24
+     - 192.168.0.0/16
 
 You can find more information on ``trusted_nets`` in the
 :ref:`List of Installation Variables` in the :ref:`gsg-advanced-configuration`
 section of the :ref:`gsg_index`.
-

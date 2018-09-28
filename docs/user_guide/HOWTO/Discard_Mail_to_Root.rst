@@ -9,9 +9,9 @@ The simplest method of discarding root's e-mail is to redirect it to
 ``/dev/null`` on the system using the following Puppet code.
 
 .. WARNING::
-  This is a **very** brute force approach and should only be used if you are
-  **absolutely sure** that you want to discard all of root's e-mail on your
-  systems.
+   This is a **very** brute force approach and should only be used if you are
+   **absolutely sure** that you want to discard all of root's e-mail on your
+   systems.
 
 .. code-block:: puppet
 

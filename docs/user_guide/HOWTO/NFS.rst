@@ -38,15 +38,15 @@ In :term:`EL` 7:
 
 .. code-block:: puppet
 
-  ---
-  autofs::autofs_package_ensure:  '5.0.7-56.el7'
+   ---
+   autofs::autofs_package_ensure:  '5.0.7-56.el7'
 
 In :term:`EL` 6
 
 .. code-block:: puppet
 
-  ---
-  autofs::autofs_package_ensure:  '5.0.5-122.el6'
+   ---
+   autofs::autofs_package_ensure:  '5.0.5-122.el6'
 
 
 This problem has been identified as bugs in autofs and are being publicly
@@ -197,12 +197,12 @@ Exporting Home Directories
 
 Utilize the SIMP profile module ``simp_nfs``:
 
-  #. ``simp_nfs``: Manages client and server configurations for managing NFS
-     home directories.
-  #. ``simp_nfs::create_home_dirs``: Optional hourly cron job that binds to a
-     :term:`LDAP` server, ``simp_options::ldap::uri`` by default, and creates a
-     NFS home directory for all users in the LDAP server. Also expires any home
-     directories for users that no longer exist in LDAP.
+#. ``simp_nfs``: Manages client and server configurations for managing NFS home
+   directories.
+#. ``simp_nfs::create_home_dirs``: Optional hourly cron job that binds to a
+   :term:`LDAP` server, ``simp_options::ldap::uri`` by default, and creates a
+   NFS home directory for all users in the LDAP server. Also expires any home
+   directories for users that no longer exist in LDAP.
 
 .. NOTE::
 
@@ -260,6 +260,7 @@ following the instructions in the previous section.
 
 Server
 ^^^^^^
+
 Create a manifest in the site module. In this example
 the manifest is called nfs_server.pp.
 

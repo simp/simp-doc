@@ -11,8 +11,8 @@ obtaining proper certificates from an official CA.
 
 .. WARNING::
 
-  The Fake CA is **not** hardware backed by default and should not be used for
-  sensitive cryptographic operations unless there is no other alternative
+   The Fake CA is **not** hardware backed by default and should not be used for
+   sensitive cryptographic operations unless there is no other alternative
 
 Each Puppet environment contains its own Fake CA and, therefore, you must know
 which environment is serving the systems that are having issues prior to
@@ -23,9 +23,9 @@ the active environment path.
 
 .. NOTE::
 
-  Just as with Puppet certificates, the time on your system must be correct and
-  your DNS must be fully functional. Check that these are correct before
-  proceeding.
+   Just as with Puppet certificates, the time on your system must be correct and
+   your DNS must be fully functional. Check that these are correct before
+   proceeding.
 
 For the remainder of this section, we will assume that the :term:`FQDN` of the
 system with issues is 'system.my.domain' and the LDAP server to which it is
@@ -42,19 +42,19 @@ Change directories to the *keydist* directory.
 
 .. code-block:: bash
 
-  # cd /var/simp/environments/`puppet config print environment`/site_files/pki_files/files/keydist
+   # cd /var/simp/environments/`puppet config print environment`/site_files/pki_files/files/keydist
 
 Validate the client system.
 
 .. code-block:: bash
 
-  # openssl verify -CApath cacerts system.my.domain/system.my.domain.pub
+   # openssl verify -CApath cacerts system.my.domain/system.my.domain.pub
 
 Validate the LDAP system.
 
 .. code-block:: bash
 
-  # openssl verify -CApath cacerts ldap.my.domain/ldap.my.domain.pub
+   # openssl verify -CApath cacerts ldap.my.domain/ldap.my.domain.pub
 
 If there are any issues, you may need to follow the steps in :ref:`Certificates` to generate
 new certificates for one or more of your hosts.
