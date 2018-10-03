@@ -1,3 +1,7 @@
+* Wed Oct 03 2018 Trevor Vaughan <tvaughan@onyxpoint.com>
+- Removed 'sudosh' information
+- Added 'tlog' information
+
 * Fri Sep 28 2018 Jeanne Greulich <jeanne.greulich@onyxpoint.com>
 - Remove obsolete 'HOWTO Configure a Puppet Master behind a NAT'
   and 'HOWTO Configure iptables NAT Rules'
