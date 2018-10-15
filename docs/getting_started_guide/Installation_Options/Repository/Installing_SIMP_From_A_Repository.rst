@@ -64,6 +64,7 @@ If you don't know what versions map together, please see the
    gpgcheck=1
    enabled=1
    gpgkey=https://raw.githubusercontent.com/NationalSecurityAgency/SIMP/master/GPGKEYS/RPM-GPG-KEY-SIMP
+          https://download.simp-project.com/simp/GPGKEYS/RPM-GPG-KEY-SIMP-6       
    sslverify=1
    sslcacert=/etc/pki/tls/certs/ca-bundle.crt
    metadata_expire=300
@@ -74,6 +75,7 @@ If you don't know what versions map together, please see the
    gpgcheck=1
    enabled=1
    gpgkey=https://raw.githubusercontent.com/NationalSecurityAgency/SIMP/master/GPGKEYS/RPM-GPG-KEY-SIMP
+          https://download.simp-project.com/simp/GPGKEYS/RPM-GPG-KEY-SIMP-6       
           https://yum.puppet.com/RPM-GPG-KEY-puppetlabs
           https://yum.puppet.com/RPM-GPG-KEY-puppet
           https://apt.postgresql.org/pub/repos/yum/RPM-GPG-KEY-PGDG-96
