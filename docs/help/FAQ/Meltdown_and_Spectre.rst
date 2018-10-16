@@ -11,7 +11,7 @@ systems.
 You can find additional information on the exploits at the
 `Meltdown Attack website`_.
 
-You find find additional information on how automatic system updates work in
+You find additional information on how automatic system updates work in
 SIMP by referring to the :ref:`ug-sa-ga-nightly-updates` section of the
 :ref:`simp-user-guide`.
 
