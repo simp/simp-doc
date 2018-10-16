@@ -9,12 +9,10 @@ python:
 # before_install: rm Gemfile.lock || true
 install:
   - pip install -q -r requirements.txt
-  # - bundle install
 
 jobs:
   include:
     - stage: Python unit tests
-      script: pytest -x --capture=no docs/conflib/changelog_test.py
     - script: pytest -x --capture=no docs/conflib/get_simp_version_test.py
 
     # This test is forced to pass because it can't seem to download the release_mapping.yaml
