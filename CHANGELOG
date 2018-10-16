@@ -1,3 +1,7 @@
+* Tue Oct 16 2018 Trevor Vaughan <tvaughan@onyxpoint.com>
+- Moved changelogs from `simp-core` into the project
+- Removed code to fetch changelogs from other repositories
+
 * Wed Oct 03 2018 Trevor Vaughan <tvaughan@onyxpoint.com>
 - Removed 'sudosh' information
 - Added 'tlog' information

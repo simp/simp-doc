@@ -22,7 +22,6 @@ sys.path.append(os.path.abspath(os.path.dirname(__file__)))
 from conflib.constants import *
 from conflib.get_simp_version import *
 from conflib.release_mapping import *
-from conflib.changelog import *
 
 # Pre-Build Manipulation Code
 
@@ -63,7 +62,6 @@ def setup(app):
 
     # write out dynamic content
     known_os_compat_content = known_os_compatibility_rst(simp_version_dict)
-    changelog_content = changelog_to_rst(simp_branch)
 
     for target_dir in target_dirs:
         target_dir = os.path.join(DOCSDIR, target_dir)
@@ -71,11 +69,7 @@ def setup(app):
         if not os.path.exists(target_dir):
             os.mkdir(target_dir)
 
-        changelog_dest = os.path.join(target_dir, CHANGELOG_TGT)
         known_os_compat_dest = os.path.join(target_dir, KNOWN_OS_COMPATIBILITY_TGT)
-
-        with open(changelog_dest, 'w') as f:
-            f.write(changelog_content)
 
         with open(known_os_compat_dest, 'w') as f:
             f.write(known_os_compat_content)
@@ -144,7 +138,14 @@ language = None
 
 # List of patterns, relative to source directory, that match files and
 # directories to ignore when looking for source files.
-exclude_patterns = ['_build', '**/*.inc']
+exclude_patterns = [
+    # Build artifacts
+    '_build',
+    # Files to be included in other files
+    '**/*.inc',
+    # Informational files
+    '**/README'
+]
 
 # Set a parameter that will strip out certain items that cause the build to be
 # slow. Should not be used for real documentation builds but is great for 90%

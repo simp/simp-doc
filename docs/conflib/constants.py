@@ -33,7 +33,6 @@ DEFAULT_SIMP_BRANCH = os.getenv('SIMP_BRANCH', 'master')
 LOCAL_SIMP_CORE_PATH = os.getenv('SIMP_CORE_PATH',
     os.path.abspath(os.path.join(ROOTDIR, '..', '..')))
 
-CHANGELOG_TGT = 'Changelog.rst'
 KNOWN_OS_COMPATIBILITY_TGT = 'Known_OS_Compatibility.rst'
 
 SIMP_INVALID_VERSION = '0.0.0'
