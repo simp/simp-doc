@@ -9,6 +9,11 @@ on individual policies that are set for your installation.
 
 The default complexity is enforced in both :term:`PAM` and :term:`LDAP`.
 
+.. WARNING::
+
+   This may be invalid based on which compliance profile you are enforcing if
+   you are using the :term:`SIMP Compliance Engine`.
+
 Complexity Rules
 ----------------
 
@@ -22,6 +27,7 @@ Complexity Rules
   * Must not be one of the last 24 passwords that you have used
 
 .. NOTE::
-  Locked out accounts **will** unlock automatically after 15 minutes for
-  non-root users and one minute for the root user.
+
+   Locked out accounts **will** unlock automatically after 15 minutes for
+   non-root users and one minute for the root user.
 
