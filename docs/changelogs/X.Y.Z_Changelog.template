@@ -1,0 +1,101 @@
+SIMP Community Edition (CE) X.Y.Z-Alpha
+=======================================
+
+.. raw:: pdf
+
+  PageBreak
+
+.. contents::
+  :depth: 2
+
+.. raw:: pdf
+
+  PageBreak
+
+This release is known to work with:
+
+  * CentOS 6.10 x86_64
+  * CentOS 7.0 1804 x86_64
+  * OEL 6.10 x86_64
+  * OEL 7.5 x86_64
+  * RHEL 6.10 x86_64
+  * RHEL 7.5 x86_64
+
+
+.. WARNING::
+
+   REALLY SUPER IMPORTANT STUFF GOES HERE
+
+Breaking Changes
+----------------
+
+.. todo::
+
+   ADD BREAKING CHANGES
+
+Significant Updates
+-------------------
+
+.. todo::
+
+   ADD SIGNIFICANT UPDATES
+
+Security Announcements
+----------------------
+
+.. todo::
+
+   ADD SECURITY ANNOUNCEMENTS
+
+RPM Updates
+-----------
+
+.. todo::
+
+   ADD RPM UPDATES
+
+Removed Modules
+---------------
+
+.. todo::
+
+   NOTE REMOVED MODULES
+
+pupmod-simp-igotremoved
+^^^^^^^^^^^^^^^^^^^^^^^
+
+* Some reason why I got removed
+
+
+Fixed Bugs
+----------
+
+.. todo::
+
+   NOTE BUGS FIXED
+
+pupmod-simp-igotfixed
+^^^^^^^^^^^^^^^^^^^^^
+
+* Information about what got fixed
+
+New Features
+------------
+
+.. todo::
+
+   NOTE FEATURES ADDED
+
+pupmod-simp-igotawesome
+^^^^^^^^^^^^^^^^^^^^^^^
+
+* Information about the new hotness
+
+Known Bugs
+----------
+
+.. todo::
+
+   NOTE KNOWN BUGS
+
+.. _file bugs: https://simp-project.atlassian.net
