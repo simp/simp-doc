@@ -32,7 +32,7 @@ should be short and painless.
    executing an Incremental Upgrade. There may be specific instructions
    regarding the upgrade process that you should follow.
 
-.. _ug-incremental-upgrades-w-yum
+.. _ug-incremental-upgrades-w-iso:
 
 Incrementally upgrading an ISO installation
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -58,7 +58,7 @@ updating your entire local SIMP distribution should be as simple as:
       puppet agent -t
 
 
-.. _ug-incremental-upgrades-w-yum
+.. _ug-incremental-upgrades-w-yum:
 
 Incrementally upgrading a yum/RPM-based installation
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -164,7 +164,7 @@ guidance, and treat the existing Puppet server as your 'proper CA'.
 Promote the New Puppet Server and Transfer Your Clients
 """""""""""""""""""""""""""""""""""""""""""""""""""""""
 
-Follow the :ref:`ug-howto-change-puppet-servers` guide to begin integration
+Follow the :ref:`ug-howto-change-puppet-masters` guide to begin integration
 of your new Puppet server into the existing environment.
 
 .. NOTE::
