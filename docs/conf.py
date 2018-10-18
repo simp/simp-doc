@@ -144,7 +144,9 @@ exclude_patterns = [
     # Files to be included in other files
     '**/*.inc',
     # Informational files
-    '**/README'
+    '**/README',
+    # Templates
+    '**/*.template'
 ]
 
 # Set a parameter that will strip out certain items that cause the build to be

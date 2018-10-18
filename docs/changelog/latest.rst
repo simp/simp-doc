@@ -14,10 +14,12 @@ SIMP Community Edition (CE) 6.3.0-Beta
 
 This release is known to work with:
 
-  * RHEL 6.10 x86_64
-  * RHEL 7.5 x86_64
   * CentOS 6.10 x86_64
   * CentOS 7.0 1804 x86_64
+  * OEL 6.10 x86_64
+  * OEL 7.5 x86_64
+  * RHEL 6.10 x86_64
+  * RHEL 7.5 x86_64
 
 
 .. WARNING::
@@ -59,12 +61,6 @@ pupmod-simp-freeradius
 * There was not enough time to get the ``freeradius`` components updated
   sufficiently for Puppet 5 prior to release. This module may reappear in
   future releases if there is significant demand.
-
-
-Security Updates
-----------------
-
-TBD
 
 Fixed Bugs
 ----------
