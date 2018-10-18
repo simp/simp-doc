@@ -26,7 +26,7 @@ Contents:
   :maxdepth: 2
 
   Quick Start <getting_started_guide/Just_Install>
-  Changelog <changelog/index>
+  changelogs/index
   Getting Started <getting_started_guide/index>
   User Guide <user_guide/index>
   Contributing to SIMP <contributors_guide/index>
