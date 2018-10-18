@@ -34,7 +34,7 @@ Obtaining the Required Packages
    invalidate processing logic.
 
    As such, it is now up to our users to download the correct version of the
-   components for their environment and ensure that any upgrates are carefully
+   components for their environment and ensure that any upgrades are carefully
    tested prior to being added to their environment.
 
 You will need to proceed to the vendor sites to obtain the required RPMs and
