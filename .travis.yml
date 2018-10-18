@@ -10,8 +10,6 @@ python:
 jobs:
   include:
     - stage: Python unit tests
-    - install:
-      - pip install -q -r requirements.txt
     - script: pytest -x --capture=no docs/conflib/get_simp_version_test.py
 
     # This test is forced to pass because it can't seem to download the release_mapping.yaml
