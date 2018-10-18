@@ -1,4 +1,5 @@
-* Tue Oct 16 2018 Trevor Vaughan <tvaughan@onyxpoint.com>
+* Thu Oct 18 2018 Trevor Vaughan <tvaughan@onyxpoint.com>
+- Added information regarding the removal of ELG packages from the ISO
 - Moved changelogs from `simp-core` into the project
 - Removed code to fetch changelogs from other repositories
 
