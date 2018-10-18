@@ -6,6 +6,7 @@ notifications:
   email: false
 python:
   - 2.7
+script: true
 
 jobs:
   include:
