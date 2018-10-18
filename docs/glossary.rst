@@ -632,7 +632,7 @@ Glossary of Terms
    System Integrity Management Platform
       A security framework that sits on top of :term:`RHEL` or :term:`CentOS`.
 
-   SIMP Compliance Engine:
+   SIMP Compliance Engine
       A SIMP component that adds the capability to evaluate your
       :term:`Puppet` code for compilance with a policy as well as enforcing
       that the code enacts the specified policy.
