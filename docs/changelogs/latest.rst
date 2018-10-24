@@ -51,8 +51,8 @@ RPM Updates
 ELG Stack
 ^^^^^^^^^
 
-* The rpms for Elasticsearch, Logstash and Grafana (ELG) will no longer be delivered with the
-  SIMP iso. Updates in the same major version of Elasticsearch and Logstash have
+* The application RPMs for Elasticsearch, Logstash and Grafana (ELG) will no longer be delivered
+  with the SIMP ISO. Updates in the same major version of Elasticsearch and Logstash have
   been shown to randomly corrupt data and are therefore too dangerous to potentially drop
   into upstream updates repos by default. Users must now download their own ELG packages
   from their preferred repositories
