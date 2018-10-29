@@ -13,25 +13,29 @@ the `simp_logstash` profile module, particularly the acceptance tests in the
 Known Issues
 ------------
 
-#. Per Elasticsearch, you may have issues retaining existing data, when
-   you upgrade from Elasticsearch 2.X to 5.X.  See the
-   `Elasticsearch Upgrade Guide`_ for detailed instructions on how
-   to safely upgrade, *before* you upgrade SIMP's :term:`ELG` stack.
-
-#. The current ``simp_grafana`` module, version 1.0.4, only works if
-   ``simp_options::ldap`` is set to ``true``.
+#. Per Elasticsearch, you may have issues retaining existing data during an
+   upgrade. See the official `Elasticsearch Upgrade Guide`_ for detailed
+   instructions on how to safely upgrade, *before* you upgrade your :term:`ELG`
+   stack.
 
 #. SIMP's Grafana dashboards have not been updated to work with the
    latest ELG stack.
 
-The ``simp_grafana`` and SIMP Grafana dashboard issues will be
-addressed in upcoming releases of these components.
-
 Obtaining the Required Packages
 -------------------------------
 
-Because SIMP's :term:`ELG` profile modules are optional components in the SIMP
-infrastructure, the ELG packages are not included in the SIMP distribution.
+.. IMPORTANT::
+
+   The SIMP ISO no longer ships with the ELG RPMs. We found that, over time,
+   upgrades from one Elasticsearch version to another, even within the same
+   major release, could cause irrecoverable data corruption.
+
+   Additionally, we found that minor updates to Logstash could occasionally
+   invalidate processing logic.
+
+   As such, it is now up to our users to download the correct version of the
+   components for their environment and ensure that any upgrades are carefully
+   tested prior to being added to their environment.
 
 You will need to proceed to the vendor sites to obtain the required RPMs and
 **put them in an accessible** :term:`YUM` **repository**. The SIMP modules were

@@ -402,6 +402,13 @@ Glossary of Terms
 
       See: `Kickstart <http://pykickstart.readthedocs.io/en/latest>`__
 
+   Meltdown
+      A hardware vulnerability affecting Intel x86 microprocessors, IBM POWER
+      processors, and some ARM-based microprocessors. It allows a rogue process
+      to read all memory, even when it is not authorized to do so.
+
+      Source: `Wikipedia: Meltdown (security vulnerability) <https://en.wikipedia.org/wiki/Meltdown_(security_vulnerability)>`__
+
    OpenSCAP
       The OpenSCAP project provides tools that are free to use anywhere you
       like, for any purpose. Availability of the code results in greater
@@ -625,6 +632,13 @@ Glossary of Terms
    System Integrity Management Platform
       A security framework that sits on top of :term:`RHEL` or :term:`CentOS`.
 
+   SIMP Compliance Engine
+      A SIMP component that adds the capability to evaluate your
+      :term:`Puppet` code for compilance with a policy as well as enforcing
+      that the code enacts the specified policy.
+
+      See: `SIMP Compliance Engine Repository <https://github.com/simp/pupmod-simp-compliance_markup>`__
+
    SIMP Server
       The first server that is built in a SIMP environment and the server that
       is expected to be the nexus of control for the managed infrastructure.
@@ -639,6 +653,12 @@ Glossary of Terms
      <ENVIRONMENTS DIRECTORY>/<ENVIRONMENT>/manifests.
 
      Source: `Puppet Documentation: Main manifest directory <https://puppet.com/docs/puppet/5.5/dirs_manifest.html>`__
+
+   Spectre
+      A vulnerability that affects modern microprocessors that perform branch
+      prediction.
+
+      Source: `Wikipedia: Spectre (security vulnerability) <https://en.wikipedia.org/wiki/Spectre_(security_vulnerability)>`__
 
    SFTP
    SSH File Transfer Protocol
