@@ -400,7 +400,7 @@ Glossary of Terms
       Automated installation procedure for Red Hat Linux and other Linux
       distributions.
 
-      See: `Kickstart <http://pykickstart.readthedocs.io/en/latest>`__
+      See: `Kickstart <https://pykickstart.readthedocs.io/en/latest/>`__
 
    Meltdown
       A hardware vulnerability affecting Intel x86 microprocessors, IBM POWER
