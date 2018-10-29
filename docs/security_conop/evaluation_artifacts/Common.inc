@@ -66,4 +66,4 @@ and EL 7 SIMP system:
    ``.M.......``,/var/lib/ntp,mode changed '0755' to '0750'
 
 
-.. _V-71849: http://rhel7stig.readthedocs.io/en/latest/high.html#v-71849-the-file-permissions-ownership-and-group-membership-of-system-files-and-commands-must-match-the-vendor-values-rhel-07-010010
+.. _V-71849: https://rhel7stig.readthedocs.io/en/latest/high.html#v-71849-the-file-permissions-ownership-and-group-membership-of-system-files-and-commands-must-match-the-vendor-values-rhel-07-010010

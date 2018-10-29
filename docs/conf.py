@@ -228,7 +228,10 @@ linkcheck_ignore = [
     r'^http[s]:\/\/github\.com\/search\?.*',
     # FIXME: Puppet is redirecting permanently instead of temporarily which
     # they need to fix
-    r'^http[s]:\/\/puppet.com\/docs\/.+\/latest\/.+'
+    r'^http[s]:\/\/puppet.com\/docs\/.+\/latest\/.+',
+    # FIXME: This site is currently dead
+    r'^http[s]:\/\/www.open-scap.org.*'
+
  ]
 
 # -- Options for HTML output ----------------------------------------------
