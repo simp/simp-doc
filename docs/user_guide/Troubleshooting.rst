@@ -11,4 +11,5 @@ How to troubleshoot common problems that occur when installing and using SIMP.
   Troubleshooting/My_Services_Are_Dying
   Troubleshooting/Why_Cant_I_Login
   Troubleshooting/PKI_Validation
+  Troubleshooting/Puppet_Issues
   Troubleshooting/Puppet_Certificate_Issues
