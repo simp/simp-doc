@@ -11,6 +11,7 @@ Possible warnings when running ``puppet``
    Puppet CAs (``pupmod::master::enable_ca: false``) will display a
    deprecation warning whenever ``puppet`` is run:
    ::
+   
        Warning: Setting ca is deprecated.
        (location: /opt/puppetlabs/puppet/lib/ruby/vendor_ruby/puppet/settings.rb:1169:in `issue_deprecation_warning')
 
