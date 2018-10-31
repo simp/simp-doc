@@ -6,7 +6,7 @@ Puppet Issues
 
 .. _ug-ts-puppet-depwarnings:
 
-Puppet Deprecation warnings
+Puppet Deprecation Warnings
 ---------------------------
 
 Puppet 5 has added deprecation warnings to several settings.  If one of these
