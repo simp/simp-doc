@@ -44,7 +44,7 @@ Disabling `all` Puppet deprecation warnings
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 If you are encountering an unavoidable deprecation warning and find it
-unacceptable, you can hide from your ``puppet`` runs by disabling `all`
+unacceptable, you can suppress such warnings during your ``puppet`` runs by disabling `all`
 deprecation warnings:
 
 .. WARNING::
