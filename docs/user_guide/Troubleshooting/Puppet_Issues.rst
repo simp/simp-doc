@@ -33,6 +33,7 @@ in a harmless—but unavoidable—deprecation warning whenever ``puppet`` is run
 on Puppet masters configured to `not` act as the Puppet CA
 (``pupmod::master::enable_ca: false``):
 ::
+
     Warning: Setting ca is deprecated.
     (location: /opt/puppetlabs/puppet/lib/ruby/vendor_ruby/puppet/settings.rb:1169:in 'issue_deprecation_warning')
 
