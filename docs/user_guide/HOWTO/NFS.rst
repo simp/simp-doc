@@ -319,7 +319,7 @@ the manifest is called nfs_server.pp.
      } else {
          nfs::server::export { 'share1':
          clients     => ['127.0.0.1'],
-         export_path => "${data_dir}/nfs/exports/home",
+         export_path => "${data_dir}/nfs/exports/share1",
          rw          => true,
          sec         => $sec,
          insecure    => true
