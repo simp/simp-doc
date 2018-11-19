@@ -8,12 +8,10 @@ From the Puppet, Inc. website:
 
 SIMP uses :term:`Hiera` to attempt to make configuration of the overall system easier
 for our end users by providing a simple, centralized, method for setting class
-parameters using `automatic parameter lookup`_ and as a method for
-`basic node classification`_.
+parameters using `automatic parameter lookup`_.
 
 It is **highly recommended** that you read the `Hiera Documentation`_ prior to
 jumping into using a SIMP system.
 
-.. _Hiera Documentation: https://docs.puppet.com/hiera/3.3/complete_example.html
-.. _automatic parameter lookup: https://docs.puppet.com/hiera/3.3/puppet.html#automatic-parameter-lookup
-.. _basic node classification: https://docs.puppet.com/hiera/3.3/puppet.html#assigning-classes-to-nodes-with-hiera-hierainclude
+.. _Hiera Documentation: https://puppet.com/docs/puppet/5.5/hiera.html
+.. _automatic parameter lookup: https://puppet.com/docs/puppet/5.5/hiera_automatic.html#looking-up-data-with-hiera

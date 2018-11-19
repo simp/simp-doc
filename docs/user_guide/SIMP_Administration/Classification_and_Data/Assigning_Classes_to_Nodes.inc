@@ -7,7 +7,7 @@ that looks for an array called ``classes`` in your hierarchy. It also looks for
 an array called ``class_exclusions``, which can be used to remove classes from
 the classes array. The classes that are included are the result of
 ``$classes - $class_exclusions``. If classes need to be added to all nodes, a
-``classes`` array could be added to the ``default.yaml`` in your hieradata,
+``classes`` array could be added to the ``default.yaml`` in your hiera data,
 like this:
 
 .. code-block:: yaml

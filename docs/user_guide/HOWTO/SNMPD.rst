@@ -97,7 +97,7 @@ Access is configured by ``/etc/snmp/simp_snmpd.d/access.conf``
 * The default hashes are in the ``data/common.yaml`` file.
 * These hashes are merged with any hash you defined in the Hiera files on the
   Puppet master.  Merging is described in
-  `Puppet docs <https://docs.puppet.com/puppet/4.10/hiera_merging.html>`_
+  `Puppet docs <https://puppet.com/docs/puppet/5.5/hiera_merging.html>`_
 * To remove something from the default hash add the name of object with no keys
 
 .. NOTE::

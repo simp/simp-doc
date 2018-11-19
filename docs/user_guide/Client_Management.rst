@@ -31,7 +31,7 @@ Add the Kickstart Server Profile
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 In the Puppet server-specific :term:`Hiera` file (by default located at
-``/etc/puppetlabs/code/environments/simp/hieradata/hosts/puppet.<your.domain>.yaml``),
+``/etc/puppetlabs/code/environments/simp/data/hosts/puppet.<your.domain>.yaml``),
 add the ``simp::server::kickstart`` class.
 
 .. code-block:: yaml

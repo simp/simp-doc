@@ -76,7 +76,7 @@ following settings in :term:`Hiera`:
      - LDAP
 
 Add the ``simp::server::ldap`` class into the yaml file for the LDAP server in
-Hiera, for example: ``hieradata/hosts/ldap_server1.your.domain.yaml``:
+Hiera, for example: ``data/hosts/ldap_server1.your.domain.yaml``:
 
 .. code-block:: yaml
 
@@ -109,7 +109,7 @@ Slave nodes can be configured via Hiera by setting
 replication id (RID) , and adding the ``simp::server::ldap``
 class. This will set up your redundant server using the defaults. To do these
 three things, add the following lines to the
-``hieradata/hosts/ldap_server2.your.domain.yaml`` file:
+``data/hosts/ldap_server2.your.domain.yaml`` file:
 
 .. code-block:: yaml
 
@@ -123,7 +123,7 @@ three things, add the following lines to the
 .. _URI:
 
 To make other clients aware of this server, add the redundant server's URI to
-lists of URIs in the ``hieradata/default.yaml`` file:
+lists of URIs in the ``data/default.yaml`` file:
 
 .. code-block:: yaml
 

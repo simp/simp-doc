@@ -482,7 +482,7 @@ Glossary of Terms
       inherent parameter validation as well as a better understanding of what
       function the data performs in classes.
 
-      See: `Language: Data Types <https://docs.puppet.com/puppet/4.9/lang_data_type.html>`__
+      See: `Language: Data Types <https://puppet.com/docs/puppet/5.5/lang_data_type.html>`__
 
    Puppetfile
       A Ruby file that contains references to Puppet modules.
