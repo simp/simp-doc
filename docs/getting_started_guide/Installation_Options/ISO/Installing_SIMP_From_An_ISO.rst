@@ -64,6 +64,11 @@ Install as follows:
         keys on the keyboard for a bit.  This will speed up the installation.
 
 #. When the installation is complete, the system will restart automatically.
+
+   .. NOTE::
+
+      * When the system boots it will show: "error on start module sha1 not found could not insert sha_256 [...]". This is expected and is a known issue with FIPS and RedHat, it is safe to ignore.
+
 #. Change the ``root`` user password
 
    a. At the console, log on as ``root`` and type the default password shown
