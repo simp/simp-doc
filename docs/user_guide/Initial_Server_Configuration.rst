@@ -81,11 +81,11 @@ method.
          config`` settings; can include additional settings related to ones
          you entered and other settings required for SIMP.
 
-      #. ``/etc/puppetlabs/code/environments/simp/hieradata/simp_config_settings.yaml``:
+      #. ``/etc/puppetlabs/code/environments/simp/data/simp_config_settings.yaml``:
          File containing global Hiera data relevant to SIMP clients and the SIMP
          server.
 
-      #. ``/etc/puppetlabs/code/environments/simp/hieradata/hosts/<server_fqdn>.yaml``:
+      #. ``/etc/puppetlabs/code/environments/simp/data/hosts/<server_fqdn>.yaml``:
          SIMP server host specific Hiera configuration.
 
 #. Type ``simp bootstrap``

@@ -31,11 +31,14 @@ stack, namely PAM and nsswitch. This scenario is useful for those who want
 to retain remote access to their machine while leaving virtually everything
 else untouched.
 
+These scenarios are defined in the pupmod-simp-simp module.  For more details
+refer to this module.
+
 .. NOTE::
 
    The SIMP or Puppet master is exempt from most of these settings, and will be
    using most features from the *simp* scenario by default. The SIMP server
    should only have services on it related to Puppet and systems management,
    and SIMP modules all work with all security features enabled. See the
-   ``puppet.your.domain.yaml`` in the ``hieradata/hosts`` directory for
+   ``puppet.your.domain.yaml`` in the ``data/hosts`` directory for
    details.
