@@ -291,19 +291,73 @@ located at
      }
    }
 
+Remote Access
+-------------
+
+This section describes how to install software on nodes
+to access the desktop remotely, X2GO and VNC.
+
+X2GO and Mate
+^^^^^^^^^^^^^
+
+Follow the instructions in `Install Extra Puppet Modules`_ to install
+the following puppet modules on the puppet server:
+
+- pupmod-simp-x2go
+- pupmod-simp-mate
+- pupmod-simp-gnome
+- pupmod-simp-dconf
+
+The x2go rpm and its dependencies have been included on the SIMP
+ISO in version 6.3 and later.  If you are not installing from the
+ISO you will need to enable the epel repo or download the rpms manually.
+
+To configure the x2go server on a system so it can be accessed remotely
+add the following in the server node's hiera data:
+
+.. code-block:: yaml
+
+  x2go::client: false
+  x2go::server: true
+
+  # Optional settings
+  x2go::server::agent_options:
+    '-clipboard': 'both'
+
+  classes:
+    - 'x2go'
+    - 'mate'
+
+To install the client on a system add the following in the client node's hiera
+data:
+
+.. code-block:: yaml
+
+  x2go::client: true
+  x2go::server: false
+
+  classes:
+    - 'x2go'
+
+The x2go client on the client node can then be used to access the server node
+with any user that has permission to log on.
+
+The documentation for how to configure the x2go client can be found on the `x2go wiki`_.
+
+.. _x2go wiki: https://wiki.x2go.org/doku.php
+
 VNC Setup
----------
+^^^^^^^^^
 
 :term:`Virtual Network Computing` (VNC) can be enabled to provide remote GUI
 access to systems.
 
 VNC Standard Setup
-^^^^^^^^^^^^^^^^^^
+""""""""""""""""""
 
-.. NOTE::
-
-   You must have the ``pupmod-simp-vnc`` RPM installed to use VNC on your
-   system!
+Follow the instructions in `Install Extra Puppet Modules`_ to install
+the following puppet modules on the puppet server:
+- pupmod-simp-vnc
 
 To enable remote access via VNC on the system, include ``vnc::server``
 in Hiera for the node.
@@ -347,7 +401,7 @@ for examples.
    additional details.
 
 VNC Through a Proxy
-^^^^^^^^^^^^^^^^^^^
+""""""""""""""""""
 
 The section describes the process to VNC through a proxy. This setup
 provides the user with a persistent VNC session.
