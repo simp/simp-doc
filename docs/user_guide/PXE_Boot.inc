@@ -31,6 +31,22 @@ Setting up Kickstart
 
 This section describes how to configure the kickstart server.
 
+#. Add the Kickstart Server Profile
+   -  In the Puppet server-specific :term:`Hiera` file (by default located at
+      ``/etc/puppetlabs/code/environments/simp/data/hosts/puppet.<your.domain>.yaml``),
+      add the ``simp::server::kickstart`` class.
+
+.. code-block:: yaml
+
+  ---
+  classes:
+    - simp::server::kickstart
+
+   -  This profile class adds management of ``bind_dns`` and ``named``, as well as sets up the
+      example provisioning script.
+
+   -  After adding the above class, run puppet: ``puppet agent -t``.
+
 #. Locate the following files in the ``/var/www/ks`` directory
 
    -  ``pupclient_x86_64.cfg``: Example client kickstart configuration script.
