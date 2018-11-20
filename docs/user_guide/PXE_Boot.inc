@@ -200,9 +200,8 @@ various files to model different systems.
      kickstart file needed.
 
      .. NOTE::
-
-     If using the default cfg files, know that they do not have the '_el[6,7]' 
-     tags at the end of their name.
+        If using the default cfg files, know that they do not have the '_el[6,7]' 
+        tags at the end of their name.
 
      .. code-block:: ruby
 
