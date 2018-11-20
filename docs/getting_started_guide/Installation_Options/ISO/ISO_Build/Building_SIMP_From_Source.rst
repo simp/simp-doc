@@ -34,7 +34,7 @@ Check out your desired branch of SIMP:
 
 .. code::
 
-   $ git checkout tags/6.1.0-0
+   $ git checkout tags/6.3.0-0
 
 * To check out an unstable SIMP release, check out the latest ``master``:
 
