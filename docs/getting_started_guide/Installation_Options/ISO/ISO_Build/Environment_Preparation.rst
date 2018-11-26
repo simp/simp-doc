@@ -42,23 +42,27 @@ install :term:`RVM` for your user.
 .. code-block:: bash
 
    $ gpg2 --keyserver hkp://keys.gnupg.net --recv-keys \
-       409B6B1796C275462A1703113804BB82D39DC0E3
-   $ \curl -sSL https://get.rvm.io | bash -s stable --ruby=2.4.1
+       409B6B1796C275462A1703113804BB82D39DC0E3 \
+       7D2BAF1CF37B13E2069D6956105BD0E739499BDB
+   $ \curl -sSL https://get.rvm.io | bash -s stable --ruby=2.4.4
    $ source ~/.rvm/scripts/rvm
+
 
 Set the Default Ruby
 ^^^^^^^^^^^^^^^^^^^^
 
-You'll want to use :term:`Ruby` 2.4.1 as your default :term:`RVM` for SIMP
+You will want to use :term:`Ruby` ``2.4.4`` as your default :term:`RVM` for SIMP
 development.
 
 .. code-block:: bash
 
-   $ rvm use --default 2.4.1
+   $ rvm use --default 2.4.4
 
 .. NOTE::
 
-   Once this is done, you can simply type ``rvm use 2.4.1``.
+   Once this is done, you can simply type ``rvm use 2.4.4``.
+
+
 
 Bundler
 ^^^^^^^
@@ -102,6 +106,11 @@ container or the ISO build may not work properly.
 
 To do this on a :term:`EL` system, set the following in
 ``/etc/sysconfig/docker-storage`` and restart the ``docker`` service.
+
+.. NOTE::
+
+   You will need to start and stop docker once before adding in this option or
+   the service will fail to start.
 
 .. code-block:: bash
 

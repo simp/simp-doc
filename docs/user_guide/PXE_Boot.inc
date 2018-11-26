@@ -31,6 +31,22 @@ Setting up Kickstart
 
 This section describes how to configure the kickstart server.
 
+#. Add the Kickstart Server Profile
+   -  In the Puppet server-specific :term:`Hiera` file (by default located at
+      ``/etc/puppetlabs/code/environments/simp/data/hosts/puppet.<your.domain>.yaml``),
+      add the ``simp::server::kickstart`` class.
+
+      .. code-block:: yaml
+
+         ---
+         classes:
+           - simp::server::kickstart
+
+   -  This profile class adds management of DHCP, DNS, the Kickstart service,
+      as well as the example provisioning script.
+
+   -  After adding the above class, run puppet: ``puppet agent -t``.
+
 #. Locate the following files in the ``/var/www/ks`` directory
 
    -  ``pupclient_x86_64.cfg``: Example client kickstart configuration script.
@@ -183,6 +199,10 @@ various files to model different systems.
      FIPS configuration.  Create a different Linux model file for each different
      kickstart file needed.
 
+     .. NOTE::
+        If using the default cfg files, know that they do not have the '_el[6,7]' 
+        tags at the end of their name.
+
      .. code-block:: ruby
 
         class site::tftpboot {
@@ -251,7 +271,7 @@ various files to model different systems.
           # For each system define what module you want to use by pointing
           # its MAC address to the appropriate model.  Note that the MAC
           # address is preceded by ``01-``.
-          tftpboot::assign_host { '01-aa-ab-ac-1d-05-11': model => 'el6_x86_64' }
+          tftpboot::assign_host { '01-aa-ab-ac-1d-05-11': model => 'el7_x86_64' }
           tftpboot::assign_host_efi { '01-aa-bb-cc-dd-00-11': model => 'el7_x86_64_efi' }
         }
 
@@ -282,7 +302,7 @@ various files to model different systems.
 #. Finally, make sure DHCP is set up correctly.  In SIMP 6.2 the example
    ``dhcpd.conf`` was updated to determine the appropriate boot loader file to
    use, depending upon the boot mode of the PXE client.  These changes are
-   needed if you booting UEFI systems.
+   needed if you are booting UEFI systems.
 
 For more information see the `RedHat 6 PXE`_ or `RedHat 7 PXE`_ Installation Guides.
 
