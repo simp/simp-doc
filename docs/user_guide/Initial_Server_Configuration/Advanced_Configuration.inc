@@ -25,7 +25,7 @@ be omitted because either they are unnecessary for a particular site
 configuration, or their defaults are appropriate. Also, please note
 that variables beginning with 'cli::' are only used internally by
 ``simp config``, itself.  The 'cli::' variables are written to
-``simp_conf.yaml``, but not persisted to any Puppet hieradata files.
+``simp_conf.yaml``, but not persisted to any Puppet hiera data files.
 
 .. IMPORTANT::
 
@@ -265,14 +265,14 @@ configurations.
 | Site Manifest |   'simp' environment to the user-selected scenario.          |
 |               | - If a host YAML file for the SIMP server does not already   |
 |               |   exist in                                                   |
-|               |   ``/etc/puppetlabs/code/environments/simp/hieradata/hosts`` |
+|               |   ``/etc/puppetlabs/code/environments/simp/data/hosts``      |
 |               |   does not already exist, ``simp config`` will create one    |
 |               |   from a SIMP template.                                      |
 |               | - Updates the SIMP server host YAML file with appropriate    |
 |               |   PuppetDB settings.                                         |
-|               | - Creates YAML file containing global hieradata relevant to  |
+|               | - Creates YAML file containing global data relevant to       |
 |               |   both the SIMP server and SIMP clients in the 'simp',       |
-|               |   environment, ``simp/hieradata/simp_config_settings.yaml``  |
+|               |   environment, ``simp/data/simp_config_settings.yaml``       |
 +---------------+--------------------------------------------------------------+
 | YUM           | - When the SIMP filesystem YUM repo from an ISO install      |
 |               |   exists (``/etc/yum.repos.d/simp_filesystem.repo``),        |

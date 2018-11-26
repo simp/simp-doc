@@ -495,7 +495,7 @@ the last full SIMP release.
 #. Verify ``puppet agent -t`` runs cleanly
 #. Verify no custom content is removed by the upgrade
    (e.g., ``environments/simp/modules/site/manifests``, content in
-   ``environments/simp/hieradata``)
+   ``environments/simp/data``)
 
 Verify SIMP server R10K install
 -------------------------------

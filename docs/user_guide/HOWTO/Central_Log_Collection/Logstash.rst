@@ -315,7 +315,7 @@ the following to your ``site.pp`` file for your environment.
    }
 
 Then, ensure that a file called 'elasticsearch.yaml' is present in the
-``/etc/puppetlabs/code/environments/simp/hieradata/hostgroups/``
+``/etc/puppetlabs/code/environments/simp/data/hostgroups/``
 directory and contains the following content.
 
 .. code-block:: yaml

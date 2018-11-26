@@ -258,7 +258,7 @@ various files to model different systems.
 
 #. Add the ``tftpboot`` site manifest on your puppet server node via
    :term:`Hiera`.  Create the file (or edit if it exists):
-   ``/etc/puppetlabs/code/environments/simp/hieradata/hosts/<tftp.server.fqdn>.yaml``.
+   ``/etc/puppetlabs/code/environments/simp/data/hosts/<tftp.server.fqdn>.yaml``.
    (By default the TFTP server is the same as your puppet server so it should
    exist.) Add the following example code to that yaml file.
 

@@ -16,14 +16,14 @@ LDAP and Apache.
 
 SIMP uses the ``pupmod-simp-pki`` module to help distribute infrastructure
 keypairs. The global variable, ``simp_options::pki`` determines what parts of
-the module are included.  It can be overridden in hieradata at several levels 
+the module are included.  It can be overridden in hiera data at several levels
 if different hosts or applications need to handle certificates differently.
 
 ``simp_options::pki`` can have one of three settings:
 
 #. ``simp`` -  Keypairs are distributed from a central location on the Puppet
-   master to the ``/etc/pki/simp/x509`` directory on the client. Any 
-   applications using them will then make a copy in 
+   master to the ``/etc/pki/simp/x509`` directory on the client. Any
+   applications using them will then make a copy in
    ``/etc/pki/simp_apps/<app name>/x509`` with the correct permissions for an
    application to use.
 #. ``true`` -  Applications on the clients will copy the keypairs from a local
