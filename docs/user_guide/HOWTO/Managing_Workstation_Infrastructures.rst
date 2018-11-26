@@ -294,10 +294,10 @@ located at
 Remote Access
 -------------
 
-This section describes how to install software on nodes
-to access the desktop remotely, X2GO and VNC.
+This section describes how to install x2go and :term:`VNC` software on nodes to
+access the desktop remotely.
 
-X2GO and Mate
+x2go and MATE
 ^^^^^^^^^^^^^
 
 Follow the instructions in `Install Extra Puppet Modules`_ to install
@@ -308,12 +308,12 @@ the following puppet modules on the puppet server:
 - pupmod-simp-gnome
 - pupmod-simp-dconf
 
-The x2go rpm and its dependencies have been included on the SIMP
-ISO in version 6.3 and later.  If you are not installing from the
-ISO you will need to enable the epel repo or download the rpms manually.
+The x2go :term:`RPM` and its dependencies have been included on the SIMP ISO in
+version 6.3 and later.  If you are not installing from the ISO you will need to
+enable the :term:`EPEL` repo or download the RPMs manually.
 
-To configure the x2go server on a system so it can be accessed remotely
-add the following in the server node's hiera data:
+To configure the x2go server on a system so it can be accessed remotely add the
+following in the target node's :term:`Hiera` data:
 
 .. code-block:: yaml
 
@@ -328,8 +328,8 @@ add the following in the server node's hiera data:
     - 'x2go'
     - 'mate'
 
-To install the client on a system add the following in the client node's hiera
-data:
+To install the client on a system, add the following in the client node's
+:term:`Hiera` data:
 
 .. code-block:: yaml
 
@@ -340,7 +340,7 @@ data:
     - 'x2go'
 
 The x2go client on the client node can then be used to access the server node
-with any user that has permission to log on.
+with any user that has permission to log on via :term:`SSH`.
 
 The documentation for how to configure the x2go client can be found on the `x2go wiki`_.
 
@@ -357,6 +357,7 @@ VNC Standard Setup
 
 Follow the instructions in `Install Extra Puppet Modules`_ to install
 the following puppet modules on the puppet server:
+
 - pupmod-simp-vnc
 
 To enable remote access via VNC on the system, include ``vnc::server``
