@@ -47,17 +47,11 @@ install :term:`RVM` for your user.
    $ \curl -sSL https://get.rvm.io | bash -s stable --ruby=2.4.4
    $ source ~/.rvm/scripts/rvm
 
-Allow your (non-root) user to run rvm
-
-.. code-block:: bash
-
-   $ sudo usermod -aG rvm <user>
-
 
 Set the Default Ruby
 ^^^^^^^^^^^^^^^^^^^^
 
-You'll want to use :term:`Ruby` 2.4.4 as your default :term:`RVM` for SIMP
+You will want to use :term:`Ruby` ``2.4.4`` as your default :term:`RVM` for SIMP
 development.
 
 .. code-block:: bash

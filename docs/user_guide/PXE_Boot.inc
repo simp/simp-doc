@@ -42,8 +42,8 @@ This section describes how to configure the kickstart server.
          classes:
            - simp::server::kickstart
 
-   -  This profile class adds management of ``bind_dns`` and ``named``, as well as sets up the
-      example provisioning script.
+   -  This profile class adds management of DHCP, DNS, the Kickstart service,
+      as well as the example provisioning script.
 
    -  After adding the above class, run puppet: ``puppet agent -t``.
 

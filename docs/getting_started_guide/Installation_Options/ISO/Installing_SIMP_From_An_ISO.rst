@@ -67,7 +67,9 @@ Install as follows:
 
    .. NOTE::
 
-      * When the system boots it will show: "error on start module sha1 not found could not insert sha_256 [...]". This is expected and is a known issue with FIPS and RedHat, it is safe to ignore.
+      When the system boots it will display: ``error on start module sha1 not
+      found could not insert sha_256 [...]``. This is expected and is a known
+      issue with FIPS and RedHat, it is safe to ignore.
 
 #. Change the ``root`` user password
 
