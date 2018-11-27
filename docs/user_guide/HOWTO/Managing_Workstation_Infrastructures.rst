@@ -328,6 +328,18 @@ following in the target node's :term:`Hiera` data:
     - 'x2go'
     - 'mate'
 
+.. NOTE::
+
+   MATE is used here for :term:`EL` 7 systems since x2go cannot yet process
+   GNOME 3 sessions natively with any kind of consistency. If using EL 6, GNOME
+   will be used.
+
+   Due to this difference, EL 7 servers should be connected to with MATE
+   selected as the target window manager and EL6 systems should be connected to
+   with GNOME selected as the target window manager.
+
+   For more details, see the `x2go wiki`__
+
 To install the client on a system, add the following in the client node's
 :term:`Hiera` data:
 
