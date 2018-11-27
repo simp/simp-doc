@@ -4,7 +4,7 @@ Certificate Management
 ----------------------
 
 This section describes the two different types of certificates used in a SIMP
-and provides links to further information.
+environment and provides links to further information.
 
 
 Puppet Certificates

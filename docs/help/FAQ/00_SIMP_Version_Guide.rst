@@ -17,11 +17,11 @@ following `Semantic Versioning 2.0.0`_.
 
 In short, this means (from the reference):
 
-| Given a version number `MAJOR.MINOR.PATCH`, increment the:
-|
-| #. MAJOR version when you make incompatible API changes
-| #. MINOR version when you add functionality in a backwards-compatible manner
-| #. PATCH version when you make backwards-compatible bug fixes
+Given a version number `MAJOR.MINOR.PATCH`, increment the:
+
+#. MAJOR version when you make incompatible API changes
+#. MINOR version when you add functionality in a backwards-compatible manner
+#. PATCH version when you make backwards-compatible bug fixes
 
 Top-Level SIMP for SIMP before 6.X
 ----------------------------------
@@ -32,10 +32,10 @@ Top-Level SIMP for SIMP before 6.X
 The top level SIMP version for SIMP releases prior to the 6.0.0 release have
 the following structure given the format `MAJOR.MINOR.PATCH`:
 
-| #. MAJOR version when the version of EL changes
-| #. MINOR version when you make incompatible API changes
-| #. PATCH version when you add functionality in a backwards-compatible manner
-| #. FIXES version when you make backwards-compatible bug fixes
+#. MAJOR version when the version of EL changes
+#. MINOR version when you make incompatible API changes
+#. PATCH version when you add functionality in a backwards-compatible manner
+#. FIXES version when you make backwards-compatible bug fixes
 
 
 The last releases mapped in this manner are as follows:

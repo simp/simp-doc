@@ -2,20 +2,20 @@ How to Manage a TPM Device with SIMP
 ====================================
 
 This document serves as a guide to enable and use TPM devices in SIMP.
-Currently, only :term:`TPM` **1.2** and EL7 are supported.
+Currently, both :term:`TPM` **1.2** and **2.0** are supported, but only on
+EL7 systems.
 
 TPM features in SIMP:
 
   * Taking ownership
+  * Enabling a TPM-based PKCS#11 interface
+  * Intel TXT and Trusted Boot
   * Enabling basic :term:`IMA` measuring
 
     * Setting custom IMA policy (broken)
 
-  * Enabling a TPM-based PKCS#11 interface
-  * Intel TXT and Trusted Boot
 
-We do not support clearing ownership, EVM, or measured boot at this time.
-``ima-evm-utils`` and kernel support are not available on SIMP platforms.
+We do not support clearing ownership or measured boot at this time.
 
 Requirements
 ------------
@@ -23,10 +23,14 @@ Requirements
 General Requirements:
 ^^^^^^^^^^^^^^^^^^^^^
 
-  * A host with a TPM 1.2 chip on the motherboard
+  * A host with a TPM 1.2 or 2.0 chip on the motherboard
   * A legacy, non-UEFI bootloader
   * A BIOS password (one should be required to enable the TPM)
   * Easy physical access to the machine to enter the BIOS password
+
+  .. NOTE::
+      A simulated or software TPM may be used; however, it may not be able
+      to perform all of the capabilities described.
 
 
 Trusted Boot Hardware Requirements:
@@ -39,27 +43,40 @@ Trusted Boot Hardware Requirements:
 Starting with TPM
 -----------------
 
-Follow the steps below to enable and take ownership of the :term:`TPM`.
-
-#. Ensure the system has a TPM by checking the ``has_tpm`` fact, the ``status``
-   section of the tpm structured fact, or by checking the sys path manually.
-   You can also look for the character device ``/dev/tpm0``.
+Ensure the system has a TPM.  This can be done by looking for the character
+device ``/dev/tpm0``, by checking the sys path manually, or by checking the
+``tpm`` or ``tpm2`` structured facts.  The lack of a ``/dev/tpm0`` device does
+not necessarily preclude a TPM, as a software TPM may be present.
 
    .. code-block:: bash
 
-      # facter -p has_tpm
-      true
+      # cat /sys/class/tpm/tpm0/device/active
+      1
+      # file /dev/tpm0
+      /dev/tpm0: character special (10/224)
       # facter -p tpm.status
       ...
       owned: 0,
       enabled: 1,
       active: 1,
       ...
-      # cat /sys/class/tpm/tpm0/device/active
-      1
-      # file /dev/tpm0
-      /dev/tpm0: character special (10/224)
+      # facter -p tpm2.tpm2_getcap.properties-variable.TPM_PT_PERSISTENT
+      ...
+      ownerAuthSet => "clear",
+      endorsementAuthSet => "clear",
+      lockoutAuthSet => "clear",
+      reserved1 => "clear",
+      disableClear => "clear",
+      inLockout => "clear",
+      tpmGeneratedEPS => "set",
+      reserved2 => "clear"
+      ...
 
+
+TPM 1.2
+^^^^^^^
+
+Follow the steps below to enable and take ownership of the :term:`TPM` **1.2**.
 
 #. A BIOS password must be set to make sure no third parties can boot the host.
    Please set the admin password and the user password in the BIOS. If there is
@@ -71,7 +88,7 @@ Follow the steps below to enable and take ownership of the :term:`TPM`.
    provided with the hardware.
 
 #. At this point, the SIMP TPM module can take over management of the device.
-   Add ``tpm`` to the host's hieradata according to the example below or use
+   Add ``tpm`` to the host's Hiera data according to the example below or use
    the ``tpm_ownership`` type directly.
 
    .. code-block:: yaml
@@ -88,8 +105,167 @@ Follow the steps below to enable and take ownership of the :term:`TPM`.
 
 #. Run puppet
 
-Enabling Trusted Boot (tboot)
------------------------------
+
+TPM 2.0
+^^^^^^^
+
+Follow the steps below to enable and take ownership of the :term:`TPM` **2.0**.
+
+#. A BIOS password must be set to make sure no third parties can boot the host.
+   Please set the admin password and the user password in the BIOS. If there is
+   an option to require password at boot time, enable it. Do not enable Intel
+   Platform Trust Technology (PTT) or Intel TXT at this time.
+
+#. Before a TPM can be accessed by the operating system, it must first be
+   enabled. This has to be done in the BIOS. Refer to the documentation
+   provided with the hardware.
+
+#. At this point, the SIMP TPM module can take over management of the device.
+   Add ``tpm2`` to the host's Hiera data according to the example below or use
+   the ``tpm_ownership`` type directly.
+
+   .. code-block:: yaml
+
+     classes:
+       - tpm2
+
+     tpm2::take_ownership: true
+     tpm2::ownership::owner: set
+     tpm2::ownership::lockout:  clear
+     tpm2::ownership::endorsement: set
+
+   The passwords will default to automatically generated passwords using
+   passgen. If you want to set them to specific passwords then set them in Hiera
+   using the following settings (it expects a minimum password length of 14 
+   characters):
+
+   .. code-block:: yaml
+
+     tpm2::ownership::owner_auth: 'MyOwnerPassword'
+     tpm2::ownership::lock_auth: 'MyLockPassword'
+     tpm2::ownership::endorsement_auth: 'MyEndorsePassword'
+
+   .. NOTE::
+      The ``tpm_ownership`` type does not support clearing the TPM. The process
+      could possibly be destructive and has been left to be a manual process.
+
+#. Run puppet
+
+
+Enable Basic IMA Measuring
+--------------------------
+
+This section assumes the previous section is complete, the TPM in the host is
+owned, and it is being managed with Puppet.
+
+IMA is a neat tool that hashes the contents of a system, and stores that hash in
+the TPM. IMA is a kernel-level tool, and needs a few kernel parameters and
+reboots to be completely set up.
+
+   .. NOTE::
+      The default configuration of this module updates EFI boot parameters if
+      they are present. If the system relies upon BIOS for boot, ensure there
+      is not an EFI grub.cfg or grub2.cfg present or the BIOS grub config file
+      will not be updated.
+
+IMA Appraisal
+^^^^^^^^^^^^^
+
+IMA appraisal is the process that actually measures the state of the files and
+will stop changes to the filesystem if there is an issue detected.
+
+#. Make sure ``/`` and ``/home`` are mounted with the ``i_version option``. They
+   are created by default with these options enabled.
+
+#. Modify the Hiera data and add the following class:
+
+   .. code-block:: bash
+
+     classes:
+       - ima::appraise
+
+#. Run Puppet to apply the policy changes to the system; the system will be
+   configured to reboot into ``ima_appraise`` mode ``fix``. Reboot the system.
+
+#. The files on the system must now be measured and recorded. In order to do
+   this, every file owned by root and included in the policy must be touched.
+   This step will take some time. Puppet will provide notification not to reboot
+   the system until the process is complete. Puppet will provide an
+   ``ima_appraise_enforce_reboot`` notification when the process is complete.
+
+#. Reboot the system again to set the ``ima_appraise`` to ``enforce`` mode.
+
+If the IMA appraisal needs to be performed again to update files after the
+system is in ``enforce`` mode, the following steps may be taken:
+
+#. Modify the Hiera data and add the following parameter:
+
+   .. code-block:: bash
+
+     ima::appraise::force_fixmode: true
+
+#. Run Puppet to apply the policy to the system. The system will be configured
+   to reboot into ``ima_appraise`` mode ``fix``. Reboot the system.
+
+#. Run the script ``ima_security_attr_update.sh``. The files will be measured
+   again and the values recorded; this will again take some time.
+
+   .. code-block:: bash
+
+      # /usr/local/bin/ima_security_attr_update.sh
+
+#. When the appraisal is complete, Puppet will provide an 
+   ``ima_appraise_enforce_reboot`` notification. Set the ``force_fixmode``
+   attribute in the Hiera data back to false, then run Puppet again and
+   reboot the system.
+
+   .. code-block:: bash
+
+     ima::appraise::force_fixmode: true
+
+
+IMA Appraisal Debugging Tips and Warnings
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+If you reboot and are getting SELinux errors or you do not have permissions
+to access your files then you probably forgot to set ``i_version`` on your
+mounts in ``/etc/fstab``.
+
+If you reboot and it won't load the ``initramfs`` then the ``dracut``
+update didn't run. You can fix this by rebooting without the ``ima`` kernel
+settings, running ``dracut -f`` and then rebooting in ``ima_appraise`` mode 
+``fix``.
+
+
+Managing IMA policy
+^^^^^^^^^^^^^^^^^^^
+
+This module can also support modifying which files IMA watches by editing the
+``/sys/kernel/security/ima/policy``. Reference the module source file, located
+at ``<environment path>/modules/ima/manifests/policy.pp`` for further
+details on what can and cannot be measured.
+
+.. WARNING::
+   The current RedHat implementation of IMA does not seem to work after
+   inserting our default policy (generated example in 
+   spec/files/default_ima_policy.conf). It causes the system to become
+   read-only, even though it is only using supported configuration elements.
+   The module will be updated soon with more sane defaults to allow for at least
+   the minimal amount of a system to be measured. A reboot will fix the issue,
+   but with a TPM you will have to enter the password again.
+
+#. Modify the Hiera data and add the following class:
+
+   .. code-block:: yaml
+
+     classes:
+       - ima::policy
+
+#. Run Puppet, then reboot.
+
+
+Enabling Trusted Boot (tboot) (TPM 1.2 Only)
+--------------------------------------------
 
 General Process
 ^^^^^^^^^^^^^^^
@@ -133,7 +309,7 @@ Steps
    platform. Place this binary on a webserver, on the host itself, or in a
    profile module. This cannot be distributed by SIMP for licensing reasons.
 
-#. Add the following settings to your hieradata for nodes that will be using
+#. Add the following settings to your Hiera data for nodes that will be using
    Trusted Boot. It is recommended to use a `hostgroup` for this.
 
    * ``tpm::tboot::sinit_name`` - The name of the binary downloaded in the previous step
@@ -185,95 +361,5 @@ Trusted Boot Debugging Tips and Warnings
    and updating those file will cause a system to boot into an untrusted state.
    Be careful updating the ``kernel`` packages and rebuilding the ``initramfs``
    (or running ``dracut``).
-
-
-Enable Basic IMA Measuring
---------------------------
-
-This section assumes the previous section is complete, the TPM in the host is
-owned, and it is being managed with Puppet.
-
-IMA is a neat tool that hashes the contents of a system, and stores that hash in
-the TPM. IMA is a kernel-level tool, and needs a few kernel parameters and
-reboots to be completely set up.
-
-#. Follow the above steps ensure the tpm is owned.
-
-#. Modify the hieradata and add just one line:
-
-   .. code-block:: yaml
-
-      tpm::ima: true
-
-#. Run puppet, then reboot.
-
-
-Managing IMA policy
-^^^^^^^^^^^^^^^^^^^
-
-.. WARNING::
-   This automated management of IMA policy is disabled for now. The policy 
-   generated tends to cause systems to become read only.
-
-This module can also support modifying what files IMA watching by editing the
-``/sys/kernel/security/ima/policy``. Reference the module source file, located
-at ``<environment path>/modules/tpm/manifests/ima/policy.pp`` for further
-details on what can and cannot be measured.
-
-.. WARNING::
-   Pushing poorly configured policy can result in a read-only system. A reboot
-   will fix the issue, but with a TPM you will have to enter the password again.
-   Be very careful not to push bad policy.
-   That being said, the module itself should generate proper policy and
-   simultaneously make it difficult to generate malformed policy.
-
-
-IMA Appraisal
-^^^^^^^^^^^^^
-
-IMA Appraisal is the process that actually measures the state of the file and
-will stop changes to the filesystem if there is an issue detected.
-
-#. Run puppet once with ``tpm::use_ima: true``, like it was set up earlier.
-
-#. Disable the puppet agent on the host.
-
-   .. code-block:: bash
-
-      # puppet agent --disable
-
-#. Make sure ``/`` and ``/home`` are mounted with the ``i_version option``. They
-   are created by default with these options enabled.
-
-#. Add the ``ima_appraise=fix`` kernel parameter temporarily.
-
-   .. code-block:: bash
-
-      # puppet resource kernel_parameter ima_appraise ensure=present value=fix
-
-#. Reboot.
-
-#. The files on the system must now be measured and saved. In order to do this,
-   every file owned by root and included in the policy must be touched. This
-   step will take some time.
-
-   .. code-block:: bash
-
-      # find / \( -fstype rootfs -o -fstype ext4 \) -type f -uid 0 -exec head -n 1 '{}' > /dev/null \;
-
-#. After that process finishes, set the ``ima_appraise`` kernel parameter to
-   ``enforce``.
-
-   .. NOTE::
-      In kernels above 4.0, we would opt for the ``log`` parameter instead of
-      ``enforce``. For now, ``enforce`` is all we have. Be aware, this may cause
-      your system not to boot.
-
-   .. code-block:: bash
-
-      # puppet resource kernel_parameter ima_appraise ensure=present value=enforce
-      ## or add it to a puppet manifest
-
-#. Reboot.
 
 .. _Intel Site: https://software.intel.com/en-us/articles/intel-trusted-execution-technology
