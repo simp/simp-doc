@@ -21,17 +21,18 @@ This release is known to work with:
   * RHEL 6.10 x86_64
   * RHEL 7.5 x86_64
 
+The flagship feature for SIMP 6.3.0 is full compatibility with Puppet 5 and
+Hiera 5.
 
-The overriding priority for SIMP 6.3.0 is interoperability with Puppet 5/Hiera 5.
+The versions of Puppet targeted are those delivered with Puppet Enterprise
+2018:
 
-Integration testing is done primarily with the versions of puppet that are delivered
-with Puppet Enterprise 2018:
+  * Puppet Server: 5.3.X
+  * Puppet Agent:  5.5.X
 
-  * Puppet Server  5.3.X
-  * Puppet Agent 5.5.X
-
-A much wider range of versions is used for unit and acceptance testing.  See the .gitlab.yml
-file in each module to see what versions it is tested under.
+A much wider range of versions is used for unit and acceptance testing.  See
+the ``.gitlab.yml`` file in each module to see what versions it has been tested
+against.
 
 .. WARNING::
 
@@ -39,26 +40,26 @@ file in each module to see what versions it is tested under.
    SIMP 6.2 release and can obtain commercial support if further Puppet 4
    support is required.
 
-   From this point on, all components are tested againt Puppet 5.
-
-   Puppet 4 might work but there are no guarantees over time.
+   From this point on, all components are tested againt Puppet 5 and Puppet 4
+   support may be removed from any module as a non-breaking change at any time.
 
 Breaking Changes
 ----------------
 
 Upgrading from Puppet 4 and earlier versions of :term:`Hiera` requires some
-preparation.  Please be sure to read the Upgrade Guide in its entirety.
+preparation. Please be sure to read :ref:`ug-upgrade-simp` carefully.
 
 :term:`Hiera` 5 is fully compatible with  Hiera 3.  However there have been some changes
 with the configuration to utilize new capabilities.
 
-* The hiera.yaml file which defines the hierarchy used to search for parameter values
-  has been moved to the environment level to utilize the ability to customize environments.
-* The default data directory has been renamed from ``hieradata`` to  ``data`` to
-  match hiera 5 conventions.
+* The ``hiera.yaml`` file which defines the hierarchy used to search for
+  parameter values has been moved to the environment level to utilize the
+  ability to have a unique ``hiera.yaml`` configuration per environment.
+* The default data directory has been renamed from ``hieradata`` to  ``data``
+  to match Hiera 5 conventions.
 
-You should review the  puppet documentation for `upgrading to Hiera 5`_ to see how to
-upgrade any custom modules or backends that you have created.
+You should review the puppet documentation for `upgrading to Hiera 5`_ to see
+how to upgrade any custom modules or backends that you have created.
 
 .. _upgrading to Hiera 5: https://puppet.com/docs/puppet/5.5/hiera_migrate.html
 
@@ -68,26 +69,34 @@ Significant Updates
 
 puppet-simp-tlog
 ^^^^^^^^^^^^^^^^
-Sudosh has been replaced by TLOG as the default for logging privileged
-user activities.  The default command for a user to switch to privileged access is now:
+
+:term:`Sudosh` has been replaced by :term:`Tlog` as the default for logging
+privileged user activities.  The default command for a user to switch to
+privileged access is now:
 
 .. code-block:: bash
 
-  sudo su - root
+   sudo su - root
 
 Package Installation Settings
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-Several of the SIMP modules have been updated to use
-the simp_options::package_ensure setting as the default for package resource
-ensure state.  The default for simp_options::package_ensure is `installed`.
-This will change the default behavior of some modules that were
-hard-coded to `latest`. This will not affect anything that was explicitly
-set.
 
-This change makes the SIMP modules consistent and allows the administrator
-to set the default across the system with one variable.  Also, by setting the default
-to `installed` packages will be updated only if the administrator
-has explicitly set the variable to `latest` ensuring there are no surprise updates.
+Several of the SIMP modules have been updated to use the
+``simp_options::package_ensure`` setting as the default for package resource
+ensure state.  The default for ``simp_options::package_ensure`` is `installed`.
+This will change the default behavior of some modules that were previously
+hard-coded to `latest`. This will not affect anything that was explicitly set.
+
+This change makes the SIMP modules consistent and allows the administrator to
+set the default across the system with one variable.  Also, by setting the
+default to `installed` packages will be updated only if the administrator has
+explicitly set the variable to `latest`.
+
+.. NOTE::
+
+   This does **not** affect the nightly cron job that updates all packages on
+   the system and it is recommended that you change this to ``latest`` and rely
+   on prudent repository management.
 
 The following modules were updated:
 
@@ -115,9 +124,10 @@ The following modules were updated:
 * pupmod-simp-vsftpd
 * pupmod-simp-xinetd
 
-Oracle-Linux
-^^^^^^^^^^^^
-The testing of the modules on Oracle Linux was expanded and automated.
+Oracle Enterprise Linux
+^^^^^^^^^^^^^^^^^^^^^^^
+The testing of the modules on Oracle Enteprise Linux was expanded and
+automated.
 
 RPM Updates
 -----------
@@ -125,11 +135,12 @@ RPM Updates
 ELG Stack
 ^^^^^^^^^
 
-The application RPMs for Elasticsearch, Logstash and Grafana (ELG) will no longer
-be delivered with the SIMP ISO. Updates in the same major version of Elasticsearch
-and Logstash have been shown to randomly corrupt data and are therefore too dangerous
-to potentially drop into upstream updates repositories by default. Users must now download
-their own ELG packages from their preferred repositories
+The application RPMs for :term:`Elasticsearch`, :term:`Logstash`, and
+:term:`Grafana` will no longer be delivered with the SIMP ISO.
+Updates in the same major version of Elasticsearch and Logstash have been shown
+to randomly corrupt data and are therefore too dangerous to potentially drop
+into upstream repositories by default. Users must now download their own
+:term:`ELG` packages.
 
 Removed Modules
 ---------------
@@ -151,8 +162,8 @@ Fixed Bugs
 
 pupmod-simp-auditd
 ^^^^^^^^^^^^^^^^^^
-* Revert back to using the native service provider for the auditd service since
-  puppet fixed the service handling.
+
+* Revert back to using the native service provider for the auditd service
 * Allow users to opt-out of hooking the audit dispatchers into the SIMP rsyslog
   module using `auditd::config::audisp::syslog::rsyslog = false` or,
   alternatively, setting `simp_options::syslog = false`.
@@ -167,11 +178,13 @@ pupmod-simp-auditd
 
 pupmod-simp-nfs
 ^^^^^^^^^^^^^^^
+
 * Allow users to set the 'ensure' state of their client mount points in
   case they don't want them to be mounted by default.
 
 pupmod-simp-rsyslogd
 ^^^^^^^^^^^^^^^^^^^^
+
 * Updated templates to use RainerScript for rsyslogd V8 and later
 * Fixed the MainMsgQueueDiscardMark and MainMsgQueueWorkerThreads
   parameters
@@ -215,6 +228,7 @@ pupmod-simp-simp_rsyslog
 
 pupmod-simp-simplib
 ^^^^^^^^^^^^^^^^^^^
+
 * Fixed bug where uid_min would throw errors under operating systems
   without /etc/login.defs.
 * Fixed bug where simplib_sysctl would throw an undefined method error
@@ -225,10 +239,12 @@ pupmod-simp-simplib
 
 pupmod-simp-ssh
 ^^^^^^^^^^^^^^^
+
 * Hardened all ssh_host_* keys for security and compliance
 
 pupmod-simp-sudo
 ^^^^^^^^^^^^^^^^
+
 * Enable support for Default of `cmnd` type in sudoers file.
 
 pupmod-simp-svckill
@@ -237,6 +253,7 @@ pupmod-simp-svckill
 
 rubygem_simp_cli
 ^^^^^^^^^^^^^^^^
+
 * Updated 'simp config' to support environment-specific :term:`Hiera` 5
   configuration provided by SIMP-6.3.0.
 
@@ -256,23 +273,30 @@ rubygem_simp_cli
   This patch causes `simp config` to quietly remove the setting if it is present
   and Puppet is version 5 or later.
 
-NewFeatures
+New Features
 ------------
 
 pupmod-simp-x2go and pupmod-simp-mate
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
 These modules are used to configure the x2go client and server to allow for
-remote access to desktops and servers. This is an alternative to VNC. An example
-configuration is documented in the User Guide.
+remote access to desktops and servers. This is an alternative to VNC. An
+example configuration is documented in the :ref:`Remote Access` documentation.
 
 pupmod-simp-tlog
 ^^^^^^^^^^^^^^^^
-This module configures TLOG for logging privileged user activities.  Both sudosh
-and TLOG are currently available but sudosh is no longer being maintained and is
-expected to go away.
+
+This module configures :term:`Tlog` for logging privileged user activities.
+Both :term:`sudosh` and Tlog are currently available but sudosh is no longer
+being maintained and is expected to be deprecated in the future.
 
 pupmod-simp-simp_pki_service
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. WARNING::
+
+   This is a technology preview and may break unexpectedly in the future
+
 Traditionally, SIMP has used an internal "FakeCA" `openssl`-based CA. Over
 time, this has proven insufficient for our needs, particularly for capabilities
 in terms of Key Enrollment (SCEP and CMC), OCSP, and overall management of
@@ -296,17 +320,24 @@ Known Bugs
 
 Upgrading from previous SIMP 6.X versions
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-There are known problems upgrading from Puppet 4 to Puppet 5.  Make sure you read the
-upgrade instructions before attempting an upgrade.
 
-TLOG
+There are known issues when upgrading from Puppet 4 to Puppet 5.  Make sure you
+read the :ref:`ug-upgrade-simp` before attempting an upgrade.
+
+Tlog
 ^^^^
 
-TLOG can hang up in a specific circumstance.  If a user is logged into a system using a graphical
-display and attempts to su to root from more than one terminal window in the same session, the second su will hang.
-The above error does not affect ssh logins. If a user requires more than one root shell they should ssh into the
-local system and su from that terminal.
+The current shell wrapper around :term:`Tlog` can hang in a specific
+circumstance.  If a user is logged into a system using a graphical display and
+attempts to ``su`` to ``root`` from more than one terminal window in the same
+session, the second ``su`` will hang. Pressing ``^C`` will break the hang and
+the session will still be properly audited.
 
-This bug is tracked as SIMP-5426
+The above error does not affect ``ssh`` logins. If a user requires more than
+one ``root`` shell they should ``ssh`` into the local system and ``su`` from
+that terminal.
+
+This bug is tracked as `SIMP-5426`__
 
 .. _file bugs: https://simp-project.atlassian.net
+.. _SIMP-5426: https://simp-project.atlassian.net/browse/SIMP-5426
