@@ -67,6 +67,15 @@ how to upgrade any custom modules or backends that you have created.
 Significant Updates
 -------------------
 
+The following items were removed as dependencies for the ``simp`` RPM and added
+as dependencies on the ``simp-extras`` RPM since they are not used by the
+default SIMP configuration:
+
+* pupmod-richardc-datacat
+* pupmod-simp-autofs
+* pupmod-simp-krb5
+* pupmod-simp-network
+
 puppet-simp-tlog
 ^^^^^^^^^^^^^^^^
 
