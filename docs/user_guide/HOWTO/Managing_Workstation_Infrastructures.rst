@@ -291,19 +291,86 @@ located at
      }
    }
 
+Remote Access
+-------------
+
+This section describes how to install x2go and :term:`VNC` software on nodes to
+access the desktop remotely.
+
+x2go and MATE
+^^^^^^^^^^^^^
+
+Follow the instructions in `Install Extra Puppet Modules`_ to install
+the following puppet modules on the puppet server:
+
+- pupmod-simp-x2go
+- pupmod-simp-mate
+- pupmod-simp-gnome
+- pupmod-simp-dconf
+
+The x2go :term:`RPM` and its dependencies have been included on the SIMP ISO in
+version 6.3 and later.  If you are not installing from the ISO you will need to
+enable the :term:`EPEL` repo or download the RPMs manually.
+
+To configure the x2go server on a system so it can be accessed remotely add the
+following in the target node's :term:`Hiera` data:
+
+.. code-block:: yaml
+
+  x2go::client: false
+  x2go::server: true
+
+  # Optional settings
+  x2go::server::agent_options:
+    '-clipboard': 'both'
+
+  classes:
+    - 'x2go'
+    - 'mate'
+
+.. NOTE::
+
+   MATE is used here for :term:`EL` 7 systems since x2go cannot yet process
+   GNOME 3 sessions natively with any kind of consistency. If using EL 6, GNOME
+   will be used.
+
+   Due to this difference, EL 7 servers should be connected to with MATE
+   selected as the target window manager and EL6 systems should be connected to
+   with GNOME selected as the target window manager.
+
+   For more details, see the `x2go wiki`__
+
+To install the client on a system, add the following in the client node's
+:term:`Hiera` data:
+
+.. code-block:: yaml
+
+  x2go::client: true
+  x2go::server: false
+
+  classes:
+    - 'x2go'
+
+The x2go client on the client node can then be used to access the server node
+with any user that has permission to log on via :term:`SSH`.
+
+The documentation for how to configure the x2go client can be found on the `x2go wiki`_.
+
+.. _x2go wiki: https://wiki.x2go.org/doku.php
+
 VNC Setup
----------
+^^^^^^^^^
 
 :term:`Virtual Network Computing` (VNC) can be enabled to provide remote GUI
 access to systems.
 
 VNC Standard Setup
-^^^^^^^^^^^^^^^^^^
+""""""""""""""""""
 
-.. NOTE::
+Follow the instructions in `Install Extra Puppet Modules`_ to install
+the following puppet modules on the puppet server:
 
-   You must have the ``pupmod-simp-vnc`` RPM installed to use VNC on your
-   system!
+- pupmod-simp-vnc
 
 To enable remote access via VNC on the system, include ``vnc::server``
 in Hiera for the node.
@@ -347,7 +414,7 @@ for examples.
    additional details.
 
 VNC Through a Proxy
-^^^^^^^^^^^^^^^^^^^
+""""""""""""""""""
 
 The section describes the process to VNC through a proxy. This setup
 provides the user with a persistent VNC session.
