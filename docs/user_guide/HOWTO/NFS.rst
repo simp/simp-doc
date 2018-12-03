@@ -15,6 +15,11 @@ and ``pupmod-simp-simp``.
 Known Issues
 ------------
 
+.. WARNING::
+
+  A number of issues may render NFS inoperable.  Please read through the known
+  issues below before deploying into your environment.
+
 Stunnel and Autofs
 ^^^^^^^^^^^^^^^^^^
 The ``autofs`` packages that were released with CentOS 6.8 (`autofs-5.0.5-122`_)
@@ -478,6 +483,6 @@ Clients
    classes:
      - 'simp_nfs'
 
-.. _autofs-5.0.5-122: https://vault.centos.org/6.8/os/x86_64/Packages/autofs-5.0.5-122.el6.x86_64.rpm
-.. _autofs-5.0.7-56: https://vault.centos.org/7.3.1611/os/x86_64/Packages/autofs-5.0.7-56.el7.x86_64.rpm
+.. _autofs-5.0.5-122: http://vault.centos.org/6.8/os/x86_64/Packages/autofs-5.0.5-122.el6.x86_64.rpm
+.. _autofs-5.0.7-56: http://vault.centos.org/7.3.1611/os/x86_64/Packages/autofs-5.0.7-56.el7.x86_64.rpm
 .. _JIRA Bug Tracking: https://simp-project.atlassian.net/
