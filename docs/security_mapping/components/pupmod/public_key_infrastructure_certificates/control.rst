@@ -1,7 +1,7 @@
 Public Key Infrastructure
 -------------------------
 
-Puppet has it's own public key infrastructure (PKI) that is used exclusively for
+Puppet has its own public key infrastructure (PKI) that is used exclusively for
 the puppet application. The PKI is used to provide access control and protect
 communications between the puppet master and the clients.
 
