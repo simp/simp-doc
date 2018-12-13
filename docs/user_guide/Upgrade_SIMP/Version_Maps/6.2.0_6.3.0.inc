@@ -52,8 +52,9 @@ into ``/usr/share/simp/environments/simp``.  This hiera.yaml file uses ``data`` 
 instead of ``hieradata``.  (If you have made changes to the hiera hierarchy make sure to incorporate
 these into the file.)
 
-For every environment copy the new hiera.yaml to the environment and
+For every environment, copy the new hiera.yaml to the environment and
 then rename the hieradata directory to data.
+
 .. code-block:: bash
 
    cp /usr/share/simp/environments/simp/hiera.yaml /etc/puppetlabs/code/environments/<environment>/
