@@ -48,22 +48,26 @@ One of the major features of :term:`Hiera` 5 is the addition of the `environment
 You can `enable the Hiera environment layer`_ with the following steps.
 
 The new ``hiera.yaml`` file is installed by ``simp-environment-5.3.0-0.<dist>.noarch.rpm``
-into ``/usr/share/simp/environments/simp``.  If you have made changes make sure to incorporate 
-these into the file.
+into ``/usr/share/simp/environments/simp``.  This hiera.yaml file uses ``data`` as the directory
+instead of ``hieradata``.  (If you have made changes to the hiera hierarchy make sure to incorporate
+these into the file.)
 
+For every environment copy the new hiera.yaml to the environment and
+then rename the hieradata directory to data.
 .. code-block:: bash
 
    cp /usr/share/simp/environments/simp/hiera.yaml /etc/puppetlabs/code/environments/<environment>/
    cd /etc/puppetlabs/code/environments/<environment>/
    chmod 640 ./hiera.yaml
    chown root:puppet ./hiera.yaml
-   mv hieradata to data
+   mv hieradata data
 
 
 When all the environments are converted, update the global hiera.yaml file:
 
 .. code-block:: bash
 
+   #  Copy an empty hiera.yaml file to the global level.
    cd /etc/puppetlabs/puppet
    unlink hiera.yaml
    rm hiera.yaml.simp
