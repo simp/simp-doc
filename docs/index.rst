@@ -7,6 +7,14 @@ walk a user through the process of installing and managing a :term:`SIMP`
 system.  It also provides a mapping of security features to security
 requirements, which can be used to document a system's security conformance.
 
+.. WARNING::
+
+   Be **EXTREMELY CAREFUL** when performing copy/paste operations from this
+   document!
+
+   Different web browsers and operating systems may substitute incompatible
+   quotes and/or line endings in your files.
+
 .. include:: common/SIMP_Overview.rst
 
 Level of Knowledge
