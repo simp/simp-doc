@@ -120,7 +120,7 @@ Run the ``build:auto`` rake task to create a bootable ISO:
 
 .. code::
 
-   $ SIMP_BUILD_rm_staging_dir=no SIMP_BUILD_prompt=yes bundle exec rake build:auto[<directory containing source ISOs>]
+   $ SIMP_BUILD_rm_staging_dir=no SIMP_BUILD_prompt=yes SIMP_ENV_NO_SELINUX_DEPS=yes bundle exec rake build:auto[<directory containing source ISOs>]
 
 **Answer ``N`` when asked if you want to overwrite the tar file.**
 

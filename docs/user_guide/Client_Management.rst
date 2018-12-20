@@ -93,6 +93,8 @@ Configure DHCP
   of SIMP and need to add UEFI support, make sure you update your ``dhcpd.conf``
   in the rsync directory, appropriately.
 
+  MAC addresses in the following section need to be lower case letters.
+
 Perform the following actions as ``root`` on the Puppet master system
 prior to attempting to install a client.
 
@@ -149,7 +151,7 @@ client.
 #. Puppet will not autosign Puppet certificates, by default, and ``waitforcert`` is
    enabled. This means the client will check in every 30 seconds for a signed
    certificate.  Log on to the Puppet master and run
-   ``puppet cert sign <puppet.client.fqdn>``.
+   ``puppetserver ca sign --certname <puppet.client.fqdn>``.
 
 Upon successful deployment of a new client, it is highly recommended that
 :ref:`LDAP administrative accounts <Managing LDAP Users>` be created.
@@ -164,8 +166,8 @@ master, try the following options:
   both must be correct. The ``nslookup`` command will help here.
 * Check the time on the systems. More than an hour's difference will cause
   serious issues with certificates.
-* Remove ``/etc/puppetlabs/puppet/ssl`` on the client system; run ``puppet cert
-  --clean ***<Client Host Name>***`` on the Puppet master and try again.
+* Remove ``/etc/puppetlabs/puppet/ssl`` on the client system; run ``puppetserver ca
+  clean --certname **<Client Host Name>***`` on the Puppet master and try again.
 
 If you are getting permission errors, make sure the selinux context is correct on all
 files as well as the owner and group permissions.
