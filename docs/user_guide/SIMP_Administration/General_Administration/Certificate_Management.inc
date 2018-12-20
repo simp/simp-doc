@@ -18,7 +18,7 @@ authority for managing these certificates.
 The client will automatically send a certificate request to the server if it cannot find
 a valid certificate. The Puppet master will automatically sign a certificate request if
 the client's name is in the  ``autosign.conf`` file, otherwise an administrator must sign
-the request using the ``puppet cert`` tool.
+the request using the ``puppetserver ca`` tool.
 
 .. NOTE::
 

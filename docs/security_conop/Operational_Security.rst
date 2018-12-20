@@ -41,7 +41,7 @@ logged to via ``syslog``.
 [:ref:`CM-3a.`, :ref:`CM-3 (3)`]
 
 Linux systems are made up of hundreds of configuration files that can contain
-numerous of settings. SIMP does not make an attempt to manage all of the
+numerous settings. SIMP does not make an attempt to manage all of the
 settings in every file. Instead, critical operating system files or files that
 need to be controlled centrally are managed. Implementations can manage
 additional files if they are deemed necessary.

@@ -167,7 +167,7 @@ The name of the ``simp_openldap::server::syncrepl`` instance must be a unique
 replication id.
 
 Place this file in the ``site`` module's  ``manifests/`` directory using the name
-`ldapslave.pp`. Include this class from the slave server's Hiera YAML file:
+`ldap_slave.pp`. Include this class from the slave server's Hiera YAML file:
 
 .. code-block:: yaml
 
