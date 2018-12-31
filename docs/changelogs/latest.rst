@@ -1,5 +1,5 @@
-SIMP Community Edition (CE) 6.3.0-Beta
-======================================
+SIMP Community Edition (CE) 6.3.0-0
+===================================
 
 .. raw:: pdf
 
@@ -43,22 +43,24 @@ against.
    From this point on, all components are tested againt Puppet 5 and Puppet 4
    support may be removed from any module as a non-breaking change at any time.
 
+
 Breaking Changes
 ----------------
 
 Upgrading from Puppet 4 and earlier versions of :term:`Hiera` requires some
 preparation. Please be sure to read :ref:`ug-upgrade-simp` carefully.
 
-:term:`Hiera` 5 is fully compatible with  Hiera 3.  However there have been some changes
-with the configuration to utilize new capabilities.
+While :term:`Hiera` 5 is fully compatible with Hiera 3, there have been some
+configuration changes to utilize new capabilities.
 
-* The ``hiera.yaml`` file which defines the hierarchy used to search for
-  parameter values has been moved to the environment level to utilize the
-  ability to have a unique ``hiera.yaml`` configuration per environment.
+* The ``/etc/puppetlabs/puppet/hiera.yaml`` file, which defines the hierarchy
+  used to search for parameter values, has been moved to the environment level
+  to utilize the ability to have a unique ``hiera.yaml`` configuration per
+  environment.
 * The default data directory has been renamed from ``hieradata`` to  ``data``
   to match Hiera 5 conventions.
 
-You should review the puppet documentation for `upgrading to Hiera 5`_ to see
+You should review the puppet documentation for `upgrading to Hiera 5`_ to learn
 how to upgrade any custom modules or backends that you have created.
 
 .. _upgrading to Hiera 5: https://puppet.com/docs/puppet/5.5/hiera_migrate.html
@@ -107,6 +109,8 @@ explicitly set the variable to `latest`.
    the system and it is recommended that you change this to ``latest`` and rely
    on prudent repository management.
 
+   See :ref:`ug-sa-ga-nightly-updates` for additional information.
+
 The following modules were updated:
 
 * pupmod-simp-aide
@@ -135,7 +139,8 @@ The following modules were updated:
 
 Oracle Enterprise Linux
 ^^^^^^^^^^^^^^^^^^^^^^^
-The testing of the modules on Oracle Enteprise Linux was expanded and
+
+The testing of the modules on Oracle Enterprise Linux was expanded and
 automated.
 
 RPM Updates
@@ -258,7 +263,8 @@ pupmod-simp-sudo
 
 pupmod-simp-svckill
 ^^^^^^^^^^^^^^^^^^^
-* Added 7.5 rhel services to svckill::ignore_defaults list for EL7.
+
+* Added 7.5 RHEL services to svckill::ignore_defaults list for EL7.
 
 rubygem_simp_cli
 ^^^^^^^^^^^^^^^^
@@ -277,8 +283,10 @@ rubygem_simp_cli
   - No longer adds `-XX:MaxPermSize` for Java >= 8 (fix warnings)
 
 * The `trusted_server_facts` was removed in Puppet 5.0.0.
-  The presence of this setting will cause each puppet run to emit the warning::
+  The presence of this setting will cause each puppet run to emit the warning:
+
       Warning: Setting trusted_server_facts is deprecated.
+
   This patch causes `simp config` to quietly remove the setting if it is present
   and Puppet is version 5 or later.
 
@@ -290,7 +298,8 @@ pupmod-simp-x2go and pupmod-simp-mate
 
 These modules are used to configure the x2go client and server to allow for
 remote access to desktops and servers. This is an alternative to VNC. An
-example configuration is documented in the :ref:`Remote Access` documentation.
+example configuration is documented in the
+:ref:`_ug-howto-graphical_remote_access` documentation.
 
 pupmod-simp-tlog
 ^^^^^^^^^^^^^^^^
@@ -321,7 +330,8 @@ either for the puppet server CA, the site CA in lieu of FakeCA, or both.
 
 See the README in the module for details on how to configure it.
 
-The Dogtag server was chosen because it is part of the FreeIPA suite.
+The Dogtag server was chosen because it is part of the FreeIPA suite and
+therefore likely to have any issues fixed and be well supported.
 
 
 Known Bugs
@@ -336,17 +346,16 @@ read the :ref:`ug-upgrade-simp` before attempting an upgrade.
 Tlog
 ^^^^
 
-The current shell wrapper around :term:`Tlog` can hang in a specific
-circumstance.  If a user is logged into a system using a graphical display and
-attempts to ``su`` to ``root`` from more than one terminal window in the same
-session, the second ``su`` will hang. Pressing ``^C`` will break the hang and
-the session will still be properly audited.
+Tlog currently has `a bug where session information may not be logged`_. The
+immediate mitigation to this is the fact that `pam_tty_audit` is the primary
+mode of auditing with ``tlog`` and/or ``sudosh`` being in place for a better
+overall tracking and behavior analysis experience.
 
-The above error does not affect ``ssh`` logins. If a user requires more than
-one ``root`` shell they should ``ssh`` into the local system and ``su`` from
-that terminal.
+Tlog has `a second bug where the application fails if a user does not have a TTY`_.
+This has been mitigated by the SIMP wrapper script simply bypassing ``tlog`` if
+a TTY is not present.
 
-This bug is tracked as `SIMP-5426`__
-
-.. _file bugs: https://simp-project.atlassian.net
 .. _SIMP-5426: https://simp-project.atlassian.net/browse/SIMP-5426
+.. _a bug where session information may not be logged: https://github.com/Scribery/tlog/issues/228
+.. _a second bug where the application fails if a user does not have a TTY: https://github.com/Scribery/tlog/issues/227
+.. _file bugs: https://simp-project.atlassian.net

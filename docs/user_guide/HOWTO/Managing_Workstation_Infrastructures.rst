@@ -81,7 +81,6 @@ Workstation Repositories
 
 Create any repos needed to install extra software.
 
-
 .. code-block:: ruby
 
    class site::repos {
@@ -90,7 +89,7 @@ Create any repos needed to install extra software.
      }
    }
 
-.. _Graphical Desktop Setup:
+.. _Graphical_Desktop_Setup:
 
 Graphical Desktop Setup
 ^^^^^^^^^^^^^^^^^^^^^^^
@@ -153,11 +152,10 @@ the ``default.yaml``.
      default:    { $hostgroup = 'default'     }
    }
 
-
 The ``workstation.yaml`` file will include settings for all the workstations.
 
 The following example includes the settings for NFS mounted home directories.
-See  :ref:`Exporting Home Directories` for more information.
+See :ref:`Exporting_Home_Directories` for more information.
 
 .. code-block:: yaml
 
@@ -291,8 +289,11 @@ located at
      }
    }
 
-Remote Access
--------------
+
+.. _ug-howto-graphical_remote_access:
+
+Graphical Remote Access
+-----------------------
 
 This section describes how to install x2go and :term:`VNC` software on nodes to
 access the desktop remotely.
@@ -338,7 +339,7 @@ following in the target node's :term:`Hiera` data:
    selected as the target window manager and EL6 systems should be connected to
    with GNOME selected as the target window manager.
 
-   For more details, see the `x2go wiki`__
+   For more details, see the `x2go wiki`_
 
 To install the client on a system, add the following in the client node's
 :term:`Hiera` data:
@@ -355,8 +356,6 @@ The x2go client on the client node can then be used to access the server node
 with any user that has permission to log on via :term:`SSH`.
 
 The documentation for how to configure the x2go client can be found on the `x2go wiki`_.
-
-.. _x2go wiki: https://wiki.x2go.org/doku.php
 
 VNC Setup
 ^^^^^^^^^
@@ -414,7 +413,7 @@ for examples.
    additional details.
 
 VNC Through a Proxy
-""""""""""""""""""
+"""""""""""""""""""
 
 The section describes the process to VNC through a proxy. This setup
 provides the user with a persistent VNC session.
@@ -517,3 +516,5 @@ determine if this is the case, type ``ps -ef | grep XKeepsCrashing``
 
 If any matches result, stop the process associated with the command and
 try to restart ``vncviewer`` on ``vclnt.your.domain``.
+
+.. _x2go wiki: https://wiki.x2go.org/doku.php

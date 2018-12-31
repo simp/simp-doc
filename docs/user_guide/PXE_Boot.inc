@@ -32,27 +32,28 @@ Setting up Kickstart
 This section describes how to configure the kickstart server.
 
 #. Add the Kickstart Server Profile
-   -  In the Puppet server-specific :term:`Hiera` file (by default located at
-      ``/etc/puppetlabs/code/environments/simp/data/hosts/puppet.<your.domain>.yaml``),
-      add the ``simp::server::kickstart`` class.
 
-      .. code-block:: yaml
+   - In the Puppet server-specific :term:`Hiera` file (by default located at
+     ``/etc/puppetlabs/code/environments/simp/data/hosts/puppet.<your.domain>.yaml``),
+     add the ``simp::server::kickstart`` class.
 
-         ---
-         classes:
-           - simp::server::kickstart
+     .. code-block:: yaml
 
-   -  This profile class adds management of DHCP, DNS, the Kickstart service,
-      as well as the example provisioning script.
+        ---
+        classes:
+          - simp::server::kickstart
 
-   -  After adding the above class, run puppet: ``puppet agent -t``.
+   - This profile class adds management of DHCP, DNS, the Kickstart service,
+     as well as the example provisioning script.
+
+   - After adding the above class, run puppet: ``puppet agent -t``.
 
 #. Locate the following files in the ``/var/www/ks`` directory
 
-   -  ``pupclient_x86_64.cfg``: Example client kickstart configuration script.
-   -  ``diskdetect.sh``:  Example script to determine disks available
-      on a system and then apply disk configuration.  This script is used
-      by ``pupclient_x86_64.cfg``.
+   - ``pupclient_x86_64.cfg``: Example client kickstart configuration script.
+   - ``diskdetect.sh``:  Example script to determine disks available
+     on a system and then apply disk configuration.  This script is used
+     by ``pupclient_x86_64.cfg``.
 
 #. Open the ``pupclient_x86_64.cfg`` file and follow the instructions provided
    within it to replace the variables listed and to customize for
