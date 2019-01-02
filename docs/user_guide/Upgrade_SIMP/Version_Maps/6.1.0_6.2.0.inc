@@ -228,6 +228,28 @@ to system administrators.  So, you may wish to manually remove these rules.
 You can easily identify OBE SIMP rules in ``/etc/logrotate.d`` by their
 ``This file managed by puppet.`` comment lines.
 
+Known Issues
+------------
+
+Issues With Copying Repo Contents
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+A bug has been reported in some cases where the `simp-adapter` package does not
+appear to be properly updating existing repository spaces in all cases.
+
+If you are getting unexpected errors, then you should run the following command
+and evaluate any differences. The materials in `/usr/share/simp/modules` are
+authoritative for the latest build but will not be copied over if the target
+files are checked into a version control system.
+
+.. code-block:: sh
+
+   diff -qr /usr/share/simp/modules /etc/puppetlabs/code/environments/simp/modules
+
+Once you have corrected any issues, you should run
+`/opt/puppetlabs/bin/puppetserver reload` and the system should function
+properly again.
+
 .. _simp-core repository: https://github.com/simp/simp-core
 .. _simp-rsync-skeleton repository: https://github.com/simp/simp-rsync-skeleton
 .. _SIMP-5021: https://simp-project.atlassian.net/browse/SIMP-5021
