@@ -66,7 +66,7 @@ The new ``hiera.yaml`` file is installed by
 ``simp-environment-5.3.0-0.<dist>.noarch.rpm`` into
 ``/usr/share/simp/environments/simp``.  This hiera.yaml file uses ``data`` as
 the directory instead of ``hieradata``.  (If you have made changes to the hiera
-  hierarchy make sure to incorporate these into the file.)
+hierarchy make sure to incorporate these into the file.)
 
 For every environment, copy the new hiera.yaml to the environment and then
 rename the hieradata directory to data.

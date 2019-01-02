@@ -193,7 +193,7 @@ In ``hosts/<your_client_fqdn>.yaml``:
    The ``simp_nfs`` module contains a further example that includes the use of
    a NFS root on the server and indirect autofs with wildcards on the client.
 
-.. _Exporting Home Directories:
+.. _Exporting_Home_Directories:
 
 Exporting Home Directories
 --------------------------
