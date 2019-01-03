@@ -112,6 +112,9 @@ Install the SIMP Server
 
    .. code-block:: bash
 
+      $ yum remove -y puppet
+      $ yum remove -y pupmod-*
+      $ echo 'copy_rpm_data: true' >> /etc/simp/adapter_config.yaml
       $ sudo yum install -y simp
 
 .. NOTE::
