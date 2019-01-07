@@ -299,7 +299,7 @@ pupmod-simp-x2go and pupmod-simp-mate
 These modules are used to configure the x2go client and server to allow for
 remote access to desktops and servers. This is an alternative to VNC. An
 example configuration is documented in the
-:ref:`_ug-howto-graphical_remote_access` documentation.
+:ref:`ug-howto-graphical_remote_access` documentation.
 
 pupmod-simp-tlog
 ^^^^^^^^^^^^^^^^
