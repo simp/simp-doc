@@ -53,6 +53,13 @@ users disable the feature by setting
 `pupmod::master::generate_types::enable: false` in Hiera after the 
 ``simp bootstrap`` command has been run.
 
+If using a default SIMP installation, this can be done easily by running the
+following commands as root:
+
+```
+echo 'pupmod::master::generate_types::enable: false' >> /etc/puppetlabs/code/environments/production/data/default.yaml
+```
+
 For more information on the bug and the current status,
 please visit `SIMP-5974`_. 
 
