@@ -55,10 +55,8 @@ users disable the feature by setting
 
 If using a default SIMP installation, this can be done easily by running the
 following commands as root:
-
-```
-echo 'pupmod::master::generate_types::enable: false' >> /etc/puppetlabs/code/environments/production/data/default.yaml
-```
+`cd /etc/puppetlabs/code/environments/production/data`
+`echo 'pupmod::master::generate_types::enable: false' >> ./default.yaml`
 
 For more information on the bug and the current status,
 please visit `SIMP-5974`_. 
