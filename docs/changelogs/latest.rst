@@ -43,6 +43,26 @@ against.
    From this point on, all components are tested againt Puppet 5 and Puppet 4
    support may be removed from any module as a non-breaking change at any time.
 
+6.3.0-0 Errata
+--------------
+
+An issue was discovered that may cause the puppetserver process to use
+100% CPU time and run out of memory. Because the conditions to trigger
+the bug are dependent on many factors, we are recommending that for now
+users disable the feature by setting 
+`pupmod::master::generate_types::enable: false` in Hiera after the 
+``simp bootstrap`` command has been run.
+
+If using a default SIMP installation, this can be done easily by running the
+following commands as root:
+
+```
+echo 'pupmod::master::generate_types::enable: false' >> /etc/puppetlabs/code/environments/production/data/default.yaml
+```
+
+For more information on the bug and the current status,
+please visit `SIMP-5974`_. 
+
 
 Breaking Changes
 ----------------
@@ -355,6 +375,8 @@ Tlog has `a second bug where the application fails if a user does not have a TTY
 This has been mitigated by the SIMP wrapper script simply bypassing ``tlog`` if
 a TTY is not present.
 
+
+.. _SIMP-5974: https://simp-project.atlassian.net/browse/SIMP-5974
 .. _SIMP-5426: https://simp-project.atlassian.net/browse/SIMP-5426
 .. _a bug where session information may not be logged: https://github.com/Scribery/tlog/issues/228
 .. _a second bug where the application fails if a user does not have a TTY: https://github.com/Scribery/tlog/issues/227
