@@ -866,7 +866,7 @@ Glossary of Terms
       A human friendly data serialization standard for all programming
       languages.
 
-      Source: `YAML Homepage <http://yaml.org/>`__
+      Source: `YAML Homepage <https://yaml.org/>`__
 
    YUM
    Yellowdog Updater, Modified
