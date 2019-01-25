@@ -46,23 +46,29 @@ against.
 6.3.0-0 Errata
 --------------
 
-An issue was discovered that may cause the puppetserver process to use
-100% CPU time and run out of memory. Because the conditions to trigger
-the bug are dependent on many factors, we are recommending that for now
-users disable the feature by setting 
-`pupmod::master::generate_types::enable: false` in Hiera after the 
-``simp bootstrap`` command has been run.
+An `upstream bug in the incron`_ package, caused the
+``pupmod::master::generate_types`` code to spin into an infinite loop if the
+``incron`` package was updated to ``0.5.12-6`` as published in :term:`EPEL`.
 
-If using a default SIMP installation, this can be done easily by running the
-following commands as root:
+This bug affects **all uses of incron**, not just
+``pupmod::master::generate_types``. We strongly advise that you remove the
+``0.5.12-6`` package from your upstream repositories and use the following
+Hiera configuration to ensure that your SIMP ``6.3.0-0`` installation does not
+upgrade.
 
-.. code-block:: bash
+.. code-block:: yaml
+   ---
+   yum::config_options:
+     exclude="incron"
 
-  echo 'pupmod::master::generate_types::enable: false' >> /etc/puppetlabs/code/environments/production/data/default.yaml
-  
-For more information on the bug and the current status,
-please visit `SIMP-5974`_. 
+.. WARNING::
 
+   If you previously disabled ``pupmod::master::generate_types`` then be
+   advised that you will need to manually run ``puppet generate types`` on your
+   environments if you upgrade the ``puppet`` or ``puppetserver`` packages or
+   if you add a new environment to your system.
+
+   See the `puppet generate types documentation`_ for additional details
 
 Breaking Changes
 ----------------
@@ -376,8 +382,8 @@ This has been mitigated by the SIMP wrapper script simply bypassing ``tlog`` if
 a TTY is not present.
 
 
-.. _SIMP-5974: https://simp-project.atlassian.net/browse/SIMP-5974
-.. _SIMP-5426: https://simp-project.atlassian.net/browse/SIMP-5426
 .. _a bug where session information may not be logged: https://github.com/Scribery/tlog/issues/228
 .. _a second bug where the application fails if a user does not have a TTY: https://github.com/Scribery/tlog/issues/227
 .. _file bugs: https://simp-project.atlassian.net
+.. _puppet generate types documentation: https://puppet.com/docs/puppet/6.2/environment_isolation.html#reference-6554
+.. _upstream bug in the incron package: https://bugzilla.redhat.com/show_bug.cgi?id=1656939
