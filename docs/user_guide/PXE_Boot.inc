@@ -202,7 +202,7 @@ various files to model different systems.
 
      .. NOTE::
         If using the default cfg files, know that they do not have the '_el[6,7]'
-        tags at the end of their name.
+        tags at the end of their names.
 
      .. NOTE::
         The ``simp_disk_crypt`` option shown below switches on transparent disk
