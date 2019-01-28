@@ -46,7 +46,7 @@ against.
 6.3.0-0 Errata
 --------------
 
-An `upstream bug in the incron`_ package, caused the
+An `upstream bug in the incron package`_, caused the
 ``pupmod::master::generate_types`` code to spin into an infinite loop if the
 ``incron`` package was updated to ``0.5.12-6`` as published in :term:`EPEL`.
 
@@ -57,6 +57,7 @@ Hiera configuration to ensure that your SIMP ``6.3.0-0`` installation does not
 upgrade.
 
 .. code-block:: yaml
+
    ---
    yum::config_options:
      exclude="incron"
@@ -68,7 +69,7 @@ upgrade.
    environments if you upgrade the ``puppet`` or ``puppetserver`` packages or
    if you add a new environment to your system.
 
-   See the `puppet generate types documentation`_ for additional details
+   See the :ref:`faq-puppet-generate_types` for additional information.
 
 Breaking Changes
 ----------------
@@ -385,5 +386,4 @@ a TTY is not present.
 .. _a bug where session information may not be logged: https://github.com/Scribery/tlog/issues/228
 .. _a second bug where the application fails if a user does not have a TTY: https://github.com/Scribery/tlog/issues/227
 .. _file bugs: https://simp-project.atlassian.net
-.. _puppet generate types documentation: https://puppet.com/docs/puppet/6.2/environment_isolation.html#reference-6554
 .. _upstream bug in the incron package: https://bugzilla.redhat.com/show_bug.cgi?id=1656939

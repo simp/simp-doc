@@ -85,5 +85,5 @@ If for any reason you need to retain this data, which normally is quite
 transitory, see `Upgrading a PostgreSQL Cluster`_ for detailed instructions.
 
 .. _ClamAV Virus Database FAQ: https://www.clamav.net/documents/clamav-virus-database-faq.html
-.. _Upgrading a PostgreSQL Cluster: https://www.postgresql.org/docs/9.6/static/upgrading.html
+.. _Upgrading a PostgreSQL Cluster: https://www.postgresql.org/docs/9.6/upgrading.html
 .. _simp-utils repository: https://github.com/simp/simp-utils

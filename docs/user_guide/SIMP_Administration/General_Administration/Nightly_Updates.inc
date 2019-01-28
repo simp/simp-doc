@@ -111,4 +111,4 @@ The following is a basic ``yumrepo`` example:
   }
 
 .. _Puppet Type Reference: https://docs.puppet.com/puppet/latest/type.html
-.. _Red Hat local repository Documentation: https://access.redhat.com/solutions/9892
+.. _Red Hat local repository Documentation: https://access.redhat.com/solutions/3176811
