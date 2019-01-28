@@ -842,7 +842,7 @@ Glossary of Terms
       A general-purpose full virtualizer for x86 hardware, targeted at server,
       desktop and embedded use.
 
-      Source: `VirtualBox: About VirtualBox <https://www.virtualbox.org/wiki/VirtualBox>`__
+      Source: `Wikipedia: VirtualBox <https://en.wikipedia.org/wiki/VirtualBox>`__
 
    VM
    Virtual Machine
