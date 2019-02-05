@@ -1,4 +1,7 @@
-SIMP Community Edition (CE) 6.3.0-0
+.. _changelog:
+.. _changelog-6.3.2:
+
+SIMP Community Edition (CE) 6.3.2-0
 ===================================
 
 .. raw:: pdf
@@ -12,354 +15,139 @@ SIMP Community Edition (CE) 6.3.0-0
 
   PageBreak
 
-This release is known to work with:
-
-  * CentOS 6.10 x86_64
-  * CentOS 7.0 1804 x86_64
-  * OEL 6.10 x86_64
-  * OEL 7.5 x86_64
-  * RHEL 6.10 x86_64
-  * RHEL 7.5 x86_64
-
-The flagship feature for SIMP 6.3.0 is full compatibility with Puppet 5 and
-Hiera 5.
-
-The versions of Puppet targeted are those delivered with Puppet Enterprise
-2018:
-
-  * Puppet Server: 5.3.X
-  * Puppet Agent:  5.5.X
-
-A much wider range of versions is used for unit and acceptance testing.  See
-the ``.gitlab.yml`` file in each module to see what versions it has been tested
-against.
-
 .. WARNING::
 
-   Puppet 4 is no longer supported as of SIMP 6.3. Users can continue with the
-   SIMP 6.2 release and can obtain commercial support if further Puppet 4
-   support is required.
+   Please see the :ref:`changelog-6.2.0` Changelog for general information,
+   upgrade guidance, and compatibility notes.
 
-   From this point on, all components are tested againt Puppet 5 and Puppet 4
-   support may be removed from any module as a non-breaking change at any time.
+This is a bug fix release in the 6.3.X series of SIMP to address the following
+issues:
 
-6.3.0-0 Errata
---------------
+  * `SIMP-5974`_: Ensure that the ``incron`` spawned ``puppet generate types``
+    would not overwhelm the puppet server due to an `upstream bug in the incron
+    package`_.  This involved both pinning the incron version to a version that
+    did not have bugs as well as reducing the footprint of the monitored files
+    in the filesystem. See :ref:`faq-puppet-generate_types` for additional
+    information.
 
-An `upstream bug in the incron package`_, caused the
-``pupmod::master::generate_types`` code to spin into an infinite loop if the
-``incron`` package was updated to ``0.5.12-6`` as published in :term:`EPEL`.
+    * The version of ``incron`` that shipped with SIMP 6.3.0 did not have
+      issues, but the update in upstream EPEL did and affects **all uses of
+      incron**, not just ``pupmod::master::generate_types``. We strongly advise
+      that you remove the ``0.5.12-6`` package from your upstream repositories
+      and use the following Hiera configuration to ensure that your SIMP
+      ``6.3.0-0`` installation does not upgrade.
 
-This bug affects **all uses of incron**, not just
-``pupmod::master::generate_types``. We strongly advise that you remove the
-``0.5.12-6`` package from your upstream repositories and use the following
-Hiera configuration to ensure that your SIMP ``6.3.0-0`` installation does not
-upgrade.
+      .. code-block:: yaml
 
-.. code-block:: yaml
+         ---
+         yum::config_options:
+           exclude="incron"
 
-   ---
-   yum::config_options:
-     exclude="incron"
+      .. WARNING::
 
-.. WARNING::
+         If you previously disabled ``pupmod::master::generate_types`` then be
+         advised that you will need to manually run ``puppet generate types``
+         on your environments if you upgrade the ``puppet`` or ``puppetserver``
+         packages or if you add a new environment to your system.
 
-   If you previously disabled ``pupmod::master::generate_types`` then be
-   advised that you will need to manually run ``puppet generate types`` on your
-   environments if you upgrade the ``puppet`` or ``puppetserver`` packages or
-   if you add a new environment to your system.
+         See the :ref:`faq-puppet-generate_types` for additional information.
 
-   See the :ref:`faq-puppet-generate_types` for additional information.
+   * `SIMP-5480`_: Fix a bug in the default ``sssd settings`` where the minimum
+     allowed ``uid/gid`` is now ``1`` and the maximum allowed ``uid/gid`` is
+     now ``0`` to align properly with the ``sssd`` functionality.
 
-Breaking Changes
-----------------
+   * `SIMP-5932`_: Allow users to specify a timeout for ``simp bootstrap`` to
+     address slow systems.
 
-Upgrading from Puppet 4 and earlier versions of :term:`Hiera` requires some
-preparation. Please be sure to read :ref:`ug-upgrade-simp` carefully.
-
-While :term:`Hiera` 5 is fully compatible with Hiera 3, there have been some
-configuration changes to utilize new capabilities.
-
-* The ``/etc/puppetlabs/puppet/hiera.yaml`` file, which defines the hierarchy
-  used to search for parameter values, has been moved to the environment level
-  to utilize the ability to have a unique ``hiera.yaml`` configuration per
-  environment.
-* The default data directory has been renamed from ``hieradata`` to  ``data``
-  to match Hiera 5 conventions.
-
-You should review the puppet documentation for `upgrading to Hiera 5`_ to learn
-how to upgrade any custom modules or backends that you have created.
-
-.. _upgrading to Hiera 5: https://puppet.com/docs/puppet/5.5/hiera_migrate.html
-
-
-Significant Updates
--------------------
-
-The following items were removed as dependencies for the ``simp`` RPM and added
-as dependencies on the ``simp-extras`` RPM since they are not used by the
-default SIMP configuration:
-
-* pupmod-richardc-datacat
-* pupmod-simp-autofs
-* pupmod-simp-krb5
-* pupmod-simp-network
-
-puppet-simp-tlog
-^^^^^^^^^^^^^^^^
-
-:term:`Sudosh` has been replaced by :term:`Tlog` as the default for logging
-privileged user activities.  The default command for a user to switch to
-privileged access is now:
-
-.. code-block:: bash
-
-   sudo su - root
-
-Package Installation Settings
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-Several of the SIMP modules have been updated to use the
-``simp_options::package_ensure`` setting as the default for package resource
-ensure state.  The default for ``simp_options::package_ensure`` is `installed`.
-This will change the default behavior of some modules that were previously
-hard-coded to `latest`. This will not affect anything that was explicitly set.
-
-This change makes the SIMP modules consistent and allows the administrator to
-set the default across the system with one variable.  Also, by setting the
-default to `installed` packages will be updated only if the administrator has
-explicitly set the variable to `latest`.
-
-.. NOTE::
-
-   This does **not** affect the nightly cron job that updates all packages on
-   the system and it is recommended that you change this to ``latest`` and rely
-   on prudent repository management.
-
-   See :ref:`ug-sa-ga-nightly-updates` for additional information.
-
-The following modules were updated:
-
-* pupmod-simp-aide
-* pupmod-simp-auditd
-* pupmod-simp-clamav
-* pupmod-simp-dhcp
-* pupmod-simp-fips
-* pupmod-simp-iptables
-* pupmod-simp-krb5
-* pupmod-simp-mozilla
-* pupmod-simp-oddjob
-* pupmod-simp-openscap
-* pupmod-simp-rsync
-* pupmod-simp-rsyslog
-* pupmod-simp-simp_apache
-* pupmod-simp-simp_nfs
-* pupmod-simp-simp_openldap
-* pupmod-simp-ssh
-* pupmod-simp-sudo
-* pupmod-simp-sudosh
-* pupmod-simp-tcpwrappers
-* pupmod-simp-tuned
-* pupmod-simp-vnc
-* pupmod-simp-vsftpd
-* pupmod-simp-xinetd
-
-Oracle Enterprise Linux
-^^^^^^^^^^^^^^^^^^^^^^^
-
-The testing of the modules on Oracle Enterprise Linux was expanded and
-automated.
-
-RPM Updates
------------
-
-ELG Stack
-^^^^^^^^^
-
-The application RPMs for :term:`Elasticsearch`, :term:`Logstash`, and
-:term:`Grafana` will no longer be delivered with the SIMP ISO.
-Updates in the same major version of Elasticsearch and Logstash have been shown
-to randomly corrupt data and are therefore too dangerous to potentially drop
-into upstream repositories by default. Users must now download their own
-:term:`ELG` packages.
-
-Removed Modules
----------------
-
-pupmod-simp-freeradius
-^^^^^^^^^^^^^^^^^^^^^^
-
-There was not enough time to get the ``freeradius`` components updated
-sufficiently for Puppet 5 prior to release. This module may reappear in
-future releases if there is significant demand.
-
-Security Announcements
-----------------------
-
-None
+   * `SIMP-5975`_: Allow users to specify SSL settings for the puppet server.
 
 Fixed Bugs
 ----------
 
-pupmod-simp-auditd
+pupmod-simp-incron
 ^^^^^^^^^^^^^^^^^^
 
-* Revert back to using the native service provider for the auditd service
-* Allow users to opt-out of hooking the audit dispatchers into the SIMP rsyslog
-  module using `auditd::config::audisp::syslog::rsyslog = false` or,
-  alternatively, setting `simp_options::syslog = false`.
-* Add a `write_logs` option to the `auditd_class` and multiplex between the
-  `log_format = NOLOG` setting and `write_logs = false` since there were
-  breaking changes in these settings after `auditd` version `2.6.0`.
-* Add support for `log_format = ENHANCED` for `auditd` version >= `2.6.0`.
-  Older versions will simply fall back to `RAW`.
-* Removed unnecessary dependencies from metadata.json.  Now, when users install
-  auditd stand-alone i.e. `puppet module install`, they will not have
-  extraneous modules clutter their environment.
+* Add ``Incron::Mask`` Data Type denoting valid incron masks
+* Added support for new options starting in ``0.5.12``
 
-pupmod-simp-nfs
-^^^^^^^^^^^^^^^
+  * Automatically strip out options not supported by earlier versions for
+    seamless backward compatibility
 
-* Allow users to set the 'ensure' state of their client mount points in
-  case they don't want them to be mounted by default.
+* Add ability to set ``max_open_files`` ulimit
+* Pin incron to ``0.5.10`` via data in modules since ``0.5.12`` as currently
+  published in EPEL can cause catastrophic system failure.
 
-pupmod-simp-rsyslogd
-^^^^^^^^^^^^^^^^^^^^
+pupmod-simp-pupmod
+^^^^^^^^^^^^^^^^^^
 
-* Updated templates to use RainerScript for rsyslogd V8 and later
-* Fixed the MainMsgQueueDiscardMark and MainMsgQueueWorkerThreads
-  parameters
-* Updated rsyslog::rule::remote to select a more intelligent default
-  for StreamDriverPermittedPeers when TLS is enabled.  This improvement
-  fixes the bug in which forwarding of logs to servers in different domains
-  was not possible within one call.
-* Added logic to properly handle rsyslogd parameters for V8.6 and later
-  as documented in CentOS 7.5 Release notes.  These include moving -x and -w
-  options to global.conf and issuing deprecation warning for -l and -s
-  options.
+* Fixed issues where a large number of ``incron`` watches may overload the
+  system.
 
-pupmod-simp-simp_grafana
-^^^^^^^^^^^^^^^^^^^^^^^^
+  * The module is now extensively tested against large numbers of environments
+    but will still cause load if a large number of environments are created at
+    once.
 
-* Fix bug in resource ordering of pki::copy and grafana::service
-* Use simplib::passgen() in lieu of deprecated passgen()
+* Fixed a bug where some SSL settings could not be set in the puppetserver
+  ``webserver`` components.
+* Added the following *advanced usage* parameters in case users need to set
+  parameters that are not presently managed to work around future issues:
 
-pupmod-simp-simp_logstash
-^^^^^^^^^^^^^^^^^^^^^^^^^
-
-* Workaround for upstream bug where OEL6 logstash::service_provider must
-  be set.
-
-pupmod-simp-simp_rsyslog
-^^^^^^^^^^^^^^^^^^^^^^^^
-
-* Make directory where logs are gathered configurable and make rules that organize
-  them configurable.
-* Updated simp_rsyslog::forward to allow configuration of the
-  StreamDriverPermittedPeers directive in the forwarding rule actions
-  for the remote rsyslog servers.  This allows the user to set the correct
-  StreamDriverPermittedPeers value when the default value is incorrect
-  (e.g., when IP addresses are used in simp_rsyslog::log_servers or
-  simp_rsyslog::failover_servers and one or more of those servers
-  is not in the same domain as the client).
-* Remove redundant rules for sudosh since the puppet module will correctly take
-  care of adding those rules.
-* Add support for tlog since it will be commonly replacing sudosh across the
-  SIMP infrastructure.
+  * ``pupmod::master::server_webserver_options``
+  * ``pupmod::master::ca_webserver_options``
 
 pupmod-simp-simplib
 ^^^^^^^^^^^^^^^^^^^
 
-* Fixed bug where uid_min would throw errors under operating systems
-  without /etc/login.defs.
-* Fixed bug where simplib_sysctl would throw an undefined method error
-  on non-Linux OS's.  (both those with sysctl (MacOS X) and without (Windows))
-* Fixed bug  with the `boot_dir_uuid` fact where it would throw an error if running
-  on a system without a `/boot` partition (like a container).
-* Ensure that reboot_notify updates resources based on a modified 'reason'
+* Ensure that IPA fact does not hang indefinitely.
+* Added 'defined type' lookup capability, ``simplib::dlookup`` that provides a
+  consistent method for rerieving defined type parameters from Hiera in an
+  opt-in manner. (Required for fixing the ``stunnel`` bug).
+* Fixed YARD documentation issues
 
-pupmod-simp-ssh
-^^^^^^^^^^^^^^^
-
-* Hardened all ssh_host_* keys for security and compliance
-
-pupmod-simp-sudo
+pupmod-simp-sssd
 ^^^^^^^^^^^^^^^^
 
-* Enable support for Default of `cmnd` type in sudoers file.
+* Set the ``min_id`` settings across the board to ``1`` to match the sssd
+  defaults, since they really have nothing to do with the target system's
+  relationship with a centralized authentication service.
+* The original setting of the ``min_id`` or ``max_id`` settings to the
+  ``login.defs`` defaults was a bug since, per the man page, this would
+  preclude sssd from recognizing items outside of that range at all. The
+  relevance of the ``local login.defs`` settings (system specific) and the sssd
+  settings (global authentication source) are completely irrelevant to one
+  another and should not have been bound together.
+* Updated the ``sssd::provider::ldap_access_order`` parameter to support the
+  ``ppolicy`` related options that were added in sssd ``1.14.0``.
 
-pupmod-simp-svckill
+  * ppolicy
+  * pwd_expire_policy_reject
+  * pwd_expire_policy_warn
+  * pwd_expire_policy_renew
+
+* Added ``pwd_expire_policy_reject`` to the
+  ``sssd::provider::ldap::ldap_access_order`` default. This will deny a locked
+  account even it access is being attempted via a SSH key.
+
+pupmod-simp-stunnel
 ^^^^^^^^^^^^^^^^^^^
 
-* Added 7.5 RHEL services to svckill::ignore_defaults list for EL7.
+* Add ability for users to override ``stunnel::connection`` and
+  ``stunnel::instance`` options either globally or by specific indentified
+  instances using the new ``simplib::dlookup`` function.
+* Fixed ``stunnel::connection`` and ``stunnel::instance`` bugs:
+
+  * ``sni`` is not applicable on EL6
+  * ``retry`` is ony applicable when ``exec`` is specified and needed to be
+    translated from a booolean to ``yes/no``
+  * ``session`` is only applicable on EL6
 
 rubygem_simp_cli
 ^^^^^^^^^^^^^^^^
 
-* Updated 'simp config' to support environment-specific :term:`Hiera` 5
-  configuration provided by SIMP-6.3.0.
-
-  - Assumes a legacy Hiera 3 configuration, when the 'simp'
-    environment only contains a 'hieradata' directory.
-  - Assumes a Hiera 5 configuration configuration, when the 'simp'
-    environment contains both a 'hiera.yaml' file and a 'data/'
-
-* Fixed `simp bootstrap` errors in puppetserver 5+:
-
-  - No longer overwrites `web-routes.conf` (fix fatal config errors)
-  - No longer adds `-XX:MaxPermSize` for Java >= 8 (fix warnings)
-
-* The `trusted_server_facts` was removed in Puppet 5.0.0.
-  The presence of this setting will cause each puppet run to emit the warning:
-
-      Warning: Setting trusted_server_facts is deprecated.
-
-  This patch causes `simp config` to quietly remove the setting if it is present
-  and Puppet is version 5 or later.
-
-New Features
-------------
-
-pupmod-simp-x2go and pupmod-simp-mate
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-These modules are used to configure the x2go client and server to allow for
-remote access to desktops and servers. This is an alternative to VNC. An
-example configuration is documented in the
-:ref:`ug-howto-graphical_remote_access` documentation.
-
-pupmod-simp-tlog
-^^^^^^^^^^^^^^^^
-
-This module configures :term:`Tlog` for logging privileged user activities.
-Both :term:`sudosh` and Tlog are currently available but sudosh is no longer
-being maintained and is expected to be deprecated in the future.
-
-pupmod-simp-simp_pki_service
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-.. WARNING::
-
-   This is a technology preview and may break unexpectedly in the future
-
-Traditionally, SIMP has used an internal "FakeCA" `openssl`-based CA. Over
-time, this has proven insufficient for our needs, particularly for capabilities
-in terms of Key Enrollment (SCEP and CMC), OCSP, and overall management of
-certificates.
-
-Additionally, it was found that users wanted to adjust the certificate
-parameters for the Puppet subsystem itself outside of the defaults and/or use a
-"real", and more scalable CA system for all certificate management.
-
-The pupmod-simp-simp_pki_service module  can be used to configure a
-Certificate Authority (CA) using the Dogtag server.  This CA can be configured
-either for the puppet server CA, the site CA in lieu of FakeCA, or both.
-
-See the README in the module for details on how to configure it.
-
-The Dogtag server was chosen because it is part of the FreeIPA suite and
-therefore likely to have any issues fixed and be well supported.
-
+* Added a ``simp bootstrap`` option to set the wait time for the puppetserver
+  to start during the bootstrap process.
+* Adjusted the help message so that it fits within a 80-character console
+  window.
 
 Known Bugs
 ----------
@@ -383,6 +171,10 @@ This has been mitigated by the SIMP wrapper script simply bypassing ``tlog`` if
 a TTY is not present.
 
 
+.. _SIMP-5480: https://simp-project.atlassian.net/browse/SIMP-5480
+.. _SIMP-5932: https://simp-project.atlassian.net/browse/SIMP-5932
+.. _SIMP-5974: https://simp-project.atlassian.net/browse/SIMP-5974
+.. _SIMP-5975: https://simp-project.atlassian.net/browse/SIMP-5975
 .. _a bug where session information may not be logged: https://github.com/Scribery/tlog/issues/228
 .. _a second bug where the application fails if a user does not have a TTY: https://github.com/Scribery/tlog/issues/227
 .. _file bugs: https://simp-project.atlassian.net
