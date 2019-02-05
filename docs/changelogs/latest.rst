@@ -18,7 +18,7 @@ SIMP Community Edition (CE) 6.3.2-0
 .. WARNING::
 
    Please see the :ref:`changelog-6.2.0` Changelog for general information,
-   upgrade guidance, and compatibilty notes.
+   upgrade guidance, and compatibility notes.
 
 This is a bug fix release in the 6.3.X series of SIMP to address the following
 issues:
@@ -26,7 +26,7 @@ issues:
   * `SIMP-5974`_: Ensure that the ``incron`` spawned ``puppet generate types``
     would not overwhelm the puppet server due to an `upstream bug in the incron
     package`_.  This involved both pinning the incron version to a version that
-    did not have bugs as well as reducing the footprint of the monitoried files
+    did not have bugs as well as reducing the footprint of the monitored files
     in the filesystem. See :ref:`faq-puppet-generate_types` for additional
     information.
 
@@ -84,7 +84,7 @@ pupmod-simp-pupmod
   system.
 
   * The module is now extensively tested against large numbers of environments
-    but will still cause load if a large number of environments are spawned at
+    but will still cause load if a large number of environments are created at
     once.
 
 * Fixed a bug where some SSL settings could not be set in the puppetserver
@@ -108,12 +108,12 @@ pupmod-simp-sssd
 ^^^^^^^^^^^^^^^^
 
 * Set the ``min_id`` settings across the board to ``1`` to match the sssd
-  defaults since they really have nothing to do with the target system's
+  defaults, since they really have nothing to do with the target system's
   relationship with a centralized authentication service.
 * The original setting of the ``min_id`` or ``max_id`` settings to the
   ``login.defs`` defaults was a bug since, per the man page, this would
-  preclude sssd from recognizigin items outside of that range at all. The
-  relevance of the local login.defs settings (system specific) and the sssd
+  preclude sssd from recognizing items outside of that range at all. The
+  relevance of the ``local login.defs`` settings (system specific) and the sssd
   settings (global authentication source) are completely irrelevant to one
   another and should not have been bound together.
 * Updated the ``sssd::provider::ldap_access_order`` parameter to support the
@@ -133,7 +133,7 @@ pupmod-simp-stunnel
 
 * Add ability for users to override ``stunnel::connection`` and
   ``stunnel::instance`` options either globally or by specific indentified
-  instance using the new ``simplib::dlookup`` function.
+  instances using the new ``simplib::dlookup`` function.
 * Fixed ``stunnel::connection`` and ``stunnel::instance`` bugs:
 
   * ``sni`` is not applicable on EL6
