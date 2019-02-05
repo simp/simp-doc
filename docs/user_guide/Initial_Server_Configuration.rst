@@ -90,15 +90,27 @@ method.
 
 #. Type ``simp bootstrap``
 
+   - ``simp bootstrap``  generates a log file in ``/root/.simp`` containing
+     details of the bootstrap operation.
+
+   - For a list of options ``simp bootstrap`` provides, type ``simp help bootstrap``.
+
    .. NOTE::
 
-      If progress bars are of equal length and the bootstrap finishes quickly,
-      a problem has occurred. This is most likely due to an error in SIMP
-      configuration. Refer to the previous step and make sure that all
-      configuration options are correct.
+      - If your SIMP server is a virtual machine in a cloud, the default
+        timeout for the puppet server to start, 5 minutes, may be too short.
+        You will want to extend this time by using the ``-w`` option.  For
+        example, to extend that timeout to 10 minutes:
 
-      If this happens, you can debug by either looking at the log files or by
-      running ``puppet agent -t --masterport=8150``.
+        ``simp bootstrap -w 10``
+
+      - If progress bars of each puppet run are of equal length and the
+        bootstrap finishes quickly, a problem has occurred. This is most
+        likely due to an error in SIMP configuration. Refer to the previous
+        step and make sure that all configuration options are correct.
+
+        If this happens, you can debug by either looking at the log files or by
+        running ``puppet agent -t --masterport=8150``.
 
 #. Type ``reboot`` to reboot and apply the necessary kernel configuration items.
 
