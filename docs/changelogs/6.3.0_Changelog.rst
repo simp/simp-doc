@@ -33,7 +33,7 @@ The versions of Puppet targeted are those delivered with Puppet Enterprise
   * Puppet Agent:  5.5.X
 
 A much wider range of versions is used for unit and acceptance testing.  See
-the ``.gitlab.yml`` file in each module to see what versions it has been tested
+the ``.gitlab_ci.yml`` file in each module to see what versions it has been tested
 against.
 
 .. WARNING::
@@ -206,14 +206,14 @@ Fixed Bugs
 pupmod-simp-auditd
 ^^^^^^^^^^^^^^^^^^
 
-* Revert back to using the native service provider for the auditd service
-* Allow users to opt-out of hooking the audit dispatchers into the SIMP rsyslog
+* Reverted back to using the native service provider for the auditd service
+* Allowed users to opt-out of hooking the audit dispatchers into the SIMP rsyslog
   module using `auditd::config::audisp::syslog::rsyslog = false` or,
   alternatively, setting `simp_options::syslog = false`.
-* Add a `write_logs` option to the `auditd_class` and multiplex between the
+* Added a `write_logs` option to the `auditd_class` and multiplex between the
   `log_format = NOLOG` setting and `write_logs = false` since there were
   breaking changes in these settings after `auditd` version `2.6.0`.
-* Add support for `log_format = ENHANCED` for `auditd` version >= `2.6.0`.
+* Added support for `log_format = ENHANCED` for `auditd` version >= `2.6.0`.
   Older versions will simply fall back to `RAW`.
 * Removed unnecessary dependencies from metadata.json.  Now, when users install
   auditd stand-alone i.e. `puppet module install`, they will not have
@@ -222,7 +222,7 @@ pupmod-simp-auditd
 pupmod-simp-nfs
 ^^^^^^^^^^^^^^^
 
-* Allow users to set the 'ensure' state of their client mount points in
+* Allowed users to set the 'ensure' state of their client mount points in
   case they don't want them to be mounted by default.
 
 pupmod-simp-rsyslogd
@@ -243,8 +243,8 @@ pupmod-simp-rsyslogd
 pupmod-simp-simp_grafana
 ^^^^^^^^^^^^^^^^^^^^^^^^
 
-* Fix bug in resource ordering of pki::copy and grafana::service
-* Use simplib::passgen() in lieu of deprecated passgen()
+* Fixed bug in resource ordering of pki::copy and grafana::service
+* Used simplib::passgen() in lieu of deprecated passgen()
 
 pupmod-simp-simp_logstash
 ^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -255,7 +255,7 @@ pupmod-simp-simp_logstash
 pupmod-simp-simp_rsyslog
 ^^^^^^^^^^^^^^^^^^^^^^^^
 
-* Make directory where logs are gathered configurable and make rules that organize
+* Made directory where logs are gathered configurable and make rules that organize
   them configurable.
 * Updated simp_rsyslog::forward to allow configuration of the
   StreamDriverPermittedPeers directive in the forwarding rule actions
@@ -264,9 +264,9 @@ pupmod-simp-simp_rsyslog
   (e.g., when IP addresses are used in simp_rsyslog::log_servers or
   simp_rsyslog::failover_servers and one or more of those servers
   is not in the same domain as the client).
-* Remove redundant rules for sudosh since the puppet module will correctly take
+* Removed redundant rules for sudosh since the puppet module will correctly take
   care of adding those rules.
-* Add support for tlog since it will be commonly replacing sudosh across the
+* Added support for tlog since it will be commonly replacing sudosh across the
   SIMP infrastructure.
 
 pupmod-simp-simplib
@@ -288,7 +288,7 @@ pupmod-simp-ssh
 pupmod-simp-sudo
 ^^^^^^^^^^^^^^^^
 
-* Enable support for Default of `cmnd` type in sudoers file.
+* Enabled support for Default of `cmnd` type in sudoers file.
 
 pupmod-simp-svckill
 ^^^^^^^^^^^^^^^^^^^
