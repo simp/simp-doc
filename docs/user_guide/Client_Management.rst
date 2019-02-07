@@ -52,7 +52,7 @@ can use an existing DNS infrastructure.
      * ``named/var/named/forward/your.domain.db``
      * ``named/var/named/reverse/0.0.10.db``
 
-   * Review ``named/etc/named.conf`` and update the following:
+   * Make the following chages to ``named/etc/named.conf``:
 
      * Update the :term:`IP` for allow-query and allow-recursion
      * Delete any unnecessary zone stanzas (i.e. forwarding) if not
@@ -67,7 +67,7 @@ can use an existing DNS infrastructure.
 #. Type ``puppet agent -t --tags named`` on the Puppet master to apply
    the changes.
 #. Validate DNS and ensure the ``/etc/resolv.conf`` is updated appropriately.
-#. If an error about the ``rndc.key`` appears when starting ``named``, see the
+#. If an ``rndc.key`` error appears when starting ``named``, see the
    `Bind Documentation <https://www.isc.org/downloads/bind/>`_.  Once you have
    resolved the issue, re-run the puppet command ``puppet agent -t`` on the
    Puppet master to apply.
