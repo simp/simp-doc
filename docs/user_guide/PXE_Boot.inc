@@ -150,8 +150,9 @@ Under OSTYPE-MAJORRELEASE.MINORRELEASE-ARCH you should find the files:
 * ``initrd.img``
 * ``vmlinuz``
 
-If these directories do not exist, then create the directories as needed and copy
-the files from ``/var/www/yum/<OSTYPE>/<MAJORRELEASE>/<ARCH>/images/pxeboot``
+If these files are not where they should be, then create the directories as 
+needed and copy the files from 
+``/var/www/yum/<OSTYPE>/<MAJORRELEASE>/<ARCH>/images/pxeboot``
 or from the images directory on the SIMP DVD.  The link name is what is used in
 the resources in the tftpboot.pp manifest examples.
 
