@@ -104,8 +104,9 @@ Removed Modules
 
 pupmod-simp-mcollective and pupmod-simp-activemq
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-* Puppetlabs no longer supports MCollective, so SIMP has removed the ``pupmod-simp-mcollective`` and
-  ``pupmod-simp-activemq`` modules that supported MCollective.
+* Puppetlabs no longer supports MCollective, so SIMP has removed the 
+  ``pupmod-simp-mcollective`` and ``pupmod-simp-activemq`` modules that 
+  support MCollective.
 
 pupmod-simp-jenkins
 ^^^^^^^^^^^^^^^^^^^
@@ -123,7 +124,7 @@ pupmod-simp-mcafee
 pupmod-puppetlabs-java_ks
 ^^^^^^^^^^^^^^^^^^^^^^^^^
 
-* This RPM has been removed, as it is no longer a dependency of any SIMP tools.
+* This RPM has been removed, as it is no longer a dependency of any SIMP modules.
 
 
 Security Updates
