@@ -104,8 +104,8 @@ Removed Modules
 
 pupmod-simp-mcollective and pupmod-simp-activemq
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-* Puppetlabs no longer supports ``pupmod-simp-mcollective`` and
-  ``pupmod-simp-activemq``, so SIMP has removed these components.
+* Puppetlabs no longer supports MCollective, so SIMP has removed the ``pupmod-simp-mcollective`` and
+  ``pupmod-simp-activemq`` modules that supported MCollective.
 
 pupmod-simp-jenkins
 ^^^^^^^^^^^^^^^^^^^
