@@ -52,7 +52,7 @@ can use an existing DNS infrastructure.
      * ``named/var/named/forward/your.domain.db``
      * ``named/var/named/reverse/0.0.10.db``
 
-   * Make the following chages to ``named/etc/named.conf``:
+   * Make the following changes to ``named/etc/named.conf``:
 
      * Update the :term:`IP` for allow-query and allow-recursion
      * Delete any unnecessary zone stanzas (i.e. forwarding) if not
