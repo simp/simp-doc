@@ -279,7 +279,7 @@ pupmod-simp-simp
 * Changed the permissions of ``rc.local`` to ``750``.
 * Removed the explicit setting of the ``host_list`` on all
   ``sudo::user_specification`` resources to let the updated module defaults
-  handle setting host_list appropriately.
+  handle setting ``host_list`` appropriately.
 
 pupmod-simp-simp_apache
 ^^^^^^^^^^^^^^^^^^^^^^^
