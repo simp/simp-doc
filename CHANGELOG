@@ -1,3 +1,6 @@
+* Mon Feb 11 2019 Trevor Vaughan <tvaughan@onyxpoint.com>
+- Prepare for the 6.3.2 release
+
 * Mon Dec 17 2018 Trevor Vaughan <tvaughan@onyxpoint.com>
 - Added a warning about copy/pasting from the docs and quotes
 - Added a note to the 6.2->6.3 upgrade guide to restart the puppetdb process
