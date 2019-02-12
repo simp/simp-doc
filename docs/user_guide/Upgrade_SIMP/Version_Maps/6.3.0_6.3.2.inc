@@ -1,6 +1,6 @@
 .. _upgrade-6.3.0-to-6.3.2:
 
-Upgrading from SIMP-6.2.0 to SIMP-6.3.0
+Upgrading from SIMP-6.3.0 to SIMP-6.3.2
 ---------------------------------------
 
 The 6.3.2 release of SIMP is a major bugfix release.
