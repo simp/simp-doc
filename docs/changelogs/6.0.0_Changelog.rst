@@ -31,9 +31,6 @@ Breaking Changes
    At this point, do not expect any of our code moving forward to work with
    Puppet 3.
 
-.. NOTE::
-   This is the final release of SIMP 6!
-
 If you find any issues, please `file bugs`_!
 
 .. NOTE::
