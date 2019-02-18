@@ -1,6 +1,9 @@
-* Mon Jan 21 2019 Trevor Vaughan <tvaughan@onyxpoint.com>
+* Mon Feb 18 2019 Trevor Vaughan <tvaughan@onyxpoint.com>
 - Updated tftpboot documentation to reference the Disk Encryption capability in
   the kickstart files.
+
+* Mon Feb 11 2019 Trevor Vaughan <tvaughan@onyxpoint.com>
+- Prepare for the 6.3.2 release
 
 * Mon Dec 17 2018 Trevor Vaughan <tvaughan@onyxpoint.com>
 - Added a warning about copy/pasting from the docs and quotes

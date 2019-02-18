@@ -105,7 +105,7 @@ Below are the steps to generate the certificates using the SIMP-provided, Fake C
    .. NOTE::
 
       To use alternate DNS names for the same system, separate the names with
-      commas and without spaces.
+      commas and omit any spaces.
 
       For example, ``.name,alt.name1,alt.name2.``
 

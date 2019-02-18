@@ -1,3 +1,5 @@
+.. _changelog-6.2.0:
+
 SIMP Community Edition (CE) 6.2.0-0
 ===================================
 
@@ -102,9 +104,9 @@ Removed Modules
 
 pupmod-simp-mcollective and pupmod-simp-activemq
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-* Puppetlabs support for MCollective has been dropped, rendering the SIMP
-  modules to support this, ``pupmod-simp-mcollective`` and
-  ``pupmod-simp-activemq``, non-functional.
+* Puppetlabs no longer supports MCollective, so SIMP has removed the 
+  ``pupmod-simp-mcollective`` and ``pupmod-simp-activemq`` modules that 
+  support MCollective.
 
 pupmod-simp-jenkins
 ^^^^^^^^^^^^^^^^^^^
@@ -122,8 +124,7 @@ pupmod-simp-mcafee
 pupmod-puppetlabs-java_ks
 ^^^^^^^^^^^^^^^^^^^^^^^^^
 
-* All modules that depended on this functionality have been removed from the
-  distribution and this dangling dependency is also being removed.
+* This RPM has been removed, as it is no longer a dependency of any SIMP modules.
 
 
 Security Updates
@@ -157,8 +158,7 @@ pupmod-simp-incron
 
 * Fixed the permissions on the ``incrond`` service in ``systemd`` to remove
   logged errors.
-* No longer manage permissions differently than the vendor RPM to align with
-  STIG requirements.
+* Matched RPM permissions based on STIG requirements.
 
 pupmod-simp-iptables
 ^^^^^^^^^^^^^^^^^^^^
@@ -201,7 +201,7 @@ pupmod-simp-pam
 ^^^^^^^^^^^^^^^
 
 * Change the minimum allowed UID to the one defined in ``/etc/login.defs`` by
-  default or ``1000`` if nothing else is defined.
+  default, or ``1000`` if nothing else is defined.
 * Replace the removal of ``authconfig`` and ``authconfig-tui`` with the use of a
   ``authconfig`` no-op script, so that tools using ``authconfig`` do not
   break.
@@ -226,7 +226,7 @@ pupmod-simp-pupmod
 * Properly disable the ``puppet`` service if running in cron mode. This was not
   disabled before and could contribute to a "thundering herd" issue.
 * Fixed the Java ``tmpdir`` path for the ``puppetserver`` which allows runs on
-  systems that have been pre-hardened
+  systems that have been pre-hardened.
 
 pupmod-simp-rsync
 ^^^^^^^^^^^^^^^^^
@@ -267,19 +267,19 @@ pupmod-simp-simp
 * Fixed the permissions on the ``ctrl-alt-del-capture`` service file so that
   warnings would no longer be logged.
 * Replace the deprecated ``runpuppet`` script with client Puppet bootstrap scripts
-  that are not inappropriately killed by ``systemd``, when executed in highly-loaded
-  environments.  These scripts allow the ``systemd`` timeout to be specified and
-  provide better error handling and logging.
-* On systems with ``systemd``, set the host name in client Puppet bootstrap scripts,
-  to prevent issues that can arise when a ``dhcp`` lease expires.  This could cause
-  the generated Puppet configuration for the client to use ``localhost`` as the
-  client's hostname.
+  which will not be inappropriately killed by ``systemd``, when executed in 
+  highly-loaded environments.  These scripts allow the ``systemd`` timeout to 
+  be specified and provide better error handling and logging.
+* On systems with ``systemd``, set the host name in client Puppet bootstrap
+  scripts, to prevent issues that can arise when a ``dhcp`` lease expires.  
+  Not setting the hostname could cause the generated Puppet configuration 
+  for the client to use ``localhost`` as the client's hostname.
 * Ensure that running on unsupported operating systems is completely safe.
 * No longer deviate from vendor RPM default permissions per the STIG.
-* Changed the mode of ``rc.local`` to ``750``.
+* Changed the permissions of ``rc.local`` to ``750``.
 * Removed the explicit setting of the ``host_list`` on all
   ``sudo::user_specification`` resources to let the updated module defaults
-  handle it appropriately.
+  handle setting ``host_list`` appropriately.
 
 pupmod-simp-simp_apache
 ^^^^^^^^^^^^^^^^^^^^^^^
@@ -328,17 +328,16 @@ pupmod-simp-stunnel
 
 * Fixed the ``stunnel`` startup scripts to ensure that they will always
   execute.
-* Only emit errors when errors occur during startup.
+* Only display errors when errors occur during startup.
 * Removed the ``init.d`` script on ``systemd`` systems.
-* Ensure that the ``stunnel`` service name is set correctly in all instances so
+* Ensure that the ``stunnel`` service name is set correctly in all instances, so
   that ``tcpwrappers`` functions properly.
 
 pupmod-simp-svckill
 ^^^^^^^^^^^^^^^^^^^
 
-* Add simp_client_bootstrap service to the ignore list. If this is omitted
-  from the ignore list, svckill will kill the bootstrap process of SIMP clients
-  while they are boostrapping the system.
+* Add simp_client_bootstrap service to the ignore list; otherwise, svckill will 
+  kill the bootstrap process of SIMP clients.
 
 pupmod-simp-vnc
 ^^^^^^^^^^^^^^^
@@ -368,7 +367,7 @@ simp-core
 
 * Enabled GPG checking for the ISO-configured local filesystem repository by default
 * Fixed errors in the ``kickstart`` scriptlets
-* SSD devices are better detected by the ``diskdetect.sh`` script
+* Improved detection of SSD devices using the ``diskdetect.sh`` script
 * Removed obsolete ``simp-big`` and ``simp-big-disk-crypt`` kickstart options in EL7
 * No longer install ``prelink`` at kickstart time
 * Fixed EFI support on the ISO releases
@@ -381,7 +380,7 @@ simp-doc
 * Remove OBE MCollective references
 * Fixed issues in the sample ``tftpboot`` puppet code
 * Fixed several broken links
-* Rearranged the installation guide to be more user friendly
+* Made the installation guide more user friendly by rearranging the content
 
 simp-environment
 ^^^^^^^^^^^^^^^^
@@ -433,10 +432,11 @@ pupmod-simp-libvirt
 pupmod-simp-logrotate
 ^^^^^^^^^^^^^^^^^^^^^
 
-* Move SIMP-specific logrotate rules to a SIMP-managed configuration
-  directory, ``/etc/logrotate.simp.d``, and ensure ``logrotate`` processes
-  that directory first. This ensures SIMP rules take priority, when duplicate
-  rules are specified (e.g., OS and SIMP rules for ``/var/log/boot.log``.
+* Moved SIMP-specific logrotate rules to a SIMP-managed configuration
+  directory, ``/etc/logrotate.simp.d``, and ensured ``logrotate`` processes
+  that directory first. This ensures that SIMP rules take priority, when 
+  duplicate rules are specified (e.g., OS and SIMP rules for 
+  ``/var/log/boot.log``).
 
 pupmod-simp-nfs
 ^^^^^^^^^^^^^^^
@@ -446,7 +446,7 @@ pupmod-simp-nfs
 * Added the ability to tweak ``stunnel`` parameters for all NFS connections.
 * Ensure that all ``stunnel`` services used with NFS are now dependencies of
   the remote filesystem servers actually being active.
-* Add the ability to set ``nfs::client::mount::autodetect_remote`` to override
+* Added the ability to set ``nfs::client::mount::autodetect_remote`` to override
   all autodetection of whether or not the remote system is the local NFS server.
 * Added ``nfs::client::mount::stunnel`` to allow users to dictate the
   ``stunnel`` state for individual connections.
@@ -454,19 +454,19 @@ pupmod-simp-nfs
 pupmod-simp-ntpd
 ^^^^^^^^^^^^^^^^
 
-* Add optional management of the ``/etc/ntp/step-tickers`` file.
-* Add a ``$package_ensure`` parameter to control the ``ntp`` package version.
-* Add management of ``/etc/sysconfig/ntpdate``
+* Added optional management of the ``/etc/ntp/step-tickers`` file.
+* Added a ``$package_ensure`` parameter to control the ``ntp`` package version.
+* Added management of ``/etc/sysconfig/ntpdate``
 
 pupmod-simp-openldap
 ^^^^^^^^^^^^^^^^^^^^
 
-* Ensure that ``concat`` ordering is set in ``numeric`` order.
+* Ensure that ``concat`` resource ordering is set in ``numeric`` order.
 
 pupmod-simp-openscap
 ^^^^^^^^^^^^^^^^^^^^
 
-* Add an ``oscap`` fact to collect the following:
+* Added an ``oscap`` fact to collect the following:
   * OpenSCAP Version
   * OpenSCAP Supported Specifications
   * OpenSCAP Profiles from ``/usr/share/xml/scap/*/content/*-ds.xml``
@@ -474,7 +474,7 @@ pupmod-simp-openscap
 pupmod-simp-pam
 ^^^^^^^^^^^^^^^
 
-* Add the ability to set ``unlock_time`` to ``never`` for ``pam_faillock.so``.
+* Added the ability to set ``unlock_time`` to ``never`` for ``pam_faillock.so``.
 * Set the default ``cracklib_maxclassrepeat`` to ``3``.
 * Allow users to change the password hashing algorithm.
 * Allow users to toggle password enforcement for the ``root`` user.
@@ -532,7 +532,7 @@ pupmod-simp-simp_docker
 pupmod-simp-simp_gitlab
 ^^^^^^^^^^^^^^^^^^^^^^^
 
-* Add support for the new GitLab 10+ LDAP options, specifically for TLS.
+* Added support for the new GitLab 10+ LDAP options, specifically for TLS.
 
 pupmod-simp-simp_grafana
 ^^^^^^^^^^^^^^^^^^^^^^^^
@@ -562,8 +562,8 @@ pupmod-simp-simp_openldap
 pupmod-simp-simp_options
 ^^^^^^^^^^^^^^^^^^^^^^^^
 
-* Add ``simp_options::uid`` and ``simp_options::gid`` since several modules
-  require a consistent parameter set for enforcing these items globally.
+* Added ``simp_options::uid`` and ``simp_options::gid`` since several modules
+  required a consistent parameter set for enforcing these items globally.
 * Removed ``$simp_options::selinux`` since it never worked as designed and was
   not required by more than one module. This is not considered a breaking
   change since it effectively never had any effect on the system anyway.
@@ -662,14 +662,14 @@ pupmod-simp-tpm
 pupmod-simp-useradd
 ^^^^^^^^^^^^^^^^^^^
 
-* Set the min and max ``UID`` and ``GID`` based on what is in ``login.defs``
+* Set the min and max ``UID`` and ``GID`` based on what is in ``login.defs``,
   and default to something sensible for the platform.
 
 
 simp-core
 ^^^^^^^^^
 
-* Add logic to auto.cfg to use OS-specific GPG keys in simp_filesystem.repo.
+* Added logic to auto.cfg to use OS-specific GPG keys in simp_filesystem.repo.
 * Client kickstart files were updated to use the latest ``simp::server::kickstart``
   API and to provide support for UEFI PXE boot
 * EL6 kickstart files were updated to more closely match the EL7 kickstart files
