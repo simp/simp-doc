@@ -202,8 +202,16 @@ various files to model different systems.
      kickstart file needed.
 
      .. NOTE::
-        If using the default cfg files, know that they do not have the '_el[6,7]' 
-        tags at the end of their name.
+        If using the default cfg files, know that they do not have the '_el[6,7]'
+        tags at the end of their names.
+
+     .. NOTE::
+        The ``simp_disk_crypt`` option shown below switches on transparent disk
+        encryption as described in the :ref:`ig-disk-encryption` documentation
+        and is recommended if you have a requirement for disk encryption and
+        cannot enter a password at system boot time.
+
+        Simply omit the option if you do not wish to use the capability.
 
      .. code-block:: ruby
 
@@ -218,7 +226,7 @@ various files to model different systems.
             kernel => 'OSTYPE-MAJORRELEASE-ARCH/vmlinuz',
             initrd => 'OSTYPE-MAJORRELEASE-ARCH/initrd.img',
             ks     => "https://KSSERVER/ks/pupclient_x86_64_el7.cfg",
-            extra  => "inst.noverifyssl ksdevice=bootif\nipappend 2"
+            extra  => "inst.noverifyssl ksdevice=bootif simp_disk_crypt\nipappend 2"
           }
 
           # For CentOS/RedHat 6 Legacy/BIOS boot
@@ -227,7 +235,7 @@ various files to model different systems.
             kernel => 'OSTYPE-MAJORRELEASE-ARCH/vmlinuz',
             initrd => 'OSTYPE-MAJORRELEASE-ARCH/initrd.img',
             ks     => "https://KSSERVER/ks/pupclient_x86_64_el6.cfg",
-            extra  => "noverifyssl ksdevice=bootif\nipappend 2"
+            extra  => "noverifyssl ksdevice=bootif simp_disk_crypt\nipappend 2"
           }
 
           #------
@@ -244,7 +252,7 @@ various files to model different systems.
             kernel => 'OSTYPE-MAJORRELEASE-ARCH/vmlinuz',
             initrd => 'OSTYPE-MAJORRELEASE-ARCH/initrd.img',
             ks     => "https://KSSERVER/ks/pupclient_x86_64_efi_el7.cfg",
-            extra  => "inst.noverifyssl"
+            extra  => "inst.noverifyssl simp_disk_crypt"
           }
 
           # For CentOS/RedHat 6 UEFI boot
@@ -253,7 +261,7 @@ various files to model different systems.
             kernel      => 'OSTYPE-MAJORRELEASE-ARCH/vmlinuz',
             initrd      => 'OSTYPE-MAJORRELEASE-ARCH/initrd.img',
             ks          => "https://KSSERVER/ks/pupclient_x86_64_el6.cfg",
-            extra       => "noverifyssl",
+            extra       => "noverifyssl simp_disk_crypt",
             legacy_grub => true
           }
 
