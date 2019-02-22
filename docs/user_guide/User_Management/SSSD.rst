@@ -114,4 +114,4 @@ Test authentication by ssh-ing as the ``user`` onto the host machine, with the
 password specified after user creation.  If you want to set up a ssh key,
 you may want to follow the relevant `GitHub documentation`_.
 
-.. _GitHub documentation: https://help.github.com/articles/generating-ssh-keys
+.. _GitHub documentation: https://help.github.com/en/articles/connecting-to-github-with-ssh
