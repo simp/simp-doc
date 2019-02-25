@@ -42,4 +42,4 @@ Amending Changes to Submitted Pull Requests
 #. The pull request has been updated, and participants have received an email
 
 .. _hub: https://hub.github.com/
-.. _protected branches: https://help.github.com/articles/about-protected-branches/
+.. _protected branches: https://help.github.com/en/articles/about-protected-branches/
