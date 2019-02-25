@@ -153,7 +153,7 @@ implementation's broader contingency plan. SIMP provides mechanisms that might
 be used to support backup and recovery procedures.
 
 Administrators seeking FOSS software to implement backup and recovery solutions
-may be interested in products such as `Bacula <https://blog.bacula.org/>`__,
+may be interested in products such as `Bacula <https://www.bacula.org/>`__,
 `BackupPC <http://backuppc.sourceforge.net/>`__, `duplicity
 <http://duplicity.nongnu.org/>`__, and `scat
 <https://github.com/Roman2K/scat>`__.
