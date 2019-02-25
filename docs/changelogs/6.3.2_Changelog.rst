@@ -1,0 +1,180 @@
+.. _changelog-6.3.2:
+
+SIMP Community Edition (CE) 6.3.2-0
+===================================
+
+.. raw:: pdf
+
+  PageBreak
+
+.. contents::
+  :depth: 2
+
+.. raw:: pdf
+
+  PageBreak
+
+.. WARNING::
+
+   Please see the :ref:`changelog-6.2.0` Changelog for general information,
+   upgrade guidance, and compatibility notes.
+
+This is a bug fix release in the 6.3.X series of SIMP to address the following
+issues:
+
+  * `SIMP-5974`_: Ensure that the ``incron`` spawned ``puppet generate types``
+    would not overwhelm the puppet server due to an `upstream bug in the incron
+    package`_.  This involved both pinning the incron version to a version that
+    did not have bugs as well as reducing the footprint of the monitored files
+    in the filesystem. See :ref:`faq-puppet-generate_types` for additional
+    information.
+
+    * The version of ``incron`` that shipped with SIMP 6.3.0 did not have
+      issues, but the update in upstream EPEL did and affects **all uses of
+      incron**, not just ``pupmod::master::generate_types``. We strongly advise
+      that you remove the ``0.5.12-6`` package from your upstream repositories
+      and use the following Hiera configuration to ensure that your SIMP
+      ``6.3.0-0`` installation does not upgrade.
+
+      .. code-block:: yaml
+
+         ---
+         yum::config_options:
+           exclude="incron"
+
+      .. WARNING::
+
+         If you previously disabled ``pupmod::master::generate_types`` then be
+         advised that you will need to manually run ``puppet generate types``
+         on your environments if you upgrade the ``puppet`` or ``puppetserver``
+         packages or if you add a new environment to your system.
+
+         See the :ref:`faq-puppet-generate_types` for additional information.
+
+   * `SIMP-5480`_: Fix a bug in the default ``sssd settings`` where the minimum
+     allowed ``uid/gid`` is now ``1`` and the maximum allowed ``uid/gid`` is
+     now ``0`` to align properly with the ``sssd`` functionality.
+
+   * `SIMP-5932`_: Allow users to specify a timeout for ``simp bootstrap`` to
+     address slow systems.
+
+   * `SIMP-5975`_: Allow users to specify SSL settings for the puppet server.
+
+Fixed Bugs
+----------
+
+pupmod-simp-incron
+^^^^^^^^^^^^^^^^^^
+
+* Add ``Incron::Mask`` Data Type denoting valid incron masks
+* Added support for new options starting in ``0.5.12``
+
+  * Automatically strip out options not supported by earlier versions for
+    seamless backward compatibility
+
+* Add ability to set ``max_open_files`` ulimit
+* Pin incron to ``0.5.10`` via data in modules since ``0.5.12`` as currently
+  published in EPEL can cause catastrophic system failure.
+
+pupmod-simp-pupmod
+^^^^^^^^^^^^^^^^^^
+
+* Fixed issues where a large number of ``incron`` watches may overload the
+  system.
+
+  * The module is now extensively tested against large numbers of environments
+    but will still cause load if a large number of environments are created at
+    once.
+
+* Fixed a bug where some SSL settings could not be set in the puppetserver
+  ``webserver`` components.
+* Added the following *advanced usage* parameters in case users need to set
+  parameters that are not presently managed to work around future issues:
+
+  * ``pupmod::master::server_webserver_options``
+  * ``pupmod::master::ca_webserver_options``
+
+pupmod-simp-simplib
+^^^^^^^^^^^^^^^^^^^
+
+* Ensure that IPA fact does not hang indefinitely.
+* Added 'defined type' lookup capability, ``simplib::dlookup`` that provides a
+  consistent method for rerieving defined type parameters from Hiera in an
+  opt-in manner. (Required for fixing the ``stunnel`` bug).
+* Fixed YARD documentation issues
+
+pupmod-simp-sssd
+^^^^^^^^^^^^^^^^
+
+* Set the ``min_id`` settings across the board to ``1`` to match the sssd
+  defaults, since they really have nothing to do with the target system's
+  relationship with a centralized authentication service.
+* The original setting of the ``min_id`` or ``max_id`` settings to the
+  ``login.defs`` defaults was a bug since, per the man page, this would
+  preclude sssd from recognizing items outside of that range at all. The
+  relevance of the ``local login.defs`` settings (system specific) and the sssd
+  settings (global authentication source) are completely irrelevant to one
+  another and should not have been bound together.
+* Updated the ``sssd::provider::ldap_access_order`` parameter to support the
+  ``ppolicy`` related options that were added in sssd ``1.14.0``.
+
+  * ppolicy
+  * pwd_expire_policy_reject
+  * pwd_expire_policy_warn
+  * pwd_expire_policy_renew
+
+* Added ``pwd_expire_policy_reject`` to the
+  ``sssd::provider::ldap::ldap_access_order`` default. This will deny a locked
+  account even it access is being attempted via a SSH key.
+
+pupmod-simp-stunnel
+^^^^^^^^^^^^^^^^^^^
+
+* Add ability for users to override ``stunnel::connection`` and
+  ``stunnel::instance`` options either globally or by specific indentified
+  instances using the new ``simplib::dlookup`` function.
+* Fixed ``stunnel::connection`` and ``stunnel::instance`` bugs:
+
+  * ``sni`` is not applicable on EL6
+  * ``retry`` is ony applicable when ``exec`` is specified and needed to be
+    translated from a booolean to ``yes/no``
+  * ``session`` is only applicable on EL6
+
+rubygem_simp_cli
+^^^^^^^^^^^^^^^^
+
+* Added a ``simp bootstrap`` option to set the wait time for the puppetserver
+  to start during the bootstrap process.
+* Adjusted the help message so that it fits within a 80-character console
+  window.
+
+Known Bugs
+----------
+
+Upgrading from previous SIMP 6.X versions
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+There are known issues when upgrading from Puppet 4 to Puppet 5.  Make sure you
+read the :ref:`ug-upgrade-simp` before attempting an upgrade.
+
+Tlog
+^^^^
+
+Tlog currently has `a bug where session information may not be logged`_. The
+immediate mitigation to this is the fact that `pam_tty_audit` is the primary
+mode of auditing with ``tlog`` and/or ``sudosh`` being in place for a better
+overall tracking and behavior analysis experience.
+
+Tlog has `a second bug where the application fails if a user does not have a TTY`_.
+This has been mitigated by the SIMP wrapper script simply bypassing ``tlog`` if
+a TTY is not present.
+
+
+.. _SIMP-5480: https://simp-project.atlassian.net/browse/SIMP-5480
+.. _SIMP-5932: https://simp-project.atlassian.net/browse/SIMP-5932
+.. _SIMP-5974: https://simp-project.atlassian.net/browse/SIMP-5974
+.. _SIMP-5975: https://simp-project.atlassian.net/browse/SIMP-5975
+.. _a bug where session information may not be logged: https://github.com/Scribery/tlog/issues/228
+.. _a second bug where the application fails if a user does not have a TTY: https://github.com/Scribery/tlog/issues/227
+.. _file bugs: https://simp-project.atlassian.net
+.. _upstream bug in the incron package: https://bugzilla.redhat.com/show_bug.cgi?id=1656939
