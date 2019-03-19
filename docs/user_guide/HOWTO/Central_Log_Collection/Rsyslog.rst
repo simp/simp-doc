@@ -8,9 +8,7 @@ enabling centralized logging within the infrastructure.
 
 There are no provisions here for setting up shared storage or deduplication.
 This is inherently not a use case that Rsyslog is well designed for and we
-suggest that you look at an alternative. We have incorporated the combination
-of :ref:`Elasticsearch, Logstash, and Grafana` (ELG) into the SIMP ecosystem as
-a well-known, Open Source, software collection.
+suggest that you look at an alternative.
 
 .. NOTE::
 

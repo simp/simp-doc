@@ -22,7 +22,7 @@ To create the releases from an annotated tag:
    .. code-block:: bash
 
       bundle update
-      bundle exec rake changelog_annotation > foo
+      bundle exec rake pkg:create_tag_changelog > foo
 
 #. Create the annotated tag.  In this example the content of 'foo' is::
 

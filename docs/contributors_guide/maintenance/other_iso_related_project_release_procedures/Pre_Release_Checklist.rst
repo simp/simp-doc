@@ -30,37 +30,47 @@ properly updated.
       cd simp-adapter
       git checkout master # this step isn't needed for master branch
 
-#. Manually compare manually the development branch with the last
-   release tag. (The existing rake task ``compare_latest_tag`` won't
-   necessarily work here.)
-
+#. Run the ``pkg:compare_latest_tag`` rake task
+   
    .. code-block:: bash
+        
+      bundle update
+      bundle exec rake pkg:compare_latest_tag
 
-      git fetch -t origin
-
-      # manually figure out which is last tag
-
-      git diff tags/<last release tag> --name-only
-
-      # manually verify mission-impacting changes have been
-      # made (i.e., changes that warrant a release) and the
-      # version has been updated in the CHANGELOG, version.rb
-      # and/or build/<component>.spec file.
+   .. IMPORTANT::
+            
+      If this check indicates no new tag is required, there
+      is no reason to continue with the release procedures.
 
 Verify the changelog
 --------------------
 
-This check verifies the changelog information is available and can be
+This check verifies that the CHANGELOG information can be properly
 extracted:
 
-* Manually inspect the appropriate file (CHANGELOG or %changelog
-  section of <component>.spec file).  (The existing rake task
-  ``changelog_annotation`` won't necessarily work here.)
+#. Run the ``pkg:create_tag_changelog`` rake task
 
-* FIXME ``simp-doc`` has its own ``CHANGELOG``, but requires the
-  ``Changelog.rst`` from ``simp-core`` to be current as well.
-  It may make more sense to move the ``simp-doc`` release into
-  the instructions for releasing a SIMP ISO.
+   .. code-block:: bash
+
+      bundle exec rake pkg:create_tag_changelog
+
+#. Manually verify the changelog information is emitted and complete.
+
+   * It should begin with ``Release of x.y.z`` and then be followed by
+     one or more comment blocks. For example,
+
+     .. code-block:: none
+
+      Release of 6.0.3
+
+      * Thu Aug 10 2017 Nick Markowski <nmarkowski@keywcorp.com> - 6.0.3-0
+        - Updated iptables::listen::tcp_stateful example to pass valid
+          Iptables::DestPort types to dports
+
+   * It should be understandable.
+   * It should be free from typos.
+   * Any parsing error messages emitted should *only* be for changelog
+     entries for earlier versions.
 
 Verify RPMs can be created
 --------------------------

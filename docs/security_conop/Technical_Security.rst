@@ -495,15 +495,6 @@ down if ``auditd`` fails for any reason. To prevent operational issues, SIMP
 will not shut down, but will provide an alert via ``syslog`` when this happens.
 [:ref:`AU-5 (1)`]
 
-SIMP also comes with an optional module for the Elasticsearch/Logstash/Grafana
-(ELG) stack. These three open source tools can be combined to parse, index, and
-visualize logs. There are also SIMP provided dashboards for the Kibana web
-interface. Implementations can build their own dashboards to meet local
-security or functional needs for log reduction and management.
-[:ref:`AU-6`]
-
-See :ref:`Elasticsearch, Logstash, and Grafana` for more information.
-
 Protection of Audit Information
 -------------------------------
 

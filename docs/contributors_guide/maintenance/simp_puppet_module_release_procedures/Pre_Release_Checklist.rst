@@ -34,12 +34,12 @@ properly update:
       cd pupmod-simp-iptables
       git checkout master # this step isn't needed for master branch
 
-#. Run the ``compare_latest_tag`` rake task
+#. Run the ``pkg:compare_latest_tag`` rake task
 
    .. code-block:: bash
 
       bundle update
-      bundle exec rake compare_latest_tag
+      bundle exec rake pkg:compare_latest_tag
 
    .. IMPORTANT::
 
@@ -52,13 +52,13 @@ Verify the CHANGELOG
 This check verifies that the CHANGELOG information can be properly
 extracted:
 
-#. Run the ``changelog_annotation`` rake task
+#. Run the ``pkg:create_tag_changelog`` rake task
 
    .. code-block:: bash
 
-      bundle exec rake changelog_annotation
+      bundle exec rake pkg:create_tag_changelog
 
-#. Manually verify the changelog information is emitted.
+#. Manually verify the changelog information is emitted and complete.
 
    * It should begin with ``Release of x.y.z`` and then be followed by
      one or more comment blocks. For example,

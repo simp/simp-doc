@@ -79,8 +79,6 @@ If you don't know what versions map together, please see the
           https://yum.puppet.com/RPM-GPG-KEY-puppetlabs
           https://yum.puppet.com/RPM-GPG-KEY-puppet
           https://apt.postgresql.org/pub/repos/yum/RPM-GPG-KEY-PGDG-96
-          https://artifacts.elastic.co/GPG-KEY-elasticsearch
-          https://grafanarel.s3.amazonaws.com/RPM-GPG-KEY-grafana
           https://dl.fedoraproject.org/pub/epel/RPM-GPG-KEY-EPEL-$releasever
    sslverify=1
    sslcacert=/etc/pki/tls/certs/ca-bundle.crt
