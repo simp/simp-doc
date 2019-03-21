@@ -30,7 +30,7 @@ properly updated:
       cd rubygem-simp-rake-helpers
       git checkout master # this step isn't needed for master branch
 
-#. Manually compare manually the development branch with the last
+#. Manually compare the development branch with the last
    release tag. (The existing rake task ``pkg:compare_latest_tag`` won't
    necessarily work here.)
 
