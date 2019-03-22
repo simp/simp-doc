@@ -19,7 +19,7 @@ Copy these files into ``/root/ldifs`` and fix their Distinguished Names:
    # mkdir /root/ldifs
    # cp /usr/share/simp/ldifs/* /root/ldifs
    # cd /root/ldifs
-   # sed -i 's/dc=your,dc=domain/<your actual DN information>/g' \*.ldif
+   # sed -i 's/dc=your,dc=domain/<your actual DN information>/g' *.ldif
 
 .. WARNING::
    Do not leave any extraneous spaces in LDIF files!

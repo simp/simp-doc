@@ -1,3 +1,7 @@
+* Thu Mar 21 2019 Jim Anderson <thesemicolons@protonmail.com>
+- Fixed typo in Prepare SIMP ldifs.
+  - sed command had escaped asterisk, should be unescaped.
+
 * Fri Feb 22 2019 Trevor Vaughan <tvaughan@onyxpoint.com>
 - Updates for the 6.3.3 release
   - Changelog update
