@@ -136,7 +136,7 @@ Follow the steps below to enable and take ownership of the :term:`TPM` **2.0**.
 
    The passwords will default to automatically generated passwords using
    passgen. If you want to set them to specific passwords then set them in Hiera
-   using the following settings (it expects a minimum password length of 14 
+   using the following settings (it expects a minimum password length of 14
    characters):
 
    .. code-block:: yaml
@@ -214,7 +214,7 @@ system is in ``enforce`` mode, the following steps may be taken:
 
       # /usr/local/bin/ima_security_attr_update.sh
 
-#. When the appraisal is complete, Puppet will provide an 
+#. When the appraisal is complete, Puppet will provide an
    ``ima_appraise_enforce_reboot`` notification. Set the ``force_fixmode``
    attribute in the Hiera data back to false, then run Puppet again and
    reboot the system.
@@ -233,7 +233,7 @@ mounts in ``/etc/fstab``.
 
 If you reboot and it won't load the ``initramfs`` then the ``dracut``
 update didn't run. You can fix this by rebooting without the ``ima`` kernel
-settings, running ``dracut -f`` and then rebooting in ``ima_appraise`` mode 
+settings, running ``dracut -f`` and then rebooting in ``ima_appraise`` mode
 ``fix``.
 
 
@@ -247,7 +247,7 @@ details on what can and cannot be measured.
 
 .. WARNING::
    The current RedHat implementation of IMA does not seem to work after
-   inserting our default policy (generated example in 
+   inserting our default policy (generated example in
    spec/files/default_ima_policy.conf). It causes the system to become
    read-only, even though it is only using supported configuration elements.
    The module will be updated soon with more sane defaults to allow for at least

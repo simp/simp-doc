@@ -31,14 +31,14 @@ properly updated.
       git checkout master # this step isn't needed for master branch
 
 #. Run the ``pkg:compare_latest_tag`` rake task
-   
+
    .. code-block:: bash
-        
+
       bundle update
       bundle exec rake pkg:compare_latest_tag
 
    .. IMPORTANT::
-            
+
       If this check indicates no new tag is required, there
       is no reason to continue with the release procedures.
 
