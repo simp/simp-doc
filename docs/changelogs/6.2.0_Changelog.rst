@@ -104,8 +104,8 @@ Removed Modules
 
 pupmod-simp-mcollective and pupmod-simp-activemq
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-* Puppetlabs no longer supports MCollective, so SIMP has removed the 
-  ``pupmod-simp-mcollective`` and ``pupmod-simp-activemq`` modules that 
+* Puppetlabs no longer supports MCollective, so SIMP has removed the
+  ``pupmod-simp-mcollective`` and ``pupmod-simp-activemq`` modules that
   support MCollective.
 
 pupmod-simp-jenkins
@@ -267,12 +267,12 @@ pupmod-simp-simp
 * Fixed the permissions on the ``ctrl-alt-del-capture`` service file so that
   warnings would no longer be logged.
 * Replace the deprecated ``runpuppet`` script with client Puppet bootstrap scripts
-  which will not be inappropriately killed by ``systemd``, when executed in 
-  highly-loaded environments.  These scripts allow the ``systemd`` timeout to 
+  which will not be inappropriately killed by ``systemd``, when executed in
+  highly-loaded environments.  These scripts allow the ``systemd`` timeout to
   be specified and provide better error handling and logging.
 * On systems with ``systemd``, set the host name in client Puppet bootstrap
-  scripts, to prevent issues that can arise when a ``dhcp`` lease expires.  
-  Not setting the hostname could cause the generated Puppet configuration 
+  scripts, to prevent issues that can arise when a ``dhcp`` lease expires.
+  Not setting the hostname could cause the generated Puppet configuration
   for the client to use ``localhost`` as the client's hostname.
 * Ensure that running on unsupported operating systems is completely safe.
 * No longer deviate from vendor RPM default permissions per the STIG.
@@ -336,7 +336,7 @@ pupmod-simp-stunnel
 pupmod-simp-svckill
 ^^^^^^^^^^^^^^^^^^^
 
-* Add simp_client_bootstrap service to the ignore list; otherwise, svckill will 
+* Add simp_client_bootstrap service to the ignore list; otherwise, svckill will
   kill the bootstrap process of SIMP clients.
 
 pupmod-simp-vnc
@@ -434,8 +434,8 @@ pupmod-simp-logrotate
 
 * Moved SIMP-specific logrotate rules to a SIMP-managed configuration
   directory, ``/etc/logrotate.simp.d``, and ensured ``logrotate`` processes
-  that directory first. This ensures that SIMP rules take priority, when 
-  duplicate rules are specified (e.g., OS and SIMP rules for 
+  that directory first. This ensures that SIMP rules take priority, when
+  duplicate rules are specified (e.g., OS and SIMP rules for
   ``/var/log/boot.log``).
 
 pupmod-simp-nfs

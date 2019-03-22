@@ -30,8 +30,8 @@ properly updated:
       cd rubygem-simp-rake-helpers
       git checkout master # this step isn't needed for master branch
 
-#. Manually compare manually the development branch with the last
-   release tag. (The existing rake task ``compare_latest_tag`` won't
+#. Manually compare the development branch with the last
+   release tag. (The existing rake task ``pkg:compare_latest_tag`` won't
    necessarily work here.)
 
    .. code-block:: bash
@@ -54,7 +54,7 @@ This check verifies that the changelog information is available
 and can be extracted
 
 * Manually inspect the appropriate file (e.g., CHANGELOG.md)
-  (The existing rake task ``changelog_annotation`` won't
+  (The existing rake task ``pkg:create_tag_changelog`` won't
   necessarily work here.)
 
 Verify the component's dependencies

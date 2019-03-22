@@ -53,7 +53,7 @@ Puppet master.
 Puppet Master Certificate Issues
 --------------------------------
 
-To fix the issue where the Puppet Server certificate was removed using 
+To fix the issue where the Puppet Server certificate was removed using
 ``puppet cert clean``, run ``puppet cert generate <your puppetserver's cert name>``
 and restart the puppetserver service.
 
@@ -78,7 +78,7 @@ to regenerate all the Puppet certificates and the Puppet CA do the following:
       # puppet resource service puppetserver ensure=stopped
       # rm -rf /etc/puppetlabs/puppet/ssl
       # puppet master --no-daemonize --verbose
-      
+
       # When you see "Notice: Starting Puppet master <VERSION>", type CTRL + C
 
       # puppet resource service puppetserver ensure=running

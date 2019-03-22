@@ -48,7 +48,7 @@ You will need to run ``puppet generate types`` manually if the following occurs:
    Versions 7.6.0 through 7.7.1 of SIMP's ``pupmod`` Puppet module tried to
    include all of the cases above to ensure that users did not need to
    manually adjust any aspects of their systems. However, this proved to
-   potentially add too much load to the system in certain situations and 
+   potentially add too much load to the system in certain situations and
    was reduced to the current functionality.
 
 If you are using :term:`r10k` then you can add a `postrun`_ snippet to run

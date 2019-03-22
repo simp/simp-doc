@@ -83,12 +83,12 @@ What version/changelog linters are available?
 In the ``simp-rake-helpers`` Ruby gem, we have the following
 version/changelog-related linters for SIMP Puppet modules:
 
-* ``changelog_annotation``:
+* ``pkg:create_tag_changelog``:
   Generates an appropriate annotated tag entry from a ``CHANGELOG``.
-  Errors are logged.  The results must be carefully examined to
-  ensure the output is correct, when errors are logged.
+  The results should be carefully examined to ensure the output is correct,
+  because processing stops at the first invalid changelog entry.
 
-* ``compare_latest_tag``:
+* ``pkg:compare_latest_tag``:
   Compares mission-impacting files with the latest tag and identifies
   the relevant files that have changed.  When mission-impacting files
   have changed, fails if:

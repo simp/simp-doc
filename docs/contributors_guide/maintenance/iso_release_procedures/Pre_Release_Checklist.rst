@@ -98,7 +98,7 @@ Verify a valid Puppetfile exists
 This check is to verify that that ``Puppetfile.tracking`` file for the
 ``simp-core`` project is complete and accurate:
 
-* It includes all the SIMP-owed Puppet modules, other Puppet modules
+* It includes all the SIMP-owned Puppet modules, other Puppet modules
   that are dependencies of SIMP-owned Puppet modules, and utilities
   to configure the SIMP system when installed from ISO.
 

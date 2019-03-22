@@ -65,7 +65,7 @@ If you have any further questions about this please contact the SIMP Team.
 Autofs Option in ``nfs::client::mount``
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-The autofs option in ``nfs::client::mount`` resource currently only works with 
+The autofs option in ``nfs::client::mount`` resource currently only works with
 indirect wild-card mounts.  For all other autofs options use the autofs module
 directly.
 

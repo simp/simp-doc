@@ -15,7 +15,7 @@ site-specific puppet manifests. The examples may easily be extrapolated into
 defined types if you wish but are presented as classes for simplicity. Save the
 files below in ``/etc/puppetlabs/code/environments/simp/modules/site/`` as
 ``local_account.pp`` and ``service_account.pp``, ensuring the correct ownership,
-group, and permissions.  
+group, and permissions.
 
 In ``default.yaml``:
 

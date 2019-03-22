@@ -7,7 +7,7 @@ Control Family:  ACCESS CONTROL
 -------------------------------
 
 .. _AC-1:
-      
+
 AC-1 : ACCESS CONTROL POLICY AND PROCEDURES
 """""""""""""""""""""""""""""""""""""""""""
 
@@ -25,42 +25,42 @@ AC-1 : ACCESS CONTROL POLICY AND PROCEDURES
 
 
 .. _AC-1a.:
-      
+
 AC-1a.
 """"""
 
     Develops, documents, and disseminates to [Assignment: organization-defined personnel or roles]:
 
 .. _AC-1a.1.:
-      
+
 AC-1a.1.
 """"""""
 
     An access control policy that addresses purpose, scope, roles, responsibilities, management commitment, coordination among organizational entities, and compliance; and
 
 .. _AC-1a.2.:
-      
+
 AC-1a.2.
 """"""""
 
     Procedures to facilitate the implementation of the access control policy and associated access controls; and
 
 .. _AC-1b.:
-      
+
 AC-1b.
 """"""
 
     Reviews and updates the current:
 
 .. _AC-1b.1.:
-      
+
 AC-1b.1.
 """"""""
 
     Access control policy [Assignment: organization-defined frequency]; and
 
 .. _AC-1b.2.:
-      
+
 AC-1b.2.
 """"""""
 
@@ -70,7 +70,7 @@ Control Family:  ACCESS CONTROL
 -------------------------------
 
 .. _AC-2:
-      
+
 AC-2 : ACCOUNT MANAGEMENT
 """""""""""""""""""""""""
 
@@ -88,126 +88,126 @@ AC-2 : ACCOUNT MANAGEMENT
 
 
 .. _AC-2a.:
-      
+
 AC-2a.
 """"""
 
     Identifies and selects the following types of information system accounts to support organizational missions/business functions: [Assignment: organization-defined information system account types];
 
 .. _AC-2b.:
-      
+
 AC-2b.
 """"""
 
     Assigns account managers for information system accounts;
 
 .. _AC-2c.:
-      
+
 AC-2c.
 """"""
 
     Establishes conditions for group and role membership;
 
 .. _AC-2d.:
-      
+
 AC-2d.
 """"""
 
     Specifies authorized users of the information system, group and role membership, and access authorizations (i.e., privileges) and other attributes (as required) for each account;
 
 .. _AC-2e.:
-      
+
 AC-2e.
 """"""
 
     Requires approvals by [Assignment: organization-defined personnel or roles] for requests to create information system accounts;
 
 .. _AC-2f.:
-      
+
 AC-2f.
 """"""
 
     Creates, enables, modifies, disables, and removes information system accounts in accordance with [Assignment: organization-defined procedures or conditions];
 
 .. _AC-2g.:
-      
+
 AC-2g.
 """"""
 
     Monitors the use of information system accounts;
 
 .. _AC-2h.:
-      
+
 AC-2h.
 """"""
 
     Notifies account managers:
 
 .. _AC-2h.1.:
-      
+
 AC-2h.1.
 """"""""
 
     When accounts are no longer required;
 
 .. _AC-2h.2.:
-      
+
 AC-2h.2.
 """"""""
 
     When users are terminated or transferred; and
 
 .. _AC-2h.3.:
-      
+
 AC-2h.3.
 """"""""
 
     When individual information system usage or need-to-know changes;
 
 .. _AC-2i.:
-      
+
 AC-2i.
 """"""
 
     Authorizes access to the information system based on:
 
 .. _AC-2i.1.:
-      
+
 AC-2i.1.
 """"""""
 
     A valid access authorization;
 
 .. _AC-2i.2.:
-      
+
 AC-2i.2.
 """"""""
 
     Intended system usage; and
 
 .. _AC-2i.3.:
-      
+
 AC-2i.3.
 """"""""
 
     Other attributes as required by the organization or associated missions/business functions;
 
 .. _AC-2j.:
-      
+
 AC-2j.
 """"""
 
     Reviews accounts for compliance with account management requirements [Assignment: organization-defined frequency]; and
 
 .. _AC-2k.:
-      
+
 AC-2k.
 """"""
 
     Establishes a process for reissuing shared/group account credentials (if deployed) when individuals are removed from the group.
 
 .. _AC-2 (1):
-      
+
 AC-2 (1) : AUTOMATED SYSTEM ACCOUNT MANAGEMENT
 """"""""""""""""""""""""""""""""""""""""""""""
 
@@ -220,7 +220,7 @@ AC-2 (1) : AUTOMATED SYSTEM ACCOUNT MANAGEMENT
    The use of automated mechanisms can include, for example: using email or text messaging to automatically notify account managers when users are terminated or transferred; using the information system to monitor account usage; and using telephonic notification to report atypical system account usage.
 
 .. _AC-2 (2):
-      
+
 AC-2 (2) : REMOVAL OF TEMPORARY / EMERGENCY ACCOUNTS
 """"""""""""""""""""""""""""""""""""""""""""""""""""
 
@@ -233,7 +233,7 @@ AC-2 (2) : REMOVAL OF TEMPORARY / EMERGENCY ACCOUNTS
    This control enhancement requires the removal of both temporary and emergency accounts automatically after a predefined period of time has elapsed, rather than at the convenience of the systems administrator.
 
 .. _AC-2 (3):
-      
+
 AC-2 (3) : DISABLE INACTIVE ACCOUNTS
 """"""""""""""""""""""""""""""""""""
 
@@ -242,7 +242,7 @@ AC-2 (3) : DISABLE INACTIVE ACCOUNTS
     The information system automatically disables inactive accounts after [Assignment: organization-defined time period].
 
 .. _AC-2 (4):
-      
+
 AC-2 (4) : AUTOMATED AUDIT ACTIONS
 """"""""""""""""""""""""""""""""""
 
@@ -253,7 +253,7 @@ AC-2 (4) : AUTOMATED AUDIT ACTIONS
 **Related Controls:** `AU-2`_, `AU-12`_
 
 .. _AC-2 (5):
-      
+
 AC-2 (5) : INACTIVITY LOGOUT
 """"""""""""""""""""""""""""
 
@@ -264,7 +264,7 @@ AC-2 (5) : INACTIVITY LOGOUT
 **Related Controls:** `SC-23`_
 
 .. _AC-2 (6):
-      
+
 AC-2 (6) : DYNAMIC PRIVILEGE MANAGEMENT
 """""""""""""""""""""""""""""""""""""""
 
@@ -277,7 +277,7 @@ AC-2 (6) : DYNAMIC PRIVILEGE MANAGEMENT
 **Related Controls:** `AC-16`_
 
 .. _AC-2 (7):
-      
+
 AC-2 (7) : ROLE-BASED SCHEMES
 """""""""""""""""""""""""""""
 
@@ -288,28 +288,28 @@ AC-2 (7) : ROLE-BASED SCHEMES
    Privileged roles are organization-defined roles assigned to individuals that allow those individuals to perform certain security-relevant functions that ordinary users are not authorized to perform. These privileged roles include, for example, key management, account management, network and system administration, database administration, and web administration.
 
 .. _AC-2 (7)(a):
-      
+
 AC-2 (7)(a)
 """""""""""
 
     Establishes and administers privileged user accounts in accordance with a role-based access scheme that organizes allowed information system access and privileges into roles;
 
 .. _AC-2 (7)(b):
-      
+
 AC-2 (7)(b)
 """""""""""
 
     Monitors privileged role assignments; and
 
 .. _AC-2 (7)(c):
-      
+
 AC-2 (7)(c)
 """""""""""
 
     Takes [Assignment: organization-defined actions] when privileged role assignments are no longer appropriate.
 
 .. _AC-2 (8):
-      
+
 AC-2 (8) : DYNAMIC ACCOUNT CREATION
 """""""""""""""""""""""""""""""""""
 
@@ -322,21 +322,21 @@ AC-2 (8) : DYNAMIC ACCOUNT CREATION
 **Related Controls:** `AC-16`_
 
 .. _AC-2 (9):
-      
+
 AC-2 (9) : RESTRICTIONS ON USE OF SHARED / GROUP ACCOUNTS
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
     The organization only permits the use of shared/group accounts that meet [Assignment: organization-defined conditions for establishing shared/group accounts].
 
 .. _AC-2 (10):
-      
+
 AC-2 (10) : SHARED / GROUP ACCOUNT CREDENTIAL TERMINATION
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
     The information system terminates shared/group account credentials when members leave the group.
 
 .. _AC-2 (11):
-      
+
 AC-2 (11) : USAGE CONDITIONS
 """"""""""""""""""""""""""""
 
@@ -349,7 +349,7 @@ AC-2 (11) : USAGE CONDITIONS
    Organizations can describe the specific conditions or circumstances under which information system accounts can be used, for example, by restricting usage to certain days of the week, time of day, or specific durations of time.
 
 .. _AC-2 (12):
-      
+
 AC-2 (12) : ACCOUNT MONITORING / ATYPICAL USAGE
 """""""""""""""""""""""""""""""""""""""""""""""
 
@@ -364,21 +364,21 @@ AC-2 (12) : ACCOUNT MONITORING / ATYPICAL USAGE
 **Related Controls:** `CA-7`_
 
 .. _AC-2 (12)(a):
-      
+
 AC-2 (12)(a)
 """"""""""""
 
     Monitors information system accounts for [Assignment: organization-defined atypical usage]; and
 
 .. _AC-2 (12)(b):
-      
+
 AC-2 (12)(b)
 """"""""""""
 
     Reports atypical usage of information system accounts to [Assignment: organization-defined personnel or roles].
 
 .. _AC-2 (13):
-      
+
 AC-2 (13) : DISABLE ACCOUNTS FOR HIGH-RISK INDIVIDUALS
 """"""""""""""""""""""""""""""""""""""""""""""""""""""
 
@@ -396,7 +396,7 @@ Control Family:  ACCESS CONTROL
 -------------------------------
 
 .. _AC-3:
-      
+
 AC-3 : ACCESS ENFORCEMENT
 """""""""""""""""""""""""
 
@@ -414,14 +414,14 @@ AC-3 : ACCESS ENFORCEMENT
 
 
 .. _AC-3 (1):
-      
+
 AC-3 (1) : RESTRICTED ACCESS TO PRIVILEGED FUNCTIONS
 """"""""""""""""""""""""""""""""""""""""""""""""""""
 
     [Withdrawn: Incorporated into AC-6].
 
 .. _AC-3 (2):
-      
+
 AC-3 (2) : DUAL AUTHORIZATION
 """""""""""""""""""""""""""""
 
@@ -434,7 +434,7 @@ AC-3 (2) : DUAL AUTHORIZATION
 **Related Controls:** `CP-9`_, `MP-6`_
 
 .. _AC-3 (3):
-      
+
 AC-3 (3) : MANDATORY ACCESS CONTROL
 """""""""""""""""""""""""""""""""""
 
@@ -447,63 +447,63 @@ AC-3 (3) : MANDATORY ACCESS CONTROL
 **Related Controls:** `AC-25`_, `SC-11`_
 
 .. _AC-3 (3)(a):
-      
+
 AC-3 (3)(a)
 """""""""""
 
     Is uniformly enforced across all subjects and objects within the boundary of the information system;
 
 .. _AC-3 (3)(b):
-      
+
 AC-3 (3)(b)
 """""""""""
 
     Specifies that a subject that has been granted access to information is constrained from doing any of the following;
 
 .. _AC-3 (3)(b)(1):
-      
+
 AC-3 (3)(b)(1)
 """"""""""""""
 
     Passing the information to unauthorized subjects or objects;
 
 .. _AC-3 (3)(b)(2):
-      
+
 AC-3 (3)(b)(2)
 """"""""""""""
 
     Granting its privileges to other subjects;
 
 .. _AC-3 (3)(b)(3):
-      
+
 AC-3 (3)(b)(3)
 """"""""""""""
 
     Changing one or more security attributes on subjects, objects, the information system, or information system components;
 
 .. _AC-3 (3)(b)(4):
-      
+
 AC-3 (3)(b)(4)
 """"""""""""""
 
     Choosing the security attributes and attribute values to be associated with newly created or modified objects; or
 
 .. _AC-3 (3)(b)(5):
-      
+
 AC-3 (3)(b)(5)
 """"""""""""""
 
     Changing the rules governing access control; and
 
 .. _AC-3 (3)(c):
-      
+
 AC-3 (3)(c)
 """""""""""
 
     Specifies that [Assignment: organization-defined subjects] may explicitly be granted [Assignment: organization-defined privileges (i.e., they are trusted subjects)] such that they are not limited by some or all of the above constraints.
 
 .. _AC-3 (4):
-      
+
 AC-3 (4) : DISCRETIONARY ACCESS CONTROL
 """""""""""""""""""""""""""""""""""""""
 
@@ -514,42 +514,42 @@ AC-3 (4) : DISCRETIONARY ACCESS CONTROL
    When discretionary access control policies are implemented, subjects are not constrained with regard to what actions they can take with information for which they have already been granted access. Thus, subjects that have been granted access to information are not prevented from passing (i.e., the subjects have the discretion to pass) the information to other subjects or objects. This control enhancement can operate in conjunction with AC-3 (3). A subject that is constrained in its operation by policies governed by AC-3 (3) is still able to operate under the less rigorous constraints of this control enhancement. Thus, while AC-3 (3) imposes constraints preventing a subject from passing information to another subject operating at a different sensitivity level, AC-3 (4) permits the subject to pass the information to any subject at the same sensitivity level. The policy is bounded by the information system boundary. Once the information is passed outside of the control of the information system, additional means may be required to ensure that the constraints remain in effect. While the older, more traditional definitions of discretionary access control require identity-based access control, that limitation is not required for this use of discretionary access control.
 
 .. _AC-3 (4)(a):
-      
+
 AC-3 (4)(a)
 """""""""""
 
     Pass the  information to any other subjects or objects;
 
 .. _AC-3 (4)(b):
-      
+
 AC-3 (4)(b)
 """""""""""
 
     Grant its privileges to other subjects;
 
 .. _AC-3 (4)(c):
-      
+
 AC-3 (4)(c)
 """""""""""
 
     Change security attributes on subjects, objects, the information system, or the information system�s components;
 
 .. _AC-3 (4)(d):
-      
+
 AC-3 (4)(d)
 """""""""""
 
     Choose the security attributes to be associated with newly created or revised objects; or
 
 .. _AC-3 (4)(e):
-      
+
 AC-3 (4)(e)
 """""""""""
 
     Change the rules governing access control.
 
 .. _AC-3 (5):
-      
+
 AC-3 (5) : SECURITY-RELEVANT INFORMATION
 """"""""""""""""""""""""""""""""""""""""
 
@@ -562,14 +562,14 @@ AC-3 (5) : SECURITY-RELEVANT INFORMATION
 **Related Controls:** `CM-3`_
 
 .. _AC-3 (6):
-      
+
 AC-3 (6) : PROTECTION OF USER AND SYSTEM INFORMATION
 """"""""""""""""""""""""""""""""""""""""""""""""""""
 
     [Withdrawn: Incorporated into MP-4 and SC-28].
 
 .. _AC-3 (7):
-      
+
 AC-3 (7) : ROLE-BASED ACCESS CONTROL
 """"""""""""""""""""""""""""""""""""
 
@@ -580,7 +580,7 @@ AC-3 (7) : ROLE-BASED ACCESS CONTROL
    Role-based access control (RBAC) is an access control policy that restricts information system access to authorized users. Organizations can create specific roles based on job functions and the authorizations (i.e., privileges) to perform needed operations on organizational information systems associated with the organization-defined roles. When users are assigned to the organizational roles, they inherit the authorizations or privileges defined for those roles. RBAC simplifies privilege administration for organizations because privileges are not assigned directly to every user (which can be a significant number of individuals for mid- to large-size organizations) but are instead acquired through role assignments. RBAC can be implemented either as a mandatory or discretionary form of access control. For organizations implementing RBAC with mandatory access controls, the requirements in AC-3 (3) define the scope of the subjects and objects covered by the policy.
 
 .. _AC-3 (8):
-      
+
 AC-3 (8) : REVOCATION OF ACCESS AUTHORIZATIONS
 """"""""""""""""""""""""""""""""""""""""""""""
 
@@ -591,7 +591,7 @@ AC-3 (8) : REVOCATION OF ACCESS AUTHORIZATIONS
    Revocation of access rules may differ based on the types of access revoked. For example, if a subject (i.e., user or process) is removed from a group, access may not be revoked until the next time the object (e.g., file) is opened or until the next time the subject attempts a new access to the object. Revocation based on changes to security labels may take effect immediately. Organizations can provide alternative approaches on how to make revocations immediate if information systems cannot provide such capability and immediate revocation is necessary.
 
 .. _AC-3 (9):
-      
+
 AC-3 (9) : CONTROLLED RELEASE
 """""""""""""""""""""""""""""
 
@@ -602,21 +602,21 @@ AC-3 (9) : CONTROLLED RELEASE
    Information systems can only protect organizational information within the confines of established system boundaries. Additional security safeguards may be needed to ensure that such information is adequately protected once it is passed beyond the established information system boundaries. Examples of information leaving the system boundary include transmitting information to an external information system or printing the information on one of its printers. In cases where the information system is unable to make a determination of the adequacy of the protections provided by entities outside its boundary, as a mitigating control, organizations determine procedurally whether the external information systems are providing adequate security. The means used to determine the adequacy of the security provided by external information systems include, for example, conducting inspections or periodic testing, establishing agreements between the organization and its counterpart organizations, or some other process. The means used by external entities to protect the information received need not be the same as those used by the organization, but the means employed are sufficient to provide consistent adjudication of the security policy to protect the information. This control enhancement requires information systems to employ technical or procedural means to validate the information prior to releasing it to external systems. For example, if the information system passes information to another system controlled by another organization, technical means are employed to validate that the security attributes associated with the exported information are appropriate for the receiving system. Alternatively, if the information system passes information to a printer in organization-controlled space, procedural means can be employed to ensure that only appropriately authorized individuals gain access to the printer. This control enhancement is most applicable when there is some policy mandate (e.g., law, Executive Order, directive, or regulation) that establishes policy regarding access to the information, and that policy applies beyond the realm of a particular information system or organization.
 
 .. _AC-3 (9)(a):
-      
+
 AC-3 (9)(a)
 """""""""""
 
     The receiving [Assignment: organization-defined information system or system component] provides [Assignment: organization-defined security safeguards]; and
 
 .. _AC-3 (9)(b):
-      
+
 AC-3 (9)(b)
 """""""""""
 
     [Assignment: organization-defined security safeguards] are used to validate the appropriateness of the information designated for release.
 
 .. _AC-3 (10):
-      
+
 AC-3 (10) : AUDITED OVERRIDE OF ACCESS CONTROL MECHANISMS
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
@@ -628,7 +628,7 @@ Control Family:  ACCESS CONTROL
 -------------------------------
 
 .. _AC-4:
-      
+
 AC-4 : INFORMATION FLOW ENFORCEMENT
 """""""""""""""""""""""""""""""""""
 
@@ -647,7 +647,7 @@ AC-4 : INFORMATION FLOW ENFORCEMENT
 
 
 .. _AC-4 (1):
-      
+
 AC-4 (1) : OBJECT SECURITY ATTRIBUTES
 """""""""""""""""""""""""""""""""""""
 
@@ -660,7 +660,7 @@ AC-4 (1) : OBJECT SECURITY ATTRIBUTES
 **Related Controls:** `AC-16`_
 
 .. _AC-4 (2):
-      
+
 AC-4 (2) : PROCESSING DOMAINS
 """""""""""""""""""""""""""""
 
@@ -671,7 +671,7 @@ AC-4 (2) : PROCESSING DOMAINS
    Within information systems, protected processing domains are processing spaces that have controlled interactions with other processing spaces, thus enabling control of information flows between these spaces and to/from data/information objects. A protected processing domain can be provided, for example, by implementing domain and type enforcement. In domain and type enforcement, information system processes are assigned to domains; information is identified by types; and information flows are controlled based on allowed information accesses (determined by domain and type), allowed signaling among domains, and allowed process transitions to other domains.
 
 .. _AC-4 (3):
-      
+
 AC-4 (3) : DYNAMIC INFORMATION FLOW CONTROL
 """""""""""""""""""""""""""""""""""""""""""
 
@@ -684,7 +684,7 @@ AC-4 (3) : DYNAMIC INFORMATION FLOW CONTROL
 **Related Controls:** `SI-4`_
 
 .. _AC-4 (4):
-      
+
 AC-4 (4) : CONTENT CHECK ENCRYPTED INFORMATION
 """"""""""""""""""""""""""""""""""""""""""""""
 
@@ -693,7 +693,7 @@ AC-4 (4) : CONTENT CHECK ENCRYPTED INFORMATION
 **Related Controls:** `SI-4`_
 
 .. _AC-4 (5):
-      
+
 AC-4 (5) : EMBEDDED DATA TYPES
 """"""""""""""""""""""""""""""
 
@@ -704,7 +704,7 @@ AC-4 (5) : EMBEDDED DATA TYPES
    Embedding data types within other data types may result in reduced flow control effectiveness. Data type embedding includes, for example, inserting executable files as objects within word processing files, inserting references or descriptive information into a media file, and compressed or archived data types that may include multiple embedded data types. Limitations on data type embedding consider the levels of embedding and prohibit levels of data type embedding that are beyond the capability of the inspection tools.
 
 .. _AC-4 (6):
-      
+
 AC-4 (6) : METADATA
 """""""""""""""""""
 
@@ -717,14 +717,14 @@ AC-4 (6) : METADATA
 **Related Controls:** `AC-16`_, `SI-7`_
 
 .. _AC-4 (7):
-      
+
 AC-4 (7) : ONE-WAY FLOW MECHANISMS
 """"""""""""""""""""""""""""""""""
 
     The information system enforces [Assignment: organization-defined one-way information flows] using hardware mechanisms.
 
 .. _AC-4 (8):
-      
+
 AC-4 (8) : SECURITY POLICY FILTERS
 """"""""""""""""""""""""""""""""""
 
@@ -735,7 +735,7 @@ AC-4 (8) : SECURITY POLICY FILTERS
    Organization-defined security policy filters can address data structures and content. For example, security policy filters for data structures can check for maximum file lengths, maximum field sizes, and data/file types (for structured and unstructured data). Security policy filters for data content can check for specific words (e.g., dirty/clean word filters), enumerated values or data value ranges, and hidden content. Structured data permits the interpretation of data content by applications. Unstructured data typically refers to digital information without a particular data structure or with a data structure that does not facilitate the development of rule sets to address the particular sensitivity of the information conveyed by the data or the associated flow enforcement decisions. Unstructured data consists of: (i) bitmap objects that are inherently non language-based (i.e., image, video, or audio files); and (ii) textual objects that are based on written or printed languages (e.g., commercial off-the-shelf word processing documents, spreadsheets, or emails). Organizations can implement more than one security policy filter to meet information flow control objectives (e.g., employing clean word lists in conjunction with dirty word lists may help to reduce false positives).
 
 .. _AC-4 (9):
-      
+
 AC-4 (9) : HUMAN REVIEWS
 """"""""""""""""""""""""
 
@@ -746,7 +746,7 @@ AC-4 (9) : HUMAN REVIEWS
    Organizations define security policy filters for all situations where automated flow control decisions are possible. When a fully automated flow control decision is not possible, then a human review may be employed in lieu of, or as a complement to, automated security policy filtering. Human reviews may also be employed as deemed necessary by organizations.
 
 .. _AC-4 (10):
-      
+
 AC-4 (10) : ENABLE / DISABLE SECURITY POLICY FILTERS
 """"""""""""""""""""""""""""""""""""""""""""""""""""
 
@@ -757,7 +757,7 @@ AC-4 (10) : ENABLE / DISABLE SECURITY POLICY FILTERS
    For example, as allowed by the information system authorization, administrators can enable security policy filters to accommodate approved data types.
 
 .. _AC-4 (11):
-      
+
 AC-4 (11) : CONFIGURATION OF SECURITY POLICY FILTERS
 """"""""""""""""""""""""""""""""""""""""""""""""""""
 
@@ -768,7 +768,7 @@ AC-4 (11) : CONFIGURATION OF SECURITY POLICY FILTERS
    For example, to reflect changes in security policies, administrators can change the list of �dirty words� that security policy mechanisms check in accordance with the definitions provided by organizations.
 
 .. _AC-4 (12):
-      
+
 AC-4 (12) : DATA TYPE IDENTIFIERS
 """""""""""""""""""""""""""""""""
 
@@ -779,7 +779,7 @@ AC-4 (12) : DATA TYPE IDENTIFIERS
    Data type identifiers include, for example, filenames, file types, file signatures/tokens, and multiple internal file signatures/tokens. Information systems may allow transfer of data only if compliant with data type format specifications.
 
 .. _AC-4 (13):
-      
+
 AC-4 (13) : DECOMPOSITION INTO POLICY-RELEVANT SUBCOMPONENTS
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
@@ -790,7 +790,7 @@ AC-4 (13) : DECOMPOSITION INTO POLICY-RELEVANT SUBCOMPONENTS
    Policy enforcement mechanisms apply filtering, inspection, and/or sanitization rules to the policy-relevant subcomponents of information to facilitate flow enforcement prior to transferring such information to different security domains. Parsing transfer files facilitates policy decisions on source, destination, certificates, classification, attachments, and other security-related component differentiators.
 
 .. _AC-4 (14):
-      
+
 AC-4 (14) : SECURITY POLICY FILTER CONSTRAINTS
 """"""""""""""""""""""""""""""""""""""""""""""
 
@@ -801,7 +801,7 @@ AC-4 (14) : SECURITY POLICY FILTER CONSTRAINTS
    Data structure and content restrictions reduce the range of potential malicious and/or unsanctioned content in cross-domain transactions. Security policy filters that restrict data structures include, for example, restricting file sizes and field lengths. Data content policy filters include, for example: (i) encoding formats for character sets (e.g., Universal Character Set Transformation Formats, American Standard Code for Information Interchange); (ii) restricting character data fields to only contain alpha-numeric characters; (iii) prohibiting special characters; and (iv) validating schema structures.
 
 .. _AC-4 (15):
-      
+
 AC-4 (15) : DETECTION OF UNSANCTIONED INFORMATION
 """""""""""""""""""""""""""""""""""""""""""""""""
 
@@ -814,14 +814,14 @@ AC-4 (15) : DETECTION OF UNSANCTIONED INFORMATION
 **Related Controls:** `SI-3`_
 
 .. _AC-4 (16):
-      
+
 AC-4 (16) : INFORMATION TRANSFERS ON INTERCONNECTED SYSTEMS
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
     [Withdrawn: Incorporated into AC-4].
 
 .. _AC-4 (17):
-      
+
 AC-4 (17) : DOMAIN AUTHENTICATION
 """""""""""""""""""""""""""""""""
 
@@ -834,7 +834,7 @@ AC-4 (17) : DOMAIN AUTHENTICATION
 **Related Controls:** `IA-2`_, `IA-3`_, `IA-4`_, `IA-5`_
 
 .. _AC-4 (18):
-      
+
 AC-4 (18) : SECURITY ATTRIBUTE BINDING
 """"""""""""""""""""""""""""""""""""""
 
@@ -847,7 +847,7 @@ AC-4 (18) : SECURITY ATTRIBUTE BINDING
 **Related Controls:** `AC-16`_, `SC-16`_
 
 .. _AC-4 (19):
-      
+
 AC-4 (19) : VALIDATION OF METADATA
 """"""""""""""""""""""""""""""""""
 
@@ -858,7 +858,7 @@ AC-4 (19) : VALIDATION OF METADATA
    This control enhancement requires the validation of metadata and the data to which the metadata applies. Some organizations distinguish between metadata and data payloads (i.e., only the data to which the metadata is bound). Other organizations do not make such distinctions, considering metadata and the data to which the metadata applies as part of the payload. All information (including metadata and the data to which the metadata applies) is subject to filtering and inspection.
 
 .. _AC-4 (20):
-      
+
 AC-4 (20) : APPROVED SOLUTIONS
 """"""""""""""""""""""""""""""
 
@@ -869,7 +869,7 @@ AC-4 (20) : APPROVED SOLUTIONS
    Organizations define approved solutions and configurations in cross-domain policies and guidance in accordance with the types of information flows across classification boundaries. The Unified Cross Domain Management Office (UCDMO) provides a baseline listing of approved cross-domain solutions.
 
 .. _AC-4 (21):
-      
+
 AC-4 (21) : PHYSICAL / LOGICAL SEPARATION OF INFORMATION FLOWS
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
@@ -880,7 +880,7 @@ AC-4 (21) : PHYSICAL / LOGICAL SEPARATION OF INFORMATION FLOWS
    Enforcing the separation of information flows by type can enhance protection by ensuring that information is not commingled while in transit and by enabling flow control by transmission paths perhaps not otherwise achievable. Types of separable information include, for example, inbound and outbound communications traffic, service requests and responses, and information of differing security categories.
 
 .. _AC-4 (22):
-      
+
 AC-4 (22) : ACCESS ONLY
 """""""""""""""""""""""
 
@@ -894,7 +894,7 @@ Control Family:  ACCESS CONTROL
 -------------------------------
 
 .. _AC-5:
-      
+
 AC-5 : SEPARATION OF DUTIES
 """""""""""""""""""""""""""
 
@@ -912,21 +912,21 @@ AC-5 : SEPARATION OF DUTIES
 
 
 .. _AC-5a.:
-      
+
 AC-5a.
 """"""
 
     Separates [Assignment: organization-defined duties of individuals];
 
 .. _AC-5b.:
-      
+
 AC-5b.
 """"""
 
     Documents separation of duties of individuals; and
 
 .. _AC-5c.:
-      
+
 AC-5c.
 """"""
 
@@ -936,7 +936,7 @@ Control Family:  ACCESS CONTROL
 -------------------------------
 
 .. _AC-6:
-      
+
 AC-6 : LEAST PRIVILEGE
 """"""""""""""""""""""
 
@@ -954,7 +954,7 @@ AC-6 : LEAST PRIVILEGE
 
 
 .. _AC-6 (1):
-      
+
 AC-6 (1) : AUTHORIZE ACCESS TO SECURITY FUNCTIONS
 """""""""""""""""""""""""""""""""""""""""""""""""
 
@@ -969,7 +969,7 @@ AC-6 (1) : AUTHORIZE ACCESS TO SECURITY FUNCTIONS
 **Related Controls:** `AC-17`_, `AC-18`_, `AC-19`_
 
 .. _AC-6 (2):
-      
+
 AC-6 (2) : NON-PRIVILEGED ACCESS FOR NONSECURITY FUNCTIONS
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
@@ -984,7 +984,7 @@ AC-6 (2) : NON-PRIVILEGED ACCESS FOR NONSECURITY FUNCTIONS
 **Related Controls:** `PL-4`_
 
 .. _AC-6 (3):
-      
+
 AC-6 (3) : NETWORK ACCESS TO PRIVILEGED COMMANDS
 """"""""""""""""""""""""""""""""""""""""""""""""
 
@@ -999,7 +999,7 @@ AC-6 (3) : NETWORK ACCESS TO PRIVILEGED COMMANDS
 **Related Controls:** `AC-17`_
 
 .. _AC-6 (4):
-      
+
 AC-6 (4) : SEPARATE PROCESSING DOMAINS
 """"""""""""""""""""""""""""""""""""""
 
@@ -1012,7 +1012,7 @@ AC-6 (4) : SEPARATE PROCESSING DOMAINS
 **Related Controls:** `AC-4`_, `SC-3`_, `SC-30`_, `SC-32`_
 
 .. _AC-6 (5):
-      
+
 AC-6 (5) : PRIVILEGED ACCOUNTS
 """"""""""""""""""""""""""""""
 
@@ -1027,7 +1027,7 @@ AC-6 (5) : PRIVILEGED ACCOUNTS
 **Related Controls:** `CM-6`_
 
 .. _AC-6 (6):
-      
+
 AC-6 (6) : PRIVILEGED ACCESS BY NON-ORGANIZATIONAL USERS
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""
 
@@ -1036,7 +1036,7 @@ AC-6 (6) : PRIVILEGED ACCESS BY NON-ORGANIZATIONAL USERS
 **Related Controls:** `IA-8`_
 
 .. _AC-6 (7):
-      
+
 AC-6 (7) : REVIEW OF USER PRIVILEGES
 """"""""""""""""""""""""""""""""""""
 
@@ -1049,21 +1049,21 @@ AC-6 (7) : REVIEW OF USER PRIVILEGES
 **Related Controls:** `CA-7`_
 
 .. _AC-6 (7)(a):
-      
+
 AC-6 (7)(a)
 """""""""""
 
     Reviews [Assignment: organization-defined frequency] the privileges assigned to [Assignment: organization-defined roles or classes of users] to validate the need for such privileges; and
 
 .. _AC-6 (7)(b):
-      
+
 AC-6 (7)(b)
 """""""""""
 
     Reassigns or removes privileges, if necessary, to correctly reflect organizational mission/business needs.
 
 .. _AC-6 (8):
-      
+
 AC-6 (8) : PRIVILEGE LEVELS FOR CODE EXECUTION
 """"""""""""""""""""""""""""""""""""""""""""""
 
@@ -1074,7 +1074,7 @@ AC-6 (8) : PRIVILEGE LEVELS FOR CODE EXECUTION
    In certain situations, software applications/programs need to execute with elevated privileges to perform required functions. However, if the privileges required for execution are at a higher level than the privileges assigned to organizational users invoking such applications/programs, those users are indirectly provided with greater privileges than assigned by organizations.
 
 .. _AC-6 (9):
-      
+
 AC-6 (9) : AUDITING USE OF PRIVILEGED FUNCTIONS
 """""""""""""""""""""""""""""""""""""""""""""""
 
@@ -1089,7 +1089,7 @@ AC-6 (9) : AUDITING USE OF PRIVILEGED FUNCTIONS
 **Related Controls:** `AU-2`_
 
 .. _AC-6 (10):
-      
+
 AC-6 (10) : PROHIBIT NON-PRIVILEGED USERS FROM EXECUTING PRIVILEGED FUNCTIONS
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
@@ -1105,7 +1105,7 @@ Control Family:  ACCESS CONTROL
 -------------------------------
 
 .. _AC-7:
-      
+
 AC-7 : UNSUCCESSFUL LOGON ATTEMPTS
 """"""""""""""""""""""""""""""""""
 
@@ -1123,28 +1123,28 @@ AC-7 : UNSUCCESSFUL LOGON ATTEMPTS
 
 
 .. _AC-7a.:
-      
+
 AC-7a.
 """"""
 
     Enforces a limit of [Assignment: organization-defined number] consecutive invalid logon attempts by a user during a [Assignment: organization-defined time period]; and
 
 .. _AC-7b.:
-      
+
 AC-7b.
 """"""
 
     Automatically [Selection: locks the account/node for an [Assignment: organization-defined time period]; locks the account/node until released by an administrator; delays next logon prompt according to [Assignment: organization-defined delay algorithm]] when the maximum number of unsuccessful attempts is exceeded.
 
 .. _AC-7 (1):
-      
+
 AC-7 (1) : AUTOMATIC ACCOUNT LOCK
 """""""""""""""""""""""""""""""""
 
     [Withdrawn: Incorporated into AC-7].
 
 .. _AC-7 (2):
-      
+
 AC-7 (2) : PURGE / WIPE MOBILE DEVICE
 """""""""""""""""""""""""""""""""""""
 
@@ -1160,7 +1160,7 @@ Control Family:  ACCESS CONTROL
 -------------------------------
 
 .. _AC-8:
-      
+
 AC-8 : SYSTEM USE NOTIFICATION
 """"""""""""""""""""""""""""""
 
@@ -1176,70 +1176,70 @@ AC-8 : SYSTEM USE NOTIFICATION
 
 
 .. _AC-8a.:
-      
+
 AC-8a.
 """"""
 
     Displays to users [Assignment: organization-defined system use notification message or banner] before granting access to the system that provides privacy and security notices consistent with applicable federal laws, Executive Orders, directives, policies, regulations, standards, and guidance and states that:
 
 .. _AC-8a.1.:
-      
+
 AC-8a.1.
 """"""""
 
     Users are accessing a U.S. Government information system;
 
 .. _AC-8a.2.:
-      
+
 AC-8a.2.
 """"""""
 
     Information system usage may be monitored, recorded, and subject to audit;
 
 .. _AC-8a.3.:
-      
+
 AC-8a.3.
 """"""""
 
     Unauthorized use of the information system is prohibited and subject to criminal and civil penalties; and
 
 .. _AC-8a.4.:
-      
+
 AC-8a.4.
 """"""""
 
     Use of the information system indicates consent to monitoring and recording;
 
 .. _AC-8b.:
-      
+
 AC-8b.
 """"""
 
     Retains the notification message or banner on the screen until users acknowledge the usage conditions and take explicit actions to log on to or further access the information system; and
 
 .. _AC-8c.:
-      
+
 AC-8c.
 """"""
 
     For publicly accessible systems:
 
 .. _AC-8c.1.:
-      
+
 AC-8c.1.
 """"""""
 
     Displays system use information [Assignment: organization-defined conditions], before granting further access;
 
 .. _AC-8c.2.:
-      
+
 AC-8c.2.
 """"""""
 
     Displays references, if any, to monitoring, recording, or auditing that are consistent with privacy accommodations for such systems that generally prohibit those activities; and
 
 .. _AC-8c.3.:
-      
+
 AC-8c.3.
 """"""""
 
@@ -1249,7 +1249,7 @@ Control Family:  ACCESS CONTROL
 -------------------------------
 
 .. _AC-9:
-      
+
 AC-9 : PREVIOUS LOGON (ACCESS) NOTIFICATION
 """""""""""""""""""""""""""""""""""""""""""
 
@@ -1265,28 +1265,28 @@ AC-9 : PREVIOUS LOGON (ACCESS) NOTIFICATION
 
 
 .. _AC-9 (1):
-      
+
 AC-9 (1) : UNSUCCESSFUL LOGONS
 """"""""""""""""""""""""""""""
 
     The information system notifies the user, upon successful logon/access, of the number of unsuccessful logon/access attempts since the last successful logon/access.
 
 .. _AC-9 (2):
-      
+
 AC-9 (2) : SUCCESSFUL / UNSUCCESSFUL LOGONS
 """""""""""""""""""""""""""""""""""""""""""
 
     The information system notifies the user of the number of [Selection: successful logons/accesses; unsuccessful logon/access attempts; both] during [Assignment: organization-defined time period].
 
 .. _AC-9 (3):
-      
+
 AC-9 (3) : NOTIFICATION OF ACCOUNT CHANGES
 """"""""""""""""""""""""""""""""""""""""""
 
     The information system notifies the user of changes to [Assignment: organization-defined security-related characteristics/parameters of the user�s account] during [Assignment: organization-defined time period].
 
 .. _AC-9 (4):
-      
+
 AC-9 (4) : ADDITIONAL LOGON INFORMATION
 """""""""""""""""""""""""""""""""""""""
 
@@ -1300,7 +1300,7 @@ Control Family:  ACCESS CONTROL
 -------------------------------
 
 .. _AC-10:
-      
+
 AC-10 : CONCURRENT SESSION CONTROL
 """"""""""""""""""""""""""""""""""
 
@@ -1319,7 +1319,7 @@ Control Family:  ACCESS CONTROL
 -------------------------------
 
 .. _AC-11:
-      
+
 AC-11 : SESSION LOCK
 """"""""""""""""""""
 
@@ -1337,21 +1337,21 @@ AC-11 : SESSION LOCK
 
 
 .. _AC-11a.:
-      
+
 AC-11a.
 """""""
 
     Prevents further access to the system by initiating a session lock after [Assignment: organization-defined time period] of inactivity or upon receiving a request from a user; and
 
 .. _AC-11b.:
-      
+
 AC-11b.
 """""""
 
     Retains the session lock until the user reestablishes access using established identification and authentication procedures.
 
 .. _AC-11 (1):
-      
+
 AC-11 (1) : PATTERN-HIDING DISPLAYS
 """""""""""""""""""""""""""""""""""
 
@@ -1367,7 +1367,7 @@ Control Family:  ACCESS CONTROL
 -------------------------------
 
 .. _AC-12:
-      
+
 AC-12 : SESSION TERMINATION
 """""""""""""""""""""""""""
 
@@ -1385,7 +1385,7 @@ AC-12 : SESSION TERMINATION
 
 
 .. _AC-12 (1):
-      
+
 AC-12 (1) : USER-INITIATED LOGOUTS / MESSAGE DISPLAYS
 """""""""""""""""""""""""""""""""""""""""""""""""""""
 
@@ -1396,14 +1396,14 @@ AC-12 (1) : USER-INITIATED LOGOUTS / MESSAGE DISPLAYS
    Information resources to which users gain access via authentication include, for example, local workstations, databases, and password-protected websites/web-based services. Logout messages for web page access, for example, can be displayed after authenticated sessions have been terminated. However, for some types of interactive sessions including, for example, file transfer protocol (FTP) sessions, information systems typically send logout messages as final messages prior to terminating sessions.
 
 .. _AC-12 (1)(a):
-      
+
 AC-12 (1)(a)
 """"""""""""
 
     Provides a logout capability for user-initiated communications sessions whenever authentication is used to gain access to [Assignment: organization-defined information resources]; and
 
 .. _AC-12 (1)(b):
-      
+
 AC-12 (1)(b)
 """"""""""""
 
@@ -1413,7 +1413,7 @@ Control Family:  ACCESS CONTROL
 -------------------------------
 
 .. _AC-13:
-      
+
 AC-13 : SUPERVISION AND REVIEW - ACCESS CONTROL
 """""""""""""""""""""""""""""""""""""""""""""""
 
@@ -1424,7 +1424,7 @@ Control Family:  ACCESS CONTROL
 -------------------------------
 
 .. _AC-14:
-      
+
 AC-14 : PERMITTED ACTIONS WITHOUT IDENTIFICATION OR AUTHENTICATION
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
@@ -1442,21 +1442,21 @@ AC-14 : PERMITTED ACTIONS WITHOUT IDENTIFICATION OR AUTHENTICATION
 
 
 .. _AC-14a.:
-      
+
 AC-14a.
 """""""
 
     Identifies [Assignment: organization-defined user actions] that can be performed on the information system without identification or authentication consistent with organizational missions/business functions; and
 
 .. _AC-14b.:
-      
+
 AC-14b.
 """""""
 
     Documents and provides supporting rationale in the security plan for the information system, user actions not requiring identification or authentication.
 
 .. _AC-14 (1):
-      
+
 AC-14 (1) : NECESSARY USES
 """"""""""""""""""""""""""
 
@@ -1466,7 +1466,7 @@ Control Family:  ACCESS CONTROL
 -------------------------------
 
 .. _AC-15:
-      
+
 AC-15 : AUTOMATED MARKING
 """""""""""""""""""""""""
 
@@ -1477,7 +1477,7 @@ Control Family:  ACCESS CONTROL
 -------------------------------
 
 .. _AC-16:
-      
+
 AC-16 : SECURITY ATTRIBUTES
 """""""""""""""""""""""""""
 
@@ -1494,35 +1494,35 @@ AC-16 : SECURITY ATTRIBUTES
 
 
 .. _AC-16a.:
-      
+
 AC-16a.
 """""""
 
     Provides the means to associate [Assignment: organization-defined types of security attributes] having [Assignment: organization-defined security attribute values] with information in storage, in process, and/or in transmission;
 
 .. _AC-16b.:
-      
+
 AC-16b.
 """""""
 
     Ensures that the security attribute associations are made and retained with the information;
 
 .. _AC-16c.:
-      
+
 AC-16c.
 """""""
 
     Establishes the permitted [Assignment: organization-defined security attributes] for [Assignment: organization-defined information systems]; and
 
 .. _AC-16d.:
-      
+
 AC-16d.
 """""""
 
     Determines the permitted [Assignment: organization-defined values or ranges] for each of the established security attributes.
 
 .. _AC-16 (1):
-      
+
 AC-16 (1) : DYNAMIC ATTRIBUTE ASSOCIATION
 """""""""""""""""""""""""""""""""""""""""
 
@@ -1535,7 +1535,7 @@ AC-16 (1) : DYNAMIC ATTRIBUTE ASSOCIATION
 **Related Controls:** `AC-4`_
 
 .. _AC-16 (2):
-      
+
 AC-16 (2) : ATTRIBUTE VALUE CHANGES BY AUTHORIZED INDIVIDUALS
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
@@ -1548,7 +1548,7 @@ AC-16 (2) : ATTRIBUTE VALUE CHANGES BY AUTHORIZED INDIVIDUALS
 **Related Controls:** `AC-6`_, `AU-2`_
 
 .. _AC-16 (3):
-      
+
 AC-16 (3) : MAINTENANCE OF ATTRIBUTE ASSOCIATIONS BY INFORMATION SYSTEM
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
@@ -1559,7 +1559,7 @@ AC-16 (3) : MAINTENANCE OF ATTRIBUTE ASSOCIATIONS BY INFORMATION SYSTEM
    Maintaining the association and integrity of security attributes to subjects and objects with sufficient assurance helps to ensure that the attribute associations can be used as the basis of automated policy actions. Automated policy actions include, for example, access control decisions or information flow control decisions.
 
 .. _AC-16 (4):
-      
+
 AC-16 (4) : ASSOCIATION OF ATTRIBUTES BY AUTHORIZED INDIVIDUALS
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
@@ -1570,7 +1570,7 @@ AC-16 (4) : ASSOCIATION OF ATTRIBUTES BY AUTHORIZED INDIVIDUALS
    The support provided by information systems can vary to include: (i) prompting users to select specific security attributes to be associated with specific information objects; (ii) employing automated mechanisms for categorizing information with appropriate attributes based on defined policies; or (iii) ensuring that the combination of selected security attributes selected is valid. Organizations consider the creation, deletion, or modification of security attributes when defining auditable events.
 
 .. _AC-16 (5):
-      
+
 AC-16 (5) : ATTRIBUTE DISPLAYS FOR OUTPUT DEVICES
 """""""""""""""""""""""""""""""""""""""""""""""""
 
@@ -1581,7 +1581,7 @@ AC-16 (5) : ATTRIBUTE DISPLAYS FOR OUTPUT DEVICES
    Information system outputs include, for example, pages, screens, or equivalent. Information system output devices include, for example, printers and video displays on computer workstations, notebook computers, and personal digital assistants.
 
 .. _AC-16 (6):
-      
+
 AC-16 (6) : MAINTENANCE OF ATTRIBUTE ASSOCIATION BY ORGANIZATION
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
@@ -1592,7 +1592,7 @@ AC-16 (6) : MAINTENANCE OF ATTRIBUTE ASSOCIATION BY ORGANIZATION
    This control enhancement requires individual users (as opposed to the information system) to maintain associations of security attributes with subjects and objects.
 
 .. _AC-16 (7):
-      
+
 AC-16 (7) : CONSISTENT ATTRIBUTE INTERPRETATION
 """""""""""""""""""""""""""""""""""""""""""""""
 
@@ -1603,7 +1603,7 @@ AC-16 (7) : CONSISTENT ATTRIBUTE INTERPRETATION
    In order to enforce security policies across multiple components in distributed information systems (e.g., distributed database management systems, cloud-based systems, and service-oriented architectures), organizations provide a consistent interpretation of security attributes that are used in access enforcement and flow enforcement decisions. Organizations establish agreements and processes to ensure that all distributed information system components implement security attributes with consistent interpretations in automated access/flow enforcement actions.
 
 .. _AC-16 (8):
-      
+
 AC-16 (8) : ASSOCIATION TECHNIQUES / TECHNOLOGIES
 """""""""""""""""""""""""""""""""""""""""""""""""
 
@@ -1614,7 +1614,7 @@ AC-16 (8) : ASSOCIATION TECHNIQUES / TECHNOLOGIES
    The association (i.e., binding) of security attributes to information within information systems is of significant importance with regard to conducting automated access enforcement and flow enforcement actions. The association of such security attributes can be accomplished with technologies/techniques providing different levels of assurance. For example, information systems can cryptographically bind security attributes to information using digital signatures with the supporting cryptographic keys protected by hardware devices (sometimes known as hardware roots of trust).
 
 .. _AC-16 (9):
-      
+
 AC-16 (9) : ATTRIBUTE REASSIGNMENT
 """"""""""""""""""""""""""""""""""
 
@@ -1625,7 +1625,7 @@ AC-16 (9) : ATTRIBUTE REASSIGNMENT
    Validated re-grading mechanisms are employed by organizations to provide the requisite levels of assurance for security attribute reassignment activities. The validation is facilitated by ensuring that re-grading mechanisms are single purpose and of limited function. Since security attribute reassignments can affect security policy enforcement actions (e.g., access/flow enforcement decisions), using trustworthy re-grading mechanisms is necessary to ensure that such mechanisms perform in a consistent/correct mode of operation.
 
 .. _AC-16 (10):
-      
+
 AC-16 (10) : ATTRIBUTE CONFIGURATION BY AUTHORIZED INDIVIDUALS
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
@@ -1639,7 +1639,7 @@ Control Family:  ACCESS CONTROL
 -------------------------------
 
 .. _AC-17:
-      
+
 AC-17 : REMOTE ACCESS
 """""""""""""""""""""
 
@@ -1657,21 +1657,21 @@ AC-17 : REMOTE ACCESS
 
 
 .. _AC-17a.:
-      
+
 AC-17a.
 """""""
 
     Establishes and documents usage restrictions, configuration/connection requirements, and implementation guidance for each type of remote access allowed; and
 
 .. _AC-17b.:
-      
+
 AC-17b.
 """""""
 
     Authorizes remote access to the information system prior to allowing such connections.
 
 .. _AC-17 (1):
-      
+
 AC-17 (1) : AUTOMATED MONITORING / CONTROL
 """"""""""""""""""""""""""""""""""""""""""
 
@@ -1686,7 +1686,7 @@ AC-17 (1) : AUTOMATED MONITORING / CONTROL
 **Related Controls:** `AU-2`_, `AU-12`_
 
 .. _AC-17 (2):
-      
+
 AC-17 (2) : PROTECTION OF CONFIDENTIALITY / INTEGRITY USING ENCRYPTION
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
@@ -1701,7 +1701,7 @@ AC-17 (2) : PROTECTION OF CONFIDENTIALITY / INTEGRITY USING ENCRYPTION
 **Related Controls:** `SC-8`_, `SC-12`_, `SC-13`_
 
 .. _AC-17 (3):
-      
+
 AC-17 (3) : MANAGED ACCESS CONTROL POINTS
 """""""""""""""""""""""""""""""""""""""""
 
@@ -1716,7 +1716,7 @@ AC-17 (3) : MANAGED ACCESS CONTROL POINTS
 **Related Controls:** `SC-7`_
 
 .. _AC-17 (4):
-      
+
 AC-17 (4) : PRIVILEGED COMMANDS / ACCESS
 """"""""""""""""""""""""""""""""""""""""
 
@@ -1727,28 +1727,28 @@ AC-17 (4) : PRIVILEGED COMMANDS / ACCESS
 **Related Controls:** `AC-6`_
 
 .. _AC-17 (4)(a):
-      
+
 AC-17 (4)(a)
 """"""""""""
 
     Authorizes the execution of privileged commands and access to security-relevant information via remote access only for [Assignment: organization-defined needs]; and
 
 .. _AC-17 (4)(b):
-      
+
 AC-17 (4)(b)
 """"""""""""
 
     Documents the rationale for such access in the security plan for the information system.
 
 .. _AC-17 (5):
-      
+
 AC-17 (5) : MONITORING FOR UNAUTHORIZED CONNECTIONS
 """""""""""""""""""""""""""""""""""""""""""""""""""
 
     [Withdrawn: Incorporated into SI-4].
 
 .. _AC-17 (6):
-      
+
 AC-17 (6) : PROTECTION OF INFORMATION
 """""""""""""""""""""""""""""""""""""
 
@@ -1757,21 +1757,21 @@ AC-17 (6) : PROTECTION OF INFORMATION
 **Related Controls:** `AT-2`_, `AT-3`_, `PS-6`_
 
 .. _AC-17 (7):
-      
+
 AC-17 (7) : ADDITIONAL PROTECTION FOR SECURITY FUNCTION ACCESS
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
     [Withdrawn: Incorporated into AC-3 (10)].
 
 .. _AC-17 (8):
-      
+
 AC-17 (8) : DISABLE NONSECURE NETWORK PROTOCOLS
 """""""""""""""""""""""""""""""""""""""""""""""
 
     [Withdrawn: Incorporated into CM-7].
 
 .. _AC-17 (9):
-      
+
 AC-17 (9) : DISCONNECT / DISABLE ACCESS
 """""""""""""""""""""""""""""""""""""""
 
@@ -1785,7 +1785,7 @@ Control Family:  ACCESS CONTROL
 -------------------------------
 
 .. _AC-18:
-      
+
 AC-18 : WIRELESS ACCESS
 """""""""""""""""""""""
 
@@ -1803,21 +1803,21 @@ AC-18 : WIRELESS ACCESS
 
 
 .. _AC-18a.:
-      
+
 AC-18a.
 """""""
 
     Establishes usage restrictions, configuration/connection requirements, and implementation guidance for wireless access; and
 
 .. _AC-18b.:
-      
+
 AC-18b.
 """""""
 
     Authorizes wireless access to the information system prior to allowing such connections.
 
 .. _AC-18 (1):
-      
+
 AC-18 (1) : AUTHENTICATION AND ENCRYPTION
 """""""""""""""""""""""""""""""""""""""""
 
@@ -1828,14 +1828,14 @@ AC-18 (1) : AUTHENTICATION AND ENCRYPTION
 **Related Controls:** `SC-8`_, `SC-13`_
 
 .. _AC-18 (2):
-      
+
 AC-18 (2) : MONITORING UNAUTHORIZED CONNECTIONS
 """""""""""""""""""""""""""""""""""""""""""""""
 
     [Withdrawn: Incorporated into SI-4].
 
 .. _AC-18 (3):
-      
+
 AC-18 (3) : DISABLE WIRELESS NETWORKING
 """""""""""""""""""""""""""""""""""""""
 
@@ -1844,7 +1844,7 @@ AC-18 (3) : DISABLE WIRELESS NETWORKING
 **Related Controls:** `AC-19`_
 
 .. _AC-18 (4):
-      
+
 AC-18 (4) : RESTRICT CONFIGURATIONS BY USERS
 """"""""""""""""""""""""""""""""""""""""""""
 
@@ -1859,7 +1859,7 @@ AC-18 (4) : RESTRICT CONFIGURATIONS BY USERS
 **Related Controls:** `AC-3`_, `SC-15`_
 
 .. _AC-18 (5):
-      
+
 AC-18 (5) : ANTENNAS / TRANSMISSION POWER LEVELS
 """"""""""""""""""""""""""""""""""""""""""""""""
 
@@ -1877,7 +1877,7 @@ Control Family:  ACCESS CONTROL
 -------------------------------
 
 .. _AC-19:
-      
+
 AC-19 : ACCESS CONTROL FOR MOBILE DEVICES
 """""""""""""""""""""""""""""""""""""""""
 
@@ -1895,42 +1895,42 @@ AC-19 : ACCESS CONTROL FOR MOBILE DEVICES
 
 
 .. _AC-19a.:
-      
+
 AC-19a.
 """""""
 
     Establishes usage restrictions, configuration requirements, connection requirements, and implementation guidance for organization-controlled mobile devices; and
 
 .. _AC-19b.:
-      
+
 AC-19b.
 """""""
 
     Authorizes the connection of mobile devices to organizational information systems.
 
 .. _AC-19 (1):
-      
+
 AC-19 (1) : USE OF  WRITABLE / PORTABLE STORAGE DEVICES
 """""""""""""""""""""""""""""""""""""""""""""""""""""""
 
     [Withdrawn: Incorporated into MP-7].
 
 .. _AC-19 (2):
-      
+
 AC-19 (2) : USE OF PERSONALLY OWNED PORTABLE STORAGE DEVICES
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
     [Withdrawn: Incorporated into MP-7].
 
 .. _AC-19 (3):
-      
+
 AC-19 (3) : USE OF PORTABLE STORAGE DEVICES WITH NO IDENTIFIABLE OWNER
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
     [Withdrawn: Incorporated into MP-7].
 
 .. _AC-19 (4):
-      
+
 AC-19 (4) : RESTRICTIONS FOR CLASSIFIED INFORMATION
 """""""""""""""""""""""""""""""""""""""""""""""""""
 
@@ -1939,56 +1939,56 @@ AC-19 (4) : RESTRICTIONS FOR CLASSIFIED INFORMATION
 **Related Controls:** `CA-6`_, `IR-4`_
 
 .. _AC-19 (4)(a):
-      
+
 AC-19 (4)(a)
 """"""""""""
 
     Prohibits the use of unclassified mobile devices in facilities containing information systems processing, storing, or transmitting classified information unless specifically permitted by the authorizing official; and
 
 .. _AC-19 (4)(b):
-      
+
 AC-19 (4)(b)
 """"""""""""
 
     Enforces the following restrictions on individuals permitted by the authorizing official to use unclassified mobile devices in facilities containing information systems processing, storing, or transmitting classified information:
 
 .. _AC-19 (4)(b)(1):
-      
+
 AC-19 (4)(b)(1)
 """""""""""""""
 
     Connection of unclassified mobile devices to classified information systems is prohibited;
 
 .. _AC-19 (4)(b)(2):
-      
+
 AC-19 (4)(b)(2)
 """""""""""""""
 
     Connection of unclassified mobile devices to unclassified information systems requires approval from the authorizing official;
 
 .. _AC-19 (4)(b)(3):
-      
+
 AC-19 (4)(b)(3)
 """""""""""""""
 
     Use of internal or external modems or wireless interfaces within the unclassified mobile devices is prohibited; and
 
 .. _AC-19 (4)(b)(4):
-      
+
 AC-19 (4)(b)(4)
 """""""""""""""
 
     Unclassified mobile devices and the information stored on those devices are subject to random reviews and inspections by [Assignment: organization-defined security officials], and if classified information is found, the incident handling policy is followed.
 
 .. _AC-19 (4)(c):
-      
+
 AC-19 (4)(c)
 """"""""""""
 
     Restricts the connection of classified mobile devices to classified information systems in accordance with [Assignment: organization-defined security policies].
 
 .. _AC-19 (5):
-      
+
 AC-19 (5) : FULL DEVICE / CONTAINER-BASED  ENCRYPTION
 """""""""""""""""""""""""""""""""""""""""""""""""""""
 
@@ -2006,7 +2006,7 @@ Control Family:  ACCESS CONTROL
 -------------------------------
 
 .. _AC-20:
-      
+
 AC-20 : USE OF EXTERNAL INFORMATION SYSTEMS
 """""""""""""""""""""""""""""""""""""""""""
 
@@ -2026,21 +2026,21 @@ AC-20 : USE OF EXTERNAL INFORMATION SYSTEMS
 
 
 .. _AC-20a.:
-      
+
 AC-20a.
 """""""
 
     Access the information system from external information systems; and
 
 .. _AC-20b.:
-      
+
 AC-20b.
 """""""
 
     Process, store, or transmit organization-controlled information using external information systems.
 
 .. _AC-20 (1):
-      
+
 AC-20 (1) : LIMITS ON AUTHORIZED USE
 """"""""""""""""""""""""""""""""""""
 
@@ -2055,21 +2055,21 @@ AC-20 (1) : LIMITS ON AUTHORIZED USE
 **Related Controls:** `CA-2`_
 
 .. _AC-20 (1)(a):
-      
+
 AC-20 (1)(a)
 """"""""""""
 
     Verifies the implementation of required security controls on the external system as specified in the organization�s information security policy and security plan; or
 
 .. _AC-20 (1)(b):
-      
+
 AC-20 (1)(b)
 """"""""""""
 
     Retains approved information system connection or processing agreements with the organizational entity hosting the external information system.
 
 .. _AC-20 (2):
-      
+
 AC-20 (2) : PORTABLE STORAGE DEVICES
 """"""""""""""""""""""""""""""""""""
 
@@ -2082,7 +2082,7 @@ AC-20 (2) : PORTABLE STORAGE DEVICES
    Limits on the use of organization-controlled portable storage devices in external information systems include, for example, complete prohibition of the use of such devices or restrictions on how the devices may be used and under what conditions the devices may be used.
 
 .. _AC-20 (3):
-      
+
 AC-20 (3) : NON-ORGANIZATIONALLY OWNED SYSTEMS / COMPONENTS / DEVICES
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
@@ -2093,7 +2093,7 @@ AC-20 (3) : NON-ORGANIZATIONALLY OWNED SYSTEMS / COMPONENTS / DEVICES
    Non-organizationally owned devices include devices owned by other organizations (e.g., federal/state agencies, contractors) and personally owned devices. There are risks to using non-organizationally owned devices. In some cases, the risk is sufficiently high as to prohibit such use. In other cases, it may be such that the use of non-organizationally owned devices is allowed but restricted in some way. Restrictions include, for example: (i) requiring the implementation of organization-approved security controls prior to authorizing such connections; (ii) limiting access to certain types of information, services, or applications; (iii) using virtualization techniques to limit processing and storage activities to servers or other system components provisioned by the organization; and (iv) agreeing to terms and conditions for usage. For personally owned devices, organizations consult with the Office of the General Counsel regarding legal issues associated with using such devices in operational environments, including, for example, requirements for conducting forensic analyses during investigations after an incident.
 
 .. _AC-20 (4):
-      
+
 AC-20 (4) : NETWORK ACCESSIBLE STORAGE DEVICES
 """"""""""""""""""""""""""""""""""""""""""""""
 
@@ -2107,7 +2107,7 @@ Control Family:  ACCESS CONTROL
 -------------------------------
 
 .. _AC-21:
-      
+
 AC-21 : INFORMATION SHARING
 """""""""""""""""""""""""""
 
@@ -2125,28 +2125,28 @@ AC-21 : INFORMATION SHARING
 
 
 .. _AC-21a.:
-      
+
 AC-21a.
 """""""
 
     Facilitates information sharing by enabling authorized users to determine whether access authorizations assigned to the sharing partner match the access restrictions on the information for [Assignment: organization-defined information sharing circumstances where user discretion is required]; and
 
 .. _AC-21b.:
-      
+
 AC-21b.
 """""""
 
     Employs [Assignment: organization-defined automated mechanisms or manual processes] to assist users in making information sharing/collaboration decisions.
 
 .. _AC-21 (1):
-      
+
 AC-21 (1) : AUTOMATED DECISION SUPPORT
 """"""""""""""""""""""""""""""""""""""
 
     The information system enforces information-sharing decisions by authorized users based on access authorizations of sharing partners and access restrictions on information to be shared.
 
 .. _AC-21 (2):
-      
+
 AC-21 (2) : INFORMATION SEARCH AND RETRIEVAL
 """"""""""""""""""""""""""""""""""""""""""""
 
@@ -2156,7 +2156,7 @@ Control Family:  ACCESS CONTROL
 -------------------------------
 
 .. _AC-22:
-      
+
 AC-22 : PUBLICLY ACCESSIBLE CONTENT
 """""""""""""""""""""""""""""""""""
 
@@ -2174,28 +2174,28 @@ AC-22 : PUBLICLY ACCESSIBLE CONTENT
 
 
 .. _AC-22a.:
-      
+
 AC-22a.
 """""""
 
     Designates individuals authorized to post information onto a publicly accessible information system;
 
 .. _AC-22b.:
-      
+
 AC-22b.
 """""""
 
     Trains authorized individuals to ensure that publicly accessible information does not contain nonpublic information;
 
 .. _AC-22c.:
-      
+
 AC-22c.
 """""""
 
     Reviews the proposed content of information prior to posting onto the publicly accessible information system to ensure that nonpublic information is not included; and
 
 .. _AC-22d.:
-      
+
 AC-22d.
 """""""
 
@@ -2205,7 +2205,7 @@ Control Family:  ACCESS CONTROL
 -------------------------------
 
 .. _AC-23:
-      
+
 AC-23 : DATA MINING PROTECTION
 """"""""""""""""""""""""""""""
 
@@ -2222,7 +2222,7 @@ Control Family:  ACCESS CONTROL
 -------------------------------
 
 .. _AC-24:
-      
+
 AC-24 : ACCESS CONTROL DECISIONS
 """"""""""""""""""""""""""""""""
 
@@ -2236,7 +2236,7 @@ AC-24 : ACCESS CONTROL DECISIONS
 
 
 .. _AC-24 (1):
-      
+
 AC-24 (1) : TRANSMIT ACCESS AUTHORIZATION INFORMATION
 """""""""""""""""""""""""""""""""""""""""""""""""""""
 
@@ -2247,7 +2247,7 @@ AC-24 (1) : TRANSMIT ACCESS AUTHORIZATION INFORMATION
    In distributed information systems, authorization processes and access control decisions may occur in separate parts of the systems. In such instances, authorization information is transmitted securely so timely access control decisions can be enforced at the appropriate locations. To support the access control decisions, it may be necessary to transmit as part of the access authorization information, supporting security attributes. This is due to the fact that in distributed information systems, there are various access control decisions that need to be made and different entities (e.g., services) make these decisions in a serial fashion, each requiring some security attributes to make the decisions. Protecting access authorization information (i.e., access control decisions) ensures that such information cannot be altered, spoofed, or otherwise compromised during transmission.
 
 .. _AC-24 (2):
-      
+
 AC-24 (2) : NO USER OR PROCESS IDENTITY
 """""""""""""""""""""""""""""""""""""""
 
@@ -2261,7 +2261,7 @@ Control Family:  ACCESS CONTROL
 -------------------------------
 
 .. _AC-25:
-      
+
 AC-25 : REFERENCE MONITOR
 """""""""""""""""""""""""
 
@@ -2280,7 +2280,7 @@ Control Family:  AWARENESS AND TRAINING
 ---------------------------------------
 
 .. _AT-1:
-      
+
 AT-1 : SECURITY AWARENESS AND TRAINING POLICY AND PROCEDURES
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
@@ -2298,42 +2298,42 @@ AT-1 : SECURITY AWARENESS AND TRAINING POLICY AND PROCEDURES
 
 
 .. _AT-1a.:
-      
+
 AT-1a.
 """"""
 
     Develops, documents, and disseminates to [Assignment: organization-defined personnel or roles]:
 
 .. _AT-1a.1.:
-      
+
 AT-1a.1.
 """"""""
 
     A security awareness and training policy that addresses purpose, scope, roles, responsibilities, management commitment, coordination among organizational entities, and compliance; and
 
 .. _AT-1a.2.:
-      
+
 AT-1a.2.
 """"""""
 
     Procedures to facilitate the implementation of the security awareness and training policy and associated security awareness and training controls; and
 
 .. _AT-1b.:
-      
+
 AT-1b.
 """"""
 
     Reviews and updates the current:
 
 .. _AT-1b.1.:
-      
+
 AT-1b.1.
 """"""""
 
     Security awareness and training policy [Assignment: organization-defined frequency]; and
 
 .. _AT-1b.2.:
-      
+
 AT-1b.2.
 """"""""
 
@@ -2343,7 +2343,7 @@ Control Family:  AWARENESS AND TRAINING
 ---------------------------------------
 
 .. _AT-2:
-      
+
 AT-2 : SECURITY AWARENESS TRAINING
 """"""""""""""""""""""""""""""""""
 
@@ -2361,28 +2361,28 @@ AT-2 : SECURITY AWARENESS TRAINING
 
 
 .. _AT-2a.:
-      
+
 AT-2a.
 """"""
 
     As part of initial training for new users;
 
 .. _AT-2b.:
-      
+
 AT-2b.
 """"""
 
     When required by information system changes; and
 
 .. _AT-2c.:
-      
+
 AT-2c.
 """"""
 
     [Assignment: organization-defined frequency] thereafter.
 
 .. _AT-2 (1):
-      
+
 AT-2 (1) : PRACTICAL EXERCISES
 """"""""""""""""""""""""""""""
 
@@ -2395,7 +2395,7 @@ AT-2 (1) : PRACTICAL EXERCISES
 **Related Controls:** `CA-2`_, `CA-7`_, `CP-4`_, `IR-3`_
 
 .. _AT-2 (2):
-      
+
 AT-2 (2) : INSIDER THREAT
 """""""""""""""""""""""""
 
@@ -2413,7 +2413,7 @@ Control Family:  AWARENESS AND TRAINING
 ---------------------------------------
 
 .. _AT-3:
-      
+
 AT-3 : ROLE-BASED SECURITY TRAINING
 """""""""""""""""""""""""""""""""""
 
@@ -2431,28 +2431,28 @@ AT-3 : ROLE-BASED SECURITY TRAINING
 
 
 .. _AT-3a.:
-      
+
 AT-3a.
 """"""
 
     Before authorizing access to the information system or performing assigned duties;
 
 .. _AT-3b.:
-      
+
 AT-3b.
 """"""
 
     When required by information system changes; and
 
 .. _AT-3c.:
-      
+
 AT-3c.
 """"""
 
     [Assignment: organization-defined frequency] thereafter.
 
 .. _AT-3 (1):
-      
+
 AT-3 (1) : ENVIRONMENTAL CONTROLS
 """""""""""""""""""""""""""""""""
 
@@ -2465,7 +2465,7 @@ AT-3 (1) : ENVIRONMENTAL CONTROLS
 **Related Controls:** `PE-1`_, `PE-13`_, `PE-14`_, `PE-15`_
 
 .. _AT-3 (2):
-      
+
 AT-3 (2) : PHYSICAL SECURITY CONTROLS
 """""""""""""""""""""""""""""""""""""
 
@@ -2478,7 +2478,7 @@ AT-3 (2) : PHYSICAL SECURITY CONTROLS
 **Related Controls:** `PE-2`_, `PE-3`_, `PE-4`_, `PE-5`_
 
 .. _AT-3 (3):
-      
+
 AT-3 (3) : PRACTICAL EXERCISES
 """"""""""""""""""""""""""""""
 
@@ -2489,7 +2489,7 @@ AT-3 (3) : PRACTICAL EXERCISES
    Practical exercises may include, for example, security training for software developers that includes simulated cyber attacks exploiting common software vulnerabilities (e.g., buffer overflows), or spear/whale phishing attacks targeted at senior leaders/executives. These types of practical exercises help developers better understand the effects of such vulnerabilities and appreciate the need for security coding standards and processes.
 
 .. _AT-3 (4):
-      
+
 AT-3 (4) : SUSPICIOUS COMMUNICATIONS AND ANOMALOUS SYSTEM BEHAVIOR
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
@@ -2503,7 +2503,7 @@ Control Family:  AWARENESS AND TRAINING
 ---------------------------------------
 
 .. _AT-4:
-      
+
 AT-4 : SECURITY TRAINING RECORDS
 """"""""""""""""""""""""""""""""
 
@@ -2521,14 +2521,14 @@ AT-4 : SECURITY TRAINING RECORDS
 
 
 .. _AT-4a.:
-      
+
 AT-4a.
 """"""
 
     Documents and monitors individual information system security training activities including basic security awareness training and specific information system security training; and
 
 .. _AT-4b.:
-      
+
 AT-4b.
 """"""
 
@@ -2538,7 +2538,7 @@ Control Family:  AWARENESS AND TRAINING
 ---------------------------------------
 
 .. _AT-5:
-      
+
 AT-5 : CONTACTS WITH SECURITY GROUPS AND ASSOCIATIONS
 """""""""""""""""""""""""""""""""""""""""""""""""""""
 
@@ -2549,7 +2549,7 @@ Control Family:  AUDIT AND ACCOUNTABILITY
 -----------------------------------------
 
 .. _AU-1:
-      
+
 AU-1 : AUDIT AND ACCOUNTABILITY POLICY AND PROCEDURES
 """""""""""""""""""""""""""""""""""""""""""""""""""""
 
@@ -2567,42 +2567,42 @@ AU-1 : AUDIT AND ACCOUNTABILITY POLICY AND PROCEDURES
 
 
 .. _AU-1a.:
-      
+
 AU-1a.
 """"""
 
     Develops, documents, and disseminates to [Assignment: organization-defined personnel or roles]:
 
 .. _AU-1a.1.:
-      
+
 AU-1a.1.
 """"""""
 
     An audit and accountability policy that addresses purpose, scope, roles, responsibilities, management commitment, coordination among organizational entities, and compliance; and
 
 .. _AU-1a.2.:
-      
+
 AU-1a.2.
 """"""""
 
     Procedures to facilitate the implementation of the audit and accountability policy and associated audit and accountability controls; and
 
 .. _AU-1b.:
-      
+
 AU-1b.
 """"""
 
     Reviews and updates the current:
 
 .. _AU-1b.1.:
-      
+
 AU-1b.1.
 """"""""
 
     Audit and accountability policy [Assignment: organization-defined frequency]; and
 
 .. _AU-1b.2.:
-      
+
 AU-1b.2.
 """"""""
 
@@ -2612,7 +2612,7 @@ Control Family:  AUDIT AND ACCOUNTABILITY
 -----------------------------------------
 
 .. _AU-2:
-      
+
 AU-2 : AUDIT EVENTS
 """""""""""""""""""
 
@@ -2630,49 +2630,49 @@ AU-2 : AUDIT EVENTS
 
 
 .. _AU-2a.:
-      
+
 AU-2a.
 """"""
 
     Determines that the information system is capable of auditing the following events: [Assignment: organization-defined auditable events];
 
 .. _AU-2b.:
-      
+
 AU-2b.
 """"""
 
     Coordinates the security audit function with other organizational entities requiring audit-related information to enhance mutual support and to help guide the selection of auditable events;
 
 .. _AU-2c.:
-      
+
 AU-2c.
 """"""
 
     Provides a rationale for why the auditable events are deemed to be adequate to support after-the-fact investigations of security incidents; and
 
 .. _AU-2d.:
-      
+
 AU-2d.
 """"""
 
     Determines that the following events are to be audited within the information system: [Assignment: organization-defined audited events (the subset of the auditable events defined in AU-2 a.) along with the frequency of (or situation requiring) auditing for each identified event].
 
 .. _AU-2 (1):
-      
+
 AU-2 (1) : COMPILATION OF AUDIT RECORDS FROM MULTIPLE SOURCES
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
     [Withdrawn: Incorporated into AU-12].
 
 .. _AU-2 (2):
-      
+
 AU-2 (2) : SELECTION OF AUDIT EVENTS BY COMPONENT
 """""""""""""""""""""""""""""""""""""""""""""""""
 
     [Withdrawn: Incorporated into AU-12].
 
 .. _AU-2 (3):
-      
+
 AU-2 (3) : REVIEWS AND UPDATES
 """"""""""""""""""""""""""""""
 
@@ -2685,7 +2685,7 @@ AU-2 (3) : REVIEWS AND UPDATES
    Over time, the events that organizations believe should be audited may change. Reviewing and updating the set of audited events periodically is necessary to ensure that the current set is still necessary and sufficient.
 
 .. _AU-2 (4):
-      
+
 AU-2 (4) : PRIVILEGED FUNCTIONS
 """""""""""""""""""""""""""""""
 
@@ -2695,7 +2695,7 @@ Control Family:  AUDIT AND ACCOUNTABILITY
 -----------------------------------------
 
 .. _AU-3:
-      
+
 AU-3 : CONTENT OF AUDIT RECORDS
 """""""""""""""""""""""""""""""
 
@@ -2713,7 +2713,7 @@ AU-3 : CONTENT OF AUDIT RECORDS
 
 
 .. _AU-3 (1):
-      
+
 AU-3 (1) : ADDITIONAL AUDIT INFORMATION
 """""""""""""""""""""""""""""""""""""""
 
@@ -2726,7 +2726,7 @@ AU-3 (1) : ADDITIONAL AUDIT INFORMATION
    Detailed information that organizations may consider in audit records includes, for example, full text recording of privileged commands or the individual identities of group account users. Organizations consider limiting the additional audit information to only that information explicitly needed for specific audit requirements. This facilitates the use of audit trails and audit logs by not including information that could potentially be misleading or could make it more difficult to locate information of interest.
 
 .. _AU-3 (2):
-      
+
 AU-3 (2) : CENTRALIZED MANAGEMENT OF PLANNED AUDIT RECORD CONTENT
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
@@ -2744,7 +2744,7 @@ Control Family:  AUDIT AND ACCOUNTABILITY
 -----------------------------------------
 
 .. _AU-4:
-      
+
 AU-4 : AUDIT STORAGE CAPACITY
 """""""""""""""""""""""""""""
 
@@ -2762,7 +2762,7 @@ AU-4 : AUDIT STORAGE CAPACITY
 
 
 .. _AU-4 (1):
-      
+
 AU-4 (1) : TRANSFER TO ALTERNATE STORAGE
 """"""""""""""""""""""""""""""""""""""""
 
@@ -2776,7 +2776,7 @@ Control Family:  AUDIT AND ACCOUNTABILITY
 -----------------------------------------
 
 .. _AU-5:
-      
+
 AU-5 : RESPONSE TO AUDIT PROCESSING FAILURES
 """"""""""""""""""""""""""""""""""""""""""""
 
@@ -2794,21 +2794,21 @@ AU-5 : RESPONSE TO AUDIT PROCESSING FAILURES
 
 
 .. _AU-5a.:
-      
+
 AU-5a.
 """"""
 
     Alerts [Assignment: organization-defined personnel or roles] in the event of an audit processing failure; and
 
 .. _AU-5b.:
-      
+
 AU-5b.
 """"""
 
     Takes the following additional actions: [Assignment: organization-defined actions to be taken (e.g., shut down information system, overwrite oldest audit records, stop generating audit records)].
 
 .. _AU-5 (1):
-      
+
 AU-5 (1) : AUDIT STORAGE CAPACITY
 """""""""""""""""""""""""""""""""
 
@@ -2821,7 +2821,7 @@ AU-5 (1) : AUDIT STORAGE CAPACITY
    Organizations may have multiple audit data storage repositories distributed across multiple information system components, with each repository having different storage volume capacities.
 
 .. _AU-5 (2):
-      
+
 AU-5 (2) : REAL-TIME ALERTS
 """""""""""""""""""""""""""
 
@@ -2834,7 +2834,7 @@ AU-5 (2) : REAL-TIME ALERTS
    Alerts provide organizations with urgent messages. Real-time alerts provide these messages at information technology speed (i.e., the time from event detection to alert occurs in seconds or less).
 
 .. _AU-5 (3):
-      
+
 AU-5 (3) : CONFIGURABLE TRAFFIC VOLUME THRESHOLDS
 """""""""""""""""""""""""""""""""""""""""""""""""
 
@@ -2845,7 +2845,7 @@ AU-5 (3) : CONFIGURABLE TRAFFIC VOLUME THRESHOLDS
    Organizations have the capability to reject or delay the processing of network communications traffic if auditing such traffic is determined to exceed the storage capacity of the information system audit function. The rejection or delay response is triggered by the established organizational traffic volume thresholds which can be adjusted based on changes to audit storage capacity.
 
 .. _AU-5 (4):
-      
+
 AU-5 (4) : SHUTDOWN ON FAILURE
 """"""""""""""""""""""""""""""
 
@@ -2861,7 +2861,7 @@ Control Family:  AUDIT AND ACCOUNTABILITY
 -----------------------------------------
 
 .. _AU-6:
-      
+
 AU-6 : AUDIT REVIEW, ANALYSIS, AND REPORTING
 """"""""""""""""""""""""""""""""""""""""""""
 
@@ -2879,21 +2879,21 @@ AU-6 : AUDIT REVIEW, ANALYSIS, AND REPORTING
 
 
 .. _AU-6a.:
-      
+
 AU-6a.
 """"""
 
     Reviews and analyzes information system audit records [Assignment: organization-defined frequency] for indications of [Assignment: organization-defined inappropriate or unusual activity]; and
 
 .. _AU-6b.:
-      
+
 AU-6b.
 """"""
 
     Reports findings to [Assignment: organization-defined personnel or roles].
 
 .. _AU-6 (1):
-      
+
 AU-6 (1) : PROCESS INTEGRATION
 """"""""""""""""""""""""""""""
 
@@ -2908,14 +2908,14 @@ AU-6 (1) : PROCESS INTEGRATION
 **Related Controls:** `AU-12`_, `PM-7`_
 
 .. _AU-6 (2):
-      
+
 AU-6 (2) : AUTOMATED SECURITY ALERTS
 """"""""""""""""""""""""""""""""""""
 
     [Withdrawn: Incorporated into SI-4].
 
 .. _AU-6 (3):
-      
+
 AU-6 (3) : CORRELATE AUDIT REPOSITORIES
 """""""""""""""""""""""""""""""""""""""
 
@@ -2930,7 +2930,7 @@ AU-6 (3) : CORRELATE AUDIT REPOSITORIES
 **Related Controls:** `AU-12`_, `IR-4`_
 
 .. _AU-6 (4):
-      
+
 AU-6 (4) : CENTRAL REVIEW AND ANALYSIS
 """"""""""""""""""""""""""""""""""""""
 
@@ -2943,7 +2943,7 @@ AU-6 (4) : CENTRAL REVIEW AND ANALYSIS
 **Related Controls:** `AU-2`_, `AU-12`_
 
 .. _AU-6 (5):
-      
+
 AU-6 (5) : INTEGRATION / SCANNING AND MONITORING CAPABILITIES
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
@@ -2958,7 +2958,7 @@ AU-6 (5) : INTEGRATION / SCANNING AND MONITORING CAPABILITIES
 **Related Controls:** `AU-12`_, `IR-4`_, `RA-5`_
 
 .. _AU-6 (6):
-      
+
 AU-6 (6) : CORRELATION WITH PHYSICAL MONITORING
 """""""""""""""""""""""""""""""""""""""""""""""
 
@@ -2971,7 +2971,7 @@ AU-6 (6) : CORRELATION WITH PHYSICAL MONITORING
    The correlation of physical audit information and audit logs from information systems may assist organizations in identifying examples of suspicious behavior or supporting evidence of such behavior. For example, the correlation of an individual�s identity for logical access to certain information systems with the additional physical security information that the individual was actually present at the facility when the logical access occurred, may prove to be useful in investigations.
 
 .. _AU-6 (7):
-      
+
 AU-6 (7) : PERMITTED ACTIONS
 """"""""""""""""""""""""""""
 
@@ -2982,7 +2982,7 @@ AU-6 (7) : PERMITTED ACTIONS
    Organizations specify permitted actions for information system processes, roles, and/or users associated with the review, analysis, and reporting of audit records through account management techniques. Specifying permitted actions on audit information is a way to enforce the principle of least privilege. Permitted actions are enforced by the information system and include, for example, read, write, execute, append, and delete.
 
 .. _AU-6 (8):
-      
+
 AU-6 (8) : FULL TEXT ANALYSIS OF PRIVILEGED COMMANDS
 """"""""""""""""""""""""""""""""""""""""""""""""""""
 
@@ -2995,7 +2995,7 @@ AU-6 (8) : FULL TEXT ANALYSIS OF PRIVILEGED COMMANDS
 **Related Controls:** `AU-3`_, `AU-9`_, `AU-11`_, `AU-12`_
 
 .. _AU-6 (9):
-      
+
 AU-6 (9) : CORRELATION WITH INFORMATION FROM NONTECHNICAL SOURCES
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
@@ -3008,7 +3008,7 @@ AU-6 (9) : CORRELATION WITH INFORMATION FROM NONTECHNICAL SOURCES
 **Related Controls:** `AT-2`_
 
 .. _AU-6 (10):
-      
+
 AU-6 (10) : AUDIT LEVEL ADJUSTMENT
 """"""""""""""""""""""""""""""""""
 
@@ -3022,7 +3022,7 @@ Control Family:  AUDIT AND ACCOUNTABILITY
 -----------------------------------------
 
 .. _AU-7:
-      
+
 AU-7 : AUDIT REDUCTION AND REPORT GENERATION
 """"""""""""""""""""""""""""""""""""""""""""
 
@@ -3040,21 +3040,21 @@ AU-7 : AUDIT REDUCTION AND REPORT GENERATION
 
 
 .. _AU-7a.:
-      
+
 AU-7a.
 """"""
 
     Supports on-demand audit review, analysis, and reporting requirements and after-the-fact investigations of security incidents; and
 
 .. _AU-7b.:
-      
+
 AU-7b.
 """"""
 
     Does not alter the original content or time ordering of audit records.
 
 .. _AU-7 (1):
-      
+
 AU-7 (1) : AUTOMATIC PROCESSING
 """""""""""""""""""""""""""""""
 
@@ -3069,7 +3069,7 @@ AU-7 (1) : AUTOMATIC PROCESSING
 **Related Controls:** `AU-2`_, `AU-12`_
 
 .. _AU-7 (2):
-      
+
 AU-7 (2) : AUTOMATIC SORT AND SEARCH
 """"""""""""""""""""""""""""""""""""
 
@@ -3083,7 +3083,7 @@ Control Family:  AUDIT AND ACCOUNTABILITY
 -----------------------------------------
 
 .. _AU-8:
-      
+
 AU-8 : TIME STAMPS
 """"""""""""""""""
 
@@ -3101,21 +3101,21 @@ AU-8 : TIME STAMPS
 
 
 .. _AU-8a.:
-      
+
 AU-8a.
 """"""
 
     Uses internal system clocks to generate time stamps for audit records; and
 
 .. _AU-8b.:
-      
+
 AU-8b.
 """"""
 
     Records time stamps for audit records that can be mapped to Coordinated Universal Time (UTC) or Greenwich Mean Time (GMT) and meets [Assignment: organization-defined granularity of time measurement].
 
 .. _AU-8 (1):
-      
+
 AU-8 (1) : SYNCHRONIZATION WITH AUTHORITATIVE TIME SOURCE
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
@@ -3128,21 +3128,21 @@ AU-8 (1) : SYNCHRONIZATION WITH AUTHORITATIVE TIME SOURCE
    This control enhancement provides uniformity of time stamps for information systems with multiple system clocks and systems connected over a network.
 
 .. _AU-8 (1)(a):
-      
+
 AU-8 (1)(a)
 """""""""""
 
     Compares the internal information system clocks [Assignment: organization-defined frequency] with [Assignment: organization-defined authoritative time source]; and
 
 .. _AU-8 (1)(b):
-      
+
 AU-8 (1)(b)
 """""""""""
 
     Synchronizes the internal system clocks to the authoritative time source when the time difference is greater than [Assignment: organization-defined time period].
 
 .. _AU-8 (2):
-      
+
 AU-8 (2) : SECONDARY AUTHORITATIVE TIME SOURCE
 """"""""""""""""""""""""""""""""""""""""""""""
 
@@ -3152,7 +3152,7 @@ Control Family:  AUDIT AND ACCOUNTABILITY
 -----------------------------------------
 
 .. _AU-9:
-      
+
 AU-9 : PROTECTION OF AUDIT INFORMATION
 """"""""""""""""""""""""""""""""""""""
 
@@ -3170,7 +3170,7 @@ AU-9 : PROTECTION OF AUDIT INFORMATION
 
 
 .. _AU-9 (1):
-      
+
 AU-9 (1) : HARDWARE WRITE-ONCE MEDIA
 """"""""""""""""""""""""""""""""""""
 
@@ -3183,7 +3183,7 @@ AU-9 (1) : HARDWARE WRITE-ONCE MEDIA
 **Related Controls:** `AU-4`_, `AU-5`_
 
 .. _AU-9 (2):
-      
+
 AU-9 (2) : AUDIT BACKUP ON SEPARATE PHYSICAL SYSTEMS / COMPONENTS
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
@@ -3198,7 +3198,7 @@ AU-9 (2) : AUDIT BACKUP ON SEPARATE PHYSICAL SYSTEMS / COMPONENTS
 **Related Controls:** `AU-4`_, `AU-5`_, `AU-11`_
 
 .. _AU-9 (3):
-      
+
 AU-9 (3) : CRYPTOGRAPHIC PROTECTION
 """""""""""""""""""""""""""""""""""
 
@@ -3213,7 +3213,7 @@ AU-9 (3) : CRYPTOGRAPHIC PROTECTION
 **Related Controls:** `AU-10`_, `SC-12`_, `SC-13`_
 
 .. _AU-9 (4):
-      
+
 AU-9 (4) : ACCESS BY SUBSET OF PRIVILEGED USERS
 """""""""""""""""""""""""""""""""""""""""""""""
 
@@ -3228,7 +3228,7 @@ AU-9 (4) : ACCESS BY SUBSET OF PRIVILEGED USERS
 **Related Controls:** `AC-5`_
 
 .. _AU-9 (5):
-      
+
 AU-9 (5) : DUAL AUTHORIZATION
 """""""""""""""""""""""""""""
 
@@ -3241,7 +3241,7 @@ AU-9 (5) : DUAL AUTHORIZATION
 **Related Controls:** `AC-3`_, `MP-2`_
 
 .. _AU-9 (6):
-      
+
 AU-9 (6) : READ ONLY ACCESS
 """""""""""""""""""""""""""
 
@@ -3255,7 +3255,7 @@ Control Family:  AUDIT AND ACCOUNTABILITY
 -----------------------------------------
 
 .. _AU-10:
-      
+
 AU-10 : NON-REPUDIATION
 """""""""""""""""""""""
 
@@ -3273,7 +3273,7 @@ AU-10 : NON-REPUDIATION
 
 
 .. _AU-10 (1):
-      
+
 AU-10 (1) : ASSOCIATION OF IDENTITIES
 """""""""""""""""""""""""""""""""""""
 
@@ -3286,21 +3286,21 @@ AU-10 (1) : ASSOCIATION OF IDENTITIES
 **Related Controls:** `AC-4`_, `AC-16`_
 
 .. _AU-10 (1)(a):
-      
+
 AU-10 (1)(a)
 """"""""""""
 
     Binds the identity of the information producer with the information to [Assignment: organization-defined strength of binding]; and
 
 .. _AU-10 (1)(b):
-      
+
 AU-10 (1)(b)
 """"""""""""
 
     Provides the means for authorized individuals to determine the identity of the producer of the information.
 
 .. _AU-10 (2):
-      
+
 AU-10 (2) : VALIDATE BINDING OF INFORMATION PRODUCER IDENTITY
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
@@ -3313,21 +3313,21 @@ AU-10 (2) : VALIDATE BINDING OF INFORMATION PRODUCER IDENTITY
 **Related Controls:** `AC-3`_, `AC-4`_, `AC-16`_
 
 .. _AU-10 (2)(a):
-      
+
 AU-10 (2)(a)
 """"""""""""
 
     Validates the binding of the information producer identity to the information at [Assignment: organization-defined frequency]; and
 
 .. _AU-10 (2)(b):
-      
+
 AU-10 (2)(b)
 """"""""""""
 
     Performs [Assignment: organization-defined actions] in the event of a validation error.
 
 .. _AU-10 (3):
-      
+
 AU-10 (3) : CHAIN OF CUSTODY
 """"""""""""""""""""""""""""
 
@@ -3340,7 +3340,7 @@ AU-10 (3) : CHAIN OF CUSTODY
 **Related Controls:** `AC-4`_, `AC-16`_
 
 .. _AU-10 (4):
-      
+
 AU-10 (4) : VALIDATE BINDING OF INFORMATION REVIEWER IDENTITY
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
@@ -3353,21 +3353,21 @@ AU-10 (4) : VALIDATE BINDING OF INFORMATION REVIEWER IDENTITY
 **Related Controls:** `AC-4`_, `AC-16`_
 
 .. _AU-10 (4)(a):
-      
+
 AU-10 (4)(a)
 """"""""""""
 
     Validates the binding of the information reviewer identity to the information at the transfer or release points prior to release/transfer between [Assignment: organization-defined security domains]; and
 
 .. _AU-10 (4)(b):
-      
+
 AU-10 (4)(b)
 """"""""""""
 
     Performs [Assignment: organization-defined actions] in the event of a validation error.
 
 .. _AU-10 (5):
-      
+
 AU-10 (5) : DIGITAL SIGNATURES
 """"""""""""""""""""""""""""""
 
@@ -3377,7 +3377,7 @@ Control Family:  AUDIT AND ACCOUNTABILITY
 -----------------------------------------
 
 .. _AU-11:
-      
+
 AU-11 : AUDIT RECORD RETENTION
 """"""""""""""""""""""""""""""
 
@@ -3395,7 +3395,7 @@ AU-11 : AUDIT RECORD RETENTION
 
 
 .. _AU-11 (1):
-      
+
 AU-11 (1) : LONG-TERM RETRIEVAL CAPABILITY
 """"""""""""""""""""""""""""""""""""""""""
 
@@ -3409,7 +3409,7 @@ Control Family:  AUDIT AND ACCOUNTABILITY
 -----------------------------------------
 
 .. _AU-12:
-      
+
 AU-12 : AUDIT GENERATION
 """"""""""""""""""""""""
 
@@ -3427,28 +3427,28 @@ AU-12 : AUDIT GENERATION
 
 
 .. _AU-12a.:
-      
+
 AU-12a.
 """""""
 
     Provides audit record generation capability for the auditable events defined in AU-2 a. at [Assignment: organization-defined information system components];
 
 .. _AU-12b.:
-      
+
 AU-12b.
 """""""
 
     Allows [Assignment: organization-defined personnel or roles] to select which auditable events are to be audited by specific components of the information system; and
 
 .. _AU-12c.:
-      
+
 AU-12c.
 """""""
 
     Generates audit records for the events defined in AU-2 d. with the content defined in AU-3.
 
 .. _AU-12 (1):
-      
+
 AU-12 (1) : SYSTEM-WIDE / TIME-CORRELATED AUDIT TRAIL
 """""""""""""""""""""""""""""""""""""""""""""""""""""
 
@@ -3463,7 +3463,7 @@ AU-12 (1) : SYSTEM-WIDE / TIME-CORRELATED AUDIT TRAIL
 **Related Controls:** `AU-8`_, `AU-12`_
 
 .. _AU-12 (2):
-      
+
 AU-12 (2) : STANDARDIZED FORMATS
 """"""""""""""""""""""""""""""""
 
@@ -3474,7 +3474,7 @@ AU-12 (2) : STANDARDIZED FORMATS
    Audit information that is normalized to common standards promotes interoperability and exchange of such information between dissimilar devices and information systems. This facilitates production of event information that can be more readily analyzed and correlated. Standard formats for audit records include, for example, system log records and audit records compliant with Common Event Expressions (CEE). If logging mechanisms within information systems do not conform to standardized formats, systems may convert individual audit records into standardized formats when compiling system-wide audit trails.
 
 .. _AU-12 (3):
-      
+
 AU-12 (3) : CHANGES BY AUTHORIZED INDIVIDUALS
 """""""""""""""""""""""""""""""""""""""""""""
 
@@ -3492,7 +3492,7 @@ Control Family:  AUDIT AND ACCOUNTABILITY
 -----------------------------------------
 
 .. _AU-13:
-      
+
 AU-13 : MONITORING FOR INFORMATION DISCLOSURE
 """""""""""""""""""""""""""""""""""""""""""""
 
@@ -3508,7 +3508,7 @@ AU-13 : MONITORING FOR INFORMATION DISCLOSURE
 
 
 .. _AU-13 (1):
-      
+
 AU-13 (1) : USE OF AUTOMATED TOOLS
 """"""""""""""""""""""""""""""""""
 
@@ -3519,7 +3519,7 @@ AU-13 (1) : USE OF AUTOMATED TOOLS
    Automated mechanisms can include, for example, automated scripts to monitor new posts on selected websites, and commercial services providing notifications and alerts to organizations.
 
 .. _AU-13 (2):
-      
+
 AU-13 (2) : REVIEW OF MONITORED SITES
 """""""""""""""""""""""""""""""""""""
 
@@ -3529,7 +3529,7 @@ Control Family:  AUDIT AND ACCOUNTABILITY
 -----------------------------------------
 
 .. _AU-14:
-      
+
 AU-14 : SESSION AUDIT
 """""""""""""""""""""
 
@@ -3545,21 +3545,21 @@ AU-14 : SESSION AUDIT
 
 
 .. _AU-14 (1):
-      
+
 AU-14 (1) : SYSTEM START-UP
 """""""""""""""""""""""""""
 
     The information system initiates session audits at system start-up.
 
 .. _AU-14 (2):
-      
+
 AU-14 (2) : CAPTURE/RECORD AND LOG CONTENT
 """"""""""""""""""""""""""""""""""""""""""
 
     The information system provides the capability for authorized users to capture/record and log content related to a user session.
 
 .. _AU-14 (3):
-      
+
 AU-14 (3) : REMOTE VIEWING / LISTENING
 """"""""""""""""""""""""""""""""""""""
 
@@ -3569,7 +3569,7 @@ Control Family:  AUDIT AND ACCOUNTABILITY
 -----------------------------------------
 
 .. _AU-15:
-      
+
 AU-15 : ALTERNATE AUDIT CAPABILITY
 """"""""""""""""""""""""""""""""""
 
@@ -3588,7 +3588,7 @@ Control Family:  AUDIT AND ACCOUNTABILITY
 -----------------------------------------
 
 .. _AU-16:
-      
+
 AU-16 : CROSS-ORGANIZATIONAL AUDITING
 """""""""""""""""""""""""""""""""""""
 
@@ -3604,7 +3604,7 @@ AU-16 : CROSS-ORGANIZATIONAL AUDITING
 
 
 .. _AU-16 (1):
-      
+
 AU-16 (1) : IDENTITY PRESERVATION
 """""""""""""""""""""""""""""""""
 
@@ -3615,7 +3615,7 @@ AU-16 (1) : IDENTITY PRESERVATION
    This control enhancement applies when there is a need to be able to trace actions that are performed across organizational boundaries to a specific individual.
 
 .. _AU-16 (2):
-      
+
 AU-16 (2) : SHARING OF AUDIT INFORMATION
 """"""""""""""""""""""""""""""""""""""""
 
@@ -3629,7 +3629,7 @@ Control Family:  SECURITY ASSESSMENT AND AUTHORIZATION
 ------------------------------------------------------
 
 .. _CA-1:
-      
+
 CA-1 : SECURITY ASSESSMENT AND AUTHORIZATION POLICY AND PROCEDURES
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
@@ -3647,42 +3647,42 @@ CA-1 : SECURITY ASSESSMENT AND AUTHORIZATION POLICY AND PROCEDURES
 
 
 .. _CA-1a.:
-      
+
 CA-1a.
 """"""
 
     Develops, documents, and disseminates to [Assignment: organization-defined personnel or roles]:
 
 .. _CA-1a.1.:
-      
+
 CA-1a.1.
 """"""""
 
     A security assessment and authorization policy that addresses purpose, scope, roles, responsibilities, management commitment, coordination among organizational entities, and compliance; and
 
 .. _CA-1a.2.:
-      
+
 CA-1a.2.
 """"""""
 
     Procedures to facilitate the implementation of the security assessment and authorization policy and associated security assessment and authorization controls; and
 
 .. _CA-1b.:
-      
+
 CA-1b.
 """"""
 
     Reviews and updates the current:
 
 .. _CA-1b.1.:
-      
+
 CA-1b.1.
 """"""""
 
     Security assessment and authorization policy [Assignment: organization-defined frequency]; and
 
 .. _CA-1b.2.:
-      
+
 CA-1b.2.
 """"""""
 
@@ -3692,7 +3692,7 @@ Control Family:  SECURITY ASSESSMENT AND AUTHORIZATION
 ------------------------------------------------------
 
 .. _CA-2:
-      
+
 CA-2 : SECURITY ASSESSMENTS
 """""""""""""""""""""""""""
 
@@ -3711,56 +3711,56 @@ CA-2 : SECURITY ASSESSMENTS
 
 
 .. _CA-2a.:
-      
+
 CA-2a.
 """"""
 
     Develops a security assessment plan that describes the scope of the assessment including:
 
 .. _CA-2a.1.:
-      
+
 CA-2a.1.
 """"""""
 
     Security controls and control enhancements under assessment;
 
 .. _CA-2a.2.:
-      
+
 CA-2a.2.
 """"""""
 
     Assessment procedures to be used to determine security control effectiveness; and
 
 .. _CA-2a.3.:
-      
+
 CA-2a.3.
 """"""""
 
     Assessment environment, assessment team, and assessment roles and responsibilities;
 
 .. _CA-2b.:
-      
+
 CA-2b.
 """"""
 
     Assesses the security controls in the information system and its environment of operation [Assignment: organization-defined frequency] to determine the extent to which the controls are implemented correctly, operating as intended, and producing the desired outcome with respect to meeting established security requirements;
 
 .. _CA-2c.:
-      
+
 CA-2c.
 """"""
 
     Produces a security assessment report that documents the results of the assessment; and
 
 .. _CA-2d.:
-      
+
 CA-2d.
 """"""
 
     Provides the results of the security control assessment to [Assignment: organization-defined individuals or roles].
 
 .. _CA-2 (1):
-      
+
 CA-2 (1) : INDEPENDENT ASSESSORS
 """"""""""""""""""""""""""""""""
 
@@ -3773,7 +3773,7 @@ CA-2 (1) : INDEPENDENT ASSESSORS
    Independent assessors or assessment teams are individuals or groups who conduct impartial assessments of organizational information systems. Impartiality implies that assessors are free from any perceived or actual conflicts of interest with regard to the development, operation, or management of the organizational information systems under assessment or to the determination of security control effectiveness. To achieve impartiality, assessors should not: (i) create a mutual or conflicting interest with the organizations where the assessments are being conducted; (ii) assess their own work; (iii) act as management or employees of the organizations they are serving; or (iv) place themselves in positions of advocacy for the organizations acquiring their services. Independent assessments can be obtained from elements within organizations or can be contracted to public or private sector entities outside of organizations. Authorizing officials determine the required level of independence based on the security categories of information systems and/or the ultimate risk to organizational operations, organizational assets, or individuals. Authorizing officials also determine if the level of assessor independence provides sufficient assurance that the results are sound and can be used to make credible, risk-based decisions. This includes determining whether contracted security assessment services have sufficient independence, for example, when information system owners are not directly involved in contracting processes or cannot unduly influence the impartiality of assessors conducting assessments. In special situations, for example, when organizations that own the information systems are small or organizational structures require that assessments are conducted by individuals that are in the developmental, operational, or management chain of system owners, independence in assessment processes can be achieved by ensuring that assessment results are carefully reviewed and analyzed by independent teams of experts to validate the completeness, accuracy, integrity, and reliability of the results. Organizations recognize that assessments performed for purposes other than direct support to authorization decisions are, when performed by assessors with sufficient independence, more likely to be useable for such decisions, thereby reducing the need to repeat assessments.
 
 .. _CA-2 (2):
-      
+
 CA-2 (2) : SPECIALIZED ASSESSMENTS
 """"""""""""""""""""""""""""""""""
 
@@ -3788,7 +3788,7 @@ CA-2 (2) : SPECIALIZED ASSESSMENTS
 **Related Controls:** `PE-3`_, `SI-2`_
 
 .. _CA-2 (3):
-      
+
 CA-2 (3) : EXTERNAL ORGANIZATIONS
 """""""""""""""""""""""""""""""""
 
@@ -3802,7 +3802,7 @@ Control Family:  SECURITY ASSESSMENT AND AUTHORIZATION
 ------------------------------------------------------
 
 .. _CA-3:
-      
+
 CA-3 : SYSTEM INTERCONNECTIONS
 """"""""""""""""""""""""""""""
 
@@ -3820,28 +3820,28 @@ CA-3 : SYSTEM INTERCONNECTIONS
 
 
 .. _CA-3a.:
-      
+
 CA-3a.
 """"""
 
     Authorizes connections from the information system to other information systems through the use of Interconnection Security Agreements;
 
 .. _CA-3b.:
-      
+
 CA-3b.
 """"""
 
     Documents, for each interconnection, the interface characteristics, security requirements, and the nature of the information communicated; and
 
 .. _CA-3c.:
-      
+
 CA-3c.
 """"""
 
     Reviews and updates Interconnection Security Agreements [Assignment: organization-defined frequency].
 
 .. _CA-3 (1):
-      
+
 CA-3 (1) : UNCLASSIFIED NATIONAL SECURITY SYSTEM CONNECTIONS
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
@@ -3852,7 +3852,7 @@ CA-3 (1) : UNCLASSIFIED NATIONAL SECURITY SYSTEM CONNECTIONS
    Organizations typically do not have control over external networks (e.g., the Internet). Approved boundary protection devices (e.g., routers, firewalls) mediate communications (i.e., information flows) between unclassified national security systems and external networks. This control enhancement is required for organizations processing, storing, or transmitting Controlled Unclassified Information (CUI).
 
 .. _CA-3 (2):
-      
+
 CA-3 (2) : CLASSIFIED NATIONAL SECURITY SYSTEM CONNECTIONS
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
@@ -3863,7 +3863,7 @@ CA-3 (2) : CLASSIFIED NATIONAL SECURITY SYSTEM CONNECTIONS
    Organizations typically do not have control over external networks (e.g., the Internet). Approved boundary protection devices (e.g., routers, firewalls) mediate communications (i.e., information flows) between classified national security systems and external networks. In addition, approved boundary protection devices (typically managed interface/cross-domain systems) provide information flow enforcement from information systems to external networks.
 
 .. _CA-3 (3):
-      
+
 CA-3 (3) : UNCLASSIFIED NON-NATIONAL SECURITY SYSTEM CONNECTIONS
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
@@ -3874,7 +3874,7 @@ CA-3 (3) : UNCLASSIFIED NON-NATIONAL SECURITY SYSTEM CONNECTIONS
    Organizations typically do not have control over external networks (e.g., the Internet). Approved boundary protection devices (e.g., routers, firewalls) mediate communications (i.e., information flows) between unclassified non-national security systems and external networks. This control enhancement is required for organizations processing, storing, or transmitting Controlled Unclassified Information (CUI).
 
 .. _CA-3 (4):
-      
+
 CA-3 (4) : CONNECTIONS TO PUBLIC NETWORKS
 """""""""""""""""""""""""""""""""""""""""
 
@@ -3885,7 +3885,7 @@ CA-3 (4) : CONNECTIONS TO PUBLIC NETWORKS
    A public network is any network accessible to the general public including, for example, the Internet and organizational extranets with public access.
 
 .. _CA-3 (5):
-      
+
 CA-3 (5) : RESTRICTIONS ON EXTERNAL SYSTEM CONNECTIONS
 """"""""""""""""""""""""""""""""""""""""""""""""""""""
 
@@ -3903,7 +3903,7 @@ Control Family:  SECURITY ASSESSMENT AND AUTHORIZATION
 ------------------------------------------------------
 
 .. _CA-4:
-      
+
 CA-4 : SECURITY CERTIFICATION
 """""""""""""""""""""""""""""
 
@@ -3914,7 +3914,7 @@ Control Family:  SECURITY ASSESSMENT AND AUTHORIZATION
 ------------------------------------------------------
 
 .. _CA-5:
-      
+
 CA-5 : PLAN OF ACTION AND MILESTONES
 """"""""""""""""""""""""""""""""""""
 
@@ -3932,21 +3932,21 @@ CA-5 : PLAN OF ACTION AND MILESTONES
 
 
 .. _CA-5a.:
-      
+
 CA-5a.
 """"""
 
     Develops a plan of action and milestones for the information system to document the organization�s planned remedial actions to correct weaknesses or deficiencies noted during the assessment of the security controls and to reduce or eliminate known vulnerabilities in the system; and
 
 .. _CA-5b.:
-      
+
 CA-5b.
 """"""
 
     Updates existing plan of action and milestones [Assignment: organization-defined frequency] based on the findings from security controls assessments, security impact analyses, and continuous monitoring activities.
 
 .. _CA-5 (1):
-      
+
 CA-5 (1) : AUTOMATION SUPPORT FOR ACCURACY / CURRENCY
 """""""""""""""""""""""""""""""""""""""""""""""""""""
 
@@ -3956,7 +3956,7 @@ Control Family:  SECURITY ASSESSMENT AND AUTHORIZATION
 ------------------------------------------------------
 
 .. _CA-6:
-      
+
 CA-6 : SECURITY AUTHORIZATION
 """""""""""""""""""""""""""""
 
@@ -3974,21 +3974,21 @@ CA-6 : SECURITY AUTHORIZATION
 
 
 .. _CA-6a.:
-      
+
 CA-6a.
 """"""
 
     Assigns a senior-level executive or manager as the authorizing official for the information system;
 
 .. _CA-6b.:
-      
+
 CA-6b.
 """"""
 
     Ensures that the authorizing official authorizes the information system for processing before commencing operations; and
 
 .. _CA-6c.:
-      
+
 CA-6c.
 """"""
 
@@ -3998,7 +3998,7 @@ Control Family:  SECURITY ASSESSMENT AND AUTHORIZATION
 ------------------------------------------------------
 
 .. _CA-7:
-      
+
 CA-7 : CONTINUOUS MONITORING
 """"""""""""""""""""""""""""
 
@@ -4016,56 +4016,56 @@ CA-7 : CONTINUOUS MONITORING
 
 
 .. _CA-7a.:
-      
+
 CA-7a.
 """"""
 
     Establishment of [Assignment: organization-defined metrics] to be monitored;
 
 .. _CA-7b.:
-      
+
 CA-7b.
 """"""
 
     Establishment of [Assignment: organization-defined frequencies] for monitoring and [Assignment: organization-defined frequencies] for assessments supporting such monitoring;
 
 .. _CA-7c.:
-      
+
 CA-7c.
 """"""
 
     Ongoing security control assessments in accordance with the organizational continuous monitoring strategy;
 
 .. _CA-7d.:
-      
+
 CA-7d.
 """"""
 
     Ongoing security status monitoring of organization-defined metrics in accordance with the organizational continuous monitoring strategy;
 
 .. _CA-7e.:
-      
+
 CA-7e.
 """"""
 
     Correlation and analysis of security-related information generated by assessments and monitoring;
 
 .. _CA-7f.:
-      
+
 CA-7f.
 """"""
 
     Response actions to address results of the analysis of security-related information; and
 
 .. _CA-7g.:
-      
+
 CA-7g.
 """"""
 
     Reporting the security status of organization and the information system to [Assignment: organization-defined personnel or roles] [Assignment: organization-defined frequency].
 
 .. _CA-7 (1):
-      
+
 CA-7 (1) : INDEPENDENT ASSESSMENT
 """""""""""""""""""""""""""""""""
 
@@ -4078,14 +4078,14 @@ CA-7 (1) : INDEPENDENT ASSESSMENT
    Organizations can maximize the value of assessments of security controls during the continuous monitoring process by requiring that such assessments be conducted by assessors or assessment teams with appropriate levels of independence based on continuous monitoring strategies. Assessor independence provides a degree of impartiality to the monitoring process. To achieve such impartiality, assessors should not: (i) create a mutual or conflicting interest with the organizations where the assessments are being conducted; (ii) assess their own work; (iii) act as management or employees of the organizations they are serving; or (iv) place themselves in advocacy positions for the organizations acquiring their services.
 
 .. _CA-7 (2):
-      
+
 CA-7 (2) : TYPES OF ASSESSMENTS
 """""""""""""""""""""""""""""""
 
     [Withdrawn: Incorporated into CA-2].
 
 .. _CA-7 (3):
-      
+
 CA-7 (3) : TREND ANALYSES
 """""""""""""""""""""""""
 
@@ -4099,7 +4099,7 @@ Control Family:  SECURITY ASSESSMENT AND AUTHORIZATION
 ------------------------------------------------------
 
 .. _CA-8:
-      
+
 CA-8 : PENETRATION TESTING
 """"""""""""""""""""""""""
 
@@ -4117,7 +4117,7 @@ CA-8 : PENETRATION TESTING
 
 
 .. _CA-8 (1):
-      
+
 CA-8 (1) : INDEPENDENT PENETRATION AGENT OR TEAM
 """"""""""""""""""""""""""""""""""""""""""""""""
 
@@ -4130,7 +4130,7 @@ CA-8 (1) : INDEPENDENT PENETRATION AGENT OR TEAM
 **Related Controls:** `CA-2`_
 
 .. _CA-8 (2):
-      
+
 CA-8 (2) : RED TEAM EXERCISES
 """""""""""""""""""""""""""""
 
@@ -4144,7 +4144,7 @@ Control Family:  SECURITY ASSESSMENT AND AUTHORIZATION
 ------------------------------------------------------
 
 .. _CA-9:
-      
+
 CA-9 : INTERNAL SYSTEM CONNECTIONS
 """"""""""""""""""""""""""""""""""
 
@@ -4162,21 +4162,21 @@ CA-9 : INTERNAL SYSTEM CONNECTIONS
 
 
 .. _CA-9a.:
-      
+
 CA-9a.
 """"""
 
     Authorizes internal connections of [Assignment: organization-defined information system components or classes of components] to the information system; and
 
 .. _CA-9b.:
-      
+
 CA-9b.
 """"""
 
     Documents, for each internal connection, the interface characteristics, security requirements, and the nature of the information communicated.
 
 .. _CA-9 (1):
-      
+
 CA-9 (1) : SECURITY COMPLIANCE CHECKS
 """""""""""""""""""""""""""""""""""""
 
@@ -4192,7 +4192,7 @@ Control Family:  CONFIGURATION MANAGEMENT
 -----------------------------------------
 
 .. _CM-1:
-      
+
 CM-1 : CONFIGURATION MANAGEMENT POLICY AND PROCEDURES
 """""""""""""""""""""""""""""""""""""""""""""""""""""
 
@@ -4210,42 +4210,42 @@ CM-1 : CONFIGURATION MANAGEMENT POLICY AND PROCEDURES
 
 
 .. _CM-1a.:
-      
+
 CM-1a.
 """"""
 
     Develops, documents, and disseminates to [Assignment: organization-defined personnel or roles]:
 
 .. _CM-1a.1.:
-      
+
 CM-1a.1.
 """"""""
 
     A configuration management policy that addresses purpose, scope, roles, responsibilities, management commitment, coordination among organizational entities, and compliance; and
 
 .. _CM-1a.2.:
-      
+
 CM-1a.2.
 """"""""
 
     Procedures to facilitate the implementation of the configuration management policy and associated configuration management controls; and
 
 .. _CM-1b.:
-      
+
 CM-1b.
 """"""
 
     Reviews and updates the current:
 
 .. _CM-1b.1.:
-      
+
 CM-1b.1.
 """"""""
 
     Configuration management policy [Assignment: organization-defined frequency]; and
 
 .. _CM-1b.2.:
-      
+
 CM-1b.2.
 """"""""
 
@@ -4255,7 +4255,7 @@ Control Family:  CONFIGURATION MANAGEMENT
 -----------------------------------------
 
 .. _CM-2:
-      
+
 CM-2 : BASELINE CONFIGURATION
 """""""""""""""""""""""""""""
 
@@ -4273,7 +4273,7 @@ CM-2 : BASELINE CONFIGURATION
 
 
 .. _CM-2 (1):
-      
+
 CM-2 (1) : REVIEWS AND UPDATES
 """"""""""""""""""""""""""""""
 
@@ -4284,28 +4284,28 @@ CM-2 (1) : REVIEWS AND UPDATES
 **Related Controls:** `CM-5`_
 
 .. _CM-2 (1)(a):
-      
+
 CM-2 (1)(a)
 """""""""""
 
     [Assignment: organization-defined frequency];
 
 .. _CM-2 (1)(b):
-      
+
 CM-2 (1)(b)
 """""""""""
 
     When required due to [Assignment organization-defined circumstances]; and
 
 .. _CM-2 (1)(c):
-      
+
 CM-2 (1)(c)
 """""""""""
 
     As an integral part of information system component installations and upgrades.
 
 .. _CM-2 (2):
-      
+
 CM-2 (2) : AUTOMATION SUPPORT FOR ACCURACY / CURRENCY
 """""""""""""""""""""""""""""""""""""""""""""""""""""
 
@@ -4320,7 +4320,7 @@ CM-2 (2) : AUTOMATION SUPPORT FOR ACCURACY / CURRENCY
 **Related Controls:** `CM-7`_, `RA-5`_
 
 .. _CM-2 (3):
-      
+
 CM-2 (3) : RETENTION OF PREVIOUS CONFIGURATIONS
 """""""""""""""""""""""""""""""""""""""""""""""
 
@@ -4333,21 +4333,21 @@ CM-2 (3) : RETENTION OF PREVIOUS CONFIGURATIONS
    Retaining previous versions of baseline configurations to support rollback may include, for example, hardware, software, firmware, configuration files, and configuration records.
 
 .. _CM-2 (4):
-      
+
 CM-2 (4) : UNAUTHORIZED SOFTWARE
 """"""""""""""""""""""""""""""""
 
     [Withdrawn: Incorporated into CM-7].
 
 .. _CM-2 (5):
-      
+
 CM-2 (5) : AUTHORIZED SOFTWARE
 """"""""""""""""""""""""""""""
 
     [Withdrawn: Incorporated into CM-7].
 
 .. _CM-2 (6):
-      
+
 CM-2 (6) : DEVELOPMENT AND TEST ENVIRONMENTS
 """"""""""""""""""""""""""""""""""""""""""""
 
@@ -4360,7 +4360,7 @@ CM-2 (6) : DEVELOPMENT AND TEST ENVIRONMENTS
 **Related Controls:** `CM-4`_, `SC-3`_, `SC-7`_
 
 .. _CM-2 (7):
-      
+
 CM-2 (7) : CONFIGURE SYSTEMS, COMPONENTS, OR DEVICES FOR HIGH-RISK AREAS
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
@@ -4373,14 +4373,14 @@ CM-2 (7) : CONFIGURE SYSTEMS, COMPONENTS, OR DEVICES FOR HIGH-RISK AREAS
    When it is known that information systems, system components, or devices (e.g., notebook computers, mobile devices) will be located in high-risk areas, additional security controls may be implemented to counter the greater threat in such areas coupled with the lack of physical security relative to organizational-controlled areas. For example, organizational policies and procedures for notebook computers used by individuals departing on and returning from travel include, for example, determining which locations are of concern, defining required configurations for the devices, ensuring that the devices are configured as intended before travel is initiated, and applying specific safeguards to the device after travel is completed. Specially configured notebook computers include, for example, computers with sanitized hard drives, limited applications, and additional hardening (e.g., more stringent configuration settings). Specified safeguards applied to mobile devices upon return from travel include, for example, examining the device for signs of physical tampering and purging/reimaging the hard disk drive. Protecting information residing on mobile devices is covered in the media protection family.
 
 .. _CM-2 (7)(a):
-      
+
 CM-2 (7)(a)
 """""""""""
 
     Issues [Assignment: organization-defined information systems, system components, or devices] with [Assignment: organization-defined configurations] to individuals traveling to locations that the organization deems to be of significant risk; and
 
 .. _CM-2 (7)(b):
-      
+
 CM-2 (7)(b)
 """""""""""
 
@@ -4390,7 +4390,7 @@ Control Family:  CONFIGURATION MANAGEMENT
 -----------------------------------------
 
 .. _CM-3:
-      
+
 CM-3 : CONFIGURATION CHANGE CONTROL
 """""""""""""""""""""""""""""""""""
 
@@ -4408,56 +4408,56 @@ CM-3 : CONFIGURATION CHANGE CONTROL
 
 
 .. _CM-3a.:
-      
+
 CM-3a.
 """"""
 
     Determines the types of changes to the information system that are configuration-controlled;
 
 .. _CM-3b.:
-      
+
 CM-3b.
 """"""
 
     Reviews proposed configuration-controlled changes to the information system and approves or disapproves such changes with explicit consideration for security impact analyses;
 
 .. _CM-3c.:
-      
+
 CM-3c.
 """"""
 
     Documents configuration change decisions associated with the information system;
 
 .. _CM-3d.:
-      
+
 CM-3d.
 """"""
 
     Implements approved configuration-controlled changes to the information system;
 
 .. _CM-3e.:
-      
+
 CM-3e.
 """"""
 
     Retains records of configuration-controlled changes to the information system for [Assignment: organization-defined time period];
 
 .. _CM-3f.:
-      
+
 CM-3f.
 """"""
 
     Audits and reviews activities associated with configuration-controlled changes to the information system; and
 
 .. _CM-3g.:
-      
+
 CM-3g.
 """"""
 
     Coordinates and provides oversight for configuration change control activities through [Assignment: organization-defined configuration change control element (e.g., committee, board)] that convenes [Selection (one or more): [Assignment: organization-defined frequency]; [Assignment: organization-defined configuration change conditions]].
 
 .. _CM-3 (1):
-      
+
 CM-3 (1) : AUTOMATED DOCUMENT / NOTIFICATION / PROHIBITION OF CHANGES
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
@@ -4466,49 +4466,49 @@ CM-3 (1) : AUTOMATED DOCUMENT / NOTIFICATION / PROHIBITION OF CHANGES
     The organization employs automated mechanisms to:
 
 .. _CM-3 (1)(a):
-      
+
 CM-3 (1)(a)
 """""""""""
 
     Document proposed changes to the information system;
 
 .. _CM-3 (1)(b):
-      
+
 CM-3 (1)(b)
 """""""""""
 
     Notify [Assignment: organized-defined approval authorities] of proposed changes to the information system and request change approval;
 
 .. _CM-3 (1)(c):
-      
+
 CM-3 (1)(c)
 """""""""""
 
     Highlight proposed changes to the information system that have not been approved or disapproved by [Assignment: organization-defined time period];
 
 .. _CM-3 (1)(d):
-      
+
 CM-3 (1)(d)
 """""""""""
 
     Prohibit changes to the information system until designated approvals are received;
 
 .. _CM-3 (1)(e):
-      
+
 CM-3 (1)(e)
 """""""""""
 
     Document all changes to the information system; and
 
 .. _CM-3 (1)(f):
-      
+
 CM-3 (1)(f)
 """""""""""
 
     Notify [Assignment: organization-defined personnel] when approved changes to the information system are completed.
 
 .. _CM-3 (2):
-      
+
 CM-3 (2) : TEST / VALIDATE / DOCUMENT CHANGES
 """""""""""""""""""""""""""""""""""""""""""""
 
@@ -4521,14 +4521,14 @@ CM-3 (2) : TEST / VALIDATE / DOCUMENT CHANGES
    Changes to information systems include modifications to hardware, software, or firmware components and configuration settings defined in CM-6. Organizations ensure that testing does not interfere with information system operations. Individuals/groups conducting tests understand organizational security policies and procedures, information system security policies and procedures, and the specific health, safety, and environmental risks associated with particular facilities/processes. Operational systems may need to be taken off-line, or replicated to the extent feasible, before testing can be conducted. If information systems must be taken off-line for testing, the tests are scheduled to occur during planned system outages whenever possible. If testing cannot be conducted on operational systems, organizations employ compensating controls (e.g., testing on replicated systems).
 
 .. _CM-3 (3):
-      
+
 CM-3 (3) : AUTOMATED CHANGE IMPLEMENTATION
 """"""""""""""""""""""""""""""""""""""""""
 
     The organization employs automated mechanisms to implement changes to the current information system baseline and deploys the updated baseline across the installed base.
 
 .. _CM-3 (4):
-      
+
 CM-3 (4) : SECURITY REPRESENTATIVE
 """"""""""""""""""""""""""""""""""
 
@@ -4539,7 +4539,7 @@ CM-3 (4) : SECURITY REPRESENTATIVE
    Information security representatives can include, for example, senior agency information security officers, information system security officers, or information system security managers. Representation by personnel with information security expertise is important because changes to information system configurations can have unintended side effects, some of which may be security-relevant. Detecting such changes early in the process can help avoid unintended, negative consequences that could ultimately affect the security state of organizational information systems. The configuration change control element in this control enhancement reflects the change control elements defined by organizations in CM-3.
 
 .. _CM-3 (5):
-      
+
 CM-3 (5) : AUTOMATED SECURITY RESPONSE
 """"""""""""""""""""""""""""""""""""""
 
@@ -4550,7 +4550,7 @@ CM-3 (5) : AUTOMATED SECURITY RESPONSE
    Security responses include, for example, halting information system processing, halting selected system functions, or issuing alerts/notifications to organizational personnel when there is an unauthorized modification of a configuration item.
 
 .. _CM-3 (6):
-      
+
 CM-3 (6) : CRYPTOGRAPHY MANAGEMENT
 """"""""""""""""""""""""""""""""""
 
@@ -4566,7 +4566,7 @@ Control Family:  CONFIGURATION MANAGEMENT
 -----------------------------------------
 
 .. _CM-4:
-      
+
 CM-4 : SECURITY IMPACT ANALYSIS
 """""""""""""""""""""""""""""""
 
@@ -4584,7 +4584,7 @@ CM-4 : SECURITY IMPACT ANALYSIS
 
 
 .. _CM-4 (1):
-      
+
 CM-4 (1) : SEPARATE TEST ENVIRONMENTS
 """""""""""""""""""""""""""""""""""""
 
@@ -4599,7 +4599,7 @@ CM-4 (1) : SEPARATE TEST ENVIRONMENTS
 **Related Controls:** `SA-11`_, `SC-3`_, `SC-7`_
 
 .. _CM-4 (2):
-      
+
 CM-4 (2) : VERIFICATION OF SECURITY FUNCTIONS
 """""""""""""""""""""""""""""""""""""""""""""
 
@@ -4615,7 +4615,7 @@ Control Family:  CONFIGURATION MANAGEMENT
 -----------------------------------------
 
 .. _CM-5:
-      
+
 CM-5 : ACCESS RESTRICTIONS FOR CHANGE
 """""""""""""""""""""""""""""""""""""
 
@@ -4633,7 +4633,7 @@ CM-5 : ACCESS RESTRICTIONS FOR CHANGE
 
 
 .. _CM-5 (1):
-      
+
 CM-5 (1) : AUTOMATED ACCESS ENFORCEMENT / AUDITING
 """"""""""""""""""""""""""""""""""""""""""""""""""
 
@@ -4644,7 +4644,7 @@ CM-5 (1) : AUTOMATED ACCESS ENFORCEMENT / AUDITING
 **Related Controls:** `AU-2`_, `AU-12`_, `AU-6`_, `CM-3`_, `CM-6`_
 
 .. _CM-5 (2):
-      
+
 CM-5 (2) : REVIEW SYSTEM CHANGES
 """"""""""""""""""""""""""""""""
 
@@ -4659,7 +4659,7 @@ CM-5 (2) : REVIEW SYSTEM CHANGES
 **Related Controls:** `AU-6`_, `AU-7`_, `CM-3`_, `CM-5`_, `PE-6`_, `PE-8`_
 
 .. _CM-5 (3):
-      
+
 CM-5 (3) : SIGNED COMPONENTS
 """"""""""""""""""""""""""""
 
@@ -4674,7 +4674,7 @@ CM-5 (3) : SIGNED COMPONENTS
 **Related Controls:** `CM-7`_, `SC-13`_, `SI-7`_
 
 .. _CM-5 (4):
-      
+
 CM-5 (4) : DUAL AUTHORIZATION
 """""""""""""""""""""""""""""
 
@@ -4687,7 +4687,7 @@ CM-5 (4) : DUAL AUTHORIZATION
 **Related Controls:** `AC-5`_, `CM-3`_
 
 .. _CM-5 (5):
-      
+
 CM-5 (5) : LIMIT PRODUCTION / OPERATIONAL PRIVILEGES
 """"""""""""""""""""""""""""""""""""""""""""""""""""
 
@@ -4700,21 +4700,21 @@ CM-5 (5) : LIMIT PRODUCTION / OPERATIONAL PRIVILEGES
 **Related Controls:** `AC-2`_
 
 .. _CM-5 (5)(a):
-      
+
 CM-5 (5)(a)
 """""""""""
 
     Limits privileges to change information system components and system-related information within a production or operational environment; and
 
 .. _CM-5 (5)(b):
-      
+
 CM-5 (5)(b)
 """""""""""
 
     Reviews and reevaluates privileges [Assignment: organization-defined frequency].
 
 .. _CM-5 (6):
-      
+
 CM-5 (6) : LIMIT LIBRARY PRIVILEGES
 """""""""""""""""""""""""""""""""""
 
@@ -4727,7 +4727,7 @@ CM-5 (6) : LIMIT LIBRARY PRIVILEGES
 **Related Controls:** `AC-2`_
 
 .. _CM-5 (7):
-      
+
 CM-5 (7) : AUTOMATIC IMPLEMENTATION OF SECURITY SAFEGUARDS
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
@@ -4737,7 +4737,7 @@ Control Family:  CONFIGURATION MANAGEMENT
 -----------------------------------------
 
 .. _CM-6:
-      
+
 CM-6 : CONFIGURATION SETTINGS
 """""""""""""""""""""""""""""
 
@@ -4756,35 +4756,35 @@ CM-6 : CONFIGURATION SETTINGS
 
 
 .. _CM-6a.:
-      
+
 CM-6a.
 """"""
 
     Establishes and documents configuration settings for information technology products employed within the information system using [Assignment: organization-defined security configuration checklists] that reflect the most restrictive mode consistent with operational requirements;
 
 .. _CM-6b.:
-      
+
 CM-6b.
 """"""
 
     Implements the configuration settings;
 
 .. _CM-6c.:
-      
+
 CM-6c.
 """"""
 
     Identifies, documents, and approves any deviations from established configuration settings for [Assignment: organization-defined information system components] based on [Assignment: organization-defined operational requirements]; and
 
 .. _CM-6d.:
-      
+
 CM-6d.
 """"""
 
     Monitors and controls changes to the configuration settings in accordance with organizational policies and procedures.
 
 .. _CM-6 (1):
-      
+
 CM-6 (1) : AUTOMATED CENTRAL MANAGEMENT / APPLICATION / VERIFICATION
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
@@ -4795,7 +4795,7 @@ CM-6 (1) : AUTOMATED CENTRAL MANAGEMENT / APPLICATION / VERIFICATION
 **Related Controls:** `CA-7`_, `CM-4`_
 
 .. _CM-6 (2):
-      
+
 CM-6 (2) : RESPOND TO UNAUTHORIZED CHANGES
 """"""""""""""""""""""""""""""""""""""""""
 
@@ -4810,14 +4810,14 @@ CM-6 (2) : RESPOND TO UNAUTHORIZED CHANGES
 **Related Controls:** `IR-4`_, `SI-7`_
 
 .. _CM-6 (3):
-      
+
 CM-6 (3) : UNAUTHORIZED CHANGE DETECTION
 """"""""""""""""""""""""""""""""""""""""
 
     [Withdrawn: Incorporated into SI-7].
 
 .. _CM-6 (4):
-      
+
 CM-6 (4) : CONFORMANCE DEMONSTRATION
 """"""""""""""""""""""""""""""""""""
 
@@ -4827,7 +4827,7 @@ Control Family:  CONFIGURATION MANAGEMENT
 -----------------------------------------
 
 .. _CM-7:
-      
+
 CM-7 : LEAST FUNCTIONALITY
 """"""""""""""""""""""""""
 
@@ -4845,21 +4845,21 @@ CM-7 : LEAST FUNCTIONALITY
 
 
 .. _CM-7a.:
-      
+
 CM-7a.
 """"""
 
     Configures the information system to provide only essential capabilities; and
 
 .. _CM-7b.:
-      
+
 CM-7b.
 """"""
 
     Prohibits or restricts the use of the following functions, ports, protocols, and/or services: [Assignment: organization-defined prohibited or restricted functions, ports, protocols, and/or services].
 
 .. _CM-7 (1):
-      
+
 CM-7 (1) : PERIODIC REVIEW
 """"""""""""""""""""""""""
 
@@ -4874,21 +4874,21 @@ CM-7 (1) : PERIODIC REVIEW
 **Related Controls:** `AC-18`_, `CM-7`_, `IA-2`_
 
 .. _CM-7 (1)(a):
-      
+
 CM-7 (1)(a)
 """""""""""
 
     Reviews the information system [Assignment: organization-defined frequency] to identify unnecessary and/or nonsecure functions, ports, protocols, and services; and
 
 .. _CM-7 (1)(b):
-      
+
 CM-7 (1)(b)
 """""""""""
 
     Disables [Assignment: organization-defined functions, ports, protocols, and services within the information system deemed to be unnecessary and/or nonsecure].
 
 .. _CM-7 (2):
-      
+
 CM-7 (2) : PREVENT PROGRAM EXECUTION
 """"""""""""""""""""""""""""""""""""
 
@@ -4899,7 +4899,7 @@ CM-7 (2) : PREVENT PROGRAM EXECUTION
 **Related Controls:** `CM-8`_, `PM-5`_
 
 .. _CM-7 (3):
-      
+
 CM-7 (3) : REGISTRATION COMPLIANCE
 """"""""""""""""""""""""""""""""""
 
@@ -4910,11 +4910,11 @@ CM-7 (3) : REGISTRATION COMPLIANCE
    Organizations use the registration process to manage, track, and provide oversight for information systems and implemented functions, ports, protocols, and services.
 
 .. _CM-7 (4):
-      
+
 CM-7 (4) : UNAUTHORIZED SOFTWARE / BLACKLISTING
 """""""""""""""""""""""""""""""""""""""""""""""
 
-**Baseline-Impact:** *MODERATE*, 
+**Baseline-Impact:** *MODERATE*,
 
     The organization:
 
@@ -4925,28 +4925,28 @@ CM-7 (4) : UNAUTHORIZED SOFTWARE / BLACKLISTING
 **Related Controls:** `CM-6`_, `CM-8`_, `PM-5`_
 
 .. _CM-7 (4)(a):
-      
+
 CM-7 (4)(a)
 """""""""""
 
     Identifies [Assignment: organization-defined software programs not authorized to execute on the information system];
 
 .. _CM-7 (4)(b):
-      
+
 CM-7 (4)(b)
 """""""""""
 
     Employs an allow-all, deny-by-exception policy to prohibit the execution of unauthorized software programs on the information system; and
 
 .. _CM-7 (4)(c):
-      
+
 CM-7 (4)(c)
 """""""""""
 
     Reviews and updates the list of unauthorized software programs [Assignment: organization-defined frequency].
 
 .. _CM-7 (5):
-      
+
 CM-7 (5) : AUTHORIZED SOFTWARE / WHITELISTING
 """""""""""""""""""""""""""""""""""""""""""""
 
@@ -4961,21 +4961,21 @@ CM-7 (5) : AUTHORIZED SOFTWARE / WHITELISTING
 **Related Controls:** `CM-2`_, `CM-6`_, `CM-8`_, `PM-5`_, `SA-10`_, `SC-34`_, `SI-7`_
 
 .. _CM-7 (5)(a):
-      
+
 CM-7 (5)(a)
 """""""""""
 
     Identifies [Assignment: organization-defined software programs authorized to execute on the information system];
 
 .. _CM-7 (5)(b):
-      
+
 CM-7 (5)(b)
 """""""""""
 
     Employs a deny-all, permit-by-exception policy to allow the execution of authorized software programs on the information system; and
 
 .. _CM-7 (5)(c):
-      
+
 CM-7 (5)(c)
 """""""""""
 
@@ -4985,7 +4985,7 @@ Control Family:  CONFIGURATION MANAGEMENT
 -----------------------------------------
 
 .. _CM-8:
-      
+
 CM-8 : INFORMATION SYSTEM COMPONENT INVENTORY
 """""""""""""""""""""""""""""""""""""""""""""
 
@@ -5003,49 +5003,49 @@ CM-8 : INFORMATION SYSTEM COMPONENT INVENTORY
 
 
 .. _CM-8a.:
-      
+
 CM-8a.
 """"""
 
     Develops and documents an inventory of information system components that:
 
 .. _CM-8a.1.:
-      
+
 CM-8a.1.
 """"""""
 
     Accurately reflects the current information system;
 
 .. _CM-8a.2.:
-      
+
 CM-8a.2.
 """"""""
 
     Includes all components within the authorization boundary of the information system;
 
 .. _CM-8a.3.:
-      
+
 CM-8a.3.
 """"""""
 
     Is at the level of granularity deemed necessary for tracking and reporting; and
 
 .. _CM-8a.4.:
-      
+
 CM-8a.4.
 """"""""
 
     Includes [Assignment: organization-defined information deemed necessary to achieve effective information system component accountability]; and
 
 .. _CM-8b.:
-      
+
 CM-8b.
 """"""
 
     Reviews and updates the information system component inventory [Assignment: organization-defined frequency].
 
 .. _CM-8 (1):
-      
+
 CM-8 (1) : UPDATES DURING INSTALLATIONS / REMOVALS
 """"""""""""""""""""""""""""""""""""""""""""""""""
 
@@ -5054,7 +5054,7 @@ CM-8 (1) : UPDATES DURING INSTALLATIONS / REMOVALS
     The organization updates the inventory of information system components as an integral part of component installations, removals, and information system updates.
 
 .. _CM-8 (2):
-      
+
 CM-8 (2) : AUTOMATED MAINTENANCE
 """"""""""""""""""""""""""""""""
 
@@ -5069,7 +5069,7 @@ CM-8 (2) : AUTOMATED MAINTENANCE
 **Related Controls:** `SI-7`_
 
 .. _CM-8 (3):
-      
+
 CM-8 (3) : AUTOMATED UNAUTHORIZED COMPONENT DETECTION
 """""""""""""""""""""""""""""""""""""""""""""""""""""
 
@@ -5084,21 +5084,21 @@ CM-8 (3) : AUTOMATED UNAUTHORIZED COMPONENT DETECTION
 **Related Controls:** `AC-17`_, `AC-18`_, `AC-19`_, `CA-7`_, `SI-3`_, `SI-4`_, `SI-7`_, `RA-5`_
 
 .. _CM-8 (3)(a):
-      
+
 CM-8 (3)(a)
 """""""""""
 
     Employs automated mechanisms [Assignment: organization-defined frequency] to detect the presence of unauthorized hardware, software, and firmware components within the information system; and
 
 .. _CM-8 (3)(b):
-      
+
 CM-8 (3)(b)
 """""""""""
 
     Takes the following actions when unauthorized components are detected: [Selection (one or more): disables network access by such components; isolates the components; notifies [Assignment: organization-defined personnel or roles]].
 
 .. _CM-8 (4):
-      
+
 CM-8 (4) : ACCOUNTABILITY INFORMATION
 """""""""""""""""""""""""""""""""""""
 
@@ -5111,7 +5111,7 @@ CM-8 (4) : ACCOUNTABILITY INFORMATION
    Identifying individuals who are both responsible and accountable for administering information system components helps to ensure that the assigned components are properly administered and organizations can contact those individuals if some action is required (e.g., component is determined to be the source of a breach/compromise, component needs to be recalled/replaced, or component needs to be relocated).
 
 .. _CM-8 (5):
-      
+
 CM-8 (5) : NO DUPLICATE ACCOUNTING OF COMPONENTS
 """"""""""""""""""""""""""""""""""""""""""""""""
 
@@ -5124,7 +5124,7 @@ CM-8 (5) : NO DUPLICATE ACCOUNTING OF COMPONENTS
    This control enhancement addresses the potential problem of duplicate accounting of information system components in large or complex interconnected systems.
 
 .. _CM-8 (6):
-      
+
 CM-8 (6) : ASSESSED CONFIGURATIONS / APPROVED DEVIATIONS
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""
 
@@ -5137,7 +5137,7 @@ CM-8 (6) : ASSESSED CONFIGURATIONS / APPROVED DEVIATIONS
 **Related Controls:** `CM-2`_, `CM-6`_
 
 .. _CM-8 (7):
-      
+
 CM-8 (7) : CENTRALIZED REPOSITORY
 """""""""""""""""""""""""""""""""
 
@@ -5148,7 +5148,7 @@ CM-8 (7) : CENTRALIZED REPOSITORY
    Organizations may choose to implement centralized information system component inventories that include components from all organizational information systems. Centralized repositories of information system component inventories provide opportunities for efficiencies in accounting for organizational hardware, software, and firmware assets. Such repositories may also help organizations rapidly identify the location and responsible individuals of system components that have been compromised, breached, or are otherwise in need of mitigation actions. Organizations ensure that the resulting centralized inventories include system-specific information required for proper component accountability (e.g., information system association, information system owner).
 
 .. _CM-8 (8):
-      
+
 CM-8 (8) : AUTOMATED LOCATION TRACKING
 """"""""""""""""""""""""""""""""""""""
 
@@ -5159,7 +5159,7 @@ CM-8 (8) : AUTOMATED LOCATION TRACKING
    The use of automated mechanisms to track the location of information system components can increase the accuracy of component inventories. Such capability may also help organizations rapidly identify the location and responsible individuals of system components that have been compromised, breached, or are otherwise in need of mitigation actions.
 
 .. _CM-8 (9):
-      
+
 CM-8 (9) : ASSIGNMENT OF COMPONENTS TO SYSTEMS
 """"""""""""""""""""""""""""""""""""""""""""""
 
@@ -5172,14 +5172,14 @@ CM-8 (9) : ASSIGNMENT OF COMPONENTS TO SYSTEMS
 **Related Controls:** `SA-4`_
 
 .. _CM-8 (9)(a):
-      
+
 CM-8 (9)(a)
 """""""""""
 
     Assigns [Assignment: organization-defined acquired information system components] to an information system; and
 
 .. _CM-8 (9)(b):
-      
+
 CM-8 (9)(b)
 """""""""""
 
@@ -5189,7 +5189,7 @@ Control Family:  CONFIGURATION MANAGEMENT
 -----------------------------------------
 
 .. _CM-9:
-      
+
 CM-9 : CONFIGURATION MANAGEMENT PLAN
 """"""""""""""""""""""""""""""""""""
 
@@ -5207,35 +5207,35 @@ CM-9 : CONFIGURATION MANAGEMENT PLAN
 
 
 .. _CM-9a.:
-      
+
 CM-9a.
 """"""
 
     Addresses roles, responsibilities, and configuration management processes and procedures;
 
 .. _CM-9b.:
-      
+
 CM-9b.
 """"""
 
     Establishes a process for identifying configuration items throughout the system development life cycle and for managing the configuration of the configuration items;
 
 .. _CM-9c.:
-      
+
 CM-9c.
 """"""
 
     Defines the configuration items for the information system and places the configuration items under configuration management; and
 
 .. _CM-9d.:
-      
+
 CM-9d.
 """"""
 
     Protects the configuration management plan from unauthorized disclosure and modification.
 
 .. _CM-9 (1):
-      
+
 CM-9 (1) : ASSIGNMENT OF RESPONSIBILITY
 """""""""""""""""""""""""""""""""""""""
 
@@ -5249,7 +5249,7 @@ Control Family:  CONFIGURATION MANAGEMENT
 -----------------------------------------
 
 .. _CM-10:
-      
+
 CM-10 : SOFTWARE USAGE RESTRICTIONS
 """""""""""""""""""""""""""""""""""
 
@@ -5267,28 +5267,28 @@ CM-10 : SOFTWARE USAGE RESTRICTIONS
 
 
 .. _CM-10a.:
-      
+
 CM-10a.
 """""""
 
     Uses software and associated documentation in accordance with contract agreements and copyright laws;
 
 .. _CM-10b.:
-      
+
 CM-10b.
 """""""
 
     Tracks the use of software and associated documentation protected by quantity licenses to control copying and distribution; and
 
 .. _CM-10c.:
-      
+
 CM-10c.
 """""""
 
     Controls and documents the use of peer-to-peer file sharing technology to ensure that this capability is not used for the unauthorized distribution, display, performance, or reproduction of copyrighted work.
 
 .. _CM-10 (1):
-      
+
 CM-10 (1) : OPEN SOURCE SOFTWARE
 """"""""""""""""""""""""""""""""
 
@@ -5302,7 +5302,7 @@ Control Family:  CONFIGURATION MANAGEMENT
 -----------------------------------------
 
 .. _CM-11:
-      
+
 CM-11 : USER-INSTALLED SOFTWARE
 """""""""""""""""""""""""""""""
 
@@ -5320,28 +5320,28 @@ CM-11 : USER-INSTALLED SOFTWARE
 
 
 .. _CM-11a.:
-      
+
 CM-11a.
 """""""
 
     Establishes [Assignment: organization-defined policies] governing the installation of software by users;
 
 .. _CM-11b.:
-      
+
 CM-11b.
 """""""
 
     Enforces software installation policies through [Assignment: organization-defined methods]; and
 
 .. _CM-11c.:
-      
+
 CM-11c.
 """""""
 
     Monitors policy compliance at [Assignment: organization-defined frequency].
 
 .. _CM-11 (1):
-      
+
 CM-11 (1) : ALERTS FOR UNAUTHORIZED INSTALLATIONS
 """""""""""""""""""""""""""""""""""""""""""""""""
 
@@ -5350,7 +5350,7 @@ CM-11 (1) : ALERTS FOR UNAUTHORIZED INSTALLATIONS
 **Related Controls:** `CA-7`_, `SI-4`_
 
 .. _CM-11 (2):
-      
+
 CM-11 (2) : PROHIBIT INSTALLATION WITHOUT PRIVILEGED STATUS
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
@@ -5366,7 +5366,7 @@ Control Family:  CONTINGENCY PLANNING
 -------------------------------------
 
 .. _CP-1:
-      
+
 CP-1 : CONTINGENCY PLANNING POLICY AND PROCEDURES
 """""""""""""""""""""""""""""""""""""""""""""""""
 
@@ -5384,42 +5384,42 @@ CP-1 : CONTINGENCY PLANNING POLICY AND PROCEDURES
 
 
 .. _CP-1a.:
-      
+
 CP-1a.
 """"""
 
     Develops, documents, and disseminates to [Assignment: organization-defined personnel or roles]:
 
 .. _CP-1a.1.:
-      
+
 CP-1a.1.
 """"""""
 
     A contingency planning policy that addresses purpose, scope, roles, responsibilities, management commitment, coordination among organizational entities, and compliance; and
 
 .. _CP-1a.2.:
-      
+
 CP-1a.2.
 """"""""
 
     Procedures to facilitate the implementation of the contingency planning policy and associated contingency planning controls; and
 
 .. _CP-1b.:
-      
+
 CP-1b.
 """"""
 
     Reviews and updates the current:
 
 .. _CP-1b.1.:
-      
+
 CP-1b.1.
 """"""""
 
     Contingency planning policy [Assignment: organization-defined frequency]; and
 
 .. _CP-1b.2.:
-      
+
 CP-1b.2.
 """"""""
 
@@ -5429,7 +5429,7 @@ Control Family:  CONTINGENCY PLANNING
 -------------------------------------
 
 .. _CP-2:
-      
+
 CP-2 : CONTINGENCY PLAN
 """""""""""""""""""""""
 
@@ -5447,98 +5447,98 @@ CP-2 : CONTINGENCY PLAN
 
 
 .. _CP-2a.:
-      
+
 CP-2a.
 """"""
 
     Develops a contingency plan for the information system that:
 
 .. _CP-2a.1.:
-      
+
 CP-2a.1.
 """"""""
 
     Identifies essential missions and business functions and associated contingency requirements;
 
 .. _CP-2a.2.:
-      
+
 CP-2a.2.
 """"""""
 
     Provides recovery objectives, restoration priorities, and metrics;
 
 .. _CP-2a.3.:
-      
+
 CP-2a.3.
 """"""""
 
     Addresses contingency roles, responsibilities, assigned individuals with contact information;
 
 .. _CP-2a.4.:
-      
+
 CP-2a.4.
 """"""""
 
     Addresses maintaining essential missions and business functions despite an information system disruption, compromise, or failure;
 
 .. _CP-2a.5.:
-      
+
 CP-2a.5.
 """"""""
 
     Addresses eventual, full information system restoration without deterioration of the security safeguards originally planned and implemented; and
 
 .. _CP-2a.6.:
-      
+
 CP-2a.6.
 """"""""
 
     Is reviewed and approved by [Assignment: organization-defined personnel or roles];
 
 .. _CP-2b.:
-      
+
 CP-2b.
 """"""
 
     Distributes copies of the contingency plan to [Assignment: organization-defined key contingency personnel (identified by name and/or by role) and organizational elements];
 
 .. _CP-2c.:
-      
+
 CP-2c.
 """"""
 
     Coordinates contingency planning activities with incident handling activities;
 
 .. _CP-2d.:
-      
+
 CP-2d.
 """"""
 
     Reviews the contingency plan for the information system [Assignment: organization-defined frequency];
 
 .. _CP-2e.:
-      
+
 CP-2e.
 """"""
 
     Updates the contingency plan to address changes to the organization, information system, or environment of operation and problems encountered during contingency plan implementation, execution, or testing;
 
 .. _CP-2f.:
-      
+
 CP-2f.
 """"""
 
     Communicates contingency plan changes to [Assignment: organization-defined key contingency personnel (identified by name and/or by role) and organizational elements]; and
 
 .. _CP-2g.:
-      
+
 CP-2g.
 """"""
 
     Protects the contingency plan from unauthorized disclosure and modification.
 
 .. _CP-2 (1):
-      
+
 CP-2 (1) : COORDINATE WITH RELATED PLANS
 """"""""""""""""""""""""""""""""""""""""
 
@@ -5551,7 +5551,7 @@ CP-2 (1) : COORDINATE WITH RELATED PLANS
    Plans related to contingency plans for organizational information systems include, for example, Business Continuity Plans, Disaster Recovery Plans, Continuity of Operations Plans, Crisis Communications Plans, Critical Infrastructure Plans, Cyber Incident Response Plans, Insider Threat Implementation Plan, and Occupant Emergency Plans.
 
 .. _CP-2 (2):
-      
+
 CP-2 (2) : CAPACITY PLANNING
 """"""""""""""""""""""""""""
 
@@ -5564,7 +5564,7 @@ CP-2 (2) : CAPACITY PLANNING
    Capacity planning is needed because different types of threats (e.g., natural disasters, targeted cyber attacks) can result in a reduction of the available processing, telecommunications, and support services originally intended to support the organizational missions/business functions. Organizations may need to anticipate degraded operations during contingency operations and factor such degradation into capacity planning.
 
 .. _CP-2 (3):
-      
+
 CP-2 (3) : RESUME ESSENTIAL MISSIONS / BUSINESS FUNCTIONS
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
@@ -5579,7 +5579,7 @@ CP-2 (3) : RESUME ESSENTIAL MISSIONS / BUSINESS FUNCTIONS
 **Related Controls:** `PE-12`_
 
 .. _CP-2 (4):
-      
+
 CP-2 (4) : RESUME ALL MISSIONS / BUSINESS FUNCTIONS
 """""""""""""""""""""""""""""""""""""""""""""""""""
 
@@ -5594,7 +5594,7 @@ CP-2 (4) : RESUME ALL MISSIONS / BUSINESS FUNCTIONS
 **Related Controls:** `PE-12`_
 
 .. _CP-2 (5):
-      
+
 CP-2 (5) : CONTINUE  ESSENTIAL MISSIONS / BUSINESS FUNCTIONS
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
@@ -5609,7 +5609,7 @@ CP-2 (5) : CONTINUE  ESSENTIAL MISSIONS / BUSINESS FUNCTIONS
 **Related Controls:** `PE-12`_
 
 .. _CP-2 (6):
-      
+
 CP-2 (6) : ALTERNATE PROCESSING / STORAGE SITE
 """"""""""""""""""""""""""""""""""""""""""""""
 
@@ -5622,7 +5622,7 @@ CP-2 (6) : ALTERNATE PROCESSING / STORAGE SITE
 **Related Controls:** `PE-12`_
 
 .. _CP-2 (7):
-      
+
 CP-2 (7) : COORDINATE  WITH EXTERNAL SERVICE PROVIDERS
 """"""""""""""""""""""""""""""""""""""""""""""""""""""
 
@@ -5635,7 +5635,7 @@ CP-2 (7) : COORDINATE  WITH EXTERNAL SERVICE PROVIDERS
 **Related Controls:** `SA-9`_
 
 .. _CP-2 (8):
-      
+
 CP-2 (8) : IDENTIFY CRITICAL ASSETS
 """""""""""""""""""""""""""""""""""
 
@@ -5653,7 +5653,7 @@ Control Family:  CONTINGENCY PLANNING
 -------------------------------------
 
 .. _CP-3:
-      
+
 CP-3 : CONTINGENCY TRAINING
 """""""""""""""""""""""""""
 
@@ -5671,28 +5671,28 @@ CP-3 : CONTINGENCY TRAINING
 
 
 .. _CP-3a.:
-      
+
 CP-3a.
 """"""
 
     Within [Assignment: organization-defined time period] of assuming a contingency role or responsibility;
 
 .. _CP-3b.:
-      
+
 CP-3b.
 """"""
 
     When required by information system changes; and
 
 .. _CP-3c.:
-      
+
 CP-3c.
 """"""
 
     [Assignment: organization-defined frequency] thereafter.
 
 .. _CP-3 (1):
-      
+
 CP-3 (1) : SIMULATED EVENTS
 """""""""""""""""""""""""""
 
@@ -5701,7 +5701,7 @@ CP-3 (1) : SIMULATED EVENTS
     The organization incorporates simulated events into contingency training to facilitate effective response by personnel in crisis situations.
 
 .. _CP-3 (2):
-      
+
 CP-3 (2) : AUTOMATED TRAINING ENVIRONMENTS
 """"""""""""""""""""""""""""""""""""""""""
 
@@ -5711,7 +5711,7 @@ Control Family:  CONTINGENCY PLANNING
 -------------------------------------
 
 .. _CP-4:
-      
+
 CP-4 : CONTINGENCY PLAN TESTING
 """""""""""""""""""""""""""""""
 
@@ -5729,28 +5729,28 @@ CP-4 : CONTINGENCY PLAN TESTING
 
 
 .. _CP-4a.:
-      
+
 CP-4a.
 """"""
 
     Tests the contingency plan for the information system [Assignment: organization-defined frequency] using [Assignment: organization-defined tests] to determine the effectiveness of the plan and the organizational readiness to execute the plan;
 
 .. _CP-4b.:
-      
+
 CP-4b.
 """"""
 
     Reviews the contingency plan test results; and
 
 .. _CP-4c.:
-      
+
 CP-4c.
 """"""
 
     Initiates corrective actions, if needed.
 
 .. _CP-4 (1):
-      
+
 CP-4 (1) : COORDINATE WITH RELATED PLANS
 """"""""""""""""""""""""""""""""""""""""
 
@@ -5765,7 +5765,7 @@ CP-4 (1) : COORDINATE WITH RELATED PLANS
 **Related Controls:** `IR-8`_, `PM-8`_
 
 .. _CP-4 (2):
-      
+
 CP-4 (2) : ALTERNATE PROCESSING SITE
 """"""""""""""""""""""""""""""""""""
 
@@ -5776,21 +5776,21 @@ CP-4 (2) : ALTERNATE PROCESSING SITE
 **Related Controls:** `CP-7`_
 
 .. _CP-4 (2)(a):
-      
+
 CP-4 (2)(a)
 """""""""""
 
     To familiarize contingency personnel with the facility and available resources; and
 
 .. _CP-4 (2)(b):
-      
+
 CP-4 (2)(b)
 """""""""""
 
     To evaluate the capabilities of the alternate processing site to support contingency operations.
 
 .. _CP-4 (3):
-      
+
 CP-4 (3) : AUTOMATED TESTING
 """"""""""""""""""""""""""""
 
@@ -5801,7 +5801,7 @@ CP-4 (3) : AUTOMATED TESTING
    Automated mechanisms provide more thorough and effective testing of contingency plans, for example: (i) by providing more complete coverage of contingency issues; (ii) by selecting more realistic test scenarios and environments; and (iii) by effectively stressing the information system and supported missions.
 
 .. _CP-4 (4):
-      
+
 CP-4 (4) : FULL RECOVERY / RECONSTITUTION
 """""""""""""""""""""""""""""""""""""""""
 
@@ -5813,7 +5813,7 @@ Control Family:  CONTINGENCY PLANNING
 -------------------------------------
 
 .. _CP-5:
-      
+
 CP-5 : CONTINGENCY PLAN UPDATE
 """"""""""""""""""""""""""""""
 
@@ -5824,7 +5824,7 @@ Control Family:  CONTINGENCY PLANNING
 -------------------------------------
 
 .. _CP-6:
-      
+
 CP-6 : ALTERNATE STORAGE SITE
 """""""""""""""""""""""""""""
 
@@ -5842,21 +5842,21 @@ CP-6 : ALTERNATE STORAGE SITE
 
 
 .. _CP-6a.:
-      
+
 CP-6a.
 """"""
 
     Establishes an alternate storage site including necessary agreements to permit the storage and retrieval of information system backup information; and
 
 .. _CP-6b.:
-      
+
 CP-6b.
 """"""
 
     Ensures that the alternate storage site provides information security safeguards equivalent to that of the primary site.
 
 .. _CP-6 (1):
-      
+
 CP-6 (1) : SEPARATION FROM PRIMARY SITE
 """""""""""""""""""""""""""""""""""""""
 
@@ -5871,7 +5871,7 @@ CP-6 (1) : SEPARATION FROM PRIMARY SITE
 **Related Controls:** `RA-3`_
 
 .. _CP-6 (2):
-      
+
 CP-6 (2) : RECOVERY TIME / POINT OBJECTIVES
 """""""""""""""""""""""""""""""""""""""""""
 
@@ -5880,7 +5880,7 @@ CP-6 (2) : RECOVERY TIME / POINT OBJECTIVES
     The organization configures the alternate storage site to facilitate recovery operations in accordance with recovery time and recovery point objectives.
 
 .. _CP-6 (3):
-      
+
 CP-6 (3) : ACCESSIBILITY
 """"""""""""""""""""""""
 
@@ -5898,7 +5898,7 @@ Control Family:  CONTINGENCY PLANNING
 -------------------------------------
 
 .. _CP-7:
-      
+
 CP-7 : ALTERNATE PROCESSING SITE
 """"""""""""""""""""""""""""""""
 
@@ -5916,28 +5916,28 @@ CP-7 : ALTERNATE PROCESSING SITE
 
 
 .. _CP-7a.:
-      
+
 CP-7a.
 """"""
 
     Establishes an alternate processing site including necessary agreements to permit the transfer and resumption of [Assignment: organization-defined information system operations] for essential missions/business functions within [Assignment: organization-defined time period consistent with recovery time and recovery point objectives] when the primary processing capabilities are unavailable;
 
 .. _CP-7b.:
-      
+
 CP-7b.
 """"""
 
     Ensures that equipment and supplies required to transfer and resume operations are available at the alternate processing site or contracts are in place to support delivery to the site within the organization-defined time period for transfer/resumption; and
 
 .. _CP-7c.:
-      
+
 CP-7c.
 """"""
 
     Ensures that the alternate processing site provides information security safeguards equivalent to those of the primary site.
 
 .. _CP-7 (1):
-      
+
 CP-7 (1) : SEPARATION FROM PRIMARY SITE
 """""""""""""""""""""""""""""""""""""""
 
@@ -5952,7 +5952,7 @@ CP-7 (1) : SEPARATION FROM PRIMARY SITE
 **Related Controls:** `RA-3`_
 
 .. _CP-7 (2):
-      
+
 CP-7 (2) : ACCESSIBILITY
 """"""""""""""""""""""""
 
@@ -5967,7 +5967,7 @@ CP-7 (2) : ACCESSIBILITY
 **Related Controls:** `RA-3`_
 
 .. _CP-7 (3):
-      
+
 CP-7 (3) : PRIORITY OF SERVICE
 """"""""""""""""""""""""""""""
 
@@ -5980,7 +5980,7 @@ CP-7 (3) : PRIORITY OF SERVICE
    Priority-of-service agreements refer to negotiated agreements with service providers that ensure that organizations receive priority treatment consistent with their availability requirements and the availability of information resources at the alternate processing site.
 
 .. _CP-7 (4):
-      
+
 CP-7 (4) : PREPARATION FOR USE
 """"""""""""""""""""""""""""""
 
@@ -5995,14 +5995,14 @@ CP-7 (4) : PREPARATION FOR USE
 **Related Controls:** `CM-2`_, `CM-6`_
 
 .. _CP-7 (5):
-      
+
 CP-7 (5) : EQUIVALENT INFORMATION SECURITY SAFEGUARDS
 """""""""""""""""""""""""""""""""""""""""""""""""""""
 
     [Withdrawn: Incorporated into CP-7].
 
 .. _CP-7 (6):
-      
+
 CP-7 (6) : INABILITY TO RETURN TO PRIMARY SITE
 """"""""""""""""""""""""""""""""""""""""""""""
 
@@ -6012,7 +6012,7 @@ Control Family:  CONTINGENCY PLANNING
 -------------------------------------
 
 .. _CP-8:
-      
+
 CP-8 : TELECOMMUNICATIONS SERVICES
 """"""""""""""""""""""""""""""""""
 
@@ -6030,7 +6030,7 @@ CP-8 : TELECOMMUNICATIONS SERVICES
 
 
 .. _CP-8 (1):
-      
+
 CP-8 (1) : PRIORITY OF SERVICE PROVISIONS
 """""""""""""""""""""""""""""""""""""""""
 
@@ -6043,21 +6043,21 @@ CP-8 (1) : PRIORITY OF SERVICE PROVISIONS
    Organizations consider the potential mission/business impact in situations where telecommunications service providers are servicing other organizations with similar priority-of-service provisions.
 
 .. _CP-8 (1)(a):
-      
+
 CP-8 (1)(a)
 """""""""""
 
     Develops primary and alternate telecommunications service agreements that contain priority-of-service provisions in accordance with organizational availability requirements (including recovery time objectives); and
 
 .. _CP-8 (1)(b):
-      
+
 CP-8 (1)(b)
 """""""""""
 
     Requests Telecommunications Service Priority for all telecommunications services used for national security emergency preparedness in the event that the primary and/or alternate telecommunications services are provided by a common carrier.
 
 .. _CP-8 (2):
-      
+
 CP-8 (2) : SINGLE POINTS OF FAILURE
 """""""""""""""""""""""""""""""""""
 
@@ -6066,7 +6066,7 @@ CP-8 (2) : SINGLE POINTS OF FAILURE
     The organization obtains alternate telecommunications services to reduce the likelihood of sharing a single point of failure with primary telecommunications services.
 
 .. _CP-8 (3):
-      
+
 CP-8 (3) : SEPARATION OF PRIMARY / ALTERNATE PROVIDERS
 """"""""""""""""""""""""""""""""""""""""""""""""""""""
 
@@ -6079,7 +6079,7 @@ CP-8 (3) : SEPARATION OF PRIMARY / ALTERNATE PROVIDERS
    Threats that affect telecommunications services are typically defined in organizational assessments of risk and include, for example, natural disasters, structural failures, hostile cyber/physical attacks, and errors of omission/commission. Organizations seek to reduce common susceptibilities by, for example, minimizing shared infrastructure among telecommunications service providers and achieving sufficient geographic separation between services. Organizations may consider using a single service provider in situations where the service provider can provide alternate telecommunications services meeting the separation needs addressed in the risk assessment.
 
 .. _CP-8 (4):
-      
+
 CP-8 (4) : PROVIDER CONTINGENCY PLAN
 """"""""""""""""""""""""""""""""""""
 
@@ -6092,28 +6092,28 @@ CP-8 (4) : PROVIDER CONTINGENCY PLAN
    Reviews of provider contingency plans consider the proprietary nature of such plans. In some situations, a summary of provider contingency plans may be sufficient evidence for organizations to satisfy the review requirement. Telecommunications service providers may also participate in ongoing disaster recovery exercises in coordination with the Department of Homeland Security, state, and local governments. Organizations may use these types of activities to satisfy evidentiary requirements related to service provider contingency plan reviews, testing, and training.
 
 .. _CP-8 (4)(a):
-      
+
 CP-8 (4)(a)
 """""""""""
 
     Requires primary and alternate telecommunications service providers to have contingency plans;
 
 .. _CP-8 (4)(b):
-      
+
 CP-8 (4)(b)
 """""""""""
 
     Reviews provider contingency plans to ensure that the plans meet organizational contingency requirements; and
 
 .. _CP-8 (4)(c):
-      
+
 CP-8 (4)(c)
 """""""""""
 
     Obtains evidence of contingency testing/training by providers [Assignment: organization-defined frequency].
 
 .. _CP-8 (5):
-      
+
 CP-8 (5) : ALTERNATE TELECOMMUNICATION SERVICE TESTING
 """"""""""""""""""""""""""""""""""""""""""""""""""""""
 
@@ -6123,7 +6123,7 @@ Control Family:  CONTINGENCY PLANNING
 -------------------------------------
 
 .. _CP-9:
-      
+
 CP-9 : INFORMATION SYSTEM BACKUP
 """"""""""""""""""""""""""""""""
 
@@ -6141,35 +6141,35 @@ CP-9 : INFORMATION SYSTEM BACKUP
 
 
 .. _CP-9a.:
-      
+
 CP-9a.
 """"""
 
     Conducts backups of user-level information contained in the information system [Assignment: organization-defined frequency consistent with recovery time and recovery point objectives];
 
 .. _CP-9b.:
-      
+
 CP-9b.
 """"""
 
     Conducts backups of system-level information contained in the information system [Assignment: organization-defined frequency consistent with recovery time and recovery point objectives];
 
 .. _CP-9c.:
-      
+
 CP-9c.
 """"""
 
     Conducts backups of information system documentation including security-related documentation [Assignment: organization-defined frequency consistent with recovery time and recovery point objectives]; and
 
 .. _CP-9d.:
-      
+
 CP-9d.
 """"""
 
     Protects the confidentiality, integrity, and availability of backup information at storage locations.
 
 .. _CP-9 (1):
-      
+
 CP-9 (1) : TESTING FOR RELIABILITY / INTEGRITY
 """"""""""""""""""""""""""""""""""""""""""""""
 
@@ -6180,7 +6180,7 @@ CP-9 (1) : TESTING FOR RELIABILITY / INTEGRITY
 **Related Controls:** `CP-4`_
 
 .. _CP-9 (2):
-      
+
 CP-9 (2) : TEST RESTORATION USING SAMPLING
 """"""""""""""""""""""""""""""""""""""""""
 
@@ -6191,7 +6191,7 @@ CP-9 (2) : TEST RESTORATION USING SAMPLING
 **Related Controls:** `CP-4`_
 
 .. _CP-9 (3):
-      
+
 CP-9 (3) : SEPARATE STORAGE FOR CRITICAL INFORMATION
 """"""""""""""""""""""""""""""""""""""""""""""""""""
 
@@ -6206,14 +6206,14 @@ CP-9 (3) : SEPARATE STORAGE FOR CRITICAL INFORMATION
 **Related Controls:** `CM-2`_, `CM-8`_
 
 .. _CP-9 (4):
-      
+
 CP-9 (4) : PROTECTION FROM UNAUTHORIZED MODIFICATION
 """"""""""""""""""""""""""""""""""""""""""""""""""""
 
     [Withdrawn: Incorporated into CP-9].
 
 .. _CP-9 (5):
-      
+
 CP-9 (5) : TRANSFER TO ALTERNATE STORAGE SITE
 """""""""""""""""""""""""""""""""""""""""""""
 
@@ -6226,7 +6226,7 @@ CP-9 (5) : TRANSFER TO ALTERNATE STORAGE SITE
    Information system backup information can be transferred to alternate storage sites either electronically or by physical shipment of storage media.
 
 .. _CP-9 (6):
-      
+
 CP-9 (6) : REDUNDANT SECONDARY SYSTEM
 """""""""""""""""""""""""""""""""""""
 
@@ -6235,7 +6235,7 @@ CP-9 (6) : REDUNDANT SECONDARY SYSTEM
 **Related Controls:** `CP-7`_, `CP-10`_
 
 .. _CP-9 (7):
-      
+
 CP-9 (7) : DUAL AUTHORIZATION
 """""""""""""""""""""""""""""
 
@@ -6251,7 +6251,7 @@ Control Family:  CONTINGENCY PLANNING
 -------------------------------------
 
 .. _CP-10:
-      
+
 CP-10 : INFORMATION SYSTEM RECOVERY AND RECONSTITUTION
 """"""""""""""""""""""""""""""""""""""""""""""""""""""
 
@@ -6269,14 +6269,14 @@ CP-10 : INFORMATION SYSTEM RECOVERY AND RECONSTITUTION
 
 
 .. _CP-10 (1):
-      
+
 CP-10 (1) : CONTINGENCY PLAN TESTING
 """"""""""""""""""""""""""""""""""""
 
     [Withdrawn: Incorporated into CP-4].
 
 .. _CP-10 (2):
-      
+
 CP-10 (2) : TRANSACTION RECOVERY
 """"""""""""""""""""""""""""""""
 
@@ -6289,14 +6289,14 @@ CP-10 (2) : TRANSACTION RECOVERY
    Transaction-based information systems include, for example, database management systems and transaction processing systems. Mechanisms supporting transaction recovery include, for example, transaction rollback and transaction journaling.
 
 .. _CP-10 (3):
-      
+
 CP-10 (3) : COMPENSATING SECURITY CONTROLS
 """"""""""""""""""""""""""""""""""""""""""
 
     [Withdrawn: Addressed through tailoring procedures].
 
 .. _CP-10 (4):
-      
+
 CP-10 (4) : RESTORE WITHIN TIME PERIOD
 """"""""""""""""""""""""""""""""""""""
 
@@ -6311,14 +6311,14 @@ CP-10 (4) : RESTORE WITHIN TIME PERIOD
 **Related Controls:** `CM-2`_
 
 .. _CP-10 (5):
-      
+
 CP-10 (5) : FAILOVER CAPABILITY
 """""""""""""""""""""""""""""""
 
     [Withdrawn: Incorporated into SI-13].
 
 .. _CP-10 (6):
-      
+
 CP-10 (6) : COMPONENT PROTECTION
 """"""""""""""""""""""""""""""""
 
@@ -6334,7 +6334,7 @@ Control Family:  CONTINGENCY PLANNING
 -------------------------------------
 
 .. _CP-11:
-      
+
 CP-11 : ALTERNATE COMMUNICATIONS PROTOCOLS
 """"""""""""""""""""""""""""""""""""""""""
 
@@ -6351,7 +6351,7 @@ Control Family:  CONTINGENCY PLANNING
 -------------------------------------
 
 .. _CP-12:
-      
+
 CP-12 : SAFE MODE
 """""""""""""""""
 
@@ -6368,7 +6368,7 @@ Control Family:  CONTINGENCY PLANNING
 -------------------------------------
 
 .. _CP-13:
-      
+
 CP-13 : ALTERNATIVE SECURITY MECHANISMS
 """""""""""""""""""""""""""""""""""""""
 
@@ -6387,7 +6387,7 @@ Control Family:  IDENTIFICATION AND AUTHENTICATION
 --------------------------------------------------
 
 .. _IA-1:
-      
+
 IA-1 : IDENTIFICATION AND AUTHENTICATION POLICY AND PROCEDURES
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
@@ -6405,42 +6405,42 @@ IA-1 : IDENTIFICATION AND AUTHENTICATION POLICY AND PROCEDURES
 
 
 .. _IA-1a.:
-      
+
 IA-1a.
 """"""
 
     Develops, documents, and disseminates to [Assignment: organization-defined personnel or roles]:
 
 .. _IA-1a.1.:
-      
+
 IA-1a.1.
 """"""""
 
     An identification and authentication policy that addresses purpose, scope, roles, responsibilities, management commitment, coordination among organizational entities, and compliance; and
 
 .. _IA-1a.2.:
-      
+
 IA-1a.2.
 """"""""
 
     Procedures to facilitate the implementation of the identification and authentication policy and associated identification and authentication controls; and
 
 .. _IA-1b.:
-      
+
 IA-1b.
 """"""
 
     Reviews and updates the current:
 
 .. _IA-1b.1.:
-      
+
 IA-1b.1.
 """"""""
 
     Identification and authentication policy [Assignment: organization-defined frequency]; and
 
 .. _IA-1b.2.:
-      
+
 IA-1b.2.
 """"""""
 
@@ -6450,7 +6450,7 @@ Control Family:  IDENTIFICATION AND AUTHENTICATION
 --------------------------------------------------
 
 .. _IA-2:
-      
+
 IA-2 : IDENTIFICATION AND AUTHENTICATION (ORGANIZATIONAL USERS)
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
@@ -6469,7 +6469,7 @@ IA-2 : IDENTIFICATION AND AUTHENTICATION (ORGANIZATIONAL USERS)
 
 
 .. _IA-2 (1):
-      
+
 IA-2 (1) : NETWORK ACCESS TO PRIVILEGED ACCOUNTS
 """"""""""""""""""""""""""""""""""""""""""""""""
 
@@ -6480,7 +6480,7 @@ IA-2 (1) : NETWORK ACCESS TO PRIVILEGED ACCOUNTS
 **Related Controls:** `AC-6`_
 
 .. _IA-2 (2):
-      
+
 IA-2 (2) : NETWORK ACCESS TO NON-PRIVILEGED ACCOUNTS
 """"""""""""""""""""""""""""""""""""""""""""""""""""
 
@@ -6489,7 +6489,7 @@ IA-2 (2) : NETWORK ACCESS TO NON-PRIVILEGED ACCOUNTS
     The information system implements multifactor authentication for network access to non-privileged accounts.
 
 .. _IA-2 (3):
-      
+
 IA-2 (3) : LOCAL ACCESS TO PRIVILEGED ACCOUNTS
 """"""""""""""""""""""""""""""""""""""""""""""
 
@@ -6500,7 +6500,7 @@ IA-2 (3) : LOCAL ACCESS TO PRIVILEGED ACCOUNTS
 **Related Controls:** `AC-6`_
 
 .. _IA-2 (4):
-      
+
 IA-2 (4) : LOCAL ACCESS TO NON-PRIVILEGED ACCOUNTS
 """"""""""""""""""""""""""""""""""""""""""""""""""
 
@@ -6509,7 +6509,7 @@ IA-2 (4) : LOCAL ACCESS TO NON-PRIVILEGED ACCOUNTS
     The information system implements multifactor authentication for local access to non-privileged accounts.
 
 .. _IA-2 (5):
-      
+
 IA-2 (5) : GROUP AUTHENTICATION
 """""""""""""""""""""""""""""""
 
@@ -6520,7 +6520,7 @@ IA-2 (5) : GROUP AUTHENTICATION
    Requiring individuals to use individual authenticators as a second level of authentication helps organizations to mitigate the risk of using group authenticators.
 
 .. _IA-2 (6):
-      
+
 IA-2 (6) : NETWORK ACCESS TO PRIVILEGED ACCOUNTS - SEPARATE DEVICE
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
@@ -6529,14 +6529,14 @@ IA-2 (6) : NETWORK ACCESS TO PRIVILEGED ACCOUNTS - SEPARATE DEVICE
 **Related Controls:** `AC-6`_
 
 .. _IA-2 (7):
-      
+
 IA-2 (7) : NETWORK ACCESS TO NON-PRIVILEGED ACCOUNTS - SEPARATE DEVICE
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
     The information system implements multifactor authentication for network access to non-privileged accounts such that one of the factors is provided by a device separate from the system gaining access and the device meets [Assignment: organization-defined strength of mechanism requirements].
 
 .. _IA-2 (8):
-      
+
 IA-2 (8) : NETWORK ACCESS TO PRIVILEGED ACCOUNTS - REPLAY RESISTANT
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
@@ -6549,7 +6549,7 @@ IA-2 (8) : NETWORK ACCESS TO PRIVILEGED ACCOUNTS - REPLAY RESISTANT
    Authentication processes resist replay attacks if it is impractical to achieve successful authentications by replaying previous authentication messages. Replay-resistant techniques include, for example, protocols that use nonces or challenges such as Transport Layer Security (TLS) and time synchronous or challenge-response one-time authenticators.
 
 .. _IA-2 (9):
-      
+
 IA-2 (9) : NETWORK ACCESS TO NON-PRIVILEGED ACCOUNTS - REPLAY RESISTANT
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
@@ -6562,7 +6562,7 @@ IA-2 (9) : NETWORK ACCESS TO NON-PRIVILEGED ACCOUNTS - REPLAY RESISTANT
    Authentication processes resist replay attacks if it is impractical to achieve successful authentications by recording/replaying previous authentication messages. Replay-resistant techniques include, for example, protocols that use nonces or challenges such as Transport Layer Security (TLS) and time synchronous or challenge-response one-time authenticators.
 
 .. _IA-2 (10):
-      
+
 IA-2 (10) : SINGLE SIGN-ON
 """"""""""""""""""""""""""
 
@@ -6573,7 +6573,7 @@ IA-2 (10) : SINGLE SIGN-ON
    Single sign-on enables users to log in once and gain access to multiple information system resources. Organizations consider the operational efficiencies provided by single sign-on capabilities with the increased risk from disclosures of single authenticators providing access to multiple system resources.
 
 .. _IA-2 (11):
-      
+
 IA-2 (11) : REMOTE ACCESS  - SEPARATE DEVICE
 """"""""""""""""""""""""""""""""""""""""""""
 
@@ -6588,7 +6588,7 @@ IA-2 (11) : REMOTE ACCESS  - SEPARATE DEVICE
 **Related Controls:** `AC-6`_
 
 .. _IA-2 (12):
-      
+
 IA-2 (12) : ACCEPTANCE OF PIV CREDENTIALS
 """""""""""""""""""""""""""""""""""""""""
 
@@ -6603,7 +6603,7 @@ IA-2 (12) : ACCEPTANCE OF PIV CREDENTIALS
 **Related Controls:** `AU-2`_, `PE-3`_, `SA-4`_
 
 .. _IA-2 (13):
-      
+
 IA-2 (13) : OUT-OF-BAND AUTHENTICATION
 """"""""""""""""""""""""""""""""""""""
 
@@ -6619,7 +6619,7 @@ Control Family:  IDENTIFICATION AND AUTHENTICATION
 --------------------------------------------------
 
 .. _IA-3:
-      
+
 IA-3 : DEVICE IDENTIFICATION AND AUTHENTICATION
 """""""""""""""""""""""""""""""""""""""""""""""
 
@@ -6637,7 +6637,7 @@ IA-3 : DEVICE IDENTIFICATION AND AUTHENTICATION
 
 
 .. _IA-3 (1):
-      
+
 IA-3 (1) : CRYPTOGRAPHIC BIDIRECTIONAL AUTHENTICATION
 """""""""""""""""""""""""""""""""""""""""""""""""""""
 
@@ -6650,14 +6650,14 @@ IA-3 (1) : CRYPTOGRAPHIC BIDIRECTIONAL AUTHENTICATION
 **Related Controls:** `SC-8`_, `SC-12`_, `SC-13`_
 
 .. _IA-3 (2):
-      
+
 IA-3 (2) : CRYPTOGRAPHIC BIDIRECTIONAL NETWORK AUTHENTICATION
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
     [Withdrawn: Incorporated into IA-3 (1)].
 
 .. _IA-3 (3):
-      
+
 IA-3 (3) : DYNAMIC ADDRESS ALLOCATION
 """""""""""""""""""""""""""""""""""""
 
@@ -6670,21 +6670,21 @@ IA-3 (3) : DYNAMIC ADDRESS ALLOCATION
 **Related Controls:** `AU-2`_, `AU-3`_, `AU-6`_, `AU-12`_
 
 .. _IA-3 (3)(a):
-      
+
 IA-3 (3)(a)
 """""""""""
 
     Standardizes dynamic address allocation lease information and the lease duration assigned to devices in accordance with [Assignment: organization-defined lease information and lease duration]; and
 
 .. _IA-3 (3)(b):
-      
+
 IA-3 (3)(b)
 """""""""""
 
     Audits lease information when assigned to a device.
 
 .. _IA-3 (4):
-      
+
 IA-3 (4) : DEVICE ATTESTATION
 """""""""""""""""""""""""""""
 
@@ -6698,7 +6698,7 @@ Control Family:  IDENTIFICATION AND AUTHENTICATION
 --------------------------------------------------
 
 .. _IA-4:
-      
+
 IA-4 : IDENTIFIER MANAGEMENT
 """"""""""""""""""""""""""""
 
@@ -6716,42 +6716,42 @@ IA-4 : IDENTIFIER MANAGEMENT
 
 
 .. _IA-4a.:
-      
+
 IA-4a.
 """"""
 
     Receiving authorization from [Assignment: organization-defined personnel or roles] to assign an individual, group, role, or device identifier;
 
 .. _IA-4b.:
-      
+
 IA-4b.
 """"""
 
     Selecting an identifier that identifies an individual, group, role, or device;
 
 .. _IA-4c.:
-      
+
 IA-4c.
 """"""
 
     Assigning the identifier to the intended individual, group, role, or device;
 
 .. _IA-4d.:
-      
+
 IA-4d.
 """"""
 
     Preventing reuse of identifiers for [Assignment: organization-defined time period]; and
 
 .. _IA-4e.:
-      
+
 IA-4e.
 """"""
 
     Disabling the identifier after [Assignment: organization-defined time period of inactivity].
 
 .. _IA-4 (1):
-      
+
 IA-4 (1) : PROHIBIT ACCOUNT IDENTIFIERS AS PUBLIC IDENTIFIERS
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
@@ -6764,14 +6764,14 @@ IA-4 (1) : PROHIBIT ACCOUNT IDENTIFIERS AS PUBLIC IDENTIFIERS
 **Related Controls:** `AT-2`_
 
 .. _IA-4 (2):
-      
+
 IA-4 (2) : SUPERVISOR AUTHORIZATION
 """""""""""""""""""""""""""""""""""
 
     The organization requires that the registration process to receive an individual identifier includes supervisor authorization.
 
 .. _IA-4 (3):
-      
+
 IA-4 (3) : MULTIPLE FORMS OF CERTIFICATION
 """"""""""""""""""""""""""""""""""""""""""
 
@@ -6782,7 +6782,7 @@ IA-4 (3) : MULTIPLE FORMS OF CERTIFICATION
    Requiring multiple forms of identification, such as documentary evidence or a combination of documents and biometrics, reduces the likelihood of individuals using fraudulent identification to establish an identity, or at least increases the work factor of potential adversaries.
 
 .. _IA-4 (4):
-      
+
 IA-4 (4) : IDENTIFY USER STATUS
 """""""""""""""""""""""""""""""
 
@@ -6795,7 +6795,7 @@ IA-4 (4) : IDENTIFY USER STATUS
 **Related Controls:** `AT-2`_
 
 .. _IA-4 (5):
-      
+
 IA-4 (5) : DYNAMIC MANAGEMENT
 """""""""""""""""""""""""""""
 
@@ -6808,7 +6808,7 @@ IA-4 (5) : DYNAMIC MANAGEMENT
 **Related Controls:** `AC-16`_
 
 .. _IA-4 (6):
-      
+
 IA-4 (6) : CROSS-ORGANIZATION MANAGEMENT
 """"""""""""""""""""""""""""""""""""""""
 
@@ -6819,7 +6819,7 @@ IA-4 (6) : CROSS-ORGANIZATION MANAGEMENT
    Cross-organization identifier management provides the capability for organizations to appropriately identify individuals, groups, roles, or devices when conducting cross-organization activities involving the processing, storage, or transmission of information.
 
 .. _IA-4 (7):
-      
+
 IA-4 (7) : IN-PERSON REGISTRATION
 """""""""""""""""""""""""""""""""
 
@@ -6833,7 +6833,7 @@ Control Family:  IDENTIFICATION AND AUTHENTICATION
 --------------------------------------------------
 
 .. _IA-5:
-      
+
 IA-5 : AUTHENTICATOR MANAGEMENT
 """""""""""""""""""""""""""""""
 
@@ -6851,77 +6851,77 @@ IA-5 : AUTHENTICATOR MANAGEMENT
 
 
 .. _IA-5a.:
-      
+
 IA-5a.
 """"""
 
     Verifying, as part of the initial authenticator distribution, the identity of the individual, group, role, or device receiving the authenticator;
 
 .. _IA-5b.:
-      
+
 IA-5b.
 """"""
 
     Establishing initial authenticator content for authenticators defined by the organization;
 
 .. _IA-5c.:
-      
+
 IA-5c.
 """"""
 
     Ensuring that authenticators have sufficient strength of mechanism for their intended use;
 
 .. _IA-5d.:
-      
+
 IA-5d.
 """"""
 
     Establishing and implementing administrative procedures for initial authenticator distribution, for lost/compromised or damaged authenticators, and for revoking authenticators;
 
 .. _IA-5e.:
-      
+
 IA-5e.
 """"""
 
     Changing default content of authenticators prior to information system installation;
 
 .. _IA-5f.:
-      
+
 IA-5f.
 """"""
 
     Establishing minimum and maximum lifetime restrictions and reuse conditions for authenticators;
 
 .. _IA-5g.:
-      
+
 IA-5g.
 """"""
 
     Changing/refreshing authenticators [Assignment: organization-defined time period by authenticator type];
 
 .. _IA-5h.:
-      
+
 IA-5h.
 """"""
 
     Protecting authenticator content from unauthorized disclosure and modification;
 
 .. _IA-5i.:
-      
+
 IA-5i.
 """"""
 
     Requiring individuals to take, and having devices implement, specific security safeguards to protect authenticators; and
 
 .. _IA-5j.:
-      
+
 IA-5j.
 """"""
 
     Changing authenticators for group/role accounts when membership to those accounts changes.
 
 .. _IA-5 (1):
-      
+
 IA-5 (1) : PASSWORD-BASED AUTHENTICATION
 """"""""""""""""""""""""""""""""""""""""
 
@@ -6936,49 +6936,49 @@ IA-5 (1) : PASSWORD-BASED AUTHENTICATION
 **Related Controls:** `IA-6`_
 
 .. _IA-5 (1)(a):
-      
+
 IA-5 (1)(a)
 """""""""""
 
     Enforces minimum password complexity of [Assignment: organization-defined requirements for case sensitivity, number of characters, mix of upper-case letters, lower-case letters, numbers, and special characters, including minimum requirements for each type];
 
 .. _IA-5 (1)(b):
-      
+
 IA-5 (1)(b)
 """""""""""
 
     Enforces at least the following number of changed characters when new passwords are created: [Assignment: organization-defined number];
 
 .. _IA-5 (1)(c):
-      
+
 IA-5 (1)(c)
 """""""""""
 
     Stores and transmits only cryptographically-protected passwords;
 
 .. _IA-5 (1)(d):
-      
+
 IA-5 (1)(d)
 """""""""""
 
     Enforces password minimum and maximum lifetime restrictions of [Assignment: organization-defined numbers for lifetime minimum, lifetime maximum];
 
 .. _IA-5 (1)(e):
-      
+
 IA-5 (1)(e)
 """""""""""
 
     Prohibits password reuse for [Assignment: organization-defined number] generations; and
 
 .. _IA-5 (1)(f):
-      
+
 IA-5 (1)(f)
 """""""""""
 
     Allows the use of a temporary password for system logons with an immediate change to a permanent password.
 
 .. _IA-5 (2):
-      
+
 IA-5 (2) : PKI-BASED AUTHENTICATION
 """""""""""""""""""""""""""""""""""
 
@@ -6993,35 +6993,35 @@ IA-5 (2) : PKI-BASED AUTHENTICATION
 **Related Controls:** `IA-6`_
 
 .. _IA-5 (2)(a):
-      
+
 IA-5 (2)(a)
 """""""""""
 
     Validates certifications by constructing and verifying a certification path to an accepted trust anchor including checking certificate status information;
 
 .. _IA-5 (2)(b):
-      
+
 IA-5 (2)(b)
 """""""""""
 
     Enforces authorized access to the corresponding private key;
 
 .. _IA-5 (2)(c):
-      
+
 IA-5 (2)(c)
 """""""""""
 
     Maps the authenticated identity to the account of the individual or group; and
 
 .. _IA-5 (2)(d):
-      
+
 IA-5 (2)(d)
 """""""""""
 
     Implements a local cache of revocation data to support path discovery and validation in case of inability to access revocation information via the network.
 
 .. _IA-5 (3):
-      
+
 IA-5 (3) : IN-PERSON OR TRUSTED THIRD-PARTY REGISTRATION
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""
 
@@ -7030,7 +7030,7 @@ IA-5 (3) : IN-PERSON OR TRUSTED THIRD-PARTY REGISTRATION
     The organization requires that the registration process to receive [Assignment: organization-defined types of and/or specific authenticators] be conducted [Selection: in person; by a trusted third party] before [Assignment: organization-defined registration authority] with authorization by [Assignment: organization-defined personnel or roles].
 
 .. _IA-5 (4):
-      
+
 IA-5 (4) : AUTOMATED SUPPORT  FOR PASSWORD STRENGTH DETERMINATION
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
@@ -7043,7 +7043,7 @@ IA-5 (4) : AUTOMATED SUPPORT  FOR PASSWORD STRENGTH DETERMINATION
 **Related Controls:** `CA-2`_, `CA-7`_, `RA-5`_
 
 .. _IA-5 (5):
-      
+
 IA-5 (5) : CHANGE AUTHENTICATORS PRIOR TO DELIVERY
 """"""""""""""""""""""""""""""""""""""""""""""""""
 
@@ -7054,7 +7054,7 @@ IA-5 (5) : CHANGE AUTHENTICATORS PRIOR TO DELIVERY
    This control enhancement extends the requirement for organizations to change default authenticators upon information system installation, by requiring developers and/or installers to provide unique authenticators or change default authenticators for system components prior to delivery and/or installation. However, it typically does not apply to the developers of commercial off-the-shelve information technology products. Requirements for unique authenticators can be included in acquisition documents prepared by organizations when procuring information systems or system components.
 
 .. _IA-5 (6):
-      
+
 IA-5 (6) : PROTECTION OF AUTHENTICATORS
 """""""""""""""""""""""""""""""""""""""
 
@@ -7065,7 +7065,7 @@ IA-5 (6) : PROTECTION OF AUTHENTICATORS
    For information systems containing multiple security categories of information without reliable physical or logical separation between categories, authenticators used to grant access to the systems are protected commensurate with the highest security category of information on the systems.
 
 .. _IA-5 (7):
-      
+
 IA-5 (7) : NO EMBEDDED UNENCRYPTED STATIC AUTHENTICATORS
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""
 
@@ -7076,7 +7076,7 @@ IA-5 (7) : NO EMBEDDED UNENCRYPTED STATIC AUTHENTICATORS
    Organizations exercise caution in determining whether embedded or stored authenticators are in encrypted or unencrypted form. If authenticators are used in the manner stored, then those representations are considered unencrypted authenticators. This is irrespective of whether that representation is perhaps an encrypted version of something else (e.g., a password).
 
 .. _IA-5 (8):
-      
+
 IA-5 (8) : MULTIPLE INFORMATION SYSTEM ACCOUNTS
 """""""""""""""""""""""""""""""""""""""""""""""
 
@@ -7087,7 +7087,7 @@ IA-5 (8) : MULTIPLE INFORMATION SYSTEM ACCOUNTS
    When individuals have accounts on multiple information systems, there is the risk that the compromise of one account may lead to the compromise of other accounts if individuals use the same authenticators. Possible alternatives include, for example: (i) having different authenticators on all systems; (ii) employing some form of single sign-on mechanism; or (iii) including some form of one-time passwords on all systems.
 
 .. _IA-5 (9):
-      
+
 IA-5 (9) : CROSS-ORGANIZATION CREDENTIAL MANAGEMENT
 """""""""""""""""""""""""""""""""""""""""""""""""""
 
@@ -7098,7 +7098,7 @@ IA-5 (9) : CROSS-ORGANIZATION CREDENTIAL MANAGEMENT
    Cross-organization management of credentials provides the capability for organizations to appropriately authenticate individuals, groups, roles, or devices when conducting cross-organization activities involving the processing, storage, or transmission of information.
 
 .. _IA-5 (10):
-      
+
 IA-5 (10) : DYNAMIC CREDENTIAL ASSOCIATION
 """"""""""""""""""""""""""""""""""""""""""
 
@@ -7109,7 +7109,7 @@ IA-5 (10) : DYNAMIC CREDENTIAL ASSOCIATION
    Authentication requires some form of binding between an identity and the authenticator used to confirm the identity. In conventional approaches, this binding is established by pre-provisioning both the identity and the authenticator to the information system. For example, the binding between a username (i.e., identity) and a password (i.e., authenticator) is accomplished by provisioning the identity and authenticator as a pair in the information system. New authentication techniques allow the binding between the identity and the authenticator to be implemented outside an information system. For example, with smartcard credentials, the identity and the authenticator are bound together on the card. Using these credentials, information systems can authenticate identities that have not been pre-provisioned, dynamically provisioning the identity after authentication. In these situations, organizations can anticipate the dynamic provisioning of identities. Preestablished trust relationships and mechanisms with appropriate authorities to validate identities and related credentials are essential.
 
 .. _IA-5 (11):
-      
+
 IA-5 (11) : HARDWARE TOKEN-BASED AUTHENTICATION
 """""""""""""""""""""""""""""""""""""""""""""""
 
@@ -7122,7 +7122,7 @@ IA-5 (11) : HARDWARE TOKEN-BASED AUTHENTICATION
    Hardware token-based authentication typically refers to the use of PKI-based tokens, such as the U.S. Government Personal Identity Verification (PIV) card. Organizations define specific requirements for tokens, such as working with a particular PKI.
 
 .. _IA-5 (12):
-      
+
 IA-5 (12) : BIOMETRIC-BASED AUTHENTICATION
 """"""""""""""""""""""""""""""""""""""""""
 
@@ -7133,21 +7133,21 @@ IA-5 (12) : BIOMETRIC-BASED AUTHENTICATION
    Unlike password-based authentication which provides exact matches of user-input passwords to stored passwords, biometric authentication does not provide such exact matches. Depending upon the type of biometric and the type of collection mechanism, there is likely to be some divergence from the presented biometric and stored biometric which serves as the basis of comparison. There will likely be both false positives and false negatives when making such comparisons. The rate at which the false accept and false reject rates are equal is known as the crossover rate. Biometric quality requirements include, for example, acceptable crossover rates, as that essentially reflects the accuracy of the biometric.
 
 .. _IA-5 (13):
-      
+
 IA-5 (13) : EXPIRATION OF CACHED AUTHENTICATORS
 """""""""""""""""""""""""""""""""""""""""""""""
 
     The information system prohibits the use of cached authenticators after [Assignment: organization-defined time period].
 
 .. _IA-5 (14):
-      
+
 IA-5 (14) : MANAGING CONTENT OF PKI TRUST STORES
 """"""""""""""""""""""""""""""""""""""""""""""""
 
     The organization, for PKI-based authentication, employs a deliberate organization-wide methodology for managing the content of PKI trust stores installed across all platforms including networks, operating systems, browsers, and applications.
 
 .. _IA-5 (15):
-      
+
 IA-5 (15) : FICAM-APPROVED PRODUCTS AND SERVICES
 """"""""""""""""""""""""""""""""""""""""""""""""
 
@@ -7161,7 +7161,7 @@ Control Family:  IDENTIFICATION AND AUTHENTICATION
 --------------------------------------------------
 
 .. _IA-6:
-      
+
 IA-6 : AUTHENTICATOR FEEDBACK
 """""""""""""""""""""""""""""
 
@@ -7182,7 +7182,7 @@ Control Family:  IDENTIFICATION AND AUTHENTICATION
 --------------------------------------------------
 
 .. _IA-7:
-      
+
 IA-7 : CRYPTOGRAPHIC MODULE AUTHENTICATION
 """"""""""""""""""""""""""""""""""""""""""
 
@@ -7203,7 +7203,7 @@ Control Family:  IDENTIFICATION AND AUTHENTICATION
 --------------------------------------------------
 
 .. _IA-8:
-      
+
 IA-8 : IDENTIFICATION AND AUTHENTICATION (NON-ORGANIZATIONAL USERS)
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
@@ -7221,7 +7221,7 @@ IA-8 : IDENTIFICATION AND AUTHENTICATION (NON-ORGANIZATIONAL USERS)
 
 
 .. _IA-8 (1):
-      
+
 IA-8 (1) : ACCEPTANCE OF PIV CREDENTIALS FROM OTHER AGENCIES
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
@@ -7236,7 +7236,7 @@ IA-8 (1) : ACCEPTANCE OF PIV CREDENTIALS FROM OTHER AGENCIES
 **Related Controls:** `AU-2`_, `PE-3`_, `SA-4`_
 
 .. _IA-8 (2):
-      
+
 IA-8 (2) : ACCEPTANCE OF THIRD-PARTY CREDENTIALS
 """"""""""""""""""""""""""""""""""""""""""""""""
 
@@ -7251,7 +7251,7 @@ IA-8 (2) : ACCEPTANCE OF THIRD-PARTY CREDENTIALS
 **Related Controls:** `AU-2`_
 
 .. _IA-8 (3):
-      
+
 IA-8 (3) : USE OF FICAM-APPROVED PRODUCTS
 """""""""""""""""""""""""""""""""""""""""
 
@@ -7266,7 +7266,7 @@ IA-8 (3) : USE OF FICAM-APPROVED PRODUCTS
 **Related Controls:** `SA-4`_
 
 .. _IA-8 (4):
-      
+
 IA-8 (4) : USE OF FICAM-ISSUED PROFILES
 """""""""""""""""""""""""""""""""""""""
 
@@ -7281,7 +7281,7 @@ IA-8 (4) : USE OF FICAM-ISSUED PROFILES
 **Related Controls:** `SA-4`_
 
 .. _IA-8 (5):
-      
+
 IA-8 (5) : ACCEPTANCE OF PIV-I CREDENTIALS
 """"""""""""""""""""""""""""""""""""""""""
 
@@ -7297,7 +7297,7 @@ Control Family:  IDENTIFICATION AND AUTHENTICATION
 --------------------------------------------------
 
 .. _IA-9:
-      
+
 IA-9 : SERVICE IDENTIFICATION AND AUTHENTICATION
 """"""""""""""""""""""""""""""""""""""""""""""""
 
@@ -7311,14 +7311,14 @@ IA-9 : SERVICE IDENTIFICATION AND AUTHENTICATION
 
 
 .. _IA-9 (1):
-      
+
 IA-9 (1) : INFORMATION EXCHANGE
 """""""""""""""""""""""""""""""
 
     The organization ensures that service providers receive, validate, and transmit identification and authentication information.
 
 .. _IA-9 (2):
-      
+
 IA-9 (2) : TRANSMISSION OF DECISIONS
 """"""""""""""""""""""""""""""""""""
 
@@ -7334,7 +7334,7 @@ Control Family:  IDENTIFICATION AND AUTHENTICATION
 --------------------------------------------------
 
 .. _IA-10:
-      
+
 IA-10 : ADAPTIVE IDENTIFICATION AND AUTHENTICATION
 """"""""""""""""""""""""""""""""""""""""""""""""""
 
@@ -7353,7 +7353,7 @@ Control Family:  IDENTIFICATION AND AUTHENTICATION
 --------------------------------------------------
 
 .. _IA-11:
-      
+
 IA-11 : RE-AUTHENTICATION
 """""""""""""""""""""""""
 
@@ -7372,7 +7372,7 @@ Control Family:  INCIDENT RESPONSE
 ----------------------------------
 
 .. _IR-1:
-      
+
 IR-1 : INCIDENT RESPONSE POLICY AND PROCEDURES
 """"""""""""""""""""""""""""""""""""""""""""""
 
@@ -7390,42 +7390,42 @@ IR-1 : INCIDENT RESPONSE POLICY AND PROCEDURES
 
 
 .. _IR-1a.:
-      
+
 IR-1a.
 """"""
 
     Develops, documents, and disseminates to [Assignment: organization-defined personnel or roles]:
 
 .. _IR-1a.1.:
-      
+
 IR-1a.1.
 """"""""
 
     An incident response policy that addresses purpose, scope, roles, responsibilities, management commitment, coordination among organizational entities, and compliance; and
 
 .. _IR-1a.2.:
-      
+
 IR-1a.2.
 """"""""
 
     Procedures to facilitate the implementation of the incident response policy and associated incident response controls; and
 
 .. _IR-1b.:
-      
+
 IR-1b.
 """"""
 
     Reviews and updates the current:
 
 .. _IR-1b.1.:
-      
+
 IR-1b.1.
 """"""""
 
     Incident response policy [Assignment: organization-defined frequency]; and
 
 .. _IR-1b.2.:
-      
+
 IR-1b.2.
 """"""""
 
@@ -7435,7 +7435,7 @@ Control Family:  INCIDENT RESPONSE
 ----------------------------------
 
 .. _IR-2:
-      
+
 IR-2 : INCIDENT RESPONSE TRAINING
 """""""""""""""""""""""""""""""""
 
@@ -7453,28 +7453,28 @@ IR-2 : INCIDENT RESPONSE TRAINING
 
 
 .. _IR-2a.:
-      
+
 IR-2a.
 """"""
 
     Within [Assignment: organization-defined time period] of assuming an incident response role or responsibility;
 
 .. _IR-2b.:
-      
+
 IR-2b.
 """"""
 
     When required by information system changes; and
 
 .. _IR-2c.:
-      
+
 IR-2c.
 """"""
 
     [Assignment: organization-defined frequency] thereafter.
 
 .. _IR-2 (1):
-      
+
 IR-2 (1) : SIMULATED EVENTS
 """""""""""""""""""""""""""
 
@@ -7483,7 +7483,7 @@ IR-2 (1) : SIMULATED EVENTS
     The organization incorporates simulated events into incident response training to facilitate effective response by personnel in crisis situations.
 
 .. _IR-2 (2):
-      
+
 IR-2 (2) : AUTOMATED TRAINING ENVIRONMENTS
 """"""""""""""""""""""""""""""""""""""""""
 
@@ -7495,7 +7495,7 @@ Control Family:  INCIDENT RESPONSE
 ----------------------------------
 
 .. _IR-3:
-      
+
 IR-3 : INCIDENT RESPONSE TESTING
 """"""""""""""""""""""""""""""""
 
@@ -7513,7 +7513,7 @@ IR-3 : INCIDENT RESPONSE TESTING
 
 
 .. _IR-3 (1):
-      
+
 IR-3 (1) : AUTOMATED TESTING
 """"""""""""""""""""""""""""
 
@@ -7526,7 +7526,7 @@ IR-3 (1) : AUTOMATED TESTING
 **Related Controls:** `AT-2`_
 
 .. _IR-3 (2):
-      
+
 IR-3 (2) : COORDINATION WITH RELATED PLANS
 """"""""""""""""""""""""""""""""""""""""""
 
@@ -7542,7 +7542,7 @@ Control Family:  INCIDENT RESPONSE
 ----------------------------------
 
 .. _IR-4:
-      
+
 IR-4 : INCIDENT HANDLING
 """"""""""""""""""""""""
 
@@ -7560,28 +7560,28 @@ IR-4 : INCIDENT HANDLING
 
 
 .. _IR-4a.:
-      
+
 IR-4a.
 """"""
 
     Implements an incident handling capability for security incidents that includes preparation, detection and analysis, containment, eradication, and recovery;
 
 .. _IR-4b.:
-      
+
 IR-4b.
 """"""
 
     Coordinates incident handling activities with contingency planning activities; and
 
 .. _IR-4c.:
-      
+
 IR-4c.
 """"""
 
     Incorporates lessons learned from ongoing incident handling activities into incident response procedures, training, and testing, and implements the resulting changes accordingly.
 
 .. _IR-4 (1):
-      
+
 IR-4 (1) : AUTOMATED INCIDENT HANDLING PROCESSES
 """"""""""""""""""""""""""""""""""""""""""""""""
 
@@ -7594,7 +7594,7 @@ IR-4 (1) : AUTOMATED INCIDENT HANDLING PROCESSES
    Automated mechanisms supporting incident handling processes include, for example, online incident management systems.
 
 .. _IR-4 (2):
-      
+
 IR-4 (2) : DYNAMIC RECONFIGURATION
 """"""""""""""""""""""""""""""""""
 
@@ -7607,7 +7607,7 @@ IR-4 (2) : DYNAMIC RECONFIGURATION
 **Related Controls:** `AC-2`_, `AC-4`_, `AC-16`_, `CM-2`_, `CM-3`_, `CM-4`_
 
 .. _IR-4 (3):
-      
+
 IR-4 (3) : CONTINUITY OF OPERATIONS
 """""""""""""""""""""""""""""""""""
 
@@ -7618,7 +7618,7 @@ IR-4 (3) : CONTINUITY OF OPERATIONS
    Classes of incidents include, for example, malfunctions due to design/implementation errors and omissions, targeted malicious attacks, and untargeted malicious attacks. Appropriate incident response actions include, for example, graceful degradation, information system shutdown, fall back to manual mode/alternative technology whereby the system operates differently, employing deceptive measures, alternate information flows, or operating in a mode that is reserved solely for when systems are under attack.
 
 .. _IR-4 (4):
-      
+
 IR-4 (4) : INFORMATION CORRELATION
 """"""""""""""""""""""""""""""""""
 
@@ -7631,14 +7631,14 @@ IR-4 (4) : INFORMATION CORRELATION
    Sometimes the nature of a threat event, for example, a hostile cyber attack, is such that it can only be observed by bringing together information from different sources including various reports and reporting procedures established by organizations.
 
 .. _IR-4 (5):
-      
+
 IR-4 (5) : AUTOMATIC DISABLING OF INFORMATION SYSTEM
 """"""""""""""""""""""""""""""""""""""""""""""""""""
 
     The organization implements a configurable capability to automatically disable the information system if [Assignment: organization-defined security violations] are detected.
 
 .. _IR-4 (6):
-      
+
 IR-4 (6) : INSIDER THREATS - SPECIFIC CAPABILITIES
 """"""""""""""""""""""""""""""""""""""""""""""""""
 
@@ -7649,7 +7649,7 @@ IR-4 (6) : INSIDER THREATS - SPECIFIC CAPABILITIES
    While many organizations address insider threat incidents as an inherent part of their organizational incident response capability, this control enhancement provides additional emphasis on this type of threat and the need for specific incident handling capabilities (as defined within organizations) to provide appropriate and timely responses.
 
 .. _IR-4 (7):
-      
+
 IR-4 (7) : INSIDER THREATS - INTRA-ORGANIZATION COORDINATION
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
@@ -7660,7 +7660,7 @@ IR-4 (7) : INSIDER THREATS - INTRA-ORGANIZATION COORDINATION
    Incident handling for insider threat incidents (including preparation, detection and analysis, containment, eradication, and recovery) requires close coordination among a variety of organizational components or elements to be effective. These components or elements include, for example, mission/business owners, information system owners, human resources offices, procurement offices, personnel/physical security offices, operations personnel, and risk executive (function). In addition, organizations may require external support from federal, state, and local law enforcement agencies.
 
 .. _IR-4 (8):
-      
+
 IR-4 (8) : CORRELATION WITH EXTERNAL ORGANIZATIONS
 """"""""""""""""""""""""""""""""""""""""""""""""""
 
@@ -7671,7 +7671,7 @@ IR-4 (8) : CORRELATION WITH EXTERNAL ORGANIZATIONS
    The coordination of incident information with external organizations including, for example, mission/business partners, military/coalition partners, customers, and multitiered developers, can provide significant benefits. Cross-organizational coordination with respect to incident handling can serve as an important risk management capability. This capability allows organizations to leverage critical information from a variety of sources to effectively respond to information security-related incidents potentially affecting the organization�s operations, assets, and individuals.
 
 .. _IR-4 (9):
-      
+
 IR-4 (9) : DYNAMIC RESPONSE CAPABILITY
 """"""""""""""""""""""""""""""""""""""
 
@@ -7684,7 +7684,7 @@ IR-4 (9) : DYNAMIC RESPONSE CAPABILITY
 **Related Controls:** `CP-10`_
 
 .. _IR-4 (10):
-      
+
 IR-4 (10) : SUPPLY CHAIN COORDINATION
 """""""""""""""""""""""""""""""""""""
 
@@ -7698,7 +7698,7 @@ Control Family:  INCIDENT RESPONSE
 ----------------------------------
 
 .. _IR-5:
-      
+
 IR-5 : INCIDENT MONITORING
 """"""""""""""""""""""""""
 
@@ -7716,7 +7716,7 @@ IR-5 : INCIDENT MONITORING
 
 
 .. _IR-5 (1):
-      
+
 IR-5 (1) : AUTOMATED TRACKING / DATA COLLECTION / ANALYSIS
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
@@ -7734,7 +7734,7 @@ Control Family:  INCIDENT RESPONSE
 ----------------------------------
 
 .. _IR-6:
-      
+
 IR-6 : INCIDENT REPORTING
 """""""""""""""""""""""""
 
@@ -7752,21 +7752,21 @@ IR-6 : INCIDENT REPORTING
 
 
 .. _IR-6a.:
-      
+
 IR-6a.
 """"""
 
     Requires personnel to report suspected security incidents to the organizational incident response capability within [Assignment: organization-defined time period]; and
 
 .. _IR-6b.:
-      
+
 IR-6b.
 """"""
 
     Reports security incident information to [Assignment: organization-defined authorities].
 
 .. _IR-6 (1):
-      
+
 IR-6 (1) : AUTOMATED REPORTING
 """"""""""""""""""""""""""""""
 
@@ -7777,14 +7777,14 @@ IR-6 (1) : AUTOMATED REPORTING
 **Related Controls:** `IR-7`_
 
 .. _IR-6 (2):
-      
+
 IR-6 (2) : VULNERABILITIES RELATED TO INCIDENTS
 """""""""""""""""""""""""""""""""""""""""""""""
 
     The organization reports information system vulnerabilities associated with reported security incidents to [Assignment: organization-defined personnel or roles].
 
 .. _IR-6 (3):
-      
+
 IR-6 (3) : COORDINATION WITH SUPPLY CHAIN
 """""""""""""""""""""""""""""""""""""""""
 
@@ -7798,7 +7798,7 @@ Control Family:  INCIDENT RESPONSE
 ----------------------------------
 
 .. _IR-7:
-      
+
 IR-7 : INCIDENT RESPONSE ASSISTANCE
 """""""""""""""""""""""""""""""""""
 
@@ -7816,7 +7816,7 @@ IR-7 : INCIDENT RESPONSE ASSISTANCE
 
 
 .. _IR-7 (1):
-      
+
 IR-7 (1) : AUTOMATION SUPPORT FOR AVAILABILITY OF INFORMATION / SUPPORT
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
@@ -7829,7 +7829,7 @@ IR-7 (1) : AUTOMATION SUPPORT FOR AVAILABILITY OF INFORMATION / SUPPORT
    Automated mechanisms can provide a push and/or pull capability for users to obtain incident response assistance. For example, individuals might have access to a website to query the assistance capability, or conversely, the assistance capability may have the ability to proactively send information to users (general distribution or targeted) as part of increasing understanding of current response capabilities and support.
 
 .. _IR-7 (2):
-      
+
 IR-7 (2) : COORDINATION WITH EXTERNAL PROVIDERS
 """""""""""""""""""""""""""""""""""""""""""""""
 
@@ -7840,14 +7840,14 @@ IR-7 (2) : COORDINATION WITH EXTERNAL PROVIDERS
    External providers of information system protection capability include, for example, the Computer Network Defense program within the U.S. Department of Defense. External providers help to protect, monitor, analyze, detect, and respond to unauthorized activity within organizational information systems and networks.
 
 .. _IR-7 (2)(a):
-      
+
 IR-7 (2)(a)
 """""""""""
 
     Establishes a direct, cooperative relationship between its incident response capability and external providers of information system protection capability; and
 
 .. _IR-7 (2)(b):
-      
+
 IR-7 (2)(b)
 """""""""""
 
@@ -7857,7 +7857,7 @@ Control Family:  INCIDENT RESPONSE
 ----------------------------------
 
 .. _IR-8:
-      
+
 IR-8 : INCIDENT RESPONSE PLAN
 """""""""""""""""""""""""""""
 
@@ -7875,98 +7875,98 @@ IR-8 : INCIDENT RESPONSE PLAN
 
 
 .. _IR-8a.:
-      
+
 IR-8a.
 """"""
 
     Develops an incident response plan that:
 
 .. _IR-8a.1.:
-      
+
 IR-8a.1.
 """"""""
 
     Provides the organization with a roadmap for implementing its incident response capability;
 
 .. _IR-8a.2.:
-      
+
 IR-8a.2.
 """"""""
 
     Describes the structure and organization of the incident response capability;
 
 .. _IR-8a.3.:
-      
+
 IR-8a.3.
 """"""""
 
     Provides a high-level approach for how the incident response capability fits into the overall organization;
 
 .. _IR-8a.4.:
-      
+
 IR-8a.4.
 """"""""
 
     Meets the unique requirements of the organization, which relate to mission, size, structure, and functions;
 
 .. _IR-8a.5.:
-      
+
 IR-8a.5.
 """"""""
 
     Defines reportable incidents;
 
 .. _IR-8a.6.:
-      
+
 IR-8a.6.
 """"""""
 
     Provides metrics for measuring the incident response capability within the organization;
 
 .. _IR-8a.7.:
-      
+
 IR-8a.7.
 """"""""
 
     Defines the resources and management support needed to effectively maintain and mature an incident response capability; and
 
 .. _IR-8a.8.:
-      
+
 IR-8a.8.
 """"""""
 
     Is reviewed and approved by [Assignment: organization-defined personnel or roles];
 
 .. _IR-8b.:
-      
+
 IR-8b.
 """"""
 
     Distributes copies of the incident response plan to [Assignment: organization-defined incident response personnel (identified by name and/or by role) and organizational elements];
 
 .. _IR-8c.:
-      
+
 IR-8c.
 """"""
 
     Reviews the incident response plan [Assignment: organization-defined frequency];
 
 .. _IR-8d.:
-      
+
 IR-8d.
 """"""
 
     Updates the incident response plan to address system/organizational changes or problems encountered during plan implementation, execution, or testing;
 
 .. _IR-8e.:
-      
+
 IR-8e.
 """"""
 
     Communicates incident response plan changes to [Assignment: organization-defined incident response personnel (identified by name and/or by role) and organizational elements]; and
 
 .. _IR-8f.:
-      
+
 IR-8f.
 """"""
 
@@ -7976,7 +7976,7 @@ Control Family:  INCIDENT RESPONSE
 ----------------------------------
 
 .. _IR-9:
-      
+
 IR-9 : INFORMATION SPILLAGE RESPONSE
 """"""""""""""""""""""""""""""""""""
 
@@ -7990,63 +7990,63 @@ IR-9 : INFORMATION SPILLAGE RESPONSE
 
 
 .. _IR-9a.:
-      
+
 IR-9a.
 """"""
 
     Identifying the specific information involved in the information system contamination;
 
 .. _IR-9b.:
-      
+
 IR-9b.
 """"""
 
     Alerting [Assignment: organization-defined personnel or roles] of the information spill using a method of communication not associated with the spill;
 
 .. _IR-9c.:
-      
+
 IR-9c.
 """"""
 
     Isolating the contaminated information system or system component;
 
 .. _IR-9d.:
-      
+
 IR-9d.
 """"""
 
     Eradicating the information from the contaminated information system or component;
 
 .. _IR-9e.:
-      
+
 IR-9e.
 """"""
 
     Identifying other information systems or system components that may have been subsequently contaminated; and
 
 .. _IR-9f.:
-      
+
 IR-9f.
 """"""
 
     Performing other [Assignment: organization-defined actions].
 
 .. _IR-9 (1):
-      
+
 IR-9 (1) : RESPONSIBLE PERSONNEL
 """"""""""""""""""""""""""""""""
 
     The organization assigns [Assignment: organization-defined personnel or roles] with responsibility for responding to information spills.
 
 .. _IR-9 (2):
-      
+
 IR-9 (2) : TRAINING
 """""""""""""""""""
 
     The organization provides information spillage response training [Assignment: organization-defined frequency].
 
 .. _IR-9 (3):
-      
+
 IR-9 (3) : POST-SPILL OPERATIONS
 """"""""""""""""""""""""""""""""
 
@@ -8057,7 +8057,7 @@ IR-9 (3) : POST-SPILL OPERATIONS
    Correction actions for information systems contaminated due to information spillages may be very time-consuming. During those periods, personnel may not have access to the contaminated systems, which may potentially affect their ability to conduct organizational business.
 
 .. _IR-9 (4):
-      
+
 IR-9 (4) : EXPOSURE TO UNAUTHORIZED PERSONNEL
 """""""""""""""""""""""""""""""""""""""""""""
 
@@ -8071,7 +8071,7 @@ Control Family:  INCIDENT RESPONSE
 ----------------------------------
 
 .. _IR-10:
-      
+
 IR-10 : INTEGRATED INFORMATION SECURITY ANALYSIS TEAM
 """""""""""""""""""""""""""""""""""""""""""""""""""""
 
@@ -8088,7 +8088,7 @@ Control Family:  MAINTENANCE
 ----------------------------
 
 .. _MA-1:
-      
+
 MA-1 : SYSTEM MAINTENANCE POLICY AND PROCEDURES
 """""""""""""""""""""""""""""""""""""""""""""""
 
@@ -8106,42 +8106,42 @@ MA-1 : SYSTEM MAINTENANCE POLICY AND PROCEDURES
 
 
 .. _MA-1a.:
-      
+
 MA-1a.
 """"""
 
     Develops, documents, and disseminates to [Assignment: organization-defined personnel or roles]:
 
 .. _MA-1a.1.:
-      
+
 MA-1a.1.
 """"""""
 
     A system maintenance policy that addresses purpose, scope, roles, responsibilities, management commitment, coordination among organizational entities, and compliance; and
 
 .. _MA-1a.2.:
-      
+
 MA-1a.2.
 """"""""
 
     Procedures to facilitate the implementation of the system maintenance policy and associated system maintenance controls; and
 
 .. _MA-1b.:
-      
+
 MA-1b.
 """"""
 
     Reviews and updates the current:
 
 .. _MA-1b.1.:
-      
+
 MA-1b.1.
 """"""""
 
     System maintenance policy [Assignment: organization-defined frequency]; and
 
 .. _MA-1b.2.:
-      
+
 MA-1b.2.
 """"""""
 
@@ -8151,7 +8151,7 @@ Control Family:  MAINTENANCE
 ----------------------------
 
 .. _MA-2:
-      
+
 MA-2 : CONTROLLED MAINTENANCE
 """""""""""""""""""""""""""""
 
@@ -8169,56 +8169,56 @@ MA-2 : CONTROLLED MAINTENANCE
 
 
 .. _MA-2a.:
-      
+
 MA-2a.
 """"""
 
     Schedules, performs, documents, and reviews records of maintenance and repairs on information system components in accordance with manufacturer or vendor specifications and/or organizational requirements;
 
 .. _MA-2b.:
-      
+
 MA-2b.
 """"""
 
     Approves and monitors all maintenance activities, whether performed on site or remotely and whether the equipment is serviced on site or removed to another location;
 
 .. _MA-2c.:
-      
+
 MA-2c.
 """"""
 
     Requires that [Assignment: organization-defined personnel or roles] explicitly approve the removal of the information system or system components from organizational facilities for off-site maintenance or repairs;
 
 .. _MA-2d.:
-      
+
 MA-2d.
 """"""
 
     Sanitizes equipment to remove all information from associated media prior to removal from organizational facilities for off-site maintenance or repairs;
 
 .. _MA-2e.:
-      
+
 MA-2e.
 """"""
 
     Checks all potentially impacted security controls to verify that the controls are still functioning properly following maintenance or repair actions; and
 
 .. _MA-2f.:
-      
+
 MA-2f.
 """"""
 
     Includes [Assignment: organization-defined maintenance-related information] in organizational maintenance records.
 
 .. _MA-2 (1):
-      
+
 MA-2 (1) : RECORD CONTENT
 """""""""""""""""""""""""
 
     [Withdrawn: Incorporated into MA-2].
 
 .. _MA-2 (2):
-      
+
 MA-2 (2) : AUTOMATED MAINTENANCE ACTIVITIES
 """""""""""""""""""""""""""""""""""""""""""
 
@@ -8229,14 +8229,14 @@ MA-2 (2) : AUTOMATED MAINTENANCE ACTIVITIES
 **Related Controls:** `CA-7`_, `MA-3`_
 
 .. _MA-2 (2)(a):
-      
+
 MA-2 (2)(a)
 """""""""""
 
     Employs automated mechanisms to schedule, conduct, and document maintenance and repairs; and
 
 .. _MA-2 (2)(b):
-      
+
 MA-2 (2)(b)
 """""""""""
 
@@ -8246,7 +8246,7 @@ Control Family:  MAINTENANCE
 ----------------------------
 
 .. _MA-3:
-      
+
 MA-3 : MAINTENANCE TOOLS
 """"""""""""""""""""""""
 
@@ -8264,7 +8264,7 @@ MA-3 : MAINTENANCE TOOLS
 
 
 .. _MA-3 (1):
-      
+
 MA-3 (1) : INSPECT TOOLS
 """"""""""""""""""""""""
 
@@ -8279,7 +8279,7 @@ MA-3 (1) : INSPECT TOOLS
 **Related Controls:** `SI-7`_
 
 .. _MA-3 (2):
-      
+
 MA-3 (2) : INSPECT MEDIA
 """"""""""""""""""""""""
 
@@ -8294,7 +8294,7 @@ MA-3 (2) : INSPECT MEDIA
 **Related Controls:** `SI-3`_
 
 .. _MA-3 (3):
-      
+
 MA-3 (3) : PREVENT UNAUTHORIZED REMOVAL
 """""""""""""""""""""""""""""""""""""""
 
@@ -8307,35 +8307,35 @@ MA-3 (3) : PREVENT UNAUTHORIZED REMOVAL
    Organizational information includes all information specifically owned by organizations and information provided to organizations in which organizations serve as information stewards.
 
 .. _MA-3 (3)(a):
-      
+
 MA-3 (3)(a)
 """""""""""
 
     Verifying that there is no organizational information contained on the equipment;
 
 .. _MA-3 (3)(b):
-      
+
 MA-3 (3)(b)
 """""""""""
 
     Sanitizing or destroying the equipment;
 
 .. _MA-3 (3)(c):
-      
+
 MA-3 (3)(c)
 """""""""""
 
     Retaining the equipment within the facility; or
 
 .. _MA-3 (3)(d):
-      
+
 MA-3 (3)(d)
 """""""""""
 
     Obtaining an exemption from [Assignment: organization-defined personnel or roles] explicitly authorizing removal of the equipment from the facility.
 
 .. _MA-3 (4):
-      
+
 MA-3 (4) : RESTRICTED TOOL USE
 """"""""""""""""""""""""""""""
 
@@ -8351,7 +8351,7 @@ Control Family:  MAINTENANCE
 ----------------------------
 
 .. _MA-4:
-      
+
 MA-4 : NONLOCAL MAINTENANCE
 """""""""""""""""""""""""""
 
@@ -8369,42 +8369,42 @@ MA-4 : NONLOCAL MAINTENANCE
 
 
 .. _MA-4a.:
-      
+
 MA-4a.
 """"""
 
     Approves and monitors nonlocal maintenance and diagnostic activities;
 
 .. _MA-4b.:
-      
+
 MA-4b.
 """"""
 
     Allows the use of nonlocal maintenance and diagnostic tools only as consistent with organizational policy and documented in the security plan for the information system;
 
 .. _MA-4c.:
-      
+
 MA-4c.
 """"""
 
     Employs strong authenticators in the establishment of nonlocal maintenance and diagnostic sessions;
 
 .. _MA-4d.:
-      
+
 MA-4d.
 """"""
 
     Maintains records for nonlocal maintenance and diagnostic activities; and
 
 .. _MA-4e.:
-      
+
 MA-4e.
 """"""
 
     Terminates session and network connections when nonlocal maintenance is completed.
 
 .. _MA-4 (1):
-      
+
 MA-4 (1) : AUDITING AND REVIEW
 """"""""""""""""""""""""""""""
 
@@ -8413,21 +8413,21 @@ MA-4 (1) : AUDITING AND REVIEW
 **Related Controls:** `AU-2`_, `AU-6`_, `AU-12`_
 
 .. _MA-4 (1)(a):
-      
+
 MA-4 (1)(a)
 """""""""""
 
     Audits nonlocal maintenance and diagnostic sessions [Assignment: organization-defined audit events]; and
 
 .. _MA-4 (1)(b):
-      
+
 MA-4 (1)(b)
 """""""""""
 
     Reviews the records of the maintenance and diagnostic sessions.
 
 .. _MA-4 (2):
-      
+
 MA-4 (2) : DOCUMENT NONLOCAL MAINTENANCE
 """"""""""""""""""""""""""""""""""""""""
 
@@ -8436,7 +8436,7 @@ MA-4 (2) : DOCUMENT NONLOCAL MAINTENANCE
     The organization documents in the security plan for the information system, the policies and procedures for the establishment and use of nonlocal maintenance and diagnostic connections.
 
 .. _MA-4 (3):
-      
+
 MA-4 (3) : COMPARABLE SECURITY / SANITIZATION
 """""""""""""""""""""""""""""""""""""""""""""
 
@@ -8451,21 +8451,21 @@ MA-4 (3) : COMPARABLE SECURITY / SANITIZATION
 **Related Controls:** `MA-3`_, `SA-12`_, `SI-3`_, `SI-7`_
 
 .. _MA-4 (3)(a):
-      
+
 MA-4 (3)(a)
 """""""""""
 
     Requires that nonlocal maintenance and diagnostic services be performed from an information system that implements a security capability comparable to the capability implemented on the system being serviced; or
 
 .. _MA-4 (3)(b):
-      
+
 MA-4 (3)(b)
 """""""""""
 
     Removes the component to be serviced from the information system prior to nonlocal maintenance or diagnostic services, sanitizes the component (with regard to organizational information) before removal from organizational facilities, and after the service is performed, inspects and sanitizes the component (with regard to potentially malicious software) before reconnecting the component to the information system.
 
 .. _MA-4 (4):
-      
+
 MA-4 (4) : AUTHENTICATION / SEPARATION OF MAINTENANCE SESSIONS
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
@@ -8474,35 +8474,35 @@ MA-4 (4) : AUTHENTICATION / SEPARATION OF MAINTENANCE SESSIONS
 **Related Controls:** `SC-13`_
 
 .. _MA-4 (4)(a):
-      
+
 MA-4 (4)(a)
 """""""""""
 
     Employing [Assignment: organization-defined authenticators that are replay resistant]; and
 
 .. _MA-4 (4)(b):
-      
+
 MA-4 (4)(b)
 """""""""""
 
     Separating the maintenance sessions from other network sessions with the information system by either:
 
 .. _MA-4 (4)(b)(1):
-      
+
 MA-4 (4)(b)(1)
 """"""""""""""
 
     Physically separated communications paths; or
 
 .. _MA-4 (4)(b)(2):
-      
+
 MA-4 (4)(b)(2)
 """"""""""""""
 
     Logically separated communications paths based upon encryption.
 
 .. _MA-4 (5):
-      
+
 MA-4 (5) : APPROVALS AND NOTIFICATIONS
 """"""""""""""""""""""""""""""""""""""
 
@@ -8513,21 +8513,21 @@ MA-4 (5) : APPROVALS AND NOTIFICATIONS
    Notification may be performed by maintenance personnel. Approval of nonlocal maintenance sessions is accomplished by organizational personnel with sufficient information security and information system knowledge to determine the appropriateness of the proposed maintenance.
 
 .. _MA-4 (5)(a):
-      
+
 MA-4 (5)(a)
 """""""""""
 
     Requires the approval of each nonlocal maintenance session by [Assignment: organization-defined personnel or roles]; and
 
 .. _MA-4 (5)(b):
-      
+
 MA-4 (5)(b)
 """""""""""
 
     Notifies [Assignment: organization-defined personnel or roles] of the date and time of planned nonlocal maintenance.
 
 .. _MA-4 (6):
-      
+
 MA-4 (6) : CRYPTOGRAPHIC PROTECTION
 """""""""""""""""""""""""""""""""""
 
@@ -8536,7 +8536,7 @@ MA-4 (6) : CRYPTOGRAPHIC PROTECTION
 **Related Controls:** `SC-8`_, `SC-13`_
 
 .. _MA-4 (7):
-      
+
 MA-4 (7) : REMOTE DISCONNECT VERIFICATION
 """""""""""""""""""""""""""""""""""""""""
 
@@ -8552,7 +8552,7 @@ Control Family:  MAINTENANCE
 ----------------------------
 
 .. _MA-5:
-      
+
 MA-5 : MAINTENANCE PERSONNEL
 """"""""""""""""""""""""""""
 
@@ -8570,28 +8570,28 @@ MA-5 : MAINTENANCE PERSONNEL
 
 
 .. _MA-5a.:
-      
+
 MA-5a.
 """"""
 
     Establishes a process for maintenance personnel authorization and maintains a list of authorized maintenance organizations or personnel;
 
 .. _MA-5b.:
-      
+
 MA-5b.
 """"""
 
     Ensures that non-escorted personnel performing maintenance on the information system have required access authorizations; and
 
 .. _MA-5c.:
-      
+
 MA-5c.
 """"""
 
     Designates organizational personnel with required access authorizations and technical competence to supervise the maintenance activities of personnel who do not possess the required access authorizations.
 
 .. _MA-5 (1):
-      
+
 MA-5 (1) : INDIVIDUALS WITHOUT APPROPRIATE ACCESS
 """""""""""""""""""""""""""""""""""""""""""""""""
 
@@ -8606,35 +8606,35 @@ MA-5 (1) : INDIVIDUALS WITHOUT APPROPRIATE ACCESS
 **Related Controls:** `MP-6`_, `PL-2`_
 
 .. _MA-5 (1)(a):
-      
+
 MA-5 (1)(a)
 """""""""""
 
     Implements procedures for the use of maintenance personnel that lack appropriate security clearances or are not U.S. citizens, that include the following requirements:
 
 .. _MA-5 (1)(a)(1):
-      
+
 MA-5 (1)(a)(1)
 """"""""""""""
 
     Maintenance personnel who do not have needed access authorizations, clearances, or formal access approvals are escorted and supervised during the performance of maintenance and diagnostic activities on the information system by approved organizational personnel who are fully cleared, have appropriate access authorizations, and are technically qualified;
 
 .. _MA-5 (1)(a)(2):
-      
+
 MA-5 (1)(a)(2)
 """"""""""""""
 
     Prior to initiating maintenance or diagnostic activities by personnel who do not have needed access authorizations, clearances or formal access approvals, all volatile information storage components within the information system are sanitized and all nonvolatile storage media are removed or physically disconnected from the system and secured; and
 
 .. _MA-5 (1)(b):
-      
+
 MA-5 (1)(b)
 """""""""""
 
     Develops and implements alternate security safeguards in the event an information system component cannot be sanitized, removed, or disconnected from the system.
 
 .. _MA-5 (2):
-      
+
 MA-5 (2) : SECURITY CLEARANCES FOR CLASSIFIED SYSTEMS
 """""""""""""""""""""""""""""""""""""""""""""""""""""
 
@@ -8643,7 +8643,7 @@ MA-5 (2) : SECURITY CLEARANCES FOR CLASSIFIED SYSTEMS
 **Related Controls:** `PS-3`_
 
 .. _MA-5 (3):
-      
+
 MA-5 (3) : CITIZENSHIP REQUIREMENTS FOR CLASSIFIED SYSTEMS
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
@@ -8652,7 +8652,7 @@ MA-5 (3) : CITIZENSHIP REQUIREMENTS FOR CLASSIFIED SYSTEMS
 **Related Controls:** `PS-3`_
 
 .. _MA-5 (4):
-      
+
 MA-5 (4) : FOREIGN NATIONALS
 """"""""""""""""""""""""""""
 
@@ -8661,21 +8661,21 @@ MA-5 (4) : FOREIGN NATIONALS
 **Related Controls:** `PS-3`_
 
 .. _MA-5 (4)(a):
-      
+
 MA-5 (4)(a)
 """""""""""
 
     Cleared foreign nationals (i.e., foreign nationals with appropriate security clearances), are used to conduct maintenance and diagnostic activities on classified information systems only when the systems are jointly owned and operated by the United States and foreign allied governments, or owned and operated solely by foreign allied governments; and
 
 .. _MA-5 (4)(b):
-      
+
 MA-5 (4)(b)
 """""""""""
 
     Approvals, consents, and detailed operational conditions regarding the use of foreign nationals to conduct maintenance and diagnostic activities on classified information systems are fully documented within Memoranda of Agreements.
 
 .. _MA-5 (5):
-      
+
 MA-5 (5) : NONSYSTEM-RELATED MAINTENANCE
 """"""""""""""""""""""""""""""""""""""""
 
@@ -8689,7 +8689,7 @@ Control Family:  MAINTENANCE
 ----------------------------
 
 .. _MA-6:
-      
+
 MA-6 : TIMELY MAINTENANCE
 """""""""""""""""""""""""
 
@@ -8707,7 +8707,7 @@ MA-6 : TIMELY MAINTENANCE
 
 
 .. _MA-6 (1):
-      
+
 MA-6 (1) : PREVENTIVE MAINTENANCE
 """""""""""""""""""""""""""""""""
 
@@ -8718,7 +8718,7 @@ MA-6 (1) : PREVENTIVE MAINTENANCE
    Preventive maintenance includes proactive care and servicing of organizational information systems components for the purpose of maintaining equipment and facilities in satisfactory operating condition. Such maintenance provides for the systematic inspection, tests, measurements, adjustments, parts replacement, detection, and correction of incipient failures either before they occur or before they develop into major defects. The primary goal of preventive maintenance is to avoid/mitigate the consequences of equipment failures. Preventive maintenance is designed to preserve and restore equipment reliability by replacing worn components before they actually fail. Methods of determining what preventive (or other) failure management policies to apply include, for example, original equipment manufacturer (OEM) recommendations, statistical failure records, requirements of codes, legislation, or regulations within a jurisdiction, expert opinion, maintenance that has already been conducted on similar equipment, or measured values and performance indications.
 
 .. _MA-6 (2):
-      
+
 MA-6 (2) : PREDICTIVE MAINTENANCE
 """""""""""""""""""""""""""""""""
 
@@ -8729,7 +8729,7 @@ MA-6 (2) : PREDICTIVE MAINTENANCE
    Predictive maintenance, or condition-based maintenance, attempts to evaluate the condition of equipment by performing periodic or continuous (online) equipment condition monitoring. The goal of predictive maintenance is to perform maintenance at a scheduled point in time when the maintenance activity is most cost-effective and before the equipment loses performance within a threshold. The predictive component of predictive maintenance stems from the goal of predicting the future trend of the equipment's condition. This approach uses principles of statistical process control to determine at what point in the future maintenance activities will be appropriate. Most predictive maintenance inspections are performed while equipment is in service, thereby minimizing disruption of normal system operations. Predictive maintenance can result in substantial cost savings and higher system reliability. Predictive maintenance tends to include measurement of the item. To evaluate equipment condition, predictive maintenance utilizes nondestructive testing technologies such as infrared, acoustic (partial discharge and airborne ultrasonic), corona detection, vibration analysis, sound level measurements, oil analysis, and other specific online tests.
 
 .. _MA-6 (3):
-      
+
 MA-6 (3) : AUTOMATED SUPPORT FOR PREDICTIVE MAINTENANCE
 """""""""""""""""""""""""""""""""""""""""""""""""""""""
 
@@ -8743,7 +8743,7 @@ Control Family:  MEDIA PROTECTION
 ---------------------------------
 
 .. _MP-1:
-      
+
 MP-1 : MEDIA PROTECTION POLICY AND PROCEDURES
 """""""""""""""""""""""""""""""""""""""""""""
 
@@ -8761,42 +8761,42 @@ MP-1 : MEDIA PROTECTION POLICY AND PROCEDURES
 
 
 .. _MP-1a.:
-      
+
 MP-1a.
 """"""
 
     Develops, documents, and disseminates to [Assignment: organization-defined personnel or roles]:
 
 .. _MP-1a.1.:
-      
+
 MP-1a.1.
 """"""""
 
     A media protection policy that addresses purpose, scope, roles, responsibilities, management commitment, coordination among organizational entities, and compliance; and
 
 .. _MP-1a.2.:
-      
+
 MP-1a.2.
 """"""""
 
     Procedures to facilitate the implementation of the media protection policy and associated media protection controls; and
 
 .. _MP-1b.:
-      
+
 MP-1b.
 """"""
 
     Reviews and updates the current:
 
 .. _MP-1b.1.:
-      
+
 MP-1b.1.
 """"""""
 
     Media protection policy [Assignment: organization-defined frequency]; and
 
 .. _MP-1b.2.:
-      
+
 MP-1b.2.
 """"""""
 
@@ -8806,7 +8806,7 @@ Control Family:  MEDIA PROTECTION
 ---------------------------------
 
 .. _MP-2:
-      
+
 MP-2 : MEDIA ACCESS
 """""""""""""""""""
 
@@ -8824,14 +8824,14 @@ MP-2 : MEDIA ACCESS
 
 
 .. _MP-2 (1):
-      
+
 MP-2 (1) : AUTOMATED RESTRICTED ACCESS
 """"""""""""""""""""""""""""""""""""""
 
     [Withdrawn: Incorporated into MP-4 (2)].
 
 .. _MP-2 (2):
-      
+
 MP-2 (2) : CRYPTOGRAPHIC PROTECTION
 """""""""""""""""""""""""""""""""""
 
@@ -8841,7 +8841,7 @@ Control Family:  MEDIA PROTECTION
 ---------------------------------
 
 .. _MP-3:
-      
+
 MP-3 : MEDIA MARKING
 """"""""""""""""""""
 
@@ -8859,14 +8859,14 @@ MP-3 : MEDIA MARKING
 
 
 .. _MP-3a.:
-      
+
 MP-3a.
 """"""
 
     Marks information system media indicating the distribution limitations, handling caveats, and applicable security markings (if any) of the information; and
 
 .. _MP-3b.:
-      
+
 MP-3b.
 """"""
 
@@ -8876,7 +8876,7 @@ Control Family:  MEDIA PROTECTION
 ---------------------------------
 
 .. _MP-4:
-      
+
 MP-4 : MEDIA STORAGE
 """"""""""""""""""""
 
@@ -8894,28 +8894,28 @@ MP-4 : MEDIA STORAGE
 
 
 .. _MP-4a.:
-      
+
 MP-4a.
 """"""
 
     Physically controls and securely stores [Assignment: organization-defined types of digital and/or non-digital media] within [Assignment: organization-defined controlled areas]; and
 
 .. _MP-4b.:
-      
+
 MP-4b.
 """"""
 
     Protects information system media until the media are destroyed or sanitized using approved equipment, techniques, and procedures.
 
 .. _MP-4 (1):
-      
+
 MP-4 (1) : CRYPTOGRAPHIC PROTECTION
 """""""""""""""""""""""""""""""""""
 
     [Withdrawn: Incorporated into SC-28 (1)].
 
 .. _MP-4 (2):
-      
+
 MP-4 (2) : AUTOMATED RESTRICTED ACCESS
 """"""""""""""""""""""""""""""""""""""
 
@@ -8931,7 +8931,7 @@ Control Family:  MEDIA PROTECTION
 ---------------------------------
 
 .. _MP-5:
-      
+
 MP-5 : MEDIA TRANSPORT
 """"""""""""""""""""""
 
@@ -8950,49 +8950,49 @@ MP-5 : MEDIA TRANSPORT
 
 
 .. _MP-5a.:
-      
+
 MP-5a.
 """"""
 
     Protects and controls [Assignment: organization-defined types of information system media] during transport outside of controlled areas using [Assignment: organization-defined security safeguards];
 
 .. _MP-5b.:
-      
+
 MP-5b.
 """"""
 
     Maintains accountability for information system media during transport outside of controlled areas;
 
 .. _MP-5c.:
-      
+
 MP-5c.
 """"""
 
     Documents activities associated with the transport of information system media; and
 
 .. _MP-5d.:
-      
+
 MP-5d.
 """"""
 
     Restricts the activities associated with the transport of information system media to authorized personnel.
 
 .. _MP-5 (1):
-      
+
 MP-5 (1) : PROTECTION OUTSIDE OF CONTROLLED AREAS
 """""""""""""""""""""""""""""""""""""""""""""""""
 
     [Withdrawn: Incorporated into MP-5].
 
 .. _MP-5 (2):
-      
+
 MP-5 (2) : DOCUMENTATION OF ACTIVITIES
 """"""""""""""""""""""""""""""""""""""
 
     [Withdrawn: Incorporated into MP-5].
 
 .. _MP-5 (3):
-      
+
 MP-5 (3) : CUSTODIANS
 """""""""""""""""""""
 
@@ -9003,7 +9003,7 @@ MP-5 (3) : CUSTODIANS
    Identified custodians provide organizations with specific points of contact during the media transport process and facilitate individual accountability. Custodial responsibilities can be transferred from one individual to another as long as an unambiguous custodian is identified at all times.
 
 .. _MP-5 (4):
-      
+
 MP-5 (4) : CRYPTOGRAPHIC PROTECTION
 """""""""""""""""""""""""""""""""""
 
@@ -9021,7 +9021,7 @@ Control Family:  MEDIA PROTECTION
 ---------------------------------
 
 .. _MP-6:
-      
+
 MP-6 : MEDIA SANITIZATION
 """""""""""""""""""""""""
 
@@ -9039,21 +9039,21 @@ MP-6 : MEDIA SANITIZATION
 
 
 .. _MP-6a.:
-      
+
 MP-6a.
 """"""
 
     Sanitizes [Assignment: organization-defined information system media] prior to disposal, release out of organizational control, or release for reuse using [Assignment: organization-defined sanitization techniques and procedures] in accordance with applicable federal and organizational standards and policies; and
 
 .. _MP-6b.:
-      
+
 MP-6b.
 """"""
 
     Employs sanitization mechanisms with the strength and integrity commensurate with the security category or classification of the information.
 
 .. _MP-6 (1):
-      
+
 MP-6 (1) : REVIEW / APPROVE / TRACK / DOCUMENT / VERIFY
 """""""""""""""""""""""""""""""""""""""""""""""""""""""
 
@@ -9068,7 +9068,7 @@ MP-6 (1) : REVIEW / APPROVE / TRACK / DOCUMENT / VERIFY
 **Related Controls:** `SI-12`_
 
 .. _MP-6 (2):
-      
+
 MP-6 (2) : EQUIPMENT TESTING
 """"""""""""""""""""""""""""
 
@@ -9081,7 +9081,7 @@ MP-6 (2) : EQUIPMENT TESTING
    Testing of sanitization equipment and procedures may be conducted by qualified and authorized external entities (e.g., other federal agencies or external service providers).
 
 .. _MP-6 (3):
-      
+
 MP-6 (3) : NONDESTRUCTIVE TECHNIQUES
 """"""""""""""""""""""""""""""""""""
 
@@ -9096,28 +9096,28 @@ MP-6 (3) : NONDESTRUCTIVE TECHNIQUES
 **Related Controls:** `SI-3`_
 
 .. _MP-6 (4):
-      
+
 MP-6 (4) : CONTROLLED UNCLASSIFIED INFORMATION
 """"""""""""""""""""""""""""""""""""""""""""""
 
     [Withdrawn: Incorporated into MP-6].
 
 .. _MP-6 (5):
-      
+
 MP-6 (5) : CLASSIFIED INFORMATION
 """""""""""""""""""""""""""""""""
 
     [Withdrawn: Incorporated into MP-6].
 
 .. _MP-6 (6):
-      
+
 MP-6 (6) : MEDIA DESTRUCTION
 """"""""""""""""""""""""""""
 
     [Withdrawn: Incorporated into MP-6].
 
 .. _MP-6 (7):
-      
+
 MP-6 (7) : DUAL AUTHORIZATION
 """""""""""""""""""""""""""""
 
@@ -9130,7 +9130,7 @@ MP-6 (7) : DUAL AUTHORIZATION
 **Related Controls:** `AC-3`_, `MP-2`_
 
 .. _MP-6 (8):
-      
+
 MP-6 (8) : REMOTE PURGING / WIPING OF INFORMATION
 """""""""""""""""""""""""""""""""""""""""""""""""
 
@@ -9144,7 +9144,7 @@ Control Family:  MEDIA PROTECTION
 ---------------------------------
 
 .. _MP-7:
-      
+
 MP-7 : MEDIA USE
 """"""""""""""""
 
@@ -9162,7 +9162,7 @@ MP-7 : MEDIA USE
 
 
 .. _MP-7 (1):
-      
+
 MP-7 (1) : PROHIBIT USE WITHOUT OWNER
 """""""""""""""""""""""""""""""""""""
 
@@ -9177,7 +9177,7 @@ MP-7 (1) : PROHIBIT USE WITHOUT OWNER
 **Related Controls:** `PL-4`_
 
 .. _MP-7 (2):
-      
+
 MP-7 (2) : PROHIBIT USE OF SANITIZATION-RESISTANT MEDIA
 """""""""""""""""""""""""""""""""""""""""""""""""""""""
 
@@ -9193,7 +9193,7 @@ Control Family:  MEDIA PROTECTION
 ---------------------------------
 
 .. _MP-8:
-      
+
 MP-8 : MEDIA DOWNGRADING
 """"""""""""""""""""""""
 
@@ -9207,35 +9207,35 @@ MP-8 : MEDIA DOWNGRADING
 
 
 .. _MP-8a.:
-      
+
 MP-8a.
 """"""
 
     Establishes [Assignment: organization-defined information system media downgrading process] that includes employing downgrading mechanisms with [Assignment: organization-defined strength and integrity];
 
 .. _MP-8b.:
-      
+
 MP-8b.
 """"""
 
     Ensures that the information system media downgrading process is commensurate with the security category and/or classification level of the information to be removed and the access authorizations of the potential recipients of the downgraded information;
 
 .. _MP-8c.:
-      
+
 MP-8c.
 """"""
 
     Identifies [Assignment: organization-defined information system media requiring downgrading]; and
 
 .. _MP-8d.:
-      
+
 MP-8d.
 """"""
 
     Downgrades the identified information system media using the established process.
 
 .. _MP-8 (1):
-      
+
 MP-8 (1) : DOCUMENTATION OF PROCESS
 """""""""""""""""""""""""""""""""""
 
@@ -9246,21 +9246,21 @@ MP-8 (1) : DOCUMENTATION OF PROCESS
    Organizations can document the media downgrading process by providing information such as the downgrading technique employed, the identification number of the downgraded media, and the identity of the individual that authorized and/or performed the downgrading action.
 
 .. _MP-8 (2):
-      
+
 MP-8 (2) : EQUIPMENT TESTING
 """"""""""""""""""""""""""""
 
     The organization employs [Assignment: organization-defined tests] of downgrading equipment and procedures to verify correct performance [Assignment: organization-defined frequency].
 
 .. _MP-8 (3):
-      
+
 MP-8 (3) : CONTROLLED UNCLASSIFIED INFORMATION
 """"""""""""""""""""""""""""""""""""""""""""""
 
     The organization downgrades information system media containing [Assignment: organization-defined Controlled Unclassified Information (CUI)] prior to public release in accordance with applicable federal and organizational standards and policies.
 
 .. _MP-8 (4):
-      
+
 MP-8 (4) : CLASSIFIED INFORMATION
 """""""""""""""""""""""""""""""""
 
@@ -9274,7 +9274,7 @@ Control Family:  PHYSICAL AND ENVIRONMENTAL PROTECTION
 ------------------------------------------------------
 
 .. _PE-1:
-      
+
 PE-1 : PHYSICAL AND ENVIRONMENTAL PROTECTION POLICY AND PROCEDURES
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
@@ -9292,42 +9292,42 @@ PE-1 : PHYSICAL AND ENVIRONMENTAL PROTECTION POLICY AND PROCEDURES
 
 
 .. _PE-1a.:
-      
+
 PE-1a.
 """"""
 
     Develops, documents, and disseminates to [Assignment: organization-defined personnel or roles]:
 
 .. _PE-1a.1.:
-      
+
 PE-1a.1.
 """"""""
 
     A physical and environmental protection policy that addresses purpose, scope, roles, responsibilities, management commitment, coordination among organizational entities, and compliance; and
 
 .. _PE-1a.2.:
-      
+
 PE-1a.2.
 """"""""
 
     Procedures to facilitate the implementation of the physical and environmental protection policy and associated physical and environmental protection controls; and
 
 .. _PE-1b.:
-      
+
 PE-1b.
 """"""
 
     Reviews and updates the current:
 
 .. _PE-1b.1.:
-      
+
 PE-1b.1.
 """"""""
 
     Physical and environmental protection  policy [Assignment: organization-defined frequency]; and
 
 .. _PE-1b.2.:
-      
+
 PE-1b.2.
 """"""""
 
@@ -9337,7 +9337,7 @@ Control Family:  PHYSICAL AND ENVIRONMENTAL PROTECTION
 ------------------------------------------------------
 
 .. _PE-2:
-      
+
 PE-2 : PHYSICAL ACCESS AUTHORIZATIONS
 """""""""""""""""""""""""""""""""""""
 
@@ -9355,35 +9355,35 @@ PE-2 : PHYSICAL ACCESS AUTHORIZATIONS
 
 
 .. _PE-2a.:
-      
+
 PE-2a.
 """"""
 
     Develops, approves, and maintains a list of individuals with authorized access to the facility where the information system resides;
 
 .. _PE-2b.:
-      
+
 PE-2b.
 """"""
 
     Issues authorization credentials for facility access;
 
 .. _PE-2c.:
-      
+
 PE-2c.
 """"""
 
     Reviews the access list detailing authorized facility access by individuals [Assignment: organization-defined frequency]; and
 
 .. _PE-2d.:
-      
+
 PE-2d.
 """"""
 
     Removes individuals from the facility access list when access is no longer required.
 
 .. _PE-2 (1):
-      
+
 PE-2 (1) : ACCESS BY POSITION / ROLE
 """"""""""""""""""""""""""""""""""""
 
@@ -9392,7 +9392,7 @@ PE-2 (1) : ACCESS BY POSITION / ROLE
 **Related Controls:** `AC-2`_, `AC-3`_, `AC-6`_
 
 .. _PE-2 (2):
-      
+
 PE-2 (2) : TWO FORMS OF IDENTIFICATION
 """"""""""""""""""""""""""""""""""""""
 
@@ -9405,7 +9405,7 @@ PE-2 (2) : TWO FORMS OF IDENTIFICATION
 **Related Controls:** `IA-2`_, `IA-4`_, `IA-5`_
 
 .. _PE-2 (3):
-      
+
 PE-2 (3) : RESTRICT UNESCORTED ACCESS
 """""""""""""""""""""""""""""""""""""
 
@@ -9421,7 +9421,7 @@ Control Family:  PHYSICAL AND ENVIRONMENTAL PROTECTION
 ------------------------------------------------------
 
 .. _PE-3:
-      
+
 PE-3 : PHYSICAL ACCESS CONTROL
 """"""""""""""""""""""""""""""
 
@@ -9439,70 +9439,70 @@ PE-3 : PHYSICAL ACCESS CONTROL
 
 
 .. _PE-3a.:
-      
+
 PE-3a.
 """"""
 
     Enforces physical access authorizations at [Assignment: organization-defined entry/exit points to the facility where the information system resides] by;
 
 .. _PE-3a.1.:
-      
+
 PE-3a.1.
 """"""""
 
     Verifying individual access authorizations before granting access to the facility; and
 
 .. _PE-3a.2.:
-      
+
 PE-3a.2.
 """"""""
 
     Controlling ingress/egress to the facility using [Selection (one or more): [Assignment: organization-defined physical access control systems/devices]; guards];
 
 .. _PE-3b.:
-      
+
 PE-3b.
 """"""
 
     Maintains physical access audit logs for [Assignment: organization-defined entry/exit points];
 
 .. _PE-3c.:
-      
+
 PE-3c.
 """"""
 
     Provides [Assignment: organization-defined security safeguards] to control access to areas within the facility officially designated as publicly accessible;
 
 .. _PE-3d.:
-      
+
 PE-3d.
 """"""
 
     Escorts visitors and monitors visitor activity [Assignment: organization-defined circumstances requiring visitor escorts and monitoring];
 
 .. _PE-3e.:
-      
+
 PE-3e.
 """"""
 
     Secures keys, combinations, and other physical access devices;
 
 .. _PE-3f.:
-      
+
 PE-3f.
 """"""
 
     Inventories [Assignment: organization-defined physical access devices] every [Assignment: organization-defined frequency]; and
 
 .. _PE-3g.:
-      
+
 PE-3g.
 """"""
 
     Changes combinations and keys [Assignment: organization-defined frequency] and/or when keys are lost, combinations are compromised, or individuals are transferred or terminated.
 
 .. _PE-3 (1):
-      
+
 PE-3 (1) : INFORMATION SYSTEM ACCESS
 """"""""""""""""""""""""""""""""""""
 
@@ -9517,7 +9517,7 @@ PE-3 (1) : INFORMATION SYSTEM ACCESS
 **Related Controls:** `PS-2`_
 
 .. _PE-3 (2):
-      
+
 PE-3 (2) : FACILITY / INFORMATION SYSTEM BOUNDARIES
 """""""""""""""""""""""""""""""""""""""""""""""""""
 
@@ -9530,7 +9530,7 @@ PE-3 (2) : FACILITY / INFORMATION SYSTEM BOUNDARIES
 **Related Controls:** `AC-4`_, `SC-7`_
 
 .. _PE-3 (3):
-      
+
 PE-3 (3) : CONTINUOUS GUARDS / ALARMS / MONITORING
 """"""""""""""""""""""""""""""""""""""""""""""""""
 
@@ -9539,14 +9539,14 @@ PE-3 (3) : CONTINUOUS GUARDS / ALARMS / MONITORING
 **Related Controls:** `CP-6`_, `CP-7`_
 
 .. _PE-3 (4):
-      
+
 PE-3 (4) : LOCKABLE CASINGS
 """""""""""""""""""""""""""
 
     The organization uses lockable physical casings to protect [Assignment: organization-defined information system components] from unauthorized physical access.
 
 .. _PE-3 (5):
-      
+
 PE-3 (5) : TAMPER PROTECTION
 """"""""""""""""""""""""""""
 
@@ -9559,7 +9559,7 @@ PE-3 (5) : TAMPER PROTECTION
 **Related Controls:** `SA-12`_
 
 .. _PE-3 (6):
-      
+
 PE-3 (6) : FACILITY PENETRATION TESTING
 """""""""""""""""""""""""""""""""""""""
 
@@ -9571,7 +9571,7 @@ Control Family:  PHYSICAL AND ENVIRONMENTAL PROTECTION
 ------------------------------------------------------
 
 .. _PE-4:
-      
+
 PE-4 : ACCESS CONTROL FOR TRANSMISSION MEDIUM
 """""""""""""""""""""""""""""""""""""""""""""
 
@@ -9592,7 +9592,7 @@ Control Family:  PHYSICAL AND ENVIRONMENTAL PROTECTION
 ------------------------------------------------------
 
 .. _PE-5:
-      
+
 PE-5 : ACCESS CONTROL FOR OUTPUT DEVICES
 """"""""""""""""""""""""""""""""""""""""
 
@@ -9610,7 +9610,7 @@ PE-5 : ACCESS CONTROL FOR OUTPUT DEVICES
 
 
 .. _PE-5 (1):
-      
+
 PE-5 (1) : ACCESS TO OUTPUT BY AUTHORIZED INDIVIDUALS
 """""""""""""""""""""""""""""""""""""""""""""""""""""
 
@@ -9621,21 +9621,21 @@ PE-5 (1) : ACCESS TO OUTPUT BY AUTHORIZED INDIVIDUALS
    Controlling physical access to selected output devices includes, for example, placing printers, copiers, and facsimile machines in controlled areas with keypad access controls or limiting access to individuals with certain types of badges.
 
 .. _PE-5 (1)(a):
-      
+
 PE-5 (1)(a)
 """""""""""
 
     Controls physical access to output from [Assignment: organization-defined output devices]; and
 
 .. _PE-5 (1)(b):
-      
+
 PE-5 (1)(b)
 """""""""""
 
     Ensures that only authorized individuals receive output from the device.
 
 .. _PE-5 (2):
-      
+
 PE-5 (2) : ACCESS TO OUTPUT BY INDIVIDUAL IDENTITY
 """"""""""""""""""""""""""""""""""""""""""""""""""
 
@@ -9646,21 +9646,21 @@ PE-5 (2) : ACCESS TO OUTPUT BY INDIVIDUAL IDENTITY
    Controlling physical access to selected output devices includes, for example, installing security functionality on printers, copiers, and facsimile machines that allows organizations to implement authentication (e.g., using a PIN or hardware token) on output devices prior to the release of output to individuals.
 
 .. _PE-5 (2)(a):
-      
+
 PE-5 (2)(a)
 """""""""""
 
     Controls physical access to output from [Assignment: organization-defined output devices]; and
 
 .. _PE-5 (2)(b):
-      
+
 PE-5 (2)(b)
 """""""""""
 
     Links individual identity to receipt of the output from the device.
 
 .. _PE-5 (3):
-      
+
 PE-5 (3) : MARKING OUTPUT DEVICES
 """""""""""""""""""""""""""""""""
 
@@ -9674,7 +9674,7 @@ Control Family:  PHYSICAL AND ENVIRONMENTAL PROTECTION
 ------------------------------------------------------
 
 .. _PE-6:
-      
+
 PE-6 : MONITORING PHYSICAL ACCESS
 """""""""""""""""""""""""""""""""
 
@@ -9692,28 +9692,28 @@ PE-6 : MONITORING PHYSICAL ACCESS
 
 
 .. _PE-6a.:
-      
+
 PE-6a.
 """"""
 
     Monitors physical access to the facility where the information system resides to detect and respond to physical security incidents;
 
 .. _PE-6b.:
-      
+
 PE-6b.
 """"""
 
     Reviews physical access logs [Assignment: organization-defined frequency] and upon occurrence of [Assignment: organization-defined events or potential indications of events]; and
 
 .. _PE-6c.:
-      
+
 PE-6c.
 """"""
 
     Coordinates results of reviews and investigations with the organizational incident response capability.
 
 .. _PE-6 (1):
-      
+
 PE-6 (1) : INTRUSION ALARMS / SURVEILLANCE EQUIPMENT
 """"""""""""""""""""""""""""""""""""""""""""""""""""
 
@@ -9722,7 +9722,7 @@ PE-6 (1) : INTRUSION ALARMS / SURVEILLANCE EQUIPMENT
     The organization monitors physical intrusion alarms and surveillance equipment.
 
 .. _PE-6 (2):
-      
+
 PE-6 (2) : AUTOMATED INTRUSION RECOGNITION / RESPONSES
 """"""""""""""""""""""""""""""""""""""""""""""""""""""
 
@@ -9731,7 +9731,7 @@ PE-6 (2) : AUTOMATED INTRUSION RECOGNITION / RESPONSES
 **Related Controls:** `SI-4`_
 
 .. _PE-6 (3):
-      
+
 PE-6 (3) : VIDEO SURVEILLANCE
 """""""""""""""""""""""""""""
 
@@ -9742,7 +9742,7 @@ PE-6 (3) : VIDEO SURVEILLANCE
    This control enhancement focuses on recording surveillance video for purposes of subsequent review, if circumstances so warrant (e.g., a break-in detected by other means). It does not require monitoring surveillance video although organizations may choose to do so. Note that there may be legal considerations when performing and retaining video surveillance, especially if such surveillance is in a public location.
 
 .. _PE-6 (4):
-      
+
 PE-6 (4) : MONITORING PHYSICAL ACCESS TO INFORMATION SYSTEMS
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
@@ -9760,7 +9760,7 @@ Control Family:  PHYSICAL AND ENVIRONMENTAL PROTECTION
 ------------------------------------------------------
 
 .. _PE-7:
-      
+
 PE-7 : VISITOR CONTROL
 """"""""""""""""""""""
 
@@ -9771,7 +9771,7 @@ Control Family:  PHYSICAL AND ENVIRONMENTAL PROTECTION
 ------------------------------------------------------
 
 .. _PE-8:
-      
+
 PE-8 : VISITOR ACCESS RECORDS
 """""""""""""""""""""""""""""
 
@@ -9787,21 +9787,21 @@ PE-8 : VISITOR ACCESS RECORDS
 
 
 .. _PE-8a.:
-      
+
 PE-8a.
 """"""
 
     Maintains visitor access records to the facility where the information system resides for [Assignment: organization-defined time period]; and
 
 .. _PE-8b.:
-      
+
 PE-8b.
 """"""
 
     Reviews visitor access records [Assignment: organization-defined frequency].
 
 .. _PE-8 (1):
-      
+
 PE-8 (1) : AUTOMATED RECORDS MAINTENANCE / REVIEW
 """""""""""""""""""""""""""""""""""""""""""""""""
 
@@ -9810,7 +9810,7 @@ PE-8 (1) : AUTOMATED RECORDS MAINTENANCE / REVIEW
     The organization employs automated mechanisms to facilitate the maintenance and review of visitor access records.
 
 .. _PE-8 (2):
-      
+
 PE-8 (2) : PHYSICAL ACCESS RECORDS
 """"""""""""""""""""""""""""""""""
 
@@ -9820,7 +9820,7 @@ Control Family:  PHYSICAL AND ENVIRONMENTAL PROTECTION
 ------------------------------------------------------
 
 .. _PE-9:
-      
+
 PE-9 : POWER EQUIPMENT AND CABLING
 """"""""""""""""""""""""""""""""""
 
@@ -9838,7 +9838,7 @@ PE-9 : POWER EQUIPMENT AND CABLING
 
 
 .. _PE-9 (1):
-      
+
 PE-9 (1) : REDUNDANT CABLING
 """"""""""""""""""""""""""""
 
@@ -9849,7 +9849,7 @@ PE-9 (1) : REDUNDANT CABLING
    Physically separate, redundant power cables help to ensure that power continues to flow in the event one of the cables is cut or otherwise damaged.
 
 .. _PE-9 (2):
-      
+
 PE-9 (2) : AUTOMATIC VOLTAGE CONTROLS
 """""""""""""""""""""""""""""""""""""
 
@@ -9859,7 +9859,7 @@ Control Family:  PHYSICAL AND ENVIRONMENTAL PROTECTION
 ------------------------------------------------------
 
 .. _PE-10:
-      
+
 PE-10 : EMERGENCY SHUTOFF
 """""""""""""""""""""""""
 
@@ -9877,28 +9877,28 @@ PE-10 : EMERGENCY SHUTOFF
 
 
 .. _PE-10a.:
-      
+
 PE-10a.
 """""""
 
     Provides the capability of shutting off power to the information system or individual system components in emergency situations;
 
 .. _PE-10b.:
-      
+
 PE-10b.
 """""""
 
     Places emergency shutoff switches or devices in [Assignment: organization-defined location by information system or system component] to facilitate safe and easy access for personnel; and
 
 .. _PE-10c.:
-      
+
 PE-10c.
 """""""
 
     Protects emergency power shutoff capability from unauthorized activation.
 
 .. _PE-10 (1):
-      
+
 PE-10 (1) : ACCIDENTAL / UNAUTHORIZED ACTIVATION
 """"""""""""""""""""""""""""""""""""""""""""""""
 
@@ -9908,7 +9908,7 @@ Control Family:  PHYSICAL AND ENVIRONMENTAL PROTECTION
 ------------------------------------------------------
 
 .. _PE-11:
-      
+
 PE-11 : EMERGENCY POWER
 """""""""""""""""""""""
 
@@ -9922,7 +9922,7 @@ PE-11 : EMERGENCY POWER
 
 
 .. _PE-11 (1):
-      
+
 PE-11 (1) : LONG-TERM ALTERNATE POWER SUPPLY - MINIMAL OPERATIONAL CAPABILITY
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
@@ -9935,7 +9935,7 @@ PE-11 (1) : LONG-TERM ALTERNATE POWER SUPPLY - MINIMAL OPERATIONAL CAPABILITY
    This control enhancement can be satisfied, for example, by the use of a secondary commercial power supply or other external power supply. Long-term alternate power supplies for the information system can be either manually or automatically activated.
 
 .. _PE-11 (2):
-      
+
 PE-11 (2) : LONG-TERM ALTERNATE POWER SUPPLY - SELF-CONTAINED
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
@@ -9946,21 +9946,21 @@ PE-11 (2) : LONG-TERM ALTERNATE POWER SUPPLY - SELF-CONTAINED
    This control enhancement can be satisfied, for example, by the use of one or more generators with sufficient capacity to meet the needs of the organization. Long-term alternate power supplies for organizational information systems are either manually or automatically activated.
 
 .. _PE-11 (2)(a):
-      
+
 PE-11 (2)(a)
 """"""""""""
 
     Self-contained;
 
 .. _PE-11 (2)(b):
-      
+
 PE-11 (2)(b)
 """"""""""""
 
     Not reliant on external power generation; and
 
 .. _PE-11 (2)(c):
-      
+
 PE-11 (2)(c)
 """"""""""""
 
@@ -9970,7 +9970,7 @@ Control Family:  PHYSICAL AND ENVIRONMENTAL PROTECTION
 ------------------------------------------------------
 
 .. _PE-12:
-      
+
 PE-12 : EMERGENCY LIGHTING
 """"""""""""""""""""""""""
 
@@ -9988,7 +9988,7 @@ PE-12 : EMERGENCY LIGHTING
 
 
 .. _PE-12 (1):
-      
+
 PE-12 (1) : ESSENTIAL MISSIONS / BUSINESS FUNCTIONS
 """""""""""""""""""""""""""""""""""""""""""""""""""
 
@@ -9998,7 +9998,7 @@ Control Family:  PHYSICAL AND ENVIRONMENTAL PROTECTION
 ------------------------------------------------------
 
 .. _PE-13:
-      
+
 PE-13 : FIRE PROTECTION
 """""""""""""""""""""""
 
@@ -10014,7 +10014,7 @@ PE-13 : FIRE PROTECTION
 
 
 .. _PE-13 (1):
-      
+
 PE-13 (1) : DETECTION DEVICES / SYSTEMS
 """""""""""""""""""""""""""""""""""""""
 
@@ -10027,7 +10027,7 @@ PE-13 (1) : DETECTION DEVICES / SYSTEMS
    Organizations can identify specific personnel, roles, and emergency responders in the event that individuals on the notification list must have appropriate access authorizations and/or clearances, for example, to obtain access to facilities where classified operations are taking place or where there are information systems containing classified information.
 
 .. _PE-13 (2):
-      
+
 PE-13 (2) : SUPPRESSION DEVICES / SYSTEMS
 """""""""""""""""""""""""""""""""""""""""
 
@@ -10040,7 +10040,7 @@ PE-13 (2) : SUPPRESSION DEVICES / SYSTEMS
    Organizations can identify specific personnel, roles, and emergency responders in the event that individuals on the notification list must have appropriate access authorizations and/or clearances, for example, to obtain access to facilities where classified operations are taking place or where there are information systems containing classified information.
 
 .. _PE-13 (3):
-      
+
 PE-13 (3) : AUTOMATIC FIRE SUPPRESSION
 """"""""""""""""""""""""""""""""""""""
 
@@ -10049,7 +10049,7 @@ PE-13 (3) : AUTOMATIC FIRE SUPPRESSION
     The organization employs an automatic fire suppression capability for the information system when the facility is not staffed on a continuous basis.
 
 .. _PE-13 (4):
-      
+
 PE-13 (4) : INSPECTIONS
 """""""""""""""""""""""
 
@@ -10059,7 +10059,7 @@ Control Family:  PHYSICAL AND ENVIRONMENTAL PROTECTION
 ------------------------------------------------------
 
 .. _PE-14:
-      
+
 PE-14 : TEMPERATURE AND HUMIDITY CONTROLS
 """""""""""""""""""""""""""""""""""""""""
 
@@ -10077,28 +10077,28 @@ PE-14 : TEMPERATURE AND HUMIDITY CONTROLS
 
 
 .. _PE-14a.:
-      
+
 PE-14a.
 """""""
 
     Maintains temperature and humidity levels within the facility where the information system resides at [Assignment: organization-defined acceptable levels]; and
 
 .. _PE-14b.:
-      
+
 PE-14b.
 """""""
 
     Monitors temperature and humidity levels [Assignment: organization-defined frequency].
 
 .. _PE-14 (1):
-      
+
 PE-14 (1) : AUTOMATIC CONTROLS
 """"""""""""""""""""""""""""""
 
     The organization employs automatic temperature and humidity controls in the facility to prevent fluctuations potentially harmful to the information system.
 
 .. _PE-14 (2):
-      
+
 PE-14 (2) : MONITORING WITH ALARMS / NOTIFICATIONS
 """"""""""""""""""""""""""""""""""""""""""""""""""
 
@@ -10108,7 +10108,7 @@ Control Family:  PHYSICAL AND ENVIRONMENTAL PROTECTION
 ------------------------------------------------------
 
 .. _PE-15:
-      
+
 PE-15 : WATER DAMAGE PROTECTION
 """""""""""""""""""""""""""""""
 
@@ -10126,7 +10126,7 @@ PE-15 : WATER DAMAGE PROTECTION
 
 
 .. _PE-15 (1):
-      
+
 PE-15 (1) : AUTOMATION SUPPORT
 """"""""""""""""""""""""""""""
 
@@ -10142,7 +10142,7 @@ Control Family:  PHYSICAL AND ENVIRONMENTAL PROTECTION
 ------------------------------------------------------
 
 .. _PE-16:
-      
+
 PE-16 : DELIVERY AND REMOVAL
 """"""""""""""""""""""""""""
 
@@ -10163,7 +10163,7 @@ Control Family:  PHYSICAL AND ENVIRONMENTAL PROTECTION
 ------------------------------------------------------
 
 .. _PE-17:
-      
+
 PE-17 : ALTERNATE WORK SITE
 """""""""""""""""""""""""""
 
@@ -10181,21 +10181,21 @@ PE-17 : ALTERNATE WORK SITE
 
 
 .. _PE-17a.:
-      
+
 PE-17a.
 """""""
 
     Employs [Assignment: organization-defined security controls] at alternate work sites;
 
 .. _PE-17b.:
-      
+
 PE-17b.
 """""""
 
     Assesses as feasible, the effectiveness of security controls at alternate work sites; and
 
 .. _PE-17c.:
-      
+
 PE-17c.
 """""""
 
@@ -10205,7 +10205,7 @@ Control Family:  PHYSICAL AND ENVIRONMENTAL PROTECTION
 ------------------------------------------------------
 
 .. _PE-18:
-      
+
 PE-18 : LOCATION OF INFORMATION SYSTEM COMPONENTS
 """""""""""""""""""""""""""""""""""""""""""""""""
 
@@ -10223,7 +10223,7 @@ PE-18 : LOCATION OF INFORMATION SYSTEM COMPONENTS
 
 
 .. _PE-18 (1):
-      
+
 PE-18 (1) : FACILITY SITE
 """""""""""""""""""""""""
 
@@ -10235,7 +10235,7 @@ Control Family:  PHYSICAL AND ENVIRONMENTAL PROTECTION
 ------------------------------------------------------
 
 .. _PE-19:
-      
+
 PE-19 : INFORMATION LEAKAGE
 """""""""""""""""""""""""""
 
@@ -10249,7 +10249,7 @@ PE-19 : INFORMATION LEAKAGE
 
 
 .. _PE-19 (1):
-      
+
 PE-19 (1) : NATIONAL EMISSIONS / TEMPEST POLICIES AND PROCEDURES
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
@@ -10259,7 +10259,7 @@ Control Family:  PHYSICAL AND ENVIRONMENTAL PROTECTION
 ------------------------------------------------------
 
 .. _PE-20:
-      
+
 PE-20 : ASSET MONITORING AND TRACKING
 """""""""""""""""""""""""""""""""""""
 
@@ -10275,14 +10275,14 @@ PE-20 : ASSET MONITORING AND TRACKING
 
 
 .. _PE-20a.:
-      
+
 PE-20a.
 """""""
 
     Employs [Assignment: organization-defined asset location technologies] to track and monitor the location and movement of [Assignment: organization-defined assets] within [Assignment: organization-defined controlled areas]; and
 
 .. _PE-20b.:
-      
+
 PE-20b.
 """""""
 
@@ -10292,7 +10292,7 @@ Control Family:  PLANNING
 -------------------------
 
 .. _PL-1:
-      
+
 PL-1 : SECURITY PLANNING POLICY AND PROCEDURES
 """"""""""""""""""""""""""""""""""""""""""""""
 
@@ -10310,42 +10310,42 @@ PL-1 : SECURITY PLANNING POLICY AND PROCEDURES
 
 
 .. _PL-1a.:
-      
+
 PL-1a.
 """"""
 
     Develops, documents, and disseminates to [Assignment: organization-defined personnel or roles]:
 
 .. _PL-1a.1.:
-      
+
 PL-1a.1.
 """"""""
 
     A security planning policy that addresses purpose, scope, roles, responsibilities, management commitment, coordination among organizational entities, and compliance; and
 
 .. _PL-1a.2.:
-      
+
 PL-1a.2.
 """"""""
 
     Procedures to facilitate the implementation of the security planning policy and associated security planning controls; and
 
 .. _PL-1b.:
-      
+
 PL-1b.
 """"""
 
     Reviews and updates the current:
 
 .. _PL-1b.1.:
-      
+
 PL-1b.1.
 """"""""
 
     Security planning policy [Assignment: organization-defined frequency]; and
 
 .. _PL-1b.2.:
-      
+
 PL-1b.2.
 """"""""
 
@@ -10355,7 +10355,7 @@ Control Family:  PLANNING
 -------------------------
 
 .. _PL-2:
-      
+
 PL-2 : SYSTEM SECURITY PLAN
 """""""""""""""""""""""""""
 
@@ -10374,119 +10374,119 @@ PL-2 : SYSTEM SECURITY PLAN
 
 
 .. _PL-2a.:
-      
+
 PL-2a.
 """"""
 
     Develops a security plan for the information system that:
 
 .. _PL-2a.1.:
-      
+
 PL-2a.1.
 """"""""
 
     Is consistent with the organization�s enterprise architecture;
 
 .. _PL-2a.2.:
-      
+
 PL-2a.2.
 """"""""
 
     Explicitly defines the authorization boundary for the system;
 
 .. _PL-2a.3.:
-      
+
 PL-2a.3.
 """"""""
 
     Describes the operational context of the information system in terms of missions and business processes;
 
 .. _PL-2a.4.:
-      
+
 PL-2a.4.
 """"""""
 
     Provides the security categorization of the information system including supporting rationale;
 
 .. _PL-2a.5.:
-      
+
 PL-2a.5.
 """"""""
 
     Describes the operational environment for the information system and relationships with or connections to other information systems;
 
 .. _PL-2a.6.:
-      
+
 PL-2a.6.
 """"""""
 
     Provides an overview of the security requirements for the system;
 
 .. _PL-2a.7.:
-      
+
 PL-2a.7.
 """"""""
 
     Identifies any relevant overlays, if applicable;
 
 .. _PL-2a.8.:
-      
+
 PL-2a.8.
 """"""""
 
     Describes the security controls in place or planned for meeting those requirements including a rationale for the tailoring decisions; and
 
 .. _PL-2a.9.:
-      
+
 PL-2a.9.
 """"""""
 
     Is reviewed and approved by the authorizing official or designated representative prior to plan implementation;
 
 .. _PL-2b.:
-      
+
 PL-2b.
 """"""
 
     Distributes copies of the security plan and communicates subsequent changes to the plan to [Assignment: organization-defined personnel or roles];
 
 .. _PL-2c.:
-      
+
 PL-2c.
 """"""
 
     Reviews the security plan for the information system [Assignment: organization-defined frequency];
 
 .. _PL-2d.:
-      
+
 PL-2d.
 """"""
 
     Updates the plan to address changes to the information system/environment of operation or problems identified during plan implementation or security control assessments; and
 
 .. _PL-2e.:
-      
+
 PL-2e.
 """"""
 
     Protects the security plan from unauthorized disclosure and modification.
 
 .. _PL-2 (1):
-      
+
 PL-2 (1) : CONCEPT OF OPERATIONS
 """"""""""""""""""""""""""""""""
 
     [Withdrawn: Incorporated into PL-7].
 
 .. _PL-2 (2):
-      
+
 PL-2 (2) : FUNCTIONAL ARCHITECTURE
 """"""""""""""""""""""""""""""""""
 
     [Withdrawn: Incorporated into PL-8].
 
 .. _PL-2 (3):
-      
+
 PL-2 (3) : PLAN / COORDINATE WITH OTHER ORGANIZATIONAL ENTITIES
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
@@ -10504,7 +10504,7 @@ Control Family:  PLANNING
 -------------------------
 
 .. _PL-3:
-      
+
 PL-3 : SYSTEM SECURITY PLAN UPDATE
 """"""""""""""""""""""""""""""""""
 
@@ -10515,7 +10515,7 @@ Control Family:  PLANNING
 -------------------------
 
 .. _PL-4:
-      
+
 PL-4 : RULES OF BEHAVIOR
 """"""""""""""""""""""""
 
@@ -10533,35 +10533,35 @@ PL-4 : RULES OF BEHAVIOR
 
 
 .. _PL-4a.:
-      
+
 PL-4a.
 """"""
 
     Establishes and makes readily available to individuals requiring access to the information system, the rules that describe their responsibilities and expected behavior with regard to information and information system usage;
 
 .. _PL-4b.:
-      
+
 PL-4b.
 """"""
 
     Receives a signed acknowledgment from such individuals, indicating that they have read, understand, and agree to abide by the rules of behavior, before authorizing access to information and the information system;
 
 .. _PL-4c.:
-      
+
 PL-4c.
 """"""
 
     Reviews and updates the rules of behavior [Assignment: organization-defined frequency]; and
 
 .. _PL-4d.:
-      
+
 PL-4d.
 """"""
 
     Requires individuals who have signed a previous version of the rules of behavior to read and re-sign when the rules of behavior are revised/updated.
 
 .. _PL-4 (1):
-      
+
 PL-4 (1) : SOCIAL MEDIA AND NETWORKING RESTRICTIONS
 """""""""""""""""""""""""""""""""""""""""""""""""""
 
@@ -10577,7 +10577,7 @@ Control Family:  PLANNING
 -------------------------
 
 .. _PL-5:
-      
+
 PL-5 : PRIVACY IMPACT ASSESSMENT
 """"""""""""""""""""""""""""""""
 
@@ -10588,7 +10588,7 @@ Control Family:  PLANNING
 -------------------------
 
 .. _PL-6:
-      
+
 PL-6 : SECURITY-RELATED ACTIVITY PLANNING
 """""""""""""""""""""""""""""""""""""""""
 
@@ -10599,7 +10599,7 @@ Control Family:  PLANNING
 -------------------------
 
 .. _PL-7:
-      
+
 PL-7 : SECURITY CONCEPT OF OPERATIONS
 """""""""""""""""""""""""""""""""""""
 
@@ -10615,14 +10615,14 @@ PL-7 : SECURITY CONCEPT OF OPERATIONS
 
 
 .. _PL-7a.:
-      
+
 PL-7a.
 """"""
 
     Develops a security Concept of Operations (CONOPS) for the information system containing at a minimum, how the organization intends to operate the system from the perspective of information security; and
 
 .. _PL-7b.:
-      
+
 PL-7b.
 """"""
 
@@ -10632,7 +10632,7 @@ Control Family:  PLANNING
 -------------------------
 
 .. _PL-8:
-      
+
 PL-8 : INFORMATION SECURITY ARCHITECTURE
 """"""""""""""""""""""""""""""""""""""""
 
@@ -10651,49 +10651,49 @@ PL-8 : INFORMATION SECURITY ARCHITECTURE
 
 
 .. _PL-8a.:
-      
+
 PL-8a.
 """"""
 
     Develops an information security architecture for the information system that:
 
 .. _PL-8a.1.:
-      
+
 PL-8a.1.
 """"""""
 
     Describes the overall philosophy, requirements, and approach to be taken with regard to protecting the confidentiality, integrity, and availability of organizational information;
 
 .. _PL-8a.2.:
-      
+
 PL-8a.2.
 """"""""
 
     Describes how the information security architecture is integrated into and supports the enterprise architecture; and
 
 .. _PL-8a.3.:
-      
+
 PL-8a.3.
 """"""""
 
     Describes any information security assumptions about, and dependencies on, external services;
 
 .. _PL-8b.:
-      
+
 PL-8b.
 """"""
 
     Reviews and updates the information security architecture [Assignment: organization-defined frequency] to reflect updates in the enterprise architecture; and
 
 .. _PL-8c.:
-      
+
 PL-8c.
 """"""
 
     Ensures that planned information security architecture changes are reflected in the security plan, the security Concept of Operations (CONOPS), and organizational procurements/acquisitions.
 
 .. _PL-8 (1):
-      
+
 PL-8 (1) : DEFENSE-IN-DEPTH
 """""""""""""""""""""""""""
 
@@ -10706,21 +10706,21 @@ PL-8 (1) : DEFENSE-IN-DEPTH
 **Related Controls:** `SC-29`_, `SC-36`_
 
 .. _PL-8 (1)(a):
-      
+
 PL-8 (1)(a)
 """""""""""
 
     Allocates [Assignment: organization-defined security safeguards] to [Assignment: organization-defined locations and architectural layers]; and
 
 .. _PL-8 (1)(b):
-      
+
 PL-8 (1)(b)
 """""""""""
 
     Ensures that the allocated security safeguards operate in a coordinated and mutually reinforcing manner.
 
 .. _PL-8 (2):
-      
+
 PL-8 (2) : SUPPLIER DIVERSITY
 """""""""""""""""""""""""""""
 
@@ -10736,7 +10736,7 @@ Control Family:  PLANNING
 -------------------------
 
 .. _PL-9:
-      
+
 PL-9 : CENTRAL MANAGEMENT
 """""""""""""""""""""""""
 
@@ -10753,7 +10753,7 @@ Control Family:  PERSONNEL SECURITY
 -----------------------------------
 
 .. _PS-1:
-      
+
 PS-1 : PERSONNEL SECURITY POLICY AND PROCEDURES
 """""""""""""""""""""""""""""""""""""""""""""""
 
@@ -10771,42 +10771,42 @@ PS-1 : PERSONNEL SECURITY POLICY AND PROCEDURES
 
 
 .. _PS-1a.:
-      
+
 PS-1a.
 """"""
 
     Develops, documents, and disseminates to [Assignment: organization-defined personnel or roles]:
 
 .. _PS-1a.1.:
-      
+
 PS-1a.1.
 """"""""
 
     A personnel security policy that addresses purpose, scope, roles, responsibilities, management commitment, coordination among organizational entities, and compliance; and
 
 .. _PS-1a.2.:
-      
+
 PS-1a.2.
 """"""""
 
     Procedures to facilitate the implementation of the personnel security policy and associated personnel security controls; and
 
 .. _PS-1b.:
-      
+
 PS-1b.
 """"""
 
     Reviews and updates the current:
 
 .. _PS-1b.1.:
-      
+
 PS-1b.1.
 """"""""
 
     Personnel security policy [Assignment: organization-defined frequency]; and
 
 .. _PS-1b.2.:
-      
+
 PS-1b.2.
 """"""""
 
@@ -10816,7 +10816,7 @@ Control Family:  PERSONNEL SECURITY
 -----------------------------------
 
 .. _PS-2:
-      
+
 PS-2 : POSITION RISK DESIGNATION
 """"""""""""""""""""""""""""""""
 
@@ -10834,21 +10834,21 @@ PS-2 : POSITION RISK DESIGNATION
 
 
 .. _PS-2a.:
-      
+
 PS-2a.
 """"""
 
     Assigns a risk designation to all organizational positions;
 
 .. _PS-2b.:
-      
+
 PS-2b.
 """"""
 
     Establishes screening criteria for individuals filling those positions; and
 
 .. _PS-2c.:
-      
+
 PS-2c.
 """"""
 
@@ -10858,7 +10858,7 @@ Control Family:  PERSONNEL SECURITY
 -----------------------------------
 
 .. _PS-3:
-      
+
 PS-3 : PERSONNEL SCREENING
 """"""""""""""""""""""""""
 
@@ -10876,21 +10876,21 @@ PS-3 : PERSONNEL SCREENING
 
 
 .. _PS-3a.:
-      
+
 PS-3a.
 """"""
 
     Screens individuals prior to authorizing access to the information system; and
 
 .. _PS-3b.:
-      
+
 PS-3b.
 """"""
 
     Rescreens individuals according to [Assignment: organization-defined conditions requiring rescreening and, where rescreening is so indicated, the frequency of such rescreening].
 
 .. _PS-3 (1):
-      
+
 PS-3 (1) : CLASSIFIED INFORMATION
 """""""""""""""""""""""""""""""""
 
@@ -10899,7 +10899,7 @@ PS-3 (1) : CLASSIFIED INFORMATION
 **Related Controls:** `AC-3`_, `AC-4`_
 
 .. _PS-3 (2):
-      
+
 PS-3 (2) : FORMAL INDOCTRINATION
 """"""""""""""""""""""""""""""""
 
@@ -10912,7 +10912,7 @@ PS-3 (2) : FORMAL INDOCTRINATION
 **Related Controls:** `AC-3`_, `AC-4`_
 
 .. _PS-3 (3):
-      
+
 PS-3 (3) : INFORMATION WITH SPECIAL PROTECTION MEASURES
 """""""""""""""""""""""""""""""""""""""""""""""""""""""
 
@@ -10923,14 +10923,14 @@ PS-3 (3) : INFORMATION WITH SPECIAL PROTECTION MEASURES
    Organizational information requiring special protection includes, for example, Controlled Unclassified Information (CUI) and Sources and Methods Information (SAMI).  Personnel security criteria include, for example, position sensitivity background screening requirements.
 
 .. _PS-3 (3)(a):
-      
+
 PS-3 (3)(a)
 """""""""""
 
     Have valid access authorizations that are demonstrated by assigned official government duties; and
 
 .. _PS-3 (3)(b):
-      
+
 PS-3 (3)(b)
 """""""""""
 
@@ -10940,7 +10940,7 @@ Control Family:  PERSONNEL SECURITY
 -----------------------------------
 
 .. _PS-4:
-      
+
 PS-4 : PERSONNEL TERMINATION
 """"""""""""""""""""""""""""
 
@@ -10958,49 +10958,49 @@ PS-4 : PERSONNEL TERMINATION
 
 
 .. _PS-4a.:
-      
+
 PS-4a.
 """"""
 
     Disables information system access within [Assignment: organization-defined time period];
 
 .. _PS-4b.:
-      
+
 PS-4b.
 """"""
 
     Terminates/revokes any authenticators/credentials associated with the individual;
 
 .. _PS-4c.:
-      
+
 PS-4c.
 """"""
 
     Conducts exit interviews that include a discussion of [Assignment: organization-defined information security topics];
 
 .. _PS-4d.:
-      
+
 PS-4d.
 """"""
 
     Retrieves all security-related organizational information system-related property;
 
 .. _PS-4e.:
-      
+
 PS-4e.
 """"""
 
     Retains access to organizational information and information systems formerly controlled by terminated individual; and
 
 .. _PS-4f.:
-      
+
 PS-4f.
 """"""
 
     Notifies [Assignment: organization-defined personnel or roles] within [Assignment: organization-defined time period].
 
 .. _PS-4 (1):
-      
+
 PS-4 (1) : POST-EMPLOYMENT REQUIREMENTS
 """""""""""""""""""""""""""""""""""""""
 
@@ -11011,21 +11011,21 @@ PS-4 (1) : POST-EMPLOYMENT REQUIREMENTS
    Organizations consult with the Office of the General Counsel regarding matters of post-employment requirements on terminated individuals.
 
 .. _PS-4 (1)(a):
-      
+
 PS-4 (1)(a)
 """""""""""
 
     Notifies terminated individuals of applicable, legally binding post-employment requirements for the protection of organizational information; and
 
 .. _PS-4 (1)(b):
-      
+
 PS-4 (1)(b)
 """""""""""
 
     Requires terminated individuals to sign an acknowledgment of post-employment requirements as part of the organizational termination process.
 
 .. _PS-4 (2):
-      
+
 PS-4 (2) : AUTOMATED NOTIFICATION
 """""""""""""""""""""""""""""""""
 
@@ -11041,7 +11041,7 @@ Control Family:  PERSONNEL SECURITY
 -----------------------------------
 
 .. _PS-5:
-      
+
 PS-5 : PERSONNEL TRANSFER
 """""""""""""""""""""""""
 
@@ -11059,28 +11059,28 @@ PS-5 : PERSONNEL TRANSFER
 
 
 .. _PS-5a.:
-      
+
 PS-5a.
 """"""
 
     Reviews and confirms ongoing operational need for current logical and physical access authorizations to information systems/facilities when individuals are reassigned or transferred to other positions within the organization;
 
 .. _PS-5b.:
-      
+
 PS-5b.
 """"""
 
     Initiates [Assignment: organization-defined transfer or reassignment actions] within [Assignment: organization-defined time period following the formal transfer action];
 
 .. _PS-5c.:
-      
+
 PS-5c.
 """"""
 
     Modifies access authorization as needed to correspond with any changes in operational need due to reassignment or transfer; and
 
 .. _PS-5d.:
-      
+
 PS-5d.
 """"""
 
@@ -11090,7 +11090,7 @@ Control Family:  PERSONNEL SECURITY
 -----------------------------------
 
 .. _PS-6:
-      
+
 PS-6 : ACCESS AGREEMENTS
 """"""""""""""""""""""""
 
@@ -11108,49 +11108,49 @@ PS-6 : ACCESS AGREEMENTS
 
 
 .. _PS-6a.:
-      
+
 PS-6a.
 """"""
 
     Develops and documents access agreements for organizational information systems;
 
 .. _PS-6b.:
-      
+
 PS-6b.
 """"""
 
     Reviews and updates the access agreements [Assignment: organization-defined frequency]; and
 
 .. _PS-6c.:
-      
+
 PS-6c.
 """"""
 
     Ensures that individuals requiring access to organizational information and information systems:
 
 .. _PS-6c.1.:
-      
+
 PS-6c.1.
 """"""""
 
     Sign appropriate access agreements prior to being granted access; and
 
 .. _PS-6c.2.:
-      
+
 PS-6c.2.
 """"""""
 
     Re-sign access agreements to maintain access to organizational information systems when access agreements have been updated or [Assignment: organization-defined frequency].
 
 .. _PS-6 (1):
-      
+
 PS-6 (1) : INFORMATION REQUIRING SPECIAL PROTECTION
 """""""""""""""""""""""""""""""""""""""""""""""""""
 
     [Withdrawn: Incorporated into PS-3].
 
 .. _PS-6 (2):
-      
+
 PS-6 (2) : CLASSIFIED INFORMATION REQUIRING SPECIAL PROTECTION
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
@@ -11161,28 +11161,28 @@ PS-6 (2) : CLASSIFIED INFORMATION REQUIRING SPECIAL PROTECTION
    Classified information requiring special protection includes, for example, collateral information, Special Access Program (SAP) information, and Sensitive Compartmented Information (SCI). Personnel security criteria reflect applicable federal laws, Executive Orders, directives, regulations, policies, standards, and guidance.
 
 .. _PS-6 (2)(a):
-      
+
 PS-6 (2)(a)
 """""""""""
 
     Have a valid access authorization that is demonstrated by assigned official government duties;
 
 .. _PS-6 (2)(b):
-      
+
 PS-6 (2)(b)
 """""""""""
 
     Satisfy associated personnel security criteria; and
 
 .. _PS-6 (2)(c):
-      
+
 PS-6 (2)(c)
 """""""""""
 
     Have read, understood, and signed a nondisclosure agreement.
 
 .. _PS-6 (3):
-      
+
 PS-6 (3) : POST-EMPLOYMENT REQUIREMENTS
 """""""""""""""""""""""""""""""""""""""
 
@@ -11193,14 +11193,14 @@ PS-6 (3) : POST-EMPLOYMENT REQUIREMENTS
    Organizations consult with the Office of the General Counsel regarding matters of post-employment requirements on terminated individuals.
 
 .. _PS-6 (3)(a):
-      
+
 PS-6 (3)(a)
 """""""""""
 
     Notifies individuals of applicable, legally binding post-employment requirements for protection of organizational information; and
 
 .. _PS-6 (3)(b):
-      
+
 PS-6 (3)(b)
 """""""""""
 
@@ -11210,7 +11210,7 @@ Control Family:  PERSONNEL SECURITY
 -----------------------------------
 
 .. _PS-7:
-      
+
 PS-7 : THIRD-PARTY PERSONNEL SECURITY
 """""""""""""""""""""""""""""""""""""
 
@@ -11228,35 +11228,35 @@ PS-7 : THIRD-PARTY PERSONNEL SECURITY
 
 
 .. _PS-7a.:
-      
+
 PS-7a.
 """"""
 
     Establishes personnel security requirements including security roles and responsibilities for third-party providers;
 
 .. _PS-7b.:
-      
+
 PS-7b.
 """"""
 
     Requires third-party providers to comply with personnel security policies and procedures established by the organization;
 
 .. _PS-7c.:
-      
+
 PS-7c.
 """"""
 
     Documents personnel security requirements;
 
 .. _PS-7d.:
-      
+
 PS-7d.
 """"""
 
     Requires third-party providers to notify [Assignment: organization-defined personnel or roles] of any personnel transfers or terminations of third-party personnel who possess organizational credentials and/or badges, or who have information system privileges within [Assignment: organization-defined time period]; and
 
 .. _PS-7e.:
-      
+
 PS-7e.
 """"""
 
@@ -11266,7 +11266,7 @@ Control Family:  PERSONNEL SECURITY
 -----------------------------------
 
 .. _PS-8:
-      
+
 PS-8 : PERSONNEL SANCTIONS
 """"""""""""""""""""""""""
 
@@ -11284,14 +11284,14 @@ PS-8 : PERSONNEL SANCTIONS
 
 
 .. _PS-8a.:
-      
+
 PS-8a.
 """"""
 
     Employs a formal sanctions process for individuals failing to comply with established information security policies and procedures; and
 
 .. _PS-8b.:
-      
+
 PS-8b.
 """"""
 
@@ -11301,7 +11301,7 @@ Control Family:  RISK ASSESSMENT
 --------------------------------
 
 .. _RA-1:
-      
+
 RA-1 : RISK ASSESSMENT POLICY AND PROCEDURES
 """"""""""""""""""""""""""""""""""""""""""""
 
@@ -11319,42 +11319,42 @@ RA-1 : RISK ASSESSMENT POLICY AND PROCEDURES
 
 
 .. _RA-1a.:
-      
+
 RA-1a.
 """"""
 
     Develops, documents, and disseminates to [Assignment: organization-defined personnel or roles]:
 
 .. _RA-1a.1.:
-      
+
 RA-1a.1.
 """"""""
 
     A risk assessment policy that addresses purpose, scope, roles, responsibilities, management commitment, coordination among organizational entities, and compliance; and
 
 .. _RA-1a.2.:
-      
+
 RA-1a.2.
 """"""""
 
     Procedures to facilitate the implementation of the risk assessment policy and associated risk assessment controls; and
 
 .. _RA-1b.:
-      
+
 RA-1b.
 """"""
 
     Reviews and updates the current:
 
 .. _RA-1b.1.:
-      
+
 RA-1b.1.
 """"""""
 
     Risk assessment policy [Assignment: organization-defined frequency]; and
 
 .. _RA-1b.2.:
-      
+
 RA-1b.2.
 """"""""
 
@@ -11364,7 +11364,7 @@ Control Family:  RISK ASSESSMENT
 --------------------------------
 
 .. _RA-2:
-      
+
 RA-2 : SECURITY CATEGORIZATION
 """"""""""""""""""""""""""""""
 
@@ -11382,21 +11382,21 @@ RA-2 : SECURITY CATEGORIZATION
 
 
 .. _RA-2a.:
-      
+
 RA-2a.
 """"""
 
     Categorizes information and the information system in accordance with applicable federal laws, Executive Orders, directives, policies, regulations, standards, and guidance;
 
 .. _RA-2b.:
-      
+
 RA-2b.
 """"""
 
     Documents the security categorization results (including supporting rationale) in the security plan for the information system; and
 
 .. _RA-2c.:
-      
+
 RA-2c.
 """"""
 
@@ -11406,7 +11406,7 @@ Control Family:  RISK ASSESSMENT
 --------------------------------
 
 .. _RA-3:
-      
+
 RA-3 : RISK ASSESSMENT
 """"""""""""""""""""""
 
@@ -11425,35 +11425,35 @@ RA-3 : RISK ASSESSMENT
 
 
 .. _RA-3a.:
-      
+
 RA-3a.
 """"""
 
     Conducts an assessment of risk, including the likelihood and magnitude of harm, from the unauthorized access, use, disclosure, disruption, modification, or destruction of the information system and the information it processes, stores, or transmits;
 
 .. _RA-3b.:
-      
+
 RA-3b.
 """"""
 
     Documents risk assessment results in [Selection: security plan; risk assessment report; [Assignment: organization-defined document]];
 
 .. _RA-3c.:
-      
+
 RA-3c.
 """"""
 
     Reviews risk assessment results [Assignment: organization-defined frequency];
 
 .. _RA-3d.:
-      
+
 RA-3d.
 """"""
 
     Disseminates risk assessment results to [Assignment: organization-defined personnel or roles]; and
 
 .. _RA-3e.:
-      
+
 RA-3e.
 """"""
 
@@ -11463,7 +11463,7 @@ Control Family:  RISK ASSESSMENT
 --------------------------------
 
 .. _RA-4:
-      
+
 RA-4 : RISK ASSESSMENT UPDATE
 """""""""""""""""""""""""""""
 
@@ -11474,7 +11474,7 @@ Control Family:  RISK ASSESSMENT
 --------------------------------
 
 .. _RA-5:
-      
+
 RA-5 : VULNERABILITY SCANNING
 """""""""""""""""""""""""""""
 
@@ -11492,63 +11492,63 @@ RA-5 : VULNERABILITY SCANNING
 
 
 .. _RA-5a.:
-      
+
 RA-5a.
 """"""
 
     Scans for vulnerabilities in the information system and hosted applications [Assignment: organization-defined frequency and/or randomly in accordance with organization-defined process] and when new vulnerabilities potentially affecting the system/applications are identified and reported;
 
 .. _RA-5b.:
-      
+
 RA-5b.
 """"""
 
     Employs vulnerability scanning tools and techniques that facilitate interoperability among tools and automate parts of the vulnerability management process by using standards for:
 
 .. _RA-5b.1.:
-      
+
 RA-5b.1.
 """"""""
 
     Enumerating platforms, software flaws, and improper configurations;
 
 .. _RA-5b.2.:
-      
+
 RA-5b.2.
 """"""""
 
     Formatting checklists and test procedures; and
 
 .. _RA-5b.3.:
-      
+
 RA-5b.3.
 """"""""
 
     Measuring vulnerability impact;
 
 .. _RA-5c.:
-      
+
 RA-5c.
 """"""
 
     Analyzes vulnerability scan reports and results from security control assessments;
 
 .. _RA-5d.:
-      
+
 RA-5d.
 """"""
 
     Remediates legitimate vulnerabilities [Assignment: organization-defined response times] in accordance with an organizational assessment of risk; and
 
 .. _RA-5e.:
-      
+
 RA-5e.
 """"""
 
     Shares information obtained from the vulnerability scanning process and security control assessments with [Assignment: organization-defined personnel or roles] to help eliminate similar vulnerabilities in other information systems (i.e., systemic weaknesses or deficiencies).
 
 .. _RA-5 (1):
-      
+
 RA-5 (1) : UPDATE TOOL CAPABILITY
 """""""""""""""""""""""""""""""""
 
@@ -11563,7 +11563,7 @@ RA-5 (1) : UPDATE TOOL CAPABILITY
 **Related Controls:** `SI-3`_, `SI-7`_
 
 .. _RA-5 (2):
-      
+
 RA-5 (2) : UPDATE BY FREQUENCY / PRIOR TO NEW SCAN / WHEN IDENTIFIED
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
@@ -11574,14 +11574,14 @@ RA-5 (2) : UPDATE BY FREQUENCY / PRIOR TO NEW SCAN / WHEN IDENTIFIED
 **Related Controls:** `SI-3`_, `SI-5`_
 
 .. _RA-5 (3):
-      
+
 RA-5 (3) : BREADTH / DEPTH OF COVERAGE
 """"""""""""""""""""""""""""""""""""""
 
     The organization employs vulnerability scanning procedures that can identify the breadth and depth of coverage (i.e., information system components scanned and vulnerabilities checked).
 
 .. _RA-5 (4):
-      
+
 RA-5 (4) : DISCOVERABLE INFORMATION
 """""""""""""""""""""""""""""""""""
 
@@ -11596,7 +11596,7 @@ RA-5 (4) : DISCOVERABLE INFORMATION
 **Related Controls:** `AU-13`_
 
 .. _RA-5 (5):
-      
+
 RA-5 (5) : PRIVILEGED ACCESS
 """"""""""""""""""""""""""""
 
@@ -11609,7 +11609,7 @@ RA-5 (5) : PRIVILEGED ACCESS
    In certain situations, the nature of the vulnerability scanning may be more intrusive or the information system component that is the subject of the scanning may contain highly sensitive information. Privileged access authorization to selected system components facilitates more thorough vulnerability scanning and also protects the sensitive nature of such scanning.
 
 .. _RA-5 (6):
-      
+
 RA-5 (6) : AUTOMATED TREND ANALYSES
 """""""""""""""""""""""""""""""""""
 
@@ -11618,14 +11618,14 @@ RA-5 (6) : AUTOMATED TREND ANALYSES
 **Related Controls:** `IR-4`_, `IR-5`_, `SI-4`_
 
 .. _RA-5 (7):
-      
+
 RA-5 (7) : AUTOMATED DETECTION AND NOTIFICATION OF UNAUTHORIZED COMPONENTS
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
     [Withdrawn: Incorporated into CM-8].
 
 .. _RA-5 (8):
-      
+
 RA-5 (8) : REVIEW HISTORIC AUDIT LOGS
 """""""""""""""""""""""""""""""""""""
 
@@ -11634,14 +11634,14 @@ RA-5 (8) : REVIEW HISTORIC AUDIT LOGS
 **Related Controls:** `AU-6`_
 
 .. _RA-5 (9):
-      
+
 RA-5 (9) : PENETRATION TESTING AND ANALYSES
 """""""""""""""""""""""""""""""""""""""""""
 
     [Withdrawn: Incorporated into CA-8].
 
 .. _RA-5 (10):
-      
+
 RA-5 (10) : CORRELATE SCANNING INFORMATION
 """"""""""""""""""""""""""""""""""""""""""
 
@@ -11651,7 +11651,7 @@ Control Family:  RISK ASSESSMENT
 --------------------------------
 
 .. _RA-6:
-      
+
 RA-6 : TECHNICAL SURVEILLANCE COUNTERMEASURES SURVEY
 """"""""""""""""""""""""""""""""""""""""""""""""""""
 
@@ -11668,7 +11668,7 @@ Control Family:  SYSTEM AND SERVICES ACQUISITION
 ------------------------------------------------
 
 .. _SA-1:
-      
+
 SA-1 : SYSTEM AND SERVICES ACQUISITION POLICY AND PROCEDURES
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
@@ -11686,42 +11686,42 @@ SA-1 : SYSTEM AND SERVICES ACQUISITION POLICY AND PROCEDURES
 
 
 .. _SA-1a.:
-      
+
 SA-1a.
 """"""
 
     Develops, documents, and disseminates to [Assignment: organization-defined personnel or roles]:
 
 .. _SA-1a.1.:
-      
+
 SA-1a.1.
 """"""""
 
     A system and services acquisition policy that addresses purpose, scope, roles, responsibilities, management commitment, coordination among organizational entities, and compliance; and
 
 .. _SA-1a.2.:
-      
+
 SA-1a.2.
 """"""""
 
     Procedures to facilitate the implementation of the system and services acquisition policy and associated system and services acquisition controls; and
 
 .. _SA-1b.:
-      
+
 SA-1b.
 """"""
 
     Reviews and updates the current:
 
 .. _SA-1b.1.:
-      
+
 SA-1b.1.
 """"""""
 
     System and services acquisition policy [Assignment: organization-defined frequency]; and
 
 .. _SA-1b.2.:
-      
+
 SA-1b.2.
 """"""""
 
@@ -11731,7 +11731,7 @@ Control Family:  SYSTEM AND SERVICES ACQUISITION
 ------------------------------------------------
 
 .. _SA-2:
-      
+
 SA-2 : ALLOCATION OF RESOURCES
 """"""""""""""""""""""""""""""
 
@@ -11749,21 +11749,21 @@ SA-2 : ALLOCATION OF RESOURCES
 
 
 .. _SA-2a.:
-      
+
 SA-2a.
 """"""
 
     Determines information security requirements for the information system or information system service in mission/business process planning;
 
 .. _SA-2b.:
-      
+
 SA-2b.
 """"""
 
     Determines, documents, and allocates the resources required to protect the information system or information system service as part of its capital planning and investment control process; and
 
 .. _SA-2c.:
-      
+
 SA-2c.
 """"""
 
@@ -11773,7 +11773,7 @@ Control Family:  SYSTEM AND SERVICES ACQUISITION
 ------------------------------------------------
 
 .. _SA-3:
-      
+
 SA-3 : SYSTEM DEVELOPMENT LIFE CYCLE
 """"""""""""""""""""""""""""""""""""
 
@@ -11791,28 +11791,28 @@ SA-3 : SYSTEM DEVELOPMENT LIFE CYCLE
 
 
 .. _SA-3a.:
-      
+
 SA-3a.
 """"""
 
     Manages the information system using [Assignment: organization-defined system development life cycle] that incorporates information security considerations;
 
 .. _SA-3b.:
-      
+
 SA-3b.
 """"""
 
     Defines and documents information security roles and responsibilities throughout the system development life cycle;
 
 .. _SA-3c.:
-      
+
 SA-3c.
 """"""
 
     Identifies individuals having information security roles and responsibilities; and
 
 .. _SA-3d.:
-      
+
 SA-3d.
 """"""
 
@@ -11822,7 +11822,7 @@ Control Family:  SYSTEM AND SERVICES ACQUISITION
 ------------------------------------------------
 
 .. _SA-4:
-      
+
 SA-4 : ACQUISITION PROCESS
 """"""""""""""""""""""""""
 
@@ -11841,56 +11841,56 @@ SA-4 : ACQUISITION PROCESS
 
 
 .. _SA-4a.:
-      
+
 SA-4a.
 """"""
 
     Security functional requirements;
 
 .. _SA-4b.:
-      
+
 SA-4b.
 """"""
 
     Security strength requirements;
 
 .. _SA-4c.:
-      
+
 SA-4c.
 """"""
 
     Security assurance requirements;
 
 .. _SA-4d.:
-      
+
 SA-4d.
 """"""
 
     Security-related documentation requirements;
 
 .. _SA-4e.:
-      
+
 SA-4e.
 """"""
 
     Requirements for protecting security-related documentation;
 
 .. _SA-4f.:
-      
+
 SA-4f.
 """"""
 
     Description of the information system development environment and environment in which the system is intended to operate; and
 
 .. _SA-4g.:
-      
+
 SA-4g.
 """"""
 
     Acceptance criteria.
 
 .. _SA-4 (1):
-      
+
 SA-4 (1) : FUNCTIONAL PROPERTIES OF SECURITY CONTROLS
 """""""""""""""""""""""""""""""""""""""""""""""""""""
 
@@ -11905,7 +11905,7 @@ SA-4 (1) : FUNCTIONAL PROPERTIES OF SECURITY CONTROLS
 **Related Controls:** `SA-5`_
 
 .. _SA-4 (2):
-      
+
 SA-4 (2) : DESIGN / IMPLEMENTATION INFORMATION FOR SECURITY CONTROLS
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
@@ -11920,7 +11920,7 @@ SA-4 (2) : DESIGN / IMPLEMENTATION INFORMATION FOR SECURITY CONTROLS
 **Related Controls:** `SA-5`_
 
 .. _SA-4 (3):
-      
+
 SA-4 (3) : DEVELOPMENT METHODS / TECHNIQUES / PRACTICES
 """""""""""""""""""""""""""""""""""""""""""""""""""""""
 
@@ -11933,14 +11933,14 @@ SA-4 (3) : DEVELOPMENT METHODS / TECHNIQUES / PRACTICES
 **Related Controls:** `SA-12`_
 
 .. _SA-4 (4):
-      
+
 SA-4 (4) : ASSIGNMENT OF COMPONENTS TO SYSTEMS
 """"""""""""""""""""""""""""""""""""""""""""""
 
     [Withdrawn: Incorporated into CM-8 (9)].
 
 .. _SA-4 (5):
-      
+
 SA-4 (5) : SYSTEM / COMPONENT / SERVICE CONFIGURATIONS
 """"""""""""""""""""""""""""""""""""""""""""""""""""""
 
@@ -11953,21 +11953,21 @@ SA-4 (5) : SYSTEM / COMPONENT / SERVICE CONFIGURATIONS
 **Related Controls:** `CM-8`_
 
 .. _SA-4 (5)(a):
-      
+
 SA-4 (5)(a)
 """""""""""
 
     Deliver the system, component, or service with [Assignment: organization-defined security configurations] implemented; and
 
 .. _SA-4 (5)(b):
-      
+
 SA-4 (5)(b)
 """""""""""
 
     Use the configurations as the default for any subsequent system, component, or service reinstallation or upgrade.
 
 .. _SA-4 (6):
-      
+
 SA-4 (6) : USE OF INFORMATION ASSURANCE PRODUCTS
 """"""""""""""""""""""""""""""""""""""""""""""""
 
@@ -11980,21 +11980,21 @@ SA-4 (6) : USE OF INFORMATION ASSURANCE PRODUCTS
 **Related Controls:** `SC-8`_, `SC-12`_, `SC-13`_
 
 .. _SA-4 (6)(a):
-      
+
 SA-4 (6)(a)
 """""""""""
 
     Employs only government off-the-shelf (GOTS) or commercial off-the-shelf (COTS) information assurance (IA) and IA-enabled information technology products that compose an NSA-approved solution to protect classified information when the networks used to transmit the information are at a lower classification level than the information being transmitted; and
 
 .. _SA-4 (6)(b):
-      
+
 SA-4 (6)(b)
 """""""""""
 
     Ensures that these products have been evaluated and/or validated by NSA or in accordance with NSA-approved procedures.
 
 .. _SA-4 (7):
-      
+
 SA-4 (7) : NIAP-APPROVED  PROTECTION PROFILES
 """""""""""""""""""""""""""""""""""""""""""""
 
@@ -12003,21 +12003,21 @@ SA-4 (7) : NIAP-APPROVED  PROTECTION PROFILES
 **Related Controls:** `SC-12`_, `SC-13`_
 
 .. _SA-4 (7)(a):
-      
+
 SA-4 (7)(a)
 """""""""""
 
     Limits the use of commercially provided information assurance (IA) and IA-enabled information technology products to those products that have been successfully evaluated against a National Information Assurance partnership (NIAP)-approved Protection Profile for a specific technology type, if such a profile exists; and
 
 .. _SA-4 (7)(b):
-      
+
 SA-4 (7)(b)
 """""""""""
 
     Requires, if no NIAP-approved Protection Profile exists for a specific technology type but a commercially provided information technology product relies on cryptographic functionality to enforce its security policy, that the cryptographic module is FIPS-validated.
 
 .. _SA-4 (8):
-      
+
 SA-4 (8) : CONTINUOUS MONITORING PLAN
 """""""""""""""""""""""""""""""""""""
 
@@ -12030,7 +12030,7 @@ SA-4 (8) : CONTINUOUS MONITORING PLAN
 **Related Controls:** `CA-7`_
 
 .. _SA-4 (9):
-      
+
 SA-4 (9) : FUNCTIONS / PORTS / PROTOCOLS / SERVICES IN USE
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
@@ -12045,7 +12045,7 @@ SA-4 (9) : FUNCTIONS / PORTS / PROTOCOLS / SERVICES IN USE
 **Related Controls:** `CM-7`_, `SA-9`_
 
 .. _SA-4 (10):
-      
+
 SA-4 (10) : USE OF APPROVED PIV PRODUCTS
 """"""""""""""""""""""""""""""""""""""""
 
@@ -12059,7 +12059,7 @@ Control Family:  SYSTEM AND SERVICES ACQUISITION
 ------------------------------------------------
 
 .. _SA-5:
-      
+
 SA-5 : INFORMATION SYSTEM DOCUMENTATION
 """""""""""""""""""""""""""""""""""""""
 
@@ -12077,112 +12077,112 @@ SA-5 : INFORMATION SYSTEM DOCUMENTATION
 
 
 .. _SA-5a.:
-      
+
 SA-5a.
 """"""
 
     Obtains administrator documentation for the information system, system component, or information system service that describes:
 
 .. _SA-5a.1.:
-      
+
 SA-5a.1.
 """"""""
 
     Secure configuration, installation, and operation of the system, component, or service;
 
 .. _SA-5a.2.:
-      
+
 SA-5a.2.
 """"""""
 
     Effective use and maintenance of security functions/mechanisms; and
 
 .. _SA-5a.3.:
-      
+
 SA-5a.3.
 """"""""
 
     Known vulnerabilities regarding configuration and use of administrative (i.e., privileged) functions;
 
 .. _SA-5b.:
-      
+
 SA-5b.
 """"""
 
     Obtains user documentation for the information system, system component, or information system service that describes:
 
 .. _SA-5b.1.:
-      
+
 SA-5b.1.
 """"""""
 
     User-accessible security functions/mechanisms and how to effectively use those security functions/mechanisms;
 
 .. _SA-5b.2.:
-      
+
 SA-5b.2.
 """"""""
 
     Methods for user interaction, which enables individuals to use the system, component, or service in a more secure manner; and
 
 .. _SA-5b.3.:
-      
+
 SA-5b.3.
 """"""""
 
     User responsibilities in maintaining the security of the system, component, or service;
 
 .. _SA-5c.:
-      
+
 SA-5c.
 """"""
 
     Documents attempts to obtain information system, system component, or information system service documentation when such documentation is either unavailable or nonexistent and takes [Assignment: organization-defined actions] in response;
 
 .. _SA-5d.:
-      
+
 SA-5d.
 """"""
 
     Protects documentation as required, in accordance with the risk management strategy; and
 
 .. _SA-5e.:
-      
+
 SA-5e.
 """"""
 
     Distributes documentation to [Assignment: organization-defined personnel or roles].
 
 .. _SA-5 (1):
-      
+
 SA-5 (1) : FUNCTIONAL PROPERTIES OF SECURITY CONTROLS
 """""""""""""""""""""""""""""""""""""""""""""""""""""
 
     [Withdrawn: Incorporated into SA-4 (1)].
 
 .. _SA-5 (2):
-      
+
 SA-5 (2) : SECURITY-RELEVANT EXTERNAL SYSTEM INTERFACES
 """""""""""""""""""""""""""""""""""""""""""""""""""""""
 
     [Withdrawn: Incorporated into SA-4 (2)].
 
 .. _SA-5 (3):
-      
+
 SA-5 (3) : HIGH-LEVEL DESIGN
 """"""""""""""""""""""""""""
 
     [Withdrawn: Incorporated into SA-4 (2)].
 
 .. _SA-5 (4):
-      
+
 SA-5 (4) : LOW-LEVEL DESIGN
 """""""""""""""""""""""""""
 
     [Withdrawn: Incorporated into SA-4 (2)].
 
 .. _SA-5 (5):
-      
+
 SA-5 (5) : SOURCE CODE
 """"""""""""""""""""""
 
@@ -12192,7 +12192,7 @@ Control Family:  SYSTEM AND SERVICES ACQUISITION
 ------------------------------------------------
 
 .. _SA-6:
-      
+
 SA-6 : SOFTWARE USAGE RESTRICTIONS
 """"""""""""""""""""""""""""""""""
 
@@ -12203,7 +12203,7 @@ Control Family:  SYSTEM AND SERVICES ACQUISITION
 ------------------------------------------------
 
 .. _SA-7:
-      
+
 SA-7 : USER-INSTALLED SOFTWARE
 """"""""""""""""""""""""""""""
 
@@ -12214,7 +12214,7 @@ Control Family:  SYSTEM AND SERVICES ACQUISITION
 ------------------------------------------------
 
 .. _SA-8:
-      
+
 SA-8 : SECURITY ENGINEERING PRINCIPLES
 """"""""""""""""""""""""""""""""""""""
 
@@ -12235,7 +12235,7 @@ Control Family:  SYSTEM AND SERVICES ACQUISITION
 ------------------------------------------------
 
 .. _SA-9:
-      
+
 SA-9 : EXTERNAL INFORMATION SYSTEM SERVICES
 """""""""""""""""""""""""""""""""""""""""""
 
@@ -12253,28 +12253,28 @@ SA-9 : EXTERNAL INFORMATION SYSTEM SERVICES
 
 
 .. _SA-9a.:
-      
+
 SA-9a.
 """"""
 
     Requires that providers of external information system services comply with organizational information security requirements and employ [Assignment: organization-defined security controls] in accordance with applicable federal laws, Executive Orders, directives, policies, regulations, standards, and guidance;
 
 .. _SA-9b.:
-      
+
 SA-9b.
 """"""
 
     Defines and documents government oversight and user roles and responsibilities with regard  to external information system services; and
 
 .. _SA-9c.:
-      
+
 SA-9c.
 """"""
 
     Employs [Assignment: organization-defined processes, methods, and techniques] to monitor security control compliance by external service providers on an ongoing basis.
 
 .. _SA-9 (1):
-      
+
 SA-9 (1) : RISK ASSESSMENTS / ORGANIZATIONAL APPROVALS
 """"""""""""""""""""""""""""""""""""""""""""""""""""""
 
@@ -12287,21 +12287,21 @@ SA-9 (1) : RISK ASSESSMENTS / ORGANIZATIONAL APPROVALS
 **Related Controls:** `CA-6`_, `RA-3`_
 
 .. _SA-9 (1)(a):
-      
+
 SA-9 (1)(a)
 """""""""""
 
     Conducts an organizational assessment of risk prior to the acquisition or outsourcing of dedicated information security services; and
 
 .. _SA-9 (1)(b):
-      
+
 SA-9 (1)(b)
 """""""""""
 
     Ensures that the acquisition or outsourcing of dedicated information security services is approved by [Assignment: organization-defined personnel or roles].
 
 .. _SA-9 (2):
-      
+
 SA-9 (2) : IDENTIFICATION OF FUNCTIONS / PORTS / PROTOCOLS / SERVICES
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
@@ -12316,7 +12316,7 @@ SA-9 (2) : IDENTIFICATION OF FUNCTIONS / PORTS / PROTOCOLS / SERVICES
 **Related Controls:** `CM-7`_
 
 .. _SA-9 (3):
-      
+
 SA-9 (3) : ESTABLISH / MAINTAIN TRUST RELATIONSHIP WITH PROVIDERS
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
@@ -12327,7 +12327,7 @@ SA-9 (3) : ESTABLISH / MAINTAIN TRUST RELATIONSHIP WITH PROVIDERS
    The degree of confidence that the risk from using external services is at an acceptable level depends on the trust that organizations place in the external providers, individually or in combination. Trust relationships can help organization to gain increased levels of confidence that participating service providers are providing adequate protection for the services rendered. Such relationships can be complicated due to the number of potential entities participating in the consumer-provider interactions, subordinate relationships and levels of trust, and the types of interactions between the parties. In some cases, the degree of trust is based on the amount of direct control organizations are able to exert on external service providers with regard to employment of security controls necessary for the protection of the service/information and the evidence brought forth as to the effectiveness of those controls. The level of control is typically established by the terms and conditions of the contracts or service-level agreements and can range from extensive control (e.g., negotiating contracts or agreements that specify security requirements for the providers) to very limited control (e.g., using contracts or service-level agreements to obtain commodity services such as commercial telecommunications services). In other cases, levels of trust are based on factors that convince organizations that required security controls have been employed and that determinations of control effectiveness exist. For example, separately authorized external information system services provided to organizations through well-established business relationships may provide degrees of trust in such services within the tolerable risk range of the organizations using the services. External service providers may also outsource selected services to other external entities, making the trust relationship more difficult and complicated to manage. Depending on the nature of the services, organizations may find it very difficult to place significant trust in external providers. This is not due to any inherent untrustworthiness on the part of providers, but to the intrinsic level of risk in the services.
 
 .. _SA-9 (4):
-      
+
 SA-9 (4) : CONSISTENT INTERESTS OF CONSUMERS AND PROVIDERS
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
@@ -12338,7 +12338,7 @@ SA-9 (4) : CONSISTENT INTERESTS OF CONSUMERS AND PROVIDERS
    As organizations increasingly use external service providers, the possibility exists that the interests of the service providers may diverge from organizational interests. In such situations, simply having the correct technical, procedural, or operational safeguards in place may not be sufficient if the service providers that implement and control those safeguards are not operating in a manner consistent with the interests of the consuming organizations. Possible actions that organizations might take to address such concerns include, for example, requiring background checks for selected service provider personnel, examining ownership records, employing only trustworthy service providers (i.e., providers with which organizations have had positive experiences), and conducting periodic/unscheduled visits to service provider facilities.
 
 .. _SA-9 (5):
-      
+
 SA-9 (5) : PROCESSING, STORAGE, AND SERVICE LOCATION
 """"""""""""""""""""""""""""""""""""""""""""""""""""
 
@@ -12352,7 +12352,7 @@ Control Family:  SYSTEM AND SERVICES ACQUISITION
 ------------------------------------------------
 
 .. _SA-10:
-      
+
 SA-10 : DEVELOPER CONFIGURATION MANAGEMENT
 """"""""""""""""""""""""""""""""""""""""""
 
@@ -12370,42 +12370,42 @@ SA-10 : DEVELOPER CONFIGURATION MANAGEMENT
 
 
 .. _SA-10a.:
-      
+
 SA-10a.
 """""""
 
     Perform configuration management during system, component, or service [Selection (one or more): design; development; implementation; operation];
 
 .. _SA-10b.:
-      
+
 SA-10b.
 """""""
 
     Document, manage, and control the integrity of changes to [Assignment: organization-defined configuration items under configuration management];
 
 .. _SA-10c.:
-      
+
 SA-10c.
 """""""
 
     Implement only organization-approved changes to the system, component, or service;
 
 .. _SA-10d.:
-      
+
 SA-10d.
 """""""
 
     Document approved changes to the system, component, or service and the potential security impacts of such changes; and
 
 .. _SA-10e.:
-      
+
 SA-10e.
 """""""
 
     Track security flaws and flaw resolution within the system, component, or service and report findings to [Assignment: organization-defined personnel].
 
 .. _SA-10 (1):
-      
+
 SA-10 (1) : SOFTWARE / FIRMWARE INTEGRITY VERIFICATION
 """"""""""""""""""""""""""""""""""""""""""""""""""""""
 
@@ -12418,7 +12418,7 @@ SA-10 (1) : SOFTWARE / FIRMWARE INTEGRITY VERIFICATION
 **Related Controls:** `SI-7`_
 
 .. _SA-10 (2):
-      
+
 SA-10 (2) : ALTERNATIVE CONFIGURATION MANAGEMENT PROCESSES
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
@@ -12429,7 +12429,7 @@ SA-10 (2) : ALTERNATIVE CONFIGURATION MANAGEMENT PROCESSES
    Alternate configuration management processes may be required, for example, when organizations use commercial off-the-shelf (COTS) information technology products. Alternate configuration management processes include organizational personnel that: (i) are responsible for reviewing/approving proposed changes to information systems, system components, and information system services; and (ii) conduct security impact analyses prior to the implementation of any changes to systems, components, or services (e.g., a configuration control board that considers security impacts of changes during development and includes representatives of both the organization and the developer, when applicable).
 
 .. _SA-10 (3):
-      
+
 SA-10 (3) : HARDWARE INTEGRITY VERIFICATION
 """""""""""""""""""""""""""""""""""""""""""
 
@@ -12442,7 +12442,7 @@ SA-10 (3) : HARDWARE INTEGRITY VERIFICATION
 **Related Controls:** `SI-7`_
 
 .. _SA-10 (4):
-      
+
 SA-10 (4) : TRUSTED GENERATION
 """"""""""""""""""""""""""""""
 
@@ -12453,7 +12453,7 @@ SA-10 (4) : TRUSTED GENERATION
    This control enhancement addresses changes to hardware, software, and firmware components between versions during development. In contrast, SA-10 (1) and SA-10 (3) allow organizations to detect unauthorized changes to hardware, software, and firmware components through the use of tools, techniques, and/or mechanisms provided by developers.
 
 .. _SA-10 (5):
-      
+
 SA-10 (5) : MAPPING INTEGRITY FOR VERSION CONTROL
 """""""""""""""""""""""""""""""""""""""""""""""""
 
@@ -12464,7 +12464,7 @@ SA-10 (5) : MAPPING INTEGRITY FOR VERSION CONTROL
    This control enhancement addresses changes to hardware, software, and firmware components during initial development and during system life cycle updates. Maintaining the integrity between the master copies of security-relevant hardware, software, and firmware (including designs and source code) and the equivalent data in master copies on-site in operational environments is essential to ensure the availability of organizational information systems supporting critical missions and/or business functions.
 
 .. _SA-10 (6):
-      
+
 SA-10 (6) : TRUSTED DISTRIBUTION
 """"""""""""""""""""""""""""""""
 
@@ -12478,7 +12478,7 @@ Control Family:  SYSTEM AND SERVICES ACQUISITION
 ------------------------------------------------
 
 .. _SA-11:
-      
+
 SA-11 : DEVELOPER SECURITY TESTING AND EVALUATION
 """""""""""""""""""""""""""""""""""""""""""""""""
 
@@ -12496,42 +12496,42 @@ SA-11 : DEVELOPER SECURITY TESTING AND EVALUATION
 
 
 .. _SA-11a.:
-      
+
 SA-11a.
 """""""
 
     Create and implement a security assessment plan;
 
 .. _SA-11b.:
-      
+
 SA-11b.
 """""""
 
     Perform [Selection (one or more): unit; integration; system; regression] testing/evaluation at [Assignment: organization-defined depth and coverage];
 
 .. _SA-11c.:
-      
+
 SA-11c.
 """""""
 
     Produce evidence of the execution of the security assessment plan and the results of the security testing/evaluation;
 
 .. _SA-11d.:
-      
+
 SA-11d.
 """""""
 
     Implement a verifiable flaw remediation process; and
 
 .. _SA-11e.:
-      
+
 SA-11e.
 """""""
 
     Correct flaws identified during security testing/evaluation.
 
 .. _SA-11 (1):
-      
+
 SA-11 (1) : STATIC CODE ANALYSIS
 """"""""""""""""""""""""""""""""
 
@@ -12542,7 +12542,7 @@ SA-11 (1) : STATIC CODE ANALYSIS
    Static code analysis provides a technology and methodology for security reviews. Such analysis can be used to identify security vulnerabilities and enforce security coding practices. Static code analysis is most effective when used early in the development process, when each code change can be automatically scanned for potential weaknesses. Static analysis can provide clear remediation guidance along with defects to enable developers to fix such defects. Evidence of correct implementation of static analysis can include, for example, aggregate defect density for critical defect types, evidence that defects were inspected by developers or security professionals, and evidence that defects were fixed. An excessively high density of ignored findings (commonly referred to as ignored or false positives) indicates a potential problem with the analysis process or tool. In such cases, organizations weigh the validity of the evidence against evidence from other sources.
 
 .. _SA-11 (2):
-      
+
 SA-11 (2) : THREAT AND VULNERABILITY ANALYSES
 """""""""""""""""""""""""""""""""""""""""""""
 
@@ -12555,7 +12555,7 @@ SA-11 (2) : THREAT AND VULNERABILITY ANALYSES
 **Related Controls:** `PM-15`_, `RA-5`_
 
 .. _SA-11 (3):
-      
+
 SA-11 (3) : INDEPENDENT VERIFICATION OF ASSESSMENT PLANS / EVIDENCE
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
@@ -12568,21 +12568,21 @@ SA-11 (3) : INDEPENDENT VERIFICATION OF ASSESSMENT PLANS / EVIDENCE
 **Related Controls:** `AT-3`_, `CA-7`_, `RA-5`_, `SA-12`_
 
 .. _SA-11 (3)(a):
-      
+
 SA-11 (3)(a)
 """"""""""""
 
     Requires an independent agent satisfying [Assignment: organization-defined independence criteria] to verify the correct implementation of the developer security assessment plan and the evidence produced during security testing/evaluation; and
 
 .. _SA-11 (3)(b):
-      
+
 SA-11 (3)(b)
 """"""""""""
 
     Ensures that the independent agent is either provided with sufficient information to complete the verification process or granted the authority to obtain such information.
 
 .. _SA-11 (4):
-      
+
 SA-11 (4) : MANUAL CODE REVIEWS
 """""""""""""""""""""""""""""""
 
@@ -12593,7 +12593,7 @@ SA-11 (4) : MANUAL CODE REVIEWS
    Manual code reviews are usually reserved for the critical software and firmware components of information systems. Such code reviews are uniquely effective at identifying weaknesses that require knowledge of the application�s requirements or context which are generally unavailable to more automated analytic tools and techniques such as static or dynamic analysis. Components benefiting from manual review include for example, verifying access control matrices against application controls and reviewing more detailed aspects of cryptographic implementations and controls.
 
 .. _SA-11 (5):
-      
+
 SA-11 (5) : PENETRATION TESTING
 """""""""""""""""""""""""""""""
 
@@ -12604,7 +12604,7 @@ SA-11 (5) : PENETRATION TESTING
    Penetration testing is an assessment methodology in which assessors, using all available information technology product and/or information system documentation (e.g., product/system design specifications, source code, and administrator/operator manuals) and working under specific constraints, attempt to circumvent implemented security features of information technology products and information systems. Penetration testing can include, for example, white, gray, or black box testing with analyses performed by skilled security professionals simulating adversary actions. The objective of penetration testing is to uncover potential vulnerabilities in information technology products and information systems resulting from implementation errors, configuration faults, or other operational deployment weaknesses or deficiencies. Penetration tests can be performed in conjunction with automated and manual code reviews to provide greater levels of analysis than would ordinarily be possible.
 
 .. _SA-11 (6):
-      
+
 SA-11 (6) : ATTACK SURFACE REVIEWS
 """"""""""""""""""""""""""""""""""
 
@@ -12615,7 +12615,7 @@ SA-11 (6) : ATTACK SURFACE REVIEWS
    Attack surfaces of information systems are exposed areas that make those systems more vulnerable to cyber attacks. This includes any accessible areas where weaknesses or deficiencies in information systems (including the hardware, software, and firmware components) provide opportunities for adversaries to exploit vulnerabilities. Attack surface reviews ensure that developers: (i) analyze both design and implementation changes to information systems; and (ii) mitigate attack vectors generated as a result of the changes. Correction of identified flaws includes, for example, deprecation of unsafe functions.
 
 .. _SA-11 (7):
-      
+
 SA-11 (7) : VERIFY SCOPE OF TESTING / EVALUATION
 """"""""""""""""""""""""""""""""""""""""""""""""
 
@@ -12626,7 +12626,7 @@ SA-11 (7) : VERIFY SCOPE OF TESTING / EVALUATION
    Verifying that security testing/evaluation provides complete coverage of required security controls can be accomplished by a variety of analytic techniques ranging from informal to formal. Each of these techniques provides an increasing level of assurance corresponding to the degree of formality of the analysis. Rigorously demonstrating security control coverage at the highest levels of assurance can be provided by the use of formal modeling and analysis techniques including correlation between control implementation and corresponding test cases.
 
 .. _SA-11 (8):
-      
+
 SA-11 (8) : DYNAMIC CODE ANALYSIS
 """""""""""""""""""""""""""""""""
 
@@ -12640,7 +12640,7 @@ Control Family:  SYSTEM AND SERVICES ACQUISITION
 ------------------------------------------------
 
 .. _SA-12:
-      
+
 SA-12 : SUPPLY CHAIN PROTECTION
 """""""""""""""""""""""""""""""
 
@@ -12658,7 +12658,7 @@ SA-12 : SUPPLY CHAIN PROTECTION
 
 
 .. _SA-12 (1):
-      
+
 SA-12 (1) : ACQUISITION STRATEGIES / TOOLS / METHODS
 """"""""""""""""""""""""""""""""""""""""""""""""""""
 
@@ -12671,7 +12671,7 @@ SA-12 (1) : ACQUISITION STRATEGIES / TOOLS / METHODS
 **Related Controls:** `SA-19`_
 
 .. _SA-12 (2):
-      
+
 SA-12 (2) : SUPPLIER REVIEWS
 """"""""""""""""""""""""""""
 
@@ -12682,21 +12682,21 @@ SA-12 (2) : SUPPLIER REVIEWS
    Supplier reviews include, for example: (i) analysis of supplier processes used to design, develop, test, implement, verify, deliver, and support information systems, system components, and information system services; and (ii) assessment of supplier training and experience in developing systems, components, or services with the required security capability. These reviews provide organizations with increased levels of visibility into supplier activities during the system development life cycle to promote more effective supply chain risk management. Supplier reviews can also help to determine whether primary suppliers have security safeguards in place and a practice for vetting subordinate suppliers, for example, second- and third-tier suppliers, and any subcontractors.
 
 .. _SA-12 (3):
-      
+
 SA-12 (3) : TRUSTED SHIPPING AND WAREHOUSING
 """"""""""""""""""""""""""""""""""""""""""""
 
     [Withdrawn: Incorporated into SA-12 (1)].
 
 .. _SA-12 (4):
-      
+
 SA-12 (4) : DIVERSITY OF SUPPLIERS
 """"""""""""""""""""""""""""""""""
 
     [Withdrawn: Incorporated into SA-12 (13)].
 
 .. _SA-12 (5):
-      
+
 SA-12 (5) : LIMITATION OF HARM
 """"""""""""""""""""""""""""""
 
@@ -12707,14 +12707,14 @@ SA-12 (5) : LIMITATION OF HARM
    Supply chain risk is part of the advanced persistent threat (APT). Security safeguards and countermeasures to reduce the probability of adversaries successfully identifying and targeting the supply chain include, for example: (i) avoiding the purchase of custom configurations to reduce the risk of acquiring information systems, components, or products that have been corrupted via supply chain actions targeted at specific organizations; (ii) employing a diverse set of suppliers to limit the potential harm from any given supplier in the supply chain; (iii) employing approved vendor lists with standing reputations in industry, and (iv) using procurement carve outs (i.e., exclusions to commitments or obligations).
 
 .. _SA-12 (6):
-      
+
 SA-12 (6) : MINIMIZING PROCUREMENT TIME
 """""""""""""""""""""""""""""""""""""""
 
     [Withdrawn: Incorporated into SA-12 (1)].
 
 .. _SA-12 (7):
-      
+
 SA-12 (7) : ASSESSMENTS PRIOR TO SELECTION / ACCEPTANCE / UPDATE
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
@@ -12727,7 +12727,7 @@ SA-12 (7) : ASSESSMENTS PRIOR TO SELECTION / ACCEPTANCE / UPDATE
 **Related Controls:** `CA-2`_, `SA-11`_
 
 .. _SA-12 (8):
-      
+
 SA-12 (8) : USE OF ALL-SOURCE INTELLIGENCE
 """"""""""""""""""""""""""""""""""""""""""
 
@@ -12740,7 +12740,7 @@ SA-12 (8) : USE OF ALL-SOURCE INTELLIGENCE
 **Related Controls:** `SA-15`_
 
 .. _SA-12 (9):
-      
+
 SA-12 (9) : OPERATIONS SECURITY
 """""""""""""""""""""""""""""""
 
@@ -12751,7 +12751,7 @@ SA-12 (9) : OPERATIONS SECURITY
    Supply chain information includes, for example: user identities; uses for information systems, information system components, and information system services; supplier identities; supplier processes; security requirements; design specifications; testing and evaluation results; and system/component configurations. This control enhancement expands the scope of OPSEC to include suppliers and potential suppliers. OPSEC is a process of identifying critical information and subsequently analyzing friendly actions attendant to operations and other activities to: (i) identify those actions that can be observed by potential adversaries; (ii) determine indicators that adversaries might obtain that could be interpreted or pieced together to derive critical information in sufficient time to cause harm to organizations; (iii) implement safeguards or countermeasures to eliminate or reduce to an acceptable level, exploitable vulnerabilities; and (iv) consider how aggregated information may compromise the confidentiality of users or uses of the supply chain. OPSEC may require organizations to withhold critical mission/business information from suppliers and may include the use of intermediaries to hide the end use, or users, of information systems, system components, or information system services.
 
 .. _SA-12 (10):
-      
+
 SA-12 (10) : VALIDATE AS GENUINE AND NOT ALTERED
 """"""""""""""""""""""""""""""""""""""""""""""""
 
@@ -12762,7 +12762,7 @@ SA-12 (10) : VALIDATE AS GENUINE AND NOT ALTERED
    For some information system components, especially hardware, there are technical means to help determine if the components are genuine or have been altered. Security safeguards used to validate the authenticity of information systems and information system components include, for example, optical/nanotechnology tagging and side-channel analysis. For hardware, detailed bill of material information can highlight the elements with embedded logic complete with component and production location.
 
 .. _SA-12 (11):
-      
+
 SA-12 (11) : PENETRATION TESTING / ANALYSIS OF ELEMENTS, PROCESSES, AND ACTORS
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
@@ -12775,7 +12775,7 @@ SA-12 (11) : PENETRATION TESTING / ANALYSIS OF ELEMENTS, PROCESSES, AND ACTORS
 **Related Controls:** `RA-5`_
 
 .. _SA-12 (12):
-      
+
 SA-12 (12) : INTER-ORGANIZATIONAL AGREEMENTS
 """"""""""""""""""""""""""""""""""""""""""""
 
@@ -12786,7 +12786,7 @@ SA-12 (12) : INTER-ORGANIZATIONAL AGREEMENTS
    The establishment of inter-organizational agreements and procedures provides for notification of supply chain compromises. Early notification of supply chain compromises that can potentially adversely affect or have adversely affected organizational information systems, including critical system components, is essential for organizations to provide appropriate responses to such incidents.
 
 .. _SA-12 (13):
-      
+
 SA-12 (13) : CRITICAL INFORMATION SYSTEM COMPONENTS
 """""""""""""""""""""""""""""""""""""""""""""""""""
 
@@ -12797,7 +12797,7 @@ SA-12 (13) : CRITICAL INFORMATION SYSTEM COMPONENTS
    Adversaries can attempt to impede organizational operations by disrupting the supply of critical information system components or corrupting supplier operations. Safeguards to ensure adequate supplies of critical information system components include, for example: (i) the use of multiple suppliers throughout the supply chain for the identified critical components; and (ii) stockpiling of spare components to ensure operation during mission-critical times.
 
 .. _SA-12 (14):
-      
+
 SA-12 (14) : IDENTITY AND TRACEABILITY
 """"""""""""""""""""""""""""""""""""""
 
@@ -12808,7 +12808,7 @@ SA-12 (14) : IDENTITY AND TRACEABILITY
    Knowing who and what is in the supply chains of organizations is critical to gaining visibility into what is happening within such supply chains, as well as monitoring and identifying high-risk events and activities. Without reasonable visibility and traceability into supply chains (i.e., elements, processes, and actors), it is very difficult for organizations to understand and therefore manage risk, and to reduce the likelihood of adverse events. Uniquely identifying acquirer and integrator roles, organizations, personnel, mission and element processes, testing and evaluation procedures, delivery mechanisms, support mechanisms, communications/delivery paths, and disposal/final disposition activities as well as the components and tools used, establishes a foundational identity structure for assessment of supply chain activities. For example, labeling (using serial numbers) and tagging (using radio-frequency identification [RFID] tags) individual supply chain elements including software packages, modules, and hardware devices, and processes associated with those elements can be used for this purpose. Identification methods are sufficient to support the provenance in the event of a supply chain issue or adverse supply chain event.
 
 .. _SA-12 (15):
-      
+
 SA-12 (15) : PROCESSES TO ADDRESS WEAKNESSES OR DEFICIENCIES
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
@@ -12822,7 +12822,7 @@ Control Family:  SYSTEM AND SERVICES ACQUISITION
 ------------------------------------------------
 
 .. _SA-13:
-      
+
 SA-13 : TRUSTWORTHINESS
 """""""""""""""""""""""
 
@@ -12839,14 +12839,14 @@ SA-13 : TRUSTWORTHINESS
 
 
 .. _SA-13a.:
-      
+
 SA-13a.
 """""""
 
     Describes the trustworthiness required in the [Assignment: organization-defined information system, information system component, or information system service] supporting its critical missions/business functions; and
 
 .. _SA-13b.:
-      
+
 SA-13b.
 """""""
 
@@ -12856,7 +12856,7 @@ Control Family:  SYSTEM AND SERVICES ACQUISITION
 ------------------------------------------------
 
 .. _SA-14:
-      
+
 SA-14 : CRITICALITY ANALYSIS
 """"""""""""""""""""""""""""
 
@@ -12872,7 +12872,7 @@ SA-14 : CRITICALITY ANALYSIS
 
 
 .. _SA-14 (1):
-      
+
 SA-14 (1) : CRITICAL COMPONENTS WITH  NO VIABLE ALTERNATIVE SOURCING
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
@@ -12882,7 +12882,7 @@ Control Family:  SYSTEM AND SERVICES ACQUISITION
 ------------------------------------------------
 
 .. _SA-15:
-      
+
 SA-15 : DEVELOPMENT PROCESS, STANDARDS, AND TOOLS
 """""""""""""""""""""""""""""""""""""""""""""""""
 
@@ -12900,49 +12900,49 @@ SA-15 : DEVELOPMENT PROCESS, STANDARDS, AND TOOLS
 
 
 .. _SA-15a.:
-      
+
 SA-15a.
 """""""
 
     Requires the developer of the information system, system component, or information system service to follow a documented development process that:
 
 .. _SA-15a.1.:
-      
+
 SA-15a.1.
 """""""""
 
     Explicitly addresses security requirements;
 
 .. _SA-15a.2.:
-      
+
 SA-15a.2.
 """""""""
 
     Identifies the standards and tools used in the development process;
 
 .. _SA-15a.3.:
-      
+
 SA-15a.3.
 """""""""
 
     Documents the specific tool options and tool configurations used in the development process; and
 
 .. _SA-15a.4.:
-      
+
 SA-15a.4.
 """""""""
 
     Documents, manages, and ensures the integrity of changes to the process and/or tools used in development; and
 
 .. _SA-15b.:
-      
+
 SA-15b.
 """""""
 
     Reviews the development process, standards, tools, and tool options/configurations [Assignment: organization-defined frequency] to determine if the process, standards, tools, and tool options/configurations selected and employed can satisfy [Assignment: organization-defined security requirements].
 
 .. _SA-15 (1):
-      
+
 SA-15 (1) : QUALITY METRICS
 """""""""""""""""""""""""""
 
@@ -12953,21 +12953,21 @@ SA-15 (1) : QUALITY METRICS
    Organizations use quality metrics to establish minimum acceptable levels of information system quality. Metrics may include quality gates which are collections of completion criteria or sufficiency standards representing the satisfactory execution of particular phases of the system development project. A quality gate, for example, may require the elimination of all compiler warnings or an explicit determination that the warnings have no impact on the effectiveness of required security capabilities. During the execution phases of development projects, quality gates provide clear, unambiguous indications of progress. Other metrics apply to the entire development project. These metrics can include defining the severity thresholds of vulnerabilities, for example, requiring no known vulnerabilities in the delivered information system with a Common Vulnerability Scoring System (CVSS) severity of Medium or High.
 
 .. _SA-15 (1)(a):
-      
+
 SA-15 (1)(a)
 """"""""""""
 
     Define quality metrics at the beginning of the development process; and
 
 .. _SA-15 (1)(b):
-      
+
 SA-15 (1)(b)
 """"""""""""
 
     Provide evidence of meeting the quality metrics [Selection (one or more): [Assignment: organization-defined frequency]; [Assignment: organization-defined program review milestones]; upon delivery].
 
 .. _SA-15 (2):
-      
+
 SA-15 (2) : SECURITY TRACKING TOOLS
 """""""""""""""""""""""""""""""""""
 
@@ -12978,7 +12978,7 @@ SA-15 (2) : SECURITY TRACKING TOOLS
    Information system development teams select and deploy security tracking tools, including, for example, vulnerability/work item tracking systems that facilitate assignment, sorting, filtering, and tracking of completed work items or tasks associated with system development processes.
 
 .. _SA-15 (3):
-      
+
 SA-15 (3) : CRITICALITY ANALYSIS
 """"""""""""""""""""""""""""""""
 
@@ -12991,7 +12991,7 @@ SA-15 (3) : CRITICALITY ANALYSIS
 **Related Controls:** `SA-4`_, `SA-14`_
 
 .. _SA-15 (4):
-      
+
 SA-15 (4) : THREAT MODELING / VULNERABILITY ANALYSIS
 """"""""""""""""""""""""""""""""""""""""""""""""""""
 
@@ -13000,28 +13000,28 @@ SA-15 (4) : THREAT MODELING / VULNERABILITY ANALYSIS
 **Related Controls:** `SA-4`_
 
 .. _SA-15 (4)(a):
-      
+
 SA-15 (4)(a)
 """"""""""""
 
     Uses [Assignment: organization-defined information concerning impact, environment of operations, known or assumed threats, and acceptable risk levels];
 
 .. _SA-15 (4)(b):
-      
+
 SA-15 (4)(b)
 """"""""""""
 
     Employs [Assignment: organization-defined tools and methods]; and
 
 .. _SA-15 (4)(c):
-      
+
 SA-15 (4)(c)
 """"""""""""
 
     Produces evidence that meets [Assignment: organization-defined acceptance criteria].
 
 .. _SA-15 (5):
-      
+
 SA-15 (5) : ATTACK SURFACE REDUCTION
 """"""""""""""""""""""""""""""""""""
 
@@ -13034,7 +13034,7 @@ SA-15 (5) : ATTACK SURFACE REDUCTION
 **Related Controls:** `CM-7`_
 
 .. _SA-15 (6):
-      
+
 SA-15 (6) : CONTINUOUS IMPROVEMENT
 """"""""""""""""""""""""""""""""""
 
@@ -13045,7 +13045,7 @@ SA-15 (6) : CONTINUOUS IMPROVEMENT
    Developers of information systems, information system components, and information system services consider the effectiveness/efficiency of current development processes for meeting quality objectives and addressing security capabilities in current threat environments.
 
 .. _SA-15 (7):
-      
+
 SA-15 (7) : AUTOMATED VULNERABILITY ANALYSIS
 """"""""""""""""""""""""""""""""""""""""""""
 
@@ -13054,35 +13054,35 @@ SA-15 (7) : AUTOMATED VULNERABILITY ANALYSIS
 **Related Controls:** `RA-5`_
 
 .. _SA-15 (7)(a):
-      
+
 SA-15 (7)(a)
 """"""""""""
 
     Perform an automated vulnerability analysis using [Assignment: organization-defined tools];
 
 .. _SA-15 (7)(b):
-      
+
 SA-15 (7)(b)
 """"""""""""
 
     Determine the exploitation potential for discovered vulnerabilities;
 
 .. _SA-15 (7)(c):
-      
+
 SA-15 (7)(c)
 """"""""""""
 
     Determine potential risk mitigations for delivered vulnerabilities; and
 
 .. _SA-15 (7)(d):
-      
+
 SA-15 (7)(d)
 """"""""""""
 
     Deliver the outputs of the tools and results of the analysis to [Assignment: organization-defined personnel or roles].
 
 .. _SA-15 (8):
-      
+
 SA-15 (8) : REUSE OF THREAT / VULNERABILITY INFORMATION
 """""""""""""""""""""""""""""""""""""""""""""""""""""""
 
@@ -13093,7 +13093,7 @@ SA-15 (8) : REUSE OF THREAT / VULNERABILITY INFORMATION
    Analysis of vulnerabilities found in similar software applications can inform potential design or implementation issues for information systems under development. Similar information systems or system components may exist within developer organizations. Authoritative vulnerability information is available from a variety of public and private sector sources including, for example, the National Vulnerability Database.
 
 .. _SA-15 (9):
-      
+
 SA-15 (9) : USE OF LIVE DATA
 """"""""""""""""""""""""""""
 
@@ -13104,7 +13104,7 @@ SA-15 (9) : USE OF LIVE DATA
    The use of live data in preproduction environments can result in significant risk to organizations. Organizations can minimize such risk by using test or dummy data during the development and testing of information systems, information system components, and information system services.
 
 .. _SA-15 (10):
-      
+
 SA-15 (10) : INCIDENT RESPONSE PLAN
 """""""""""""""""""""""""""""""""""
 
@@ -13117,7 +13117,7 @@ SA-15 (10) : INCIDENT RESPONSE PLAN
 **Related Controls:** `IR-8`_
 
 .. _SA-15 (11):
-      
+
 SA-15 (11) : ARCHIVE INFORMATION SYSTEM / COMPONENT
 """""""""""""""""""""""""""""""""""""""""""""""""""
 
@@ -13131,7 +13131,7 @@ Control Family:  SYSTEM AND SERVICES ACQUISITION
 ------------------------------------------------
 
 .. _SA-16:
-      
+
 SA-16 : DEVELOPER-PROVIDED TRAINING
 """""""""""""""""""""""""""""""""""
 
@@ -13152,7 +13152,7 @@ Control Family:  SYSTEM AND SERVICES ACQUISITION
 ------------------------------------------------
 
 .. _SA-17:
-      
+
 SA-17 : DEVELOPER SECURITY ARCHITECTURE AND DESIGN
 """"""""""""""""""""""""""""""""""""""""""""""""""
 
@@ -13170,28 +13170,28 @@ SA-17 : DEVELOPER SECURITY ARCHITECTURE AND DESIGN
 
 
 .. _SA-17a.:
-      
+
 SA-17a.
 """""""
 
     Is consistent with and supportive of the organization�s security architecture which is established within and is an integrated part of the organization�s enterprise architecture;
 
 .. _SA-17b.:
-      
+
 SA-17b.
 """""""
 
     Accurately and completely describes the required security functionality, and the allocation of security controls among physical and logical components; and
 
 .. _SA-17c.:
-      
+
 SA-17c.
 """""""
 
     Expresses how individual security functions, mechanisms, and services work together to provide required security capabilities and a unified approach to protection.
 
 .. _SA-17 (1):
-      
+
 SA-17 (1) : FORMAL POLICY MODEL
 """""""""""""""""""""""""""""""
 
@@ -13202,21 +13202,21 @@ SA-17 (1) : FORMAL POLICY MODEL
    Formal models describe specific behaviors or security policies using formal languages, thus enabling the correctness of those behaviors/policies to be formally proven. Not all components of information systems can be modeled, and generally, formal specifications are scoped to specific behaviors or policies of interest (e.g., nondiscretionary access control policies). Organizations choose the particular formal modeling language and approach based on the nature of the behaviors/policies to be described and the available tools. Formal modeling tools include, for example, Gypsy and Zed.
 
 .. _SA-17 (1)(a):
-      
+
 SA-17 (1)(a)
 """"""""""""
 
     Produce, as an integral part of the development process, a formal policy model describing the [Assignment: organization-defined elements of organizational security policy] to be enforced; and
 
 .. _SA-17 (1)(b):
-      
+
 SA-17 (1)(b)
 """"""""""""
 
     Prove that the formal policy model is internally consistent and sufficient to enforce the defined elements of the organizational security policy when implemented.
 
 .. _SA-17 (2):
-      
+
 SA-17 (2) : SECURITY-RELEVANT COMPONENTS
 """"""""""""""""""""""""""""""""""""""""
 
@@ -13229,21 +13229,21 @@ SA-17 (2) : SECURITY-RELEVANT COMPONENTS
 **Related Controls:** `SA-5`_
 
 .. _SA-17 (2)(a):
-      
+
 SA-17 (2)(a)
 """"""""""""
 
     Define security-relevant hardware, software, and firmware; and
 
 .. _SA-17 (2)(b):
-      
+
 SA-17 (2)(b)
 """"""""""""
 
     Provide a rationale that the definition for security-relevant hardware, software, and firmware is complete.
 
 .. _SA-17 (3):
-      
+
 SA-17 (3) : FORMAL CORRESPONDENCE
 """""""""""""""""""""""""""""""""
 
@@ -13256,42 +13256,42 @@ SA-17 (3) : FORMAL CORRESPONDENCE
 **Related Controls:** `SA-5`_
 
 .. _SA-17 (3)(a):
-      
+
 SA-17 (3)(a)
 """"""""""""
 
     Produce, as an integral part of the development process, a formal top-level specification that specifies the interfaces to security-relevant hardware, software, and firmware in terms of exceptions, error messages, and effects;
 
 .. _SA-17 (3)(b):
-      
+
 SA-17 (3)(b)
 """"""""""""
 
     Show via proof to the extent feasible with additional informal demonstration as necessary, that the formal top-level specification is consistent with the formal policy model;
 
 .. _SA-17 (3)(c):
-      
+
 SA-17 (3)(c)
 """"""""""""
 
     Show via informal demonstration, that the formal top-level specification completely covers the interfaces to security-relevant hardware, software, and firmware;
 
 .. _SA-17 (3)(d):
-      
+
 SA-17 (3)(d)
 """"""""""""
 
     Show that the formal top-level specification is an accurate description of the implemented security-relevant hardware, software, and firmware; and
 
 .. _SA-17 (3)(e):
-      
+
 SA-17 (3)(e)
 """"""""""""
 
     Describe the security-relevant hardware, software, and firmware mechanisms not addressed in the formal top-level specification but strictly internal to the security-relevant hardware, software, and firmware.
 
 .. _SA-17 (4):
-      
+
 SA-17 (4) : INFORMAL CORRESPONDENCE
 """""""""""""""""""""""""""""""""""
 
@@ -13304,42 +13304,42 @@ SA-17 (4) : INFORMAL CORRESPONDENCE
 **Related Controls:** `SA-5`_
 
 .. _SA-17 (4)(a):
-      
+
 SA-17 (4)(a)
 """"""""""""
 
     Produce, as an integral part of the development process, an informal descriptive top-level specification that specifies the interfaces to security-relevant hardware, software, and firmware in terms of exceptions, error messages, and effects;
 
 .. _SA-17 (4)(b):
-      
+
 SA-17 (4)(b)
 """"""""""""
 
     Show via [Selection: informal demonstration, convincing argument with formal methods as feasible] that the descriptive top-level specification is consistent with the formal policy model;
 
 .. _SA-17 (4)(c):
-      
+
 SA-17 (4)(c)
 """"""""""""
 
     Show via informal demonstration, that the descriptive top-level specification completely  covers the interfaces to security-relevant hardware, software, and firmware;
 
 .. _SA-17 (4)(d):
-      
+
 SA-17 (4)(d)
 """"""""""""
 
     Show that the descriptive top-level specification is an accurate description of the interfaces to security-relevant hardware, software, and firmware; and
 
 .. _SA-17 (4)(e):
-      
+
 SA-17 (4)(e)
 """"""""""""
 
     Describe the security-relevant hardware, software, and firmware mechanisms not addressed in the descriptive top-level specification but strictly internal to the security-relevant hardware, software, and firmware.
 
 .. _SA-17 (5):
-      
+
 SA-17 (5) : CONCEPTUALLY SIMPLE DESIGN
 """"""""""""""""""""""""""""""""""""""
 
@@ -13348,21 +13348,21 @@ SA-17 (5) : CONCEPTUALLY SIMPLE DESIGN
 **Related Controls:** `SC-3`_
 
 .. _SA-17 (5)(a):
-      
+
 SA-17 (5)(a)
 """"""""""""
 
     Design and structure the security-relevant hardware, software, and firmware to use a complete, conceptually simple protection mechanism with precisely defined semantics; and
 
 .. _SA-17 (5)(b):
-      
+
 SA-17 (5)(b)
 """"""""""""
 
     Internally structure the security-relevant hardware, software, and firmware with specific regard for this mechanism.
 
 .. _SA-17 (6):
-      
+
 SA-17 (6) : STRUCTURE FOR TESTING
 """""""""""""""""""""""""""""""""
 
@@ -13371,7 +13371,7 @@ SA-17 (6) : STRUCTURE FOR TESTING
 **Related Controls:** `SA-11`_
 
 .. _SA-17 (7):
-      
+
 SA-17 (7) : STRUCTURE FOR LEAST PRIVILEGE
 """""""""""""""""""""""""""""""""""""""""
 
@@ -13383,7 +13383,7 @@ Control Family:  SYSTEM AND SERVICES ACQUISITION
 ------------------------------------------------
 
 .. _SA-18:
-      
+
 SA-18 : TAMPER RESISTANCE AND DETECTION
 """""""""""""""""""""""""""""""""""""""
 
@@ -13399,7 +13399,7 @@ SA-18 : TAMPER RESISTANCE AND DETECTION
 
 
 .. _SA-18 (1):
-      
+
 SA-18 (1) : MULTIPLE PHASES OF SDLC
 """""""""""""""""""""""""""""""""""
 
@@ -13412,7 +13412,7 @@ SA-18 (1) : MULTIPLE PHASES OF SDLC
 **Related Controls:** `SA-3`_
 
 .. _SA-18 (2):
-      
+
 SA-18 (2) : INSPECTION OF INFORMATION SYSTEMS, COMPONENTS, OR DEVICES
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
@@ -13428,7 +13428,7 @@ Control Family:  SYSTEM AND SERVICES ACQUISITION
 ------------------------------------------------
 
 .. _SA-19:
-      
+
 SA-19 : COMPONENT AUTHENTICITY
 """"""""""""""""""""""""""""""
 
@@ -13444,35 +13444,35 @@ SA-19 : COMPONENT AUTHENTICITY
 
 
 .. _SA-19a.:
-      
+
 SA-19a.
 """""""
 
     Develops and implements anti-counterfeit policy and procedures that include the means to detect and prevent counterfeit components from entering the information system; and
 
 .. _SA-19b.:
-      
+
 SA-19b.
 """""""
 
     Reports counterfeit information system components to [Selection (one or more): source of counterfeit component; [Assignment: organization-defined external reporting organizations]; [Assignment: organization-defined personnel or roles]].
 
 .. _SA-19 (1):
-      
+
 SA-19 (1) : ANTI-COUNTERFEIT TRAINING
 """""""""""""""""""""""""""""""""""""
 
     The organization trains [Assignment: organization-defined personnel or roles] to detect counterfeit information system components (including hardware, software, and firmware).
 
 .. _SA-19 (2):
-      
+
 SA-19 (2) : CONFIGURATION CONTROL FOR COMPONENT SERVICE / REPAIR
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
     The organization maintains configuration control over [Assignment: organization-defined information system components] awaiting service/repair and serviced/repaired components awaiting return to service.
 
 .. _SA-19 (3):
-      
+
 SA-19 (3) : COMPONENT DISPOSAL
 """"""""""""""""""""""""""""""
 
@@ -13483,7 +13483,7 @@ SA-19 (3) : COMPONENT DISPOSAL
    Proper disposal of information system components helps to prevent such components from entering the gray market.
 
 .. _SA-19 (4):
-      
+
 SA-19 (4) : ANTI-COUNTERFEIT SCANNING
 """""""""""""""""""""""""""""""""""""
 
@@ -13493,7 +13493,7 @@ Control Family:  SYSTEM AND SERVICES ACQUISITION
 ------------------------------------------------
 
 .. _SA-20:
-      
+
 SA-20 : CUSTOMIZED DEVELOPMENT OF CRITICAL COMPONENTS
 """""""""""""""""""""""""""""""""""""""""""""""""""""
 
@@ -13512,7 +13512,7 @@ Control Family:  SYSTEM AND SERVICES ACQUISITION
 ------------------------------------------------
 
 .. _SA-21:
-      
+
 SA-21 : DEVELOPER SCREENING
 """""""""""""""""""""""""""
 
@@ -13528,21 +13528,21 @@ SA-21 : DEVELOPER SCREENING
 
 
 .. _SA-21a.:
-      
+
 SA-21a.
 """""""
 
     Have appropriate access authorizations as determined by assigned [Assignment: organization-defined official government duties]; and
 
 .. _SA-21b.:
-      
+
 SA-21b.
 """""""
 
     Satisfy [Assignment: organization-defined additional personnel screening criteria].
 
 .. _SA-21 (1):
-      
+
 SA-21 (1) : VALIDATION OF SCREENING
 """""""""""""""""""""""""""""""""""
 
@@ -13556,7 +13556,7 @@ Control Family:  SYSTEM AND SERVICES ACQUISITION
 ------------------------------------------------
 
 .. _SA-22:
-      
+
 SA-22 : UNSUPPORTED SYSTEM COMPONENTS
 """""""""""""""""""""""""""""""""""""
 
@@ -13572,21 +13572,21 @@ SA-22 : UNSUPPORTED SYSTEM COMPONENTS
 
 
 .. _SA-22a.:
-      
+
 SA-22a.
 """""""
 
     Replaces information system components when support for the components is no longer available from the developer, vendor, or manufacturer; and
 
 .. _SA-22b.:
-      
+
 SA-22b.
 """""""
 
     Provides justification and documents approval for the continued use of unsupported system components required to satisfy mission/business needs.
 
 .. _SA-22 (1):
-      
+
 SA-22 (1) : ALTERNATIVE SOURCES FOR CONTINUED SUPPORT
 """""""""""""""""""""""""""""""""""""""""""""""""""""
 
@@ -13600,7 +13600,7 @@ Control Family:  SYSTEM AND COMMUNICATIONS PROTECTION
 -----------------------------------------------------
 
 .. _SC-1:
-      
+
 SC-1 : SYSTEM AND COMMUNICATIONS PROTECTION POLICY AND PROCEDURES
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
@@ -13618,42 +13618,42 @@ SC-1 : SYSTEM AND COMMUNICATIONS PROTECTION POLICY AND PROCEDURES
 
 
 .. _SC-1a.:
-      
+
 SC-1a.
 """"""
 
     Develops, documents, and disseminates to [Assignment: organization-defined personnel or roles]:
 
 .. _SC-1a.1.:
-      
+
 SC-1a.1.
 """"""""
 
     A system and communications protection policy that addresses purpose, scope, roles, responsibilities, management commitment, coordination among organizational entities, and compliance; and
 
 .. _SC-1a.2.:
-      
+
 SC-1a.2.
 """"""""
 
     Procedures to facilitate the implementation of the system and communications protection policy and associated system and communications protection controls; and
 
 .. _SC-1b.:
-      
+
 SC-1b.
 """"""
 
     Reviews and updates the current:
 
 .. _SC-1b.1.:
-      
+
 SC-1b.1.
 """"""""
 
     System and communications protection policy [Assignment: organization-defined frequency]; and
 
 .. _SC-1b.2.:
-      
+
 SC-1b.2.
 """"""""
 
@@ -13663,7 +13663,7 @@ Control Family:  SYSTEM AND COMMUNICATIONS PROTECTION
 -----------------------------------------------------
 
 .. _SC-2:
-      
+
 SC-2 : APPLICATION PARTITIONING
 """""""""""""""""""""""""""""""
 
@@ -13681,7 +13681,7 @@ SC-2 : APPLICATION PARTITIONING
 
 
 .. _SC-2 (1):
-      
+
 SC-2 (1) : INTERFACES FOR NON-PRIVILEGED USERS
 """"""""""""""""""""""""""""""""""""""""""""""
 
@@ -13697,7 +13697,7 @@ Control Family:  SYSTEM AND COMMUNICATIONS PROTECTION
 -----------------------------------------------------
 
 .. _SC-3:
-      
+
 SC-3 : SECURITY FUNCTION ISOLATION
 """"""""""""""""""""""""""""""""""
 
@@ -13715,7 +13715,7 @@ SC-3 : SECURITY FUNCTION ISOLATION
 
 
 .. _SC-3 (1):
-      
+
 SC-3 (1) : HARDWARE SEPARATION
 """"""""""""""""""""""""""""""
 
@@ -13726,7 +13726,7 @@ SC-3 (1) : HARDWARE SEPARATION
    Underlying hardware separation mechanisms include, for example, hardware ring architectures, commonly implemented within microprocessors, and hardware-enforced address segmentation used to support logically distinct storage objects with separate attributes (i.e., readable, writeable).
 
 .. _SC-3 (2):
-      
+
 SC-3 (2) : ACCESS / FLOW CONTROL FUNCTIONS
 """"""""""""""""""""""""""""""""""""""""""
 
@@ -13737,7 +13737,7 @@ SC-3 (2) : ACCESS / FLOW CONTROL FUNCTIONS
    Security function isolation occurs as a result of implementation; the functions can still be scanned and monitored. Security functions that are potentially isolated from access and flow control enforcement functions include, for example, auditing, intrusion detection, and anti-virus functions.
 
 .. _SC-3 (3):
-      
+
 SC-3 (3) : MINIMIZE NONSECURITY FUNCTIONALITY
 """""""""""""""""""""""""""""""""""""""""""""
 
@@ -13748,7 +13748,7 @@ SC-3 (3) : MINIMIZE NONSECURITY FUNCTIONALITY
    In those instances where it is not feasible to achieve strict isolation of nonsecurity functions from security functions, it is necessary to take actions to minimize the nonsecurity-relevant functions within the security function boundary. Nonsecurity functions contained within the isolation boundary are considered security-relevant because errors or maliciousness in such software, by virtue of being within the boundary, can impact the security functions of organizational information systems. The design objective is that the specific portions of information systems providing information security are of minimal size/complexity. Minimizing the number of nonsecurity functions in the security-relevant components of information systems allows designers and implementers to focus only on those functions which are necessary to provide the desired security capability (typically access enforcement). By minimizing nonsecurity functions within the isolation boundaries, the amount of code that must be trusted to enforce security policies is reduced, thus contributing to understandability.
 
 .. _SC-3 (4):
-      
+
 SC-3 (4) : MODULE COUPLING AND COHESIVENESS
 """""""""""""""""""""""""""""""""""""""""""
 
@@ -13759,7 +13759,7 @@ SC-3 (4) : MODULE COUPLING AND COHESIVENESS
    The reduction in inter-module interactions helps to constrain security functions and to manage complexity. The concepts of coupling and cohesion are important with respect to modularity in software design. Coupling refers to the dependencies that one module has on other modules. Cohesion refers to the relationship between the different functions within a particular module. Good software engineering practices rely on modular decomposition, layering, and minimization to reduce and manage complexity, thus producing software modules that are highly cohesive and loosely coupled.
 
 .. _SC-3 (5):
-      
+
 SC-3 (5) : LAYERED STRUCTURES
 """""""""""""""""""""""""""""
 
@@ -13773,7 +13773,7 @@ Control Family:  SYSTEM AND COMMUNICATIONS PROTECTION
 -----------------------------------------------------
 
 .. _SC-4:
-      
+
 SC-4 : INFORMATION IN SHARED RESOURCES
 """"""""""""""""""""""""""""""""""""""
 
@@ -13791,14 +13791,14 @@ SC-4 : INFORMATION IN SHARED RESOURCES
 
 
 .. _SC-4 (1):
-      
+
 SC-4 (1) : SECURITY LEVELS
 """"""""""""""""""""""""""
 
     [Withdrawn: Incorporated into SC-4].
 
 .. _SC-4 (2):
-      
+
 SC-4 (2) : PERIODS PROCESSING
 """""""""""""""""""""""""""""
 
@@ -13812,7 +13812,7 @@ Control Family:  SYSTEM AND COMMUNICATIONS PROTECTION
 -----------------------------------------------------
 
 .. _SC-5:
-      
+
 SC-5 : DENIAL OF SERVICE PROTECTION
 """""""""""""""""""""""""""""""""""
 
@@ -13830,7 +13830,7 @@ SC-5 : DENIAL OF SERVICE PROTECTION
 
 
 .. _SC-5 (1):
-      
+
 SC-5 (1) : RESTRICT INTERNAL USERS
 """"""""""""""""""""""""""""""""""
 
@@ -13841,7 +13841,7 @@ SC-5 (1) : RESTRICT INTERNAL USERS
    Restricting the ability of individuals to launch denial of service attacks requires that the mechanisms used for such attacks are unavailable. Individuals of concern can include, for example, hostile insiders or external adversaries that have successfully breached the information system and are using the system as a platform to launch cyber attacks on third parties. Organizations can restrict the ability of individuals to connect and transmit arbitrary information on the transport medium (i.e., network, wireless spectrum). Organizations can also limit the ability of individuals to use excessive information system resources. Protection against individuals having the ability to launch denial of service attacks may be implemented on specific information systems or on boundary devices prohibiting egress to potential target systems.
 
 .. _SC-5 (2):
-      
+
 SC-5 (2) : EXCESS CAPACITY / BANDWIDTH / REDUNDANCY
 """""""""""""""""""""""""""""""""""""""""""""""""""
 
@@ -13852,7 +13852,7 @@ SC-5 (2) : EXCESS CAPACITY / BANDWIDTH / REDUNDANCY
    Managing excess capacity ensures that sufficient capacity is available to counter flooding attacks. Managing excess capacity may include, for example, establishing selected usage priorities, quotas, or partitioning.
 
 .. _SC-5 (3):
-      
+
 SC-5 (3) : DETECTION / MONITORING
 """""""""""""""""""""""""""""""""
 
@@ -13865,14 +13865,14 @@ SC-5 (3) : DETECTION / MONITORING
 **Related Controls:** `CA-7`_, `SI-4`_
 
 .. _SC-5 (3)(a):
-      
+
 SC-5 (3)(a)
 """""""""""
 
     Employs [Assignment: organization-defined monitoring tools] to detect indicators of denial of service attacks against the information system; and
 
 .. _SC-5 (3)(b):
-      
+
 SC-5 (3)(b)
 """""""""""
 
@@ -13882,7 +13882,7 @@ Control Family:  SYSTEM AND COMMUNICATIONS PROTECTION
 -----------------------------------------------------
 
 .. _SC-6:
-      
+
 SC-6 : RESOURCE AVAILABILITY
 """"""""""""""""""""""""""""
 
@@ -13899,7 +13899,7 @@ Control Family:  SYSTEM AND COMMUNICATIONS PROTECTION
 -----------------------------------------------------
 
 .. _SC-7:
-      
+
 SC-7 : BOUNDARY PROTECTION
 """"""""""""""""""""""""""
 
@@ -13917,42 +13917,42 @@ SC-7 : BOUNDARY PROTECTION
 
 
 .. _SC-7a.:
-      
+
 SC-7a.
 """"""
 
     Monitors and controls communications at the external boundary of the system and at key internal boundaries within the system;
 
 .. _SC-7b.:
-      
+
 SC-7b.
 """"""
 
     Implements subnetworks for publicly accessible system components that are [Selection: physically; logically] separated from internal organizational networks; and
 
 .. _SC-7c.:
-      
+
 SC-7c.
 """"""
 
     Connects to external networks or information systems only through managed interfaces consisting of boundary protection devices arranged in accordance with an organizational security architecture.
 
 .. _SC-7 (1):
-      
+
 SC-7 (1) : PHYSICALLY SEPARATED SUBNETWORKS
 """""""""""""""""""""""""""""""""""""""""""
 
     [Withdrawn: Incorporated into SC-7].
 
 .. _SC-7 (2):
-      
+
 SC-7 (2) : PUBLIC ACCESS
 """"""""""""""""""""""""
 
     [Withdrawn: Incorporated into SC-7].
 
 .. _SC-7 (3):
-      
+
 SC-7 (3) : ACCESS POINTS
 """"""""""""""""""""""""
 
@@ -13965,7 +13965,7 @@ SC-7 (3) : ACCESS POINTS
    Limiting the number of external network connections facilitates more comprehensive monitoring of inbound and outbound communications traffic. The Trusted Internet Connection (TIC) initiative is an example of limiting the number of external network connections.
 
 .. _SC-7 (4):
-      
+
 SC-7 (4) : EXTERNAL TELECOMMUNICATIONS SERVICES
 """""""""""""""""""""""""""""""""""""""""""""""
 
@@ -13976,42 +13976,42 @@ SC-7 (4) : EXTERNAL TELECOMMUNICATIONS SERVICES
 **Related Controls:** `SC-8`_
 
 .. _SC-7 (4)(a):
-      
+
 SC-7 (4)(a)
 """""""""""
 
     Implements a managed interface for each external telecommunication service;
 
 .. _SC-7 (4)(b):
-      
+
 SC-7 (4)(b)
 """""""""""
 
     Establishes a traffic flow policy for each managed interface;
 
 .. _SC-7 (4)(c):
-      
+
 SC-7 (4)(c)
 """""""""""
 
     Protects the confidentiality and integrity of the information being transmitted across each interface;
 
 .. _SC-7 (4)(d):
-      
+
 SC-7 (4)(d)
 """""""""""
 
     Documents each exception to the traffic flow policy with a supporting mission/business need and duration of that need; and
 
 .. _SC-7 (4)(e):
-      
+
 SC-7 (4)(e)
 """""""""""
 
     Reviews exceptions to the traffic flow policy [Assignment: organization-defined frequency] and removes exceptions that are no longer supported by an explicit mission/business need.
 
 .. _SC-7 (5):
-      
+
 SC-7 (5) : DENY BY DEFAULT / ALLOW BY EXCEPTION
 """""""""""""""""""""""""""""""""""""""""""""""
 
@@ -14024,14 +14024,14 @@ SC-7 (5) : DENY BY DEFAULT / ALLOW BY EXCEPTION
    This control enhancement applies to both inbound and outbound network communications traffic. A deny-all, permit-by-exception network communications traffic policy ensures that only those connections which are essential and approved are allowed.
 
 .. _SC-7 (6):
-      
+
 SC-7 (6) : RESPONSE TO RECOGNIZED FAILURES
 """"""""""""""""""""""""""""""""""""""""""
 
     [Withdrawn: Incorporated into SC-7 (18)].
 
 .. _SC-7 (7):
-      
+
 SC-7 (7) : PREVENT SPLIT TUNNELING FOR REMOTE DEVICES
 """""""""""""""""""""""""""""""""""""""""""""""""""""
 
@@ -14044,7 +14044,7 @@ SC-7 (7) : PREVENT SPLIT TUNNELING FOR REMOTE DEVICES
    This control enhancement is implemented within remote devices (e.g., notebook computers) through configuration settings to disable split tunneling in those devices, and by preventing those configuration settings from being readily configurable by users. This control enhancement is implemented within the information system by the detection of split tunneling (or of configuration settings that allow split tunneling) in the remote device, and by prohibiting the connection if the remote device is using split tunneling. Split tunneling might be desirable by remote users to communicate with local information system resources such as printers/file servers. However, split tunneling would in effect allow unauthorized external connections, making the system more vulnerable to attack and to exfiltration of organizational information. The use of VPNs for remote connections, when adequately provisioned with appropriate security controls, may provide the organization with sufficient assurance that it can effectively treat such connections as non-remote connections from the confidentiality and integrity perspective. VPNs thus provide a means for allowing non-remote communications paths from remote devices. The use of an adequately provisioned VPN does not eliminate the need for preventing split tunneling.
 
 .. _SC-7 (8):
-      
+
 SC-7 (8) : ROUTE TRAFFIC TO AUTHENTICATED PROXY SERVERS
 """""""""""""""""""""""""""""""""""""""""""""""""""""""
 
@@ -14059,7 +14059,7 @@ SC-7 (8) : ROUTE TRAFFIC TO AUTHENTICATED PROXY SERVERS
 **Related Controls:** `AC-3`_, `AU-2`_
 
 .. _SC-7 (9):
-      
+
 SC-7 (9) : RESTRICT THREATENING OUTGOING COMMUNICATIONS TRAFFIC
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
@@ -14072,21 +14072,21 @@ SC-7 (9) : RESTRICT THREATENING OUTGOING COMMUNICATIONS TRAFFIC
 **Related Controls:** `AU-2`_, `AU-6`_, `SC-38`_, `SC-44`_, `SI-3`_, `SI-4`_
 
 .. _SC-7 (9)(a):
-      
+
 SC-7 (9)(a)
 """""""""""
 
     Detects and denies outgoing communications traffic posing a threat to external information systems; and
 
 .. _SC-7 (9)(b):
-      
+
 SC-7 (9)(b)
 """""""""""
 
     Audits the identity of internal users associated with denied communications.
 
 .. _SC-7 (10):
-      
+
 SC-7 (10) : PREVENT UNAUTHORIZED EXFILTRATION
 """""""""""""""""""""""""""""""""""""""""""""
 
@@ -14099,7 +14099,7 @@ SC-7 (10) : PREVENT UNAUTHORIZED EXFILTRATION
 **Related Controls:** `SI-3`_
 
 .. _SC-7 (11):
-      
+
 SC-7 (11) : RESTRICT INCOMING COMMUNICATIONS TRAFFIC
 """"""""""""""""""""""""""""""""""""""""""""""""""""
 
@@ -14112,7 +14112,7 @@ SC-7 (11) : RESTRICT INCOMING COMMUNICATIONS TRAFFIC
 **Related Controls:** `AC-3`_
 
 .. _SC-7 (12):
-      
+
 SC-7 (12) : HOST-BASED PROTECTION
 """""""""""""""""""""""""""""""""
 
@@ -14123,7 +14123,7 @@ SC-7 (12) : HOST-BASED PROTECTION
    Host-based boundary protection mechanisms include, for example, host-based firewalls. Information system components employing host-based boundary protection mechanisms include, for example, servers, workstations, and mobile devices.
 
 .. _SC-7 (13):
-      
+
 SC-7 (13) : ISOLATION OF SECURITY TOOLS / MECHANISMS / SUPPORT COMPONENTS
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
@@ -14136,7 +14136,7 @@ SC-7 (13) : ISOLATION OF SECURITY TOOLS / MECHANISMS / SUPPORT COMPONENTS
 **Related Controls:** `SA-8`_, `SC-2`_, `SC-3`_
 
 .. _SC-7 (14):
-      
+
 SC-7 (14) : PROTECTS AGAINST UNAUTHORIZED PHYSICAL CONNECTIONS
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
@@ -14149,7 +14149,7 @@ SC-7 (14) : PROTECTS AGAINST UNAUTHORIZED PHYSICAL CONNECTIONS
 **Related Controls:** `PE-4`_, `PE-19`_
 
 .. _SC-7 (15):
-      
+
 SC-7 (15) : ROUTE PRIVILEGED NETWORK ACCESSES
 """""""""""""""""""""""""""""""""""""""""""""
 
@@ -14158,7 +14158,7 @@ SC-7 (15) : ROUTE PRIVILEGED NETWORK ACCESSES
 **Related Controls:** `AC-2`_, `AC-3`_, `AU-2`_, `SI-4`_
 
 .. _SC-7 (16):
-      
+
 SC-7 (16) : PREVENT DISCOVERY OF COMPONENTS / DEVICES
 """""""""""""""""""""""""""""""""""""""""""""""""""""
 
@@ -14169,7 +14169,7 @@ SC-7 (16) : PREVENT DISCOVERY OF COMPONENTS / DEVICES
    This control enhancement protects network addresses of information system components that are part of managed interfaces from discovery through common tools and techniques used to identify devices on networks. Network addresses are not available for discovery (e.g., network address not published or entered in domain name systems), requiring prior knowledge for access. Another obfuscation technique is to periodically change network addresses.
 
 .. _SC-7 (17):
-      
+
 SC-7 (17) : AUTOMATED ENFORCEMENT OF PROTOCOL FORMATS
 """""""""""""""""""""""""""""""""""""""""""""""""""""
 
@@ -14182,7 +14182,7 @@ SC-7 (17) : AUTOMATED ENFORCEMENT OF PROTOCOL FORMATS
 **Related Controls:** `SC-4`_
 
 .. _SC-7 (18):
-      
+
 SC-7 (18) : FAIL SECURE
 """""""""""""""""""""""
 
@@ -14197,7 +14197,7 @@ SC-7 (18) : FAIL SECURE
 **Related Controls:** `CP-2`_, `SC-24`_
 
 .. _SC-7 (19):
-      
+
 SC-7 (19) : BLOCKS COMMUNICATION FROM NON-ORGANIZATIONALLY CONFIGURED HOSTS
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
@@ -14208,7 +14208,7 @@ SC-7 (19) : BLOCKS COMMUNICATION FROM NON-ORGANIZATIONALLY CONFIGURED HOSTS
    Communication clients independently configured by end users and external service providers include, for example, instant messaging clients. Traffic blocking does not apply to communication clients that are configured by organizations to perform authorized functions.
 
 .. _SC-7 (20):
-      
+
 SC-7 (20) : DYNAMIC ISOLATION / SEGREGATION
 """""""""""""""""""""""""""""""""""""""""""
 
@@ -14219,7 +14219,7 @@ SC-7 (20) : DYNAMIC ISOLATION / SEGREGATION
    The capability to dynamically isolate or segregate certain internal components of organizational information systems is useful when it is necessary to partition or separate certain components of dubious origin from those components possessing greater trustworthiness. Component isolation reduces the attack surface of organizational information systems. Isolation of selected information system components is also a means of limiting the damage from successful cyber attacks when those attacks occur.
 
 .. _SC-7 (21):
-      
+
 SC-7 (21) : ISOLATION OF INFORMATION SYSTEM COMPONENTS
 """"""""""""""""""""""""""""""""""""""""""""""""""""""
 
@@ -14234,7 +14234,7 @@ SC-7 (21) : ISOLATION OF INFORMATION SYSTEM COMPONENTS
 **Related Controls:** `CA-9`_, `SC-3`_
 
 .. _SC-7 (22):
-      
+
 SC-7 (22) : SEPARATE SUBNETS FOR CONNECTING TO DIFFERENT SECURITY DOMAINS
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
@@ -14245,7 +14245,7 @@ SC-7 (22) : SEPARATE SUBNETS FOR CONNECTING TO DIFFERENT SECURITY DOMAINS
    Decomposition of information systems into subnets helps to provide the appropriate level of protection for network connections to different security domains containing information with different security categories or classification levels.
 
 .. _SC-7 (23):
-      
+
 SC-7 (23) : DISABLE SENDER FEEDBACK ON PROTOCOL VALIDATION FAILURE
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
@@ -14259,7 +14259,7 @@ Control Family:  SYSTEM AND COMMUNICATIONS PROTECTION
 -----------------------------------------------------
 
 .. _SC-8:
-      
+
 SC-8 : TRANSMISSION CONFIDENTIALITY AND INTEGRITY
 """""""""""""""""""""""""""""""""""""""""""""""""
 
@@ -14277,7 +14277,7 @@ SC-8 : TRANSMISSION CONFIDENTIALITY AND INTEGRITY
 
 
 .. _SC-8 (1):
-      
+
 SC-8 (1) : CRYPTOGRAPHIC OR ALTERNATE PHYSICAL PROTECTION
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
@@ -14292,7 +14292,7 @@ SC-8 (1) : CRYPTOGRAPHIC OR ALTERNATE PHYSICAL PROTECTION
 **Related Controls:** `SC-13`_
 
 .. _SC-8 (2):
-      
+
 SC-8 (2) : PRE / POST TRANSMISSION HANDLING
 """""""""""""""""""""""""""""""""""""""""""
 
@@ -14305,7 +14305,7 @@ SC-8 (2) : PRE / POST TRANSMISSION HANDLING
 **Related Controls:** `AU-10`_
 
 .. _SC-8 (3):
-      
+
 SC-8 (3) : CRYPTOGRAPHIC PROTECTION FOR MESSAGE EXTERNALS
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
@@ -14318,7 +14318,7 @@ SC-8 (3) : CRYPTOGRAPHIC PROTECTION FOR MESSAGE EXTERNALS
 **Related Controls:** `SC-12`_, `SC-13`_
 
 .. _SC-8 (4):
-      
+
 SC-8 (4) : CONCEAL / RANDOMIZE COMMUNICATIONS
 """""""""""""""""""""""""""""""""""""""""""""
 
@@ -14334,7 +14334,7 @@ Control Family:  SYSTEM AND COMMUNICATIONS PROTECTION
 -----------------------------------------------------
 
 .. _SC-9:
-      
+
 SC-9 : TRANSMISSION CONFIDENTIALITY
 """""""""""""""""""""""""""""""""""
 
@@ -14345,7 +14345,7 @@ Control Family:  SYSTEM AND COMMUNICATIONS PROTECTION
 -----------------------------------------------------
 
 .. _SC-10:
-      
+
 SC-10 : NETWORK DISCONNECT
 """"""""""""""""""""""""""
 
@@ -14364,7 +14364,7 @@ Control Family:  SYSTEM AND COMMUNICATIONS PROTECTION
 -----------------------------------------------------
 
 .. _SC-11:
-      
+
 SC-11 : TRUSTED PATH
 """"""""""""""""""""
 
@@ -14380,7 +14380,7 @@ SC-11 : TRUSTED PATH
 
 
 .. _SC-11 (1):
-      
+
 SC-11 (1) : LOGICAL ISOLATION
 """""""""""""""""""""""""""""
 
@@ -14390,7 +14390,7 @@ Control Family:  SYSTEM AND COMMUNICATIONS PROTECTION
 -----------------------------------------------------
 
 .. _SC-12:
-      
+
 SC-12 : CRYPTOGRAPHIC KEY ESTABLISHMENT AND MANAGEMENT
 """"""""""""""""""""""""""""""""""""""""""""""""""""""
 
@@ -14408,7 +14408,7 @@ SC-12 : CRYPTOGRAPHIC KEY ESTABLISHMENT AND MANAGEMENT
 
 
 .. _SC-12 (1):
-      
+
 SC-12 (1) : AVAILABILITY
 """"""""""""""""""""""""
 
@@ -14421,28 +14421,28 @@ SC-12 (1) : AVAILABILITY
    Escrowing of encryption keys is a common practice for ensuring availability in the event of loss of keys (e.g., due to forgotten passphrase).
 
 .. _SC-12 (2):
-      
+
 SC-12 (2) : SYMMETRIC KEYS
 """"""""""""""""""""""""""
 
     The organization produces, controls, and distributes symmetric cryptographic keys using [Selection: NIST FIPS-compliant; NSA-approved] key management technology and processes.
 
 .. _SC-12 (3):
-      
+
 SC-12 (3) : ASYMMETRIC KEYS
 """""""""""""""""""""""""""
 
     The organization produces, controls, and distributes asymmetric cryptographic keys using [Selection: NSA-approved key management technology and processes; approved PKI Class 3 certificates or prepositioned keying material; approved PKI Class 3 or Class 4 certificates and hardware security tokens that protect the user�s private key].
 
 .. _SC-12 (4):
-      
+
 SC-12 (4) : PKI CERTIFICATES
 """"""""""""""""""""""""""""
 
     [Withdrawn: Incorporated into SC-12].
 
 .. _SC-12 (5):
-      
+
 SC-12 (5) : PKI CERTIFICATES / HARDWARE TOKENS
 """"""""""""""""""""""""""""""""""""""""""""""
 
@@ -14452,7 +14452,7 @@ Control Family:  SYSTEM AND COMMUNICATIONS PROTECTION
 -----------------------------------------------------
 
 .. _SC-13:
-      
+
 SC-13 : CRYPTOGRAPHIC PROTECTION
 """"""""""""""""""""""""""""""""
 
@@ -14470,28 +14470,28 @@ SC-13 : CRYPTOGRAPHIC PROTECTION
 
 
 .. _SC-13 (1):
-      
+
 SC-13 (1) : FIPS-VALIDATED CRYPTOGRAPHY
 """""""""""""""""""""""""""""""""""""""
 
     [Withdrawn: Incorporated into SC-13].
 
 .. _SC-13 (2):
-      
+
 SC-13 (2) : NSA-APPROVED CRYPTOGRAPHY
 """""""""""""""""""""""""""""""""""""
 
     [Withdrawn: Incorporated into SC-13].
 
 .. _SC-13 (3):
-      
+
 SC-13 (3) : INDIVIDUALS WITHOUT FORMAL ACCESS  APPROVALS
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""
 
     [Withdrawn: Incorporated into SC-13].
 
 .. _SC-13 (4):
-      
+
 SC-13 (4) : DIGITAL SIGNATURES
 """"""""""""""""""""""""""""""
 
@@ -14501,7 +14501,7 @@ Control Family:  SYSTEM AND COMMUNICATIONS PROTECTION
 -----------------------------------------------------
 
 .. _SC-14:
-      
+
 SC-14 : PUBLIC ACCESS PROTECTIONS
 """""""""""""""""""""""""""""""""
 
@@ -14512,7 +14512,7 @@ Control Family:  SYSTEM AND COMMUNICATIONS PROTECTION
 -----------------------------------------------------
 
 .. _SC-15:
-      
+
 SC-15 : COLLABORATIVE COMPUTING DEVICES
 """""""""""""""""""""""""""""""""""""""
 
@@ -14530,21 +14530,21 @@ SC-15 : COLLABORATIVE COMPUTING DEVICES
 
 
 .. _SC-15a.:
-      
+
 SC-15a.
 """""""
 
     Prohibits remote activation of collaborative computing devices with the following exceptions: [Assignment: organization-defined exceptions where remote activation is to be allowed]; and
 
 .. _SC-15b.:
-      
+
 SC-15b.
 """""""
 
     Provides an explicit indication of use to users physically present at the devices.
 
 .. _SC-15 (1):
-      
+
 SC-15 (1) : PHYSICAL DISCONNECT
 """""""""""""""""""""""""""""""
 
@@ -14555,14 +14555,14 @@ SC-15 (1) : PHYSICAL DISCONNECT
    Failing to physically disconnect from collaborative computing devices can result in subsequent compromises of organizational information. Providing easy methods to physically disconnect from such devices after a collaborative computing session helps to ensure that participants actually carry out the disconnect activity without having to go through complex and tedious procedures.
 
 .. _SC-15 (2):
-      
+
 SC-15 (2) : BLOCKING INBOUND / OUTBOUND COMMUNICATIONS TRAFFIC
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
     [Withdrawn: Incorporated into SC-7].
 
 .. _SC-15 (3):
-      
+
 SC-15 (3) : DISABLING / REMOVAL IN SECURE WORK AREAS
 """"""""""""""""""""""""""""""""""""""""""""""""""""
 
@@ -14573,7 +14573,7 @@ SC-15 (3) : DISABLING / REMOVAL IN SECURE WORK AREAS
    Failing to disable or remove collaborative computing devices from information systems or information system components can result in subsequent compromises of organizational information including, for example, eavesdropping on conversations.
 
 .. _SC-15 (4):
-      
+
 SC-15 (4) : EXPLICITLY INDICATE CURRENT PARTICIPANTS
 """"""""""""""""""""""""""""""""""""""""""""""""""""
 
@@ -14587,7 +14587,7 @@ Control Family:  SYSTEM AND COMMUNICATIONS PROTECTION
 -----------------------------------------------------
 
 .. _SC-16:
-      
+
 SC-16 : TRANSMISSION OF SECURITY ATTRIBUTES
 """""""""""""""""""""""""""""""""""""""""""
 
@@ -14603,7 +14603,7 @@ SC-16 : TRANSMISSION OF SECURITY ATTRIBUTES
 
 
 .. _SC-16 (1):
-      
+
 SC-16 (1) : INTEGRITY VALIDATION
 """"""""""""""""""""""""""""""""
 
@@ -14619,7 +14619,7 @@ Control Family:  SYSTEM AND COMMUNICATIONS PROTECTION
 -----------------------------------------------------
 
 .. _SC-17:
-      
+
 SC-17 : PUBLIC KEY INFRASTRUCTURE CERTIFICATES
 """"""""""""""""""""""""""""""""""""""""""""""
 
@@ -14640,7 +14640,7 @@ Control Family:  SYSTEM AND COMMUNICATIONS PROTECTION
 -----------------------------------------------------
 
 .. _SC-18:
-      
+
 SC-18 : MOBILE CODE
 """""""""""""""""""
 
@@ -14658,28 +14658,28 @@ SC-18 : MOBILE CODE
 
 
 .. _SC-18a.:
-      
+
 SC-18a.
 """""""
 
     Defines acceptable and unacceptable mobile code and mobile code technologies;
 
 .. _SC-18b.:
-      
+
 SC-18b.
 """""""
 
     Establishes usage restrictions and implementation guidance for acceptable mobile code and mobile code technologies; and
 
 .. _SC-18c.:
-      
+
 SC-18c.
 """""""
 
     Authorizes, monitors, and controls the use of mobile code within the information system.
 
 .. _SC-18 (1):
-      
+
 SC-18 (1) : IDENTIFY UNACCEPTABLE CODE / TAKE CORRECTIVE ACTIONS
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
@@ -14690,21 +14690,21 @@ SC-18 (1) : IDENTIFY UNACCEPTABLE CODE / TAKE CORRECTIVE ACTIONS
    Corrective actions when unacceptable mobile code is detected include, for example, blocking, quarantine, or alerting administrators. Blocking includes, for example, preventing transmission of word processing files with embedded macros when such macros have been defined to be unacceptable mobile code.
 
 .. _SC-18 (2):
-      
+
 SC-18 (2) : ACQUISITION / DEVELOPMENT / USE
 """""""""""""""""""""""""""""""""""""""""""
 
     The organization ensures that the acquisition, development, and use of mobile code to be deployed in the information system meets [Assignment: organization-defined mobile code requirements].
 
 .. _SC-18 (3):
-      
+
 SC-18 (3) : PREVENT DOWNLOADING / EXECUTION
 """""""""""""""""""""""""""""""""""""""""""
 
     The information system prevents the download and execution of [Assignment: organization-defined unacceptable mobile code].
 
 .. _SC-18 (4):
-      
+
 SC-18 (4) : PREVENT AUTOMATIC EXECUTION
 """""""""""""""""""""""""""""""""""""""
 
@@ -14715,7 +14715,7 @@ SC-18 (4) : PREVENT AUTOMATIC EXECUTION
    Actions enforced before executing mobile code, include, for example, prompting users prior to opening electronic mail attachments. Preventing automatic execution of mobile code includes, for example, disabling auto execute features on information system components employing portable storage devices such as Compact Disks (CDs), Digital Video Disks (DVDs), and Universal Serial Bus (USB) devices.
 
 .. _SC-18 (5):
-      
+
 SC-18 (5) : ALLOW EXECUTION ONLY IN CONFINED ENVIRONMENTS
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
@@ -14725,7 +14725,7 @@ Control Family:  SYSTEM AND COMMUNICATIONS PROTECTION
 -----------------------------------------------------
 
 .. _SC-19:
-      
+
 SC-19 : VOICE OVER INTERNET PROTOCOL
 """"""""""""""""""""""""""""""""""""
 
@@ -14739,14 +14739,14 @@ SC-19 : VOICE OVER INTERNET PROTOCOL
 
 
 .. _SC-19a.:
-      
+
 SC-19a.
 """""""
 
     Establishes usage restrictions and implementation guidance for Voice over Internet Protocol (VoIP) technologies based on the potential to cause damage to the information system if used maliciously; and
 
 .. _SC-19b.:
-      
+
 SC-19b.
 """""""
 
@@ -14756,7 +14756,7 @@ Control Family:  SYSTEM AND COMMUNICATIONS PROTECTION
 -----------------------------------------------------
 
 .. _SC-20:
-      
+
 SC-20 : SECURE NAME / ADDRESS RESOLUTION SERVICE (AUTHORITATIVE SOURCE)
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
@@ -14774,28 +14774,28 @@ SC-20 : SECURE NAME / ADDRESS RESOLUTION SERVICE (AUTHORITATIVE SOURCE)
 
 
 .. _SC-20a.:
-      
+
 SC-20a.
 """""""
 
     Provides additional data origin authentication and integrity verification artifacts along with the authoritative name resolution data the system returns in response to external name/address resolution queries; and
 
 .. _SC-20b.:
-      
+
 SC-20b.
 """""""
 
     Provides the means to indicate the security status of child zones and (if the child supports secure resolution services) to enable verification of a chain of trust among parent and child domains, when operating as part of a distributed, hierarchical namespace.
 
 .. _SC-20 (1):
-      
+
 SC-20 (1) : CHILD SUBSPACES
 """""""""""""""""""""""""""
 
     [Withdrawn: Incorporated into SC-20].
 
 .. _SC-20 (2):
-      
+
 SC-20 (2) : DATA ORIGIN / INTEGRITY
 """""""""""""""""""""""""""""""""""
 
@@ -14805,7 +14805,7 @@ Control Family:  SYSTEM AND COMMUNICATIONS PROTECTION
 -----------------------------------------------------
 
 .. _SC-21:
-      
+
 SC-21 : SECURE NAME / ADDRESS RESOLUTION SERVICE (RECURSIVE OR CACHING RESOLVER)
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
@@ -14823,7 +14823,7 @@ SC-21 : SECURE NAME / ADDRESS RESOLUTION SERVICE (RECURSIVE OR CACHING RESOLVER)
 
 
 .. _SC-21 (1):
-      
+
 SC-21 (1) : DATA ORIGIN / INTEGRITY
 """""""""""""""""""""""""""""""""""
 
@@ -14833,7 +14833,7 @@ Control Family:  SYSTEM AND COMMUNICATIONS PROTECTION
 -----------------------------------------------------
 
 .. _SC-22:
-      
+
 SC-22 : ARCHITECTURE AND PROVISIONING FOR NAME / ADDRESS RESOLUTION SERVICE
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
@@ -14854,7 +14854,7 @@ Control Family:  SYSTEM AND COMMUNICATIONS PROTECTION
 -----------------------------------------------------
 
 .. _SC-23:
-      
+
 SC-23 : SESSION AUTHENTICITY
 """"""""""""""""""""""""""""
 
@@ -14872,7 +14872,7 @@ SC-23 : SESSION AUTHENTICITY
 
 
 .. _SC-23 (1):
-      
+
 SC-23 (1) : INVALIDATE SESSION IDENTIFIERS AT LOGOUT
 """"""""""""""""""""""""""""""""""""""""""""""""""""
 
@@ -14883,14 +14883,14 @@ SC-23 (1) : INVALIDATE SESSION IDENTIFIERS AT LOGOUT
    This control enhancement curtails the ability of adversaries from capturing and continuing to employ previously valid session IDs.
 
 .. _SC-23 (2):
-      
+
 SC-23 (2) : USER-INITIATED LOGOUTS / MESSAGE DISPLAYS
 """""""""""""""""""""""""""""""""""""""""""""""""""""
 
     [Withdrawn: Incorporated into AC-12 (1)].
 
 .. _SC-23 (3):
-      
+
 SC-23 (3) : UNIQUE SESSION IDENTIFIERS WITH RANDOMIZATION
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
@@ -14903,14 +14903,14 @@ SC-23 (3) : UNIQUE SESSION IDENTIFIERS WITH RANDOMIZATION
 **Related Controls:** `SC-13`_
 
 .. _SC-23 (4):
-      
+
 SC-23 (4) : UNIQUE SESSION IDENTIFIERS WITH RANDOMIZATION
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
     [Withdrawn: Incorporated into SC-23 (3)].
 
 .. _SC-23 (5):
-      
+
 SC-23 (5) : ALLOWED CERTIFICATE AUTHORITIES
 """""""""""""""""""""""""""""""""""""""""""
 
@@ -14926,7 +14926,7 @@ Control Family:  SYSTEM AND COMMUNICATIONS PROTECTION
 -----------------------------------------------------
 
 .. _SC-24:
-      
+
 SC-24 : FAIL IN KNOWN STATE
 """""""""""""""""""""""""""
 
@@ -14947,7 +14947,7 @@ Control Family:  SYSTEM AND COMMUNICATIONS PROTECTION
 -----------------------------------------------------
 
 .. _SC-25:
-      
+
 SC-25 : THIN NODES
 """"""""""""""""""
 
@@ -14966,7 +14966,7 @@ Control Family:  SYSTEM AND COMMUNICATIONS PROTECTION
 -----------------------------------------------------
 
 .. _SC-26:
-      
+
 SC-26 : HONEYPOTS
 """""""""""""""""
 
@@ -14982,7 +14982,7 @@ SC-26 : HONEYPOTS
 
 
 .. _SC-26 (1):
-      
+
 SC-26 (1) : DETECTION OF MALICIOUS CODE
 """""""""""""""""""""""""""""""""""""""
 
@@ -14992,7 +14992,7 @@ Control Family:  SYSTEM AND COMMUNICATIONS PROTECTION
 -----------------------------------------------------
 
 .. _SC-27:
-      
+
 SC-27 : PLATFORM-INDEPENDENT APPLICATIONS
 """""""""""""""""""""""""""""""""""""""""
 
@@ -15011,7 +15011,7 @@ Control Family:  SYSTEM AND COMMUNICATIONS PROTECTION
 -----------------------------------------------------
 
 .. _SC-28:
-      
+
 SC-28 : PROTECTION OF INFORMATION AT REST
 """""""""""""""""""""""""""""""""""""""""
 
@@ -15029,7 +15029,7 @@ SC-28 : PROTECTION OF INFORMATION AT REST
 
 
 .. _SC-28 (1):
-      
+
 SC-28 (1) : CRYPTOGRAPHIC PROTECTION
 """"""""""""""""""""""""""""""""""""
 
@@ -15042,7 +15042,7 @@ SC-28 (1) : CRYPTOGRAPHIC PROTECTION
 **Related Controls:** `AC-19`_, `SC-12`_
 
 .. _SC-28 (2):
-      
+
 SC-28 (2) : OFF-LINE STORAGE
 """"""""""""""""""""""""""""
 
@@ -15056,7 +15056,7 @@ Control Family:  SYSTEM AND COMMUNICATIONS PROTECTION
 -----------------------------------------------------
 
 .. _SC-29:
-      
+
 SC-29 : HETEROGENEITY
 """""""""""""""""""""
 
@@ -15072,7 +15072,7 @@ SC-29 : HETEROGENEITY
 
 
 .. _SC-29 (1):
-      
+
 SC-29 (1) : VIRTUALIZATION TECHNIQUES
 """""""""""""""""""""""""""""""""""""
 
@@ -15086,7 +15086,7 @@ Control Family:  SYSTEM AND COMMUNICATIONS PROTECTION
 -----------------------------------------------------
 
 .. _SC-30:
-      
+
 SC-30 : CONCEALMENT AND MISDIRECTION
 """"""""""""""""""""""""""""""""""""
 
@@ -15102,14 +15102,14 @@ SC-30 : CONCEALMENT AND MISDIRECTION
 
 
 .. _SC-30 (1):
-      
+
 SC-30 (1) : VIRTUALIZATION TECHNIQUES
 """""""""""""""""""""""""""""""""""""
 
     [Withdrawn: Incorporated into SC-29 (1)].
 
 .. _SC-30 (2):
-      
+
 SC-30 (2) : RANDOMNESS
 """"""""""""""""""""""
 
@@ -15120,7 +15120,7 @@ SC-30 (2) : RANDOMNESS
    Randomness introduces increased levels of uncertainty for adversaries regarding the actions organizations take in defending against cyber attacks. Such actions may impede the ability of adversaries to correctly target information resources of organizations supporting critical missions/business functions. Uncertainty may also cause adversaries to hesitate before initiating or continuing attacks. Misdirection techniques involving randomness include, for example, performing certain routine actions at different times of day, employing different information technologies (e.g., browsers, search engines), using different suppliers, and rotating roles and responsibilities of organizational personnel.
 
 .. _SC-30 (3):
-      
+
 SC-30 (3) : CHANGE PROCESSING / STORAGE LOCATIONS
 """""""""""""""""""""""""""""""""""""""""""""""""
 
@@ -15131,7 +15131,7 @@ SC-30 (3) : CHANGE PROCESSING / STORAGE LOCATIONS
    Adversaries target critical organizational missions/business functions and the information resources supporting those missions and functions while at the same time, trying to minimize exposure of their existence and tradecraft. The static, homogeneous, and deterministic nature of organizational information systems targeted by adversaries, make such systems more susceptible to cyber attacks with less adversary cost and effort to be successful. Changing organizational processing and storage locations (sometimes referred to as moving target defense) addresses the advanced persistent threat (APT) using techniques such as virtualization, distributed processing, and replication. This enables organizations to relocate the information resources (i.e., processing and/or storage) supporting critical missions and business functions. Changing locations of processing activities and/or storage sites introduces uncertainty into the targeting activities by adversaries. This uncertainty increases the work factor of adversaries making compromises or breaches to organizational information systems much more difficult and time-consuming, and increases the chances that adversaries may inadvertently disclose aspects of tradecraft while attempting to locate critical organizational resources.
 
 .. _SC-30 (4):
-      
+
 SC-30 (4) : MISLEADING INFORMATION
 """"""""""""""""""""""""""""""""""
 
@@ -15142,7 +15142,7 @@ SC-30 (4) : MISLEADING INFORMATION
    This control enhancement misleads potential adversaries regarding the nature and extent of security safeguards deployed by organizations. As a result, adversaries may employ incorrect (and as a result ineffective) attack techniques. One way of misleading adversaries is for organizations to place misleading information regarding the specific security controls deployed in external information systems that are known to be accessed or targeted by adversaries. Another technique is the use of deception nets (e.g., honeynets, virtualized environments) that mimic actual aspects of organizational information systems but use, for example, out-of-date software configurations.
 
 .. _SC-30 (5):
-      
+
 SC-30 (5) : CONCEALMENT OF SYSTEM COMPONENTS
 """"""""""""""""""""""""""""""""""""""""""""
 
@@ -15156,7 +15156,7 @@ Control Family:  SYSTEM AND COMMUNICATIONS PROTECTION
 -----------------------------------------------------
 
 .. _SC-31:
-      
+
 SC-31 : COVERT CHANNEL ANALYSIS
 """""""""""""""""""""""""""""""
 
@@ -15172,28 +15172,28 @@ SC-31 : COVERT CHANNEL ANALYSIS
 
 
 .. _SC-31a.:
-      
+
 SC-31a.
 """""""
 
     Performs a covert channel analysis to identify those aspects of communications within the information system that are potential avenues for covert [Selection (one or more): storage; timing] channels; and
 
 .. _SC-31b.:
-      
+
 SC-31b.
 """""""
 
     Estimates the maximum bandwidth of those channels.
 
 .. _SC-31 (1):
-      
+
 SC-31 (1) : TEST COVERT CHANNELS FOR EXPLOITABILITY
 """""""""""""""""""""""""""""""""""""""""""""""""""
 
     The organization tests a subset of the identified covert channels to determine which channels are exploitable.
 
 .. _SC-31 (2):
-      
+
 SC-31 (2) : MAXIMUM BANDWIDTH
 """""""""""""""""""""""""""""
 
@@ -15204,7 +15204,7 @@ SC-31 (2) : MAXIMUM BANDWIDTH
    Information system developers are in the best position to reduce the maximum bandwidth for identified covert storage and timing channels.
 
 .. _SC-31 (3):
-      
+
 SC-31 (3) : MEASURE BANDWIDTH IN OPERATIONAL ENVIRONMENTS
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
@@ -15218,7 +15218,7 @@ Control Family:  SYSTEM AND COMMUNICATIONS PROTECTION
 -----------------------------------------------------
 
 .. _SC-32:
-      
+
 SC-32 : INFORMATION SYSTEM PARTITIONING
 """""""""""""""""""""""""""""""""""""""
 
@@ -15237,7 +15237,7 @@ Control Family:  SYSTEM AND COMMUNICATIONS PROTECTION
 -----------------------------------------------------
 
 .. _SC-33:
-      
+
 SC-33 : TRANSMISSION PREPARATION INTEGRITY
 """"""""""""""""""""""""""""""""""""""""""
 
@@ -15248,7 +15248,7 @@ Control Family:  SYSTEM AND COMMUNICATIONS PROTECTION
 -----------------------------------------------------
 
 .. _SC-34:
-      
+
 SC-34 : NON-MODIFIABLE EXECUTABLE PROGRAMS
 """"""""""""""""""""""""""""""""""""""""""
 
@@ -15264,21 +15264,21 @@ SC-34 : NON-MODIFIABLE EXECUTABLE PROGRAMS
 
 
 .. _SC-34a.:
-      
+
 SC-34a.
 """""""
 
     Loads and executes the operating environment from hardware-enforced, read-only media; and
 
 .. _SC-34b.:
-      
+
 SC-34b.
 """""""
 
     Loads and executes [Assignment: organization-defined applications] from hardware-enforced, read-only media.
 
 .. _SC-34 (1):
-      
+
 SC-34 (1) : NO WRITABLE STORAGE
 """""""""""""""""""""""""""""""
 
@@ -15291,7 +15291,7 @@ SC-34 (1) : NO WRITABLE STORAGE
 **Related Controls:** `AC-19`_, `MP-7`_
 
 .. _SC-34 (2):
-      
+
 SC-34 (2) : INTEGRITY PROTECTION / READ-ONLY MEDIA
 """"""""""""""""""""""""""""""""""""""""""""""""""
 
@@ -15304,21 +15304,21 @@ SC-34 (2) : INTEGRITY PROTECTION / READ-ONLY MEDIA
 **Related Controls:** `AC-5`_, `CM-3`_, `CM-5`_, `CM-9`_, `MP-2`_, `MP-4`_, `MP-5`_, `SA-12`_, `SC-28`_, `SI-3`_
 
 .. _SC-34 (3):
-      
+
 SC-34 (3) : HARDWARE-BASED PROTECTION
 """""""""""""""""""""""""""""""""""""
 
     The organization:
 
 .. _SC-34 (3)(a):
-      
+
 SC-34 (3)(a)
 """"""""""""
 
     Employs hardware-based, write-protect for [Assignment: organization-defined information system firmware components]; and
 
 .. _SC-34 (3)(b):
-      
+
 SC-34 (3)(b)
 """"""""""""
 
@@ -15328,7 +15328,7 @@ Control Family:  SYSTEM AND COMMUNICATIONS PROTECTION
 -----------------------------------------------------
 
 .. _SC-35:
-      
+
 SC-35 : HONEYCLIENTS
 """"""""""""""""""""
 
@@ -15347,7 +15347,7 @@ Control Family:  SYSTEM AND COMMUNICATIONS PROTECTION
 -----------------------------------------------------
 
 .. _SC-36:
-      
+
 SC-36 : DISTRIBUTED PROCESSING AND STORAGE
 """"""""""""""""""""""""""""""""""""""""""
 
@@ -15363,7 +15363,7 @@ SC-36 : DISTRIBUTED PROCESSING AND STORAGE
 
 
 .. _SC-36 (1):
-      
+
 SC-36 (1) : POLLING TECHNIQUES
 """"""""""""""""""""""""""""""
 
@@ -15379,7 +15379,7 @@ Control Family:  SYSTEM AND COMMUNICATIONS PROTECTION
 -----------------------------------------------------
 
 .. _SC-37:
-      
+
 SC-37 : OUT-OF-BAND CHANNELS
 """"""""""""""""""""""""""""
 
@@ -15395,7 +15395,7 @@ SC-37 : OUT-OF-BAND CHANNELS
 
 
 .. _SC-37 (1):
-      
+
 SC-37 (1) : ENSURE DELIVERY / TRANSMISSION
 """"""""""""""""""""""""""""""""""""""""""
 
@@ -15409,7 +15409,7 @@ Control Family:  SYSTEM AND COMMUNICATIONS PROTECTION
 -----------------------------------------------------
 
 .. _SC-38:
-      
+
 SC-38 : OPERATIONS SECURITY
 """""""""""""""""""""""""""
 
@@ -15428,7 +15428,7 @@ Control Family:  SYSTEM AND COMMUNICATIONS PROTECTION
 -----------------------------------------------------
 
 .. _SC-39:
-      
+
 SC-39 : PROCESS ISOLATION
 """""""""""""""""""""""""
 
@@ -15446,7 +15446,7 @@ SC-39 : PROCESS ISOLATION
 
 
 .. _SC-39 (1):
-      
+
 SC-39 (1) : HARDWARE SEPARATION
 """""""""""""""""""""""""""""""
 
@@ -15457,7 +15457,7 @@ SC-39 (1) : HARDWARE SEPARATION
    Hardware-based separation of information system processes is generally less susceptible to compromise than software-based separation, thus providing greater assurance that the separation will be enforced. Underlying hardware separation mechanisms include, for example, hardware memory management.
 
 .. _SC-39 (2):
-      
+
 SC-39 (2) : THREAD ISOLATION
 """"""""""""""""""""""""""""
 
@@ -15467,7 +15467,7 @@ Control Family:  SYSTEM AND COMMUNICATIONS PROTECTION
 -----------------------------------------------------
 
 .. _SC-40:
-      
+
 SC-40 : WIRELESS LINK PROTECTION
 """"""""""""""""""""""""""""""""
 
@@ -15483,7 +15483,7 @@ SC-40 : WIRELESS LINK PROTECTION
 
 
 .. _SC-40 (1):
-      
+
 SC-40 (1) : ELECTROMAGNETIC INTERFERENCE
 """"""""""""""""""""""""""""""""""""""""
 
@@ -15496,7 +15496,7 @@ SC-40 (1) : ELECTROMAGNETIC INTERFERENCE
 **Related Controls:** `SC-12`_, `SC-13`_
 
 .. _SC-40 (2):
-      
+
 SC-40 (2) : REDUCE DETECTION POTENTIAL
 """"""""""""""""""""""""""""""""""""""
 
@@ -15509,7 +15509,7 @@ SC-40 (2) : REDUCE DETECTION POTENTIAL
 **Related Controls:** `SC-12`_, `SC-13`_
 
 .. _SC-40 (3):
-      
+
 SC-40 (3) : IMITATIVE OR MANIPULATIVE COMMUNICATIONS DECEPTION
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
@@ -15522,7 +15522,7 @@ SC-40 (3) : IMITATIVE OR MANIPULATIVE COMMUNICATIONS DECEPTION
 **Related Controls:** `SC-12`_, `SC-13`_
 
 .. _SC-40 (4):
-      
+
 SC-40 (4) : SIGNAL PARAMETER IDENTIFICATION
 """""""""""""""""""""""""""""""""""""""""""
 
@@ -15538,7 +15538,7 @@ Control Family:  SYSTEM AND COMMUNICATIONS PROTECTION
 -----------------------------------------------------
 
 .. _SC-41:
-      
+
 SC-41 : PORT AND I/O DEVICE ACCESS
 """"""""""""""""""""""""""""""""""
 
@@ -15555,7 +15555,7 @@ Control Family:  SYSTEM AND COMMUNICATIONS PROTECTION
 -----------------------------------------------------
 
 .. _SC-42:
-      
+
 SC-42 : SENSOR CAPABILITY AND DATA
 """"""""""""""""""""""""""""""""""
 
@@ -15569,21 +15569,21 @@ SC-42 : SENSOR CAPABILITY AND DATA
 
 
 .. _SC-42a.:
-      
+
 SC-42a.
 """""""
 
     Prohibits the remote activation of environmental sensing capabilities with the following exceptions: [Assignment: organization-defined exceptions where remote activation of sensors is allowed]; and
 
 .. _SC-42b.:
-      
+
 SC-42b.
 """""""
 
     Provides an explicit indication of sensor use to [Assignment: organization-defined class of users].
 
 .. _SC-42 (1):
-      
+
 SC-42 (1) : REPORTING TO AUTHORIZED INDIVIDUALS OR ROLES
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""
 
@@ -15594,7 +15594,7 @@ SC-42 (1) : REPORTING TO AUTHORIZED INDIVIDUALS OR ROLES
    In situations where sensors are activated by authorized individuals (e.g., end users), it is still possible that the data/information collected by the sensors will be sent to unauthorized entities.
 
 .. _SC-42 (2):
-      
+
 SC-42 (2) : AUTHORIZED USE
 """"""""""""""""""""""""""
 
@@ -15605,7 +15605,7 @@ SC-42 (2) : AUTHORIZED USE
    Information collected by sensors for a specific authorized purpose potentially could be misused for some unauthorized purpose. For example, GPS sensors that are used to support traffic navigation could be misused to track movements of individuals.  Measures to mitigate such activities include, for example, additional training to ensure that authorized parties do not abuse their authority, or (in the case where sensor data/information is maintained by external parties) contractual restrictions on the use of the data/information.
 
 .. _SC-42 (3):
-      
+
 SC-42 (3) : PROHIBIT USE OF DEVICES
 """""""""""""""""""""""""""""""""""
 
@@ -15619,7 +15619,7 @@ Control Family:  SYSTEM AND COMMUNICATIONS PROTECTION
 -----------------------------------------------------
 
 .. _SC-43:
-      
+
 SC-43 : USAGE RESTRICTIONS
 """"""""""""""""""""""""""
 
@@ -15635,14 +15635,14 @@ SC-43 : USAGE RESTRICTIONS
 
 
 .. _SC-43a.:
-      
+
 SC-43a.
 """""""
 
     Establishes usage restrictions and implementation guidance for [Assignment: organization-defined information system components] based on the potential to cause damage to the information system if used maliciously; and
 
 .. _SC-43b.:
-      
+
 SC-43b.
 """""""
 
@@ -15652,7 +15652,7 @@ Control Family:  SYSTEM AND COMMUNICATIONS PROTECTION
 -----------------------------------------------------
 
 .. _SC-44:
-      
+
 SC-44 : DETONATION CHAMBERS
 """""""""""""""""""""""""""
 
@@ -15671,7 +15671,7 @@ Control Family:  SYSTEM AND INFORMATION INTEGRITY
 -------------------------------------------------
 
 .. _SI-1:
-      
+
 SI-1 : SYSTEM AND INFORMATION INTEGRITY POLICY AND PROCEDURES
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
@@ -15689,42 +15689,42 @@ SI-1 : SYSTEM AND INFORMATION INTEGRITY POLICY AND PROCEDURES
 
 
 .. _SI-1a.:
-      
+
 SI-1a.
 """"""
 
     Develops, documents, and disseminates to [Assignment: organization-defined personnel or roles]:
 
 .. _SI-1a.1.:
-      
+
 SI-1a.1.
 """"""""
 
     A system and information integrity policy that addresses purpose, scope, roles, responsibilities, management commitment, coordination among organizational entities, and compliance; and
 
 .. _SI-1a.2.:
-      
+
 SI-1a.2.
 """"""""
 
     Procedures to facilitate the implementation of the system and information integrity policy and associated system and information integrity controls; and
 
 .. _SI-1b.:
-      
+
 SI-1b.
 """"""
 
     Reviews and updates the current:
 
 .. _SI-1b.1.:
-      
+
 SI-1b.1.
 """"""""
 
     System and information integrity policy [Assignment: organization-defined frequency]; and
 
 .. _SI-1b.2.:
-      
+
 SI-1b.2.
 """"""""
 
@@ -15734,7 +15734,7 @@ Control Family:  SYSTEM AND INFORMATION INTEGRITY
 -------------------------------------------------
 
 .. _SI-2:
-      
+
 SI-2 : FLAW REMEDIATION
 """""""""""""""""""""""
 
@@ -15752,35 +15752,35 @@ SI-2 : FLAW REMEDIATION
 
 
 .. _SI-2a.:
-      
+
 SI-2a.
 """"""
 
     Identifies, reports, and corrects information system flaws;
 
 .. _SI-2b.:
-      
+
 SI-2b.
 """"""
 
     Tests software and firmware updates related to flaw remediation for effectiveness and potential side effects before installation;
 
 .. _SI-2c.:
-      
+
 SI-2c.
 """"""
 
     Installs security-relevant software and firmware updates within [Assignment: organization-defined time period] of the release of the updates; and
 
 .. _SI-2d.:
-      
+
 SI-2d.
 """"""
 
     Incorporates flaw remediation into the organizational configuration management process.
 
 .. _SI-2 (1):
-      
+
 SI-2 (1) : CENTRAL MANAGEMENT
 """""""""""""""""""""""""""""
 
@@ -15793,7 +15793,7 @@ SI-2 (1) : CENTRAL MANAGEMENT
    Central management is the organization-wide management and implementation of flaw remediation processes. Central management includes planning, implementing, assessing, authorizing, and monitoring the organization-defined, centrally managed flaw remediation security controls.
 
 .. _SI-2 (2):
-      
+
 SI-2 (2) : AUTOMATED FLAW REMEDIATION STATUS
 """"""""""""""""""""""""""""""""""""""""""""
 
@@ -15804,7 +15804,7 @@ SI-2 (2) : AUTOMATED FLAW REMEDIATION STATUS
 **Related Controls:** `CM-6`_, `SI-4`_
 
 .. _SI-2 (3):
-      
+
 SI-2 (3) : TIME TO REMEDIATE FLAWS / BENCHMARKS FOR CORRECTIVE ACTIONS
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
@@ -15815,28 +15815,28 @@ SI-2 (3) : TIME TO REMEDIATE FLAWS / BENCHMARKS FOR CORRECTIVE ACTIONS
    This control enhancement requires organizations to determine the current time it takes on the average to correct information system flaws after such flaws have been identified, and subsequently establish organizational benchmarks (i.e., time frames) for taking corrective actions. Benchmarks can be established by type of flaw and/or severity of the potential vulnerability if the flaw can be exploited.
 
 .. _SI-2 (3)(a):
-      
+
 SI-2 (3)(a)
 """""""""""
 
     Measures the time between flaw identification and flaw remediation; and
 
 .. _SI-2 (3)(b):
-      
+
 SI-2 (3)(b)
 """""""""""
 
     Establishes [Assignment: organization-defined benchmarks] for taking corrective actions.
 
 .. _SI-2 (4):
-      
+
 SI-2 (4) : AUTOMATED PATCH MANAGEMENT TOOLS
 """""""""""""""""""""""""""""""""""""""""""
 
     [Withdrawn: Incorporated into SI-2].
 
 .. _SI-2 (5):
-      
+
 SI-2 (5) : AUTOMATIC SOFTWARE / FIRMWARE UPDATES
 """"""""""""""""""""""""""""""""""""""""""""""""
 
@@ -15847,7 +15847,7 @@ SI-2 (5) : AUTOMATIC SOFTWARE / FIRMWARE UPDATES
    Due to information system integrity and availability concerns, organizations give careful consideration to the methodology used to carry out automatic updates. Organizations must balance the need to ensure that the updates are installed as soon as possible with the need to maintain configuration management and with any mission or operational impacts that automatic updates might impose.
 
 .. _SI-2 (6):
-      
+
 SI-2 (6) : REMOVAL OF PREVIOUS VERSIONS OF SOFTWARE / FIRMWARE
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
@@ -15861,7 +15861,7 @@ Control Family:  SYSTEM AND INFORMATION INTEGRITY
 -------------------------------------------------
 
 .. _SI-3:
-      
+
 SI-3 : MALICIOUS CODE PROTECTION
 """"""""""""""""""""""""""""""""
 
@@ -15879,49 +15879,49 @@ SI-3 : MALICIOUS CODE PROTECTION
 
 
 .. _SI-3a.:
-      
+
 SI-3a.
 """"""
 
     Employs malicious code protection mechanisms at information system entry and exit points to detect and eradicate malicious code;
 
 .. _SI-3b.:
-      
+
 SI-3b.
 """"""
 
     Updates malicious code protection mechanisms whenever new releases are available in accordance with organizational configuration management policy and procedures;
 
 .. _SI-3c.:
-      
+
 SI-3c.
 """"""
 
     Configures malicious code protection mechanisms to:
 
 .. _SI-3c.1.:
-      
+
 SI-3c.1.
 """"""""
 
     Perform periodic scans of the information system [Assignment: organization-defined frequency] and real-time scans of files from external sources at [Selection (one or more); endpoint; network entry/exit points] as the files are downloaded, opened, or executed in accordance with organizational security policy; and
 
 .. _SI-3c.2.:
-      
+
 SI-3c.2.
 """"""""
 
     [Selection (one or more): block malicious code; quarantine malicious code;  send alert to administrator; [Assignment: organization-defined action]] in response to malicious code detection; and
 
 .. _SI-3d.:
-      
+
 SI-3d.
 """"""
 
     Addresses the receipt of false positives during malicious code detection and eradication and the resulting potential impact on the availability of the information system.
 
 .. _SI-3 (1):
-      
+
 SI-3 (1) : CENTRAL MANAGEMENT
 """""""""""""""""""""""""""""
 
@@ -15936,7 +15936,7 @@ SI-3 (1) : CENTRAL MANAGEMENT
 **Related Controls:** `AU-2`_, `SI-8`_
 
 .. _SI-3 (2):
-      
+
 SI-3 (2) : AUTOMATIC UPDATES
 """"""""""""""""""""""""""""
 
@@ -15951,14 +15951,14 @@ SI-3 (2) : AUTOMATIC UPDATES
 **Related Controls:** `SI-8`_
 
 .. _SI-3 (3):
-      
+
 SI-3 (3) : NON-PRIVILEGED USERS
 """""""""""""""""""""""""""""""
 
     [Withdrawn: Incorporated into AC-6 (10)].
 
 .. _SI-3 (4):
-      
+
 SI-3 (4) : UPDATES ONLY BY PRIVILEGED USERS
 """""""""""""""""""""""""""""""""""""""""""
 
@@ -15971,14 +15971,14 @@ SI-3 (4) : UPDATES ONLY BY PRIVILEGED USERS
 **Related Controls:** `AC-6`_, `CM-5`_
 
 .. _SI-3 (5):
-      
+
 SI-3 (5) : PORTABLE STORAGE DEVICES
 """""""""""""""""""""""""""""""""""
 
     [Withdrawn: Incorporated into MP-7].
 
 .. _SI-3 (6):
-      
+
 SI-3 (6) : TESTING / VERIFICATION
 """""""""""""""""""""""""""""""""
 
@@ -15987,21 +15987,21 @@ SI-3 (6) : TESTING / VERIFICATION
 **Related Controls:** `CA-2`_, `CA-7`_, `RA-5`_
 
 .. _SI-3 (6)(a):
-      
+
 SI-3 (6)(a)
 """""""""""
 
     Tests malicious code protection mechanisms [Assignment: organization-defined frequency] by introducing a known benign, non-spreading test case into the information system; and
 
 .. _SI-3 (6)(b):
-      
+
 SI-3 (6)(b)
 """""""""""
 
     Verifies that both detection of the test case and associated incident reporting occur.
 
 .. _SI-3 (7):
-      
+
 SI-3 (7) : NONSIGNATURE-BASED DETECTION
 """""""""""""""""""""""""""""""""""""""
 
@@ -16012,7 +16012,7 @@ SI-3 (7) : NONSIGNATURE-BASED DETECTION
    Nonsignature-based detection mechanisms include, for example, the use of heuristics to detect, analyze, and describe the characteristics or behavior of malicious code and to provide safeguards against malicious code for which signatures do not yet exist or for which existing signatures may not be effective. This includes polymorphic malicious code (i.e., code that changes signatures when it replicates). This control enhancement does not preclude the use of signature-based detection mechanisms.
 
 .. _SI-3 (8):
-      
+
 SI-3 (8) : DETECT UNAUTHORIZED COMMANDS
 """""""""""""""""""""""""""""""""""""""
 
@@ -16025,7 +16025,7 @@ SI-3 (8) : DETECT UNAUTHORIZED COMMANDS
 **Related Controls:** `AU-6`_
 
 .. _SI-3 (9):
-      
+
 SI-3 (9) : AUTHENTICATE REMOTE COMMANDS
 """""""""""""""""""""""""""""""""""""""
 
@@ -16038,7 +16038,7 @@ SI-3 (9) : AUTHENTICATE REMOTE COMMANDS
 **Related Controls:** `SC-12`_, `SC-13`_, `SC-23`_
 
 .. _SI-3 (10):
-      
+
 SI-3 (10) : MALICIOUS CODE ANALYSIS
 """""""""""""""""""""""""""""""""""
 
@@ -16049,14 +16049,14 @@ SI-3 (10) : MALICIOUS CODE ANALYSIS
    The application of selected malicious code analysis tools and techniques provides organizations with a more in-depth understanding of adversary tradecraft (i.e., tactics, techniques, and procedures) and the functionality and purpose of specific instances of malicious code. Understanding the characteristics of malicious code facilitates more effective organizational responses to current and future threats. Organizations can conduct malicious code analyses by using reverse engineering techniques or by monitoring the behavior of executing code.
 
 .. _SI-3 (10)(a):
-      
+
 SI-3 (10)(a)
 """"""""""""
 
     Employs [Assignment: organization-defined tools and techniques] to analyze the characteristics and behavior of malicious code; and
 
 .. _SI-3 (10)(b):
-      
+
 SI-3 (10)(b)
 """"""""""""
 
@@ -16066,7 +16066,7 @@ Control Family:  SYSTEM AND INFORMATION INTEGRITY
 -------------------------------------------------
 
 .. _SI-4:
-      
+
 SI-4 : INFORMATION SYSTEM MONITORING
 """"""""""""""""""""""""""""""""""""
 
@@ -16084,91 +16084,91 @@ SI-4 : INFORMATION SYSTEM MONITORING
 
 
 .. _SI-4a.:
-      
+
 SI-4a.
 """"""
 
     Monitors the information system to detect:
 
 .. _SI-4a.1.:
-      
+
 SI-4a.1.
 """"""""
 
     Attacks and indicators of potential attacks in accordance with [Assignment: organization-defined monitoring objectives]; and
 
 .. _SI-4a.2.:
-      
+
 SI-4a.2.
 """"""""
 
     Unauthorized local, network, and remote connections;
 
 .. _SI-4b.:
-      
+
 SI-4b.
 """"""
 
     Identifies unauthorized use of the information system through [Assignment: organization-defined techniques and methods];
 
 .. _SI-4c.:
-      
+
 SI-4c.
 """"""
 
     Deploys monitoring devices:
 
 .. _SI-4c.1.:
-      
+
 SI-4c.1.
 """"""""
 
     Strategically within the information system to collect organization-determined essential information; and
 
 .. _SI-4c.2.:
-      
+
 SI-4c.2.
 """"""""
 
     At ad hoc locations within the system to track specific types of transactions of interest to the organization;
 
 .. _SI-4d.:
-      
+
 SI-4d.
 """"""
 
     Protects information obtained from intrusion-monitoring tools from unauthorized access, modification, and deletion;
 
 .. _SI-4e.:
-      
+
 SI-4e.
 """"""
 
     Heightens the level of information system monitoring activity whenever there is an indication of increased risk to organizational operations and assets, individuals, other organizations, or the Nation based on law enforcement information, intelligence information, or other credible sources of information;
 
 .. _SI-4f.:
-      
+
 SI-4f.
 """"""
 
     Obtains legal opinion with regard to information system monitoring activities in accordance with applicable federal laws, Executive Orders, directives, policies, or regulations; and
 
 .. _SI-4g.:
-      
+
 SI-4g.
 """"""
 
     Provides [Assignment: organization-defined information system monitoring information] to [Assignment: organization-defined personnel or roles] [Selection (one or more): as needed; [Assignment: organization-defined frequency]].
 
 .. _SI-4 (1):
-      
+
 SI-4 (1) : SYSTEM-WIDE INTRUSION DETECTION SYSTEM
 """""""""""""""""""""""""""""""""""""""""""""""""
 
     The organization connects and configures individual intrusion detection tools into an information system-wide intrusion detection system.
 
 .. _SI-4 (2):
-      
+
 SI-4 (2) : AUTOMATED TOOLS FOR REAL-TIME ANALYSIS
 """""""""""""""""""""""""""""""""""""""""""""""""
 
@@ -16181,14 +16181,14 @@ SI-4 (2) : AUTOMATED TOOLS FOR REAL-TIME ANALYSIS
    Automated tools include, for example, host-based, network-based, transport-based, or storage-based event monitoring tools or Security Information and Event Management (SIEM) technologies that provide real time analysis of alerts and/or notifications generated by organizational information systems.
 
 .. _SI-4 (3):
-      
+
 SI-4 (3) : AUTOMATED TOOL INTEGRATION
 """""""""""""""""""""""""""""""""""""
 
     The organization employs automated tools to integrate intrusion detection tools into access control and flow control mechanisms for rapid response to attacks by enabling reconfiguration of these mechanisms in support of attack isolation and elimination.
 
 .. _SI-4 (4):
-      
+
 SI-4 (4) : INBOUND AND OUTBOUND COMMUNICATIONS TRAFFIC
 """"""""""""""""""""""""""""""""""""""""""""""""""""""
 
@@ -16201,7 +16201,7 @@ SI-4 (4) : INBOUND AND OUTBOUND COMMUNICATIONS TRAFFIC
    Unusual/unauthorized activities or conditions related to information system inbound and outbound communications traffic include, for example, internal traffic that indicates the presence of malicious code within organizational information systems or propagating among system components, the unauthorized exporting of information, or signaling to external information systems. Evidence of malicious code is used to identify potentially compromised information systems or information system components.
 
 .. _SI-4 (5):
-      
+
 SI-4 (5) : SYSTEM-GENERATED ALERTS
 """"""""""""""""""""""""""""""""""
 
@@ -16216,14 +16216,14 @@ SI-4 (5) : SYSTEM-GENERATED ALERTS
 **Related Controls:** `AU-5`_, `PE-6`_
 
 .. _SI-4 (6):
-      
+
 SI-4 (6) : RESTRICT NON-PRIVILEGED USERS
 """"""""""""""""""""""""""""""""""""""""
 
     [Withdrawn: Incorporated into AC-6 (10)].
 
 .. _SI-4 (7):
-      
+
 SI-4 (7) : AUTOMATED RESPONSE TO SUSPICIOUS EVENTS
 """"""""""""""""""""""""""""""""""""""""""""""""""
 
@@ -16234,14 +16234,14 @@ SI-4 (7) : AUTOMATED RESPONSE TO SUSPICIOUS EVENTS
    Least-disruptive actions may include, for example, initiating requests for human responses.
 
 .. _SI-4 (8):
-      
+
 SI-4 (8) : PROTECTION OF MONITORING INFORMATION
 """""""""""""""""""""""""""""""""""""""""""""""
 
     [Withdrawn: Incorporated into SI-4].
 
 .. _SI-4 (9):
-      
+
 SI-4 (9) : TESTING OF MONITORING TOOLS
 """"""""""""""""""""""""""""""""""""""
 
@@ -16254,7 +16254,7 @@ SI-4 (9) : TESTING OF MONITORING TOOLS
 **Related Controls:** `CP-9`_
 
 .. _SI-4 (10):
-      
+
 SI-4 (10) : VISIBILITY OF ENCRYPTED COMMUNICATIONS
 """"""""""""""""""""""""""""""""""""""""""""""""""
 
@@ -16265,7 +16265,7 @@ SI-4 (10) : VISIBILITY OF ENCRYPTED COMMUNICATIONS
    Organizations balance the potentially conflicting needs for encrypting communications traffic and for having insight into such traffic from a monitoring perspective. For some organizations, the need to ensure the confidentiality of communications traffic is paramount; for others, mission-assurance is of greater concern. Organizations determine whether the visibility requirement applies to internal encrypted traffic, encrypted traffic intended for external destinations, or a subset of the traffic types.
 
 .. _SI-4 (11):
-      
+
 SI-4 (11) : ANALYZE COMMUNICATIONS TRAFFIC ANOMALIES
 """"""""""""""""""""""""""""""""""""""""""""""""""""
 
@@ -16276,7 +16276,7 @@ SI-4 (11) : ANALYZE COMMUNICATIONS TRAFFIC ANOMALIES
    Anomalies within organizational information systems include, for example, large file transfers, long-time persistent connections, unusual protocols and ports in use, and attempted communications with suspected malicious external addresses.
 
 .. _SI-4 (12):
-      
+
 SI-4 (12) : AUTOMATED ALERTS
 """"""""""""""""""""""""""""
 
@@ -16289,35 +16289,35 @@ SI-4 (12) : AUTOMATED ALERTS
 **Related Controls:** `AC-18`_, `IA-3`_
 
 .. _SI-4 (13):
-      
+
 SI-4 (13) : ANALYZE TRAFFIC / EVENT PATTERNS
 """"""""""""""""""""""""""""""""""""""""""""
 
     The organization:
 
 .. _SI-4 (13)(a):
-      
+
 SI-4 (13)(a)
 """"""""""""
 
     Analyzes communications traffic/event patterns for the information system;
 
 .. _SI-4 (13)(b):
-      
+
 SI-4 (13)(b)
 """"""""""""
 
     Develops profiles representing common traffic patterns and/or events; and
 
 .. _SI-4 (13)(c):
-      
+
 SI-4 (13)(c)
 """"""""""""
 
     Uses the traffic/event profiles in tuning system-monitoring devices to reduce the number of false positives and the number of false negatives.
 
 .. _SI-4 (14):
-      
+
 SI-4 (14) : WIRELESS INTRUSION DETECTION
 """"""""""""""""""""""""""""""""""""""""
 
@@ -16330,7 +16330,7 @@ SI-4 (14) : WIRELESS INTRUSION DETECTION
 **Related Controls:** `AC-18`_, `IA-3`_
 
 .. _SI-4 (15):
-      
+
 SI-4 (15) : WIRELESS TO WIRELINE COMMUNICATIONS
 """""""""""""""""""""""""""""""""""""""""""""""
 
@@ -16339,7 +16339,7 @@ SI-4 (15) : WIRELESS TO WIRELINE COMMUNICATIONS
 **Related Controls:** `AC-18`_
 
 .. _SI-4 (16):
-      
+
 SI-4 (16) : CORRELATE MONITORING INFORMATION
 """"""""""""""""""""""""""""""""""""""""""""
 
@@ -16352,7 +16352,7 @@ SI-4 (16) : CORRELATE MONITORING INFORMATION
 **Related Controls:** `AU-6`_
 
 .. _SI-4 (17):
-      
+
 SI-4 (17) : INTEGRATED SITUATIONAL AWARENESS
 """"""""""""""""""""""""""""""""""""""""""""
 
@@ -16365,7 +16365,7 @@ SI-4 (17) : INTEGRATED SITUATIONAL AWARENESS
 **Related Controls:** `SA-12`_
 
 .. _SI-4 (18):
-      
+
 SI-4 (18) : ANALYZE TRAFFIC / COVERT EXFILTRATION
 """""""""""""""""""""""""""""""""""""""""""""""""
 
@@ -16376,7 +16376,7 @@ SI-4 (18) : ANALYZE TRAFFIC / COVERT EXFILTRATION
    Covert means that can be used for the unauthorized exfiltration of organizational information include, for example, steganography.
 
 .. _SI-4 (19):
-      
+
 SI-4 (19) : INDIVIDUALS POSING GREATER RISK
 """""""""""""""""""""""""""""""""""""""""""
 
@@ -16387,21 +16387,21 @@ SI-4 (19) : INDIVIDUALS POSING GREATER RISK
    Indications of increased risk from individuals can be obtained from a variety of sources including, for example, human resource records, intelligence agencies, law enforcement organizations, and/or other credible sources. The monitoring of individuals is closely coordinated with management, legal, security, and human resources officials within organizations conducting such monitoring and complies with federal legislation, Executive Orders, policies, directives, regulations, and standards.
 
 .. _SI-4 (20):
-      
+
 SI-4 (20) : PRIVILEGED USERS
 """"""""""""""""""""""""""""
 
     The organization implements [Assignment: organization-defined additional monitoring] of privileged users.
 
 .. _SI-4 (21):
-      
+
 SI-4 (21) : PROBATIONARY PERIODS
 """"""""""""""""""""""""""""""""
 
     The organization implements [Assignment: organization-defined additional monitoring] of individuals during [Assignment: organization-defined probationary period].
 
 .. _SI-4 (22):
-      
+
 SI-4 (22) : UNAUTHORIZED NETWORK SERVICES
 """""""""""""""""""""""""""""""""""""""""
 
@@ -16414,7 +16414,7 @@ SI-4 (22) : UNAUTHORIZED NETWORK SERVICES
 **Related Controls:** `AC-6`_, `CM-7`_, `SA-5`_, `SA-9`_
 
 .. _SI-4 (23):
-      
+
 SI-4 (23) : HOST-BASED DEVICES
 """"""""""""""""""""""""""""""
 
@@ -16425,7 +16425,7 @@ SI-4 (23) : HOST-BASED DEVICES
    Information system components where host-based monitoring can be implemented include, for example, servers, workstations, and mobile devices. Organizations consider employing host-based monitoring mechanisms from multiple information technology product developers.
 
 .. _SI-4 (24):
-      
+
 SI-4 (24) : INDICATORS OF COMPROMISE
 """"""""""""""""""""""""""""""""""""
 
@@ -16439,7 +16439,7 @@ Control Family:  SYSTEM AND INFORMATION INTEGRITY
 -------------------------------------------------
 
 .. _SI-5:
-      
+
 SI-5 : SECURITY ALERTS, ADVISORIES, AND DIRECTIVES
 """"""""""""""""""""""""""""""""""""""""""""""""""
 
@@ -16457,35 +16457,35 @@ SI-5 : SECURITY ALERTS, ADVISORIES, AND DIRECTIVES
 
 
 .. _SI-5a.:
-      
+
 SI-5a.
 """"""
 
     Receives information system security alerts, advisories, and directives from [Assignment: organization-defined external organizations] on an ongoing basis;
 
 .. _SI-5b.:
-      
+
 SI-5b.
 """"""
 
     Generates internal security alerts, advisories, and directives as deemed necessary;
 
 .. _SI-5c.:
-      
+
 SI-5c.
 """"""
 
     Disseminates security alerts, advisories, and directives to: [Selection (one or more): [Assignment: organization-defined personnel or roles]; [Assignment: organization-defined elements within the organization]; [Assignment: organization-defined external organizations]]; and
 
 .. _SI-5d.:
-      
+
 SI-5d.
 """"""
 
     Implements security directives in accordance with established time frames, or notifies the issuing organization of the degree of noncompliance.
 
 .. _SI-5 (1):
-      
+
 SI-5 (1) : AUTOMATED ALERTS AND ADVISORIES
 """"""""""""""""""""""""""""""""""""""""""
 
@@ -16501,7 +16501,7 @@ Control Family:  SYSTEM AND INFORMATION INTEGRITY
 -------------------------------------------------
 
 .. _SI-6:
-      
+
 SI-6 : SECURITY FUNCTION VERIFICATION
 """""""""""""""""""""""""""""""""""""
 
@@ -16519,42 +16519,42 @@ SI-6 : SECURITY FUNCTION VERIFICATION
 
 
 .. _SI-6a.:
-      
+
 SI-6a.
 """"""
 
     Verifies the correct operation of [Assignment: organization-defined security functions];
 
 .. _SI-6b.:
-      
+
 SI-6b.
 """"""
 
     Performs this verification [Selection (one or more): [Assignment: organization-defined system transitional states]; upon command by user with appropriate privilege; [Assignment: organization-defined frequency]];
 
 .. _SI-6c.:
-      
+
 SI-6c.
 """"""
 
     Notifies [Assignment: organization-defined personnel or roles] of failed security verification tests; and
 
 .. _SI-6d.:
-      
+
 SI-6d.
 """"""
 
     [Selection (one or more): shuts the information system down; restarts the information system; [Assignment: organization-defined alternative action(s)]] when anomalies are discovered.
 
 .. _SI-6 (1):
-      
+
 SI-6 (1) : NOTIFICATION OF FAILED SECURITY TESTS
 """"""""""""""""""""""""""""""""""""""""""""""""
 
     [Withdrawn: Incorporated into SI-6].
 
 .. _SI-6 (2):
-      
+
 SI-6 (2) : AUTOMATION SUPPORT FOR DISTRIBUTED TESTING
 """""""""""""""""""""""""""""""""""""""""""""""""""""
 
@@ -16563,7 +16563,7 @@ SI-6 (2) : AUTOMATION SUPPORT FOR DISTRIBUTED TESTING
 **Related Controls:** `SI-2`_
 
 .. _SI-6 (3):
-      
+
 SI-6 (3) : REPORT VERIFICATION RESULTS
 """"""""""""""""""""""""""""""""""""""
 
@@ -16579,7 +16579,7 @@ Control Family:  SYSTEM AND INFORMATION INTEGRITY
 -------------------------------------------------
 
 .. _SI-7:
-      
+
 SI-7 : SOFTWARE, FIRMWARE, AND INFORMATION INTEGRITY
 """"""""""""""""""""""""""""""""""""""""""""""""""""
 
@@ -16597,7 +16597,7 @@ SI-7 : SOFTWARE, FIRMWARE, AND INFORMATION INTEGRITY
 
 
 .. _SI-7 (1):
-      
+
 SI-7 (1) : INTEGRITY CHECKS
 """""""""""""""""""""""""""
 
@@ -16610,7 +16610,7 @@ SI-7 (1) : INTEGRITY CHECKS
    Security-relevant events include, for example, the identification of a new threat to which organizational information systems are susceptible, and the installation of new hardware, software, or firmware. Transitional states include, for example, system startup, restart, shutdown, and abort.
 
 .. _SI-7 (2):
-      
+
 SI-7 (2) : AUTOMATED NOTIFICATIONS OF INTEGRITY VIOLATIONS
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
@@ -16623,7 +16623,7 @@ SI-7 (2) : AUTOMATED NOTIFICATIONS OF INTEGRITY VIOLATIONS
    The use of automated tools to report integrity violations and to notify organizational personnel in a timely matter is an essential precursor to effective risk response. Personnel having an interest in integrity violations include, for example, mission/business owners, information system owners, systems administrators, software developers, systems integrators, and information security officers.
 
 .. _SI-7 (3):
-      
+
 SI-7 (3) : CENTRALLY-MANAGED INTEGRITY TOOLS
 """"""""""""""""""""""""""""""""""""""""""""
 
@@ -16632,14 +16632,14 @@ SI-7 (3) : CENTRALLY-MANAGED INTEGRITY TOOLS
 **Related Controls:** `AU-3`_, `SI-2`_, `SI-8`_
 
 .. _SI-7 (4):
-      
+
 SI-7 (4) : TAMPER-EVIDENT PACKAGING
 """""""""""""""""""""""""""""""""""
 
     [Withdrawn: Incorporated into SA-12].
 
 .. _SI-7 (5):
-      
+
 SI-7 (5) : AUTOMATED RESPONSE TO INTEGRITY VIOLATIONS
 """""""""""""""""""""""""""""""""""""""""""""""""""""
 
@@ -16652,7 +16652,7 @@ SI-7 (5) : AUTOMATED RESPONSE TO INTEGRITY VIOLATIONS
    Organizations may define different integrity checking and anomaly responses: (i) by type of information (e.g., firmware, software, user data); (ii) by specific information (e.g., boot firmware, boot firmware for a specific types of machines); or (iii) a combination of both. Automatic implementation of specific safeguards within organizational information systems includes, for example, reversing the changes, halting the information system, or triggering audit alerts when unauthorized modifications to critical security files occur.
 
 .. _SI-7 (6):
-      
+
 SI-7 (6) : CRYPTOGRAPHIC PROTECTION
 """""""""""""""""""""""""""""""""""
 
@@ -16665,7 +16665,7 @@ SI-7 (6) : CRYPTOGRAPHIC PROTECTION
 **Related Controls:** `SC-13`_
 
 .. _SI-7 (7):
-      
+
 SI-7 (7) : INTEGRATION OF DETECTION AND RESPONSE
 """"""""""""""""""""""""""""""""""""""""""""""""
 
@@ -16680,7 +16680,7 @@ SI-7 (7) : INTEGRATION OF DETECTION AND RESPONSE
 **Related Controls:** `IR-4`_, `IR-5`_, `SI-4`_
 
 .. _SI-7 (8):
-      
+
 SI-7 (8) : AUDITING CAPABILITY FOR SIGNIFICANT EVENTS
 """""""""""""""""""""""""""""""""""""""""""""""""""""
 
@@ -16693,7 +16693,7 @@ SI-7 (8) : AUDITING CAPABILITY FOR SIGNIFICANT EVENTS
 **Related Controls:** `AU-2`_, `AU-6`_, `AU-12`_
 
 .. _SI-7 (9):
-      
+
 SI-7 (9) : VERIFY BOOT PROCESS
 """"""""""""""""""""""""""""""
 
@@ -16704,7 +16704,7 @@ SI-7 (9) : VERIFY BOOT PROCESS
    Ensuring the integrity of boot processes is critical to starting devices in known/trustworthy states. Integrity verification mechanisms provide organizational personnel with assurance that only trusted code is executed during boot processes.
 
 .. _SI-7 (10):
-      
+
 SI-7 (10) : PROTECTION OF BOOT FIRMWARE
 """""""""""""""""""""""""""""""""""""""
 
@@ -16715,7 +16715,7 @@ SI-7 (10) : PROTECTION OF BOOT FIRMWARE
    Unauthorized modifications to boot firmware may be indicative of a sophisticated, targeted cyber attack. These types of cyber attacks can result in a permanent denial of service (e.g., if the firmware is corrupted) or a persistent malicious code presence (e.g., if code is embedded within the firmware). Devices can protect the integrity of the boot firmware in organizational information systems by: (i) verifying the integrity and authenticity of all updates to the boot firmware prior to applying changes to the boot devices; and (ii) preventing unauthorized processes from modifying the boot firmware.
 
 .. _SI-7 (11):
-      
+
 SI-7 (11) : CONFINED ENVIRONMENTS WITH LIMITED PRIVILEGES
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
@@ -16726,7 +16726,7 @@ SI-7 (11) : CONFINED ENVIRONMENTS WITH LIMITED PRIVILEGES
    Organizations identify software that may be of greater concern with regard to origin or potential for containing malicious code. For this type of software, user installations occur in confined environments of operation to limit or contain damage from malicious code that may be executed.
 
 .. _SI-7 (12):
-      
+
 SI-7 (12) : INTEGRITY VERIFICATION
 """"""""""""""""""""""""""""""""""
 
@@ -16737,7 +16737,7 @@ SI-7 (12) : INTEGRITY VERIFICATION
    Organizations verify the integrity of user-installed software prior to execution to reduce the likelihood of executing malicious code or code that contains errors from unauthorized modifications. Organizations consider the practicality of approaches to verifying software integrity including, for example, availability of checksums of adequate trustworthiness from software developers or vendors.
 
 .. _SI-7 (13):
-      
+
 SI-7 (13) : CODE EXECUTION IN PROTECTED ENVIRONMENTS
 """"""""""""""""""""""""""""""""""""""""""""""""""""
 
@@ -16748,7 +16748,7 @@ SI-7 (13) : CODE EXECUTION IN PROTECTED ENVIRONMENTS
    This control enhancement applies to all sources of binary or machine-executable code including, for example, commercial software/firmware and open source software.
 
 .. _SI-7 (14):
-      
+
 SI-7 (14) : BINARY OR MACHINE EXECUTABLE CODE
 """""""""""""""""""""""""""""""""""""""""""""
 
@@ -16763,21 +16763,21 @@ SI-7 (14) : BINARY OR MACHINE EXECUTABLE CODE
 **Related Controls:** `SA-5`_
 
 .. _SI-7 (14)(a):
-      
+
 SI-7 (14)(a)
 """"""""""""
 
     Prohibits the use of binary or machine-executable code from sources with limited or no warranty and without the provision of source code; and
 
 .. _SI-7 (14)(b):
-      
+
 SI-7 (14)(b)
 """"""""""""
 
     Provides exceptions to the source code requirement only for compelling mission/operational requirements and with the approval of the authorizing official.
 
 .. _SI-7 (15):
-      
+
 SI-7 (15) : CODE AUTHENTICATION
 """""""""""""""""""""""""""""""
 
@@ -16788,7 +16788,7 @@ SI-7 (15) : CODE AUTHENTICATION
    Cryptographic authentication includes, for example, verifying that software or firmware components have been digitally signed using certificates recognized and approved by organizations. Code signing is an effective method to protect against malicious code.
 
 .. _SI-7 (16):
-      
+
 SI-7 (16) : TIME LIMIT ON PROCESS EXECUTION W/O SUPERVISION
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
@@ -16802,7 +16802,7 @@ Control Family:  SYSTEM AND INFORMATION INTEGRITY
 -------------------------------------------------
 
 .. _SI-8:
-      
+
 SI-8 : SPAM PROTECTION
 """"""""""""""""""""""
 
@@ -16820,21 +16820,21 @@ SI-8 : SPAM PROTECTION
 
 
 .. _SI-8a.:
-      
+
 SI-8a.
 """"""
 
     Employs spam protection mechanisms at information system entry and exit points to detect and take action on unsolicited messages; and
 
 .. _SI-8b.:
-      
+
 SI-8b.
 """"""
 
     Updates spam protection mechanisms when new releases are available in accordance with organizational configuration management policy and procedures.
 
 .. _SI-8 (1):
-      
+
 SI-8 (1) : CENTRAL MANAGEMENT
 """""""""""""""""""""""""""""
 
@@ -16849,7 +16849,7 @@ SI-8 (1) : CENTRAL MANAGEMENT
 **Related Controls:** `AU-3`_, `SI-2`_, `SI-7`_
 
 .. _SI-8 (2):
-      
+
 SI-8 (2) : AUTOMATIC UPDATES
 """"""""""""""""""""""""""""
 
@@ -16858,7 +16858,7 @@ SI-8 (2) : AUTOMATIC UPDATES
     The information system automatically updates spam protection mechanisms.
 
 .. _SI-8 (3):
-      
+
 SI-8 (3) : CONTINUOUS LEARNING CAPABILITY
 """""""""""""""""""""""""""""""""""""""""
 
@@ -16872,7 +16872,7 @@ Control Family:  SYSTEM AND INFORMATION INTEGRITY
 -------------------------------------------------
 
 .. _SI-9:
-      
+
 SI-9 : INFORMATION INPUT RESTRICTIONS
 """""""""""""""""""""""""""""""""""""
 
@@ -16883,7 +16883,7 @@ Control Family:  SYSTEM AND INFORMATION INTEGRITY
 -------------------------------------------------
 
 .. _SI-10:
-      
+
 SI-10 : INFORMATION INPUT VALIDATION
 """"""""""""""""""""""""""""""""""""
 
@@ -16899,7 +16899,7 @@ SI-10 : INFORMATION INPUT VALIDATION
 
 
 .. _SI-10 (1):
-      
+
 SI-10 (1) : MANUAL OVERRIDE CAPABILITY
 """"""""""""""""""""""""""""""""""""""
 
@@ -16908,28 +16908,28 @@ SI-10 (1) : MANUAL OVERRIDE CAPABILITY
 **Related Controls:** `CM-3`_, `CM-5`_
 
 .. _SI-10 (1)(a):
-      
+
 SI-10 (1)(a)
 """"""""""""
 
     Provides a manual override capability for input validation of [Assignment: organization-defined inputs];
 
 .. _SI-10 (1)(b):
-      
+
 SI-10 (1)(b)
 """"""""""""
 
     Restricts the use of the manual override capability to only [Assignment: organization-defined authorized individuals]; and
 
 .. _SI-10 (1)(c):
-      
+
 SI-10 (1)(c)
 """"""""""""
 
     Audits the use of the manual override capability.
 
 .. _SI-10 (2):
-      
+
 SI-10 (2) : REVIEW / RESOLUTION OF ERRORS
 """""""""""""""""""""""""""""""""""""""""
 
@@ -16940,7 +16940,7 @@ SI-10 (2) : REVIEW / RESOLUTION OF ERRORS
    Resolution of input validation errors includes, for example, correcting systemic causes of errors and resubmitting transactions with corrected input.
 
 .. _SI-10 (3):
-      
+
 SI-10 (3) : PREDICTABLE BEHAVIOR
 """"""""""""""""""""""""""""""""
 
@@ -16951,7 +16951,7 @@ SI-10 (3) : PREDICTABLE BEHAVIOR
    A common vulnerability in organizational information systems is unpredictable behavior when invalid inputs are received. This control enhancement ensures that there is predictable behavior in the face of invalid inputs by specifying information system responses that facilitate transitioning the system to known states without adverse, unintended side effects.
 
 .. _SI-10 (4):
-      
+
 SI-10 (4) : REVIEW / TIMING INTERACTIONS
 """"""""""""""""""""""""""""""""""""""""
 
@@ -16962,7 +16962,7 @@ SI-10 (4) : REVIEW / TIMING INTERACTIONS
    In addressing invalid information system inputs received across protocol interfaces, timing interactions become relevant, where one protocol needs to consider the impact of the error response on other protocols within the protocol stack. For example, 802.11 standard wireless network protocols do not interact well with Transmission Control Protocols (TCP) when packets are dropped (which could be due to invalid packet input). TCP assumes packet losses are due to congestion, while packets lost over 802.11 links are typically dropped due to collisions or noise on the link. If TCP makes a congestion response, it takes precisely the wrong action in response to a collision event. Adversaries may be able to use apparently acceptable individual behaviors of the protocols in concert to achieve adverse effects through suitable construction of invalid input.
 
 .. _SI-10 (5):
-      
+
 SI-10 (5) : RESTRICT INPUTS TO TRUSTED SOURCES AND APPROVED FORMATS
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
@@ -16976,7 +16976,7 @@ Control Family:  SYSTEM AND INFORMATION INTEGRITY
 -------------------------------------------------
 
 .. _SI-11:
-      
+
 SI-11 : ERROR HANDLING
 """"""""""""""""""""""
 
@@ -16994,14 +16994,14 @@ SI-11 : ERROR HANDLING
 
 
 .. _SI-11a.:
-      
+
 SI-11a.
 """""""
 
     Generates error messages that provide information necessary for corrective actions without revealing information that could be exploited by adversaries; and
 
 .. _SI-11b.:
-      
+
 SI-11b.
 """""""
 
@@ -17011,7 +17011,7 @@ Control Family:  SYSTEM AND INFORMATION INTEGRITY
 -------------------------------------------------
 
 .. _SI-12:
-      
+
 SI-12 : INFORMATION HANDLING AND RETENTION
 """"""""""""""""""""""""""""""""""""""""""
 
@@ -17032,7 +17032,7 @@ Control Family:  SYSTEM AND INFORMATION INTEGRITY
 -------------------------------------------------
 
 .. _SI-13:
-      
+
 SI-13 : PREDICTABLE FAILURE PREVENTION
 """"""""""""""""""""""""""""""""""""""
 
@@ -17048,42 +17048,42 @@ SI-13 : PREDICTABLE FAILURE PREVENTION
 
 
 .. _SI-13a.:
-      
+
 SI-13a.
 """""""
 
     Determines mean time to failure (MTTF) for [Assignment: organization-defined information system components] in specific environments of operation; and
 
 .. _SI-13b.:
-      
+
 SI-13b.
 """""""
 
     Provides substitute information system components and a means to exchange active and standby components at [Assignment: organization-defined MTTF substitution criteria].
 
 .. _SI-13 (1):
-      
+
 SI-13 (1) : TRANSFERRING COMPONENT RESPONSIBILITIES
 """""""""""""""""""""""""""""""""""""""""""""""""""
 
     The organization takes information system components out of service by transferring component responsibilities to substitute components no later than [Assignment: organization-defined fraction or percentage] of mean time to failure.
 
 .. _SI-13 (2):
-      
+
 SI-13 (2) : TIME LIMIT ON PROCESS EXECUTION WITHOUT SUPERVISION
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
     [Withdrawn: Incorporated into SI-7 (16)].
 
 .. _SI-13 (3):
-      
+
 SI-13 (3) : MANUAL TRANSFER BETWEEN COMPONENTS
 """"""""""""""""""""""""""""""""""""""""""""""
 
     The organization manually initiates transfers between active and standby information system components [Assignment: organization-defined frequency] if the mean time to failure exceeds [Assignment: organization-defined time period].
 
 .. _SI-13 (4):
-      
+
 SI-13 (4) : STANDBY COMPONENT INSTALLATION / NOTIFICATION
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
@@ -17094,21 +17094,21 @@ SI-13 (4) : STANDBY COMPONENT INSTALLATION / NOTIFICATION
    Automatic or manual transfer of components from standby to active mode can occur, for example, upon detection of component failures.
 
 .. _SI-13 (4)(a):
-      
+
 SI-13 (4)(a)
 """"""""""""
 
     Ensures that the standby components are successfully and transparently installed within [Assignment: organization-defined time period]; and
 
 .. _SI-13 (4)(b):
-      
+
 SI-13 (4)(b)
 """"""""""""
 
     [Selection (one or more): activates [Assignment: organization-defined alarm]; automatically shuts down the information system].
 
 .. _SI-13 (5):
-      
+
 SI-13 (5) : FAILOVER CAPABILITY
 """""""""""""""""""""""""""""""
 
@@ -17122,7 +17122,7 @@ Control Family:  SYSTEM AND INFORMATION INTEGRITY
 -------------------------------------------------
 
 .. _SI-14:
-      
+
 SI-14 : NON-PERSISTENCE
 """""""""""""""""""""""
 
@@ -17139,7 +17139,7 @@ SI-14 : NON-PERSISTENCE
 
 
 .. _SI-14 (1):
-      
+
 SI-14 (1) : REFRESH FROM TRUSTED SOURCES
 """"""""""""""""""""""""""""""""""""""""
 
@@ -17153,7 +17153,7 @@ Control Family:  SYSTEM AND INFORMATION INTEGRITY
 -------------------------------------------------
 
 .. _SI-15:
-      
+
 SI-15 : INFORMATION OUTPUT FILTERING
 """"""""""""""""""""""""""""""""""""
 
@@ -17172,7 +17172,7 @@ Control Family:  SYSTEM AND INFORMATION INTEGRITY
 -------------------------------------------------
 
 .. _SI-16:
-      
+
 SI-16 : MEMORY PROTECTION
 """""""""""""""""""""""""
 
@@ -17193,7 +17193,7 @@ Control Family:  SYSTEM AND INFORMATION INTEGRITY
 -------------------------------------------------
 
 .. _SI-17:
-      
+
 SI-17 : FAIL-SAFE PROCEDURES
 """"""""""""""""""""""""""""
 
@@ -17212,7 +17212,7 @@ Control Family:  PROGRAM MANAGEMENT
 -----------------------------------
 
 .. _PM-1:
-      
+
 PM-1 : INFORMATION SECURITY PROGRAM PLAN
 """"""""""""""""""""""""""""""""""""""""
 
@@ -17228,56 +17228,56 @@ PM-1 : INFORMATION SECURITY PROGRAM PLAN
 
 
 .. _PM-1a.:
-      
+
 PM-1a.
 """"""
 
     Develops and disseminates an organization-wide information security program plan that:
 
 .. _PM-1a.1.:
-      
+
 PM-1a.1.
 """"""""
 
     Provides an overview of the requirements for the security program and a description of the security program management controls and common controls in place or planned for meeting those requirements;
 
 .. _PM-1a.2.:
-      
+
 PM-1a.2.
 """"""""
 
     Includes the identification and assignment of roles, responsibilities, management commitment, coordination among organizational entities, and compliance;
 
 .. _PM-1a.3.:
-      
+
 PM-1a.3.
 """"""""
 
     Reflects coordination among organizational entities responsible for the different aspects of information security (i.e., technical, physical, personnel, cyber-physical); and
 
 .. _PM-1a.4.:
-      
+
 PM-1a.4.
 """"""""
 
     Is approved by a senior official with responsibility and accountability for the risk being incurred to organizational operations (including mission, functions, image, and reputation), organizational assets, individuals, other organizations, and the Nation;
 
 .. _PM-1b.:
-      
+
 PM-1b.
 """"""
 
     Reviews the organization-wide information security program plan [Assignment: organization-defined frequency];
 
 .. _PM-1c.:
-      
+
 PM-1c.
 """"""
 
     Updates the plan to address organizational changes and problems identified during plan implementation or security control assessments; and
 
 .. _PM-1d.:
-      
+
 PM-1d.
 """"""
 
@@ -17287,7 +17287,7 @@ Control Family:  PROGRAM MANAGEMENT
 -----------------------------------
 
 .. _PM-2:
-      
+
 PM-2 : SENIOR INFORMATION SECURITY OFFICER
 """"""""""""""""""""""""""""""""""""""""""
 
@@ -17302,7 +17302,7 @@ Control Family:  PROGRAM MANAGEMENT
 -----------------------------------
 
 .. _PM-3:
-      
+
 PM-3 : INFORMATION SECURITY RESOURCES
 """""""""""""""""""""""""""""""""""""
 
@@ -17316,21 +17316,21 @@ PM-3 : INFORMATION SECURITY RESOURCES
 
 
 .. _PM-3a.:
-      
+
 PM-3a.
 """"""
 
     Ensures that all capital planning and investment requests include the resources needed to implement the information security program and documents all exceptions to this requirement;
 
 .. _PM-3b.:
-      
+
 PM-3b.
 """"""
 
     Employs a business case/Exhibit 300/Exhibit 53 to record the resources required; and
 
 .. _PM-3c.:
-      
+
 PM-3c.
 """"""
 
@@ -17340,7 +17340,7 @@ Control Family:  PROGRAM MANAGEMENT
 -----------------------------------
 
 .. _PM-4:
-      
+
 PM-4 : PLAN OF ACTION AND MILESTONES PROCESS
 """"""""""""""""""""""""""""""""""""""""""""
 
@@ -17354,35 +17354,35 @@ PM-4 : PLAN OF ACTION AND MILESTONES PROCESS
 
 
 .. _PM-4a.:
-      
+
 PM-4a.
 """"""
 
     Implements a process for ensuring that plans of action and milestones for the security program and associated organizational information systems:
 
 .. _PM-4a.1.:
-      
+
 PM-4a.1.
 """"""""
 
     Are developed and maintained;
 
 .. _PM-4a.2.:
-      
+
 PM-4a.2.
 """"""""
 
     Document the remedial information security actions to adequately respond to risk to organizational operations and assets, individuals, other organizations, and the Nation; and
 
 .. _PM-4a.3.:
-      
+
 PM-4a.3.
 """"""""
 
     Are reported in accordance with OMB FISMA reporting requirements.
 
 .. _PM-4b.:
-      
+
 PM-4b.
 """"""
 
@@ -17392,7 +17392,7 @@ Control Family:  PROGRAM MANAGEMENT
 -----------------------------------
 
 .. _PM-5:
-      
+
 PM-5 : INFORMATION SYSTEM INVENTORY
 """""""""""""""""""""""""""""""""""
 
@@ -17407,7 +17407,7 @@ Control Family:  PROGRAM MANAGEMENT
 -----------------------------------
 
 .. _PM-6:
-      
+
 PM-6 : INFORMATION SECURITY MEASURES OF PERFORMANCE
 """""""""""""""""""""""""""""""""""""""""""""""""""
 
@@ -17422,7 +17422,7 @@ Control Family:  PROGRAM MANAGEMENT
 -----------------------------------
 
 .. _PM-7:
-      
+
 PM-7 : ENTERPRISE ARCHITECTURE
 """"""""""""""""""""""""""""""
 
@@ -17439,7 +17439,7 @@ Control Family:  PROGRAM MANAGEMENT
 -----------------------------------
 
 .. _PM-8:
-      
+
 PM-8 : CRITICAL INFRASTRUCTURE PLAN
 """""""""""""""""""""""""""""""""""
 
@@ -17456,7 +17456,7 @@ Control Family:  PROGRAM MANAGEMENT
 -----------------------------------
 
 .. _PM-9:
-      
+
 PM-9 : RISK MANAGEMENT STRATEGY
 """""""""""""""""""""""""""""""
 
@@ -17470,21 +17470,21 @@ PM-9 : RISK MANAGEMENT STRATEGY
 
 
 .. _PM-9a.:
-      
+
 PM-9a.
 """"""
 
     Develops a comprehensive strategy to manage risk to organizational operations and assets, individuals, other organizations, and the Nation associated with the operation and use of information systems;
 
 .. _PM-9b.:
-      
+
 PM-9b.
 """"""
 
     Implements the risk management strategy consistently across the organization; and
 
 .. _PM-9c.:
-      
+
 PM-9c.
 """"""
 
@@ -17494,7 +17494,7 @@ Control Family:  PROGRAM MANAGEMENT
 -----------------------------------
 
 .. _PM-10:
-      
+
 PM-10 : SECURITY AUTHORIZATION PROCESS
 """"""""""""""""""""""""""""""""""""""
 
@@ -17508,21 +17508,21 @@ PM-10 : SECURITY AUTHORIZATION PROCESS
 
 
 .. _PM-10a.:
-      
+
 PM-10a.
 """""""
 
     Manages (i.e., documents, tracks, and reports) the security state of organizational information systems and the environments in which those systems operate through security authorization processes;
 
 .. _PM-10b.:
-      
+
 PM-10b.
 """""""
 
     Designates individuals to fulfill specific roles and responsibilities within the organizational risk management process; and
 
 .. _PM-10c.:
-      
+
 PM-10c.
 """""""
 
@@ -17532,7 +17532,7 @@ Control Family:  PROGRAM MANAGEMENT
 -----------------------------------
 
 .. _PM-11:
-      
+
 PM-11 : MISSION/BUSINESS PROCESS DEFINITION
 """""""""""""""""""""""""""""""""""""""""""
 
@@ -17546,14 +17546,14 @@ PM-11 : MISSION/BUSINESS PROCESS DEFINITION
 
 
 .. _PM-11a.:
-      
+
 PM-11a.
 """""""
 
     Defines mission/business processes with consideration for information security and the resulting risk to organizational operations, organizational assets, individuals, other organizations, and the Nation; and
 
 .. _PM-11b.:
-      
+
 PM-11b.
 """""""
 
@@ -17563,7 +17563,7 @@ Control Family:  PROGRAM MANAGEMENT
 -----------------------------------
 
 .. _PM-12:
-      
+
 PM-12 : INSIDER THREAT PROGRAM
 """"""""""""""""""""""""""""""
 
@@ -17581,7 +17581,7 @@ Control Family:  PROGRAM MANAGEMENT
 -----------------------------------
 
 .. _PM-13:
-      
+
 PM-13 : INFORMATION SECURITY WORKFORCE
 """"""""""""""""""""""""""""""""""""""
 
@@ -17598,7 +17598,7 @@ Control Family:  PROGRAM MANAGEMENT
 -----------------------------------
 
 .. _PM-14:
-      
+
 PM-14 : TESTING, TRAINING, AND MONITORING
 """""""""""""""""""""""""""""""""""""""""
 
@@ -17612,28 +17612,28 @@ PM-14 : TESTING, TRAINING, AND MONITORING
 
 
 .. _PM-14a.:
-      
+
 PM-14a.
 """""""
 
     Implements a process for ensuring that organizational plans for conducting security testing, training, and monitoring activities associated with organizational information systems:
 
 .. _PM-14a.1.:
-      
+
 PM-14a.1.
 """""""""
 
     Are developed and maintained; and
 
 .. _PM-14a.2.:
-      
+
 PM-14a.2.
 """""""""
 
     Continue to be executed in a timely manner;
 
 .. _PM-14b.:
-      
+
 PM-14b.
 """""""
 
@@ -17643,7 +17643,7 @@ Control Family:  PROGRAM MANAGEMENT
 -----------------------------------
 
 .. _PM-15:
-      
+
 PM-15 : CONTACTS WITH SECURITY GROUPS AND ASSOCIATIONS
 """"""""""""""""""""""""""""""""""""""""""""""""""""""
 
@@ -17657,21 +17657,21 @@ PM-15 : CONTACTS WITH SECURITY GROUPS AND ASSOCIATIONS
 
 
 .. _PM-15a.:
-      
+
 PM-15a.
 """""""
 
     To facilitate ongoing security education and training for organizational personnel;
 
 .. _PM-15b.:
-      
+
 PM-15b.
 """""""
 
     To maintain currency with recommended security practices, techniques, and technologies; and
 
 .. _PM-15c.:
-      
+
 PM-15c.
 """""""
 
@@ -17681,7 +17681,7 @@ Control Family:  PROGRAM MANAGEMENT
 -----------------------------------
 
 .. _PM-16:
-      
+
 PM-16 : THREAT AWARENESS PROGRAM
 """"""""""""""""""""""""""""""""
 

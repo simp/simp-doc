@@ -1,8 +1,7 @@
-.. _changelog:
-.. _changelog-6.3.3:
+.. _changelog-6.4.0:
 
-SIMP Community Edition (CE) 6.3.3-0
-===================================
+SIMP Community Edition (CE) 6.4.0-Alpha
+=======================================
 
 .. raw:: pdf
 
@@ -15,50 +14,95 @@ SIMP Community Edition (CE) 6.3.3-0
 
   PageBreak
 
+This release is known to work with:
+
+  * CentOS 6.10 x86_64
+  * CentOS 7.0 1810 x86_64
+  * OEL 6.10 x86_64
+  * OEL 7.6 x86_64
+  * RHEL 6.10 x86_64
+  * RHEL 7.6 x86_64
+
+
 .. WARNING::
 
-   Please see the :ref:`changelog-6.2.0` Changelog for general information,
-   upgrade guidance, and compatibility notes.
+   REALLY SUPER IMPORTANT STUFF GOES HERE
 
-This is a bug fix release in the 6.3.X series of SIMP to address the following
-issues:
+Breaking Changes
+----------------
 
-  * `SIMP-6152`_: Change a new default that was introduced by a bug fix in
-    :ref:`changelog-6.3.2` to SSSD that caused accounts with old
-    ``shadowLastChange`` entries in LDAP to be unable to login to systems.
+.. todo::
+
+   ADD BREAKING CHANGES
+
+Significant Updates
+-------------------
+
+.. todo::
+
+   ADD SIGNIFICANT UPDATES
+
+Security Announcements
+----------------------
+
+.. todo::
+
+   ADD SECURITY ANNOUNCEMENTS
+
+RPM Updates
+-----------
+
+.. todo::
+
+   ADD RPM UPDATES
+
+Removed Modules
+---------------
+
+Elasticsearch-Logstash-Grafana (ELG) Modules
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+The following modules were removed because they are significantly out of
+date and, in some cases, only work with application versions that are no
+longer supported:
+
+* pupmod-elastics-elasticsearch
+* pupmod-elastics-logstash
+* pupmod-puppet-grafana
+* pupmod-simp-simp_elasticsearch
+* pupmod-simp-simp_logstash
+* pupmod-simp-simp_grafana
+
 
 Fixed Bugs
 ----------
 
-pupmod-simp-sssd
-^^^^^^^^^^^^^^^^
+.. todo::
 
-* Change the ``sssd::provider::ldap::ldap_access_order`` defaults to
-  ``['ppolicy','pwd_expire_policy_renew']`` by default to prevent accidental
-  system lockouts on upgrade.
+   NOTE BUGS FIXED
+
+pupmod-simp-igotfixed
+^^^^^^^^^^^^^^^^^^^^^
+
+* Information about what got fixed
+
+New Features
+------------
+
+.. todo::
+
+   NOTE FEATURES ADDED
+
+pupmod-simp-igotawesome
+^^^^^^^^^^^^^^^^^^^^^^^
+
+* Information about the new hotness
 
 Known Bugs
 ----------
 
-Upgrading from previous SIMP 6.X versions
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+.. todo::
 
-There are known issues when upgrading from Puppet 4 to Puppet 5.  Make sure you
-read the :ref:`ug-upgrade-simp` before attempting an upgrade.
+   NOTE KNOWN BUGS
 
-Tlog
-^^^^
-
-Tlog currently has `a bug where session information may not be logged`_. The
-immediate mitigation to this is the fact that `pam_tty_audit` is the primary
-mode of auditing with ``tlog`` and/or ``sudosh`` being in place for a better
-overall tracking and behavior analysis experience.
-
-Tlog has `a second bug where the application fails if a user does not have a TTY`_.
-This has been mitigated by the SIMP wrapper script simply bypassing ``tlog`` if
-a TTY is not present.
-
-
-.. _SIMP-6152: https://simp-project.atlassian.net/browse/SIMP-6152
-.. _a bug where session information may not be logged: https://github.com/Scribery/tlog/issues/228
-.. _a second bug where the application fails if a user does not have a TTY: https://github.com/Scribery/tlog/issues/227
+.. _file bugs: https://simp-project.atlassian.net
