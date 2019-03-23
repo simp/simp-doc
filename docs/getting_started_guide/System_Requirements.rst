@@ -12,8 +12,15 @@ including:
 * Number of modules in your module path
 * Amount of hieradata
 
-While there are no official `hardware requirements`_, we recommend the
-following **for your SIMP server**:
+Official `hardware requirements` **for your SIMP server**:
+
+* At least 3.4 GB of RAM + swap.
+
+With less than 3.4 GB it is possible for either the puppet database or
+puppet server to not start.
+
+We recommend the following `hardware requirements` **for your SIMP
+server**:
 
 * **2** CPUs and **6 GB** of RAM, at a minimum
 * **2 - 4** CPUs and **10 GB** of RAM to serve up to *1,000* nodes
