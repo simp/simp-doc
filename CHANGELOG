@@ -1,3 +1,7 @@
+* Mon Mar 25 2019 Jim Anderson <thesemicolons@protonmail.com>
+- Managing Local/Service Users had an incomplete path for
+  local_account.pp and service_account.pp.
+
 * Thu Mar 21 2019 Jim Anderson <thesemicolons@protonmail.com>
 - Fixed typo in Prepare SIMP ldifs.
   - sed command had escaped asterisk, should be unescaped.
