@@ -13,7 +13,8 @@ SIMP.
 The following examples assume that you are using the ``site`` module to manage
 site-specific puppet manifests. The examples may easily be extrapolated into
 defined types if you wish but are presented as classes for simplicity. Save the
-files below in ``/etc/puppetlabs/code/environments/simp/modules/site/`` as
+files below in
+``/etc/puppetlabs/code/environments/simp/modules/site/manifests/`` as
 ``local_account.pp`` and ``service_account.pp``, ensuring the correct ownership,
 group, and permissions.
 
