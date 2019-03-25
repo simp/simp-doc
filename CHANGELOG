@@ -1,4 +1,5 @@
 * Mon Mar 25 2019 Jim Anderson <thesemicolons@protonmail.com>
+- Added official hardware requirement of  3.4 GB of RAM + swap.
 - Managing Local/Service Users had an incomplete path for
   local_account.pp and service_account.pp.
 
