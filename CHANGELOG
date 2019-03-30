@@ -1,3 +1,7 @@
+* Fri Mar 29 2019 Jim Anderson <thesemicolons@protonmail.com>
+- Added a page under Installation Advanced Topics regarding disk
+  partitioning.
+
 * Mon Mar 25 2019 Jim Anderson <thesemicolons@protonmail.com>
 - Added official hardware requirement of  3.4 GB of RAM + swap.
 - Managing Local/Service Users had an incomplete path for
