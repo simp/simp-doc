@@ -1,6 +1,8 @@
 * Fri Mar 29 2019 Jim Anderson <thesemicolons@protonmail.com>
 - Added a page under Installation Advanced Topics regarding disk
   partitioning.
+- Modified Transmission Confidentiality and Integrity to update location
+  for location of certificates.
 
 * Mon Mar 25 2019 Jim Anderson <thesemicolons@protonmail.com>
 - Added official hardware requirement of  3.4 GB of RAM + swap.
