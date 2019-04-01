@@ -266,8 +266,9 @@ following the instructions in the previous section.
 Server
 ^^^^^^
 
-Create a manifest in the site module. In this example
-the manifest is called nfs_server.pp.
+The server side of the NFS shares should be contained in its own namespace. In
+this example the manifest is in a module called ``site`` and a file named
+``nfs_server.pp``.
 
 .. code-block:: puppet
 

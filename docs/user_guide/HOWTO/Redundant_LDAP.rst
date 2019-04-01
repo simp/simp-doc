@@ -147,9 +147,9 @@ If settings other than the defaults are needed, create a manifest under
 ``site`` and use the ``simp_openldap::server::syncrepl`` class with the necessary
 parameters.
 
-In this example, the site profile is called ``site::ldap_slave`` and the RID of
-the server is ``999`` (these can be changed). One setting, ``sizelimit``, is
-being overwritten but you can overwrite any number of them.
+In this example, the :term:`site profile` is called ``site::ldap_slave`` and
+the RID of the server is ``999`` (these can be changed). One setting,
+``sizelimit``, is being overwritten but you can overwrite any number of them.
 
 .. code-block:: puppet
 

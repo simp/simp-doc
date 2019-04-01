@@ -137,7 +137,7 @@ profile to all workstations is to use the SIMP ``hostgroup`` :term:`Hiera`
 configuration capability.
 
 To do use ``hostgroups``, you will need to edit the ``site.pp`` in the target
-environment's :term:`site manifest`.
+:term:`puppet environment` :term:`site manifest`.
 
 Adding the following to
 ``/etc/puppetlabs/code/environments/simp/manifests/site.pp`` will will make all

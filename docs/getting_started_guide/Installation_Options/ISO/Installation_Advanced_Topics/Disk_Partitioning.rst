@@ -1,7 +1,7 @@
 .. _ig-disk-partitioning:
 
 Disk Partitioning
----------------
+-----------------
 
 The default SIMP installation has a disk partitioning scheme that is
 designed to meet multiple compliance and system hardening standards and

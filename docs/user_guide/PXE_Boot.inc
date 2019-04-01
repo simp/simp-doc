@@ -175,11 +175,10 @@ Installation Guides.
 
 Dynamic Linux Model Files
 ^^^^^^^^^^^^^^^^^^^^^^^^^
-Create a site manifest for the TFTP server on the Puppet master to set up the
-various files to model different systems.
+Create a :term:`site profile` module for the TFTP server on the Puppet master
+to set up the various files to model different systems.
 
-#. Create the file
-   ``/etc/puppetlabs/code/environments/simp/modules/site/manifests/tftpboot.pp``.
+#. Create the file ``tftpboot.pp`` in your :term:`site profile`.
    This file will contain Linux models for different types of systems and
    a mapping of MAC addresses to each model.
 
@@ -286,7 +285,7 @@ various files to model different systems.
         }
 
 
-#. Add the ``tftpboot`` site manifest on your puppet server node via
+#. Add the ``site::tftpboot`` class on your puppet server node via
    :term:`Hiera`.  Create the file (or edit if it exists):
    ``/etc/puppetlabs/code/environments/simp/data/hosts/<tftp.server.fqdn>.yaml``.
    (By default the TFTP server is the same as your puppet server so it should
