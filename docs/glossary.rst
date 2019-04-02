@@ -692,7 +692,7 @@ Glossary of Terms
       :term:`Puppet Module` that is specific to your site. This simply allows
       for a common isolated :term:`Puppet namespace` to reduce confusion in the
       documentation. You could add a module literally called ``site`` to your
-      environment which would make the examples generally able to be copy and
+      environment which would make the examples generally able to be copied and
       pasted into files in the new module.
 
       You may see various shorthand code snippets that refer to
