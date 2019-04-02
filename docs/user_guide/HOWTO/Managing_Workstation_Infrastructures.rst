@@ -133,10 +133,10 @@ Apply the Settings
 ------------------
 
 Once the profiles have been created and tested, one way of applying the
-profile to all workstations is to use the SIMP ``hostgroup`` :term:`Hiera`
+profile to all workstations is to use the SIMP ``hostgroups`` :term:`Hiera`
 configuration capability.
 
-To do use ``hostgroups``, you will need to edit the ``site.pp`` in the target
+To use ``hostgroups``, you will need to edit the ``site.pp`` in the target
 :term:`puppet environment` :term:`site manifest`.
 
 Adding the following to
