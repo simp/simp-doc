@@ -514,10 +514,9 @@ Glossary of Terms
       ``puppet`` application.
 
    Puppet Namespace
-      A unique identification mechanism used by the ``puppet`` compiler to
-      uniquely identify code during compilation. Generally, namespaces align
-      with :term:`Puppet Module` file paths and are separated by two colons at
-      each directory.
+      A mechanism used by the ``puppet`` compiler to uniquely identify code
+      during compilation. Generally, namespaces align with :term:`Puppet Module` 
+      file paths and are separated by two colons at each directory.
 
       See: `Namespaces and Autoloading <https://puppet.com/docs/puppet/latest/lang_namespaces.html>`__
 
