@@ -1,6 +1,6 @@
 * Mon Apr 01 2019 Trevor Vaughan <tvaughan@onyxpoint.com>
 - Removed all calls to the 'site' module specifically
-- Rebranded references to the 'site' module as a convienient place holder and
+- Rebranded references to the 'site' module as a convenient place holder and
   added appropriate glossary terms.
 - Added glossary terms for:
   - Puppet Module
