@@ -499,7 +499,7 @@ Glossary of Terms
       See: `Environments: <https://puppet.com/docs/puppet/latest/environments_about.html>`__
 
    Puppetfile
-      A Ruby file that contains references to Puppet modules.
+      A Ruby file that contains references to :term:`Puppet modules`.
 
       See the Puppetfile spec: https://github.com/puppetlabs/r10k/blob/master/doc/puppetfile.mkd
 
@@ -507,6 +507,18 @@ Glossary of Terms
       For the purposes of this document, this is the Server upon which the
       :term:`puppetserver` process is running and to which your clients
       connect.
+
+   Puppet Module
+   Puppet Modules
+      A self-contained bundle of code and data able to be processed by the
+      ``puppet`` application.
+
+   Puppet Namespace
+      A mechanism used by the ``puppet`` compiler to uniquely identify code
+      during compilation. Generally, namespaces align with :term:`Puppet Module` 
+      file paths and are separated by two colons at each directory.
+
+      See: `Namespaces and Autoloading <https://puppet.com/docs/puppet/latest/lang_namespaces.html>`__
 
    Puppet Resource
    Puppet Resources
@@ -654,7 +666,7 @@ Glossary of Terms
 
    SIMP Compliance Engine
       A SIMP component that adds the capability to evaluate your
-      :term:`Puppet` code for compilance with a policy as well as enforcing
+      :term:`Puppet` code for compliance with a policy as well as enforcing
       that the code enacts the specified policy.
 
       See: `SIMP Compliance Engine Repository <https://github.com/simp/pupmod-simp-compliance_markup>`__
@@ -673,6 +685,32 @@ Glossary of Terms
      <ENVIRONMENTS DIRECTORY>/<ENVIRONMENT>/manifests.
 
      Source: `Puppet Documentation: Main manifest directory <https://puppet.com/docs/puppet/5.5/dirs_manifest.html>`__
+
+   Site Profile
+      This term is used throughout the documentation to refer to a
+      :term:`Puppet Module` that is specific to your site. This simply allows
+      for a common isolated :term:`Puppet namespace` to reduce confusion in the
+      documentation. You could add a module literally called ``site`` to your
+      environment which would make the examples generally able to be copied and
+      pasted into files in the new module.
+
+      You may see various shorthand code snippets that refer to
+      ``site::<name>``. This indicates that the class should be created
+      somewhere specific to your site and does not dictate the naming of the
+      class.
+
+      When referred to by path, the path will start at the ``modules``
+      directory for easy reference. This should be expanded to the target
+      :term:`Puppet environment` path.
+
+      The following code snippet can be used to determine your module path.
+
+      .. code-block:: bash
+
+         $env_path=`puppet config print environmentpath`
+         $env=`puppet config print environment`
+
+         echo "${env_path}/${env}/modules/site"
 
    Spectre
       A vulnerability that affects modern microprocessors that perform branch

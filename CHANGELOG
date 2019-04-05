@@ -1,15 +1,20 @@
+* Mon Apr 01 2019 Trevor Vaughan <tvaughan@onyxpoint.com>
+- Removed all calls to the 'site' module specifically
+- Rebranded references to the 'site' module as a convenient place holder and
+  added appropriate glossary terms.
+- Added glossary terms for:
+  - Puppet Module
+  - Puppet Namespace
+  - Site Profile
+
 * Fri Mar 29 2019 Jim Anderson <thesemicolons@protonmail.com>
 - Added a page under Installation Advanced Topics regarding disk
   partitioning.
 - Modified Transmission Confidentiality and Integrity to update location
   for location of certificates.
-
-* Mon Mar 25 2019 Jim Anderson <thesemicolons@protonmail.com>
 - Added official hardware requirement of  3.4 GB of RAM + swap.
 - Managing Local/Service Users had an incomplete path for
   local_account.pp and service_account.pp.
-
-* Thu Mar 21 2019 Jim Anderson <thesemicolons@protonmail.com>
 - Fixed typo in Prepare SIMP ldifs.
   - sed command had escaped asterisk, should be unescaped.
 

@@ -90,7 +90,7 @@ Configuring the Clients
 Now that you have added this repository, you are going to want to add it to your
 clients.
 
-The best way to do this is to make it part of your site profile. You **can**
+The best way to do this is to make it part of your :term:`site profile`. You **can**
 make it part of your module, but you will need to wrap it in a Defined Type so
 that the server parameter can be modified.
 

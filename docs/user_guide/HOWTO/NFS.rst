@@ -7,6 +7,12 @@ HOWTO Configure NFS
 All implementations are based on ``pupmod-simp-nfs``, ``pupmod-simp-simp_nfs``,
 and ``pupmod-simp-simp``.
 
+For ease of explanation, examples in this section use the concept of a :term:`site
+profile` and are namespaced accordingly.  The manifests are  in a
+module called ``site``.  If using a different site profile, change the directory and
+the namespace in the examples.
+
+
 .. NOTE::
 
    ``pupmod-simp-simp_nfs`` and ``pupmod-simp-nfs`` are not core modules, and
@@ -93,7 +99,10 @@ client.
 Server
 ^^^^^^
 
-In ``site/manifests/nfs_server.pp``:
+Create a manifest in your :term:`site profile`. In this example the
+site profile module is ``site`` and the manifest ``nfs_server.pp``
+
+``site/manifests/nfs_server.pp``:
 
 .. code-block:: puppet
 
@@ -142,8 +151,8 @@ In ``hosts/<your_server_fqdn>.yaml``:
 Client
 ^^^^^^
 
-
-In ``site/manifests/nfs_client.pp``:
+Create a manifest in your :term:`site profile`.
+In this example the site profile module  is ``site`` and the manifest ``nfs_client.pp``
 
 .. code-block:: puppet
 
@@ -266,8 +275,10 @@ following the instructions in the previous section.
 Server
 ^^^^^^
 
-Create a manifest in the site module. In this example
-the manifest is called nfs_server.pp.
+Create a manifest in your :term:`site profile`. In this example the
+site profile module is ``site`` and the manifest ``nfs_server.pp``
+
+``site/manifest/nfs_server.pp``;
 
 .. code-block:: puppet
 
@@ -346,9 +357,10 @@ Include this manifest in the servers hiera file.
 Client
 ^^^^^^
 
-To mount this directory to the client create a manifest in the site
-module that will create the mount point and mount the share. In this
-example it is called nfs_client.pp.
+Create a manifest in your :term:`site profile`. In this example the
+site profile module is ``site`` and the manifest ``nfs_client.pp``
+
+``site/manifests/nfs_client.pp``
 
 .. code-block:: puppet
 
