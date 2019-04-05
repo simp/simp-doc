@@ -100,7 +100,7 @@ Server
 ^^^^^^
 
 Create a manifest in your :term:`site profile`. In this example the
-site profile is named ``site`` and the manifest ``nfs_server.pp``
+site profile module is ``site`` and the manifest ``nfs_server.pp``
 
 ``site/manifests/nfs_server.pp``:
 
@@ -151,8 +151,8 @@ In ``hosts/<your_server_fqdn>.yaml``:
 Client
 ^^^^^^
 
-Create a manifest in your :term:`site profile`. In this example the
-site profile is named ``site`` and the manifest ``nfs_client.pp``
+Create a manifest in your :term:`site profile`.
+In this example the site profile module  is ``site`` and the manifest ``nfs_client.pp``
 
 .. code-block:: puppet
 
@@ -276,7 +276,7 @@ Server
 ^^^^^^
 
 Create a manifest in your :term:`site profile`. In this example the
-site profile is named ``site`` and the manifest ``nfs_server.pp``
+site profile module is ``site`` and the manifest ``nfs_server.pp``
 
 ``site/manifest/nfs_server.pp``;
 
@@ -358,7 +358,7 @@ Client
 ^^^^^^
 
 Create a manifest in your :term:`site profile`. In this example the
-site profile is named ``site`` and the manifest ``nfs_client.pp``
+site profile module is ``site`` and the manifest ``nfs_client.pp``
 
 ``site/manifests/nfs_client.pp``
 
