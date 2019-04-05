@@ -266,9 +266,10 @@ following the instructions in the previous section.
 Server
 ^^^^^^
 
-The server side of the NFS shares should be contained in its own namespace. In
-this example the manifest is in a module called ``site`` and a file named
-``nfs_server.pp``.
+For ease of explanation, this example uses the concept of a :term:`site
+profile` and is namespaced accordingly. The server side of the NFS shares
+should be contained in its own namespace. In this example the manifest is in a
+module called ``site`` and a file named ``nfs_server.pp``.
 
 .. code-block:: puppet
 
