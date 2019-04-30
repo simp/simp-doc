@@ -45,6 +45,14 @@ Glossary of Terms
 
       Source: `Wikipedia: BIOS <https://en.wikipedia.org/wiki/BIOS>`__
 
+   Bolt
+      An open source task runner that automates the manual work that
+      system administrators do to maintain their infrastructure. Bolt 
+      can be used to automate tasks that you perform on your
+      infrastructure on an as-needed basis.
+
+      Source: `Puppetlabs Bolt <https://puppet.com/docs/bolt/latest/bolt.html>`__
+
    CentOS
    Community Enterprise Operating System
       An Enterprise-grade Operating System that is mostly compatible with a
@@ -99,6 +107,14 @@ Glossary of Terms
       access control)".
 
       Source: `Wikipedia: Discretionary access control <https://en.wikipedia.org/wiki/Discretionary_access_control>`__
+
+   DevOps
+      A set of software development practices that combines software
+      development (Dev) and information technology operations (Ops) to shorten
+      the systems development life cycle while delivering features, fixes, and
+      updates frequently in close alignment with business objectives
+
+      Source: `Wikipedia: DevOps <https://en.wikipedia.org/wiki/DevOps>`__
 
    DHCP
    Dynamic Host Configuration Protocol
@@ -390,6 +406,13 @@ Glossary of Terms
       computer to access files over a network in a manner similar to how local
       storage is accessed.
 
+   HIRS
+   Host Integrity at Runtime and Start-up
+      Attestation Certificate Authority (ACA) and :term:`TPM` Provisioning with
+      trusted computing-based supply chain validation.
+
+      Source: `HIRS <https://github.com/nsacyber/HIRS>`__
+
    FOSS
    Open Source
       Following an Open Source Initiative approved License.
@@ -408,6 +431,12 @@ Glossary of Terms
       to read all memory, even when it is not authorized to do so.
 
       Source: `Wikipedia: Meltdown (security vulnerability) <https://en.wikipedia.org/wiki/Meltdown_(security_vulnerability)>`__
+
+   OATH
+   Initiative for Open AuTHentication
+       A technical framework for open authentication.
+
+       Source: `OATH Reference Architecture <https://openauthentication.org/wp-content/uploads/2015/09/ReferenceArchitectureVersion2.pdf>`__
 
    OpenSCAP
       The OpenSCAP project provides tools that are free to use anywhere you
@@ -515,7 +544,7 @@ Glossary of Terms
 
    Puppet Namespace
       A mechanism used by the ``puppet`` compiler to uniquely identify code
-      during compilation. Generally, namespaces align with :term:`Puppet Module` 
+      during compilation. Generally, namespaces align with :term:`Puppet Module`
       file paths and are separated by two colons at each directory.
 
       See: `Namespaces and Autoloading <https://puppet.com/docs/puppet/latest/lang_namespaces.html>`__
@@ -814,6 +843,13 @@ Glossary of Terms
    Trivial File Transfer Protocol
       A file transfer protocol generally used for automated transfer of
       configuration or boot files between machines in a local environment.
+
+   TOTP
+   Time-based One-Time Password algorithm
+      An algorithm that generates a one-time password, taking uniqueness from
+      the current time. It has been adopted by IETF standard RFC 6238.
+
+      Source: `Wikipedia: Time-based One-time Password algorithm <https://en.wikipedia.org/wiki/Time-based_One-time_Password_algorithm>`_
 
    TPM
    Trusted Platform Module
