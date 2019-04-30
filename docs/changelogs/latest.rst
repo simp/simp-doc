@@ -40,7 +40,7 @@ Significant Updates
 
 The most significant change with SIMP 6.4.0 is a redesign of the packaging
 of SIMP RPMs, in order to support management of one or more Puppet
-environments.  The change allow SIMP users to easily use :term:`r10K` or
+environments.  The change allows SIMP users to easily use :term:`r10K` or
 :term:`Code Manager` to maintain these environments, even when their systems
 are on isolated networks. Multiple environments are key to implementing
 standard :term:`DevOps` workflows such as DTAP
@@ -49,7 +49,7 @@ standard :term:`DevOps` workflows such as DTAP
 At the root of this change are the following major features:
 
 * Puppet modules installed via SIMP-packaged RPMs are now imported
-  into local, SIMP-managed Git repostories, in addition to being
+  into local, SIMP-managed Git repositories, in addition to being
   installed in ``/usr/share/simp/modules``.
 * No SIMP component RPM install/upgrade/erase operation will modify an active
   Puppet environment or SIMP secondary environment,
@@ -101,7 +101,7 @@ Other SIMP Asset RPM Installation
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 The packaging of key non-module SIMP assets (``simp-environment``, ``simp-rsync``)
-have been redesigned to no longer modify directories actively being used
+has been redesigned to no longer modify directories actively being used
 by deployed Puppet environments.  This change has several benefits:
 
 * Asset RPM installs/upgrades/erases have no unintended consequences
@@ -258,7 +258,7 @@ pupmod-simp-auditd
   ownership, and utilize purge and recourse.
 * Fixed a bug in which ``auditd failed`` to start because ``space_left``
   configuration parameter was not ensured to always be larger than the
-  ``admin_space_left`` configuration paremeter.
+  ``admin_space_left`` configuration parameter.
 
 pupmod-simp-compliance_markup
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -316,10 +316,10 @@ rubygem-simp-cli
 
 * Fixed a bug in which ``simp config`` failed to find the template
   SIMP server host YAML file, ``puppet.your.domain.yaml``, from
-  ``/usr/share simp/enviornments/simp``.  This bug caused subsequent
+  ``/usr/share simp/environments/simp``.  This bug caused subsequent
   ``simp config`` runs to fail, when the SIMP server hostname had changed
   from the hostname used in the first ``simp config`` run.
-* Fixed bugs in which ``simp config`` and ``simp boostrap`` did not
+* Fixed bugs in which ``simp config`` and ``simp bootstrap`` did not
   ensure the server had a valid FQDN.
 * Fixed a bug in which ``simp bootstrap`` could fail unless the ``puppetserver``
   was reloaded after the port change to 8140.
@@ -377,7 +377,7 @@ Modules Replacements
 --------------------
 
 The following modules are current and actively maintained replacements for
-obsolete modules or temporary, SIMP versions of modules.
+obsolete modules or temporary SIMP versions of modules.
 
 pupmod-camptocamp-systemd
 ^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -495,7 +495,7 @@ pupmod-simp-pki
 * Updated the ``pki_cert_sync`` type to also generate an aggregate CA
   certificates file with X.509 certificate headers removed,
   ``cacerts_no_headers.pem``.  This new CA certificates file is useful for
-  application that cannot handle certificate headers.
+  applications that cannot handle certificate headers.
 * Add a new option to the ``pki_cert_sync`` type, ``generate_pem_hash_links``,
   which controls whether ``pki_cert_sync`` should generate and maintain the
   PEM file hash links in the target directory. Disabling automatic PEM hash
@@ -530,7 +530,7 @@ pupmod-simp-rkhunter
 pupmod-simp-rsync
 ^^^^^^^^^^^^^^^^^
 
-* Added the ability to have a server support being a both a SIMP rsync server and
+* Added the ability to have a server support being both a SIMP rsync server and
   a SIMP rsync client of another server, simultaneously. This configuration is useful
   for a PE Compile Master <-> Master of Masters host configuration scenario.
 
@@ -558,10 +558,10 @@ pupmod-simp-simp
 * Added ``net.ipv6.conf.all.accept_ra``  and
   ``net__ipv4__conf__default__log_martians`` to ``simp::sysctl`` management.
 * Added exceptions to SIMP's management of ``filebucket`` and ``vardir``
-  to support running puppet from  from Bolt.
+  to support running puppet from Bolt.
 * Switched out ``chkrootkit`` for ``rkhunter`` on El7 instances.
 * Added the, inert by default, ``deferred_resources`` class to all class lists,
-  to allow users to easily use this functioality to meet specific compliance
+  to allow users to easily use this functionality to meet specific compliance
   requirements.
 * Deprecated ``simp::puppetdb::read_database_ssl``.  Instead, use
   ``simp::puppetdb::read_database_jdbc_ssl_properties`` which maps directly to
