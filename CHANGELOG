@@ -1,3 +1,6 @@
+* Mon May 20 2019 Liz Nemsick <lnemsick.simp@gmail.com>
+- Added a FAQ about forwarding of audit logs to syslog
+
 * Mon Apr 01 2019 Trevor Vaughan <tvaughan@onyxpoint.com>
 - Removed all calls to the 'site' module specifically
 - Rebranded references to the 'site' module as a convenient place holder and
