@@ -47,7 +47,7 @@ def get_version_map(simp_branch, local_simp_core_path, simp_github_api_base,
         if os_ver_mappers:
             for os_ver_mapper in os_ver_mappers:
                 with open(os_ver_mapper, 'r') as f:
-                    __update_ver_map(ver_map, yaml.load(f.read()))
+                    __update_ver_map(ver_map, yaml.full_load(f.read()))
 
     if on_rtd or not ver_map:
         github_api_base = simp_github_api_base + '/simp-core/git/trees/'
@@ -76,7 +76,7 @@ def get_version_map(simp_branch, local_simp_core_path, simp_github_api_base,
                 for i in range(0, MAX_SIMP_URL_GET_ATTEMPTS):
                     try:
                         release_yaml_string = urllib2.urlopen(url).read()
-                        release_yaml = yaml.load(release_yaml_string)
+                        release_yaml = yaml.full_load(release_yaml_string)
                         if isinstance(release_yaml, basestring):
                           # This is ugly...
                           # A string is returned when the release mapping file
@@ -89,7 +89,7 @@ def get_version_map(simp_branch, local_simp_core_path, simp_github_api_base,
                               url = SIMP_GITHUB_RAW_BASE + '/simp-core/' + branch_to_query + \
                                 '/' + target['path']
                               release_yaml_string = github_api_get(url).read()
-                              release_yaml = yaml.load(release_yaml_string)
+                              release_yaml = yaml.full_load(release_yaml_string)
                               break
 
                         __update_ver_map(ver_map, release_yaml)
