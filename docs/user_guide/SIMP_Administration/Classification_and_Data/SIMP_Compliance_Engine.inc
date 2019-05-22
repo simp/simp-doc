@@ -3,11 +3,11 @@
 The SIMP Compliance Engine
 --------------------------
 
-The :term:`SIMP Compliance Engine` allows users to enable both Puppet
-parameter-level enforcement and validation of compliance with regulatory and
-internal policies.
+The :term:`SIMP Compliance Engine` allows users to enable both Puppet class
+parameter enforcement as well as code-level validation of both class and
+defined type parameters in compliance with regulatory and internal policies.
 
-This capability is provided by the `simp-compliance_markup`_ puppet module and
+This capability is provided by the `simp-compliance_markup`_ Puppet module and
 will be renamed at some point in the future to `simp-compliance_engine` for
 clarity.
 
@@ -16,20 +16,18 @@ clarity.
    Your system must be configured to use at least :term:`Hiera` version 5 for
    the Compliance Engine to function properly.
 
-   SIMP 6.3+ supports this capability out of the box bue earlier versions may
+   SIMP 6.3+ supports this capability out of the box but earlier versions may
    need to `perform a Hiera migration`_.
 
+Profile Enforcement
+^^^^^^^^^^^^^^^^^^^
+
 Enabling the SIMP Compliance Engine
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+"""""""""""""""""""""""""""""""""""
 
-In the Puppet implementation, the Compliance Engine is a Hiera backend that
-provides lookup capabilities into specially formatted :term:`SIMP compliance
-profile` data sets.
-
-.. NOTE::
-
-   This document does not cover creating custom compliance profile data sets.
-   For additional information see the `simp-compliance_markup`_ module.
+In the Puppet implementation, the Compliance Engine is a :term:`Hiera backend`
+that provides data from :term:`SIMP compliance profile` data sets for use in
+configuring Puppet classes via :term:`automatic parameter lookup`.
 
 The following example demonstrates how to enable the SIMP Compliance Engine:
 
@@ -51,7 +49,7 @@ is at the top of the hierarchy, then it cannot be overridden except by an
 information.
 
 Enforcing a Specific Profile
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+""""""""""""""""""""""""""""
 
 The selection of profiles to enforce is based on the ``lookup_key`` entry in
 the ``hiera.yaml`` configuration as shown in the previous section.
@@ -79,7 +77,7 @@ in the associated compliance profile.
 Additional profiles may be made available by various Puppet modules, such as
 those provided by :term:`SIMP EE`.
 
-Code Level Compliance Validation
+Code-Level Compliance Validation
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 The SIMP Compliance Engine also provides a mechanism for generating reports
@@ -104,8 +102,9 @@ In the following example, we want to validate against the ``nist_800_53_r4`` pro
 By default, reports will be generated on the Puppet server and written to the
 **server's** ``vardir`` which, by default, is
 ``/opt/puppetlabs/server/data/puppetserver/simp/compliance_reports``. Only the
-latest compliance report for a host is stored. The report is a simple YAML
-format that may easily be offloaded for analysis and processing.
+latest compliance report for a host is stored. The report is a YAML format that
+may easily be offloaded for analysis and processing and fully documented in the
+`simp-compliance_markup`_ Puppet module.
 
 .. _`Hiera config file syntax`: https://puppet.com/docs/puppet/latest/hiera_config_yaml_5.html
 .. _`perform a Hiera migration`: https://puppet.com/docs/puppet/5.0/hiera_migrate_v3_yaml.html
