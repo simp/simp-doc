@@ -39,7 +39,7 @@ simp-rsync
 Due to the nature of RPM uninstallation activities, to avoid ruining any active
 files in ``/var/simp/environments/simp/rsync``, we had to create a final
 version of ``simp-rsync`` that is generally dependency free. Nothing requires
-this RPM since it is not technically required any longer but you **MUST**
+this RPM since it is not technically required any longer, but you **MUST**
 upgrade this RPM if you want to ensure that no files are accidentally removed
 from the ``rsync`` space on your SIMP server.
 
