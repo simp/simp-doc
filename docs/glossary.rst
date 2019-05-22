@@ -725,6 +725,16 @@ Glossary of Terms
 
       See: `SIMP Compliance Engine Repository <https://github.com/simp/pupmod-simp-compliance_markup>`__
 
+   SIMP Compliance Profile
+      A collection of data that maps policy directly to Puppet class and
+      defined type parameters. These profiles are used by the :term:`SIMP
+      Compliance Engine`.
+
+   SIMP EE
+   SIMP Enterprise Edition
+      A version of SIMP with commercial support by Onyx Point, Inc. that
+      provides additional capabilities beyond :term:`SIMP CE`.
+
    SIMP Server
       The first server that is built in a SIMP environment and the server that
       is expected to be the nexus of control for the managed infrastructure.
