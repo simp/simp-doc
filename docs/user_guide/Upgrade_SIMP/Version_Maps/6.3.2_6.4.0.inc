@@ -12,14 +12,14 @@ Upgrading from SIMP-6.3.3 to SIMP-6.4.0
 
 As indicated by gradual updates in previous :ref:`Changelogs`, SIMP has been
 working on becoming more friendly to alternative modes of deployment and
-maintenance. The team has specifically been focusing on supporting :term:`r10k`
-and :term:`Code Manager` as fully supported methods of installation and
+maintenance. The team has specifically been focusing on fully supporting
+:term:`r10k` and :term:`Code Manager` as methods of installation and
 maintenance over time.
 
 SIMP 6.4.0 is the release where we make this happen!
 
 We have taken care to make no technologically breaking changes and, in keeping
-with the version description in the :ref:`ug-general-upgrade-instructions`, has
+with the version description in the :ref:`ug-general-upgrade-instructions`, have
 not made changes that affect the API of modules provided by the supported
 module set.
 
@@ -50,7 +50,7 @@ FakeCA
 """"""
 
 Previously, the ``simp-environment`` RPM would place helpful ``FakeCA`` files
-into ``/var/simp/environments/simp/FakeCA``. These files were for convienience
+into ``/var/simp/environments/simp/FakeCA``. These files were for convenience
 and their presence, or absence, does not affect a running system in any way.
 
 Upon upgrade, the ``simp-environment`` RPM will be removed and you will find
