@@ -10,7 +10,7 @@ High-level workflow
 .. image:: ./20190319_iso_critical_path-40000_ft_overview_A.png
    :alt: A diagram that describes an Admin installing SIMP from an ISO Info
 
-(Admin) installs SIMP from ISO, using the SIMP docs procedure, `ISO Installation (preferred) <https://simp.readthedocs.io/en/6.3.3/getting_started_guide/Installation_Options/ISO/index.html>`_
+(Admin) installs SIMP from ISO, using the SIMP docs procedure, `ISO Installation (preferred) <https://simp.readthedocs.io/en/stable/getting_started_guide/Installation_Options/ISO/index.html>`_
 
 * The OS and RPMs are installed according to the ISO's `auto.cfg. <https://github.com/simp/simp-core/blob/master/build/distributions/CentOS/7/x86_64/DVD/ks/dvd/auto.cfg>`_
 * The post-installation of each Puppet module RPM will create an associated local bare git repository, with a tagged commit for the module's current version. 

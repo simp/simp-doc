@@ -9,7 +9,6 @@ Contents:
   :maxdepth: 2
 
   Introduction
-  Introduction_to_6.4.0.rst
   Initial_Server_Configuration
   Client_Management
   SIMP_Administration
