@@ -30,11 +30,18 @@ used to.
 To get a full accounting of the major changes in behavior for 6.4.0, please see
 the :ref:`changelog-6.4.0` Changelog.
 
-Package Upgrade Order
-^^^^^^^^^^^^^^^^^^^^^
+.. IMPORTANT::
+
+  This upgrade has a great potential for deleting files you need.  Read the
+  instructions carefully and back up your system.
+
+Module Name Changes and the Consequences
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 simp-rsync
 """"""""""
+
+simp-rsync has been renamed to simp-rsync-skeleton.
 
 Due to the nature of RPM uninstallation activities, to avoid ruining any active
 files in ``/var/simp/environments/simp/rsync``, we had to create a final
@@ -43,12 +50,13 @@ this RPM since it is not technically required any longer, but you **MUST**
 upgrade this RPM if you want to ensure that no files are accidentally removed
 from the ``rsync`` space on your SIMP server.
 
-File Restoration
-^^^^^^^^^^^^^^^^
+If you are not using an environment named ``simp``, you can safely remove
+the simp-rsync module after upgrading.
 
 FakeCA
 """"""
 
+simp-environment has been renamed to simp-environment-skeleton.
 Previously, the ``simp-environment`` RPM would place helpful ``FakeCA`` files
 into ``/var/simp/environments/simp/FakeCA``. These files were for convenience
 and their presence, or absence, does not affect a running system in any way.
@@ -65,9 +73,156 @@ functionality:
    #!/bin/sh
 
    cd /var/simp/environments/simp
-   \cp -r /usr/share/simp/environment-skeleton/FakeCA .
+   cp -r /usr/share/simp/environment-skeleton/FakeCA .
 
    cd FakeCA
    for x in *.rpmsave; do
      mv $x `basename $x .rpmsave`
    done
+
+Upgrade Steps
+^^^^^^^^^^^^^
+These steps for upgrading are for use in SIMP systems that are not currently using
+r10k or Code Manager.
+
+Update OS and SIMP RPMS
+""""""""""""""""""""""""
+
+Update the repos for the OS and SIMP and run yum update
+
+The following errors are expected:
+
+.. code-block:: bash
+
+  warning: /var/simp/environments/simp/FakeCA/togen saved as /var/simp/environments/simp/FakeCA/togen.rpmsave
+  warning: /var/simp/environments/simp/FakeCA/ca.cnf saved as /var/simp/environments/simp/FakeCA/ca.cnf.rpmsave
+  libsemanage.semanage_direct_remove_key: Unable to remove module simp-environment at priority 400. (No such file or directory).
+  /usr/sbin/semodule:  Failed!
+
+If you are using the ``FakeCA`` in the ``simp`` environment, follow the steps in the ``FakeCA`` section above to restore the needed files.
+
+The old selinux module, ``simp-environment``, had to be removed before installing the
+the new selinux module, ``simp-environment-rsync`` to avoid conflicts when the
+simp-envirnoment-skeleton module is installed.  Therefor
+the error above is given when the simp-environment rpm tries to delete it.
+
+Create the Puppetfile
+""""""""""""""""""""""
+At this point in the upgrade the puppet modules have been installed as git repositories
+under ``/usr/share/simp/modules``.  Now the Puppetfile, used by r10k to deploy modules
+to the environment, needs to be created.
+
+The environment name in this example is ``myenv``.  Run the following commands to create a default Puppetfile.
+
+.. code-block:: bash
+
+  # Change to the top level puppet environment directory for your envinroment.
+  cd /etc/puppetlabs/code/environments/myenv
+  # Generate the main Puppetfile
+  simp puppetfile generate --skeleton > Puppetfile
+  # Generate the Puppetfile for the simp modules.
+  simp puppetfile generate > Puppetfile.simp
+
+Edit the main Puppetfile and make sure all the local modules you created
+and have in the modules directory are listed here.   This includes the ``site`` module,
+which is no longer delivered.
+
+.. WARNING::
+
+  Any module not listed in Puppetfile and the files it includes will be delete from the
+  modules directory.
+
+The following shows 3 examples of how to include your modules in the Puppetfile:
+* site: a module that is not a git repo and resides in the modules directory
+*  mymodule: a git repo that resides in a directory on the puppet server
+*  mysrvmod: a git repo on a gitlab/github type server.
+
+.. code-block:: yaml
+
+  mod 'site',
+    :local => true
+
+  mod 'mymodule'
+    :git => '/usr/share/mymodules/mymodule',
+    :tag => '1.1.1'
+
+  mod 'mysrvmod'
+    :git => 'https://gitserver.my.domain/mygitproject/mysrvmod.git'
+    :tag => '1.0.1'
+
+.. IMPORTANT::
+
+   Make sure all the  modules under your environments modules directory
+   that you created and are not simp modules are listed  in the Puppetfile.
+   This includes the ``site`` module, which is no longer delivered.
+
+   Any module not listed in Puppetfile and the files it includes will be delete from the
+   modules directory.
+
+Deploy the Puppet Modules to the Environment
+""""""""""""""""""""""""""""""""""""""""""""""
+
+Run the following commands to deploy the puppet modules to the environment:
+(The environment in this example is ``myenv``.  Repace this with the name of the
+  environment you are updating. )
+
+.. code-block:: bash
+
+  # Make sure the umask is set properly
+  umask 0027
+  #  Run r10k as the puppet group to make sure the modules are owned
+  #  by the puppet group
+  sg puppet -c '/usr/share/simp/bin/r10k puppetfile install \
+  --puppetfile /etc/puppetlabs/code/environments/myenv/Puppetfile \
+  --moduledir /etc/puppetlabs/code/environments/myenv/modules'
+
+Run Puppet
+""""""""""
+
+Run puppet on all your systems in the environment to apply the update.
+
+Other Environments
+""""""""""""""""""
+
+If you have more than one environment, you need to create a Puppetfile
+and deploy the modules for each environment.
+
+Adding SIMP Extra Modules After The Upgrade
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+If you had modules installed from simp-extras, they will have been updated with
+yum update, a repo created under /usr/share/simp/modules, and they will
+have been included in the Puppet.simp file when it was generated.
+
+If, after the upgrade you decide to install a new simp module,
+you must update the Puppetfile.simp file and deploy the modules again.
+
+For example if you want to install the snmp modules:
+
+.. code-block:: bash
+
+  yum install pupmod-puppet-snmp pupmod-simp-snmpd
+  # After running yum you will see the modules under
+  # /usr/share/simp/modules but not in your environment.
+
+  # Now update the Puppetfile.simp and deploy the environment
+  # again.
+  cd /etc/puppetlabs/code/environments/myenv
+  simp puppetfile generate > Puppetfile.simp
+  umask 0027
+  sg puppet -c '/usr/share/simp/bin/r10k puppetfile install \
+  --puppetfile /etc/puppetlabs/code/environments/myenv/Puppetfile \
+  --moduledir /etc/puppetlabs/code/environments/myenv/modules'
+
+If you add one of your own modules, manually edit the Puppetfile
+and deploy again.  Do not run simp generate with the skelton
+option again.
+
+If you do not add the module to the Puppetfile
+it will get erased the next time the puppetfile is deployed.
+
+Upgrading If R10K Is Already Being USED
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+UNDER CONSTRUCTION
+
