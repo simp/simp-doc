@@ -35,7 +35,7 @@ the :ref:`changelog-6.4.0` Changelog.
   This upgrade has a great potential for deleting files you need.  Read the
   instructions carefully and back up your system.
 
-Module Name Changes and the Consequences
+RPM Name Changes and the Consequences
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 simp-rsync
@@ -51,7 +51,7 @@ upgrade this RPM if you want to ensure that no files are accidentally removed
 from the ``rsync`` space on your SIMP server.
 
 If you are not using an environment named ``simp``, you can safely remove
-the simp-rsync module after upgrading.
+the simp-rsync RPM after upgrading.
 
 FakeCA
 """"""
@@ -73,7 +73,7 @@ functionality:
    #!/bin/sh
 
    cd /var/simp/environments/simp
-   cp -r /usr/share/simp/environment-skeleton/FakeCA .
+   \cp -r /usr/share/simp/environment-skeleton/FakeCA .
 
    cd FakeCA
    for x in *.rpmsave; do
@@ -90,7 +90,7 @@ Update OS and SIMP RPMS
 
 Update the repos for the OS and SIMP and run yum update
 
-The following errors are expected:
+The following errors/warnings are expected:
 
 .. code-block:: bash
 
@@ -103,8 +103,8 @@ If you are using the ``FakeCA`` in the ``simp`` environment, follow the steps in
 
 The old selinux module, ``simp-environment``, had to be removed before installing the
 the new selinux module, ``simp-environment-rsync`` to avoid conflicts when the
-simp-envirnoment-skeleton module is installed.  Therefor
-the error above is given when the simp-environment rpm tries to delete it.
+simp-environment-skeleton module is installed.  Therefor
+the error above is given when the simp-environment RPM tries to delete it.
 
 Create the Puppetfile
 """"""""""""""""""""""
@@ -129,7 +129,7 @@ which is no longer delivered.
 
 .. WARNING::
 
-  Any module not listed in Puppetfile and the files it includes will be delete from the
+  Any module not listed in Puppetfile and the files it includes will be deleted from the
   modules directory.
 
 The following shows 3 examples of how to include your modules in the Puppetfile:
