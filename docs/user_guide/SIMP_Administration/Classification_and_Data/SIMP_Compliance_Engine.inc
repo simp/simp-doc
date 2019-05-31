@@ -3,12 +3,13 @@
 The SIMP Compliance Engine
 --------------------------
 
-The :term:`SIMP Compliance Engine` allows users to enable both Puppet class
-parameter enforcement as well as code-level validation of both class and
-defined type parameters in compliance with regulatory and internal policies.
+The :term:`SIMP Compliance Engine` allows users to enable both Puppet
+:term:`class parameter` enforcement as well as code-level validation of both
+class and defined type parameters in compliance with regulatory and internal
+policies.
 
 This capability is provided by the `simp-compliance_markup`_ Puppet module and
-will be renamed at some point in the future to `simp-compliance_engine` for
+will be renamed at some point in the future to ``simp-compliance_engine`` for
 clarity.
 
 .. IMPORTANT::
@@ -19,17 +20,15 @@ clarity.
    SIMP 6.3+ supports this capability out of the box but earlier versions may
    need to `perform a Hiera migration`_.
 
-Profile Enforcement
-^^^^^^^^^^^^^^^^^^^
-
 Enabling the SIMP Compliance Engine
-"""""""""""""""""""""""""""""""""""
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 In the Puppet implementation, the Compliance Engine is a :term:`Hiera backend`
 that provides data from :term:`SIMP compliance profile` data sets for use in
 configuring Puppet classes via :term:`automatic parameter lookup`.
 
-The following example demonstrates how to enable the SIMP Compliance Engine:
+The following example demonstrates how to enable the SIMP Compliance Engine in
+an example ``hiera.yaml`` configuration.
 
 .. code-block:: yaml
 
@@ -39,17 +38,37 @@ The following example demonstrates how to enable the SIMP Compliance Engine:
      datadir: "data"
      data_hash: "yaml_data"
    hierarchy:
+     # Anything defined at this level of the hierarchy will override settings
+     # in the SIMP Compliance Engine
+     - name: "Higher Priority Items"
+       paths:
+         - "mandatory.yaml"
+
      - name: "SIMP Compliance Engine"
        lookup_key: "compliance_markup::enforcement"
 
-Remember that hierarchy lookups happen from top to bottom and stop at the first
-match. This means that if the SIMP Compliance Engine is in enforcing mode and
-is at the top of the hierarchy, then it cannot be overridden except by an
-:term:`ENC`. See the `Hiera config file syntax`_ page for additional
-information.
+     # Anything defined at this level of the hierarchy will be overridden by
+     # the SIMP Compliance Engine.
+     - name: "Lower Priority Items"
+       paths:
+         - "optional.yaml"
 
-Enforcing a Specific Profile
-""""""""""""""""""""""""""""
+.. NOTE::
+
+   Hierarchy lookups happen from top to bottom and stop at the first match.
+   This means that if the SIMP Compliance Engine is in enforcing mode and is at
+   the top of the hierarchy, then it cannot be overridden except by an
+   :term:`ENC`. See the `Hiera config file syntax`_ page for additional
+   information.
+
+After configuring Hiera, you then need to include the ``compliance_markup`` class.
+
+.. code-block:: puppet
+
+   include 'compliance_markup'
+
+Profile Enforcement
+^^^^^^^^^^^^^^^^^^^
 
 The selection of profiles to enforce is based on the ``lookup_key`` entry in
 the ``hiera.yaml`` configuration as shown in the previous section.

@@ -61,7 +61,7 @@ Glossary of Terms
 
    Bolt
       An open source task runner that automates the manual work that
-      system administrators do to maintain their infrastructure. Bolt 
+      system administrators do to maintain their infrastructure. Bolt
       can be used to automate tasks that you perform on your
       infrastructure on an as-needed basis.
 
@@ -75,6 +75,41 @@ Glossary of Terms
    CA
    Certificate Authority
       An entity that issues :term:`X.509` digital certificates.
+
+   Class Parameter
+      Parameters allow a class to request external data. If a class needs to
+      configure itself with data other than facts, that data should usually
+      enter the class via a parameter.
+
+      Each class parameter can be used as a normal variable inside the class
+      definition. The values of these variables are not set with normal
+      assignment statements or looked up from top or node scope; instead, they
+      are set based on user input when the class is declared.
+
+      Note that if a class parameter lacks a default value, the module’s user
+      must set a value themselves (either in their external data or an
+      override). As such, you should supply defaults wherever possible.
+
+      Each parameter can be preceeded by an optional data type. If you include
+      one, Puppet will check the parameter’s value at runtime to make sure that
+      it has the right data type, and raise an error if the value is illegal.
+      If no data type is provided, the parameter will accept values of any data
+      type.
+
+      The special variables ``$title`` and ``$name`` are both set to the class
+      name automatically, so they can’t be used as parameters.
+
+      Example:
+
+        class foo (
+          # '$bar' is the class parameter and can be references as '$foo::bar'
+          # from locations outside of the class and simply '$bar' from inside
+          # the class.
+
+          String $bar = 'An Example Parameter'
+        ) { }
+
+      Source: `Class parameters and variables <https://puppet.com/docs/puppet/latest/lang_classes.html#class-parameters-and-variables>`__
 
    CLI
    Command Line Interface
