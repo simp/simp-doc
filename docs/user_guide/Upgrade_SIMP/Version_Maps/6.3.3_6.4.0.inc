@@ -103,7 +103,7 @@ If you are using the ``FakeCA`` in the ``simp`` environment, follow the steps in
 
 The old selinux module, ``simp-environment``, had to be removed before installing the
 the new selinux module, ``simp-environment-rsync`` to avoid conflicts when the
-simp-environment-skeleton module is installed.  Therefor
+simp-environment-skeleton module is installed.  Therefore
 the error above is given when the simp-environment RPM tries to delete it.
 
 Create the Puppetfile
@@ -133,7 +133,8 @@ which is no longer delivered.
   modules directory.
 
 The following shows 3 examples of how to include your modules in the Puppetfile:
-* site: a module that is not a git repo and resides in the modules directory
+
+*  site: a module that is not a git repo and resides in the modules directory
 *  mymodule: a git repo that resides in a directory on the puppet server
 *  mysrvmod: a git repo on a gitlab/github type server.
 
@@ -156,15 +157,16 @@ The following shows 3 examples of how to include your modules in the Puppetfile:
    that you created and are not simp modules are listed  in the Puppetfile.
    This includes the ``site`` module, which is no longer delivered.
 
-   Any module not listed in Puppetfile and the files it includes will be delete from the
+   Any module not listed in the Puppetfile will be deleted from the modules 
+   directory along with the files it includes.
    modules directory.
 
 Deploy the Puppet Modules to the Environment
 """"""""""""""""""""""""""""""""""""""""""""""
 
 Run the following commands to deploy the puppet modules to the environment:
-(The environment in this example is ``myenv``.  Repace this with the name of the
-  environment you are updating. )
+(The environment in this example is ``myenv``.  Replace this with the name of the 
+environment you are updating. )
 
 .. code-block:: bash
 
@@ -215,7 +217,7 @@ For example if you want to install the snmp modules:
   --moduledir /etc/puppetlabs/code/environments/myenv/modules'
 
 If you add one of your own modules, manually edit the Puppetfile
-and deploy again.  Do not run simp generate with the skelton
+and deploy again.  Do not run simp generate with the skeleton
 option again.
 
 If you do not add the module to the Puppetfile
