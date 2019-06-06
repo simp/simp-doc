@@ -33,9 +33,9 @@ Glossary of Terms
       auditd.conf file.
 
    Beaker
-     An acceptance testing harness, written in Ruby, by the Puppet team.
+      An acceptance testing harness, written in Ruby, by the Puppet team.
 
-     Source: `Beaker Source Repository: <https://github.com/puppetlabs/beaker>`__
+      Source: `Beaker Source Repository: <https://github.com/puppetlabs/beaker>`__
 
    BIOS
    Basic Input/Output System
@@ -71,14 +71,14 @@ Glossary of Terms
        Source: `Wikipedia: Command Line Interface <https://en.wikipedia.org/wiki/Command-line_interface>`__
 
    Code Manager
-     [Puppet] Code Manager automates the management and deployment of
-     your :term:`Puppet` code. Push code updates to your source control repo,
-     and then Puppet syncs the code to your masters, so that all your servers
-     start running the new code at the same time, without interrupting agent
-     runs.
+      [Puppet] Code Manager automates the management and deployment of
+      your :term:`Puppet` code. Push code updates to your source control repo,
+      and then Puppet syncs the code to your masters, so that all your servers
+      start running the new code at the same time, without interrupting agent
+      runs.
 
-     Source: `Managing code with Code Manager <https://docs.puppet.com/pe/latest/code_mgr.html>`__
-     See Also: :term:`r10k`
+      Source: `Managing code with Code Manager <https://docs.puppet.com/pe/latest/code_mgr.html>`__
+      See Also: :term:`r10k`
 
    Control Repo
       A version control repository containing all of the required modules, data,
@@ -214,6 +214,12 @@ Glossary of Terms
 
       Source: `FIPS Publications <http://csrc.nist.gov/publications/PubsFIPS.html>`__
 
+   FOSS
+   Open Source
+      Following an Open Source Initiative approved License.
+
+      See: `The Open Source Definition <https://opensource.org/osd-annotated>`__
+
    FQDN
    Fully Qualified Domain Name
       A domain name that specifies its exact location in the tree hierarchy of
@@ -233,12 +239,12 @@ Glossary of Terms
       Source: `GnuPG Homepage <https://www.gnupg.org/>`__
 
    Grafana
-       A system of pluggable panels and data sources allowing easy
-       extensibility and a variety of panels, including fully featured graph
-       panels with rich visualization options. There is built in support for
-       many of the most popular time series data sources.
+      A system of pluggable panels and data sources allowing easy
+      extensibility and a variety of panels, including fully featured graph
+      panels with rich visualization options. There is built in support for
+      many of the most popular time series data sources.
 
-       Source: `Grafana Homepage <https://grafana.com/>`__
+      Source: `Grafana Homepage <https://grafana.com/>`__
 
    GUI
    Graphical User Interface
@@ -261,6 +267,13 @@ Glossary of Terms
 
       Source: `Hiera Overview <https://docs.puppet.com/hiera/latest/>`__
 
+   HIRS
+   Host Integrity at Runtime and Start-up
+      Attestation Certificate Authority (ACA) and :term:`TPM` Provisioning with
+      trusted computing-based supply chain validation.
+
+      Source: `HIRS <https://github.com/nsacyber/HIRS>`__
+
    initrd
       The `Initial RAMDisk`. A complete environment that is loaded at boot time
       to enable booting the rest of the operating system.
@@ -273,11 +286,11 @@ Glossary of Terms
       Source: `IMA Sourceforge Page <http://linux-ima.sourceforge.net/linux-ima-content.html-20110907>`__
 
    InSpec
-     An open-source testing framework for infrastructure with a human-readable
-     language for specifying compliance, security and other policy
-     requirements.
+      An open-source testing framework for infrastructure with a human-readable
+      language for specifying compliance, security and other policy
+      requirements.
 
-     Source: `InSpec Homepage <https://www.inspec.io/>`__
+      Source: `InSpec Homepage <https://www.inspec.io/>`__
 
    IP
    IP Address
@@ -300,8 +313,8 @@ Glossary of Terms
 
    ISO
    ISO 9660
-     A file system standard published by the International Organization for
-     Standardization (ISO) or optical disc media.
+      A file system standard published by the International Organization for
+      Standardization (ISO) or optical disc media.
 
       Source: `Wikipedia: ISO_9660 <https://en.wikipedia.org/wiki/ISO_9660>`__
 
@@ -317,6 +330,12 @@ Glossary of Terms
       may have permission to use certain services at some times and not at
       others.
 
+   Kickstart
+      Automated installation procedure for Red Hat Linux and other Linux
+      distributions.
+
+      See: `Kickstart <https://pykickstart.readthedocs.io/en/latest/>`__
+
    LDAP
    Lightweight Directory Access Protocol
       A protocol for querying and modifying LDAP directory services including
@@ -325,12 +344,12 @@ Glossary of Terms
 
    LDIF
    Lightweight Directory Interchange Format
-     A standard plain text data interchange format for representing
-     :term:`LDAP` (Lightweight Directory Access Protocol) directory content and
-     update requests. LDIF conveys directory content as a set of records, one
-     record for each object (or entry). It also represents update requests,
-     such as Add, Modify, Delete, and Rename, as a set of records, one record
-     for each update request.
+      A standard plain text data interchange format for representing
+      :term:`LDAP` (Lightweight Directory Access Protocol) directory content and
+      update requests. LDIF conveys directory content as a set of records, one
+      record for each object (or entry). It also represents update requests,
+      such as Add, Modify, Delete, and Rename, as a set of records, one record
+      for each update request.
 
       Source: `Wikipedia: LDAP Data Interchange Format <https://en.wikipedia.org/wiki/LDAP_Data_Interchange_Format>`__
 
@@ -362,6 +381,13 @@ Glossary of Terms
       communications on the physical network segment.
 
       Source: `Wikipedia: MAC address <https://en.wikipedia.org/wiki/MAC_address>`__
+
+   Meltdown
+      A hardware vulnerability affecting Intel x86 microprocessors, IBM POWER
+      processors, and some ARM-based microprocessors. It allows a rogue process
+      to read all memory, even when it is not authorized to do so.
+
+      Source: `Wikipedia: Meltdown (security vulnerability) <https://en.wikipedia.org/wiki/Meltdown_(security_vulnerability)>`__
 
    NAT
    Network Address Translation
@@ -397,7 +423,6 @@ Glossary of Terms
       Protecting Controlled Unclassified Information in Nonfederal Information
       Systems and Organizations
 
-
       See: `SP 800-171 <http://nvlpubs.nist.gov/nistpubs/SpecialPublications/NIST.SP.800-171.pdf>`__
 
    NFS
@@ -406,37 +431,11 @@ Glossary of Terms
       computer to access files over a network in a manner similar to how local
       storage is accessed.
 
-   HIRS
-   Host Integrity at Runtime and Start-up
-      Attestation Certificate Authority (ACA) and :term:`TPM` Provisioning with
-      trusted computing-based supply chain validation.
-
-      Source: `HIRS <https://github.com/nsacyber/HIRS>`__
-
-   FOSS
-   Open Source
-      Following an Open Source Initiative approved License.
-
-      See: `The Open Source Definition <https://opensource.org/osd-annotated>`__
-
-   Kickstart
-      Automated installation procedure for Red Hat Linux and other Linux
-      distributions.
-
-      See: `Kickstart <https://pykickstart.readthedocs.io/en/latest/>`__
-
-   Meltdown
-      A hardware vulnerability affecting Intel x86 microprocessors, IBM POWER
-      processors, and some ARM-based microprocessors. It allows a rogue process
-      to read all memory, even when it is not authorized to do so.
-
-      Source: `Wikipedia: Meltdown (security vulnerability) <https://en.wikipedia.org/wiki/Meltdown_(security_vulnerability)>`__
-
    OATH
    Initiative for Open AuTHentication
-       A technical framework for open authentication.
+      A technical framework for open authentication.
 
-       Source: `OATH Reference Architecture <https://openauthentication.org/wp-content/uploads/2015/09/ReferenceArchitectureVersion2.pdf>`__
+      Source: `OATH Reference Architecture <https://openauthentication.org/wp-content/uploads/2015/09/ReferenceArchitectureVersion2.pdf>`__
 
    OpenSCAP
       The OpenSCAP project provides tools that are free to use anywhere you
@@ -639,7 +638,7 @@ Glossary of Terms
 
    RVM
    Ruby Version Manager
-      command-line tool which allows you to easily install, manage, and work
+      A command-line tool which allows you to easily install, manage, and work
       with multiple :term:`Ruby` environments from interpreters to sets of
       gems.
 
@@ -707,13 +706,13 @@ Glossary of Terms
       See: :term:`Puppet Master`
 
    Site Manifest
-     Puppet always starts compiling with either a single manifest file or a
-     directory of manifests that get treated like a single file. This main
-     starting point is called the main manifest or site manifest.
-     By default, the main manifest for a given environment is
-     <ENVIRONMENTS DIRECTORY>/<ENVIRONMENT>/manifests.
+      Puppet always starts compiling with either a single manifest file or a
+      directory of manifests that get treated like a single file. This main
+      starting point is called the main manifest or site manifest.
+      By default, the main manifest for a given environment is
+      <ENVIRONMENTS DIRECTORY>/<ENVIRONMENT>/manifests.
 
-     Source: `Puppet Documentation: Main manifest directory <https://puppet.com/docs/puppet/5.5/dirs_manifest.html>`__
+      Source: `Puppet Documentation: Main manifest directory <https://puppet.com/docs/puppet/5.5/dirs_manifest.html>`__
 
    Site Profile
       This term is used throughout the documentation to refer to a
