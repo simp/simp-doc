@@ -116,7 +116,7 @@ The environment name in this example is ``myenv``.  Run the following commands t
 
 .. code-block:: bash
 
-  # Change to the top level puppet environment directory for your envinroment.
+  # Change to the top level puppet environment directory for your environment.
   cd /etc/puppetlabs/code/environments/myenv
   # Generate the main Puppetfile
   simp puppetfile generate --skeleton > Puppetfile
