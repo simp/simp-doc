@@ -141,7 +141,7 @@ The following shows 3 examples of how to include your modules in the ``Puppetfil
 
 * ``site``: a module that is not a Git repository and resides in the ``modules`` directory
 * ``mymodule``: a Git repository that resides in a directory on the Puppet server
-* ``mysrvmod``: a Cit repository on a GitLab/GitHub type server.
+* ``mysrvmod``: a Git repository on a GitLab/GitHub type server.
 
 .. code-block:: yaml
 
