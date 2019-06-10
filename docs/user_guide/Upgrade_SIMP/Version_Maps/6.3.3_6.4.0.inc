@@ -36,7 +36,7 @@ the :ref:`changelog-6.4.0` Changelog.
   instructions carefully and back up your system.
 
 RPM Name Changes and the Consequences
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 simp-rsync
 """"""""""
@@ -86,7 +86,7 @@ These steps for upgrading are for use in SIMP systems that are not currently usi
 r10k or Code Manager.
 
 Update OS and SIMP RPMS
-""""""""""""""""""""""""
+"""""""""""""""""""""""
 
 Update the repos for the OS and SIMP and run yum update
 
@@ -107,7 +107,7 @@ simp-environment-skeleton module is installed.  Therefore
 the error above is given when the simp-environment RPM tries to delete it.
 
 Create the Puppetfile
-""""""""""""""""""""""
+"""""""""""""""""""""
 At this point in the upgrade the puppet modules have been installed as git repositories
 under ``/usr/share/simp/modules``.  Now the Puppetfile, used by r10k to deploy modules
 to the environment, needs to be created.
@@ -162,7 +162,7 @@ The following shows 3 examples of how to include your modules in the Puppetfile:
    modules directory.
 
 Deploy the Puppet Modules to the Environment
-""""""""""""""""""""""""""""""""""""""""""""""
+""""""""""""""""""""""""""""""""""""""""""""
 
 Run the following commands to deploy the puppet modules to the environment:
 (The environment in this example is ``myenv``.  Replace this with the name of the 
