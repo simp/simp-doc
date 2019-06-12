@@ -34,4 +34,5 @@ with more commonly sought items towards the top.
   Enable Redundent LDAP <HOWTO/Redundant_LDAP>
   Enroll hosts in an IPA domain <HOWTO/IPA_Clients>
   Manage TPM <HOWTO/Manage_TPM>
+  Set up and Utilize Bolt <HOWTO/Bolt>
   Upgrade SIMP <HOWTO/Upgrade_SIMP>
