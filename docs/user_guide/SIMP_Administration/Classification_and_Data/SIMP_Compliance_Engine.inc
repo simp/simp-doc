@@ -3,10 +3,13 @@
 The SIMP Compliance Engine
 --------------------------
 
-The :term:`SIMP Compliance Engine` allows users to enable both Puppet
-:term:`class parameter` enforcement as well as code-level validation of both
-class and defined type parameters in compliance with regulatory and internal
-policies.
+The :term:`SIMP Compliance Engine` allows users to enable validation and
+enforcement of inbuilt and/or custom compliance. :term:`SIMP Community Edition`
+contains freely available profiles generally maintained by the community.
+:term:`SIMP Enterprise Edition` contains additional profiles targeted more at
+commercial regulations. Enforcement is done at the Puppet :term:`class
+parameter` level and validation may be done against both :term:`classes` and
+:term:`defined resource types`.
 
 This capability is provided by the `simp-compliance_markup`_ Puppet module and
 will be renamed at some point in the future to ``simp-compliance_engine`` for

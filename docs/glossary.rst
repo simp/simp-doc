@@ -32,7 +32,7 @@ Glossary of Terms
 
    APL
    Automatic Parameter Lookup
-      A method where Puppet automatically looks up class parameters in
+      A method where Puppet automatically looks up :term:`class` parameters in
       :term:`Hiera` using the fully-qualified name of the parameter.
 
       See: `Looking up data with Hiera <https://puppet.com/docs/puppet/latest/hiera_automatic.html#puppet-lookup>`__
@@ -76,10 +76,19 @@ Glossary of Terms
    Certificate Authority
       An entity that issues :term:`X.509` digital certificates.
 
+   Class
+   Classes
+   Puppet Class
+   Puppet Classes
+      Classes are named blocks of Puppet code that are stored in modules and
+      applied later when they are invoked by name.
+
+      Source: `Classes <https://puppet.com/docs/puppet/latest/lang_classes.html>`__
+
    Class Parameter
-      Parameters allow a class to request external data. If a class needs to
-      configure itself with data other than facts, that data should usually
-      enter the class via a parameter.
+      Parameters allow a :term:`class` to request external data. If a class
+      needs to configure itself with data other than facts, that data should
+      usually enter the class via a parameter.
 
       Each class parameter can be used as a normal variable inside the class
       definition. The values of these variables are not set with normal
@@ -157,6 +166,18 @@ Glossary of Terms
 
       Source: `Wikipedia: Discretionary access control <https://en.wikipedia.org/wiki/Discretionary_access_control>`__
 
+   Defined Type
+   Defined Types
+   Defined Resource Type
+   Defined Resource Types
+   Puppet Defined Type
+   Puppet Defined Types
+      Defined resource types, sometimes called defined types or defines, are
+      blocks of Puppet code that can be evaluated multiple times with different
+      parameters.
+
+      Source: `Defined resource types <https://puppet.com/docs/puppet/6.4/lang_defined_types.html>`__
+
    DevOps
       A set of software development practices that combines software
       development (Dev) and information technology operations (Ops) to shorten
@@ -220,8 +241,8 @@ Glossary of Terms
    ENC
    External Node Classifier
       An arbitrary script or application which can tell :term:`Puppet` which
-      classes a node should have. It can replace or work in concert with the
-      node definitions in the main site manifest (site.pp).
+      :term:`classes` a node should have. It can replace or work in concert
+      with the node definitions in the main site manifest (site.pp).
 
       The `Puppet Enterprise Console
       <https://docs.puppet.com/pe/latest/console_accessing.html>`__ and
@@ -753,6 +774,8 @@ Glossary of Terms
       The :term:`FOSS` version of SIMP made freely available under the
       :term:`Apache 2.0 license`.
 
+      Comparison: `SIMP Editions Overview <https://www.onyxpoint.com/simp.html>`__
+
    SIMP Compliance Engine
       A SIMP component that adds the capability to evaluate your
       :term:`Puppet` code for compliance with a policy as well as enforcing
@@ -761,14 +784,17 @@ Glossary of Terms
       See: `SIMP Compliance Engine Repository <https://github.com/simp/pupmod-simp-compliance_markup>`__
 
    SIMP Compliance Profile
-      A collection of data that maps policy directly to Puppet class and
-      defined type parameters. These profiles are used by the :term:`SIMP
-      Compliance Engine`.
+      A collection of data that maps policy directly to Puppet :term:`class`
+      and :term:`defined type` parameters. These profiles are used by the
+      :term:`SIMP Compliance Engine`.
 
    SIMP EE
    SIMP Enterprise Edition
       A version of SIMP with commercial support by Onyx Point, Inc. that
       provides additional capabilities beyond :term:`SIMP CE`.
+
+      Comparison: `SIMP Editions Overview <https://www.onyxpoint.com/simp.html>`__
+      Documentation: `SIMP Enterprise Edition <https://www.simp-project.com/docs/simp-enterprise/develop/>`__
 
    SIMP Server
       The first server that is built in a SIMP environment and the server that
@@ -794,7 +820,7 @@ Glossary of Terms
       pasted into files in the new module.
 
       You may see various shorthand code snippets that refer to
-      ``site::<name>``. This indicates that the class should be created
+      ``site::<name>``. This indicates that the :term:`class` should be created
       somewhere specific to your site and does not dictate the naming of the
       class.
 
