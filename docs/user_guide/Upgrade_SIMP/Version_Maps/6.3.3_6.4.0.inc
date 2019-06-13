@@ -41,7 +41,7 @@ RPM Name Changes and the Consequences
 simp-rsync
 """"""""""
 
-simp-rsync has been renamed to simp-rsync-skeleton.
+simp-rsync has been replaced by simp-rsync-skeleton.
 
 Due to the nature of RPM uninstallation activities, to avoid ruining any active
 files in ``/var/simp/environments/simp/rsync``, we had to create a final
@@ -101,12 +101,12 @@ The following errors/warnings are expected:
   libsemanage.semanage_direct_remove_key: Unable to remove module simp-environment at priority 400. (No such file or directory).
   /usr/sbin/semodule:  Failed!
 
-If you are using the ``FakeCA`` in the ``simp`` environment, follow the steps in the ``FakeCA`` section above to restore the needed files.
-
 The old selinux module, ``simp-environment``, had to be removed before installing the
 the new selinux module, ``simp-environment-rsync`` to avoid conflicts when the
 simp-environment-skeleton module is installed.  Therefore
 the error above is given when the simp-environment RPM tries to delete it.
+
+If you are using the ``FakeCA`` in the ``simp`` environment, follow the steps in the ``FakeCA`` section above to restore the needed files.
 
 Create the Puppetfile
 """""""""""""""""""""
@@ -128,9 +128,12 @@ The environment name in this example is ``myenv``.  Run the following commands t
   # Generate the Puppetfile for the SIMP modules.
   simp puppetfile generate > Puppetfile.simp
 
+  chown root:puppet Puppetfile Puppetfile.simp
+  chmod 640 Puppetfile Puppetfile.simp
+
 Edit the main Puppetfile and make sure all the local modules you created
 and have in the modules directory are listed here.   This includes the ``site`` module,
-which is no longer delivered.
+which is no longer delivered as an RPM.
 
 .. WARNING::
 
@@ -162,26 +165,25 @@ The following shows 3 examples of how to include your modules in the ``Puppetfil
    you created and that are not SIMP modules are listed in the ``Puppetfile``.
    This includes the ``site`` module, which is no longer delivered.
 
-   Any module not listed in the ``Puppetfile`` will be deleted from the modules 
+   Any module not listed in the ``Puppetfile`` will be deleted from the modules
    directory along with the files it includes.
 
 Deploy the Puppet Modules to the Environment
 """"""""""""""""""""""""""""""""""""""""""""
 
 Run the following commands to deploy the puppet modules to the environment:
-(The environment in this example is ``myenv``.  Replace this with the name of the 
+(The environment in this example is ``myenv``.  Replace this with the name of the
 environment you are updating. )
 
 .. code-block:: bash
 
   # Make sure the umask is set properly
-  umask 0027
 
-  #  Run r10k as the puppet group to make sure the modules are owned
-  #  by the puppet group
-  sg puppet -c '/usr/share/simp/bin/r10k puppetfile install \
+  #  Set the umask and Run r10k as the puppet group to make sure the modules
+  # to make sure the permissions and ownership are correct on the modules
+   ( umask 0027 && sg puppet -c '/usr/share/simp/bin/r10k puppetfile install \
   --puppetfile /etc/puppetlabs/code/environments/myenv/Puppetfile \
-  --moduledir /etc/puppetlabs/code/environments/myenv/modules'
+  --moduledir /etc/puppetlabs/code/environments/myenv/modules' )
 
 Run Puppet
 """"""""""
