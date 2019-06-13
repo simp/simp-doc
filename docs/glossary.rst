@@ -82,7 +82,7 @@ Glossary of Terms
       issues commands to the program in the form of successive lines of text
       (command lines).
 
-       Source: `Wikipedia: Command Line Interface <https://en.wikipedia.org/wiki/Command-line_interface>`__
+      Source: `Wikipedia: Command Line Interface <https://en.wikipedia.org/wiki/Command-line_interface>`__
 
    Code Manager
       [Puppet] Code Manager automates the management and deployment of
@@ -814,7 +814,7 @@ Glossary of Terms
       resource through a common framework that can provide caching and offline
       support to the system.
 
-      Source: `SSSD Homepage <https://pagure.io/SSSD/sssd>`
+      Source: `SSSD Homepage <https://pagure.io/SSSD/sssd>`__
 
    STIG
    DISA STIG
