@@ -281,7 +281,6 @@ Glossary of Terms
 
       Source: `Hiera Overview <https://docs.puppet.com/hiera/latest/>`__
 
-<<<<<<< HEAD
    Hiera backend
       A :term:`Hiera` plugin used to retrieve information from a data source
       and return it appropriately for use in :term:`Puppet`.
