@@ -2,9 +2,10 @@ Glossary of Terms
 =================
 
 .. NOTE::
-  Many terms here have been reproduced from various locations across the
-  Internet and are governed by the licenses surrounding the source material.
-  Please see the reference links for specifics on usage and reproducibility.
+
+   Many terms here have been reproduced from various locations across the
+   Internet and are governed by the licenses surrounding the source material.
+   Please see the reference links for specifics on usage and reproducibility.
 
 .. glossary::
    :sorted:
@@ -23,6 +24,19 @@ Glossary of Terms
       snapshot of the system's files prior to and after a suspected incident.
       It is maintained by Rami Lehti and Pablo Virolainen.
 
+   Apache 2.0 License
+   Apache License
+      A software license provided by the Apache Software Foundation.
+
+      See: `Apache License, Version 2.0 <https://www.apache.org/licenses/LICENSE-2.0.html>`__
+
+   APL
+   Automatic Parameter Lookup
+      A method where Puppet automatically looks up :term:`class` parameters in
+      :term:`Hiera` using the fully-qualified name of the parameter.
+
+      See: `Looking up data with Hiera <https://puppet.com/docs/puppet/latest/hiera_automatic.html#puppet-lookup>`__
+
    Auditd
       The userspace component to the Linux Auditing System. It is responsible
       for writing audit records to the disk. Viewing the logs is done with the
@@ -33,9 +47,9 @@ Glossary of Terms
       auditd.conf file.
 
    Beaker
-     An acceptance testing harness, written in Ruby, by the Puppet team.
+      An acceptance testing harness, written in Ruby, by the Puppet team.
 
-     Source: `Beaker Source Repository: <https://github.com/puppetlabs/beaker>`__
+      Source: `Beaker Source Repository: <https://github.com/puppetlabs/beaker>`__
 
    BIOS
    Basic Input/Output System
@@ -47,7 +61,7 @@ Glossary of Terms
 
    Bolt
       An open source task runner that automates the manual work that
-      system administrators do to maintain their infrastructure. Bolt 
+      system administrators do to maintain their infrastructure. Bolt
       can be used to automate tasks that you perform on your
       infrastructure on an as-needed basis.
 
@@ -62,23 +76,67 @@ Glossary of Terms
    Certificate Authority
       An entity that issues :term:`X.509` digital certificates.
 
+   Class
+   Classes
+   Puppet Class
+   Puppet Classes
+      Classes are named blocks of Puppet code that are stored in modules and
+      applied later when they are invoked by name.
+
+      Source: `Classes <https://puppet.com/docs/puppet/latest/lang_classes.html>`__
+
+   Class Parameter
+      Parameters allow a :term:`class` to request external data. If a class
+      needs to configure itself with data other than facts, that data should
+      usually enter the class via a parameter.
+
+      Each class parameter can be used as a normal variable inside the class
+      definition. The values of these variables are not set with normal
+      assignment statements or looked up from top or node scope; instead, they
+      are set based on user input when the class is declared.
+
+      Note that if a class parameter lacks a default value, the module’s user
+      must set a value themselves (either in their external data or an
+      override). As such, you should supply defaults wherever possible.
+
+      Each parameter can be preceeded by an optional data type. If you include
+      one, Puppet will check the parameter’s value at runtime to make sure that
+      it has the right data type, and raise an error if the value is illegal.
+      If no data type is provided, the parameter will accept values of any data
+      type.
+
+      The special variables ``$title`` and ``$name`` are both set to the class
+      name automatically, so they can’t be used as parameters.
+
+      Example:
+
+        class foo (
+          # '$bar' is the class parameter and can be references as '$foo::bar'
+          # from locations outside of the class and simply '$bar' from inside
+          # the class.
+
+          String $bar = 'An Example Parameter'
+        ) { }
+
+      Source: `Class parameters and variables <https://puppet.com/docs/puppet/latest/lang_classes.html#class-parameters-and-variables>`__
+
    CLI
    Command Line Interface
       A means of interacting with a computer program where the user (or client)
       issues commands to the program in the form of successive lines of text
       (command lines).
 
-       Source: `Wikipedia: Command Line Interface <https://en.wikipedia.org/wiki/Command-line_interface>`__
+      Source: `Wikipedia: Command Line Interface <https://en.wikipedia.org/wiki/Command-line_interface>`__
 
    Code Manager
-     [Puppet] Code Manager automates the management and deployment of
-     your :term:`Puppet` code. Push code updates to your source control repo,
-     and then Puppet syncs the code to your masters, so that all your servers
-     start running the new code at the same time, without interrupting agent
-     runs.
+      [Puppet] Code Manager automates the management and deployment of
+      your :term:`Puppet` code. Push code updates to your source control repo,
+      and then Puppet syncs the code to your masters, so that all your servers
+      start running the new code at the same time, without interrupting agent
+      runs.
 
-     Source: `Managing code with Code Manager <https://docs.puppet.com/pe/latest/code_mgr.html>`__
-     See Also: :term:`r10k`
+      Source: `Managing code with Code Manager <https://docs.puppet.com/pe/latest/code_mgr.html>`__
+      See Also: :term:`r10k`
 
    Control Repo
       A version control repository containing all of the required modules, data,
@@ -107,6 +165,18 @@ Glossary of Terms
       access control)".
 
       Source: `Wikipedia: Discretionary access control <https://en.wikipedia.org/wiki/Discretionary_access_control>`__
+
+   Defined Type
+   Defined Types
+   Defined Resource Type
+   Defined Resource Types
+   Puppet Defined Type
+   Puppet Defined Types
+      Defined resource types, sometimes called defined types or defines, are
+      blocks of Puppet code that can be evaluated multiple times with different
+      parameters.
+
+      Source: `Defined resource types <https://puppet.com/docs/puppet/6.4/lang_defined_types.html>`__
 
    DevOps
       A set of software development practices that combines software
@@ -171,8 +241,8 @@ Glossary of Terms
    ENC
    External Node Classifier
       An arbitrary script or application which can tell :term:`Puppet` which
-      classes a node should have. It can replace or work in concert with the
-      node definitions in the main site manifest (site.pp).
+      :term:`classes` a node should have. It can replace or work in concert
+      with the node definitions in the main site manifest (site.pp).
 
       The `Puppet Enterprise Console
       <https://docs.puppet.com/pe/latest/console_accessing.html>`__ and
@@ -214,6 +284,12 @@ Glossary of Terms
 
       Source: `FIPS Publications <http://csrc.nist.gov/publications/PubsFIPS.html>`__
 
+   FOSS
+   Open Source
+      Following an Open Source Initiative approved License.
+
+      See: `The Open Source Definition <https://opensource.org/osd-annotated>`__
+
    FQDN
    Fully Qualified Domain Name
       A domain name that specifies its exact location in the tree hierarchy of
@@ -233,12 +309,12 @@ Glossary of Terms
       Source: `GnuPG Homepage <https://www.gnupg.org/>`__
 
    Grafana
-       A system of pluggable panels and data sources allowing easy
-       extensibility and a variety of panels, including fully featured graph
-       panels with rich visualization options. There is built in support for
-       many of the most popular time series data sources.
+      A system of pluggable panels and data sources allowing easy
+      extensibility and a variety of panels, including fully featured graph
+      panels with rich visualization options. There is built in support for
+      many of the most popular time series data sources.
 
-       Source: `Grafana Homepage <https://grafana.com/>`__
+      Source: `Grafana Homepage <https://grafana.com/>`__
 
    GUI
    Graphical User Interface
@@ -261,6 +337,19 @@ Glossary of Terms
 
       Source: `Hiera Overview <https://docs.puppet.com/hiera/latest/>`__
 
+   Hiera backend
+      A :term:`Hiera` plugin used to retrieve information from a data source
+      and return it appropriately for use in :term:`Puppet`.
+
+      See: `Hiera: How custom backends work <https://puppet.com/docs/puppet/latest/hiera_custom_backends.html>`__
+
+   HIRS
+   Host Integrity at Runtime and Start-up
+      Attestation Certificate Authority (ACA) and :term:`TPM` Provisioning with
+      trusted computing-based supply chain validation.
+
+      Source: `HIRS <https://github.com/nsacyber/HIRS>`__
+
    initrd
       The `Initial RAMDisk`. A complete environment that is loaded at boot time
       to enable booting the rest of the operating system.
@@ -273,11 +362,11 @@ Glossary of Terms
       Source: `IMA Sourceforge Page <http://linux-ima.sourceforge.net/linux-ima-content.html-20110907>`__
 
    InSpec
-     An open-source testing framework for infrastructure with a human-readable
-     language for specifying compliance, security and other policy
-     requirements.
+      An open-source testing framework for infrastructure with a human-readable
+      language for specifying compliance, security and other policy
+      requirements.
 
-     Source: `InSpec Homepage <https://www.inspec.io/>`__
+      Source: `InSpec Homepage <https://www.inspec.io/>`__
 
    IP
    IP Address
@@ -300,8 +389,8 @@ Glossary of Terms
 
    ISO
    ISO 9660
-     A file system standard published by the International Organization for
-     Standardization (ISO) or optical disc media.
+      A file system standard published by the International Organization for
+      Standardization (ISO) or optical disc media.
 
       Source: `Wikipedia: ISO_9660 <https://en.wikipedia.org/wiki/ISO_9660>`__
 
@@ -317,6 +406,12 @@ Glossary of Terms
       may have permission to use certain services at some times and not at
       others.
 
+   Kickstart
+      Automated installation procedure for Red Hat Linux and other Linux
+      distributions.
+
+      See: `Kickstart <https://pykickstart.readthedocs.io/en/latest/>`__
+
    LDAP
    Lightweight Directory Access Protocol
       A protocol for querying and modifying LDAP directory services including
@@ -325,12 +420,12 @@ Glossary of Terms
 
    LDIF
    Lightweight Directory Interchange Format
-     A standard plain text data interchange format for representing
-     :term:`LDAP` (Lightweight Directory Access Protocol) directory content and
-     update requests. LDIF conveys directory content as a set of records, one
-     record for each object (or entry). It also represents update requests,
-     such as Add, Modify, Delete, and Rename, as a set of records, one record
-     for each update request.
+      A standard plain text data interchange format for representing
+      :term:`LDAP` (Lightweight Directory Access Protocol) directory content and
+      update requests. LDIF conveys directory content as a set of records, one
+      record for each object (or entry). It also represents update requests,
+      such as Add, Modify, Delete, and Rename, as a set of records, one record
+      for each update request.
 
       Source: `Wikipedia: LDAP Data Interchange Format <https://en.wikipedia.org/wiki/LDAP_Data_Interchange_Format>`__
 
@@ -362,6 +457,13 @@ Glossary of Terms
       communications on the physical network segment.
 
       Source: `Wikipedia: MAC address <https://en.wikipedia.org/wiki/MAC_address>`__
+
+   Meltdown
+      A hardware vulnerability affecting Intel x86 microprocessors, IBM POWER
+      processors, and some ARM-based microprocessors. It allows a rogue process
+      to read all memory, even when it is not authorized to do so.
+
+      Source: `Wikipedia: Meltdown (security vulnerability) <https://en.wikipedia.org/wiki/Meltdown_(security_vulnerability)>`__
 
    NAT
    Network Address Translation
@@ -397,7 +499,6 @@ Glossary of Terms
       Protecting Controlled Unclassified Information in Nonfederal Information
       Systems and Organizations
 
-
       See: `SP 800-171 <http://nvlpubs.nist.gov/nistpubs/SpecialPublications/NIST.SP.800-171.pdf>`__
 
    NFS
@@ -406,37 +507,11 @@ Glossary of Terms
       computer to access files over a network in a manner similar to how local
       storage is accessed.
 
-   HIRS
-   Host Integrity at Runtime and Start-up
-      Attestation Certificate Authority (ACA) and :term:`TPM` Provisioning with
-      trusted computing-based supply chain validation.
-
-      Source: `HIRS <https://github.com/nsacyber/HIRS>`__
-
-   FOSS
-   Open Source
-      Following an Open Source Initiative approved License.
-
-      See: `The Open Source Definition <https://opensource.org/osd-annotated>`__
-
-   Kickstart
-      Automated installation procedure for Red Hat Linux and other Linux
-      distributions.
-
-      See: `Kickstart <https://pykickstart.readthedocs.io/en/latest/>`__
-
-   Meltdown
-      A hardware vulnerability affecting Intel x86 microprocessors, IBM POWER
-      processors, and some ARM-based microprocessors. It allows a rogue process
-      to read all memory, even when it is not authorized to do so.
-
-      Source: `Wikipedia: Meltdown (security vulnerability) <https://en.wikipedia.org/wiki/Meltdown_(security_vulnerability)>`__
-
    OATH
    Initiative for Open AuTHentication
-       A technical framework for open authentication.
+      A technical framework for open authentication.
 
-       Source: `OATH Reference Architecture <https://openauthentication.org/wp-content/uploads/2015/09/ReferenceArchitectureVersion2.pdf>`__
+      Source: `OATH Reference Architecture <https://openauthentication.org/wp-content/uploads/2015/09/ReferenceArchitectureVersion2.pdf>`__
 
    OpenSCAP
       The OpenSCAP project provides tools that are free to use anywhere you
@@ -503,7 +578,7 @@ Glossary of Terms
       New :term:`Puppet Resources`, written in :term:`Ruby`, that add custom
       client-side capabilities to the Puppet language.
 
-      See: `Custom Types: <https://puppet.com/docs/puppet/5.3/custom_types.html>`__
+      See: `Custom Types: <https://puppet.com/docs/puppet/latest/custom_types.html>`__
 
    PuppetDB
       An :term:`Open Source` project, PuppetDB collects data generated by
@@ -518,7 +593,7 @@ Glossary of Terms
       inherent parameter validation as well as a better understanding of what
       function the data performs in classes.
 
-      See: `Language: Data Types <https://puppet.com/docs/puppet/5.5/lang_data_type.html>`__
+      See: `Language: Data Types <https://puppet.com/docs/puppet/latest/lang_data_type.html>`__
 
    Puppet Environment
    Puppet Environments
@@ -553,7 +628,7 @@ Glossary of Terms
    Puppet Resources
       The fundamental unit for modeling system configurations in :term:`Puppet`.
 
-      See: `Resources: <https://puppet.com/docs/puppet/5.3/lang_resources.html>`__
+      See: `Resources: <https://puppet.com/docs/puppet/latest/lang_resources.html>`__
 
    Puppetserver
    Puppet Server
@@ -639,7 +714,7 @@ Glossary of Terms
 
    RVM
    Ruby Version Manager
-      command-line tool which allows you to easily install, manage, and work
+      A command-line tool which allows you to easily install, manage, and work
       with multiple :term:`Ruby` environments from interpreters to sets of
       gems.
 
@@ -693,12 +768,32 @@ Glossary of Terms
    System Integrity Management Platform
       A security framework that sits on top of :term:`RHEL` or :term:`CentOS`.
 
+   SIMP CE
+   SIMP Community Edition
+      The :term:`FOSS` version of SIMP made freely available under the
+      :term:`Apache 2.0 license`.
+
+      Comparison: `SIMP Editions Overview <https://www.onyxpoint.com/simp.html>`__
+
    SIMP Compliance Engine
       A SIMP component that adds the capability to evaluate your
       :term:`Puppet` code for compliance with a policy as well as enforcing
       that the code enacts the specified policy.
 
       See: `SIMP Compliance Engine Repository <https://github.com/simp/pupmod-simp-compliance_markup>`__
+
+   SIMP Compliance Profile
+      A collection of data that maps policy directly to Puppet :term:`class`
+      and :term:`defined type` parameters. These profiles are used by the
+      :term:`SIMP Compliance Engine`.
+
+   SIMP EE
+   SIMP Enterprise Edition
+      A version of SIMP with commercial support by Onyx Point, Inc. that
+      provides additional capabilities beyond :term:`SIMP CE`.
+
+      Comparison: `SIMP Editions Overview <https://www.onyxpoint.com/simp.html>`__
+      Documentation: `SIMP Enterprise Edition <https://www.simp-project.com/docs/simp-enterprise/develop/>`__
 
    SIMP Server
       The first server that is built in a SIMP environment and the server that
@@ -707,13 +802,13 @@ Glossary of Terms
       See: :term:`Puppet Master`
 
    Site Manifest
-     Puppet always starts compiling with either a single manifest file or a
-     directory of manifests that get treated like a single file. This main
-     starting point is called the main manifest or site manifest.
-     By default, the main manifest for a given environment is
-     <ENVIRONMENTS DIRECTORY>/<ENVIRONMENT>/manifests.
+      Puppet always starts compiling with either a single manifest file or a
+      directory of manifests that get treated like a single file. This main
+      starting point is called the main manifest or site manifest.
+      By default, the main manifest for a given environment is
+      <ENVIRONMENTS DIRECTORY>/<ENVIRONMENT>/manifests.
 
-     Source: `Puppet Documentation: Main manifest directory <https://puppet.com/docs/puppet/5.5/dirs_manifest.html>`__
+      Source: `Puppet Documentation: Main manifest directory <https://puppet.com/docs/puppet/latest/dirs_manifest.html>`__
 
    Site Profile
       This term is used throughout the documentation to refer to a
@@ -724,7 +819,7 @@ Glossary of Terms
       pasted into files in the new module.
 
       You may see various shorthand code snippets that refer to
-      ``site::<name>``. This indicates that the class should be created
+      ``site::<name>``. This indicates that the :term:`class` should be created
       somewhere specific to your site and does not dictate the naming of the
       class.
 
@@ -790,7 +885,7 @@ Glossary of Terms
       resource through a common framework that can provide caching and offline
       support to the system.
 
-      Source: `SSSD Homepage <https://pagure.io/SSSD/sssd>`
+      Source: `SSSD Homepage <https://pagure.io/SSSD/sssd>`__
 
    STIG
    DISA STIG
