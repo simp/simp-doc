@@ -110,6 +110,8 @@ Glossary of Terms
 
       Example:
 
+      .. code-block:: puppet
+
         class foo (
           # '$bar' is the class parameter and can be references as '$foo::bar'
           # from locations outside of the class and simply '$bar' from inside
