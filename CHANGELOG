@@ -1,3 +1,6 @@
+* Fri Jun 21 2019 Trevor Vaughan <tvaughan@onyxpoint.com>
+- Fix link to the DISA STIGs
+
 * Mon May 20 2019 Liz Nemsick <lnemsick.simp@gmail.com>
 - Added a FAQ about forwarding of audit logs to syslog
 

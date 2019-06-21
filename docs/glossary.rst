@@ -894,7 +894,7 @@ Glossary of Terms
    Defense Information Systems Agency Secure Technical Implementation Guide
       Configuration standards for DOD IA and IA-enabled devices/systems.
 
-      Source: `DISA IASE <https://iase.disa.mil/stigs/Pages/index.aspx>`__
+      Source: `DoD Cyber Exchange <https://public.cyber.mil/stigs/>`__
 
    Swappiness
       Swappiness is a Linux kernel parameter that controls the relative weight
