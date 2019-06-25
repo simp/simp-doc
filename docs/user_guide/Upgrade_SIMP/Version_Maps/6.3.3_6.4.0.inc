@@ -106,24 +106,28 @@ the new selinux module, ``simp-environment-rsync`` to avoid conflicts when the
 simp-environment-skeleton module is installed.  Therefore
 the error above is given when the simp-environment RPM tries to delete it.
 
-If you are using the ``FakeCA`` in the ``simp`` environment, follow the steps in the ``FakeCA`` section above to restore the needed files.
+If you are using the ``FakeCA`` in the ``simp`` environment, follow the steps
+in the ``FakeCA`` section above to restore the needed files.
 
 Create the Puppetfile
 """""""""""""""""""""
 
-At this point in the upgrade the Puppet modules have been installed as Git repositories
-under ``/usr/share/simp/modules``.  Now you need to create the ``Puppetfile`` to used by
-r10k to deploy modules to the environment.
+At this point in the upgrade, the SIMP-packaged Puppet modules have been
+installed in ``/usr/share/simp/modules`` and imported into local Git
+repositories under ``/usr/share/simp/git/puppet_modules``.  Now you need
+to create the ``Puppetfile`` for r10k to use to deploy modules to the
+environment.
 
-The environment name in this example is ``myenv``.  Run the following commands to create a default ``Puppetfile``.
+The environment name in this example is ``myenv``.  Run the following commands
+as ``root`` to create a default ``Puppetfile``:
 
 .. code-block:: bash
 
   # Change to the top level puppet environment directory for your environment.
   cd /etc/puppetlabs/code/environments/myenv
 
-  # Generate the main Puppetfile
-  simp puppetfile generate --skeleton > Puppetfile
+  # Generate the main Puppetfile with local module entries
+  simp puppetfile generate --skeleton --local-modules myenv > Puppetfile
 
   # Generate the Puppetfile for the SIMP modules.
   simp puppetfile generate > Puppetfile.simp
@@ -131,14 +135,17 @@ The environment name in this example is ``myenv``.  Run the following commands t
   chown root:puppet Puppetfile Puppetfile.simp
   chmod 640 Puppetfile Puppetfile.simp
 
-Edit the main Puppetfile and make sure all the local modules you created
-and have in the modules directory are listed here.   This includes the ``site`` module,
-which is no longer delivered as an RPM.
+Edit the main Puppetfile:
+
+* Make sure all the local modules you created and have in the modules
+  directory have ``:local => true`` entries. This includes the ``site``
+  module, which is no longer delivered as an RPM.  
+* Delete the ``local => true`` entries for any obsolete modules that you
+  do not need (e.g. ``simpcat``).
 
 .. WARNING::
 
-  Any module not listed in the ``Puppetfile`` and the files the module includes will be
-  deleted from the modules directory.
+  Any module not listed in the ``Puppetfile`` will be deleted from the modules directory.
 
 The following shows 3 examples of how to include your modules in the ``Puppetfile``:
 
@@ -163,10 +170,10 @@ The following shows 3 examples of how to include your modules in the ``Puppetfil
 
    Make sure all the  modules under your environments modules directory that
    you created and that are not SIMP modules are listed in the ``Puppetfile``.
-   This includes the ``site`` module, which is no longer delivered.
+   This includes the ``site`` module, which SIMP no longer delivers.
 
    Any module not listed in the ``Puppetfile`` will be deleted from the modules
-   directory along with the files it includes.
+   directory.
 
 Deploy the Puppet Modules to the Environment
 """"""""""""""""""""""""""""""""""""""""""""
@@ -219,10 +226,9 @@ For example if you want to install the ``snmp`` and ``snmpd`` modules:
   # again.
   cd /etc/puppetlabs/code/environments/myenv
   simp puppetfile generate > Puppetfile.simp
-  umask 0027
-  sg puppet -c '/usr/share/simp/bin/r10k puppetfile install \
+  ( umask 0027 && sg puppet -c '/usr/share/simp/bin/r10k puppetfile install \
   --puppetfile /etc/puppetlabs/code/environments/myenv/Puppetfile \
-  --moduledir /etc/puppetlabs/code/environments/myenv/modules'
+  --moduledir /etc/puppetlabs/code/environments/myenv/modules' )
 
 If you add one of your own modules, manually edit the ``Puppetfile`` and
 deploy again.  You do not need to run ``simp puppetfile generate`` with the skeleton

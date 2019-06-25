@@ -110,6 +110,8 @@ Glossary of Terms
 
       Example:
 
+      .. code-block:: puppet
+
         class foo (
           # '$bar' is the class parameter and can be references as '$foo::bar'
           # from locations outside of the class and simply '$bar' from inside
@@ -892,7 +894,7 @@ Glossary of Terms
    Defense Information Systems Agency Secure Technical Implementation Guide
       Configuration standards for DOD IA and IA-enabled devices/systems.
 
-      Source: `DISA IASE <https://iase.disa.mil/stigs/Pages/index.aspx>`__
+      Source: `DoD Cyber Exchange <https://public.cyber.mil/stigs/>`__
 
    Swappiness
       Swappiness is a Linux kernel parameter that controls the relative weight
