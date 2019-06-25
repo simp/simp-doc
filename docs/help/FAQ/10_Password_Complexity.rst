@@ -23,14 +23,17 @@ Complexity Rules
   * 1 Number
   * 1 Special character
   * No more than 2 repetitions of the same character
+  
     * OK: ``aab``
     * BAD: ``aaa``
 
   * No more than 3 repetitions of a character from the same character class
+  
     * OK: ``abc``
     * BAD: ``abcd``
 
   * No more than 4 characters in a monotonic character sequence
+  
     * OK: ``1b2c3d``
     * BAD: ``aBcDe``
 
