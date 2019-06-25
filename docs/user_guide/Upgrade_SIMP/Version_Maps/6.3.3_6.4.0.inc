@@ -226,10 +226,9 @@ For example if you want to install the ``snmp`` and ``snmpd`` modules:
   # again.
   cd /etc/puppetlabs/code/environments/myenv
   simp puppetfile generate > Puppetfile.simp
-  umask 0027
-  sg puppet -c '/usr/share/simp/bin/r10k puppetfile install \
+  ( umask 0027 && sg puppet -c '/usr/share/simp/bin/r10k puppetfile install \
   --puppetfile /etc/puppetlabs/code/environments/myenv/Puppetfile \
-  --moduledir /etc/puppetlabs/code/environments/myenv/modules'
+  --moduledir /etc/puppetlabs/code/environments/myenv/modules' )
 
 If you add one of your own modules, manually edit the ``Puppetfile`` and
 deploy again.  You do not need to run ``simp puppetfile generate`` with the skeleton
