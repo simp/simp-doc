@@ -23,26 +23,36 @@ Complexity Rules
   * 1 Number
   * 1 Special character
   * No more than 2 repetitions of the same character
-  
+
     * OK: ``aab``
     * BAD: ``aaa``
 
   * No more than 3 repetitions of a character from the same character class
-  
-    * OK: ``abc``
+    * OK: ``abcD``
     * BAD: ``abcd``
 
   * No more than 4 characters in a monotonic character sequence
-  
+
     * OK: ``1b2c3d``
     * BAD: ``aBcDe``
+    * BAD: ``EdCbA``
 
-  * Cannot contain your username
+  * Cannot contain your username in straight or reversed form
   * Cannot contain items from your GECOS field (usually your full name)
   * Must have more than 4 character changes from the old password
   * Must not be one of the last 24 passwords that you have used
+
+Systems that use ``pam_pwquality`` may have a command called ``pwscore`` which
+allows you to check whether or not a password will meet the system
+requirements.
 
 .. NOTE::
 
    Locked out accounts **will** unlock automatically after 15 minutes for
    non-root users and one minute for the root user.
+
+.. IMPORTANT::
+
+   Systems that use ``pam_cracklib`` may differ slightly in behavior from
+   systems that use ``pam_pwquality``. If issues are found, please file a bug
+   with the :term:`OS` vendor noting the issue.
