@@ -7,12 +7,15 @@ The following is the default password requirements for a standard SIMP system.
 This is based off of an amalgam of various password policies and may vary based
 on individual policies that are set for your installation.
 
-The default complexity is enforced in both :term:`PAM` and :term:`LDAP`.
+The default complexity is enforced in both :term:`PAM` and :term:`LDAP`, which
+are managed by SIMP's ``pam`` and ``simp_openldap`` modules, respectively.
 
 .. WARNING::
 
-   This may be invalid based on which compliance profile you are enforcing if
-   you are using the :term:`SIMP Compliance Engine`.
+   If you are using the :term:`SIMP Compliance Engine` to enforce a specific
+   compliance profile, the enforced rules may be different than those shown
+   below.  Be sure to examine the profile to understand the rules applicable to
+   your system.
 
 Complexity Rules
 ----------------
