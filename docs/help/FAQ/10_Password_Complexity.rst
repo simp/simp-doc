@@ -28,6 +28,7 @@ Complexity Rules
     * BAD: ``aaa``
 
   * No more than 3 repetitions of a character from the same character class
+  
     * OK: ``abcD``
     * BAD: ``abcd``
 
