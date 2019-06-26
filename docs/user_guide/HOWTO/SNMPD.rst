@@ -246,7 +246,7 @@ to the fully qualified path.
 
 ``DLMODS`` are copied the same way as ``MIBS``, using the ``rsync_dlmod_dir``
 as the destination, creating a dlmod directory.  In order to load dlmods, you
-must add the name of the module to the ``isimp_snmpd::dlmods`` list. This will
+must add the name of the module to the ``simp_snmpd::dlmods`` list. This will
 create a ``dlmod.conf`` file in ``simp_snmpd``.  The ``.so`` extension will be
 added.  See the ``Dynamically Loadable Modules`` section in man page of
 ``snmpd.conf`` for more information.

@@ -67,10 +67,9 @@ can use an existing DNS infrastructure.
 #. Type ``puppet agent -t --tags named`` on the Puppet master to apply
    the changes.
 #. Validate DNS and ensure the ``/etc/resolv.conf`` is updated appropriately.
-#. If an ``rndc.key`` error appears when starting ``named``, see the
-   `Bind Documentation <https://www.isc.org/downloads/bind/>`_.  Once you have
-   resolved the issue, re-run the puppet command ``puppet agent -t`` on the
-   Puppet master to apply.
+#. If an ``rndc.key`` error appears when starting ``named``, see the `BIND
+   Documentation`_.  Once you have resolved the issue, re-run the puppet
+   command ``puppet agent -t`` on the Puppet master to apply.
 
 .. NOTE::
 
@@ -86,14 +85,14 @@ Configure DHCP
 
 .. NOTE::
 
-  The ``dhcpd.conf`` file was updated in SIMP 6.2 to include logic in the
-  ``pxeclients`` class that determines the appropriate boot loader file on the
-  TFTP server, based on whether the client is booting in :term:`UEFI` or
-  :term:`BIOS` mode.  If you have configured DHCP using an earlier version
-  of SIMP and need to add UEFI support, make sure you update your ``dhcpd.conf``
-  in the rsync directory, appropriately.
+   The ``dhcpd.conf`` file was updated in SIMP 6.2 to include logic in the
+   ``pxeclients`` class that determines the appropriate boot loader file on the
+   TFTP server, based on whether the client is booting in :term:`UEFI` or
+   :term:`BIOS` mode.  If you have configured DHCP using an earlier version of
+   SIMP and need to add UEFI support, make sure you update your ``dhcpd.conf``
+   in the rsync directory, appropriately.
 
-  MAC addresses in the following section need to be lower case letters.
+   MAC addresses in the following section need to be lower case letters.
 
 Perform the following actions as ``root`` on the Puppet master system
 prior to attempting to install a client.
@@ -194,7 +193,7 @@ which are not.
    If the ``TXT_DB`` error number **2** appears, revoke the certificate that is
    being regenerated. The table below lists the steps to revoke the certificate.
 
-#. Navigate to the directory containing the CA certficates.  For the FakeCA,
+#. Navigate to the directory containing the CA certificates.  For the FakeCA,
    it is ``/var/simp/environments/simp/FakeCA``.  The directory should contain
    the file ``default.cnf``.
 #. Run
@@ -203,3 +202,5 @@ which are not.
 
      OPENSSL_CONF=default.cnf openssl ca -revoke /var/simp/environments/simp\
      /site_files/pki_files/files/keydist/*<Host to Revoke>*/*<Host to Revoke>*.pub
+
+.. _BIND Documentation: https://www.isc.org/bind/
