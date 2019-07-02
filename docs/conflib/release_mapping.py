@@ -15,13 +15,14 @@ sys.path.append(os.path.abspath(os.path.dirname(os.path.dirname(__file__))))
 
 from conflib.constants import *
 
+
 def github_api_get(url):
-	token = os.environ.get('GITHUB_API_KEY')
-	request = urllib2.Request(url)
-	request.add_header('User-Agent', 'Mozilla/55.0')
-	if token is not None:
-		request.add_header('Authorization','token %s' % token)
-	return urllib2.urlopen(request)
+  token = os.environ.get('GITHUB_API_KEY')
+  request = urllib2.Request(url)
+  request.add_header('User-Agent', 'Mozilla/55.0')
+  if token is not None:
+    request.add_header('Authorization','token %s' % token)
+  return urllib2.urlopen(request)
 
 def get_version_map(simp_branch, local_simp_core_path, simp_github_api_base,
     default_simp_branch, on_rtd):
@@ -47,7 +48,7 @@ def get_version_map(simp_branch, local_simp_core_path, simp_github_api_base,
         if os_ver_mappers:
             for os_ver_mapper in os_ver_mappers:
                 with open(os_ver_mapper, 'r') as f:
-                    __update_ver_map(ver_map, yaml.full_load(f.read()))
+                    __update_ver_map(ver_map, __yaml_load(f.read()))
 
     if on_rtd or not ver_map:
         github_api_base = simp_github_api_base + '/simp-core/git/trees/'
@@ -76,7 +77,7 @@ def get_version_map(simp_branch, local_simp_core_path, simp_github_api_base,
                 for i in range(0, MAX_SIMP_URL_GET_ATTEMPTS):
                     try:
                         release_yaml_string = urllib2.urlopen(url).read()
-                        release_yaml = yaml.full_load(release_yaml_string)
+                        release_yaml = __yaml_load(release_yaml_string)
                         if isinstance(release_yaml, basestring):
                           # This is ugly...
                           # A string is returned when the release mapping file
@@ -89,7 +90,7 @@ def get_version_map(simp_branch, local_simp_core_path, simp_github_api_base,
                               url = SIMP_GITHUB_RAW_BASE + '/simp-core/' + branch_to_query + \
                                 '/' + target['path']
                               release_yaml_string = github_api_get(url).read()
-                              release_yaml = yaml.full_load(release_yaml_string)
+                              release_yaml = __yaml_load(release_yaml_string)
                               break
 
                         __update_ver_map(ver_map, release_yaml)
@@ -219,3 +220,17 @@ def __generate_version_list(full_version, version_family):
       version_list.extend(['4.2.X']) # 4.2.X for a 4.3.2 or later
 
     return version_list
+
+def __yaml_load(yaml_string):
+  """
+  Load YAML without errors or deprecation warnings
+  The FullLoader class is only available in PyYaml 5.1+ (rel 13 Mar 2019)
+  If it is not present, `yaml.full_load()` will fail
+
+  See: https://stackoverflow.com/a/55553392
+  """
+  yaml_ver = yaml.__version__.split('.')
+  if yaml_ver[0] < '5' or (yaml_ver[0] == '5' and yaml_ver[1] < '1'):
+    return(yaml.load(yaml_string))
+  else:
+    return(yaml.full_load(yaml_string))
