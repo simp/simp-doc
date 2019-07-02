@@ -5,13 +5,13 @@ Configure PXE Boot
 ==================
 
 Sample kickstart templates have been provided in the ``/var/www/ks`` directory
-on the SIMP server  and on the SIMP DVD under ``/ks``.  Pre-boot images are
-located in the DVD under ``/images/pxeboot``.  If you have an existing
+on the SIMP server  and on the SIMP DVD under ``/ks``. Pre-boot images are
+located in the DVD under ``/images/pxeboot``. If you have an existing
 :term:`Preboot Execution Environment` (PXE) setup you can use these to PXE a
 SIMP client. Follow your own sites procedures for this.
 
 In this section we describe how to configure the Kickstart and TFTP servers to
-PXE boot a SIMP client.  (The DNS and DHCP server setup, also required for PXE
+PXE boot a SIMP client. (The DNS and DHCP server setup, also required for PXE
 booting, are discussed in an earlier chapter.)
 
 .. NOTE::
@@ -20,7 +20,7 @@ booting, are discussed in an earlier chapter.)
    Server. If you are setting up a PXE boot for a different OS then you must
    make sure that the OS packages are available for all systems you are trying
    to PXE boot through YUM. There are notes throughout the instructions to help
-   in setting multiple OS but they are not comprehensive.  You should
+   in setting multiple OS but they are not comprehensive. You should
    understand DHCP, KS, YUM and TFTP relationships for PXE booting before
    attempting this.
 
@@ -52,12 +52,12 @@ This section describes how to configure the kickstart server.
 
    - ``pupclient_x86_64.cfg``: Example client kickstart configuration script.
    - ``diskdetect.sh``:  Example script to determine disks available
-     on a system and then apply disk configuration.  This script is used
+     on a system and then apply disk configuration. This script is used
      by ``pupclient_x86_64.cfg``.
 
 #. Open the ``pupclient_x86_64.cfg`` file and follow the instructions provided
    within it to replace the variables listed and to customize for
-   :term:`BIOS`/:term:`UEFI` boot and/or FIPS/non-FIPS mode.  If you have servers
+   :term:`BIOS`/:term:`UEFI` boot and/or FIPS/non-FIPS mode. If you have servers
    that require different boot mode or FIPS options, you will need to make
    customized copies of this file to provide those distinct configurations. You
    will also have to configure TFTP to point to the appropriate files.
@@ -67,16 +67,18 @@ This section describes how to configure the kickstart server.
    - You need to know the IP Addresses of the YUM, Kickstart, and TFTP servers.
      (They default to the SIMP server in ``simp config``).
    - Use the commands described in the comments at the top of the file to
-     generate the root and grub passwords hashes.  Be sure to replace ``password``
-     with your root password.
+     generate the root and GRUB passwords hashes. Be sure to replace ``password``
+     with your root password. The GRUB password can also be managed later with
+     the ``simp-simp_grub`` module. See
+     :ref:`Managing GRUB Users <grub_user_management>` for more information.
    - Follow the instructions throughout the file to customize for BIOS/UEFI boot.
    - Follow the instructions throughout the file to customize for FIPS/non-FIPS
      mode.
 
 #. Open the ``diskdetect.sh`` script and customize the disk device names and/or
-   partitions as appropriate for your site.  The sample ``diskdetect.sh`` script
+   partitions as appropriate for your site. The sample ``diskdetect.sh`` script
    will work, as is, for most systems, as long as your disk device names are in the
-   list.  In addition, the sample script provides STIG-compliant partitioning.
+   list. In addition, the sample script provides STIG-compliant partitioning.
 
 #. Type ``chown root.apache /var/www/ks/*`` to ensure that all files are owned
    by ``root`` and in the ``apache`` group.
@@ -125,8 +127,8 @@ This section describes the process of setting up static files and manifests for
 .. NOTE::
 
    The tftp root directory was changed in SIMP 6.2 to conform to DISA STIG
-   standards.  In previous versions it was ``/tftpboot``, and in 6.2 and later
-   it is ``/var/lib/tftpboot``.  If you are upgrading to 6.2 from a prior
+   standards. In previous versions it was ``/tftpboot``, and in 6.2 and later
+   it is ``/var/lib/tftpboot``. If you are upgrading to 6.2 from a prior
    release and wish the files to remain in the ``/tftpboot`` directory, set
    ``tftpboot::tftpboot_root_dir`` to ``/tftpboot`` in :term:`Hiera`.
 
@@ -153,12 +155,12 @@ Under OSTYPE-MAJORRELEASE.MINORRELEASE-ARCH you should find the files:
 If these files are not where they should be, then create the directories as
 needed and copy the files from
 ``/var/www/yum/<OSTYPE>/<MAJORRELEASE>/<ARCH>/images/pxeboot``
-or from the images directory on the SIMP DVD.  The link name is what is used in
+or from the images directory on the SIMP DVD. The link name is what is used in
 the resources in the tftpboot.pp manifest examples.
 
 .. NOTE::
 
-   The images in the tftp directory need to match the distribution.  For example,
+   The images in the tftp directory need to match the distribution. For example,
    if you upgrade your repo from CentOS 7.3 to 7.4 and will be using this repo
    to kickstart machines, you must also upgrade the images in the tftp directory.
    If they do not match you can get an error such as "unknown file system type 'xfs'"
@@ -167,7 +169,7 @@ Next you need to set up the boot files for either BIOS boot mode, UEFI mode, or 
 
 .. NOTE::
 
-   UEFI support was automated in SIMP 6.2.  If you are using an older version of
+   UEFI support was automated in SIMP 6.2. If you are using an older version of
    SIMP please refer to that documentation for setting up UEFI manually.
 
 For more information see the `RedHat 7 Installation Source`_  or `RedHat 6 Installation Source`_
@@ -182,7 +184,7 @@ to set up the various files to model different systems.
    This file will contain Linux models for different types of systems and
    a mapping of MAC addresses to each model.
 
-   Use the source code example below.  Linux model examples are given for
+   Use the source code example below. Linux model examples are given for
    CentOS 6 and 7 using both UEFI and BIOS boot mode.
 
    * Replace ``KSSERVER`` with the IP address of kickstart server (or the code
@@ -194,10 +196,10 @@ to set up the various files to model different systems.
    * ``MODEL NAME`` is usually of the form ``OSTYPE-MAJORRELEASE-ARCH`` for
      consistency.
 
-   * You will need to know what kickstart file you are using.  UEFI and BIOS
-     mode require separate kickstart files.  Other things that might require a
+   * You will need to know what kickstart file you are using. UEFI and BIOS
+     mode require separate kickstart files. Other things that might require a
      different kickstart file to be configured are disk drive configurations and
-     FIPS configuration.  Create a different Linux model file for each different
+     FIPS configuration. Create a different Linux model file for each different
      kickstart file needed.
 
      .. NOTE::
@@ -241,9 +243,9 @@ to set up the various files to model different systems.
           # UEFI MODE MODEL EXAMPLES
 
           # NOTE UEFI boot uses the linux_model_efi module and has different
-          # `extra` arguments.  You also would use a different kickstart file
+          # `extra` arguments. You also would use a different kickstart file
           # because the bootloader command within the kickstart file is
-          # different.  Read the instructions in the default pupclient_x86_64.cfg
+          # different. Read the instructions in the default pupclient_x86_64.cfg
           # file and make sure you have the correct bootloader line.
           #
           # For CentOS/RedHat 7 UEFI boot
@@ -278,7 +280,7 @@ to set up the various files to model different systems.
           # HOST BOOT CONFIGURATION ASSIGNMENT EXAMPLES
 
           # For each system define what module you want to use by pointing
-          # its MAC address to the appropriate model.  Note that the MAC
+          # its MAC address to the appropriate model. Note that the MAC
           # address is preceded by ``01-``.
           tftpboot::assign_host { '01-aa-ab-ac-1d-05-11': model => 'el7_x86_64' }
           tftpboot::assign_host_efi { '01-aa-bb-cc-dd-00-11': model => 'el7_x86_64_efi' }
@@ -286,7 +288,7 @@ to set up the various files to model different systems.
 
 
 #. Add the ``site::tftpboot`` class on your puppet server node via
-   :term:`Hiera`.  Create the file (or edit if it exists):
+   :term:`Hiera`. Create the file (or edit if it exists):
    ``/etc/puppetlabs/code/environments/simp/data/hosts/<tftp.server.fqdn>.yaml``.
    (By default the TFTP server is the same as your puppet server so it should
    exist.) Add the following example code to that yaml file.
@@ -308,9 +310,9 @@ to set up the various files to model different systems.
       individual hosts to each model by adding ``tftpboot::assign_host`` or
       ``tftpboot::assign_host_efi`` resources.
 
-#. Finally, make sure DHCP is set up correctly.  In SIMP 6.2 the example
+#. Finally, make sure DHCP is set up correctly. In SIMP 6.2 the example
    ``dhcpd.conf`` was updated to determine the appropriate boot loader file to
-   use, depending upon the boot mode of the PXE client.  These changes are
+   use, depending upon the boot mode of the PXE client. These changes are
    needed if you are booting UEFI systems.
 
 For more information see the `RedHat 6 PXE`_ or `RedHat 7 PXE`_ Installation Guides.
