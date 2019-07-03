@@ -1,6 +1,6 @@
 .. _changelog-6.4.0:
 
-SIMP Community Edition (CE) 6.4.0-Alpha
+SIMP Community Edition (CE) 6.4.0
 =======================================
 
 .. raw:: pdf
@@ -23,17 +23,16 @@ This release is known to work with:
   * RHEL 6.10 x86_64
   * RHEL 7.6 x86_64
 
-
 .. WARNING::
 
-   REALLY SUPER IMPORTANT STUFF GOES HERE
+   Local modules installed in the modules directory
+   can get deleted during upgrade.  Make sure you read the
+   upgrade instructions carefully.
 
 Breaking Changes
 ----------------
 
-.. todo::
-
-   ADD BREAKING CHANGES
+Puppet 4 is no longer supported.
 
 Significant Updates
 -------------------
@@ -43,7 +42,7 @@ of SIMP RPMs, in order to support management of one or more Puppet
 environments.  The change allows SIMP users to easily use :term:`r10K` or
 :term:`Code Manager` to maintain these environments, even when their systems
 are on isolated networks. Multiple environments are key to implementing
-standard :term:`DevOps` workflows such as DTAP
+standard :term:`DevOps` work flows such as DTAP
 (Development > Testing > Acceptance > Production).
 
 At the root of this change are the following major features:
@@ -62,29 +61,6 @@ At the root of this change are the following major features:
   - A writable environment in
     ``/opt/puppetlabs/server/data/puppetserver/simp/environments``.
 
-Other important changes for SIMP 6.4.0 include the following:
-
-* Support for CentOS/RHEL 7.6
-* Use of SIMP's Puppet 4.x API functions (namespaced functions) or Puppet
-  built in functions in lieu of Puppet 3 functions.
-
-  - All SIMP modules now use Puppet 4.x API functions.
-  - All of SIMP's Puppet 3 functions have been deprecated and
-    **will be removed** in the next SIMP release.
-  - All uses of ``simp/simpcat`` within SIMP modules have been removed,
-    since ``simp/simpcat`` contains Puppet 3 functions and its functionality
-    can largely be replaced with ``puppetlabs/concat``.
-
-* Non-breaking dependent module updates.  SIMP updated as many dependent
-  modules as possible.  While numerous of these updates were major version
-  bumps, the actual changes did not affect much of the SIMP infrastructure.
-  The dependency version bumps did, however, require quite a few of the
-  SIMP modules to update their respective ``metadata.json`` files.  These
-  metadata changes, in turn, required SIMP module version updates.
-* Non-breaking use of new ``Simplib::Cron::*`` types.  Many modules were
-  converted to use the new ``cron`` types provided by ``simp/simplib``.  These
-  changes allow more flexible ``cron`` scheduling.
-
 
 Module RPM Installation
 ^^^^^^^^^^^^^^^^^^^^^^^
@@ -96,6 +72,9 @@ This change allows SIMP users on isolated networks to manage one or more
 Puppet environments easily, using R10K or Code Manager.  The use of
 R10K/Code Manager, in turn, provides Puppet module installation that aligns
 with current, industry-wide, best practices.
+
+The updated ``simp-adapter`` works for both Puppet Enterprise and the FOSS
+editions of puppet so there is no longer a ``simp-adapter-pe`` or ``simp-adapter-foss``.
 
 Other SIMP Asset RPM Installation
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -132,12 +111,47 @@ module deploy.
 In addition, ``simp config`` has been updated to allow users to opt-out of
 SIMP-provided LDAP capabilities.
 
+Other important changes for SIMP 6.4.0
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+* Use of SIMP's Puppet 4.x API functions (namespaced functions) or Puppet
+  built in functions in lieu of Puppet 3 functions.
+
+  - All SIMP modules now use Puppet 4.x API functions.
+  - All of SIMP's Puppet 3 functions have been deprecated and
+    **will be removed** in the next SIMP release.
+  - SIMP Deprecation warnings are on by default. To disable SIMP
+    deprecation warnings set environment variable SIMP_NOLOG_DEPRECATIONS=true
+    on the puppet server.
+  - The following functions were not upgraded to Puppet 4 functions
+    and will be removed in the next release:
+
+    - array_union
+    - generate_reboot_msg
+    - get_ports
+    - h2n
+    - ip_is_me
+    - localuser
+    - mapval
+    - validate_array_of_hashes
+    - validate_float
+
+* Non-breaking dependent module updates.  SIMP updated as many dependent
+  modules as possible.  While numerous of these updates were major version
+  bumps, the actual changes did not affect much of the SIMP infrastructure.
+  The dependency version bumps did, however, require quite a few of the
+  SIMP modules to update their respective ``metadata.json`` files.  These
+  metadata changes, in turn, required SIMP module version updates.
+* Non-breaking use of new ``Simplib::Cron::*`` types.  Many modules were
+  converted to use the new ``cron`` types provided by ``simp/simplib``.  These
+  changes allow more flexible ``cron`` scheduling.
+* The minimum RAM requirement is now 3.4G for running a simp server.
+  See :ref:`gsg-system_requirements` for more information.
+
 Security Announcements
 ----------------------
 
-.. todo::
-
-   ADD SECURITY ANNOUNCEMENTS
+   None at this time.
 
 RPM Updates
 -----------
@@ -191,15 +205,15 @@ The following Puppet RPMs are packaged with the SIMP 6.4.0 ISOs:
 +---------------------+----------+
 | Package             | Version  |
 +=====================+==========+
-| puppet-agent        | 5.5.10-1 |
+| puppet-agent        | 5.5.14-1 |
 +---------------------+----------+
 | puppet-client-tools | 1.2.6-1  |
 +---------------------+----------+
-| puppetdb            | 5.2.7-1  |
+| puppetdb            | 5.2.8-1  |
 +---------------------+----------+
-| puppetdb-termini    | 5.2.7-1  |
+| puppetdb-termini    | 5.2.8-1  |
 +---------------------+----------+
-| puppetserver        | 5.3.7-1  |
+| puppetserver        | 5.3.8-1  |
 +---------------------+----------+
 
 
@@ -247,6 +261,7 @@ beginning users, the roles and profiles pattern is generally stable and should
 be used instead.
 
 
+
 Fixed Bugs
 ----------
 
@@ -280,10 +295,33 @@ pupmod-simp-iptables
   ``iptables::listen::udp::dports`` could be erroneously split over multiple
   ``iptables`` rules.
 
+pupmod-simp-libvirt
+^^^^^^^^^^^^^^^^^^^
+
+* Fixed the exec to reroute output to /dev/null so that vm_create works
+
+pupmod-simp-pam
+^^^^^^^^^^^^^^^^^^^
+
+* Fix bug where the ending faillock items were not being called due to the
+ 'sufficient' lines on pam_unix and pam_sssd.
+* Fix bug where 'authsucc' was not set at the end of the 'auth' section for
+  faillock
+
+pupmod-simp-pupmod
+^^^^^^^^^^^^^^^^^^
+
+* Add missing gem-path setting to puppetserver.conf template.
+
+pupmod-simp-postfix
+^^^^^^^^^^^^^^^^^^^
+
+* Fixed unrecognized escape  error in /root/.muttrc
+
 pupmod-simp-rsync
 ^^^^^^^^^^^^^^^^^
 
-* Fixed a template bug that prevented catalogue compilation when
+* Fixed a template bug that prevented catalog compilation when
   ``rsync::server::section::user_pass`` was set.
 
 pupmod-simp-stunnel
@@ -373,7 +411,7 @@ pupmod-simp-ssh
   ``ssh::server::conf::subsystem`` was erroneously stripped of whitespace.
 
 
-Modules Replacements 
+Modules Replacements
 --------------------
 
 The following modules are current and actively maintained replacements for
@@ -413,6 +451,15 @@ pupmod-simp-journald
 
 New Features
 ------------
+
+pupmod-simp-auditd
+^^^^^^^^^^^^^^^^^^
+* Added a `custom` audit profile that accepts either an Array of rules or a
+  template path for ease of setting full rule sets via Hiera.
+* Allow users to optimize their audit processing by only collecting on specific
+  SELinux types
+* Adds auditing of restorecon under the SELinux commands
+  auditing section of the STIG profile
 
 pupmod-simp-compliance_markup
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -455,7 +502,7 @@ pupmod-simp-freeradius
 pupmod-simp-hirs_provisioner
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-* New module to install the :term:`HIRS` Provisioner and check-in with 
+* New module to install the :term:`HIRS` Provisioner and check-in with
   the Attestation Certificate Authority.
 
 pupmod-simp-iptables
@@ -600,7 +647,7 @@ pupmod-simp-simplib
   the state of NetworkManager components.
 * Added a ``simplib::in_bolt`` function to detect if the current puppet run is
   happening during a Bolt run.
-* Added a set of ``Simplib::Cron::####`` datatypes for specifying minute, hour,
+* Added a set of ``Simplib::Cron::####`` data types for specifying minute, hour,
   month, monthday, and weekday parameters for the ``cron`` resource.
 * Removed ``simplib``'s ``deep_merge`` 3.x function that conflicts with
   ``stdlib``'s fully-equivalent ``deep_merge`` function.
@@ -650,13 +697,16 @@ simp-environment
   is no longer modified during initial install or erase.
 * Removed the execution of SELinux ``fixfiles`` on ``/var``.
 * Removed creation of ``cacertkey`` in ``/var/simp/environments/simp/FakeCA``.
+* Moved the selinux policy to its own module, simp-selinux-policy.
 
 
 Known Bugs
 ----------
 
-.. todo::
+Nothing significant at this time.
 
-   NOTE KNOWN BUGS
+The SIMP project in JIRA can be used to `file bugs`_.
+
 
 .. _file bugs: https://simp-project.atlassian.net
+
