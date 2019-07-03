@@ -4,16 +4,16 @@ HOWTO Manage Workstation Infrastructures
 ========================================
 
 This chapter describes example code used to manage client workstations with a
-SIMP system including GUIs, repositories, virtualization,
-printing, and Virtual Network Computing (VNC).
+SIMP system including the :term:`GUI`, repositories, virtualization, printing,
+and :term:`Virtual Network Computing` (VNC).
 
 Install Extra Puppet Modules
 ----------------------------
 
 The examples on this page use modules that are part of SIMP Extras and may not
-be installed on the puppet server by default.  The following is an example manifest
-that can be applied to the puppet server to install the extra modules if RPMs are being
-used to distribute the modules:
+be installed on the puppet server by default.  The following is an example
+manifest that can be applied to the puppet server to install the extra modules
+if RPMs are being used to distribute the modules:
 
 
 .. code-block:: ruby
@@ -170,7 +170,7 @@ See :ref:`Exporting_Home_Directories` for more information.
    simp_nfs::home_dir_server: myhome.server.com
 
    #The site::workstation manifest will do most of the work.
-   classes:
+   simp::classes:
      - site::workstation
      - simp_nfs
 
@@ -325,7 +325,7 @@ following in the target node's :term:`Hiera` data:
   x2go::server::agent_options:
     '-clipboard': 'both'
 
-  classes:
+  simp::classes:
     - 'x2go'
     - 'mate'
 
@@ -349,7 +349,7 @@ To install the client on a system, add the following in the client node's
   x2go::client: true
   x2go::server: false
 
-  classes:
+  simp::classes:
     - 'x2go'
 
 The x2go client on the client node can then be used to access the server node
@@ -440,7 +440,7 @@ VNC Server node
 .. code-block:: yaml
 
    # vserv.your.domain.yaml
-   classes:
+   simp::classes:
      - 'gnome'
      - 'mozilla::firefox'
      - 'vnc::server'
@@ -451,7 +451,7 @@ VNC client node
 .. code-block:: yaml
 
    # vclnt.your.domain.yaml
-   classes:
+   simp::classes:
      - 'gnome'
      - 'mozilla::firefox'
      - 'vnc::client'
