@@ -211,7 +211,7 @@ Follow the steps below to enable and take ownership of the :term:`TPM` **1.2**.
 
    .. code-block:: yaml
 
-     classes:
+     simp::classes:
        - tpm
 
      tpm::take_ownership: true
@@ -244,7 +244,7 @@ Follow the steps below to enable and take ownership of the :term:`TPM` **2.0**.
 
    .. code-block:: yaml
 
-     classes:
+     simp::classes:
        - tpm2
 
      tpm2::take_ownership: true
@@ -299,7 +299,7 @@ will stop changes to the filesystem if there is an issue detected.
 
    .. code-block:: bash
 
-     classes:
+     simp::classes:
        - ima::appraise
 
 #. Run Puppet to apply the policy changes to the system; the system will be
@@ -376,7 +376,7 @@ on what can and cannot be measured.
 
    .. code-block:: yaml
 
-      classes:
+      simp::classes:
         - ima::policy
 
 #. Run Puppet, then reboot.
@@ -491,7 +491,7 @@ To install and configure the HIRS TPM Provisioner, add the following Hiera:
 
    .. code-block:: yaml
 
-      classes:
+      simp::classes:
         - hirs_provisioner
 
       hirs_provisioner::config::aca_fqdn: 'aca.fullyqualified.domain'
