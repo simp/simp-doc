@@ -16,7 +16,7 @@ with more commonly sought items towards the top.
   Set up a SIMP Control Repository <HOWTO/Control_Repo>
   Customize settings for SSH <HOWTO/Configure_Ssh>
   Set up SSH Authorized Keys <HOWTO/SSH_Keys>
-  Disable SSH <HOWTO/Disable_Ssh>
+  Disable SSH Management <HOWTO/Disable_Ssh>
   Restrict SSH Network Access <HOWTO/SSH_Restrict_Network_Access.rst>
   Enable SFTP Restricted Accounts <HOWTO/SFTP_Restricted_Accounts>
   Modify the Nightly Package Update Schedule <HOWTO/Control_Nightly_Update_Schedule>

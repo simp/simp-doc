@@ -373,7 +373,7 @@ pupmod-simp-ssh
   ``ssh::server::conf::subsystem`` was erroneously stripped of whitespace.
 
 
-Modules Replacements 
+Modules Replacements
 --------------------
 
 The following modules are current and actively maintained replacements for
@@ -455,7 +455,7 @@ pupmod-simp-freeradius
 pupmod-simp-hirs_provisioner
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-* New module to install the :term:`HIRS` Provisioner and check-in with 
+* New module to install the :term:`HIRS` Provisioner and check-in with
   the Attestation Certificate Authority.
 
 pupmod-simp-iptables
