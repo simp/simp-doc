@@ -2,7 +2,7 @@ Assigning Classes to Nodes
 --------------------------
 
 To preserve various levels of ordering and overrides, it is highly recommended
-that you use the ``simp::classes`` class paramter in :term:`Hiera` to manage
+that you use the ``simp::classes`` class parameter in :term:`Hiera` to manage
 standard class inclusions.
 
 This allows you to correctly use the ``--`` knockout prefix to exclude classes
