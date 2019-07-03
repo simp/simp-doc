@@ -40,7 +40,7 @@ This section describes how to configure the kickstart server.
      .. code-block:: yaml
 
         ---
-        classes:
+        simp::classes:
           - simp::server::kickstart
 
    - This profile class adds management of DHCP, DNS, the Kickstart service,
@@ -296,7 +296,7 @@ to set up the various files to model different systems.
    .. code-block:: yaml
 
       ---
-      classes:
+      simp::classes:
         - 'site::tftpboot'
 
 
