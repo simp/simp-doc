@@ -1,7 +1,7 @@
 .. _changelog-6.4.0:
 
-SIMP Community Edition (CE) 6.4.0
-=======================================
+SIMP Community Edition (CE) 6.4.0-RC1
+=====================================
 
 .. raw:: pdf
 
