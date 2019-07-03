@@ -4,18 +4,18 @@ HOWTO Configure NFS
 .. contents:: This chapter describes multiple configurations of NFS including:
    :local:
 
-All implementations are based on ``pupmod-simp-nfs``, ``pupmod-simp-simp_nfs``,
-and ``pupmod-simp-simp``.
+All implementations are based on the ``simp-nfs``, ``simp-simp_nfs``,
+and ``simp-simp`` modules.
 
-For ease of explanation, examples in this section use the concept of a :term:`site
-profile` and are namespaced accordingly.  The manifests are  in a
-module called ``site``.  If using a different site profile, change the directory and
-the namespace in the examples.
-
+For ease of explanation, examples in this section use the concept of a
+:term:`site profile` and are namespaced accordingly.  The manifests are in a
+module called ``site``.  If using a different site profile, change the
+directory and the namespace in the examples.
 
 .. NOTE::
 
-   ``pupmod-simp-simp_nfs`` and ``pupmod-simp-nfs`` are not core modules, and
+   ``simp-simp_nfs`` and `simp-nfs`` are not core modules, and their
+   corresponding packages, `pupmod-simp-simp_nfs` and `pupmod-simp-nfs`,
    may need to be installed prior to following this guide.
 
 Known Issues
@@ -28,60 +28,70 @@ Known Issues
 
 Stunnel and Autofs
 ^^^^^^^^^^^^^^^^^^
+
 The ``autofs`` packages that were released with CentOS 6.8 (`autofs-5.0.5-122`_)
 and CentOS 7.3 (`autofs-5.0.7-56`_) worked properly over a :term:`stunnel`
 connection.
 
-The release shipped with CentOS 6.9 (**5.0.5-132**)  and with CentOS 7.4 (**5.0.7-69**)
-prevents any connection from happening to the local stunnel process and breaks mounts to
-remote systems over stunnel connections.
+The releases shipped with CentOS 6.9 (**5.0.5-132**)  and with CentOS 7.4 (**5.0.7-69**)
+prevent any connection from happening to the local ``stunnel`` process and
+break mounts to remote systems over ``stunnel`` connections.
 
-To use :term:`NFS` over stunnel and automount directories the old package must
-be used.  To determine what version of autofs is installed, run ``automount -V``.
+The releases that ship with CentOS 6.10 (**5.0.5-139**) and CentOS 7.4
+(**5.0.7-99**) have fixed the issue.
 
-To force the package to the version wanted despite the fact that a newer
-version is available:
+To use :term:`NFS` over ``stunnel`` and ``automount`` directories the old
+package must be used or you must update to the latest release.
 
-First make sure the package is available via your package-management facility then
-set the package version in :term:`Hiera`:
+To determine what version of ``autofs`` is installed, run ``automount -V``.
+
+To force the package to the desired version:
+
+* Make sure the package is available via your package-management facility then
+  set the package version in :term:`Hiera`:
 
 In :term:`EL` 7:
 
 .. code-block:: puppet
 
    ---
-   autofs::autofs_package_ensure:  '5.0.7-56.el7'
+   autofs::autofs_package_ensure: '5.0.7-99'
 
 In :term:`EL` 6
 
 .. code-block:: puppet
 
    ---
-   autofs::autofs_package_ensure:  '5.0.5-122.el6'
+   autofs::autofs_package_ensure: '5.0.5-139'
+
+* Alternatively, ensure that the latest packages are available and set the
+  following:
+
+.. code-block:: puppet
+
+   ---
+   autofs::autofs_package_ensure: 'latest'
 
 
-This problem has been identified as bugs in autofs and are being publicly
-tracked.
+The associated bug reports can be found at:
 
 - CentOS 6  https://bugs.centos.org/view.php?id=13575.
 - CentOS 7  https://bugs.centos.org/view.php?id=14080.
 
-If you have any further questions about this please contact the SIMP Team.
-
 Autofs Option in ``nfs::client::mount``
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-The autofs option in ``nfs::client::mount`` resource currently only works with
-indirect wild-card mounts.  For all other autofs options use the autofs module
-directly.
+The ``autofs`` option in ``nfs::client::mount`` resource currently only works
+with indirect wild-card mounts.  For all other ``autofs`` options use the
+``autofs`` module directly.
 
 SIMP-2944 in `JIRA Bug Tracking`_.
 
 Kerberos and Home Directories
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-The kerberos module is not fully integrated with NFS home directories at this
-time.
+The ``simp-krb5`` module is not fully integrated with NFS home directories at
+this time.
 
 SIMP-1407 in `JIRA Bug Tracking`_.
 
@@ -232,9 +242,9 @@ Utilize the SIMP profile module ``simp_nfs``:
 Client
 ^^^^^^
 
-The following block of code should be entered in the hiera yaml files of
-all systems that need to mount home directories.  The default.yaml
-file will affect all systems.
+The following block of code should be entered in the Hiera YAML files of all
+systems that need to mount home directories.  The ``default.yaml`` file will
+affect all systems.
 
 .. code-block:: yaml
 
@@ -260,23 +270,23 @@ Server
 Exporting additional directories on the NFS home server
 -------------------------------------------------------
 
-**Goal:** Export ``/var/nfs/share1`` located on the server
-which is also sharing home directories set up by the simp_nfs
-module.  Mount the share to ``/share`` on client systems.
+**Goal:** Export ``/var/nfs/share1`` located on the server which is also
+sharing home directories set up by the ``simp-simp_nfs`` module.  Mount the
+share to ``/share`` on client systems.
 
-The ``pupmod-simp-simp_nfs`` module utilizes a NFS root share.
-Any directories shared out in addition to the home directories must
-be mounted to the NFS root and shared from there.  To see how the NFS root
-is created see the simp_nfs::export::home module.
+The ``simp-simp_nfs`` module utilizes a NFS root share.  Any directories
+shared out in addition to the home directories must be mounted to the NFS root
+and shared from there.  To see how the NFS root is created see the
+``simp_nfs::export::home`` documentation.
 
-The following example assumes you have set up the home server already
-following the instructions in the previous section.
+The following example assumes you have set up the home server already following
+the instructions in the previous section.
 
 Server
 ^^^^^^
 
-Create a manifest in your :term:`site profile`. In this example the
-site profile module is ``site`` and the manifest ``nfs_server.pp``
+Create a manifest in your :term:`site profile`. In this example the site
+profile module is ``site`` and the manifest ``nfs_server.pp``
 
 ``site/manifest/nfs_server.pp``;
 
@@ -343,7 +353,7 @@ site profile module is ``site`` and the manifest ``nfs_server.pp``
      }
    }
 
-Include this manifest in the servers hiera file.
+Include this manifest in the servers Hiera file.
 
 .. code-block:: yaml
 
@@ -357,8 +367,8 @@ Include this manifest in the servers hiera file.
 Client
 ^^^^^^
 
-Create a manifest in your :term:`site profile`. In this example the
-site profile module is ``site`` and the manifest ``nfs_client.pp``
+Create a manifest in your :term:`site profile`. In this example the site
+profile module is ``site`` and the manifest ``nfs_client.pp``
 
 ``site/manifests/nfs_client.pp``
 
@@ -401,7 +411,7 @@ site profile module is ``site`` and the manifest ``nfs_client.pp``
      }
    }
 
-Then include this manifest in hiera for any system that should mount this
+Then include this manifest in Hiera for any system that should mount this
 share.
 
 .. code-block:: yaml
@@ -417,7 +427,7 @@ share.
 Enabling/Disabling Stunnel
 --------------------------
 
-Stunnel is a means to encrypt your NFS data.
+Stunnel is a means to encrypt your NFS data during transit.
 
 Enable
 ^^^^^^
@@ -434,8 +444,9 @@ following, in the server's :term:`YAML` file:
 
    nfs::client::stunnel::nfs_server: <your nfs server>
 
-If ``simp_options::stunnel`` is set to ``false`` and you do not wish to globally
-enable stunnel, you will also need to set the following, in default.yaml:
+If ``simp_options::stunnel`` is set to ``false`` and you do not wish to
+globally enable ``stunnel``, you will also need to set the following, in
+``default.yaml``:
 
 .. code-block:: yaml
 
@@ -445,13 +456,14 @@ Disable
 ^^^^^^^
 
 If ``simp_options::stunnel`` is set to ``true``, but you do not want your NFS
-traffic to go through stunnel, set the following, in default.yaml:
+traffic to go through ``stunnel``, set the following, in ``default.yaml``:
 
 .. code-block:: yaml
 
    nfs::stunnel: false
 
-If ``simp_options::stunnel`` is set to ``false`` then stunnel is already disabled.
+If ``simp_options::stunnel`` is set to ``false`` then ``stunnel`` is already
+disabled.
 
 Enabling Kerberos
 -----------------
@@ -461,7 +473,8 @@ Enabling Kerberos
    This functionality is incomplete. It does not work with home directories.
    See ticket SIMP-1407 in our `JIRA Bug Tracking`_ .
 
-In addition to the sharing code (not the stunnel code) above, add the following:
+In addition to the sharing code (not the ``stunnel`` code) above, add the
+following:
 
 default.yaml
 ^^^^^^^^^^^^
@@ -495,6 +508,6 @@ Clients
    classes:
      - 'simp_nfs'
 
+.. _JIRA Bug Tracking: https://simp-project.atlassian.net/
 .. _autofs-5.0.5-122: http://vault.centos.org/6.8/os/x86_64/Packages/autofs-5.0.5-122.el6.x86_64.rpm
 .. _autofs-5.0.7-56: http://vault.centos.org/7.3.1611/os/x86_64/Packages/autofs-5.0.7-56.el7.x86_64.rpm
-.. _JIRA Bug Tracking: https://simp-project.atlassian.net/
