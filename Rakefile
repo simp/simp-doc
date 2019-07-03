@@ -427,11 +427,31 @@ which are simply available in the repository.
     run_build_cmd(cmd)
   end
 
-  desc 'run a local web server to view HTML docs on http://localhost:5000'
-  task :server, [:port] => [:html] do |_t, args|
+  desc <<-EOF
+    Run a local web server to view HTML docs on http://localhost:port'
+
+    ARGS:
+      * port => The port the local webserver will listen on (default: 5000)
+
+    NOTES:
+      * If `sphinx-autobuild` is available, it will be used to provide a
+        live-reload- capable web server that re-compiles and refreshes the
+        browser every time a file is edited.
+      * Otherwise, the docs will be auto-compiled using `rake docs:html` and
+        served using `ruby -run -e httpd`
+  EOF
+  task :server, [:port] do |_t, args|
     port = args.to_hash.fetch(:port, 5000)
-    puts "running web server on http://localhost:#{port}"
-    %x(ruby -run -e httpd html/ -p #{port})
+    require 'mkmf'
+    autobuild_cmd = find_executable 'sphinx-autobuild'
+    if autobuild_cmd && false
+      cmd = "SIMP_FAST_DOCS=true #{autobuild_cmd} -p #{port} -H 0.0.0.0 --poll --ignore docs/dynamic/\*.rst docs html"
+      run_build_cmd(cmd)
+    else
+      puts "running web server on http://localhost:#{port}"
+      Rake::Task['docs:html'].invoke
+      %x(ruby -run -e httpd html/ -p #{port})
+    end
   end
 end
 
