@@ -106,8 +106,8 @@ so the files can be used as a template for other users to copy to their home
 directory.
 
 By default, SIMP opts-out of the Bolt analytics data collection to comply with
-best practices and NIST requirements. To opt-in, change the
-``disable_analytics`` parameter to ``false``.
+best practices and :term:`NIST information limiting requirements`. To opt-in,
+change the ``disable_analytics`` parameter to ``false``.
 
 The optional ``config_hash`` parameter can used to specify the desired content
 of the `bolt.yaml configuration file`_.  If this parameter is specified, all
