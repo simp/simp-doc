@@ -4,8 +4,8 @@ HOWTO Configure NFS
 .. contents:: This chapter describes multiple configurations of NFS including:
    :local:
 
-All implementations are based on ``pupmod-simp-nfs``, ``pupmod-simp-simp_nfs``,
-and ``pupmod-simp-simp``.
+All implementations are based on the ``simp-nfs``, ``simp-simp_nfs``,
+and ``simp-simp`` modules.
 
 For ease of explanation, examples in this section use the concept of a
 :term:`site profile` and are namespaced accordingly.  The manifests are in a
@@ -14,7 +14,8 @@ directory and the namespace in the examples.
 
 .. NOTE::
 
-   ``pupmod-simp-simp_nfs`` and ``pupmod-simp-nfs`` are not core modules, and
+   ``simp-simp_nfs`` and `simp-nfs`` are not core modules, and their
+   corresponding packages, `pupmod-simp-simp_nfs` and `pupmod-simp-nfs`,
    may need to be installed prior to following this guide.
 
 Known Issues
@@ -273,7 +274,7 @@ Exporting additional directories on the NFS home server
 sharing home directories set up by the ``simp-simp_nfs`` module.  Mount the
 share to ``/share`` on client systems.
 
-The ``pupmod-simp-simp_nfs`` module utilizes a NFS root share.  Any directories
+The ``simp-simp_nfs`` module utilizes a NFS root share.  Any directories
 shared out in addition to the home directories must be mounted to the NFS root
 and shared from there.  To see how the NFS root is created see the
 ``simp_nfs::export::home`` documentation.
