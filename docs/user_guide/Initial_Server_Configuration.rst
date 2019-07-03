@@ -6,10 +6,9 @@ Initial SIMP Server Configuration
 Using the SIMP Utility
 ----------------------
 
-In these instructions, we will be using the ``config`` and ``bootstrap``
-commands of the SIMP Utility, ``simp``.   The SIMP Utility provides a CLI
-intended to make the system initial configuration straightforward and
-repeatable.
+In these instructions, we will be using the ``config`` and ``bootstrap`` of the
+``simp`` command.  The ``simp`` command provides a CLI intended to make the
+initial configuration of the SIMP server straightforward and repeatable.
 
 .. NOTE::
 
@@ -31,11 +30,11 @@ Configuring the SIMP Server
 .. WARNING::
 
    Puppet has problems when hostnames contain capital letters
-   (`SERVER-1809`_)—do not use them!
+   (`SERVER-1809`_) — do not use them!
 
    .. _SERVER-1809: https://tickets.puppetlabs.com/browse/SERVER-1809
 
-.. note:: The remainder of this section assumes that:
+.. NOTE:: The remainder of this section assumes that:
 
    * You started by :ref:`gsg-installing_simp_from_an_iso`
    * You have logged in using the ``simp`` local user account (created by
@@ -51,19 +50,18 @@ Configuring the SIMP Server
      appropriate for bootstrapping the system.
 
    - When applicable, ``simp config`` will present you with a recommendation
-     for each setting (variable).  To keep a recommended value, press *Enter*.
-     Otherwise, enter your desired value.
+     for each setting.  To keep a recommended value, press *Enter*.  Otherwise,
+     enter your desired value.
 
-   - ``simp config``  generates a log file in ``/root/.simp`` containing
-     details of the configuration selected and actions taken.
+   - ``simp config`` generates a log file in ``/root/.simp`` containing details
+     of the configuration selected and actions taken.
 
-
-   .. note::
+  .. NOTE::
 
       For more details about the installation variables set by ``simp config``
       and the corresponding actions, see :ref:`gsg-advanced-configuration`.
 
-   .. note::
+  .. NOTE::
 
      For a list of additional options, type ``simp config --help``.
 
@@ -83,7 +81,6 @@ Configuring the SIMP Server
        prompted by ``simp config`` can be modified in that file.  Any changes
        made to settings that ``simp config`` automatically determines will be
        ignored.
-
 
 #. When the questionnaire is finished and you are prompted with ``Ready to
    apply?``, enter ``yes`` to continue.
@@ -111,8 +108,7 @@ Configuring the SIMP Server
    - ``simp bootstrap``  generates a log file in ``/root/.simp`` containing
      details of the bootstrap operation.
 
-
-   .. note::
+  .. NOTE::
 
      For a list of additional options, type ``simp bootstrap --help``.
 
@@ -133,29 +129,27 @@ Configuring the SIMP Server
         If this happens, you can debug by either looking at the log files or by
         running ``puppet agent -t --masterport=8150``.
 
-#. Type ``reboot`` to reboot and apply the necessary kernel configuration items.
+#. Run ``reboot`` to restart your system and apply the necessary kernel
+   configuration items.
 
 Optional: Extract the full OS RPM Package Set
 ---------------------------------------------
 
 The SIMP ISO only provides enough RPM packages to run a basic system. If you
-did not install via ISO—or you require additional stock packages, you can
+did not install via ISO, or you require additional stock packages, you can
 extract additional packages from vendor ISOs using the following procedure:
 
 #. Log on as ``simp`` and run ``su -`` to gain root access.
-#. Run puppet for the first time.
-
-   Type: ``puppet agent -t``
-
+#. Run ``puppet agent -t`` to ensure system consistency.
 #. Copy the appropriate vendor OS ISO(s) to the server and unpack using the
-   ``unpack_dvd`` utility. This creates a new tree under
+   ``unpack_dvd`` utility. This will create a new directory tree under
    ``/var/www/yum/<OperatingSystem>`` suitable for serving to clients.
 
-   Type: ``unpack_dvd CentOS-RHEL_MAJOR_VERSION-x86_64-DVD-####.iso``
+   Run: ``unpack_dvd CentOS-RHEL_MAJOR_VERSION-x86_64-DVD-####.iso``
 
 #. Update your system using :term:`yum`. The updates applied will depend on
    what ISO you initially used.
 
-   Type: ``yum clean all; yum makecache``
+   Run: ``yum clean all; yum makecache``
 
 .. include::  Initial_Server_Configuration/Advanced_Configuration.inc
