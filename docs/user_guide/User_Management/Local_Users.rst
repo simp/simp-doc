@@ -22,7 +22,7 @@ In ``default.yaml``:
 
 .. code-block:: yaml
 
-  classes:
+  simp::classes:
     - 'site::local_account'
     - 'site::service_account'
 
