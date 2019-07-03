@@ -47,9 +47,9 @@ Install as follows:
    The ISO will load into a screen of boot options, with instructions:
 
    .. image:: ../../../images/screenshots/simp_boot_options.png
-     :alt: SIMP boot options screen
+      :alt: SIMP boot options screen
 
-#. Press *Enter* to boot the standard SIMP installer—or—customize the
+#. Press *Enter* to boot the standard SIMP installer, or customize the
    installation using the boot options.
 
    .. NOTE::
@@ -59,7 +59,8 @@ Install as follows:
 
 #. Once installation starts, you may see the graphical interface spawn.
 
-   .. warning::
+   .. WARNING::
+
       You should NOT interact with the GUI **unless** you have elected to manage
       your own disk partitions using ``simp-prompt``.
 
@@ -104,22 +105,22 @@ Install as follows:
 
    a. Change the ``root`` user password
 
-      1.  At the console, log on as ``root`` and type the default password shown
+      #.  At the console, log on as ``root`` and type the default password shown
           in :ref:`ig-default-passwords`
-      2. Follow the prompts to complete the password change
+      #. Follow the prompts to complete the password change
 
-         .. note::
+         .. NOTE::
 
             See the :ref:`faq-password-complexity` FAQ for tips on setting a
             functional password.
 
-   b.  Change the ``simp`` user password
+   #.  Change the ``simp`` user password
 
-      I.  At the console, log on as ``simp`` and type the default password shown
+      #.  At the console, log on as ``simp`` and type the default password shown
           in :ref:`ig-default-passwords`
-      II. Follow the prompts to complete the password change
+      #. Follow the prompts to complete the password change
 
-         .. note::
+         .. NOTE::
 
             See the :ref:`faq-password-complexity` FAQ for tips on setting a
             functional password.
