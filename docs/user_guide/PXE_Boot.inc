@@ -1,6 +1,5 @@
 .. _Configure_PXE_Boot:
 
-
 Configure PXE Boot
 ==================
 
@@ -10,9 +9,9 @@ located in the DVD under ``/images/pxeboot``.  If you have an existing
 :term:`Preboot Execution Environment` (PXE) setup you can use these to PXE a
 SIMP client. Follow your own sites procedures for this.
 
-In this section we describe how to configure the Kickstart and TFTP servers to
-PXE boot a SIMP client.  (The DNS and DHCP server setup, also required for PXE
-booting, are discussed in an earlier chapter.)
+In this section we describe how to configure the Kickstart and :term:`TFTP`
+servers to PXE boot a SIMP client.  (The DNS and DHCP server setup, also
+  required for PXE booting, are discussed in an earlier chapter.)
 
 .. NOTE::
 
@@ -40,7 +39,7 @@ This section describes how to configure the kickstart server.
      .. code-block:: yaml
 
         ---
-        classes:
+        simp::classes:
           - simp::server::kickstart
 
    - This profile class adds management of DHCP, DNS, the Kickstart service,
@@ -294,7 +293,7 @@ to set up the various files to model different systems.
    .. code-block:: yaml
 
       ---
-      classes:
+      simp::classes:
         - 'site::tftpboot'
 
 

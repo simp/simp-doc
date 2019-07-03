@@ -44,7 +44,7 @@ Add Hosts to IPA
 There are two ways to complete this step:
 
 #. Use the IPA web interface, and take note of the one time password
-#. Run ``ipa host-add`` on the command line and pregenerate the password
+#. Run ``ipa host-add`` on the command line and pre-generate the password
 
 Only option 2 will be covered here.
 
@@ -76,7 +76,7 @@ To be able to add hosts from the command line:
 
       # In <domain>.yaml or whichever level is most specific
       ---
-      classes:
+      simp::classes:
       - simp_ipa::client::install
 
       simp_ipa::client::install::ensure: present
@@ -110,14 +110,16 @@ To be able to add hosts from the command line:
       resolv::resolv_domain: <IPA Domain>
 
 
-#. Next time Puppet runs via cron job, your node will be part of the IPA domain
-   and logins should work.
+#. Next time Puppet runs, your node will be part of the IPA domain and logins
+   should work.
 
 .. NOTE::
+
    Only users that are in an IPA group of type ``POSIX`` will be able to
    log into Linux systems.
 
 .. NOTE::
+
    The default UID and GID ranges are very high in IPA (in the low billions), so
    they are a lot higher than both the SIMP and SSSD default max. Set
    ``simp_options::uid::max`` appropriately to avoid this issue. Alternatively,
@@ -125,6 +127,7 @@ To be able to add hosts from the command line:
    ``--idstart=5000`` or by changing the UID ranges in the GUI.
 
 .. NOTE::
+
    Users and groups still have to be added to PAM to be able to log in!
 
 
