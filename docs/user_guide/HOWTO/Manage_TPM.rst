@@ -184,7 +184,7 @@ To initalize the TPM 2.0 simulator, issue the following commands:
 
 The ``tpm2_getcap`` command, provided by tpm2-tools RPM, can be used to verify
 the TPM 2.0 simulator has been initialized:
- 
+
    .. code-block:: bash
 
      # tpm2_getcap --capability="properties-fixed"
@@ -484,7 +484,7 @@ HIRS
 The SIMP hirs_provisioner module installs and configures the :term:`HIRS` TPM
 Provisoner on specified systems. An Attestation Certificate Authority (ACA)
 must be set up independently. Details of how to do this are provided on the
-:term:`HIRS` website. Additionally, the `acceptance tests`_ in the `SIMP 
+:term:`HIRS` website. Additionally, the `acceptance tests`_ in the `SIMP
 hirs_provisioner module`_ include an example of how to do so.
 
 To install and configure the HIRS TPM Provisioner, add the following Hiera:
@@ -499,8 +499,8 @@ To install and configure the HIRS TPM Provisioner, add the following Hiera:
 
 .. _IBM's Software TPM 1.2: https://sourceforge.net/projects/ibmswtpm/
 .. _IBM's Software TPM 2.0: https://sourceforge.net/projects/ibmswtpm2/
-.. _SIMP TPM 1.2 Simulator: https://github.com/simp/simp-tpm12-simulator 
-.. _SIMP TPM 2.0 Simulator: https://github.com/simp/simp-tpm2-simulator 
+.. _SIMP TPM 1.2 Simulator: https://github.com/simp/simp-tpm12-simulator
+.. _SIMP TPM 2.0 Simulator: https://github.com/simp/simp-tpm2-simulator
 .. _Intel Site: https://software.intel.com/en-us/articles/intel-trusted-execution-technology
 .. _acceptance tests: https://github.com/simp/pupmod-simp-hirs_provisioner/tree/master/spec/acceptance
-.. _SIMP hirs_provisioner module: https://github.com/simp/pupmod-simp-hirs_provisioner 
+.. _SIMP hirs_provisioner module: https://github.com/simp/pupmod-simp-hirs_provisioner

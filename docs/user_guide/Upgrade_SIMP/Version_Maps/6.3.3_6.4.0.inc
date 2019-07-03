@@ -139,7 +139,7 @@ Edit the main Puppetfile:
 
 * Make sure all the local modules you created and have in the modules
   directory have ``:local => true`` entries. This includes the ``site``
-  module, which is no longer delivered as an RPM.  
+  module, which is no longer delivered as an RPM.
 * Delete the ``local => true`` entries for any obsolete modules that you
   do not need (e.g. ``simpcat``).
 
