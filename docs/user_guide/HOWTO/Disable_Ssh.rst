@@ -1,9 +1,9 @@
-HOWTO Disable SSH
-=================
+HOWTO Disable SSH Management
+============================
 
-If SSH is included in your SIMP scenario and you wish to cherry-pick
-it out of the class list and cease to manage its configuration, add
-the following Hiera:
+If ``simp-ssh`` is included in your SIMP scenario and you wish to cherry-pick
+it out of the class list and cease to manage its configuration, add the
+following to your :term:`Hiera` configuration:
 
 .. code-block::  yaml
 
@@ -11,9 +11,10 @@ the following Hiera:
    simp::classes:
      - '--ssh'
 
-SVCKill will *not* automatically kill sshd when you cease management
-of the module; it is whitelisted in the default ``svckill::ignore_default``
-list. If you want svckill to kill running sshd processes, include:
+``simp-svckill`` will *not* automatically kill ``sshd`` when you cease
+management of the module since it has been whitelisted by
+``svckill::ignore_default``. If you want ``svckill`` to kill running ``sshd``
+services then add the following to your Hiera configuration.
 
 .. code-block::  yaml
 
