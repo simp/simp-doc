@@ -349,7 +349,7 @@ If you reboot and are getting SELinux errors or you do not have permissions to
 access your files then you probably forgot to set ``i_version`` on your mounts
 in ``/etc/fstab``.
 
-If you reboot and it won't load the ``initramfs`` then the ``dracut`` update
+If you reboot and it won't load the ``initramfs``, then the ``dracut`` update
 didn't run. You can fix this by rebooting without the ``ima`` kernel settings,
 running ``dracut -f`` and then rebooting in ``ima_appraise`` mode ``fix``.
 
