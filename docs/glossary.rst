@@ -480,6 +480,18 @@ Glossary of Terms
 
       Source: `NIST - About NIST <https://www.nist.gov/about-nist>`__
 
+   NIST information limiting requirements
+      Specific :term:`NIST 800-53` controls that prohibit passing information
+      to vendors without justification.
+
+      Per NIST 800-53r4 AC-20(1) and SC-38:
+
+      ":term:`OPSEC` safeguards help to protect the confidentiality of key
+      information including, for example, limiting the sharing of information
+      with suppliers and potential suppliers of information system components,
+      information technology products and services, and with other
+      non-organizational elements and individuals."
+
    NIST SP
    NIST Special Publication
       A set of publications that provide computer/cyber/information security
@@ -522,6 +534,16 @@ Glossary of Terms
       of choice.
 
       Source: `OpenSCAP Features <https://www.open-scap.org/features/>`__
+
+   OPSEC
+   Operations Security
+      A process that identifies critical information to determine if friendly
+      actions can be observed by enemy intelligence, determines if information
+      obtained by adversaries could be interpreted to be useful to them, and
+      then executes selected measures that eliminate or reduce adversary
+      exploitation of friendly critical information
+
+      Source: `Wikipedia: Operations Security <https://en.wikipedia.org/wiki/Operations_security>`__
 
    OS
    Operating System
