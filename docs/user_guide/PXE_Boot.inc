@@ -11,7 +11,7 @@ SIMP client. Follow your own sites procedures for this.
 
 In this section we describe how to configure the Kickstart and :term:`TFTP`
 servers to PXE boot a SIMP client.  (The DNS and DHCP server setup, also
-  required for PXE booting, are discussed in an earlier chapter.)
+required for PXE booting, are discussed in an earlier chapter.)
 
 .. NOTE::
 
