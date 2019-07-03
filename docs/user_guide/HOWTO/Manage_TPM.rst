@@ -44,6 +44,8 @@ Trusted Boot Hardware Requirements:
   * A chipset with Intel Trusted Execution Technology (TXT)
 
 
+.. _ug-howto-manage_tpm-starting_with_tpm:
+
 Starting with TPM
 -----------------
 
@@ -218,6 +220,7 @@ Follow the steps below to enable and take ownership of the :term:`TPM` **1.2**.
      tpm::ownership::advanced_facts: true
 
    .. NOTE::
+
       The ``tpm_ownership`` type does not support clearing the TPM. The process
       could possibly be destructive and has been left to be a manual process.
 
@@ -416,7 +419,7 @@ Steps
 #. Boot into the kernel you want to trust (do not worry, this kernel will be
    preserved!)
 
-#. Follow the instructions in :ref:`Starting with TPM` and ensure:
+#. Follow the instructions in :ref:`ug-howto-manage_tpm-starting_with_tpm` and ensure:
 
    * The TPM is owned
    * You know the owner password
