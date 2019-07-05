@@ -37,7 +37,7 @@ The releases shipped with CentOS 6.9 (**5.0.5-132**)  and with CentOS 7.4 (**5.0
 prevent any connection from happening to the local ``stunnel`` process and
 break mounts to remote systems over ``stunnel`` connections.
 
-The releases that ship with CentOS 6.10 (**5.0.5-139**) and CentOS 7.4
+The releases that ship with CentOS 6.10 (**5.0.5-139**) and CentOS 7.6
 (**5.0.7-99**) have fixed the issue.
 
 To use :term:`NFS` over ``stunnel`` and ``automount`` directories the old
