@@ -93,8 +93,9 @@ Install as follows:
 
       When the system boots, it may display: ``error on start module sha1 not
       found could not insert sha_256 [...]``. This is expected and is a known
+      issue.
 
-#. Change the default passwords
+#. Change the default passwords.
 
    .. WARNING::
 
@@ -103,27 +104,27 @@ Install as follows:
 
       **Please make sure that you change these passwords!**
 
-   a. Change the ``root`` user password
+  a. Change the ``root`` user password.
 
-      #.  At the console, log on as ``root`` and type the default password shown
-          in :ref:`ig-default-passwords`
-      #. Follow the prompts to complete the password change
+    i.  At the console, log on as ``root`` and type the default password shown
+        in :ref:`ig-default-passwords`
+    ii. Follow the prompts to complete the password change
 
-         .. NOTE::
+      .. NOTE::
 
-            See the :ref:`faq-password-complexity` FAQ for tips on setting a
-            functional password.
+         See the :ref:`faq-password-complexity` FAQ for tips on setting a
+         functional password.
 
-   #.  Change the ``simp`` user password
+  b. Change the ``simp`` user password.
 
-      #.  At the console, log on as ``simp`` and type the default password shown
-          in :ref:`ig-default-passwords`
-      #. Follow the prompts to complete the password change
+    i.  At the console, log on as ``simp`` and type the default password shown
+        in :ref:`ig-default-passwords`
+    ii. Follow the prompts to complete the password change
 
-         .. NOTE::
+      .. NOTE::
 
-            See the :ref:`faq-password-complexity` FAQ for tips on setting a
-            functional password.
+         See the :ref:`faq-password-complexity` FAQ for tips on setting a
+         functional password.
 
 .. _ig-default-passwords:
 
