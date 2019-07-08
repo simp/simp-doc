@@ -14,8 +14,8 @@ directory and the namespace in the examples.
 
 .. NOTE::
 
-   ``simp-simp_nfs`` and `simp-nfs`` are not core modules, and their
-   corresponding packages, `pupmod-simp-simp_nfs` and `pupmod-simp-nfs`,
+   ``simp-simp_nfs`` and ``simp-nfs`` are not core modules, and their
+   corresponding packages, ``pupmod-simp-simp_nfs`` and ``pupmod-simp-nfs``,
    may need to be installed prior to following this guide.
 
 Known Issues
@@ -155,7 +155,7 @@ In ``hosts/<your_server_fqdn>.yaml``:
 
    nfs::is_server: true
 
-   classes:
+   simp::classes:
      - 'site::nfs_server'
 
 Client
@@ -197,7 +197,7 @@ In ``hosts/<your_client_fqdn>.yaml``:
    nfs::is_server: false
    site::nfs_client::nfs_server: <your nfs server>
 
-   classes:
+   simp::classes:
      - 'site::nfs_client'
 
 .. WARNING::
@@ -251,7 +251,7 @@ affect all systems.
    nfs::is_server: false
    simp_nfs::home_dir_server: <your nfs server>
 
-   classes:
+   simp::classes:
      - simp_nfs
 
 Server
@@ -262,7 +262,7 @@ Server
    nfs::is_server: true
    simp_nfs::export_home::create_home_dirs: true
 
-   classes:
+   simp::classes:
      - simp_nfs::export::home
 
 .. _Additional_Directories:
@@ -358,7 +358,7 @@ Include this manifest in the servers Hiera file.
 .. code-block:: yaml
 
    ---
-   classes:
+   simp::classes:
      - site::nfs_server
      - simp_nfs
 
@@ -417,7 +417,7 @@ share.
 .. code-block:: yaml
 
    ---
-   classes:
+   simp::classes:
      - site::nfs_client
 
    nfs::is_server: false
@@ -481,7 +481,7 @@ default.yaml
 
 .. code-block:: yaml
 
-   classes:
+   simp::classes:
      - 'krb5::keytab'
 
    nfs::secure_nfs: true
@@ -495,7 +495,7 @@ Server
 
 .. code-block:: yaml
 
-   classes:
+   simp::classes:
      - 'krb5::kdc'
 
 Clients
@@ -505,7 +505,7 @@ Clients
 
    nfs::is_server: false
 
-   classes:
+   simp::classes:
      - 'simp_nfs'
 
 .. _JIRA Bug Tracking: https://simp-project.atlassian.net/
