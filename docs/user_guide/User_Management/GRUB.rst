@@ -9,8 +9,8 @@ kickstarting via PXE boot, GRUB users can be managed by the
 
 .. NOTE::
 
-   ``simp-simp_grub`` is not a core module, and its corresponding package,
-   ``pupmod-simp-simp_grub`` may need to be installed prior to following
+   ``simp-simp_grub`` is not a core module and its corresponding package,
+   ``pupmod-simp-simp_grub``, may need to be installed prior to following
    this guide.
 
 In :term:`Hiera`, you will need to include the ``simp_grub`` class and set
