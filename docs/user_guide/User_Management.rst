@@ -11,3 +11,4 @@ This chapter explains how to manage users in the default SIMP environment.
   User_Management/LDAP
   User_Management/Local_Users
   User_Management/SSSD
+  User_Management/GRUB
