@@ -55,6 +55,7 @@ Configuring the SIMP Server
 
     - When applicable, ``simp config`` will present you with a recommendation
       for each setting.
+      
         - Press *Enter* to keep a recommended value.
         - Otherwise, enter your desired value.
 
