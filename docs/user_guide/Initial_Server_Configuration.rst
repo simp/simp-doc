@@ -20,7 +20,7 @@ Configuring the SIMP Server
 
 .. IMPORTANT::
 
-   Correct time synchronization across all systems—is **critical** to the proper
+   Correct time synchronization across all systems is **critical** to the proper
    functioning of SIMP (and Puppet in general).
 
 .. TIP::
