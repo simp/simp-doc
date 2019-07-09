@@ -63,6 +63,7 @@ Install as follows:
    | UEFI (el6) | |efi_grub097_boot_options|       |
    +------------+----------------------------------+
    | UEFI (el7) | |efi_grub2_boot_options|         |
+   +------------+----------------------------------+
    |            | |efi_grub2_boot_options_submenu| |
    +------------+----------------------------------+
 
