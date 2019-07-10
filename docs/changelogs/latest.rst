@@ -53,7 +53,7 @@ At the root of this change are the following major features:
 * No SIMP component RPM install/upgrade/erase operation will modify an active
   Puppet environment or SIMP secondary environment,
   ``/var/simp/environments/simp``.
-* SIMP's :term:`CLI` will provide commands that help users create and maintain
+* SIMP's :term:`CLI` provides commands that help users create and maintain
   one or more SIMP omni environments, each of which is comprised of the following:
 
   - A Puppet environment in ``/etc/puppetlabs/code/environments``
