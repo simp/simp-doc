@@ -56,7 +56,7 @@ that variables beginning with 'cli::' are only used internally by
 +--------------------------------+-------------------------------------------+
 | Variable                       | Description                               |
 +================================+===========================================+
-| cli::is_ldap_server            | Whether the SIMP server will also be      |
+| cli::is_simp_ldap_server       | Whether the SIMP server will also be      |
 |                                | the LDAP server                           |
 +--------------------------------+-------------------------------------------+
 | cli::network::dhcp             | Whether to use DHCP for the network;      |

@@ -3,91 +3,142 @@
 Installing SIMP from an ISO
 ===========================
 
-The benefits of using a SIMP ISO are:
+SIMP can be installed from a bootable ISO, which provides many advantages:
 
-* Suitable for enclave or offline environments
-* It is the easiest way to get started and ensure that all files are present
-* Your SIMP load will have a disk partitioning scheme compatible with most
-  security guides
-* Your system will start in :term:`FIPS` mode
-* Your disks can be encrypted
+* Provides a ready-to-go OS, Puppet server, and SIMP installation
+* Suitable for use in network-isolated enclaves/offline environments
+* Ensures OS is configured with compliance-relevant install-time options:
 
-  * Please pay attention to the caveats in the :ref:`ig-disk-encryption`
-    section
+  * The :ref:`ig-disk-partitioning` scheme is compatible with most security
+    guides
+  * The OS will boot in :term:`FIPS` mode
+  * Disks will be encrypted
 
-Obtaining the ISO
+    * (Please note the important caveats in the :ref:`ig-disk-encryption`
+      section)
+
+
+Obtaining a SIMP ISO file
+-------------------------
+
+You can obtain a SIMP installation ISO using one of the following methods:
+
+#. Downloading an ISO image file
+
+   * Official releases are available at https://download.simp-project.com/simp/ISO/
+
+#. *[Advanced]* :ref:`gsg-building_a_simp_iso` for yourself
+
+   * The contents of the ISO can be customized to your preferences.
+   * This is the only way to obtain a SIMP ISO that installs a licensed
+     commercial OS, such as Red Hat Enterprise Linux (:term:`RHEL`).
+
+
+Installing the OS
 -----------------
 
-The SIMP ISO can be downloaded from the `official SIMP ISO Share`_.
-
-Alternatively, you can compile your own ISO by following the documentation in
-:ref:`gsg-building_a_simp_iso`.
-
-Installation
-------------
-
-The ISO will install on any system that supports the underlying operating system.
-
-.. WARNING::
-
-   There are default passwords present on the system that should be changed
-   prior to deploying the system.
-
-   **Please make sure that you change these passwords!**
+A SIMP ISO will install its OS + SIMP on any host that supports the underlying
+operating system.
 
 Install as follows:
 
-#. Boot the system using the SIMP ISO
+#. Boot the system using the SIMP ISO.
 
-#. Press *Enter* to run the standard SIMP install, or choose from the
-   customized options list.
+   The ISO will load into a screen of boot options.  The presentation will
+   differ, depending on the boot firmware and ISO OS:
+
+   .. |bios_boot_options|           image:: ../../../images/screenshots/simp_boot_options.png
+      :alt: SIMP boot options screen (BIOS)
+   .. |efi_grub097_boot_options|    image:: ../../../images/screenshots/simp_boot_options_efi__grub097.png
+      :alt: SIMP boot options screen (UEFI, el6)
+   .. |efi_grub2_boot_options|      image:: ../../../images/screenshots/simp_boot_options_efi__grub2.png
+      :alt: SIMP boot options screen (UEFI, el7)
+   .. |efi_grub2_boot_options_submenu| image:: ../../../images/screenshots/simp_boot_options_efi__grub2_submenu.png
+      :alt: SIMP boot options screen (UEFI, el7)
+
+
+   +------------+----------------------------------+
+   | BIOS       | |bios_boot_options|              |
+   +------------+----------------------------------+
+   | UEFI (el6) | |efi_grub097_boot_options|       |
+   +------------+----------------------------------+
+   | UEFI (el7) | |efi_grub2_boot_options|         |
+   +------------+----------------------------------+
+   |            | |efi_grub2_boot_options_submenu| |
+   +------------+----------------------------------+
+
+
+#. Press *Enter* to boot the standard SIMP installer, or customize the
+   installation using the boot options.
 
    .. NOTE::
 
-      * For a detailed description of the disk encryption enabled via boot options,
-        see :ref:`ig-disk-encryption`.
+      For details about how SIMP implements disk encryption (enabled by
+      default), see: :ref:`ig-disk-encryption`.
 
-      * Once installation starts, you may see the graphical interface spawn. You
-        should not interact with the GUI **unless** you have selected the option
-        to manage your own disk partitions.
+#. Once installation starts, you may see the graphical interface spawn.
 
-      * When you have opted to manage your own disk partitions, follow the GUI
-        instructions to enter your partition scheme. For example, for SIMP for
-        CentOS 7, select the ``INSTALLATION DESTINATION`` menu, enter the
-        selected partitioning, select the ``DONE`` button to finalize your disk
-        selections, and then select the ``Begin Installation`` button on the
-        main GUI page to continue. No further GUI interaction will be required.
+   .. WARNING::
 
-      * If you have chosen to encrypt your disks, your installation seems to
-        be paused, and a messages about increasing entropy appears on the
-        screen, you may want to generate some system entropy by pressing random
-        keys on the keyboard for a bit.  This will speed up the installation.
+      You should NOT interact with the GUI **unless** you have elected to manage
+      your own disk partitions (e.g., ``simp-prompt``).
+
+   .. NOTE::
+
+      If you have opted to manage your own disk partitions with
+      (e.g., ``simp-prompt``), follow the GUI instructions to enter your
+      partition scheme.
+
+      For example, using SIMP for CentOS 7:
+
+        #. Click the ``INSTALLATION DESTINATION`` button
+        #. Configure the desired partitioning
+        #. Click the ``DONE`` button to finalize your disk selections
+        #. Click the ``Begin Installation`` button on the main GUI page to
+           continue.
+
+      No further GUI interaction will be required.
+
+   .. TIP::
+
+      When applying disk encryption (enabled by default), the system may seem
+      to pause and display messages about increasing entropy. You can speed up
+      the installation by pressing random keys on the keyboard for a bit (this
+      will generate additional entropy).
 
 #. When the installation is complete, the system will restart automatically.
 
    .. NOTE::
 
-      When the system boots it will display: ``error on start module sha1 not
+      When the system boots, it may display: ``error on start module sha1 not
       found could not insert sha_256 [...]``. This is expected and is a known
-      issue with FIPS and RedHat, it is safe to ignore.
+      issue.
 
-#. Change the ``root`` user password
+#. Change the default passwords.
 
-   a. At the console, log on as ``root`` and type the default password shown
-      in :ref:`ig-default-passwords`
-   b. Follow the prompts to complete the password change
+   .. WARNING::
 
-      * See the :ref:`faq-password-complexity` FAQ for tips on setting a
-        functional password.
+      There are default passwords present on the system that should be changed
+      prior to deploying the system.
 
-#. Change the ``simp`` user password
+      **Please make sure that you change these passwords!**
 
-   a. At the console, log on as ``simp`` and type the default password shown
-      in :ref:`ig-default-passwords`
-   b. Follow the prompts to complete the password change
+   .. NOTE::
 
-      * See the :ref:`faq-password-complexity` FAQ for tips on setting a
-        functional password.
+      See the :ref:`faq-password-complexity` FAQ for tips on setting a
+      functional password.
+
+  a. Change the ``root`` user password.
+
+    i.  At the console, log on as ``root`` and type the default password shown
+        in :ref:`ig-default-passwords`
+    ii. Follow the prompts to complete the password change
+
+  b. Change the ``simp`` user password.
+
+    i.  At the console, log on as ``simp`` and type the default password shown
+        in :ref:`ig-default-passwords`
+    ii. Follow the prompts to complete the password change
 
 .. _ig-default-passwords:
 
@@ -113,5 +164,3 @@ Simp User UserPassword
 Table: SIMP Default Passwords
 
 .. include:: ../jump_to_config.inc
-
-.. _official SIMP ISO Share: https://download.simp-project.com/simp/ISO
