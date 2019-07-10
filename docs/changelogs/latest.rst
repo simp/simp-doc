@@ -190,7 +190,7 @@ rubygem-simp-cli 5.0.0
   ``simp bootstrap``.
 
 
-simp-adapter 1.0.0
+simp-adapter 1.0.1
 ^^^^^^^^^^^^^^^^^^
 
 Beginning with ``simp-adapter`` 1.0.0, the (optional) auto-update to the
