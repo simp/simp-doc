@@ -825,7 +825,7 @@ pupmod-simp-sssd
 ^^^^^^^^^^^^^^^^
 
 * Change the ``sssd::provider::ldap::ldap_access_order`` defaults to
-  ```['ppolicy','pwd_expire_policy_renew']`` to prevent accidental user
+  ``['ppolicy','pwd_expire_policy_renew']`` to prevent accidental user
   lockout.
 
 pupmod-simp-xinetd
