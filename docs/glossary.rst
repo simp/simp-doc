@@ -819,11 +819,29 @@ Glossary of Terms
       Comparison: `SIMP Editions Overview <https://www.onyxpoint.com/simp.html>`__
       Documentation: `SIMP Enterprise Edition <https://www.simp-project.com/docs/simp-enterprise/develop/>`__
 
+   SIMP Omni-Environment
+      A set of 3 environments (directories) on the Puppet server that is required
+      for a SIMP Puppet environment to operate.  Includes a :term:`Puppet Environment`,
+      a :term:`SIMP Secondary Environment`, and a :term:`SIMP Writable Environment`.
+
+      See: :ref:`faq-simp-omni-environment`
+
+   SIMP Secondary Environment
+      A directory ``/var/simp/environments/<environment_name>`` that contains
+      files to support a named Puppet environment, but which must be maintained
+      independently from the Puppet environment directory.
+ 
    SIMP Server
       The first server that is built in a SIMP environment and the server that
       is expected to be the nexus of control for the managed infrastructure.
 
       See: :term:`Puppet Master`
+
+   SIMP Writable Environment
+      A directory ``/opt/puppetlabs/server/data/puppetserver/simp/environments/<environment_name>``
+      that contains Puppet server-generated, environment-specific, SIMP data
+      that is generated and/or read in by SIMP Puppet functions during catalog
+      compilation.
 
    Site Manifest
       Puppet always starts compiling with either a single manifest file or a
