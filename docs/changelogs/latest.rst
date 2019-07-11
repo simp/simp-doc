@@ -54,11 +54,12 @@ At the root of this change are the following major features:
   Puppet environment or SIMP secondary environment,
   ``/var/simp/environments/simp``.
 * SIMP's :term:`CLI` provides commands that help users create and maintain
-  one or more SIMP omni environments, each of which is comprised of the following:
+  one or more :term:`SIMP Omni-Environments<SIMP Omni-Environment>`, each of
+  which is comprised of the following:
 
   - A Puppet environment in ``/etc/puppetlabs/code/environments``
-  - A secondary environment in ``/var/simp/environments``
-  - A writable environment in
+  - A :term:`SIMP Secondary Environment` in ``/var/simp/environments``
+  - A :term:`SIMP Writable Environment` in
     ``/opt/puppetlabs/server/data/puppetserver/simp/environments``.
 
 
