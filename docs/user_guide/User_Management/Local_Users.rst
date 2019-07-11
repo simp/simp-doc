@@ -10,12 +10,12 @@ to centrally manage your users, you may occasionally need to set up a
 This section walks you through doing this in a way that is compatible with
 SIMP.
 
-The following examples assume that you are using the ``site`` module to manage
-site-specific puppet manifests. The examples may easily be extrapolated into
-defined types if you wish but are presented as classes for simplicity. Save the
-files below in
-``/etc/puppetlabs/code/environments/simp/modules/site/manifests/`` as
-``local_account.pp`` and ``service_account.pp``, ensuring the correct ownership,
+The following examples assume that you are using a custom ``site`` module to
+manage site-specific puppet manifests and that you are configuring the
+``production``  Puppet environment. The examples may easily be extrapolated into
+defined types if you wish, but are presented as classes for simplicity. Save the
+files below in ``/etc/puppetlabs/code/environments/production/modules/site/manifests/``
+as ``local_account.pp`` and ``service_account.pp``, ensuring the correct ownership,
 group, and permissions.
 
 In ``default.yaml``:

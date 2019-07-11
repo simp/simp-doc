@@ -41,7 +41,7 @@ RPM Name Changes and the Consequences
 simp-rsync
 """"""""""
 
-simp-rsync has been replaced by simp-rsync-skeleton.
+``simp-rsync`` has been replaced by ``simp-rsync-skeleton``.
 
 Due to the nature of RPM uninstallation activities, to avoid ruining any active
 files in ``/var/simp/environments/simp/rsync``, we had to create a final
@@ -51,12 +51,12 @@ upgrade this RPM if you want to ensure that no files are accidentally removed
 from the ``rsync`` space on your SIMP server.
 
 If you are not using an environment named ``simp``, you can safely remove
-the simp-rsync RPM after upgrading.
+the ``simp-rsync`` RPM after upgrading.
 
 FakeCA
 """"""
 
-simp-environment has been renamed to simp-environment-skeleton.
+``simp-environment`` has been renamed to ``simp-environment-skeleton``.
 
 Previously, the ``simp-environment`` RPM would place helpful ``FakeCA`` files
 into ``/var/simp/environments/simp/FakeCA``. These files were for convenience
@@ -101,10 +101,11 @@ The following errors/warnings are expected:
   libsemanage.semanage_direct_remove_key: Unable to remove module simp-environment at priority 400. (No such file or directory).
   /usr/sbin/semodule:  Failed!
 
-The old selinux module, ``simp-environment``, had to be removed before installing the
-the new selinux module, ``simp-environment-rsync`` to avoid conflicts when the
-simp-environment-skeleton module is installed.  Therefore
-the error above is given when the simp-environment RPM tries to delete it.
+The old SELinux module, ``simp-environment``, had to be removed before
+installing the the new SELinux module, ``simp`` to avoid conflicts when
+the ``simp`` module from the ``simp-selinux-policy`` package is installed.
+Therefore, the error message above is emitted when the ``simp-environment``
+RPM tries to remove the already-removed SELinux module.
 
 If you are using the ``FakeCA`` in the ``simp`` environment, follow the steps
 in the ``FakeCA`` section above to restore the needed files.

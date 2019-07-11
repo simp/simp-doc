@@ -4,7 +4,7 @@ HOWTO Work with the SIMP Rsync Shares
 =====================================
 
 When we added support for multiple environments, the SIMP rsync space in
-``/var/simp/environments/simp/rsync`` became quite complex.
+``/var/simp/environments/<environment>/rsync`` became quite complex.
 
 This will guide you through the new rsync layout as well as providing guidance
 on setting up new rsync shares for your various components.
@@ -34,9 +34,9 @@ should suit most needs.
 Standard Capabilities
 ---------------------
 
-The standard SIMP rsync shares exist at ``/var/simp/environments/simp/rsync``.
-This is an assumed path and changing this path will break some aspects of the
-system.
+The standard SIMP rsync shares for the ``production`` :term:`Puppet environment`
+exist at ``/var/simp/environments/production/rsync``.  This is an assumed path
+and changing this path will break some aspects of the system.
 
 Within this directory, you will find a set of files with the name ``.shares``.
 This file is used by the fact ``simp_rsync_environments`` to indicate that all
@@ -55,7 +55,7 @@ As a concrete example, given the following directory structure:
    var
    └── simp
        └── environments
-           └── simp
+           └── production
                └── rsync
                    ├── Global
                    │   ├── .shares
@@ -100,8 +100,8 @@ The following would be returned by the ``simp_rsync_environments`` fact:
 .. code-block:: json
 
    {
-     "simp": {
-       "id": "simp",
+     "production": {
+       "id": "production",
        "rsync": {
          "id": "rsync",
          "global": {
@@ -178,17 +178,23 @@ directory with your custom name.
    Be sure not to copy any sensitive information into the space!
 
 For example, if you wanted to create the standard dev/test/prod structure, and
-assuming that ``production`` is already symlinked to ``simp``:
+the ``production`` environment already existed:
 
 .. code-block:: bash
 
    cd /var/simp/environments
-   cp -a simp dev
-   cp -a simp test
+   cp -a production dev
+   cp -a production test
+
+Alternatively, you can use the ``simp environment new`` command to affect the
+copy of all or some the :term:`SIMP Omni-Environment`.  (You can also use that
+command to affect links of the :term:`SIMP Secondary Environment` or
+:term:`SIMP Writable Environment`, which in some circumstances may be more
+appropriate.)
 
 After this, you will now have an enhanced ``simp_rsync_environments`` data
-structure that holds all of the information for the ``dev``, ``test``,
-``production``, and ``simp`` environments.
+structure that holds all of the information for the ``dev``, ``test``, and
+``production`` environments.
 
 You can then manipulate the contents of the different environments to suit your
 needs.

@@ -256,9 +256,9 @@ Follow the steps below to enable and take ownership of the :term:`TPM` **2.0**.
      tpm2::ownership::endorsement: set
 
    The passwords will default to automatically generated passwords using
-   passgen. If you want to set them to specific passwords then set them in Hiera
-   using the following settings (it expects a minimum password length of 14
-   characters):
+   ``simp::passgen()``. If you want to set them to specific passwords then set
+   them in Hiera using the following settings (it expects a minimum password
+   length of 14 characters):
 
    .. code-block:: yaml
 

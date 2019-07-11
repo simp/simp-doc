@@ -9,10 +9,10 @@ rsync's syncing engine to reduce network load and Puppet run times.
 
 The common SIMP use cases for rsync include:
 
-   * clamav
-   * tftpboot
-   * named
-   * dhcpd
+   * ``clamav``
+   * ``tftpboot``
+   * ``named``
+   * ``dhcpd``
 
 
 Large Files
@@ -49,8 +49,13 @@ of the Puppet space.
 Where are the rsync files?
 --------------------------
 
-SIMP distributes the rsync materials in the ``simp-rsync`` rpm, which installs a
-file tree in ``/var/simp/environments/simp/rsync``. These directories are
-shared by the ``simp::server::rsync_shares`` class, which is included on the
-SIMP server if the ``simp_options::rsync`` catalyst is enabled.
+SIMP packages the rsync materials in the ``simp-rsync-skeleton`` RPM, which
+installs a file tree ``/usr/share/simp/environment-skeleton/rsync``. This
+directory is automatically installed in the :term:`SIMP Secondary Environment`
+for the ``production`` :term:`SIMP Omni-Environment` created by ``simp config``
+(``/var/simp/environments/production``) or the corresponding directory
+for a new environment created by ``simp environment new``.
 
+The rsync directories in the SIMP Secondary Environment are shared by the
+``simp::server::rsync_shares`` class, which is included on the SIMP server if
+the ``simp_options::rsync`` catalyst is enabled.

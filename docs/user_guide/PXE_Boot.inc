@@ -33,7 +33,7 @@ This section describes how to configure the kickstart server.
 #. Add the Kickstart Server Profile
 
    - In the Puppet server-specific :term:`Hiera` file (by default located at
-     ``/etc/puppetlabs/code/environments/simp/data/hosts/puppet.<your.domain>.yaml``),
+     ``/etc/puppetlabs/code/environments/production/data/hosts/puppet.<your.domain>.yaml``),
      add the ``simp::server::kickstart`` class.
 
      .. code-block:: yaml
@@ -121,7 +121,8 @@ Setting up TFTP
 ---------------
 
 This section describes the process of setting up static files and manifests for
-:term:`TFTP`.
+:term:`TFTP`.  The example in this section assumes we are configuring the
+``production`` :term:`SIMP Omni-Environment`.
 
 .. NOTE::
 
@@ -136,7 +137,7 @@ Static Files
 
 Verify the static files are in the correct location:
 
-Type ``cd /var/simp/environments/simp/rsync/<OSTYPE>/Global/tftpboot``
+Type ``cd /var/simp/environments/production/rsync/<OSTYPE>/Global/tftpboot``
 
 (<OSTYPE> and <MAJORRELEASE> under rsync are the type and version of the SIMP **server**.)
 
@@ -288,7 +289,7 @@ to set up the various files to model different systems.
 
 #. Add the ``site::tftpboot`` class on your puppet server node via
    :term:`Hiera`. Create the file (or edit if it exists):
-   ``/etc/puppetlabs/code/environments/simp/data/hosts/<tftp.server.fqdn>.yaml``.
+   ``/etc/puppetlabs/code/environments/production/data/hosts/<tftp.server.fqdn>.yaml``.
    (By default the TFTP server is the same as your puppet server so it should
    exist.) Add the following example code to that yaml file.
 
