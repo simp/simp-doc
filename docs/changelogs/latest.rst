@@ -5,14 +5,14 @@ SIMP Community Edition (CE) 6.4.0-RC1
 
 .. raw:: pdf
 
-  PageBreak
+   PageBreak
 
 .. contents::
   :depth: 2
 
 .. raw:: pdf
 
-  PageBreak
+   PageBreak
 
 This release is known to work with:
 
@@ -32,18 +32,21 @@ This release is known to work with:
 Breaking Changes
 ----------------
 
-Puppet 4 is no longer supported.
+* Puppet 4 is no longer supported.
 
 Significant Updates
 -------------------
 
-The most significant change with SIMP 6.4.0 is a redesign of the packaging
-of SIMP RPMs, in order to support management of one or more Puppet
-environments.  The change allows SIMP users to easily use :term:`r10K` or
-:term:`Code Manager` to maintain these environments, even when their systems
-are on isolated networks. Multiple environments are key to implementing
-standard :term:`DevOps` work flows such as DTAP
-(Development > Testing > Acceptance > Production).
+The most significant change with SIMP 6.4.0 is a redesign of the packaging of
+SIMP RPMs, in order to support management of one or more :term:`Puppet
+environments`.
+
+The change allows SIMP users to easily use :term:`r10K` or :term:`Code Manager`
+to maintain these environments, even when their systems are on isolated
+networks.
+
+Multiple environments are key to implementing standard :term:`DevOps` work
+flows such as DTAP (Development > Testing > Acceptance > Production).
 
 At the root of this change are the following major features:
 
@@ -72,7 +75,7 @@ of (optionally) auto-updating ``/etc/puppetlabs/code/environments/simp``.
 This change allows SIMP users on isolated networks to manage one or more
 Puppet environments easily, using R10K or Code Manager.  The use of
 R10K/Code Manager, in turn, provides Puppet module installation that aligns
-with current, industry-wide, best practices.
+with current Puppet best practices.
 
 The updated ``simp-adapter`` works for both Puppet Enterprise and the FOSS
 editions of Puppet, so there is no longer a ``simp-adapter-pe`` or
@@ -81,7 +84,7 @@ editions of Puppet, so there is no longer a ``simp-adapter-pe`` or
 Other SIMP Asset RPM Installation
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-The packaging of key non-module SIMP assets (previously named 
+The packaging of key non-module SIMP assets (previously named
 ``simp-environment`` and ``simp-rsync``) has been redesigned to no
 longer modify directories actively being used by deployed Puppet
 environments.  This change has several benefits:
@@ -97,7 +100,7 @@ environments.  This change has several benefits:
 
 In addition, the naming and dependency tree of these assets have been reworked:
 
-* The ``simp-environment`` package has been split into 
+* The ``simp-environment`` package has been split into
   ``simp-environment-skeleton`` and ``simp-selinux-policy`` packages.
 * The ``simp-rsync`` package has been deprecated.  Its replacement is
   named ``simp-rsync-skeleton``.
@@ -173,11 +176,11 @@ rubygem-simp-cli 5.0.0
 
 * Added ``simp puppetfile generate``, ``simp environment new`` and
   ``simp environment fix`` commands.
-* Changed the environment created by ``simp config`` to be ``production``, 
+* Changed the environment created by ``simp config`` to be ``production``,
   not ``simp`` linked to ``production``.  The link is not appropriate for
   sites that use ``R10K`` or ``CodeManager``.
 * Changed ``simp config`` to create a new ``production`` SIMP omni-environment
-  from the new enviroment skeletons installed in 
+  from the new enviroment skeletons installed in
   ``/usr/share/simp/enviroments-skeleton``.  This new enviroment includes
   Puppetfiles ``simp config`` used to deploy the modules into the environment.
 * Reworked ``simp config`` queries to allow users to opt-out of SIMP-provided
@@ -250,8 +253,8 @@ The following modules were removed because they are significantly out of
 date and, in some cases, only work with application versions that are no
 longer supported:
 
-* pupmod-elastics-elasticsearch
-* pupmod-elastics-logstash
+* pupmod-elastic-elasticsearch
+* pupmod-elastic-logstash
 * pupmod-puppet-grafana
 * pupmod-simp-simp_elasticsearch
 * pupmod-simp-simp_logstash
@@ -303,7 +306,7 @@ pupmod-simp-auditd
 pupmod-simp-compliance_markup
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-* Fixed a bug in array merging.
+* Fixed a bug in Array merging.
 * Remove management of ``simp::sssd::client::ldap_domain`` from the mappings
   since use of LDAP is not guaranteed.
 * Fixed a bug in the compliance report functionality that did not correctly
@@ -314,7 +317,6 @@ pupmod-simp-dconf
 
 * Fixed an issue with duplicate resources when creating multiple
   ``dconf::settings`` resources under the same namespace.
-
 
 pupmod-simp-incron
 ^^^^^^^^^^^^^^^^^^
@@ -375,14 +377,13 @@ pupmod-simp-rsync
 pupmod-simp-simp
 ^^^^^^^^^^^^^^^^
 
-* Fixed a bug where the root password field was attempting to set an 'undef'
-  value as Sensitive.
+* Fixed a bug where the root password field was attempting to set an ``undef``
+  value as ``Sensitive``.
 * Fixed a bug in which the the ``simp_version`` fact was broken because
-  ``puppet`` did not have access to ``/etc/simp`` and 
+  ``puppet`` did not have access to ``/etc/simp`` and
   ``/etc/simp/simp/version``.
-* Fixed a bug on el6 systems in which the ``puppetdb-dlo-cleanup`` cron
+* Fixed a bug on EL6 systems in which the ``puppetdb-dlo-cleanup`` cron
   job from the ``puppetdb`` module could not be created.
-
 
 pupmod-simp-simp_apache
 ^^^^^^^^^^^^^^^^^^^^^^^
@@ -493,8 +494,8 @@ simp-rsync
 SIMP ISO
 ^^^^^^^^
 
-* Fixed a bug in which the SYSIMAGE variable was missing in the sample kickstart
-  files.
+* Fixed a bug in which the ``SYSIMAGE`` variable was missing in the sample
+  kickstart files.
 
 
 Modules Replacements
@@ -679,7 +680,6 @@ pupmod-simp-resolv
 * Deprecated the 'spoof' option in ``/etc/host.conf`` since it has not done
   anything in recent history: https://bugzilla.redhat.com/show_bug.cgi?id=1577265
 
-
 pupmod-simp-rkhunter
 ^^^^^^^^^^^^^^^^^^^^
 
@@ -711,9 +711,9 @@ pupmod-simp-selinux
 * Ensure that the ``selinux::login_resources`` Hash performs a deep merge by
   default.
 
-
 pupmod-simp-simp
 ^^^^^^^^^^^^^^^^
+
 * Added SELinux login context management to ``simp::admin``.
 * Refactored the ``simp::mountpoints::tmp`` to use ``systemd``'s ``tmp.mount``
   target, if the system supports ``systemd``.
@@ -825,9 +825,8 @@ pupmod-simp-sssd
 ^^^^^^^^^^^^^^^^
 
 * Change the ``sssd::provider::ldap::ldap_access_order`` defaults to
-  ```['ppolicy','pwd_expire_policy_renew']`` to prevent accidental user 
+  ```['ppolicy','pwd_expire_policy_renew']`` to prevent accidental user
   lockout.
-
 
 pupmod-simp-xinetd
 ^^^^^^^^^^^^^^^^^^
@@ -860,7 +859,7 @@ This package has been deprecated.  Its final release provides a stub with
 to ensure any files it delivered into ``/var/simp/enviroments/simp/rsync``,
 a potentially active secondary enviroment, are not erased.  You can
 remove this package if your site is not using a ``simp`` environment.
-  
+
 simp-rsync-skeleton
 ^^^^^^^^^^^^^^^^^^^
 
@@ -908,7 +907,6 @@ Known Bugs
 Nothing significant at this time.
 
 The SIMP project in JIRA can be used to `file bugs`_.
-
 
 .. _file bugs: https://simp-project.atlassian.net
 
