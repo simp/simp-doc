@@ -11,7 +11,7 @@ Deployment Scenarios
     :alt: PE Code Manager + Control Repository
 
 r10k + SIMP RPM-delivered module repositories
-=============================================
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 .. NOTE::
 
@@ -25,11 +25,11 @@ Under this scenario, _local_ Puppet admins:
 * deploy Puppet modules from an existing Puppet environment directory.
 * use the command ``r10k puppetfile install`` to deploy the modules defined in
   the local ``Puppetfile``.
-* reference module repos from git repositories on the local filesystem 
+* reference module repos from git repositories on the local filesystem
   via ``file://`` urls in the ``Puppetfile``.
 
 Professional: r10k + Control Repository
-=======================================
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 |r10k__control_repos|
 
@@ -50,7 +50,7 @@ Under this scenario, Puppet admins:
   (e.g., from a webhook).
 
 Enterprise: PE Code Manager + Control Repository
-================================================
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 |enterprise__automated_deploy|
 
