@@ -13,6 +13,7 @@ to SIMP environments.
   :maxdepth: 2
 
   SIMP_Administration/Classification_and_Data
+  SIMP_Administration/Environments
   SIMP_Administration/Integrating_Applications
   SIMP_Administration/General_Administration
   Certificates
