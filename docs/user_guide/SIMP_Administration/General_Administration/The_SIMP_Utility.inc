@@ -12,11 +12,13 @@ your SIMP server.
 simp passgen
 ^^^^^^^^^^^^
 
-Throughout the SIMP codebase, you may find references to the ``passgen()``
+Throughout the SIMP codebase, you may find references to the ``simplib::passgen()``
 function. This function auto-generates passwords and stores them in
+the Puppet master in a sub-directory in the :term:`SIMP Writable Environment`:
+
 ``/opt/puppetlabs/server/data/puppetserver/simp/environments/<environment>/simp_autofiles/gen_passwd``
-on the Puppet master.
 
-For more information, see the `passgen()`_ documentation.
 
-.. _passgen(): https://github.com/simp/pupmod-simp-simplib/blob/master/lib/puppet/parser/functions/passgen.rb
+For more information, see the `simplib::passgen()`_ documentation.
+
+.. _simplib::passgen(): https://github.com/simp/pupmod-simp-simplib/blob/master/lib/puppet/functions/simplib/passgen.rb

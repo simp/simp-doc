@@ -180,8 +180,8 @@ rubygem-simp-cli 5.0.0
   not ``simp`` linked to ``production``.  The link is not appropriate for
   sites that use ``R10K`` or ``CodeManager``.
 * Changed ``simp config`` to create a new ``production`` SIMP omni-environment
-  from the new enviroment skeletons installed in
-  ``/usr/share/simp/enviroments-skeleton``.  This new enviroment includes
+  from the new environment skeletons installed in
+  ``/usr/share/simp/environment-skeleton``.  This new environment includes
   Puppetfiles ``simp config`` used to deploy the modules into the environment.
 * Reworked ``simp config`` queries to allow users to opt-out of SIMP-provided
   LDAP capabilities. Since this change affects the keys in the answers file, be
@@ -856,8 +856,8 @@ simp-rsync
 ^^^^^^^^^^
 
 This package has been deprecated.  Its final release provides a stub with
-to ensure any files it delivered into ``/var/simp/enviroments/simp/rsync``,
-a potentially active secondary enviroment, are not erased.  You can
+to ensure any files it delivered into ``/var/simp/environments/simp/rsync``,
+a potentially active secondary environment, are not erased.  You can
 remove this package if your site is not using a ``simp`` environment.
 
 simp-rsync-skeleton

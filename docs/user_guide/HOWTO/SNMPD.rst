@@ -86,8 +86,8 @@ The profile module, by default, installs two users:
 * ``snmp_ro`` is configured for read only access to system view
 * ``snmp_rw`` is configured for read/write access to everything
 
-User passwords are auto-generated and stored on the Puppet master in the
-passgen directory:
+User passwords are auto-generated using ``simplib::passgen()`` and stored on
+the Puppet master in a sub-directory in the :term:`SIMP Writable Environment`:
 
 ``/opt/puppetlabs/server/data/puppetserver/simp/environments/production/simp_autofile/gen_passwd``.
 
@@ -126,7 +126,7 @@ User Hash
 * If authtype or privtype is missing, it will use the modules ``$defauthtype``
   and ``$defprivtype``
 * If either of the passwords are missing, it will be automatically generated
-  using passgen
+  using ``simplib::passgen()``
 
 View Hash
 """""""""
