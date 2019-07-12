@@ -35,11 +35,11 @@ Professional: r10k + Control Repository
 
 .. NOTE::
 
-Administrators of all control repository scenarios are assumed to have enough
-git and r10k (or Code Manager) expertise to manage their own infrastructure.
-This includes arranging their own external git-hosting service, managing their
-own control repository, and updating their modules repositories with the
-contents delivered on the local filesystem by SIMP Puppet module RPMs.
+   Administrators of all control repository scenarios are assumed to have enough
+   git and r10k (or Code Manager) expertise to manage their own infrastructure.
+   This includes arranging their own external git-hosting service, managing their
+   own control repository, and updating their modules repositories with the
+   contents delivered on the local filesystem by SIMP Puppet module RPMs.
 
 Under this scenario, Puppet admins:
 
