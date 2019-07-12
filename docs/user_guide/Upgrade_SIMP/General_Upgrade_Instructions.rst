@@ -84,10 +84,9 @@ If you built your SIMP server by :ref:`gsg-installing_simp_from_a_repository`,
 Incrementally upgrading systems using r10k or Code Manager
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-If you built/manage your SIMP server after
-:ref:`gsg-installing_simp_using_r10k_or_code_manager`, you will need to work
-with the upstream Git repositories as appropriate for your workflow.
-
+If you manage your SIMP server using :term:`r10k` or :term:`Code Manager` you
+will need to work with the upstream Git repositories as appropriate for your
+workflow.
 
 
 Breaking Changes
