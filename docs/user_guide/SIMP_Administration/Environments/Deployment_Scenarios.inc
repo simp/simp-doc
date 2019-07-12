@@ -20,11 +20,11 @@ r10k + SIMP RPM-delivered module repositories
 
 |r10k_local_repos__no_control_repo|
 
-Under this scenario, _local_ Puppet admins:
+Under this scenario, *local* Puppet admins:
 
-* deploy Puppet modules from an existing Puppet environment directory.
+* deploy Puppet modules from an existing Puppet environment directory
 * use the command ``r10k puppetfile install`` to deploy the modules defined in
-  the local ``Puppetfile``.
+  the local ``Puppetfile``
 * reference module repos from git repositories on the local filesystem
   via ``file://`` urls in the ``Puppetfile``.
 
@@ -43,11 +43,12 @@ Professional: r10k + Control Repository
 
 Under this scenario, Puppet admins:
 
-* maintain a Puppet control repository from an external git service.
+* maintain a Puppet control repository from an external git service
 * deploy entire Puppet environment directories (one environment for each
-  repository branch) using ``r10k deploy environment [ENVIRONMENT]``
-* This might be done manually from the command line, or triggered automatically
-  (e.g., from a webhook).
+  repository branch) using ``r10k deploy environment [ENVIRONMENT]``.
+
+  * This might be done manually from the command line, or triggered
+    automatically (e.g., from a webhook).
 
 Enterprise: PE Code Manager + Control Repository
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -56,7 +57,8 @@ Enterprise: PE Code Manager + Control Repository
 
 Under this scenario, Puppet admins:
 
-* maintain a Puppet control repository from an external git service.
+* maintain a Puppet control repository from an external git service
 * deploy entire Puppet environment directories (one environment for each
   repository branch) using PE Code Manager.
-* This is triggered automatically from a Code Manager webhook.
+
+  * This is triggered automatically from a Code Manager webhook.

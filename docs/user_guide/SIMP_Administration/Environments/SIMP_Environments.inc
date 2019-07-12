@@ -63,8 +63,8 @@ Each environment has an associated directory:
 .. rubric:: Secondary environment directory
   :name: Environments-secondary_environment_directory
 
-SIMP can supplement each Puppet environment with a **Secondary environment
-directory**, located on the SIMP server at
+SIMP, by default, supplements each Puppet environment with a **Secondary
+environment directory**, located on the SIMP server at
 ``/var/simp/environments/<environment_name>``.
 
 This space holds all static, non-Puppet created files. It is generally used for
