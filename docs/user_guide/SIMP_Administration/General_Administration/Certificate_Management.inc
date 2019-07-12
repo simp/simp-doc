@@ -6,6 +6,7 @@ Certificate Management
 This section describes the two different types of certificates used in a SIMP
 environment and provides links to further information.
 
+.. _ug-sa-ga-puppet-certificates:
 
 Puppet Certificates
 ^^^^^^^^^^^^^^^^^^^
@@ -23,6 +24,8 @@ the request using the ``puppetserver ca`` tool.
 .. NOTE::
 
    By default, Puppet certificates expire every five (5) years.
+
+.. _ug-sa-ga-infrastructure-certificates:
 
 Infrastructure Certificates
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^
