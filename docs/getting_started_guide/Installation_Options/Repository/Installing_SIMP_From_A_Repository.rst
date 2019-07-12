@@ -96,20 +96,17 @@ Install the SIMP Server
 
 Install the core SIMP packages as follows:
 
-   .. code-block:: bash
+.. code-block:: bash
 
-      $ sudo yum install -y simp
-
+   $ sudo yum install -y simp
 
 The ``simp`` RPM installs the SIMP core Puppet modules and other critical
-SIMP assets such as its environment skeleton, custom SELinux policy, CLI
+SIMP assets such as its environment skeleton, custom SELinux policy, CLI,
 and utilities.
 
 * The Puppet modules are installed into ``/usr/share/simp`` and do not affect
   any existing Puppet environment.  Other steps in the SIMP server setup will
   deploy the modules into a Puppet environment.
-* Breaking changes in these components trigger a breaking change update in SIMP
-  itself.
 
 SIMP also provides a large number of 'extra' Puppet module packages that you
 can install as needed (``pupmod-simp-gnome``, ``pupmod-simp-nfs``, etc.).  You
