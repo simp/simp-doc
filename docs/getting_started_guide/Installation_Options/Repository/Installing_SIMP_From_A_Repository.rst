@@ -94,35 +94,28 @@ Rebuild The Yum Cache
 Install the SIMP Server
 -----------------------
 
-#. Select the simp-adapter package appropriate for the version of Puppet
-   you will be using
-
-   * **simp-adapter-foss**:  Version appropriate for FOSS Puppet
-   * **simp-adapter-pe**:   Version appropriate for Puppet Enterprise
-
-#. Install the simp-adapter package
-
-   .. code-block:: bash
-
-      $ sudo yum install -y simp-adapter-foss
-
-#. Install the remaining SIMP packages
+Install the core SIMP packages as follows:
 
    .. code-block:: bash
 
       $ sudo yum install -y simp
 
-.. NOTE::
 
-   The ``simp`` RPM installs the SIMP core Puppet modules. Breaking changes in
-   these modules trigger a breaking change update in SIMP itself.
+The ``simp`` RPM installs the SIMP core Puppet modules and other critical
+SIMP assets such as its environment skeleton, custom SELinux policy, CLI
+and utilities.
 
-   There are a large number of additional 'extra' modules that may be
-   individually installed. Search for ``pupmod`` via ``yum`` to discover what
-   is available.
+* The Puppet modules are installed into ``/usr/share/simp`` and do not affect
+  any existing Puppet environment.  Other steps in the SIMP server setup will
+  deploy the modules into a Puppet environment.
+* Breaking changes in these components trigger a breaking change update in SIMP
+  itself.
 
-   If you wish to install all of the extra modules, you can simply run ``sudo
-   yum install -y simp-extras``
+SIMP also provides a large number of 'extra' Puppet module packages that you
+can install as needed (``pupmod-simp-gnome``, ``pupmod-simp-nfs``, etc.).  You
+can discover what extra modules are available by searching for ``pupmod`` via
+``yum``.  Alternatively, you can install all of the extra Puppet modules into
+``/usr/share/simp`` by simply running ``sudo yum install -y simp-extras``.
 
 .. include:: ../jump_to_config.inc
 
