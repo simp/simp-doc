@@ -17,6 +17,8 @@ Glossary of Terms
       operations are allowed on given objects. Each entry in a typical ACL
       specifies a subject and an operation.
 
+      See: ``man 5 acl``
+
    AIDE
    Advanced Intrusion Detection Environment
       An intrusion detection system for checking the integrity of files under
@@ -267,6 +269,10 @@ Glossary of Terms
       and more.
 
       Source: `EPEL Homepage <https://fedoraproject.org/wiki/EPEL>`__
+
+   FACL
+   File Access Control List
+      An :term:`ACL` applied to a file on the filesystem.
 
    Facter
       Cross-platform system profiling library for use with :term:`Puppet` and

@@ -22,9 +22,9 @@ In ``default.yaml``:
 
 .. code-block:: yaml
 
-  simp::classes:
-    - 'site::local_account'
-    - 'site::service_account'
+   simp::classes:
+     - 'site::local_account'
+     - 'site::service_account'
 
 Run ``puppet``. The new accounts should be included in the /etc/passwd file.
 
@@ -37,57 +37,57 @@ Local User Account
 
 .. code-block:: ruby
 
-  class site::local_account {
-    include '::ssh'
+   class site::local_account {
+     include 'ssh'
 
-    $_local_account_user  = 'localuser'
-    $_local_account_group = 'localgroup'
-    $_local_account_id    = '1778'
+     $_local_account_user  = 'localuser'
+     $_local_account_group = 'localgroup'
+     $_local_account_id    = '1778'
 
-    # You will probably want this in /home unless you are using NFS
-    $_local_account_homedir = "/home/${_local_account_user}"
+     # You will probably want this in /home unless you are using NFS
+     $_local_account_homedir = "/home/${_local_account_user}"
 
-    # You will need to get this from the user as it is their public key.
-    $_local_account_ssh_public_key = 'AAA...=='
+     # You will need to get this from the user as it is their public key.
+     $_local_account_ssh_public_key = 'AAA...=='
 
-    group { $_local_account_group:
-      gid       => $_local_account_id,
-      allowdupe => false,
-    }
+     group { $_local_account_group:
+       gid       => $_local_account_id,
+       allowdupe => false,
+     }
 
-    user { $_local_account_user:
-      uid        => $_local_account_id,
-      allowdupe  => false,
-      gid        => $_local_account_group,
-      home       => $_local_account_homedir,
-      managehome => true,
-      shell      => '/bin/bash'
-    }
+     user { $_local_account_user:
+       uid        => $_local_account_id,
+       allowdupe  => false,
+       gid        => $_local_account_group,
+       home       => $_local_account_homedir,
+       managehome => true,
+       shell      => '/bin/bash'
+     }
 
-    # If you want your local user to have a password (no key),
-    # omit this block and manually assign a password to the user
-    # after creation (passwd <user>)
-    file { "/etc/ssh/local_keys/${_local_account_user}":
-      owner  => 'root',
-      group  => $_local_account_group,
-      mode   => '0644',
-      content => $_local_account_ssh_public_key
-    }
+     # If you want your local user to have a password (no key),
+     # omit this block and manually assign a password to the user
+     # after creation (passwd <user>)
+     file { "/etc/ssh/local_keys/${_local_account_user}":
+       owner   => 'root',
+       group   => $_local_account_group,
+       mode    => '0644',
+       content => $_local_account_ssh_public_key
+     }
 
-    sudo::user_specification { $_local_account_user:
-      user_list => [$_local_account_user],
-      host_list => [$::fqdn],
-      runas     => 'root',
-      cmnd      => ['/bin/cat /var/log/app.log'],
-      passwd    => false
-    }
+     sudo::user_specification { $_local_account_user:
+       user_list => [$_local_account_user],
+       host_list => [$::fqdn],
+       runas     => 'root',
+       cmnd      => ['/bin/cat /var/log/app.log'],
+       passwd    => false
+     }
 
-    # Allow this account from everywhere
-    pam::access::rule { "Allow ${_local_account_user}":
-      users   => [$_local_account_user],
-      origins => ['ALL']
-    }
-  }
+     # Allow this account from everywhere
+     pam::access::rule { "Allow ${_local_account_user}":
+       users   => [$_local_account_user],
+       origins => ['ALL']
+     }
+   }
 
 
 Service Account
@@ -95,69 +95,69 @@ Service Account
 
 .. code-block:: ruby
 
-  class site::service_account {
-    include '::ssh'
+   class site::service_account {
+     include 'ssh'
 
-    $_svc_account_user    = 'svcuser'
-    $_svc_account_group   = 'svcgroup'
-    $_svc_account_id      = '1779'
-    $_svc_account_homedir = "/var/local/${_svc_account_user}"
+     $_svc_account_user    = 'svcuser'
+     $_svc_account_group   = 'svcgroup'
+     $_svc_account_id      = '1779'
+     $_svc_account_homedir = "/var/local/${_svc_account_user}"
 
-    # Since this is a service account, automatically generate an SSH key for
-    # the user and store it on the Puppet master for distribution.
-    $_svc_account_ssh_private_key = ssh_autokey($_svc_account_user, '2048', true)
-    $_svc_account_ssh_public_key  = ssh_autokey($_svc_account_user, '2048')
+     # Since this is a service account, automatically generate an SSH key for
+     # the user and store it on the Puppet master for distribution.
+     $_svc_account_ssh_private_key = ssh_autokey($_svc_account_user, '2048', true)
+     $_svc_account_ssh_public_key  = ssh_autokey($_svc_account_user, '2048')
 
-    group { $_svc_account_group:
-      gid       => $_svc_account_id,
-      allowdupe => false,
-    }
+     group { $_svc_account_group:
+       gid       => $_svc_account_id,
+       allowdupe => false,
+     }
 
-    user { $_svc_account_user:
-      uid        => $_svc_account_id,
-      allowdupe  => false,
-      gid        => $_svc_account_group,
-      home       => $_svc_account_homedir,
-      managehome => true,
-      shell      => '/bin/bash'
-    }
+     user { $_svc_account_user:
+       uid        => $_svc_account_id,
+       allowdupe  => false,
+       gid        => $_svc_account_group,
+       home       => $_svc_account_homedir,
+       managehome => true,
+       shell      => '/bin/bash'
+     }
 
-    file { "${_svc_account_homedir}/.ssh":
-      ensure => directory,
-      owner  => $_svc_account_user,
-      group  => $_svc_account_group,
-      mode   => '0600'
-    }
+     file { "${_svc_account_homedir}/.ssh":
+       ensure => directory,
+       owner  => $_svc_account_user,
+       group  => $_svc_account_group,
+       mode   => '0600'
+     }
 
-    file { "${_svc_account_homedir}/.ssh/id_rsa":
-      mode    => '0600',
-      owner   => $_svc_account_user,
-      group   => $_svc_account_group,
-      content => $_svc_account_ssh_private_key
-    }
+     file { "${_svc_account_homedir}/.ssh/id_rsa":
+       mode    => '0600',
+       owner   => $_svc_account_user,
+       group   => $_svc_account_group,
+       content => $_svc_account_ssh_private_key
+     }
 
-     # In SIMP sshd is configured to use authorized_keys files in /etc/ssh/local_keys
-    file { "/etc/ssh/local_keys/${_svc_account_user}":
-      owner  => 'root',
-      group  => $_svc_account_group,
-      mode   => '0644',
-      content => "ssh-rsa ${_svc_account_ssh_public_key}"
-    }
+      # In SIMP sshd is configured to use authorized_keys files in /etc/ssh/local_keys
+     file { "/etc/ssh/local_keys/${_svc_account_user}":
+       owner   => 'root',
+       group   => $_svc_account_group,
+       mode    => '0644',
+       content => "ssh-rsa ${_svc_account_ssh_public_key}"
+     }
 
-    sudo::user_specification { $_svc_account_user:
-      user_list => [$_svc_account_user],
-      host_list => [$facts['fqdn']],
-      runas     => 'root',
-      cmnd      => ['/bin/cat /var/log/app.log'],
-      passwd    => false
-    }
+     sudo::user_specification { $_svc_account_user:
+       user_list => [$_svc_account_user],
+       host_list => [$facts['fqdn']],
+       runas     => 'root',
+       cmnd      => ['/bin/cat /var/log/app.log'],
+       passwd    => false
+     }
 
-    # Allow this service account from everywhere
-    pam::access::rule { "Allow ${_svc_account_user}":
-      users   => [$_svc_account_user],
-      origins => ['ALL']
-    }
-  }
+     # Allow this service account from everywhere
+     pam::access::rule { "Allow ${_svc_account_user}":
+       users   => [$_svc_account_user],
+       origins => ['ALL']
+     }
+   }
 
 
 Testing
