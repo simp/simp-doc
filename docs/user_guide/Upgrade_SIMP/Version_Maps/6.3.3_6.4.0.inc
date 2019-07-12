@@ -77,7 +77,7 @@ functionality:
    #!/bin/sh
 
    cd /var/simp/environments/simp
-   \cp -r /usr/share/simp/environment-skeleton/FakeCA .
+   \cp -r /usr/share/simp/environment-skeleton/secondary/FakeCA .
 
    cd FakeCA
    for x in *.rpmsave; do
