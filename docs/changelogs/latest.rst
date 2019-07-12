@@ -73,8 +73,8 @@ The ``simp-adapter`` has been redesigned to create and maintain local Git
 repositories for Puppet modules installed via SIMP-packaged RPMs, in lieu
 of (optionally) auto-updating ``/etc/puppetlabs/code/environments/simp``.
 This change allows SIMP users on isolated networks to manage one or more
-Puppet environments easily, using R10K or Code Manager.  The use of
-R10K/Code Manager, in turn, provides Puppet module installation that aligns
+Puppet environments easily, using r10K or Code Manager.  The use of
+r10K/Code Manager, in turn, provides Puppet module installation that aligns
 with current Puppet best practices.
 
 The updated ``simp-adapter`` works for both Puppet Enterprise and the FOSS
@@ -171,14 +171,14 @@ Security Announcements
 RPM Updates
 -----------
 
-rubygem-simp-cli 5.0.0
+rubygem-simp-cli 5.0.1
 ^^^^^^^^^^^^^^^^^^^^^^
 
 * Added ``simp puppetfile generate``, ``simp environment new`` and
   ``simp environment fix`` commands.
 * Changed the environment created by ``simp config`` to be ``production``,
   not ``simp`` linked to ``production``.  The link is not appropriate for
-  sites that use ``R10K`` or ``CodeManager``.
+  sites that use r10K or Code Manager.
 * Changed ``simp config`` to create a new ``production`` SIMP omni-environment
   from the new environment skeletons installed in
   ``/usr/share/simp/environment-skeleton``.  This new environment includes
@@ -220,7 +220,7 @@ The specific behavior of ``simp_rpm_helper`` during RPM operations is as follows
 
 * Upon module RPM erase, the ``simp_rpm_helper``  does **NOT** remove the local
   module Git repo, but leaves it intact, in case it is still being used
-  by R10K or Code Manager for an active Puppet environment.
+  by r10K or Code Manager for an active Puppet environment.
 
 
 Puppet RPMs
