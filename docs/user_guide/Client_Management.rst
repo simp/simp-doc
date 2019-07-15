@@ -7,7 +7,9 @@ Client Management
 This chapter provides guidance to install and configure SIMP clients, via
 kickstart, with the resources supplied by the SIMP ISO.
 
-This guide also assumes that your SIMP server is a :term:`yum` package repository.
+This guide also assumes that your SIMP server is a :term:`yum` package
+repository and that you are configuring the ``production``
+:term:`SIMP Omni-Environment`.
 
 
 System Requirements
@@ -33,7 +35,7 @@ Configure DNS
 In SIMP, numerous and/or large configuration files are distributed via
 ``rsync`` by Puppet to minimize management cost. These managed files presently
 include DNS configuration files and can be found at
-``/var/simp/environments/simp/rsync/<OSTYPE>/<MAJORRELEASE>/bind_dns/default``.
+``/var/simp/environments/production/rsync/<OSTYPE>/<MAJORRELEASE>/bind_dns/default``.
 
 This section is not a complete manual for named. For more complete documentation
 on how to set up ``named``, see named(8) and named.conf(5).
@@ -41,7 +43,7 @@ on how to set up ``named``, see named(8) and named.conf(5).
 The following configuration steps are for a SIMP-managed setup. However, you
 can use an existing DNS infrastructure.
 
-#. Navigate to ``/var/simp/environments/simp/rsync/<OSTYPE>/<MAJORRELEASE>/bind_dns/default``
+#. Navigate to ``/var/simp/environments/production/rsync/<OSTYPE>/<MAJORRELEASE>/bind_dns/default``
 
 #. Modify the ``named`` files to correctly reflect the environment.
 
@@ -97,8 +99,8 @@ Configure DHCP
 Perform the following actions as ``root`` on the Puppet master system
 prior to attempting to install a client.
 
-Open the ``/var/simp/environments/simp/rsync/<OSTYPE>/Global/dhcpd/dhcpd.conf`` file
-and edit it to suit the necessary environment.
+Open the ``/var/simp/environments/production/rsync/<OSTYPE>/Global/dhcpd/dhcpd.conf``
+file and edit it to suit the necessary environment.
 
 Make sure the following is done in the ``dhcpd.conf`` :
 
@@ -183,7 +185,7 @@ verify against the installed :term:`CA` certificates.
 The table below lists the steps to determine which certificates are working and
 which are not.
 
-#. Navigate to ``/var/simp/environments/simp/site_files/pki_files/files/keydist``
+#. Navigate to ``/var/simp/environments/production/site_files/pki_files/files/keydist``
 #. Run ``find . -name “****<your.domain>*.pub” -exec openssl verify -CApath cacerts {} \;``
 
    The screen displays ``./<Host Name>.<Your.Domain>/<Hostname>.<Your.Domain>.pub: OK``
@@ -194,13 +196,13 @@ which are not.
    being regenerated. The table below lists the steps to revoke the certificate.
 
 #. Navigate to the directory containing the CA certificates.  For the FakeCA,
-   it is ``/var/simp/environments/simp/FakeCA``.  The directory should contain
+   it is ``/var/simp/environments/production/FakeCA``.  The directory should contain
    the file ``default.cnf``.
 #. Run
 
    .. code-block:: bash
 
-     OPENSSL_CONF=default.cnf openssl ca -revoke /var/simp/environments/simp\
+     OPENSSL_CONF=default.cnf openssl ca -revoke /var/simp/environments/production\
      /site_files/pki_files/files/keydist/*<Host to Revoke>*/*<Host to Revoke>*.pub
 
 .. _BIND Documentation: https://www.isc.org/bind/

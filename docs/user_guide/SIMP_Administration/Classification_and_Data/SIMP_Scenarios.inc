@@ -7,6 +7,7 @@ SIMP scenarios are groups of classes, settings, and simp_options that ensure the
 system is compliant and secure.
 
 There are currently four SIMP scenarios:
+
 - *simp*
 - *simp_lite*
 - *poss*

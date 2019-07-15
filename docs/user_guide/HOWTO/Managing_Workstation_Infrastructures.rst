@@ -7,14 +7,20 @@ This chapter describes example code used to manage client workstations with a
 SIMP system including the :term:`GUI`, repositories, virtualization, printing,
 and :term:`Virtual Network Computing` (VNC).
 
+The examples in this chapter assume the ``production``
+:term:`Puppet environment` is being configured and site-specific manifests
+are being added to a local ``site`` profile module at
+``/etc/puppetlabs/code/environments/production/modules/site/manifests``.
+
+
 Install Extra Puppet Modules
 ----------------------------
 
-The examples on this page use modules that are part of SIMP Extras and may not
-be installed on the puppet server by default.  The following is an example
-manifest that can be applied to the puppet server to install the extra modules
-if RPMs are being used to distribute the modules:
-
+The examples on this page use SIMP modules that are part of SIMP Extras and may
+not be installed on the Puppet server by default.  The following is an example
+class, ``site::workstation_packages``, that may be written to
+``site/manifests/workstation_packages.pp`` and applied to the Puppet server
+to install the extra modules, when RPMs are being used to distribute the modules:
 
 .. code-block:: ruby
 
@@ -37,15 +43,15 @@ if RPMs are being used to distribute the modules:
 Create a Workstation Profile Class
 ----------------------------------
 
-Below is an example class,
-``/etc/puppetlabs/code/environments/simp/modules/site/manifests/workstation.pp``, that could be
-set up on a user workstation.  Each ``site::`` class is described in the subsequent sections.
+Below is an example class, ``site::workstation``, that may be written to
+``site/manifests/workstation.pp`` and used to set up a user workstation.
+Each included ``site::`` class is described in the subsequent sections.
 
 .. code-block:: ruby
 
    class site::workstation {
-     include 'site::gui'
      include 'site::repos'
+     include 'site::gui'
      include 'site::virt'
      include 'site::print::client'
 
@@ -79,7 +85,9 @@ set up on a user workstation.  Each ``site::`` class is described in the subsequ
 Workstation Repositories
 ^^^^^^^^^^^^^^^^^^^^^^^^
 
-Create any repos needed to install extra software.
+The ``site::repos`` class below should be written to
+``site/manifests/repos.pp`` and contain the ``yumrepo`` resources required to
+install the extra software needed:
 
 .. code-block:: ruby
 
@@ -94,9 +102,8 @@ Create any repos needed to install extra software.
 Graphical Desktop Setup
 ^^^^^^^^^^^^^^^^^^^^^^^
 
-The following is an example that may be used to set up a graphical desktop. The
-class name assumes that the file has been placed at
-``/etc/puppetlabs/code/environments/simp/modules/site/manifests/gui.pp``
+The following example class, ``site::gui``, may be written to
+``site/manifests/gui.pp`` and used to set up a graphical desktop.
 
 .. code-block:: ruby
 
@@ -129,61 +136,18 @@ class name assumes that the file has been placed at
    }
 
 
-Apply the Settings
-------------------
-
-Once the profiles have been created and tested, one way of applying the
-profile to all workstations is to use the SIMP ``hostgroups`` :term:`Hiera`
-configuration capability.
-
-To use ``hostgroups``, you will need to edit the ``site.pp`` in the target
-:term:`puppet environment` :term:`site manifest`.
-
-Adding the following to
-``/etc/puppetlabs/code/environments/simp/manifests/site.pp`` will will make all
-nodes whose names start with ``ws`` followed by any number of digits use the
-``hieradata/hostgroups/workstation.yaml``. All other nodes will fall back to
-the ``default.yaml``.
-
-.. code-block:: ruby
-
-   case $facts['hostname'] {
-     /^ws\d+.*/: { $hostgroup = 'workstation' }
-     default:    { $hostgroup = 'default'     }
-   }
-
-The ``workstation.yaml`` file will include settings for all the workstations.
-
-The following example includes the settings for NFS mounted home directories.
-See :ref:`Exporting_Home_Directories` for more information.
-
-.. code-block:: yaml
-
-   ---
-
-   #Set the run level so it will bring up a graphical interface
-   simp::runlevel: 'graphical'
-   timezone::timezone: 'EST'
-
-   #Settings for home server. See HOWTO NFS for more info.
-   nfs::is_server: false
-   simp_nfs::home_dir_server: myhome.server.com
-
-   #The site::workstation manifest will do most of the work.
-   simp::classes:
-     - site::workstation
-     - simp_nfs
-
 
 Virtualization on User Workstations
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Below is an example manifest at
-``/etc/puppetlabs/code/environments/simp/modules/site/manifests/virt.pp``
-that would allow users to run ``libvirt`` virtual machines.
+The following example class, ``site::virt``, may be written to
+``site/manifests/virt.pp`` and used to allow users to run ``libvirt`` virtual
+machines.
 
-Importantly, note the ``libvirt::polkit`` class being called that sets the
-users that are allowed to use ``libvirt`` from the command line.
+.. IMPORTANT::
+
+   The ``libvirt::polkit`` class being called sets which users are
+   allowed to use ``libvirt`` from the command line.
 
 .. code-block:: ruby
 
@@ -243,9 +207,8 @@ Below are example manifests for setting up a printing environment.
 Setting up a Print Client
 """""""""""""""""""""""""
 
-The following example sets up client-side printing and is expected to be
-located at
-``/etc/puppetlabs/code/environments/simp/modules/site/manifests/print/client.pp``.
+The following example class, ``site::print::client`` may be written to
+``site/manifests/print/client.pp`` and sets up client-side printing:
 
 .. code-block:: ruby
 
@@ -268,9 +231,8 @@ located at
 Setting up a Print Server
 """""""""""""""""""""""""
 
-The following example sets up a server-side printing and is expected to be
-located at
-``/etc/puppetlabs/code/environments/simp/modules/site/manifests/print/server.pp``.
+The following example, ``site::print::server``, may be written to
+to ``site/manifests/print/server.pp`` and sets up server-side printing:
 
 .. code-block:: ruby
 
@@ -289,6 +251,52 @@ located at
      }
    }
 
+Using hostgroups to Apply the Settings
+--------------------------------------
+
+Once the workstation profile has been created and tested, one way of applying
+the profile to all workstations is to use the SIMP ``hostgroups`` :term:`Hiera`
+configuration capability.
+
+To use ``hostgroups``, you will need to edit the ``site.pp`` in the target
+:term:`Puppet environment` :term:`site manifest`.
+
+Adding the following to
+``/etc/puppetlabs/code/environments/production/manifests/site.pp`` will make
+all nodes whose names start with ``ws`` followed by any number of digits use
+the ``data/hostgroups/workstation.yaml``. All other nodes will fall back to
+the ``default.yaml``.
+
+.. code-block:: ruby
+
+   case $facts['hostname'] {
+     /^ws\d+.*/: { $hostgroup = 'workstation' }
+     default:    { $hostgroup = 'default'     }
+   }
+
+The ``workstation.yaml`` file will include settings for all the workstations.
+
+The following example includes the GUI settings discussed here, in addition
+to settings for NFS mounted home directories.
+See :ref:`Exporting_Home_Directories` for more information.
+
+.. code-block:: yaml
+
+   ---
+
+   #Set the run level so it will bring up a graphical interface
+   simp::runlevel: 'graphical'
+   timezone::timezone: 'EST'
+
+   #Settings for home server. See HOWTO NFS for more info.
+   nfs::is_server: false
+   simp_nfs::home_dir_server: myhome.server.com
+
+   #The site::workstation manifest will do most of the work.
+   simp::classes:
+     - site::workstation
+     - simp_nfs
+
 
 .. _ug-howto-graphical_remote_access:
 
@@ -302,19 +310,20 @@ x2go and MATE
 ^^^^^^^^^^^^^
 
 Follow the instructions in `Install Extra Puppet Modules`_ to install
-the following puppet modules on the puppet server:
+the following Puppet modules on the Puppet server:
 
-- pupmod-simp-x2go
-- pupmod-simp-mate
-- pupmod-simp-gnome
-- pupmod-simp-dconf
+- ``pupmod-simp-x2go``
+- ``pupmod-simp-mate``
+- ``pupmod-simp-gnome``
+- ``pupmod-simp-dconf``
 
 The x2go :term:`RPM` and its dependencies have been included on the SIMP ISO in
 version 6.3 and later.  If you are not installing from the ISO you will need to
 enable the :term:`EPEL` repo or download the RPMs manually.
 
-To configure the x2go server on a system so it can be accessed remotely add the
-following in the target node's :term:`Hiera` data:
+To configure the x2go server on a system so it can be accessed remotely, add the
+following in the target node's :term:`Hiera` data or corresponding workstation
+hostgroup:
 
 .. code-block:: yaml
 
@@ -367,9 +376,9 @@ VNC Standard Setup
 """"""""""""""""""
 
 Follow the instructions in `Install Extra Puppet Modules`_ to install
-the following puppet modules on the puppet server:
+the following Puppet modules on the Puppet server:
 
-- pupmod-simp-vnc
+- ``pupmod-simp-vnc``
 
 To enable remote access via VNC on the system, include ``vnc::server``
 in Hiera for the node.
@@ -377,21 +386,21 @@ in Hiera for the node.
 The default VNC setup that comes with SIMP can only be used over SSH and
 includes three default settings:
 
-+---------------+------------------------------------+
-|Setting Type   |Setting Details                     |
-+===============+====================================+
-|Standard       | Port: 5901                         |
-|               |                                    |
-|               | Resolution: 1024x768@16            |
-+---------------+------------------------------------+
-|Low Resolution | Port: 5902                         |
-|               |                                    |
-|               | Resolution: 800x600@16             |
-+---------------+------------------------------------+
-|High Resolution| Port: 5903                         |
-|               |                                    |
-|               | Resolution: 1280x1024@16           |
-+---------------+------------------------------------+
++-----------------+------------------------------------+
+| Setting Type    | Setting Details                    |
++=================+====================================+
+| Standard        | Port: 5901                         |
+|                 |                                    |
+|                 | Resolution: 1024x768@16            |
++-----------------+------------------------------------+
+| Low Resolution  | Port: 5902                         |
+|                 |                                    |
+|                 | Resolution: 800x600@16             |
++-----------------+------------------------------------+
+| High Resolution | Port: 5903                         |
+|                 |                                    |
+|                 | Resolution: 1280x1024@16           |
++-----------------+------------------------------------+
 
 Table: VNC Default Settings
 
@@ -400,7 +409,7 @@ server and provide a tunnel to ``127.0.0.1:<VNC Port>``. Refer to the SSH
 client's documentation for specific instructions.
 
 To set up additional VNC port settings, refer to the code in
-``/etc/puppetlabs/code/environments/simp/modules/vnc/manifests/server.pp``
+``/etc/puppetlabs/code/environments/production/modules/vnc/manifests/server.pp``
 for examples.
 
 .. IMPORTANT::
@@ -430,8 +439,9 @@ Modify Puppet
 """""""""""""
 
 If definitions for the machines involved in the VNC do not already exist
-in Hiera, create an ``/etc/puppetlabs/code/environments/simp/hieradata/hosts/vserv.your.domain.yaml``
-file. In the client hosts file, modify or create the entries shown in the
+in Hiera, create an
+``/etc/puppetlabs/code/environments/production/data/hosts/vserv.your.domain.yaml``
+file. In the client host files, modify or create the entries shown in the
 examples below. These additional modules will allow the ``vserv`` system to act
 as a VNC server and the ``vclnt`` system to act as a client.
 

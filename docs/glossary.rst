@@ -17,6 +17,8 @@ Glossary of Terms
       operations are allowed on given objects. Each entry in a typical ACL
       specifies a subject and an operation.
 
+      See: ``man 5 acl``
+
    AIDE
    Advanced Intrusion Detection Environment
       An intrusion detection system for checking the integrity of files under
@@ -267,6 +269,10 @@ Glossary of Terms
       and more.
 
       Source: `EPEL Homepage <https://fedoraproject.org/wiki/EPEL>`__
+
+   FACL
+   File Access Control List
+      An :term:`ACL` applied to a file on the filesystem.
 
    Facter
       Cross-platform system profiling library for use with :term:`Puppet` and
@@ -824,13 +830,15 @@ Glossary of Terms
       for a SIMP Puppet environment to operate.  Includes a :term:`Puppet Environment`,
       a :term:`SIMP Secondary Environment`, and a :term:`SIMP Writable Environment`.
 
-      See: :ref:`faq-simp-omni-environment`
+      See: :ref:`ug-sa-simp-environments`
 
    SIMP Secondary Environment
-      A directory ``/var/simp/environments/<environment_name>`` that contains
-      files to support a named Puppet environment, but which must be maintained
-      independently from the Puppet environment directory.
- 
+   Secondary Environment
+   Secondary Environments
+      SIMP-specific assets that support a corresponding Puppet environment, but
+      which must be maintained independently.  The Secondary Environment
+      directory is ``/var/simp/environments/<environment_name>``.
+
    SIMP Server
       The first server that is built in a SIMP environment and the server that
       is expected to be the nexus of control for the managed infrastructure.
@@ -838,10 +846,12 @@ Glossary of Terms
       See: :term:`Puppet Master`
 
    SIMP Writable Environment
-      A directory ``/opt/puppetlabs/server/data/puppetserver/simp/environments/<environment_name>``
-      that contains Puppet server-generated, environment-specific, SIMP data
-      that is generated and/or read in by SIMP Puppet functions during catalog
-      compilation.
+   Writable Environment
+   Writable Environments
+      Puppet environment-specific SIMP data generated and/or read in by SIMP
+      Puppet functions on the Puppet Server during catalog compilation.  The
+      Writable Environment directory is
+      ``/opt/puppetlabs/server/data/puppetserver/simp/environments/<environment_name>``.
 
    Site Manifest
       Puppet always starts compiling with either a single manifest file or a
