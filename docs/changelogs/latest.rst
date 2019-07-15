@@ -494,8 +494,11 @@ simp-rsync
 SIMP ISO
 ^^^^^^^^
 
-* Fixed a bug in which the ``SYSIMAGE`` variable was missing in the sample
-  kickstart files.
+* Fixed a bug in which the generated disk encryption key used to encrypt the
+  disk during a client kickstart was not being stored in the ``/boot``
+  partition.  This rendered the client unusable, as the disk was effectively
+  permanently locked with an unknown key.  The source of the problem was a
+  missing ``SYSIMAGE`` variable in the sample, client kickstart file.
 
 
 Modules Replacements
