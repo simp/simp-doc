@@ -30,9 +30,9 @@ discover via :ref:`keydist <Certificates>`.
    ``/var/simp/environments/<environment>/site_files`` to your environment's
    ``environment.conf`` file and restart the ``puppetserver`` process.
 
-   The default in the ``simp`` environment is:
+   The default in a ``production`` :term:`SIMP Omni-Environment` is:
 
-   ``modulepath = modules:/var/simp/environments/**simp**/site_files:$basemodulepath``
+   ``modulepath = modules:/var/simp/environments/**production**/site_files:$basemodulepath``
 
 Beginning with krb5
 -------------------
