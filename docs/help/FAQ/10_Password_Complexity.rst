@@ -3,7 +3,7 @@
 What is the Password Complexity for SIMP?
 =========================================
 
-The following is the default password requirements for a standard SIMP system.
+The following are the default password requirements for a standard SIMP system.
 This is based off of an amalgam of various password policies and may vary based
 on individual policies that are set for your installation.
 
@@ -46,9 +46,11 @@ Complexity Rules
   * Must have more than 4 character changes from the old password
   * Must not be one of the last 24 passwords that you have used
 
-Systems that use ``pam_pwquality`` may have a command called ``pwscore`` which
-allows you to check whether or not a password will meet the system
-requirements.
+You can check whether or not a password will meet the system requirements
+as follows:
+
+* On systems that use ``pam_pwquality``, use the ``pwscore`` utility.
+* On systems that use ``pam_cracklib``, use the ``cracklib-check`` utility.
 
 .. NOTE::
 

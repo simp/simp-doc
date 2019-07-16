@@ -16,8 +16,8 @@ The `FACT-1732`_ bug, present in some versions of `Facter 3`_, can cause
 
 This will affect runs of ``puppet agent -t --debug`` as well as ``facter -p``.
 
-It is highly likely that you will have one of these values from the ``shmall``
-fact provided by the ``simplib`` module.
+If you are using version < 3.5.0 of the ``simp-simplib`` module, you will
+encounter this problem with its ``shmall`` fact.
 
 .. _Bignum: https://ruby-doc.org/core-2.2.0/Bignum.html
 .. _FACT-1732: https://tickets.puppetlabs.com/browse/FACT-1732
@@ -45,8 +45,8 @@ You will need to run ``puppet generate types`` manually if the following occurs:
   * An existing custom type has its code modified.
 
 .. NOTE::
-   Versions 7.6.0 through 7.7.1 of SIMP's ``pupmod`` Puppet module tried to
-   include all of the cases above to ensure that users did not need to
+   Versions 7.6.0 through 7.7.1 of the ``simp-pupmod`` Puppet module tried
+   to include all of the cases above to ensure that users did not need to
    manually adjust any aspects of their systems. However, this proved to
    potentially add too much load to the system in certain situations and
    was reduced to the current functionality.
