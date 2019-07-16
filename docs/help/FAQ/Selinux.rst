@@ -9,7 +9,7 @@ freezing``, follow these instructions:
 
 #. Reboot into single user mode or a rescue shell (instructions on `EL6`_ and
    `EL7`_). You may need your GRUB password that was set during ``simp
-   config``.
+   config`` or set using the ``simp-simp_grub`` module.
 
 #. Reinstall the selinux policy: ``yum reinstall -y selinux-policy-targeted``
 

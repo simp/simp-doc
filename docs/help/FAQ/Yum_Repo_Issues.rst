@@ -9,8 +9,8 @@ Global repo_gpgcheck=1
 
 .. WARNING::
 
-   Enabling ``repo_gpgcheck`` should only be done against repositories that you
-   ultimately trust. Doing otherwise could allow untrusted repository
+   Disabling ``repo_gpgcheck`` should only be done against repositories that
+   you ultimately trust. Doing otherwise could allow untrusted repository
    maintainers to compromise your system.
 
    More information can be found on this
