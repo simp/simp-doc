@@ -30,7 +30,7 @@ Top-Level SIMP for SIMP before 6.X
   This is the version number that you get when you run `rpm -q simp`
 
 The top level SIMP version for SIMP releases prior to the 6.0.0 release have
-the following structure given the format `MAJOR.MINOR.PATCH`:
+the following structure given the format `MAJOR.MINOR.PATCH-FIXES`:
 
 #. MAJOR version when the version of EL changes
 #. MINOR version when you make incompatible API changes
