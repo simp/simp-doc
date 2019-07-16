@@ -51,7 +51,8 @@ flows such as DTAP (Development > Testing > Acceptance > Production).
 At the root of this change are the following major features:
 
 * Puppet modules installed via SIMP-packaged RPMs are now imported
-  into local, SIMP-managed Git repositories, in addition to being
+  into local, SIMP-managed Git repositories at
+  ``/usr/share/simp/git/puppet_modules``, in addition to being
   installed in ``/usr/share/simp/modules``.
 * No SIMP component RPM install/upgrade/erase operation will modify an active
   Puppet environment or SIMP secondary environment,
@@ -64,22 +65,32 @@ At the root of this change are the following major features:
   - A :term:`SIMP Secondary Environment` in ``/var/simp/environments``
   - A :term:`SIMP Writable Environment` in
     ``/opt/puppetlabs/server/data/puppetserver/simp/environments``.
+* The ``simp-environment-skeleton`` and ``simp-rsync-skeleton`` packages install
+  a SIMP Omni-Environment skeleton at ``/usr/share/simp/environment-skeleton``.
+* Unless a ``production`` SIMP Omni-Environment already exists, ``simp config``
+  will create a ``production`` SIMP Omni-Environment from SIMP's skeleton and
+  local Git repositories.
 
 
 Module RPM Installation
 ^^^^^^^^^^^^^^^^^^^^^^^
 
-The ``simp-adapter`` has been redesigned to create and maintain local Git
-repositories for Puppet modules installed via SIMP-packaged RPMs, in lieu
-of (optionally) auto-updating ``/etc/puppetlabs/code/environments/simp``.
-This change allows SIMP users on isolated networks to manage one or more
-Puppet environments easily, using R10K or Code Manager.  The use of
-R10K/Code Manager, in turn, provides Puppet module installation that aligns
-with current Puppet best practices.
+In SIMP 6 versions <= 6.3.3, when a SIMP Puppet module RPM was installed,
+its contents could also be automatically copied into the ``simp`` Puppet
+environment, the standard active Puppet environment for a SIMP server.  This
+copy was affected by the ``simp_rpm_helper`` script of the ``simp-adapter``.
 
-The updated ``simp-adapter`` works for both Puppet Enterprise and the FOSS
-editions of Puppet, so there is no longer a ``simp-adapter-pe`` or
-``simp-adapter-foss``.
+In SIMP 6.4.0, the ``simp_rpm_helper``'s behavior has been redesigned as shown
+in the following figure:
+
+.. image:: ../images/diagrams/simp_puppet_module_rpm_install.png
+
+In lieu of the auto-updating ``/etc/puppetlabs/code/environments/simp``, the
+``simp_rpm_helper`` now creates and maintains local Git repositories for Puppet
+modules installed via SIMP-packaged RPMs. This change allows SIMP users on
+isolated networks to manage one or more Puppet environments easily, using r10K
+or Code Manager.  The use of r10K/Code Manager, in turn, provides Puppet module
+installation that aligns with current Puppet best practices.
 
 Other SIMP Asset RPM Installation
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -171,14 +182,14 @@ Security Announcements
 RPM Updates
 -----------
 
-rubygem-simp-cli 5.0.0
+rubygem-simp-cli 5.0.1
 ^^^^^^^^^^^^^^^^^^^^^^
 
 * Added ``simp puppetfile generate``, ``simp environment new`` and
   ``simp environment fix`` commands.
 * Changed the environment created by ``simp config`` to be ``production``,
   not ``simp`` linked to ``production``.  The link is not appropriate for
-  sites that use ``R10K`` or ``CodeManager``.
+  sites that use r10K or Code Manager.
 * Changed ``simp config`` to create a new ``production`` SIMP omni-environment
   from the new environment skeletons installed in
   ``/usr/share/simp/environment-skeleton``.  This new environment includes
@@ -220,7 +231,17 @@ The specific behavior of ``simp_rpm_helper`` during RPM operations is as follows
 
 * Upon module RPM erase, the ``simp_rpm_helper``  does **NOT** remove the local
   module Git repo, but leaves it intact, in case it is still being used
-  by R10K or Code Manager for an active Puppet environment.
+  by r10K or Code Manager for an active Puppet environment.
+
+In addition to the change in ``simp_rpm_helper`` behavior, ``simp-adapter`` 1.0.1
+has three other significant packaging changes:
+
+* It no longer has dependencies upon a specific version of ``puppet-agent``, just
+  a minimum version.
+* It no longer has any dependency on the Puppet Enterprise or FOSS versions of
+  ``puppetserver``.
+* Since it now works for both Puppet Enterprise and the FOSS editions of Puppet,
+  ``simp-adapter-pe`` and ``simp-adapter-foss`` packages are no longer created.
 
 
 Puppet RPMs
@@ -494,8 +515,11 @@ simp-rsync
 SIMP ISO
 ^^^^^^^^
 
-* Fixed a bug in which the ``SYSIMAGE`` variable was missing in the sample
-  kickstart files.
+* Fixed a bug in which the generated disk encryption key used to encrypt the
+  disk during a client kickstart was not being stored in the ``/boot``
+  partition.  This rendered the client unusable, as the disk was effectively
+  permanently locked with an unknown key.  The source of the problem was a
+  missing ``SYSIMAGE`` variable in the sample client kickstart file.
 
 
 Modules Replacements
