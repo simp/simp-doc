@@ -10,8 +10,8 @@ Deployment Scenarios
 .. |enterprise__automated_deploy| image:: ../../images/diagrams/deployment_scenarios/enterprise__automated_deploy.png
     :alt: PE Code Manager + Control Repository
 
-r10k + SIMP RPM-delivered module repositories
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+Local: r10k + SIMP RPM-delivered module repositories
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 .. NOTE::
 
