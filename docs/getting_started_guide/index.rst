@@ -9,6 +9,6 @@ Welcome to SIMP!
   :maxdepth: 2
 
   Introduction
-  Known OS Compatibility <../dynamic/Known_OS_Compatibility>
   System_Requirements
+  Known OS Compatibility <../dynamic/Known_OS_Compatibility>
   Installation_Options/index
