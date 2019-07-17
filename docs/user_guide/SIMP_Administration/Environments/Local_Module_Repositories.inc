@@ -10,20 +10,34 @@ Local Module Repositories
 Each SIMP-packaged Puppet module RPMs will deliver the Puppet module content to
 two locations:
 
-1. Files in a directory under ``/usr/share/simp/modules/<org>-<module_name>/``
+1. Files in a directory under ``/usr/share/simp/modules/<module_name>/``
 
    - These are reference files, and are recognized by package management
-     tools like ``rpm -ql`` and ``rpm -V``
+     tools like ``rpm -ql`` and ``rpm -V``.
 
-2. A tagged commit to a local git repository
+2. A tagged commit to a local Git repository
    at ``/usr/share/simp/git/puppet_modules/<org>-<module_name>/``
 
-   - These are created automatically during the RPM's post-run (using
-     the ``simp_rpm_helper`` script)
-   - They support the ``simp puppetfile`` and ``simp environment new`` commands
+   - These repositories and version tags are created automatically during the
+     RPM's post-run (using the ``simp_rpm_helper`` script from the
+     ``simp-adapter`` package).
+   - The repositories support the ``simp puppetfile`` and
+     ``simp environment new`` commands.
+   - ``<org>-<module_name>`` is pulled directly from the top-level ``name``
+     key in the module's ``metadata.json`` file.  This key is guaranteed to
+     be unique for all Puppet modules published to :term:`PuppetForge`.
 
-After a SIMP-packaged Puppet module RPM is installed, the system's
-``simp_rpm_helper`` script ensures that a local bare git repository exists for the
-module, and contains a commit of the modules files (tagged with the module'
-version).
+.. NOTE::
+
+   * When a SIMP-packaged Puppet module RPM is upgraded, a new tag is created
+     and all previous tags are preserved.  This supports the use of different
+     versions of the module in different Puppet environments.
+   * When a SIMP-package Puppet module RPM is removed, its local Git repository
+     is not removed, automatically, in case that repository is still being used
+     in a Puppet environment.
+   * The ``master`` branch of a local Puppet module Git repository will contain
+     a local transaction history for the RPM of that module, **NOT** a
+     copy of the Git history in the public repository for that project.
+     Regardless, you should always use a tagged version from a local module
+     repository.
 
