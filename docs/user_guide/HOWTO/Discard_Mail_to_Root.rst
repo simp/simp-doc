@@ -1,8 +1,8 @@
 HOWTO Discard Mail to Root
 ==========================
 
-In many environments, you may have a central log collection facility, such as
-Logstash, for analyzing your log data. In this case, you may want to disable
+In many environments, you may have a central log collection facility
+for analyzing your log data. In this case, you may want to disable
 the default behavior of sending all e-mail to root.
 
 The simplest method of discarding root's e-mail is to redirect it to
