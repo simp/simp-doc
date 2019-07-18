@@ -59,6 +59,26 @@ that variables beginning with 'cli::' are only used internally by
 
 .. TIP::
 
+   There are two ``simp config`` options that are particularly useful:
+
+    * ``--dry-run`` will run through all of the prompts without
+      applying any changes to the system. This is useful to:
+
+      - become familiar with the variables set by ``simp config`` without
+        applying them
+      - generate a configuration file to use as a template for subsequent
+        ``simp config`` runs
+
+    * ``-a <Config File>`` will load and apply
+      a previously-generated configuration (aka the 'answers' file) in lieu of
+      prompting for settings.
+
+      - This is useful to run on systems that will be rebuilt often.
+      - Please note, however: if you edit the answers file, only configuration
+        settings for which you would be prompted by ``simp config`` can be
+        modified in that file—any changes made to settings that ``simp
+        config`` automatically determines will be ignored.
+
    If you want to understand what variables apply to your setup, run
    ``simp config --dry-run`` and examine the generated ``simp_conf.yaml``
    file.  That file will contain both the settings and their documentation.
@@ -316,5 +336,23 @@ configurations.
 |               |   - Reminds the user to (manually) set up YUM repos for SIMP |
 |               |     clients.                                                 |
 +---------------+--------------------------------------------------------------+
+
+Output of simp config
+^^^^^^^^^^^^^^^^^^^^^
+
+At the end of simp config when you answer ``yes`` to ~~Ready to Apply?``, simp config
+generates three files:
+
+   1. ``/root/.simp/simp_conf.yaml``: File containing  all your ``simp
+       config`` settings; can include additional settings related to ones
+       you entered and other settings required for SIMP.
+
+   2. ``/etc/puppetlabs/code/environments/production/data/simp_config_settings.yaml``:
+       File containing global Hiera data relevant to SIMP clients and the SIMP
+       server.
+
+   3. ``/etc/puppetlabs/code/environments/production/data/hosts/<server_fqdn>.yaml``:
+       The SIMP server's host-specific Hiera configuration.
+
 
 .. todo simp bootstrap Actions

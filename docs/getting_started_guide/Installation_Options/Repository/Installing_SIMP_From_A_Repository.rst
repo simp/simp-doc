@@ -45,12 +45,6 @@ If you don't know what versions map together, please see the
 
    This would be ``7`` for RHEL 7 and ``6`` for RHEL 6
 
-.. NOTE::
-
-   The 'dependencies' repository may contain items from external vendors, most
-   notably Puppet, Inc. and EPEL but may also contain non-SIMP project files
-   that have been compiled for distribution.
-
 .. WARNING::
 
    The **whitespace** and **alignment** shown before the additional ``gpgkey``
@@ -93,6 +87,12 @@ Rebuild The Yum Cache
 
 Install the SIMP Server
 -----------------------
+
+Install puppetlabs puppetserver as follows:
+
+.. code-block:: bash
+
+   $ sudo yum install -y puppetserver
 
 Install the core SIMP packages as follows:
 
