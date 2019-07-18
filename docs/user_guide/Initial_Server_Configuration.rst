@@ -3,15 +3,28 @@
 Initial SIMP Server Configuration
 =================================
 
-Using the SIMP Utility
-----------------------
+Introduction to the SIMP Utility
+-------------------------------
 
-In these instructions, we will be using the ``config`` and ``bootstrap`` of the
-``simp`` command.  The ``simp`` command provides a CLI intended to make the
-initial configuration of the SIMP server straightforward and repeatable.
+The ``simp`` command provides a CLI intended to make the
+configuration of the SIMP server straightforward and repeatable.
+In these instructions, we will be using the ``config`` and ``bootstrap``
+options of the ``simp`` command
 
 For a list of the commands ``simp`` provides, type ``simp help``. Type
 ``simp <Command> --help`` for more information on a specific command.
+
+- ``simp config`` asks questions and generates configuration files. It can
+  do some configuration based on answers (ie. configure network, set grub
+  password.)  It creates a record of options chosen in a file,
+  ``/root/.simp/simp_conf.yaml``. You can use the --dry-run option to
+  step through the questions without changing anything and then run
+  simp config  -a /root/.simp/simp_conf.yaml to apply the changes.
+
+- ``simp bootstrap`` uses several targeted Puppet runs to configure the rest
+  of the system  and generates a log file under ``/root/.simp/``.
+
+For more details about ``simp`` see :ref:`gsg-advanced-configuration`.
 
 Configuring the SIMP Server
 ---------------------------
@@ -33,7 +46,8 @@ Configuring the SIMP Server
      must do some initial configuration.)
 
 
-#. Run ``simp config`` and configure the system as prompted.
+#. Run ``simp config`` and configure the system as prompted.  ( The ``--dry-run``
+   option will run through all of the prompts without applying any changes to the system. )
 
    -  ``simp config`` will prompt you with the follow:
 
@@ -67,10 +81,8 @@ Configuring the SIMP Server
       |    ``* See /root/.simp/simp_bootstrap_start_lock for details``
 
 
-   -  ``simp config`` generates a log file under ``/root/.simp/`` with details
-      of the configurations selected and actions taken.
-      For more details about ``simp config``'s installation variables and
-      actions, see :ref:`gsg-advanced-configuration`.
+   - For more details about ``simp config``'s installation variables and
+     actions, see :ref:`gsg-advanced-configuration`.
 
 
 #. Run ``simp bootstrap``.
@@ -81,9 +93,6 @@ Configuring the SIMP Server
     example, to extend that timeout to 10 minutes:
 
     ``simp bootstrap -w 10``
-
-   ``simp bootstrap`` uses several targeted Puppet runs to configure the rest
-   of the system  and generates a log file under ``/root/.simp/``.
 
 
    .. NOTE::
@@ -98,6 +107,14 @@ Configuring the SIMP Server
 
 #. Run ``reboot`` to restart your system and apply the necessary kernel
    configuration items.
+
+
+When your systems comes back up your puppetserver is ready for configuration.
+If you want to learn more details about what the ``simp`` utility just did to your
+system,  see :ref:`gsg-advanced-configuration`.
+
+To continue configuring the system, you can  move on to the next section in the
+:ref:`simp-user-guide`, :ref:`Client_Management`.
 
 Optional: Extract the full OS RPM Package Set
 ---------------------------------------------
