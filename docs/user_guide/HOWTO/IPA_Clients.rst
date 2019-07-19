@@ -18,7 +18,7 @@ Technology  Related SIMP features           Related tickets
 The features in the above table may work in the future, but logins via SSSD or
 LDAP should work without issue, now.
 
-IPA should work in both the ``simp`` and ``simp-lite``
+IPA should work in both the ``simp`` and ``simp_lite``
 :ref:`scenarios<simp scenarios>`. There may be issues with logins if the
 ``sssd`` module is not included.
 
@@ -156,7 +156,7 @@ configuration of the IPA server and the environment:
 
    ---
    # IPA uses both of these technologies, so they need to be enabled.
-   # SSSD is already enabled in the 'simp' and 'simp-lite' scenarios.
+   # SSSD is already enabled in the 'simp' and 'simp_lite' scenarios.
    simp_options::sssd: true
    simp_options::ldap: true
 
