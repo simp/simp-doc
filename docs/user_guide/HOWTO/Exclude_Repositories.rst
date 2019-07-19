@@ -13,9 +13,10 @@ Methodology
 -----------
 
 The ``simp::yum::schedule::repos`` and ``simp::yum::schedule::disable``
-variables in the simp module control which repositories are
-enabled for nightly updating. Both variables must be specified in array
-format.
+parameters in the ``simp-simp`` Puppet module control which repositories
+are enabled for nightly updating. Both variables must be specified in
+array format. ``simp::yum::schedule::disable`` is ignored if
+``simp::yum::schedule::repos`` is not empty.
 
 ``simp::yum::schedule::repos`` is used to specify an array of
 repositories from which updates are provided; no other repositories will

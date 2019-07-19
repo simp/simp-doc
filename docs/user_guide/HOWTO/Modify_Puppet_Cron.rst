@@ -3,11 +3,11 @@
 HOWTO Modify the Puppet Cron Schedule
 =====================================
 
-SIMP deploys a cron-job, via ``pupmod::agent::cron``, to run a non-daemonized
-puppet agent to ensure compliance, over time. By default, the cron-job is run
-twice every hour on a semi-random interval, to ensure all agents do not run
-puppet simultaneously.  Additionally, the cron-job forcibly re-enables the
-puppet agent every 4.5 hours.
+SIMP deploys a cron-job, via ``pupmod::agent::cron`` from the ``simp-pupmod``
+Puppet module, to run a non-daemonized puppet agent to ensure compliance,
+over time. By default, the cron-job is run twice every hour on a semi-random
+interval, to ensure all agents do not run puppet simultaneously.  Additionally,
+the cron-job forcibly re-enables the puppet agent every 4.5 hours.
 
 Overriding Timing Parameters
 ----------------------------
@@ -17,7 +17,7 @@ M..F, twice every hour, in random intervals.
 
 .. code-block:: ruby
 
-   # Restrict puppet runs during working hours
+   # Restrict puppet runs to execute only during working hours
    pupmod::agent::cron::weekday: ['1-5']
    pupmod::agent::cron::hour: ['9-17']
    pupmod::agent::cron::minute: 'rand'

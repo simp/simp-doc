@@ -1,16 +1,16 @@
 HOWTO Configure SNMPD
 =====================
 
-This document details how to use the ``pupmod-simp-simp_snmpd`` profile
+This document details how to use the ``simp-simp_snmpd`` Puppet profile module
 to configure the SNMP daemon.
 
 Simple instructions to configure the snmpd daemon using the
-``pupmod-simp-simp_snmpd`` profile module are described in its README file.
+``simp-simp_snmpd`` profile module are described in its README file.
 
 .. NOTE::
 
-  ``pupmod-simp-simp_snmpd`` and ``puppet-snmp`` are not core modules and may
-  need to be installed prior to following this guide.
+  ``simp-simp_snmpd`` and its dependency ``puppet-snmp`` are not core modules
+  and may need to be installed prior to following this guide.
 
 
 SNMPD Configuration
@@ -38,7 +38,7 @@ configuration files in ``/etc/snmp/user_trapd.d``, with a ``.conf`` extension.
 Agent Addresses and Firewall
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-By default, ``pupmod-simp-simp_snmpd`` configures ``snmpd`` to listen on the
+By default, ``simp-simp_snmpd`` configures ``snmpd`` to listen on the
 local interface.  Use ``simp_snmpd::agentaddress`` to toggle what interfaces
 snmpd will listen on.
 
@@ -59,7 +59,7 @@ The following is an example agent address:
      - tcp:%{facts.fqdn}:161
 
 
-If ``simp_options::firewall`` is turned on, ``pupmod-simp-simp_snmpd``  will
+If ``simp_options::firewall`` is turned on, ``simp-simp_snmpd``  will
 parse the array of listening addresses to determine what ports should be
 opened.  It does not, at this time, do anything for ipx or pvc.
 ``simp_snmpd::trusted_nets`` is used to determine what networks can access
@@ -68,14 +68,14 @@ the ports.
 .. NOTE::
 
    If the agent address is set in a conf file in the user directory, but not in
-   Hiera or in the simp_snmpd resource call, ``pupmod-simp-simp_snmpd`` will not
+   Hiera or in the ``simp_snmpd`` resource call, ``simp-simp_snmpd`` will not
    open the ports in the firewall.
 
 
 Access
 ^^^^^^
 
-``pupmod-simp-simp_snmpd`` configures ``SNMP v3``, with
+``simp-simp_snmpd`` configures ``SNMP v3``, with
 
 * User-based Security Model (USM)
 * View-based Access Control Model (VACM).
@@ -135,13 +135,13 @@ View Hash
 
    simp_snmpd::view_hash:
      viewname:
-       included: [array of oids to include]
-       excluded: [array of oids to exclude]
+       included: [array of OIDs to include]
+       excluded: [array of OIDs to exclude]
 
 
 * One or both of included, excluded needs to be specified.  Any number of OIDs
   can be listed
-* It will create one view line for each oid in the list with exclude or include
+* It will create one view line for each OID in the list with exclude or include
 
 Group Hash
 """"""""""
@@ -161,7 +161,7 @@ Access Hash
 
 .. code-block:: yaml
 
-   simp_snmpd::access _hash:
+   simp_snmpd::access_hash:
      accessname:
        vread: view to use for reading access (default none)
        vwrite: view to use for write access (default none)
@@ -194,13 +194,13 @@ created, you can pass and empty hash and it will ignore that setting:
 
    ---
    simp_snmpd::v3_user_hash:
-    snmp_ro:
-    myuser:
-      authpass: 'HardToBreakPassword'
-      privpass: 'OtherPassword'
+     snmp_ro:
+     myuser:
+       authpass: 'HardToBreakPassword'
+       privpass: 'OtherPassword'
    simp_snmpd::group:
-    readonly_group:
-      secname: myuser
+     readonly_group:
+       secname: myuser
 
 
 * The above example will not create the snmp_ro user and add myuser. If the
@@ -214,9 +214,9 @@ created, you can pass and empty hash and it will ignore that setting:
 Client
 ^^^^^^
 
-By default, ``net-snmp-utils`` and it dependencies are not installed, including
-snmpd utilities like snmpget, snmpset, snmpwalk. Set
-``simp_snmpd::manage_client`` to ``true`` to install them:
+By default, the ``net-snmp-utils`` package is not installed, so snmpd utilities
+such as ``snmpget``, ``snmpset``, and ``snmpwalk`` will not be available. Set
+``simp_snmpd::manage_client`` to ``true`` to install the package.
 
 .. code-block:: yaml
 
