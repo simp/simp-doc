@@ -137,6 +137,8 @@ Run ``puppet agent -t`` on the Puppet master to apply the changes.
 .. include:: Certificates/Official_Certificates.inc
 
 
+.. _cm-setting-up-the-client:
+
 Setting up the Client
 =====================
 
@@ -156,6 +158,8 @@ client.
 
 Upon successful deployment of a new client, it is highly recommended that
 :ref:`LDAP administrative accounts <Managing LDAP Users>` be created.
+
+.. _cm-troubleshoot-puppet-issues:
 
 Troubleshooting Puppet Issues
 -----------------------------
