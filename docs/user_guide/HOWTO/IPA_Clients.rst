@@ -160,6 +160,22 @@ configuration of the IPA server and the environment:
    simp_options::sssd: true
    simp_options::ldap: true
 
+   # These 4 parameters have to be set, even though they may be unused because
+   # IPA does not, natively, set up a BIND DN or a SYNC DN.  If your IPA server
+   # has those DNs and you are using a SIMP module that uses them (e.g.,
+   # simp-simp_gitlab), be sure to set them to the real values.  It is likely
+   # you will also have to set the commented out parameters as well!
+   simp_options::ldap::bind_pw: "A-Unused-LDAP-Bind-Password"
+   simp_options::ldap::bind_hash: "{SSHA}this-is-not-a-real-password-hash"
+   simp_options::ldap::sync_pw: "A-Unused-LDAP-Sync-Password"
+   simp_options::ldap::sync_hash: "{SSHA}this-is-not-a-real-password-hash"
+   #simp_options::ldap::base_dn: FILL-ME-IN-AS-NEEDED
+   #simp_options::ldap::bind_dn: FILL-ME-IN-AS-NEEDED
+   #simp_options::ldap::sync_dn: FILL-ME-IN-AS-NEEDED
+   #simp_options::ldap::root_dn: FILL-ME-IN-AS-NEEDED
+   #simp_options::ldap::master:  FILL-ME-IN-AS-NEEDED
+   #simp_options::ldap::uri:     [ FILL-ME-IN-AS-NEEDED ]
+
    # If the IPA server is a DNS server, this will allow you to use the DNS
    # SRV records to discover other IPA provided services, like LDAP and krb5.
    simp_options::dns::servers:
