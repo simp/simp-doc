@@ -637,6 +637,11 @@ Glossary of Terms
 
       See the Puppetfile spec: https://github.com/puppetlabs/r10k/blob/master/doc/puppetfile.mkd
 
+   PuppetForge
+      An official repository for Puppet modules
+
+      See: https://forge.puppet.com/
+
    Puppet Master
       For the purposes of this document, this is the Server upon which the
       :term:`puppetserver` process is running and to which your clients

@@ -83,7 +83,7 @@ copy was affected by the ``simp_rpm_helper`` script of the ``simp-adapter``.
 In SIMP 6.4.0, the ``simp_rpm_helper``'s behavior has been redesigned as shown
 in the following figure:
 
-.. image:: ../images/diagrams/simp_puppet_module_rpm_install.png
+.. image:: ../images/diagrams/simp_module_post_rpm_install.png
 
 In lieu of the auto-updating ``/etc/puppetlabs/code/environments/simp``, the
 ``simp_rpm_helper`` now creates and maintains local Git repositories for Puppet
