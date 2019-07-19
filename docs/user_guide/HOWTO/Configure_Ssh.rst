@@ -3,7 +3,14 @@ HOWTO Customize Settings for SSH
 
 By default, SIMP will include the ``simp-ssh`` module ``ssh`` class under all
 deployment scenarios. To exclude the SIMP ``ssh`` class, refer to
-:ref:`Disable SSH Managment <disable_ssh>`.
+:ref:`Disable SSH Managment <disable_ssh>`. To include specify the class for
+inclusion, add the following to :term:`Hiera`:
+
+.. code-block:: yaml
+
+   simp::classes:
+     - 'ssh'
+
 
 The SIMP ``ssh`` class is configured to automatically include the
 ``ssh::server`` and ``ssh::client`` classes. These classes manage the SSH
@@ -11,9 +18,10 @@ daemon settings for incoming connections and the SSH client settings for
 outgoing connections respectively, and are configured with reasonable defaults
 for the OS and environment. To override this and **disable management** of one
 or both of these classes and manage them through some other mechanism, add the
-following to :term:`Hiera`:
+following to Hiera:
 
 .. code-block:: yaml
+
    ssh::enable_client: false
    ssh::enable_server: false
 

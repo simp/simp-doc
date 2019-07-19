@@ -1,3 +1,5 @@
+.. _disable_ssh:
+
 HOWTO Disable SSH Management
 ============================
 
