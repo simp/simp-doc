@@ -77,8 +77,8 @@ Configuring the SIMP Server
       :ref:`ug-prevent-lockout`  section and follow the steps to
       configure a user that has ``su -`` capability.
 
-      |    ``simp bootstrap has been locked due to potential login lockout.``
-      |    ``* See /root/.simp/simp_bootstrap_start_lock for details``
+          ``simp bootstrap has been locked due to potential login lockout.``
+          ``* See /root/.simp/simp_bootstrap_start_lock for details``
 
 
    - For more details about ``simp config``'s installation variables and
@@ -109,11 +109,11 @@ Configuring the SIMP Server
    configuration items.
 
 
-When your systems comes back up your puppetserver is ready for configuration.
-If you want to learn more details about what the ``simp`` utility just did to your
+When your systems comes back up, the puppetserver is ready for configuration.
+To learn more details about what the ``simp`` utility just did to your
 system,  see :ref:`gsg-advanced-configuration`.
 
-To continue configuring the system, you can  move on to the next section in the
+To continue configuring the system, move on to the next section in the
 :ref:`simp-user-guide`, :ref:`Client_Management`.
 
 Optional: Extract the full OS RPM Package Set
