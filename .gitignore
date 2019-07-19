@@ -1,4 +1,4 @@
-.sw[pnoqst]
+.*.sw?
 .venv
 **.pyc
 /Gemfile.lock
