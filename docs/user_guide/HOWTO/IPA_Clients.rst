@@ -156,7 +156,7 @@ configuration of the IPA server and the environment:
 
    ---
    # IPA uses both of these technologies, so they need to be enabled.
-   # They are already enabled in the 'simp' and 'simp-lite' scenarios.
+   # SSSD is already enabled in the 'simp' and 'simp-lite' scenarios.
    simp_options::sssd: true
    simp_options::ldap: true
 
