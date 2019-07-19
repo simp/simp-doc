@@ -3,17 +3,17 @@ HOWTO Customize Settings for SSH
 
 By default, SIMP will include the ``simp-ssh`` module ``ssh`` class under all
 deployment scenarios. To exclude the SIMP ``ssh`` class, refer to
-:ref:`Disable SSH <disable_ssh>`.
+:ref:`Disable SSH Managment <disable_ssh>`.
 
 The SIMP ``ssh`` class is configured to automatically include the
 ``ssh::server`` and ``ssh::client`` classes. These classes manage the SSH
 daemon settings for incoming connections and the SSH client settings for
 outgoing connections respectively, and are configured with reasonable defaults
-for the OS and environment. To override this and **disable** management of one
-or both of these classes, add the following to :term:`Hiera`:
+for the OS and environment. To override this and **disable management** of one
+or both of these classes and manage them through some other mechanism, add the
+following to :term:`Hiera`:
 
 .. code-block:: yaml
-
    ssh::enable_client: false
    ssh::enable_server: false
 
@@ -21,10 +21,10 @@ or both of these classes, add the following to :term:`Hiera`:
 Managing Settings for the SSH Server
 ------------------------------------
 
-As stated above, the ``ssh::server`` class is included by default by the
-``simp-ssh`` module and configured with "sane" settings for each host's
-environment. Detailed descriptions of the various settings are provided in the
-sshd_config(5) man page.
+As stated above, the ``simp-ssh`` module includes the ``ssh::server`` class and
+provides "sane" settings for each host's environment by default. Detailed
+descriptions of the various settings are provided in the sshd_config(5) man
+page.
 
 
 Configuring ``ssh::server::conf`` from Hiera
@@ -52,9 +52,11 @@ In Hiera:
 Managing Additional Settings with ``sshd_config``
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-To manage global sshd_config settings that are not included in the
-``ssh::server::conf`` class, specify them in Hiera with the
-``ssh::server::conf::custom_entries`` parameter as follows:
+Starting with version **6.4.0** of the ``simp-ssh`` module, you can use the
+`sshd_config`_ resource from the ``augeasproviders_ssh`` module to manage
+settings that the module does specifically define. To manage global sshd_config
+settings that are not included in the ``ssh::server::conf`` class, specify them
+in Hiera with the ``ssh::server::conf::custom_entries`` parameter as follows:
 
 .. NOTE::
 
@@ -71,8 +73,9 @@ To manage global sshd_config settings that are not included in the
 .. NOTE::
 
    This parameter is **not validated**. Be careful to only specify settings
-   that are only allowed for your particular SSH daemon. Invalid options may
-   cause the ssh service to fail on restart.
+   that are only allowed for your particular SSH daemon and avoid duplicate
+   declaration of resources already specified. Invalid options may cause the
+   ssh service to fail on restart.
 
 There are also number of SIMP specific parameters, such as whether the system
 is FIPS enabled, has a firewall, or utilizes LDAP. The ``ssh::server::config``
@@ -135,8 +138,8 @@ Managing Additional Settings with ``ssh_config``
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 Starting with version **6.4.0** of the **simp-ssh** module, you can use the
-``sshd_config`` resource from `augeasproviders_ssh`_ to manage settings that the
-module does not cover.
+`ssh_config`_ resource from the ``augeasproviders_ssh`` module to manage 
+settings that the module does not cover.
 
 For instance, to ensure that the default host entry's ``RequestTTY`` option is
 set to ``auto``:
@@ -157,4 +160,5 @@ will conflict with the internal implementation of
 ``ssh::client::host_config_entry``. However, users can still add extra SSH
 client configurations by editing their ``$HOME/.ssh/config`` files.
 
-.. _augeasproviders_ssh: http://augeasproviders.com/documentation/examples.html#sshdconfig-provider
+.. _sshd_config: http://augeasproviders.com/documentation/examples.html#sshdconfig-provider
+.. _ssh_config: http://augeasproviders.com/documentation/examples.html#sshconfig-provider
