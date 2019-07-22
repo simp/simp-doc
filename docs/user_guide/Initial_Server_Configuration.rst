@@ -3,31 +3,35 @@
 Initial SIMP Server Configuration
 =================================
 
-Using the SIMP Utility
-----------------------
+Introduction to the SIMP Utility
+--------------------------------
 
-In these instructions, we will be using the ``config`` and ``bootstrap`` of the
-``simp`` command.  The ``simp`` command provides a CLI intended to make the
-initial configuration of the SIMP server straightforward and repeatable.
+The ``simp`` command provides a CLI intended to make the
+configuration of the SIMP server straightforward and repeatable.
+In these instructions, we will be using the ``config`` and ``bootstrap``
+options of the ``simp`` command
 
-.. NOTE::
+For a list of the commands ``simp`` provides, type ``simp help``. Type
+``simp <Command> --help`` for more information on a specific command.
 
-   For a list of the commands ``simp`` provides, type ``simp help``. Type
-   ``simp <Command> --help`` for more information on a specific command.
+- ``simp config`` sets up configuration required to bootstrap the SIMP server
+  with Puppet.  It asks questions, generates configuration files, and applies
+  preliminary server configuration based on the answers.  It records the options
+  chosen in a file, ``/root/.simp/simp_conf.yaml`` and generates a log file
+  under ``/root/.simp/``.
+
+  * You can use the ``--dry-run`` option to step through the questions without
+    changing anything and then run ``simp config  -a /root/.simp/simp_conf.yaml``
+    to apply the changes.
+
+- ``simp bootstrap`` uses several targeted Puppet runs to configure the rest
+  of the system and generates a log file under ``/root/.simp/``.
+
+For more details about initial configuration provided by ``simp config`` see
+:ref:`gsg-advanced-configuration`.
 
 Configuring the SIMP Server
 ---------------------------
-
-.. IMPORTANT::
-
-   Correct time synchronization across all systems is **critical** to the proper
-   functioning of SIMP (and Puppet in general).
-
-.. TIP::
-
-   If a Puppet agent receives errors regarding certificate validation while
-   connecting to the Puppet server, compare the time on the server and
-   agent to make sure they are synchronized.
 
 .. WARNING::
 
@@ -36,103 +40,62 @@ Configuring the SIMP Server
 
    .. _SERVER-1809: https://tickets.puppetlabs.com/browse/SERVER-1809
 
-.. NOTE::
+#. Log on as a user that can gain ``root`` access and ``su`` to ``root``.
 
-  This section assumes that:
+   - If you installed from the ISO, it created the ``simp`` user.
+     Log in with ``simp`` and run  ``su -``.
+   - If you installed from RPM, create a privileged user or log in as ``root``.
+     There will be instructions later about how to configure access for the
+     privileged user on the SIMP server, so that after bootstrap, you are not
+     locked out of the server.  This step is **essential** on cloud instances.
 
-   * You started by :ref:`gsg-installing_simp_from_an_iso`
-   * You have logged in using the ``simp`` local user account (created by
-     the ISO installation)
+#. Run ``simp config`` and configure the system as prompted.  (The ``--dry-run``
+   option will run through all of the prompts without applying any changes to
+   the system.)
 
-   Use the appropriate user for your environment if you installed via an
-   alternate method.
+   -  ``simp config`` will prompt you with the follow:
 
-#. Log on as ``simp`` and run ``su -`` to gain root access.
-#. Run ``simp config`` and configure the system as prompted.
+      - ``Ready to create the SIMP omni-environment?`` Enter ``yes``.
+      - ``Ready to start the questionaire?`` Enter ``yes``.
 
-    - ``simp config`` will prompt you for system settings and then apply them as
-      appropriate for bootstrapping the system.
+   -  ``simp config`` will then prompt you for system settings and apply them as
+      appropriate for bootstrapping the system. When applicable, ``simp config``
+      will present you with a recommendation for each setting. For each question:
 
-    - When applicable, ``simp config`` will present you with a recommendation
-      for each setting.
-      
-        - Press *Enter* to keep a recommended value.
-        - Otherwise, enter your desired value.
+      - Press *Enter* to keep a recommended value.
+      - Otherwise, enter your desired value.
 
-    - ``simp config`` generates a log file under ``/root/.simp/`` with details
-      of the configurations selected and actions taken.
+   -  When the questionnaire is finished and you are prompted with
 
-   .. NOTE::
+      -  ``Ready to apply?`` Enter ``yes`` to continue.
 
-       For details about ``simp config``'s installation variables and actions,
-       see :ref:`gsg-advanced-configuration`.
+   -  ``simp config`` then applies the information and generates its
+      configuration files.
 
-   .. TIP::
 
-      There are two ``simp config`` options that are particularly useful:
+      .. Important::
 
-      * ``--dry-run`` will run through all of the prompts without
-        applying any changes to the system. This is useful to:
+         If you have installed SIMP from RPM and see the following failure, go
+         to the :ref:`ug-prevent-lockout`  section and follow the steps to
+         configure a user that has ``su -`` capability.
 
-        - become familiar with the variables set by ``simp config`` without
-          applying them
-        - generate a configuration file to use as a template for subsequent
-          ``simp config`` runs
+           ``'simp bootstrap' has been locked due to potential login lockout.``
 
-      * ``-a <Config File>`` will load and apply
-        a previously-generated configuration (aka the 'answers' file) in lieu of
-        prompting for settings.
+             ``* See /root/.simp/simp_bootstrap_start_lock for details``
 
-        - This is useful to run on systems that will be rebuilt often.
-        - Please note, however: if you edit the answers file, only configuration
-          settings for which you would be prompted by ``simp config`` can be
-          modified in that file—any changes made to settings that ``simp
-          config`` automatically determines will be ignored.
+   - For more details about ``simp config``'s installation variables and
+     actions, see :ref:`gsg-advanced-configuration`.
 
-   .. NOTE::
-
-     For a list of additional options, type ``simp config --help``.
-
-#. When the questionnaire is finished and you are prompted with ``Ready to
-   apply?``, enter ``yes`` to continue.
-
-   This will apply changes to the system, which may take some time.
-
-   .. NOTE::
-
-      After ``simp config`` is applied, three SIMP configuration files will have
-      been generated:
-
-      #. ``/root/.simp/simp_conf.yaml``: File containing  all your ``simp
-         config`` settings; can include additional settings related to ones
-         you entered and other settings required for SIMP.
-
-      #. ``/etc/puppetlabs/code/environments/production/data/simp_config_settings.yaml``:
-         File containing global Hiera data relevant to SIMP clients and the SIMP
-         server.
-
-      #. ``/etc/puppetlabs/code/environments/production/data/hosts/<server_fqdn>.yaml``:
-         The SIMP server's host-specific Hiera configuration.
 
 #. Run ``simp bootstrap``.
 
-   * ``simp bootstrap`` uses several targeted Puppet runs to configure the rest
-     of the system.
-   * It generates a detailed log file under ``/root/.simp/``.
+   If your SIMP server is a virtual machine in a cloud, the default
+   timeout for the Puppet server to start (5 minutes) may be too short.
+   You will want to extend this time by using the ``-w`` option.  For
+   example, to extend that timeout to 10 minutes:
 
+   ``simp bootstrap -w 10``
 
-   .. NOTE::
-
-      For a list of additional options, type ``simp bootstrap --help``.
-
-   .. NOTE::
-
-      If your SIMP server is a virtual machine in a cloud, the default
-      timeout for the Puppet server to start (5 minutes) may be too short.
-      You will want to extend this time by using the ``-w`` option.  For
-      example, to extend that timeout to 10 minutes:
-
-      ``simp bootstrap -w 10``
 
    .. NOTE::
 
@@ -147,12 +110,20 @@ Configuring the SIMP Server
 #. Run ``reboot`` to restart your system and apply the necessary kernel
    configuration items.
 
+
+When your systems comes back up, the SIMP server (``puppetserver``) is ready for
+site-specific configuration.  To learn more details about what the ``simp`` utility
+just did to your system,  see :ref:`gsg-advanced-configuration`.
+
+To continue configuring the system, move on to the next section in the
+:ref:`simp-user-guide`, :ref:`Client_Management`.
+
 Optional: Extract the full OS RPM Package Set
 ---------------------------------------------
 
 The SIMP ISO only provides enough RPM packages to run a basic system. If you
-did not install via ISO, or you require additional stock packages, you can
-extract additional packages from vendor ISOs using the following procedure:
+require additional stock OS packages, you can extract additional packages from
+vendor ISOs using the following procedure:
 
 #. Log on as ``simp`` and run ``su -`` to gain root access.
 #. Run ``puppet agent -t`` to ensure system consistency.
@@ -166,5 +137,7 @@ extract additional packages from vendor ISOs using the following procedure:
    packages by refreshing the system's yum cache:
 
    Run: ``yum clean all; yum makecache``
+
+.. include::  Initial_Server_Configuration/Prevent_Lockout_on_Puppetserver.inc
 
 .. include::  Initial_Server_Configuration/Advanced_Configuration.inc
