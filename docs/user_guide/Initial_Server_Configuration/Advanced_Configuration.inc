@@ -31,7 +31,7 @@ that variables beginning with ``cli::`` are only used internally by
 
 .. IMPORTANT::
 
-   - Not all the settings listed below may be ablet to be preset in a
+   - Not all the settings listed below may be able to be preset in a
      configuration file input to ``simp config``, via either
      ``-a <Config File>`` or ``-A <Config File>``. Some settings
      for which you would not be prompted if you ran ``simp config``
