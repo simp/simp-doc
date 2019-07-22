@@ -88,7 +88,7 @@ Rebuild The Yum Cache
 Install the SIMP Server
 -----------------------
 
-Install puppetlabs puppetserver as follows:
+Install the ``puppetserver`` package as follows:
 
 .. code-block:: bash
 
