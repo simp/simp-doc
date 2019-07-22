@@ -34,40 +34,30 @@ should be short and painless.
 
 .. _ug-incremental-upgrades-w-iso:
 
-Incrementally upgrading an ISO installation
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+Incrementally upgrading systems using local repositories
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-If you built your SIMP server by :ref:`gsg-installing_simp_from_an_iso`,
-updating your entire local SIMP distribution should be as simple as:
+#. Update the Repositories
 
-#. Copy the new SIMP's ISO file to the SIMP master
-#. From the SIMP master (as ``root``):
+   * Update the repositories  for an ISO Installation:
 
-   .. code-block:: sh
+     If you built your SIMP server by :ref:`gsg-installing_simp_from_an_iso`,
+     update the repositories by unpacking the ISO:
 
-      # Unpack the new SIMP ISO's RPMs into yum repositories
-      unpack_dvd </path/to/ISO>
+     #. Copy the new SIMP's ISO file to the SIMP master
+     #. From the SIMP master (as ``root``):
 
-      # Make sure yum picks up the new RPMs
-      yum clean all; yum makecache
+        .. code-block:: sh
 
-      # Apply updates to the local master
-      yum update -y
+           # Unpack the new SIMP ISO's RPMs into yum repositories
+           unpack_dvd </path/to/ISO>
 
-      # Apply updated Puppet modules to the local master
-      puppet agent -t
+   * For a yum/RPM-based installation follow your sites procedures to update
+     your yum repositories.
 
+#. Install the RPMs
 
-.. _ug-incremental-upgrades-w-yum:
-
-Incrementally upgrading a yum/RPM-based installation
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-If you built your SIMP server by :ref:`gsg-installing_simp_from_a_repository`,
-
-#. Update your site's ``yum`` repositories with packages for the new version of
-   SIMP.
-#. From the SIMP master (as ``root``):
+   Update the local git repositories by installing the new RPMs
 
    .. code-block:: sh
 
@@ -77,7 +67,104 @@ If you built your SIMP server by :ref:`gsg-installing_simp_from_a_repository`,
       # Apply updates to the local master
       yum update -y
 
-      # Apply updated Puppet modules to the local master
+#. If you are upgrading from a version before SIMP 6.4 you can skip to the last
+
+   step, ``Apply the changes by running puppet``.
+
+#. Generate the new Puppetfile.simp
+
+   Only do this step you are upgrading from version SIMP 6.4 or later.
+
+   Update the SIMP puppetfile, ``Puppetfile.simp``.
+
+   .. code-block:: sh
+
+      cd /etc/puppetlabs/code/environments/<environment to update>
+
+      simp puppetfile generate > Puppetfile.simp
+
+#. Verify the environment's Puppetfile
+
+   Only do this step you are upgrading from version SIMP 6.4 or later.
+
+   .. Warning::
+
+      Any module not listed in the ``Puppetfile`` will be deleted from the modules
+      directory.
+
+   Make sure the  ``Puppetfile``  you will be deploying from includes the following:
+
+   * A line that includes the  ``Puppetfile.simp`` which should look like:
+
+     .. code-block:: yaml
+
+        instance_eval(File.read(File.join(__dir__,"Puppetfile.simp")))
+
+   * A line for each of your own modules.
+
+     To generate a list of non-simp modules in an environment do the following:
+     (This example uses the production environment):
+
+     .. code-block:: sh
+
+        simp puppetfile generate -s -l production > /tmp/Puppetfile
+
+     This will generate in ``/tmp/Puppetfile`` a puppetfile which has a directive
+     to include the file ``Puppetfile.simp`` and  a local entry for each module in
+     the production environment's ``modules`` directory that is not in the  SIMP
+     repository directory, ``/usr/share/simp/git/puppet_modules``.
+
+     These entries will look like the following:
+
+     .. code-block:: yaml
+
+        mod 'module name', :local => true
+
+     Verify that all modules with a local entry in ``/tmp/Puppetfile`` are  in your
+     environment's ``Puppetfile`` in one of the following forms:
+
+      .. code-block:: yaml
+
+          # a module that is not a Git repository and resides in the ``modules`` directory
+          mod 'site',
+            :local => true
+
+          # a Git repository that resides in a directory on the Puppet server
+          mod 'mymodule'
+            :git => 'file:///usr/share/mymodules/mymodule',
+            :tag => '1.1.1'
+
+          #  a Git repository on a GitLab/GitHub type server.
+          mod 'mysrvmod'
+            :git => 'https://gitserver.my.domain/mygitproject/mysrvmod.git'
+            :tag => '1.0.1'
+
+    .. Note::
+
+       If there are any modules that reside soley in the modules directory and
+       use the ``:local => true`` directive, you should seriously consider creating
+       a Git Repository for it to make sure it does not get removed by r10k.
+
+#. Deploy the modules from the local git repositiories into the Environment
+
+   Only do this step you are upgrading from version SIMP 6.4 or later.
+
+   Use r10k to deploy the modules making sure the umask and group are set correctly
+   so puppetserver has access to the files.
+
+   .. code-block:: sh
+
+      # Set the umask and Run r10k as the puppet group to make sure the modules
+      # to make sure the permissions and ownership are correct on the modules
+      ( umask 0027 && sg puppet -c '/usr/share/simp/bin/r10k puppetfile install \
+      --puppetfile /etc/puppetlabs/code/environments/production/Puppetfile \
+      --moduledir /etc/puppetlabs/code/environments/production/modules' )
+
+
+#. Apply the changes by running puppet
+
+   .. code-block:: sh
+
       puppet agent -t
 
 
@@ -86,7 +173,7 @@ Incrementally upgrading systems using r10k or Code Manager
 
 If you manage your SIMP server using :term:`r10k` or :term:`Code Manager` you
 will need to work with the upstream Git repositories as appropriate for your
-workflow.
+workflow.  This is the same for and version of SIMP.
 
 
 Breaking Changes
