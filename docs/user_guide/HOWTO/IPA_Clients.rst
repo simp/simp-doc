@@ -55,7 +55,7 @@ To add hosts from the command line:
 
 #. Log onto a machine that already has joined an IPA domain.
 #. ``kinit`` into an account with the appropriate privileges, (e.g., ``kinit admin``).
-#. Use a script such as the example, below, to add hosts in bulk:
+#. Use a script such as the example below, to add hosts in bulk:
 
    .. code-block:: ruby
 
