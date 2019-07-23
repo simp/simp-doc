@@ -396,18 +396,14 @@ tested in acceptance/simp-packer tests) do function as advertised:
 * A SIMP client can be PXE booted using the kickstart files from the
   SIMP ISO
 * A SIMP client can use the SIMP server for DNS
-* A SIMP ISO can be bootstrapped for the 'simp-lite' scenario with
-  default boot options
-* A 'simp-lite' client operates with a SIMP server
+* A 'simp_lite' client operates with a SIMP server
 
   - login operations (PAM, LDAP, local user)
   - NFS operations (home directory)
   - logging operations (rsyslog)
   - auditing operations
 
-* A SIMP ISO can be bootstrapped for the 'poss' scenario with
-  default boot options
-* A 'simp-poss' client operates with a SIMP server
+* A 'simp_poss' client operates with a SIMP server
 * The SIMP server can be converted from FIPS enabled to FIPS
   disabled mode.
 * The SIMP server can be converted from Selinux enforcing to Selinux
