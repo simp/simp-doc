@@ -58,7 +58,7 @@ Hiera or :term:`ENC`.
 .. NOTE::
 
    Unlike many SIMP modules, these customizations cannot be made
-   directly with a resource-style class declaration―they *must* be
+   directly with a resource-style class declaration ― they *must* be
    made via automatic parameter lookup provided by Hiera or an ENC.
    Examples using Hiera are provided for illustrative purposes.
 
@@ -91,14 +91,15 @@ need to be noted:
 * *No setting validation*:
     This parameter is **not validated**. Be careful to only specify settings
     that are allowed for your particular SSH daemon and avoid duplicate
-    declaration of resources already specified. Invalid options may cause the
-    ``sshd`` service to fail on restart.
+    declaration of settings already specified.  Invalid options may cause the
+    ``sshd`` service to fail on restart. Duplicate settings will result in
+    duplicate Puppet resources (i.e., manifest compilation failures).
 
 * *No direct MATCH entry support*:
      Due to their complexity, ``Match`` entries are not supported.  However,
      you can add them using the ``sshd_config_match`` resource from the
      `herculesteam-augeasproviders_ssh`_ module.  Since ``simp-ssh`` uses
-     this module under the hood, the ``sshd_config_match`` resource will be
+     this module internally, the ``sshd_config_match`` resource will be
      available to you on any node using ``simp-ssh``.
 
 
