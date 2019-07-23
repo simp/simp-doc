@@ -25,17 +25,17 @@ of these variables will be automatically set based on other installation
 variables, system settings, or SIMP security requirements. Others will
 be omitted because either they are unnecessary for a particular site
 configuration, or their defaults are appropriate. Also, please note
-that variables beginning with 'cli::' are only used internally by
-``simp config``, itself. The 'cli::' variables are written to
+that variables beginning with ``cli::`` are only used internally by
+``simp config``, itself. The ``cli::`` variables are written to
 ``simp_conf.yaml``, but not persisted to any Puppet hiera data files.
 
 .. IMPORTANT::
 
-   - Not all the settings listed below can be preset in a
+   - Not all the settings listed below may be able to be preset in a
      configuration file input to ``simp config``, via either
      ``-a <Config File>`` or ``-A <Config File>``. Some settings
      for which you would not be prompted if you ran ``simp config``
-     interactively are automatically determined by ``simp config``.
+     interactively may be automatically determined by ``simp config``.
 
    - Passwords for which only hashed values are stored in the YAML
      output of ``simp config`` must be input as hashed values in
@@ -58,6 +58,26 @@ that variables beginning with 'cli::' are only used internally by
      ``/etc/yum.repos.d/simp_filesystem.repo``.
 
 .. TIP::
+
+   There are two ``simp config`` options that are particularly useful:
+
+    * ``--dry-run`` will run through all of the prompts without
+      applying any changes to the system. This is useful to:
+
+      - become familiar with the variables set by ``simp config`` without
+        applying them
+      - generate a configuration file to use as a template for subsequent
+        ``simp config`` runs
+
+    * ``-a <Config File>`` will load and apply
+      a previously-generated configuration (aka the 'answers' file) in lieu of
+      prompting for settings.
+
+      - This is useful to run on systems that will be rebuilt often.
+      - Please note, however: if you edit the answers file, only configuration
+        settings for which you would be prompted by ``simp config`` can be
+        modified in that file—any changes made to settings that ``simp
+        config`` automatically determines will be ignored.
 
    If you want to understand what variables apply to your setup, run
    ``simp config --dry-run`` and examine the generated ``simp_conf.yaml``
@@ -231,19 +251,19 @@ configurations.
 |               |   ``simp_openldap::server::conf::rootpw`` to the SIMP        |
 +---------------+--------------------------------------------------------------+
 | Lockout       | When the SIMP server is installed from ISO, the install      |
-| Prevention    | creates a local *simp* user that the SIMP server configures  |
-|               | to have both su and ssh privileges. (This user is provided   |
-|               | to prevent server lockout, as, per security policy, SIMP by  |
-|               | default disables logins via ssh for all users, including     |
-|               | 'root'.) So, when SIMP is **not** installed from ISO,        |
-|               | ``simp config`` does the following:                          |
+| Prevention    | creates a local ``simp`` user that the SIMP server           |
+|               | configure to have both su and ssh privileges. (This user is  |
+|               | provider to prevent server lockout, as, per security policy, |
+|               | SIMP by default disables logins via ssh for all users,       |
+|               | including ``root``.) So, when SIMP is **not** installed from |
+|               | ISO, ``simp config`` does the following:                     |
 |               |                                                              |
 |               | - Warns the operator of this problem                         |
 |               | - Writes a lock file containing details on how to rectify    |
 |               |   the problem.  This lock file prevents ``simp bootstrap``   |
 |               |   from running until the user manually fixes the problem.    |
 |               | - Turns off the SIMP server configuration that allows        |
-|               |   su and ssh privileges for an inapplicable *simp* user.     |
+|               |   su and ssh privileges for an inapplicable ``simp`` user.   |
 +---------------+--------------------------------------------------------------+
 | Network       | - When the user selects to configure the network interface,  |
 |               |   ``simp config`` uses Puppet to set the network interface   |
@@ -316,5 +336,28 @@ configurations.
 |               |   - Reminds the user to (manually) set up YUM repos for SIMP |
 |               |     clients.                                                 |
 +---------------+--------------------------------------------------------------+
+
+simp config Output
+^^^^^^^^^^^^^^^^^^
+
+At the end of ``simp config``, when you answer ``yes`` to ``Ready to apply?``,
+``simp config`` generates three files:
+
+   1. ``/root/.simp/simp_conf.yaml``:
+        File containing  all your ``simp config`` settings; can include
+        additional settings related to ones you entered and other settings
+        required for SIMP.
+
+   2. ``/etc/puppetlabs/code/environments/production/data/simp_config_settings.yaml``:
+        File containing global Hiera data relevant to SIMP clients and the SIMP
+        server.
+
+   3. ``/etc/puppetlabs/code/environments/production/data/hosts/<server_fqdn>.yaml``:
+        The SIMP server's host-specific Hiera configuration.
+
+If you terminate ``simp config`` before applying the configuration, it will
+generate a file ``/root/.simp/.simp_conf.yaml``.  This interim file (aka the
+*safety-save* file), contains the answers up until the point you terminated
+``simp config``.
 
 .. todo simp bootstrap Actions
