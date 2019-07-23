@@ -49,12 +49,13 @@ documentation.
 Incrementally upgrading systems using local repositories
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-#. Update the Repositories
+#. Update the YUM Repositories
 
-   * Update the repositories  for an ISO Installation:
+   * Update the repositories using a SIMP ISO:
 
-     If you built your SIMP server by :ref:`gsg-installing_simp_from_an_iso`,
-     update the repositories by unpacking the ISO:
+     If you have the latest SIMP ISO available to you and have installed the
+     ``simp-utils`` package, update the YUM repositories by unpacking the ISO
+     using ``unpack_dvd`` from that package:
 
      #. Copy the new SIMP ISO file to the SIMP master
      #. From the SIMP master (as ``root``):
@@ -69,7 +70,7 @@ Incrementally upgrading systems using local repositories
 
 #. Install the RPMs
 
-   Update the system-local ``git`` repositories by installing the new RPMs
+   Update the system-local :term:`git` repositories by installing the new RPMs
 
    .. code-block:: sh
 
@@ -80,7 +81,7 @@ Incrementally upgrading systems using local repositories
       yum update -y
 
 #. If you are upgrading from a version before SIMP 6.4 you can skip to the last
-   step, ``Apply the changes by running puppet``.
+   step, *Apply the changes by running puppet*.
 
 #. Generate the new ``Puppetfile.simp``
 
@@ -92,14 +93,15 @@ Incrementally upgrading systems using local repositories
 
       simp puppetfile generate > Puppetfile.simp
 
-#. Verify the environment's Puppetfile
+#. Verify the environment's ``Puppetfile``
 
    **Only do this step you are upgrading from version SIMP 6.4 or later.**
 
    .. Warning::
 
       Any module not listed in the ``Puppetfile`` will be deleted from the
-      target environment's (``production`` by default) ``modules`` directory.
+      target environment's (``production`` by default) ``modules`` directory,
+      when you use :term:`r10k` to deploy the modules.
 
    Make sure the ``Puppetfile`` you will be deploying from includes the following:
 
@@ -111,8 +113,8 @@ Incrementally upgrading systems using local repositories
 
    * A line for each of your own modules.
 
-     To generate a list of non-simp modules in an environment do the following:
-     (This example uses the production environment):
+     To generate a list of non-SIMP modules in an environment do the following:
+     (This example uses the ``production`` environment):
 
      .. code-block:: sh
 
@@ -130,7 +132,7 @@ Incrementally upgrading systems using local repositories
 
         mod 'module name', :local => true
 
-     Verify that all modules with a local entry in ``/tmp/Puppetfile`` are  in
+     Verify that all modules with a local entry in ``/tmp/Puppetfile`` are in
      your environment's ``Puppetfile`` in one of the following forms:
 
       .. code-block:: yaml
@@ -172,7 +174,7 @@ Incrementally upgrading systems using local repositories
       --moduledir /etc/puppetlabs/code/environments/production/modules' )
 
 
-#. Apply the changes by running puppet
+#. Apply the changes by running ``puppet``
 
    .. code-block:: sh
 
@@ -192,7 +194,7 @@ Breaking Changes
 
 If the ``X`` version number has changed then you should expect **major**
 breaking changes to the way SIMP works. Please carefully read the Changelog and
-the :ref:`_simp-user-guide` and do **not** deploy these changes directly on top
+the :ref:`simp-user-guide` and do **not** deploy these changes directly on top
 of your ``production`` environment.
 
 If the ``Y`` version number has changed then there may either be deprecation
