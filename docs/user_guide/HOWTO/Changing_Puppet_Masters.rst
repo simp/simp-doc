@@ -132,6 +132,9 @@ Run Puppet
 Assuming the new Puppet master has been set up to properly accept the
 agent, execute a full Puppet run using ``puppet agent --test``.
 
+On the puppet master you will need to sign off the certificate for the new client
+using  ``puppetserver ca cert sign <new client name``.
+
 If everything was done properly, the agent will now be synchronized with the
 new Puppet master.
 
