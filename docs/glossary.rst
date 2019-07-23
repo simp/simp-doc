@@ -142,6 +142,7 @@ Glossary of Terms
       Source: `Managing code with Code Manager <https://docs.puppet.com/pe/latest/code_mgr.html>`__
       See Also: :term:`r10k`
 
+   Control Repository
    Control Repo
       A version control repository containing all of the required modules, data,
       and configuration for a Puppet environment.
