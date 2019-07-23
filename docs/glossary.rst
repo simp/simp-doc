@@ -305,6 +305,7 @@ Glossary of Terms
       domain and the root zone. An FQDN is distinguished by its unambiguity; it
       can only be interpreted one way.
 
+   Git
    git
       A version control system that supports branches.
 

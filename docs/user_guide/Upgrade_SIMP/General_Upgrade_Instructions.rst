@@ -3,28 +3,40 @@
 General Upgrade Instructions
 ----------------------------
 
-SIMP follows Semantic Versioning 2.0.0, using the Puppet modules' parameters as
-the "API" (in terms of compatibility).
+SIMP uses the Puppet modules' parameters as the system "API" (in terms of
+compatibility) and attempts to limit any API breaking changes to a minimum
+during a major release.
+
+API breaking changes will have at least one minor release with deprecation
+warnings unless the change was to fix an actual bug in functionality.
 
 A SIMP release version (e.g., "|simp_version|") can be separated into three
 major numbers, in the format `X.Y.Z`:
 
-* ``X`` is the MAJOR release number, and indicates API-breaking changes
-* ``Y`` is the MINOR release number, and indicates the addition of features.
-* ``Z`` is the PATCH release number, and indicates backwards-compatible
+* ``X`` is the MAJOR release number, and indicates severe API-breaking changes.
+
+* ``Y`` is the MINOR release number, and indicates the addition of features or
+  minor API-breaking changes either due to functionality bugs or after at least
+  one MINOR release announcing the deprecation.
+
+  * All API-breaking changes are kept to an absolute minimum and well
+    documented in the release CHANGELOG.
+
+* ``Z`` is the PATCH release number, and indicates full backwards-compatibility
   changes, such as bug fixes and improvements.
 
-This section describes both the general, recommended upgrade procedures
-for ``X``, ``Y``, or ``Z`` releases.
+This section describes both the general, recommended upgrade procedures for
+``X``, ``Y``, or ``Z`` releases.
 
 .. _ug-incremental-upgrades:
 
 Incremental Upgrades
 ~~~~~~~~~~~~~~~~~~~~
 
-For ``Y`` and ``Z`` SIMP changes, you should feel comfortable dropping the changes
-directly into your test systems. The promotion cycle from test to production
-should be short and painless.
+For ``Y`` and ``Z`` SIMP changes, you should feel comfortable dropping the
+changes directly into your **test** systems. The promotion cycle from test to
+production should be short and painless if you reference the version upgrade
+documentation.
 
 .. IMPORTANT::
 
@@ -34,40 +46,31 @@ should be short and painless.
 
 .. _ug-incremental-upgrades-w-iso:
 
-Incrementally upgrading an ISO installation
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+Incrementally upgrading systems using local repositories
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-If you built your SIMP server by :ref:`gsg-installing_simp_from_an_iso`,
-updating your entire local SIMP distribution should be as simple as:
+#. Update the YUM Repositories
 
-#. Copy the new SIMP's ISO file to the SIMP master
-#. From the SIMP master (as ``root``):
+   * Update the repositories using a SIMP ISO:
 
-   .. code-block:: sh
+     If you have the latest SIMP ISO available to you and have installed the
+     ``simp-utils`` package, update the YUM repositories by unpacking the ISO
+     using ``unpack_dvd`` from that package:
 
-      # Unpack the new SIMP ISO's RPMs into yum repositories
-      unpack_dvd </path/to/ISO>
+     #. Copy the new SIMP ISO file to the SIMP master
+     #. From the SIMP master (as ``root``):
 
-      # Make sure yum picks up the new RPMs
-      yum clean all; yum makecache
+        .. code-block:: sh
 
-      # Apply updates to the local master
-      yum update -y
+           # Unpack the new SIMP ISO's RPMs into yum repositories
+           unpack_dvd </path/to/ISO>
 
-      # Apply updated Puppet modules to the local master
-      puppet agent -t
+   * For RPM-based installation, follow your site's procedures to update your
+     repositories.
 
+#. Install the RPMs
 
-.. _ug-incremental-upgrades-w-yum:
-
-Incrementally upgrading a yum/RPM-based installation
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-If you built your SIMP server by :ref:`gsg-installing_simp_from_a_repository`,
-
-#. Update your site's ``yum`` repositories with packages for the new version of
-   SIMP.
-#. From the SIMP master (as ``root``):
+   Update the system-local :term:`git` repositories by installing the new RPMs
 
    .. code-block:: sh
 
@@ -77,7 +80,104 @@ If you built your SIMP server by :ref:`gsg-installing_simp_from_a_repository`,
       # Apply updates to the local master
       yum update -y
 
-      # Apply updated Puppet modules to the local master
+#. If you are upgrading from a version before SIMP 6.4 you can skip to the last
+   step, *Apply the changes by running puppet*.
+
+#. Generate the new ``Puppetfile.simp``
+
+   **Only do this step you are upgrading from version SIMP 6.4 or later.**
+
+   .. code-block:: sh
+
+      cd /etc/puppetlabs/code/environments/<environment to update>
+
+      simp puppetfile generate > Puppetfile.simp
+
+#. Verify the environment's ``Puppetfile``
+
+   **Only do this step you are upgrading from version SIMP 6.4 or later.**
+
+   .. Warning::
+
+      Any module not listed in the ``Puppetfile`` will be deleted from the
+      target environment's (``production`` by default) ``modules`` directory,
+      when you use :term:`r10k` to deploy the modules.
+
+   Make sure the ``Puppetfile`` you will be deploying from includes the following:
+
+   * A line that includes the ``Puppetfile.simp`` which should look like:
+
+     .. code-block:: ruby
+
+        instance_eval(File.read(File.join(__dir__,"Puppetfile.simp")))
+
+   * A line for each of your own modules.
+
+     To generate a list of non-SIMP modules in an environment do the following:
+     (This example uses the ``production`` environment):
+
+     .. code-block:: sh
+
+        simp puppetfile generate -s -l production > /tmp/Puppetfile
+
+     This will generate ``/tmp/Puppetfile`` which has a directive to include
+     the file ``Puppetfile.simp`` and  a local entry for each module that
+     presently exists in the ``production`` environment's ``modules`` directory
+     that is not also in the  SIMP repository directory,
+     ``/usr/share/simp/git/puppet_modules``.
+
+     These entries will look like the following:
+
+     .. code-block:: yaml
+
+        mod 'module name', :local => true
+
+     Verify that all modules with a local entry in ``/tmp/Puppetfile`` are in
+     your environment's ``Puppetfile`` in one of the following forms:
+
+      .. code-block:: yaml
+
+          # a module that is not a Git repository and resides in the ``modules`` directory
+          mod 'site',
+            :local => true
+
+          # a Git repository that resides in a directory on the Puppet server
+          mod 'mymodule'
+            :git => 'file:///usr/share/mymodules/mymodule',
+            :tag => '1.1.1'
+
+          #  a Git repository on a remote server
+          mod 'mysrvmod'
+            :git => 'https://gitserver.my.domain/mygitproject/mysrvmod.git'
+            :tag => '1.0.1'
+
+    .. Note::
+
+       If there are any modules on the local system that are not also in a
+       ``git`` repository (the ones that use the ``:local => true`` directive),
+       you should seriously consider creating a ``git`` repository for it to
+       make sure it does not get removed by ``r10k``.
+
+#. Deploy the modules from the local ``git`` repositories into the Environment
+
+   **Only do this step you are upgrading from version SIMP 6.4 or later.**
+
+   Use ``r10k`` to deploy the modules making sure the ``umask`` and ``group``
+   are set correctly so that the ``puppetserver`` has access to the files.
+
+   .. code-block:: sh
+
+      # Set the umask and Run r10k as the puppet group to make sure the modules
+      # to make sure the permissions and ownership are correct on the modules
+      ( umask 0027 && sg puppet -c '/usr/share/simp/bin/r10k puppetfile install \
+      --puppetfile /etc/puppetlabs/code/environments/production/Puppetfile \
+      --moduledir /etc/puppetlabs/code/environments/production/modules' )
+
+
+#. Apply the changes by running ``puppet``
+
+   .. code-block:: sh
+
       puppet agent -t
 
 
@@ -85,8 +185,8 @@ Incrementally upgrading systems using r10k or Code Manager
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 If you manage your SIMP server using :term:`r10k` or :term:`Code Manager` you
-will need to work with the upstream Git repositories as appropriate for your
-workflow.
+will need to work with the upstream ``git`` repositories as appropriate for
+your workflow.  This is the same for all versions of SIMP.
 
 
 Breaking Changes
@@ -94,8 +194,13 @@ Breaking Changes
 
 If the ``X`` version number has changed then you should expect **major**
 breaking changes to the way SIMP works. Please carefully read the Changelog and
-the new User's Guide and do **not** deploy these changes directly on top of
-your production environment.
+the :ref:`simp-user-guide` and do **not** deploy these changes directly on top
+of your ``production`` environment.
+
+If the ``Y`` version number has changed then there may either be deprecation
+notices or **minor** breaking changes to the way SIMP works. Please carefully
+read the CHANGELOG and the User's Guide and do **not** deploy these changes
+directly on top of your production environment.
 
 .. IMPORTANT::
 
@@ -103,13 +208,20 @@ your production environment.
    core services move to the new Puppet node.  All software configurations can
    be updated in Puppet, as needed.
 
+With the release of 6.4, SIMP RPM upgrades now have a "hands-off" approach to
+upgrades that allow users to easily preserve different combinations of module
+sets as required by their environment. That being said, the SIMP team does not
+test all combinations of modules and may have difficulty providing support for
+untested combinations.
+
 New Server Creation and Client Migration
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-The recommended method for upgrading breaking changes is to create a new Puppet
-Server and migrate your data and clients to it. This process follows the path
-of least destruction; we will guide you through how to back up the existing
-Puppet server, create a new server, and transfer your clients.
+The recommended method for upgrading **major** breaking changes (``X`` bump) is
+to create a new Puppet Server and migrate your data and clients to it. This
+process follows the path of least destruction; we will guide you through how to
+back up the existing Puppet server, create a new server, and transfer your
+clients.
 
 #. Set up a new Puppet server that will house your new SIMP environment.
 
