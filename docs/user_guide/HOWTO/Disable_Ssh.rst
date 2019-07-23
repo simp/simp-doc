@@ -1,4 +1,4 @@
-.. _disable_ssh:
+.. _disable_ssh_management:
 
 HOWTO Disable SSH Management
 ============================
