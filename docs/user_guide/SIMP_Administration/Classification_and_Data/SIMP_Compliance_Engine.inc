@@ -70,6 +70,32 @@ After configuring Hiera, you then need to include the ``compliance_markup`` clas
 
    include 'compliance_markup'
 
+Discovering Available Profiles
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Prior to SIMP 6.4, all profile data was embedded into the
+``simp-compliance_markup`` module.  As of 6.4, the data has been split across
+the modules with each SIMP module containing the module's specific profile data
+in the ``SIMP`` directory.
+
+Data for modules that are not maintained by the SIMP organization are still
+housed in ``simp-compliance_markup``.
+
+At this time, SIMP CE comes with two publicly available profiles, ``disa_stig``
+and ``nist_800_53:rev4``.
+
+A ``simp`` subcommand will eventually be provided to help discover available
+profiles in different environments but, for now, you can use the following code
+snippet:
+
+.. code-block:: sh
+
+    ruby -r yaml -e "puts Dir. \
+      glob('/etc/puppetlabs/code/environments/production/modules/*/{SIMP,simp}/compliance_profiles/*.yaml'). \
+      map{|x| begin YAML.load_file(x); rescue; end; }.compact. \
+      map{|x| x['profiles'] && x['profiles'].keys}. \
+      compact.flatten.sort.uniq"
+
 Profile Enforcement
 ^^^^^^^^^^^^^^^^^^^
 
@@ -79,9 +105,6 @@ the ``hiera.yaml`` configuration as shown in the previous section.
 In this case, the ``lookup_key``, is ``compliance_markup::enforcement`` and
 should be set in Hiera as an Array of compliance profiles that you would like
 to apply, in priority order.
-
-At this time, SIMP CE comes with two publicly available profiles, ``disa_stig``
-and ``nist_800_53_rev4``.
 
 If you wanted to conform with the requirements of the :term:`DISA STIG`, you
 would apply the ``disa_stig`` profile as shown below:
