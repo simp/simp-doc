@@ -1,127 +1,122 @@
 HOWTO Customize Settings for SSH
 ================================
 
-By default, including the **ssh** module will include ``ssh::server`` and
-``ssh::client``, configured with reasonable defaults for the OS and environment:
+By default, SIMP will include the ``ssh`` class from the ``simp-ssh`` module
+under most of the :ref:`SIMP scenarios <simp scenarios>`.  If it is absent
+from the scenario you have selected, add the following to :term:`Hiera` to
+include the class:
 
-.. code-block:: puppet
+.. code-block:: yaml
 
-   include 'ssh'
+   simp::classes:
+     - 'ssh'
 
-.. NOTE::
+To exclude the SIMP ``ssh`` class so that you can manage SSH configuration
+by other means, refer to :ref:`Disable SSH Management <disable_ssh_management>`.
 
-   The examples below feature ``include 'ssh::server'`` and ``include
-   'ssh::client'``, but most SIMP scenarios already include them both via
-   ``ssh``.  So, for SIMP systems, you will customize parameter settings
-   for ``ssh::server`` and ``ssh::client`` via Hiera.
+The SIMP ``ssh`` class is configured to automatically include the
+``ssh::server`` and ``ssh::client`` classes. These classes, in turn, manage
+the SSH daemon settings for incoming connections and the SSH client settings
+for outgoing connections, respectively. They configure SSH with reasonable
+defaults for the OS and environment.
+
+If you want to disable SIMP management of either the SSH server or client
+settings, you can do so through Hiera.  For example, to disable SIMP management
+of both:
+
+.. code-block:: yaml
+
+   ssh::enable_client: false
+   ssh::enable_server: false
 
 
 Managing Settings for the SSH Server
 ------------------------------------
 
-Including ``ssh::server`` with the default options will manage the server with
-reasonable settings for each host's environment.
+The ``ssh::server`` class is responsible for configuring ``sshd``.  It delegates
+configuration of specific ``sshd`` settings found in ``sshd_config`` to
+``ssh::server::conf``.  Detailed descriptions of the these settings are provided
+in the ``sshd_config(5)`` man page.
 
+The ``ssh::server::conf`` class uses a number of SIMP-specific parameters, such
+as whether the system is FIPS enabled, has a firewall, or utilizes LDAP. This
+allows seamless integration of SSH with other SIMP-managed applications in the
+larger SIMP environment.  For example, ``ssh::server::conf`` ensures the
+appropriate fallback ciphers are used, ensures proper authentication is
+configured, and allows SSH traffic through the firewall.  More detailed
+information is provided in the ``simp-ssh`` module README file.
 
 Configuring ``ssh::server::conf`` from Hiera
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
+``ssh::server::conf`` provides default configuration for key ``sshd_config``
+settings and a mechanism to set most other settings.
+
 To customize the SSH server, edit the parameters of ``ssh::server::conf`` using
-:term:`Hiera` or :term:`ENC`.
+Hiera or :term:`ENC`.
 
 .. NOTE::
 
    Unlike many SIMP modules, these customizations cannot be made
-   directly with a resource-style class declaration―they *must* be
-   made via automatic parameter lookup provided by Hiera or ENC.
+   directly with a resource-style class declaration ― they *must* be
+   made via automatic parameter lookup provided by Hiera or an ENC.
+   Examples using Hiera are provided for illustrative purposes.
 
 In Hiera:
 
 .. code-block:: yaml
 
    ssh::server::conf::port: 2222
-   ssh::server::conf::ciphers:
-   - 'chacha20-poly1305@openssh.com'
-   - 'aes256-ctr'
-   - 'aes256-gcm@openssh.com
-
-In Puppet:
-
-.. code-block:: puppet
-
-   include 'ssh::server'
-
-   # Alternative:
-   # if `ssh::enable_server: true`, this will also work
-   include 'ssh'
+   ssh::server::conf::passwordauthentication: false
 
 
 Managing Additional Settings with ``sshd_config``
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-To manage SSH server settings that are not managed by the SIMP ``ssh`` module,
-use the ``sshd_config`` resource from `augeasproviders_ssh`_.  This is what the
-SIMP ``ssh`` module uses internally to manage the ``/etc/ssh/sshd_config``
-file, and you can use it to set any options ``ssh::server::conf`` does not
-manage.
-
-For instance, to set the sshd ``LogLevel`` option to ``VERBOSE``:
-
-.. code-block:: puppet
-
-   # VERBOSE will log SSH key fingerprints used for logins
-   sshd_config { 'LogLevel' : value => 'VERBOSE' }
-
-
-Mixing ``ssh::server::conf`` and ``sshd_config``
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-Some SSH server configurations may require a combination of
-``ssh::server::conf`` (for options that SIMP manages) and ``sshd_config``
-resources (for additional options). The following example configures the
-``/etc/ssh/sshd_config`` keys ``GSSAPIAuthentication``, ``GSSAPIKeyExchange``,
-and ``GSSAPICleanupCredentials`` with a value of "**yes**":
-
-In Hiera:
+Starting with version **6.7.0** of the ``simp-ssh`` module, you can manage
+additional settings not explicitly mapped to ``ssh::server::conf`` parameters,
+using the ``ssh::server::conf::custom_entries`` parameter.  For example, to specify
+configuration for ``AllowAgentForwarding`` and ``AuthorizedPrincipalsCommand``
+``sshd`` settings, you would include Hiera such as the following:
 
 .. code-block:: yaml
 
-   # GSSAPIKeyExchange + GSSAPICleanupCredentials are managed via sshd_config
-   ssh::server::conf::gssapiauthentication: true
+  ssh::server::conf::custom_entries:
+    AllowAgentForwarding: "yes"
+    AuthorizedPrincipalsCommand: "/usr/local/bin/my_command"
 
-In Puppet:
+There are a few limitations with ``ssh::server::conf::custom_entries`` that
+need to be noted:
 
-.. code-block:: puppet
+* *No setting validation*:
+    This parameter is **not validated**. Be careful to only specify settings
+    that are allowed for your particular SSH daemon and avoid duplicate
+    declaration of settings already specified.  Invalid options may cause the
+    ``sshd`` service to fail on restart. Duplicate settings will result in
+    duplicate Puppet resources (i.e., manifest compilation failures).
 
-   include 'ssh::server'
-
-   sshd_config {
-    default:
-      ensure => 'present',
-      value  => 'yes',
-    ;
-    # GSSAPIAuthentication is managed via `ssh::server::conf::gssapiauthentication`
-    ['GSSAPIKeyExchange', 'GSSAPICleanupCredentials']:
-      # use defaults
-    ;
-   }
-
+* *No direct MATCH entry support*:
+     Due to their complexity, ``Match`` entries are not supported.  However,
+     you can add them using the ``sshd_config_match`` resource from the
+     `herculesteam-augeasproviders_ssh`_ module.  Since ``simp-ssh`` uses
+     this module internally, the ``sshd_config_match`` resource will be
+     available to you on any node using ``simp-ssh``.
 
 
 Managing Settings for the SSH Client
 ------------------------------------
 
-Including ``ssh::client`` will automatically manage client settings as the
-default for all hosts (``Host *``).
+The ``ssh::client`` class is responsible for configuring default client settings
+for outgoing SSH sessions to all hosts (``Host *``).
 
 
 Managing Settings for the Default Host Entry (``Host *``)
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 If you want to customize the default settings, you must prevent ``ssh::client``
-from declaring them automatically with ``ssh::client::add_default_entry: false``
-and declare ``Host *`` manually with the defined type
-``ssh::client::host_config_entry``:
+from declaring them automatically and then declare ``Host *`` settings manually.
+You do this by setting ``ssh::client::add_default_entry`` to ``false`` and
+using the defined type ``ssh::client::host_config_entry``.  For example:
 
 In Hiera:
 
@@ -157,9 +152,9 @@ type ``ssh::client::host_config_entry``:
 Managing Additional Settings with ``ssh_config``
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Starting with version **6.4.0** of the **simp-ssh** module, you can use the
-``sshd_config`` resource from `augeasproviders_ssh`_ to manage settings that the
-module does not cover.
+Starting with version **6.4.0** of the ``simp-ssh`` module, you can use the
+`ssh_config`_ resource from the `herculesteam-augeasproviders_ssh`_ module to
+manage settings that the module does not cover.
 
 For instance, to ensure that the default host entry's ``RequestTTY`` option is
 set to ``auto``:
@@ -173,11 +168,5 @@ set to ``auto``:
      value  => 'auto',
    }
 
-
-Environments that use **simp-ssh** versions prior to **6.4.0** will not be
-able to make further customizations using ``ssh_config`` resource, because it
-will conflict with the internal implementation of
-``ssh::client::host_config_entry``.  However, users can still add extra SSH
-client configurations by editing their ``$HOME/.ssh/config`` files.
-
-.. _augeasproviders_ssh: http://augeasproviders.com/documentation/examples.html#sshdconfig-provider
+.. _herculesteam-augeasproviders_ssh: https://github.com/hercules-team/augeasproviders_ssh
+.. _ssh_config: https://github.com/hercules-team/augeasproviders_ssh/blob/master/README.md
