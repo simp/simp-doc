@@ -41,7 +41,7 @@ in the ``sshd_config(5)`` man page.
 The ``ssh::server::conf`` class uses a number of SIMP-specific parameters, such
 as whether the system is FIPS enabled, has a firewall, or utilizes LDAP. This
 allows seamless integration of SSH with other SIMP-managed applications in the
-larger SIMP enviornment.  For example, ``ssh::server::conf`` ensures the
+larger SIMP environment.  For example, ``ssh::server::conf`` ensures the
 appropriate fallback ciphers are used, ensures proper authentication is
 configured, and allows SSH traffic through the firewall.  More detailed
 information is provided in the ``simp-ssh`` module README file.
