@@ -1,111 +1,300 @@
 .. _howto-setup-a-simp-control-repository:
 
-HOWTO Set up a SIMP Control Repository
-======================================
+HOWTO Set up a SIMP Environment in a Control Repository
+=======================================================
 
-A control repository contains the modules, hieradata, and roles/profiles
-required in a Puppet infrastructure.  Managing the control repo with GIT allows
-sysadmins to utilize a workflow when updating and developing their
-infrastructure.
+A :term:`Control Repository` contains the modules, hieradata, and roles/profiles
+required in a Puppet infrastructure.  Managing the control repository with
+:term:`Git` allows sysadmins to utilize a workflow when updating and developing
+their infrastructure.
 
-.. NOTE::
+This HOWTO will describe how to create a :term:`SIMP Omni-Environment skeleton`,
+whose :term:`Puppet environment` can be checked into a branch on an existing
+control repository.  Before proceding with this section, you should
 
-   Refer to Puppet, Inc.'s `control repository documentation`_ for more
-   information.
+* Have a basic understanding of control repositories.
+* Have a basic understanding of how to use ``git``.
+* Have a Git repository that you will be using as your control repository.
+* Have read :ref:`Deploying SIMP Environments`.  It contains detailed
+  descriptions of key topics:
 
-SIMP distributes a partial control repository:
+  - the SIMP Omni-Environment
+  - local, SIMP-managed Git repositories maintained by SIMP Puppet module RPMs
+  - SIMP :term:`CLI` commands to assist with SIMP Omni-Environment management.
 
-* On the filesystem of an installed SIMP system:
+.. TIP::
 
-.. code-block:: bash
+   You may find it helpful to read the section that explains how a control
+   repository works in `Puppet, Inc.'s control repository documentation`_ .
 
-   # tree -L 1 /usr/share/simp/environments/simp/
-   /usr/share/simp/environments/simp/
-   ├── environment.conf
-   ├── FakeCA
-   ├── hieradata
-   ├── manifests
-   └── modules
+SIMP Omni-Environment Requirement
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-* In our `environment repository`_ :
+Although (with a detailed understanding of SIMP internals) you can have a
+a :term:`SIMP server` that will function with just a Puppet environment, by
+default, a functioning SIMP server **requires** its entire SIMP Omni-Environment.
+So, the instructions in this HOWTO will create a SIMP Omni-Environment whose
+skeleton Puppet environment you can check into a branch in your control
+repository.
 
-.. code-block:: bash
-
-   # tree -L 1 src/assets/simp-environment/environments/simp
-   src/assets/simp-environment/environments/simp
-   ├── environment.conf
-   ├── hieradata/
-   └── manifests/
-
-To begin creating your control repository, make a directory, say ``r10k_production``,
-and copy in the contents of the ``simp-environment-skeleton`` or
-``environments/simp`` from a live system, depending on your needs.
-
-Modules are defined in a Puppetfile.  We keep up-to-date Puppetfiles in the
-base of our `simp-core repository`_.  For best results, download
-``Puppetfile.stable`` to the base of the ``r10k_production`` directory, using the
-following snippet:
+The procedure in this HOWTO assumes the new SIMP Omni-Environment will be
+using its own secondary and writable environments.  For more complex SIMP
+Omni-Environment configurations (e.g., linking the secondary and writable
+directories to another environment in order to share rsync data and secrets),
+see the built-in SIMP CLI documentation for creating SIMP Omni-Environments:
 
 .. code-block:: bash
 
-   # curl -o Puppetfile https://github.com/simp/simp-core/blob/<release>/Puppetfile.stable
+   $ simp environment new -h
 
-.. NOTE::
+Procedures
+^^^^^^^^^^
 
-   The example Puppetfile is labeled stable, meaning that the versions of the
-   modules it contains are the ones contained in the last SIMP release.  You can
-   go to any previous release and download a Puppetfile with references to older
-   modules from the git history of the simp-core repo.
+STEP 1: Install Prerequisite Packages
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-Our Puppetfile pulls down every dependency SIMP needs, including more than just
-Puppet modules.  Remove non-Puppet modules by editing the downloaded Puppetfile
-and erasing the lines ``moduledir 'src'`` to ``moduledir 'src/puppet/modules``.
+This HOWTO requires the following RPMs to be installed on your SIMP
+server:
 
-If want your data layer to be SIMP-like, create a ``hiera.yaml`` file at the
-base of the ``r10k_production`` directory, and add the following content:
+* ``rubygem-simp-cli``
+* ``simp-environment-skeleton``
+* ``simp-rsync-skeleton``
+* ``simp-selinux-policy``
+* SIMP module RPMs, **only if** you will be using the local, SIMP-managed
+  Git repositories in your environment's :term:`Puppetfile`
 
-.. NOTE::
+All of these packages will already be installed if you have installed the SIMP
+server from ISO or from RPM.  Otherwise, do the following:
 
-   For more information about data in SIMP, see the
-   :ref:`Classification and Data` documentation.
+#. Configure SIMP repositories as described in :ref:`gsg-installing_simp_from_a_repository`.
+#. Install the packages as the ``root`` user:
 
-.. code-block:: yaml
+   .. code-block:: bash
 
-   ---
+      # This will install the minimum packages required to run the SIMP CLI.
+      # * simp-environment-skeleton and simp-selinux-policy will be also
+      #   be install, automatically
+      # * The installed packages will include a few SIMP Puppet module RPMs,
+      #   but these modules will **NOT** be installed in any Puppet environment.
+      #
+      $ yum install simp-rsync-skeleton rubygem-simp-cli
 
-   # This is the default hiera.yaml file
-   # Feel free to modify the hierarchy to suit your needs but please
-   # leave the simp* entries in place at the bottom of the list
-   :backends:
-     - 'yaml'
-     - 'json'
-   :hierarchy:
-     - 'hosts/%{trusted.certname}'
-     - 'hosts/%{facts.fqdn}'
-     - 'hosts/%{facts.hostname}'
-     - 'domains/%{facts.domain}'
-     - '%{facts.os.family}'
-     - '%{facts.os.name}/%{facts.os.release.full}'
-     - '%{facts.os.name}/%{facts.os.release.major}'
-     - '%{facts.os.name}'
-     - 'hostgroups/%{::hostgroup}'
-     - 'default'
-     - 'compliance_profiles/%{::compliance_profile}'
-     - 'simp_config_settings'
-     - 'scenarios/%{::simp_scenario}'
-   :logger: 'puppet'
-   # When specifying a datadir:
-   # # 1) Make sure the directory exists
-   # # 2) Make sure the directory reflects the hierarchy
-   :yaml:
-     :datadir: '/etc/puppetlabs/code/environments/%{::environment}/hieradata'
-   :json:
-     :datadir: '/etc/puppetlabs/code/environments/%{::environment}/hieradata'
+      # Execute this step if you want to use local Git repositories for
+      # core SIMP modules
+      #
+      $ yum install simp
 
-Run ``git init .`` at the base of the ``r10k_production`` directory and commit
-changes to a ``production`` branch.  Push the ``production`` branch to a
-repository of your choosing.
+      # Execute this step if you want to use local Git repositories for
+      # all extra SIMP modules, such as simp-nfs.  If you only want
+      # a few of the extra modules, you can simply install those
+      # Puppet module RPMs, instead.  Each module RPM is named
+      # pupmod-<Puppet Forge org>-<module name>.
+      #
+      $ yum install simp-extras
 
-.. _control repository documentation: https://docs.puppet.com/pe/latest/cmgmt_control_repo.html
-.. _environment repository: https://github.com/simp/simp-environment-skeleton
+
+Step 2: Create a New SIMP Omni-Environment
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+This section provides instructions for creating the new SIMP Omni-Environment
+skeleton for which modules could be deployed by :term:`r10K` or
+:term:`Code Manager` using a Puppetfile.  Two typical options are presented:
+
+* :ref:`howto-setup-a-simp-control-repository-using-local-repositories`
+* :ref:`howto-setup-a-simp-control-repository-using-internet-repositories`
+
+For illustrative purposes, the new environment will be named ``dev1`` in the
+procedures.
+
+
+.. _howto-setup-a-simp-control-repository-using-local-repositories:
+
+Using Local Module Repositories
+'''''''''''''''''''''''''''''''
+
+#. Create the SIMP Omni-Environment skeleton as the ``root`` user:
+
+   .. code-block:: bash
+
+       $ simp environment new dev1
+
+   This will do the following:
+
+   * Create a skeleton Puppet directory at ``/etc/puppetlabs/code/environments/dev1``.
+   * Create a skeleton Secondary directory at ``/var/simp/environments/dev1``.
+   * Generate new ``Puppetfile`` and ``Puppetfile.simp`` files in
+     ``/etc/puppetlabs/code/environments/dev1``.
+
+     - ``Puppetfile`` includes ``Puppetfile.simp``.
+     - ``Puppetfile.simp`` contains entries for the latest versions of
+       SIMP-packaged Puppet modules for which local Git repositories exist
+       (i.e., all SIMP modules installed via RPM).
+
+   It does not have to create the Writable environment, because that will be
+   automatically generated, as needed, when ``puppet`` is run
+
+#. Manually edit the generated ``Puppetfile`` to add entries for any other
+   non-SIMP modules your site requires.
+
+#. Add/adjust any of the :term:`Hiera` files in
+   ``/etc/puppetlabs/code/environments/dev1/data``
+
+   * If you bootstrapped the SIMP server using the procedures in
+     :ref:`ug-initial_server_configuration`, you will likely want to copy
+     over the ``simp_config_settings.yaml`` and the SIMP server's
+     ``hosts/<SIMP server FQDN>.yaml`` files from the ``production``
+     environment.
+
+.. _howto-setup-a-simp-control-repository-using-internet-repositories:
+
+Using Internet Module Repositories
+''''''''''''''''''''''''''''''''''
+
+.. IMPORTANT::
+
+   If you intend to bootstrap a SIMP server from the environment created
+   in this section, it **must** be named ``production``, instead of ``dev1``.
+
+
+#. Create the SIMP Omni-Environment skeleton without SIMP local repository
+   Puppetfiles as the ``root`` user:
+
+   .. code-block:: bash
+
+      $ simp environment new dev1 --no-puppetfile-gen
+
+   This will do the following:
+
+   * Create a skeleton Puppet directory at ``/etc/puppetlabs/code/environments/dev1``.
+   * Create a skeleton Secondary directory at ``/var/simp/environments/dev1``.
+
+   This will create skeleton Puppet and Secondary environment directories. It
+   doesn't have to create the Writable environment, because that will be
+   automatically generated as needed when ``puppet`` is run.
+
+#. Download the ``Puppetfile`` used to create a SIMP ISO for a specific release
+   from the SIMP `simp-core repository`_. In this example, we are going to use
+   the SIMP ``6.4.0-0`` release.
+
+   .. code-block:: bash
+
+      $ cd /etc/puppetlabs/code/environments/dev1
+      $ curl -o Puppetfile https://github.com/simp/simp-core/blob/6.4.0-0/Puppetfile.pinned
+
+   .. IMPORTANT::
+
+      This `simp-core`` ``Puppetfile`` will look a little different from
+      Puppetfiles you are used to because it has entries for SIMP components
+      that are not Puppet modules (e.g., ``simp-environment-skeleton``).
+
+      **>> You are going to fix that next! <<**
+
+#. Manually edit the ``Puppetfile`` to remove components that are not Puppet
+   modules by deleting all lines up to and including
+   ``moduledir  'src/puppet/modules``.
+
+#. Manually edit the ``Puppetfile`` to add entries for any other non-SIMP modules
+   your site requires.
+
+#. Optionally, manually edit the ``Puppetfile`` to remove any non-core SIMP
+   modules that are packaged with the ``simp-extras`` RPM, but you don't need.
+   You can discover the list of the SIMP extra modules by examining the RPM
+   requirements of the ``simp-extras`` RPM as follows:
+
+   .. code-block:: bash
+
+      $ yum deplist simp-extras
+
+   .. WARNING::
+
+      If you are not sure which modules are SIMP core modules, skip this step!
+
+#. Add/adjust any of the :term:`Hiera` files in
+   ``/etc/puppetlabs/code/environments/dev1/data``
+
+
+At this point, this SIMP Omni-Environment skeleton will not have the
+configuration that would be generated by the
+:ref:`ug-initial_server_configuration` procedures, the
+``simp_config_settings.yaml`` and ``hosts/<SIMP server FQDN>.yaml`` files in
+``/etc/puppetlabs/code/environments/production/data``.  If the intent of this
+branch is to bootstrap a SIMP server, check the Puppet environment skeleton you
+just generated into your control repository (next section) and then follow the
+instructions in `Advanced Topics`_.
+
+Step 3: Create a New Branch in Your Control Repository
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+#. Create an empty git repository in the newly created environment
+
+   .. code-block:: bash
+
+      $ cd /etc/puppetlabs/code/environments/dev1
+
+      # create a repository with the contents of the environment
+      # skeleton directory
+      $ git init .
+
+#. Add all the files to a branch named for the environment in this repository
+
+   .. code-block:: bash
+
+      # create the branch
+      $ git checkout -b dev1
+
+      # add the directory tree
+      $ git add --all
+
+      # verify the directory tree doesn't have any temporary files you created
+      $ git status
+
+      $ git commit -m 'Initial dev1 environment'
+
+#. Push the branch to your control_repo
+
+   .. code-block:: bash
+
+      # Add a remote for your control repository
+      $ git remote add control_repo <URL to the control repo>
+
+      # Push the branch
+      $ git push dev1 control_repo
+
+
+Advanced Topics
+^^^^^^^^^^^^^^^
+
+Bootstrapping A SIMP Server without SIMP Module RPMs
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+This topic assumes you have created a SIMP Omni-Environment, but in lieu
+of bootstrapping the :term:`SIMP server` using the local, SIMP-managed
+Git repositories from SIMP-provided Puppet module RPMs, you are using
+modules specified in a ``Puppetfile`` in that environment.
+
+
+#. Install the Puppet modules  via ``r10k`` or ``Code Manager`` using the
+   ``Puppetfile``.
+
+#. Run ``simp config`` with an option that tells it the SIMP Omni-Environment
+   has already been created
+
+   .. code-block:: bash
+
+      # Run simp config with an existing SIMP Omni-Environment
+      $ simp config --force-config
+
+#. Continue with the remaining SIMP server setup procedures in
+   in :ref:`gsg-installing_simp_from_a_repository`, beginning with
+   ``simp bootstrap``
+
+#. After ``simp bootstrap`` completes, add the following generated Hiera files
+   in the ``production`` Puppet environment to the ``production`` branch in your
+   control repository:
+
+   * ``production/data/simp_config_settings.yaml``
+   * ``production/data/hosts/<SIMP server FQDN>.yaml``
+
+
+.. _Puppet, Inc.'s control repository documentation: https://docs.puppet.com/pe/latest/cmgmt_control_repo.html
 .. _simp-core repository: https://github.com/simp/simp-core
