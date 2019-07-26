@@ -840,7 +840,8 @@ Glossary of Terms
       See: :ref:`ug-sa-simp-environments`
 
    SIMP Omni-Environment skeleton
-      A SIMP Omni-Environment in which modules have not been deployed yet.
+      A :term:`SIMP Omni-Environment` in which modules have not been deployed
+      yet.
 
    SIMP Secondary Environment
    Secondary Environment
