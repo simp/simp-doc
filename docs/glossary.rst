@@ -143,6 +143,7 @@ Glossary of Terms
       See Also: :term:`r10k`
 
    Control Repo
+   Control Repository
       A version control repository containing all of the required modules, data,
       and configuration for a Puppet environment.
 
