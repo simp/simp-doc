@@ -7,7 +7,7 @@ Introduction to the SIMP Utility
 --------------------------------
 
 The ``simp`` command provides a CLI intended to make the
-configuration of the SIMP server straightforward and repeatable.
+configuration of the :term:`SIMP server` straightforward and repeatable.
 In these instructions, we will be using the ``config`` and ``bootstrap``
 options of the ``simp`` command
 
@@ -111,12 +111,16 @@ Configuring the SIMP Server
    configuration items.
 
 
-When your systems comes back up, the SIMP server (``puppetserver``) is ready for
-site-specific configuration.  To learn more details about what the ``simp`` utility
-just did to your system,  see :ref:`gsg-advanced-configuration`.
+When your systems comes back up, SIMP-managed security settings have been applied
+and the SIMP server (``puppetserver``) is ready for site-specific configuration.
+To ``su`` to ``root`` from the  ``simp`` user, you must now use ``sudo su -t root``.
 
-To continue configuring the system, move on to the next section in the
-:ref:`simp-user-guide`, :ref:`Client_Management`.
+Next steps:
+
+* To continue configuring the system, move on to the next section in the
+  :ref:`simp-user-guide`, :ref:`Client_Management`.
+* To learn more details about what the ``simp`` utility just did to your system,
+  see :ref:`gsg-advanced-configuration`.
 
 Optional: Extract the full OS RPM Package Set
 ---------------------------------------------

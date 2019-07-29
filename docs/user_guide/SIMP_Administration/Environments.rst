@@ -1,3 +1,5 @@
+.. _Deploying SIMP Environments:
+
 Deploying SIMP Environments
 ===========================
 
@@ -12,7 +14,7 @@ integrate SIMP environments into your site's deployment strategy.
 .. include:: Environments/Deployment_Scenarios.inc
 .. include:: Environments/Local_Module_Repositories.inc
 .. include:: Environments/Example_NewEnv.inc
-
+.. include:: Environments/SIMP_CLI_Environment_Management.inc
 ..
   TODO:
 
@@ -21,7 +23,7 @@ integrate SIMP environments into your site's deployment strategy.
  .. include::  Environments/Deploying_Simp_Environments.inc
 
  // optional, covers later deployment scenarios
- .. include::  Environments/Deploying_from_local_repositories.inc
+ .. include::  Environments/Deploying_from_internet_repositories.inc
 
 .. _Puppet Environments: https://docs.puppet.com/puppet/latest/environments.html
 
