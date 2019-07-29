@@ -3,8 +3,7 @@ SIMP CLI Commands for Environment Management
 
 The SIMP CLI provides commands to aid you in many facets of Puppet
 environment management.  This section will explain the basics of each command,
-and then demonstrate how to use these commands in a typical environment
-management scenario.
+many of which were used in :ref:`example_create_and_deploy_new_env`.
 
 .. NOTE::
 
@@ -33,7 +32,7 @@ documentation. To see the options available, execute the following:
    $ simp environment new -h
 
 Default Behavior
-~~~~~~~~~~~~~~~~
+++++++++++++++++
 
 When no options are specified, ``simp environment new <env name>`` , takes the
 following actions:
@@ -111,7 +110,7 @@ documentation. To see the options available, execute the following:
    $ simp environment fix -h
 
 Default Behavior
-~~~~~~~~~~~~~~~~
+++++++++++++++++
 
 When no options are specified, ``simp environment fix <env name>`` , takes the
 following actions:
@@ -167,7 +166,7 @@ a standard SIMP server install from SIMP ISO or SIMP RPMs, execute:
    $ simp puppetfile generate > Puppetfile.simp
 
 Default Behavior: Generating Latest SIMP-only Puppetfile Content
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
 When no options are specified, ``simp puppetfile generate``, prints to the
 console a Puppetfile that could be used to deploy the current set of SIMP Puppet
@@ -197,7 +196,7 @@ SIMP chose the naming convention to match that of :term:`PuppetForge`.
 
 
 Generating a Parent Puppetfile Skeleton
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
++++++++++++++++++++++++++++++++++++++++
 
 When the ``--skeleton`` option is specified,
 ``simp puppetfile generate --skeleton`` prints to the console a parent
@@ -215,7 +214,7 @@ assumed to be in the same directory as the parent Puppetfile.
   Git source control and for which there is no local Git repository.
 
 Other Options
-~~~~~~~~~~~~~
++++++++++++++
 
 The options ``simp puppetfile generate`` provides are documented in its built-in
 SIMP CLI documentation. To see the options available, execute the following:
@@ -223,9 +222,3 @@ SIMP CLI documentation. To see the options available, execute the following:
 .. code-block:: bash
 
    $ simp puppetfile generate -h
-
-
-Example:  Create a test environment for assessing a new SIMP version
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-*Under Construction*

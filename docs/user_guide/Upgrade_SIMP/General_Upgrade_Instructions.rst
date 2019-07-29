@@ -28,6 +28,10 @@ major numbers, in the format `X.Y.Z`:
 This section describes both the general, recommended upgrade procedures for
 ``X``, ``Y``, or ``Z`` releases.
 
+.. contents::  Contents
+   :depth: 3
+   :local:
+
 .. _ug-incremental-upgrades:
 
 Incremental Upgrades
@@ -38,6 +42,11 @@ changes directly into your **test** systems. The promotion cycle from test to
 production should be short and painless if you reference the version upgrade
 documentation.
 
+Beginning with SIMP 6.4.0, simply installing SIMP-packaged Puppet module RPMs
+will no longer apply the module updates to the ``simp`` :term:`Puppet environment`.
+You must deploy the Puppet modules to the desired Puppet environment(s) using
+the mechanism appropriate for your :ref:`deployment scenario <ug-deployment_scenarios>`.
+
 .. IMPORTANT::
 
    Review any :ref:`ug-version-specific-upgrade-instructions` prior to
@@ -46,12 +55,14 @@ documentation.
 
 .. _ug-incremental-upgrades-w-iso:
 
-Incrementally upgrading systems using local deployment scenario
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+Local deployment scenario incremental upgrade
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-The following set of instructions is specific for a ``Local`` deployment scenario.
-See :ref:`ug-deployment_scenarios` for descriptions of the different types of
-deployment scenarios.
+The following instructions assume the Puppet environment you are updating is
+named ``test`` and are specific to a
+:ref:`Local deployment scenario<ug-local_module_deployment_scenario>`.
+
+Execute these steps as ``root``.
 
 #. Update the YUM Repositories
 
@@ -67,31 +78,32 @@ deployment scenarios.
         .. code-block:: sh
 
            # Unpack the new SIMP ISO's RPMs into yum repositories
-           unpack_dvd </path/to/ISO>
+           $ unpack_dvd </path/to/ISO>
 
    * For RPM-based installation, follow your site's procedures to update your
      repositories.
 
 #. Install the RPMs
 
-   Update the system-local :term:`git` repositories by installing the new RPMs
-
    .. code-block:: sh
 
       # Make sure yum picks up the new RPMs
-      yum clean all; yum makecache
+      $ yum clean all; yum makecache
 
       # Apply updates to the local master
-      yum update -y
+      $ yum update -y
+
+   For SIMP 6.4 and later, this will also update the system-local, SIMP-managed
+   Puppet module :term:`Git` repositories.
 
 #. If you are upgrading from a version before SIMP 6.4 you can skip to the last
    step, *Apply the changes by running puppet*.
 
-   ** The following steps only apply for upgrades from version 6.4 or later
+   ** **The following steps only apply for upgrades from version 6.4 or later**
 
    .. include:: ../SIMP_Administration/Environments/Update_and_Deploy_Local_Environment.inc
 
-   ** This ends the steps that are only for 6.4 or later.  The next steps apply
+   ** **This ends the steps that are only for 6.4 or later.**  The next steps apply
    to all systems.
 
 
@@ -99,15 +111,18 @@ deployment scenarios.
 
    .. code-block:: sh
 
-      puppet agent -t
+      $ puppet agent -t
 
-Incrementally upgrading systems using r10k or Code Manager
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+Other deployment scenario incremental upgrade
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-If you manage your SIMP server using :term:`r10k` or :term:`Code Manager` you
-will need to work with the upstream ``git`` repositories as appropriate for
-your workflow.  This is the same for all versions of SIMP.
+If you manage your SIMP server using :term:`r10k` or :term:`Code Manager` and
+are not using the server-local, SIMP-managed Git module repositories, you
+will need to work with the upstream Git repositories as appropriate for your
+workflow.  This is the same for all versions of SIMP.
 
+For SIMP 6.4 and later, the instructions in
+:ref:`howto-setup-a-simp-control-repository` may be helpful.
 
 Breaking Changes
 ~~~~~~~~~~~~~~~~

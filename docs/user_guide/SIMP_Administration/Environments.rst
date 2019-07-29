@@ -10,6 +10,10 @@ in a control repository.
 This section describes how SIMP interacts with Puppet environments, and how to
 integrate SIMP environments into your site's deployment strategy.
 
+.. contents:: Contents
+   :depth: 2
+   :local:
+
 .. include:: Environments/SIMP_Environments.inc
 .. include:: Environments/Deployment_Scenarios.inc
 .. include:: Environments/Local_Module_Repositories.inc
