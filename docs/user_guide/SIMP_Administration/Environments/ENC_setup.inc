@@ -1,33 +1,39 @@
 .. _ug-deploy-env-enc:
 
-External Node Classifier
-++++++++++++++++++++++++
+SIMP's External Node Classifier
++++++++++++++++++++++++++++++++
 
-An :term:External Node Classifier ,ENC , can be used to determine what
-environment is used by a node.
+An :term:`External Node Classifier`, ENC, can be used to determine what
+Puppet environment is used by a node.
 
-SIMP provides a simple ENC in the ``simp-utils`` RPM.  It is installed
-as ``/usr/local/bin/set_environment``.
+.. TIP::
 
-To use this script for your :term:ENC do the following:
+   For an ENC overview, please see `Puppet's ENC documentation`_.
 
-#. Ensure the script can be executed by the Puppet server.
+SIMP provides a simple, YAML-based ENC, ``/usr/local/bin/set_environment``,
+available from the ``simp-utils`` RPM.  That package will already be installed
+on your system, if you installed the SIMP server from a SIMP ISO or from RPM.
+
+To use this script for your ENC, do the following as ``root``:
+
+#. Ensure the script can be executed by the ``puppetserver``.
 
    .. code-block:: sh
 
-      chmod g+rX /usr/local/bin/set_environment
-      chgrp puppet /usr/local/bin/set_environment
+      $ chmod g+rX /usr/local/bin/set_environment
+      $ chgrp puppet /usr/local/bin/set_environment
 
-#. Configure Puppet to use this script as an :term:ENC
+#. Configure Puppet to use this script as an ENC
 
-   a. Add, or change, the line 'node_terminus' to 'exec' in the
-      [master] section of ``/etc/puppetlabs/puppet/puppet.conf``.
-   b. Set the 'external_nodes' entry in the [master] section of
-      puppet.conf to point to this script.
+   Set the following in the ``[master]`` section of
+   ``/etc/puppetlabs/puppet/puppet.conf``:
+
+   a. Add or change the line ``node_terminus`` to ``exec``.
+   b. Set the ``external_nodes`` entry to ``/usr/local/bin/set_environment``.
 
    The resulting lines should look something like this:
 
-   .. code-block:: yaml
+   .. code-block:: ini
 
       ...
       [master]
@@ -36,37 +42,56 @@ To use this script for your :term:ENC do the following:
       external_nodes = /usr/local/bin/set_environment
       ...
 
-#. Add the file ``/etc/puppetlabs/puppet/environments.yaml`` to
-   your system.
+#. Add a file ``/etc/puppetlabs/puppet/environments.yaml`` to your system.
 
-   Add a directive per line for assiging nodes in the form of
-   <regular expression or fqdn>: 'environment name'
+   This file defines the mapping of nodes to environments.
+
+   * Each rule in this file should have the form
+
+       ``<regular expression or FQDN>: 'environment name'``.
+
+   * The rules are processed from top down, and the first match wins.
+
+   For example,
 
    .. code-block:: yaml
 
-      'puppet.my.domain':      'production'
-      '/^test([0-9])+\.my\.domain/':   'test'
-      # Fall back to production in all cases
-      '/^.*$/':                           'production'
+      # The puppetmaster will use the production environment
+      'puppet.my.domain':            'production'
 
-   To verify the file is properly formatted
-   and yields the classification desired run the script
-   manually with a hostname.  For example,
+      # Any node in my.domain whose FQDN begins with test will use the test environment
+      '/^test([0-9])+\.my\.domain/': 'test'
+
+      # Default to the production environment in all other cases
+      '/^.*$/':                      'production'
+
+   To verify the file is properly formatted and yields the classification desired
+   run the script manually with a node's FQDN.  It should return
+
+     ``environment: <node's Puppet environment name>``
+
+   Using our example ``environments.yaml`` file, the following command should return
+
+     ``environment: test``
 
    .. code-block:: sh
 
-      #The following should return
-      #   environment: test
-      #
-      /usr/local/bin/set_environment test11.my.domain
-
-   should return ``environment: test``
-
-#. Restart the Puppet Server process
-
-There is more information about the ``/usr/local/bin/set_environment``
-in the script.   The puppet documentation has further information on
-`External Node Classifiers`_
+      $ /usr/local/bin/set_environment test11.my.domain
 
 
-.. _External Node Classifiers: https://puppet.com/docs/puppet/latest/nodes_external.html
+#. Ensure the ``puppetserver`` can access the ENC's configuration file
+
+   .. code-block:: sh
+
+      $ chmod g+rX /etc/puppetlabs/puppet/environments.yaml
+      $ chgrp puppet /etc/puppetlabs/puppet/environments.yaml
+
+#. Restart the ``puppetserver`` service
+
+   .. code-block:: sh
+
+      # On EL7
+      $ systemctl restart puppetserver
+
+
+.. _Puppet's ENC documentation: https://puppet.com/docs/puppet/latest/nodes_external.html

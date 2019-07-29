@@ -3,14 +3,11 @@ SIMP CLI Commands for Environment Management
 
 The SIMP CLI provides commands to aid you in many facets of Puppet
 environment management.  This section will explain the basics of each command,
-and then demonstrate how to use these commands in a typical environment
-management scenario.
+many of which were used in :ref:`example_create_and_deploy_new_env`.
 
 .. NOTE::
 
    All SIMP CLI environment management commands need to be run as ``root``.
-
-.. _ug-sa-env-cli-simp-environment-new:
 
 simp environment new
 ^^^^^^^^^^^^^^^^^^^^
@@ -32,7 +29,7 @@ documentation. To see the options available, execute the following:
 
 .. code-block:: bash
 
-   $ simp environment new -h
+   simp environment new -h
 
 Default Behavior
 ~~~~~~~~~~~~~~~~
@@ -53,9 +50,9 @@ following actions:
 
         .. code-block:: bash
 
-           $ cd /etc/puppetlabs/code/environments/<env name>
-           $ simp puppetfile generate --skeleton > Puppetfile
-           $ simp puppetfile generate > Puppetfile.simp
+           cd /etc/puppetlabs/code/environments/<env name>
+           simp puppetfile generate --skeleton > Puppetfile
+           simp puppetfile generate > Puppetfile.simp
 
       * *Puppetfile*:
           An empty parent Puppetfile that includes ``Puppetfile.simp`` and is
@@ -93,8 +90,6 @@ following actions:
     environment will be automatically generated, as needed, when ``puppet``
     is run
 
-.. _ug-sa-env-cli-simp-environment-fix:
-
 simp environment fix
 ^^^^^^^^^^^^^^^^^^^^
 
@@ -112,7 +107,7 @@ documentation. To see the options available, execute the following:
 
 .. code-block:: bash
 
-   $ simp environment fix -h
+   simp environment fix -h
 
 Default Behavior
 ~~~~~~~~~~~~~~~~
@@ -128,8 +123,6 @@ following actions:
 * Restores SELinux contexts under ``/var/simp/environments/<env name>``.
 * Applies FACL rules to ``/var/simp/environments/<env name>/rsync``
 
-
-.. _ug-sa-env-cli-simp-puppetfile-generate:
 
 simp puppetfile generate
 ^^^^^^^^^^^^^^^^^^^^^^^^
@@ -159,7 +152,7 @@ SIMP module RPMs, all you have to do is to execute:
 
 .. code-block:: bash
 
-   $ simp puppetfile generate > <your SIMP-only Puppetfile path>
+   simp puppetfile generate > <your SIMP-only Puppetfile path>
 
 Your list of site-specific Puppet modules in the parent Puppetfile will be
 unaffected.
@@ -169,8 +162,8 @@ a standard SIMP server install from SIMP ISO or SIMP RPMs, execute:
 
 .. code-block:: bash
 
-   $ cd /etc/puppetlabs/code/environments/production
-   $ simp puppetfile generate > Puppetfile.simp
+   cd /etc/puppetlabs/code/environments/production
+   simp puppetfile generate > Puppetfile.simp
 
 Default Behavior: Generating Latest SIMP-only Puppetfile Content
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -228,10 +221,4 @@ SIMP CLI documentation. To see the options available, execute the following:
 
 .. code-block:: bash
 
-   $ simp puppetfile generate -h
-
-
-Example:  Create a test environment for assessing a new SIMP version
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-*Under Construction*
+   simp puppetfile generate -h

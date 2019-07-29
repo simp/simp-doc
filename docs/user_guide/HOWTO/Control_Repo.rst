@@ -27,6 +27,10 @@ control repository.  Before proceding with this section, you should
    You may find it helpful to read the section that explains how a control
    repository works in `Puppet, Inc.'s control repository documentation`_ .
 
+.. contents:: Contents
+   :depth: 3
+   :local:
+
 SIMP Omni-Environment Requirement
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
@@ -111,7 +115,7 @@ server from ISO or from RPM.  Otherwise, do the following:
         ``metadata.json`` file and guarantees uniqueness in :term:`PuppetForge`.
 
 
-Step 2: Create a New SIMP Omni-Environment
+STEP 2: Create a New SIMP Omni-Environment
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 This section provides instructions for creating the new SIMP Omni-Environment
@@ -229,7 +233,7 @@ Using Internet Module Repositories
    ``/etc/puppetlabs/code/environments/dev1/data``
 
 
-Step 3: Create a New Branch in Your Control Repository
+STEP 3: Create a New Branch in Your Control Repository
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 #. Create an empty git repository in the newly created Puppet environment:

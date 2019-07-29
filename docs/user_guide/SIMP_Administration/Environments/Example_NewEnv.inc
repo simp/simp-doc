@@ -1,61 +1,85 @@
+.. _example_create_and_deploy_new_env:
+
 Example: Create and Deploy a New Environment
 --------------------------------------------
 
-This section steps through creating a new  :term:`SIMP Omni-Environment`,
-deploying the ``simp`` modules and configuring an :term:`ENC` to move nodes
-to the new environment.
+This section steps through creating a new :term:`SIMP Omni-Environment`,
+deploying the SIMP modules and configuring an
+:term:`External Node Classifier (ENC) <ENC>` to assign nodes to the new
+environment.
 
 See :ref:`ug-sa-simp-environments` for more information on the
-:term:SIMP OMNI Environment.
+:term:`SIMP Omni-Environment`.
 
-This example uses the ``Local`` deployment scenario.  See :ref:`ug-deployment_scenarios`
-for more information on deployment scenarios.
+This example uses the :ref:`Local deployment scenario<ug-local_module_deployment_scenario>`
+and a simple, SIMP-provided ENC.  It assumes:
 
-Description of Example
-^^^^^^^^^^^^^^^^^^^^^^
+* You have upgraded SIMP-packaged Puppet module RPMs via ``yum``.
+* You have updated some of your own Puppet modules.
+* You want to create a ``test`` Puppet environment with both sets of the changes.
+* You want to assign a subset of nodes to this new environment to test the
+  changes.
 
-You have installed, via yum, updates to the SIMP RPMs and have
-also updated some of your own git modules to test.
-You want to create a ``test`` environment and a set of those nodes to
-that this environment for testing.
+.. admonition:: REMINDER
 
-Remember, if you install updates to simp modules via RPM, they are not installed in
-any environment until you update the Puppetfile for that environment and deploy it.
+   As of SIMP 6.4, if you install updates to SIMP modules via RPM, they are
+   **not** installed in any Puppet environment until you update the
+   :term:`Puppetfile` for that environment and then deploy it.
 
-Create the :term:`SIMP Omni-Environment`
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+STEP 1: Create the new :term:`SIMP Omni-Environment`
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-In this example the new environment, called ``test``, is created linking the
-secondary and writable environments to the existing production environment.
-This will enable the environments to use common passwords and certificates.
-Run the command
+In this example we create a new environment, ``test``, for which the
+SIMP :term:`secondary <SIMP Secondary Environment>` and
+:term:`writable <SIMP Writable Environment>` environments are linked to the
+corresponding directories in the existing ``production`` environment.  This
+will allow the two environments to use common passwords and PKI certificates.
+
+Run the following command:
 
 .. code-block:: sh
 
    simp environment new test --link production
 
-This has created the Puppet environment ``test`` and copied over the  Puppet files,
-hiera data and modules from the production environment.  The secondary and writable
-environments have been linked to the production environments.
+This will
 
-Update Puppetfile and Deploy modules
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+* Create the Puppet environment ``test``
+* Copy over the entire ``production`` Puppet environment over to the ``test``
+  environment.
+* Link the ``test`` secondary  environment to the ``production`` secondary
+  environment.
+* Link the ``test`` writable  environment to the ``production`` writable
+  environment.
 
-Replace ``<name of your environment>`` with ``test`` for this example.
+STEP 2: Update the Puppetfile pair and deploy modules
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 .. include:: Environments/Update_and_Deploy_Local_Environment.inc
 
-Add nodes to the New Environment
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+STEP 3: Add nodes to the new environment
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Since the secondary and writable enviroments for production and test are linked
-in this example you can move nodes between them without generating new certificates.
+Since the secondary and writable environments for the ``production``
+and ``test`` SIMP Omni-Environments are linked, in this example, you can move
+nodes between these two environments without generating new certificates.
 
 .. include:: Environments/ENC_setup.inc
 
 .. NOTE::
 
-   Once you have deployed an environment you can edit the modules directly without
-   affecting the other environments, but when you run r10k again, it will overwrite
-   any local changes unless the module is defined as ``:local => true`` in the
+   Once you have deployed a Puppet environment, you can edit the modules in that
+   Puppet environment, directly, to debug issues you may be having.  However, the
+   next time you use ``r10k`` to deploy the modules, it will **overwrite** any
+   any local changes, unless the module is defined as ``:local => true`` in the
    Puppetfile.  It is recommended that you use ``git`` to manage your work flow.
+
+STEP 4: Apply node configuration
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+To apply the configuration for a node in the ``test`` environment, simply run
+``puppet agent -t`` on that node, or wait for that node's Puppet ``cronjob`` to
+execute. You should see a message similar to the following at the beginning of
+the log for the Puppet run:
+
+  ``Info: Using configured environment 'test'``
+
