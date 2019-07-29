@@ -23,7 +23,7 @@ Remember, if you install updates to simp modules via RPM, they are not installed
 any environment until you update the Puppetfile for that environment and deploy it.
 
 Create the :term:`SIMP Omni-Environment`
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 In this example the new environment, called ``test``, is created linking the
 secondary and writable environments to the existing production environment.
