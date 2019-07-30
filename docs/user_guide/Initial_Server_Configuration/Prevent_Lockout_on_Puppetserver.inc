@@ -49,7 +49,7 @@ information on how to create a Puppet module.
 #. Create a local user account, as needed, using ``useradd``.  This examples
    assumes the local user is ``userx``.
 
-   * Be sure to set the user's password.
+   * Be sure to set the user's password if the user is logging in with a password.
    * SIMP is configured to create a home directory for the user, if it does
      not exist when the user first logs in.
 
