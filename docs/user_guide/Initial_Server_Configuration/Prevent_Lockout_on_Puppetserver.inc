@@ -46,7 +46,7 @@ This example creates a manifest in a local module, ``mymodule``, in the
 ``production`` Puppet environment.  See `Puppet module documentation`_ for
 information on how to create a Puppet module.
 
-#. Create a local user account, as needed, using ``useradd``.  This examples
+#. Create a local user account, as needed, using ``useradd``.  This example
    assumes the local user is ``userx``.
 
    * Be sure to set the user's password if the user is logging in with a password.
