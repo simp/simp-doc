@@ -49,7 +49,11 @@ information on how to create a Puppet module.
 #. Create a local user account, as needed, using ``useradd``.  This examples
    assumes the local user is ``userx``.
 
-#. Create a ``local_user.pp`` manifest in ``mymodule`` to enable
+   * Be sure to set the user's password.
+   * SIMP is configured to create a home directory for the user, if it does
+     not exist when the user first logs in.
+
+#. Create a ``local_user.pp`` manifest in ``mymodule/manifests`` to enable
    ``sudo su - root`` and allow ``ssh`` access for the user you created/selected:
 
    .. code-block:: ruby
@@ -79,8 +83,8 @@ information on how to create a Puppet module.
 
    .. code-block:: bash
 
-      $ sudo chown -R root:puppet  /etc/puppetlabs/code/environments/production/mymodule
-      $ sudo chmod -R g+rX  /etc/puppetlabs/code/environments/production/mymodule
+      $ sudo chown -R root:puppet  /etc/puppetlabs/code/environments/production/modules/mymodule
+      $ sudo chmod -R g+rX  /etc/puppetlabs/code/environments/production/modules/mymodule
 
 #. Add the module to the SIMP server's host YAML file class list:
 
