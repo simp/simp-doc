@@ -128,7 +128,7 @@ module deploy.
 * ``simp puppetfile generate`` has been added to generate two different
   flavors of a SIMP-specific :term:`Puppetfile`.
 * ``simp environment new`` and ``simp environment fix`` have been added to
-  help users manage the SIMP omni environment.
+  help users manage the SIMP Omni environment.
 
 In addition, ``simp config`` has been updated to allow users to opt-out of
 SIMP-provided LDAP capabilities.
@@ -190,7 +190,7 @@ rubygem-simp-cli 5.0.1
 * Changed the environment created by ``simp config`` to be ``production``,
   not ``simp`` linked to ``production``.  The link is not appropriate for
   sites that use r10K or Code Manager.
-* Changed ``simp config`` to create a new ``production`` SIMP omni-environment
+* Changed ``simp config`` to create a new ``production`` SIMP Omni environment
   from the new environment skeletons installed in
   ``/usr/share/simp/environment-skeleton``.  This new environment includes
   Puppetfiles ``simp config`` used to deploy the modules into the environment.
@@ -374,10 +374,10 @@ pupmod-simp-ntpd
 pupmod-simp-pam
 ^^^^^^^^^^^^^^^
 
-* Fix bug where the ending ``faillock`` items were not being called due to the
-  ``sufficient`` lines on ``pam_unix`` and ``pam_sssd``.
-* Fix bug where ``authsucc`` was not set at the end of the ``auth`` section for
-  ``faillock``.
+* Fixed a bug where the ending ``faillock`` items were not being called due to
+  the ``sufficient`` lines on ``pam_unix`` and ``pam_sssd``.
+* Fixed a bug where ``authsucc`` was not set at the end of the ``auth`` section
+  for ``faillock``.
 
 pupmod-simp-pupmod
 ^^^^^^^^^^^^^^^^^^
@@ -424,7 +424,7 @@ pupmod-simp-simp_gitlab
 pupmod-simp-simp_ipa
 ^^^^^^^^^^^^^^^^^^^^
 
-* Fixed a bg in which ``ntp-server`` was not passed into the client install.
+* Fixed a bug in which ``ntp-server`` was not passed into the client install.
 
 pupmod-simp-simplib
 ^^^^^^^^^^^^^^^^^^^
@@ -457,7 +457,7 @@ pupmod-simp-swap
 pupmod-simp-tcpwrappers
 ^^^^^^^^^^^^^^^^^^^^^^^
 
-* Fix template bug that prevented some IPv6 addresses from being
+* Fixed a template bug that prevented some IPv6 addresses from being
   properly formatted in ``/etc/hosts.allow``.
 
 pupmod-simp-tpm2
@@ -475,7 +475,7 @@ pupmod-simp-vsftpd
 pupmod-simp-xinetd
 ^^^^^^^^^^^^^^^^^^
 
-* Fixed bug in which the ``xinetd::disabled`` parameter would only be included
+* Fixed a bug in which the ``xinetd::disabled`` parameter would only be included
   in ``xinetd.conf``, if the ``xinetd::no_access`` parameter was not empty.
 
 rubygem-simp-cli
@@ -502,7 +502,7 @@ simp-environment-skeleton
 * Fixed a bug in which ``simp_options::ldap`` was to ``true`` in the ``simp``
   and ``simp_lite`` scenarios. The use of LDAP is not required, and so
   these values should have been ``false``.
-* Fix a regression in which ``simp_options::selinux`` was inadvertently
+* Fixed a regression in which ``simp_options::selinux`` was inadvertently
   reinserted into ``puppet.your.domain.yaml``.
 
 simp-rsync
@@ -899,7 +899,7 @@ New package containing policies originally packaged in the
 simp-utils
 ^^^^^^^^^^
 
-* Added ``simpenv`` script to facilitate creation of a new SIMP omni-environment
+* Added ``simpenv`` script to facilitate creation of a new SIMP Omni environment
   when ``simp`` CLI cannot be used.
 * Updated the ``updaterepo`` script to change permissions on the repo files as
   well as ``repodata``.
