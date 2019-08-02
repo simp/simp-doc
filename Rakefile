@@ -430,7 +430,7 @@ which are simply available in the repository.
     cmd = "sphinx-build -E -n #{extra_args} -b linkcheck -w #{@outfile} -d sphinx_cache docs linkcheck"
     run_build_cmd(cmd)
   end
- 
+
   desc <<-EOF
     Run a local web server to view HTML docs on http://localhost:port'
 
