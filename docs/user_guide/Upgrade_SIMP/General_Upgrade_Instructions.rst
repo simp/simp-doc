@@ -101,7 +101,7 @@ Execute these steps as ``root``.
 
    ** **The following steps only apply for upgrades from version 6.4 or later**
 
-   .. include:: ../SIMP_Administration/Environments/Update_and_Deploy_Local_Environment.inc
+   .. include:: ../common/Update_and_Deploy_Local_Environment.inc
 
    ** **This ends the steps that are only for 6.4 or later.**  The next steps apply
    to all systems.
