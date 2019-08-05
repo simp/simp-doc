@@ -13,7 +13,6 @@ with more commonly sought items towards the top.
   :maxdepth: 1
 
   Configure SIMP for Compliance Enforcement <HOWTO/Compliance_Enforcement>
-  Set up a SIMP Environment in a Control Repository <HOWTO/Control_Repo>
   Customize settings for SSH <HOWTO/Configure_Ssh>
   Set up SSH Authorized Keys <HOWTO/SSH_Keys>
   Disable SSH Management <HOWTO/Disable_Ssh>
@@ -29,6 +28,9 @@ with more commonly sought items towards the top.
   Configure NFS <HOWTO/NFS>
   Configure SNMPD <HOWTO/SNMPD>
   Enable Kerberos <HOWTO/Kerberos>
+  Set up a Control Repo for a SIMP Environment <HOWTO/Control_Repo>
+  Set up SIMP's ENC for Setting a Node's Environment <HOWTO/ENC_setup>
+  Generate a Puppetfile <HOWTO/Generate_SIMP_Puppetfile>
   Manage Workstation Infrastructures <HOWTO/Managing_Workstation_Infrastructures>
   Backup the Puppet Master <HOWTO/Puppetmaster_Backup>
   Disconnect PuppetDB from the Puppet Server <HOWTO/Disconnect_PuppetDB_from_Puppet_Server>
