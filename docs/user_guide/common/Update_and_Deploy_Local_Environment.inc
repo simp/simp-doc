@@ -26,8 +26,8 @@
 
    * A line for each of your own modules.
 
-   See `howto-generate-a-simp-puppetfile`_ for more information on how to generate
-   and clean up the Puppetfile if needed.
+   See :ref:`How To Generate a SIMP Puppetfile<howto-generate-a-simp-puppetfile>` for
+   more information on how to generate and clean up the Puppetfile if needed.
 
 
 #. Deploy the modules from the local Git repositories into the environment

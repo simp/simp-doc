@@ -1,11 +1,12 @@
 .. _howto-generate-a-simp-puppetfile:
 
-Create Puppetfile
-=================
+How To Generate a  Puppetfile
+=============================
 
 This section describes how to create a Puppetfile to be used by r10k
 or code manager to deploy SIMP and site modules.  It assumes the user is
-on the puppetserver.
+on the puppetserver.  It covers building from Local Repositories or using the
+Internet repositories
 
 .. Warning::
 
@@ -13,14 +14,18 @@ on the puppetserver.
    target environment's ``modules`` directory, when you use :term:`r10k` to
    deploy the modules.
 
+.. contents::
+   :local:
 
-#. Generate the Puppetfile skeleton
+Generate the Puppetfile skeleton
+--------------------------------
 
    .. code-block:: ruby
 
       simp puppetfile generate -s > Puppetfile
 
-#. Edit the Puppetfile to include non-simp site modules.
+Edit the Puppetfile to include non-simp site modules
+----------------------------------------------------
 
    Make sure the ``Puppetfile`` used to deploy from includes the following:
 
@@ -84,9 +89,11 @@ on the puppetserver.
         This will ensure that if r10k removes them because of an error in the
         Puppetfile they can easily be restored from the Git repository.
 
-#. Generate the Puppetfile.simp file
+Generate the Puppetfile.simp file
+---------------------------------
 
-   * If using local SIMP git repositories:
+Using local SIMP git repositories
+++++++++++++++++++++++++++++++++++
 
      Make sure all the SIMP module RPMs are installed using yum
      that you want to use and then run:
@@ -95,7 +102,8 @@ on the puppetserver.
 
         simp puppetfile generate > Puppetfile.simp
 
-   * If using SIMP internet repositories:
+Using SIMP internet repositories
+++++++++++++++++++++++++++++++++
 
      - Download the ``Puppetfile`` used to create a SIMP ISO for a specific release
        from the SIMP `simp-core repository`_. This example uses the
@@ -118,6 +126,9 @@ on the puppetserver.
 
           yum deplist simp-extras
 
-#. Copy the Pupptfile and Puppetfile.simp to the appropriate directory
+
+Copy the Pupptfile and Puppetfile.simp to top level of the environment
+directory or the top level of the control repo.
 
 
+.. _simp-core repository: https://github.com/simp/simp-core
