@@ -3,14 +3,37 @@
 Examples for Deploying SIMP Environments
 ----------------------------------------
 
+The example below steps through one way to set up a test environment.
+You might also find the following HOWTO documents to be helpful:
+
+* :ref:`How To Generate a  SIMP Puppetfile<howto-generate-a-simp-puppetfile>`
+
+  Gives detailed examples of how to generate a Puppetfile for use with r10k
+  from a :ref:`Local deployment scenario<ug-local_module_deployment_scenario>`
+  or using Internet Repos.
+
+* :ref:`How To Create a Control Repository<howto-setup-a-simp-control-repository>`
+
+  Gives examples of how to create Control Repos for use with r10k or Code Manager
+  both from a SIMP installation and from the Internet Repos.
+
+* :ref:`How To Set up the SIMP Provided ENC<howto-simp-enc>`
+
+  Explains how to set up the :term:`ENC` provided by the simp-util RPM.  Once this
+  is set up, the environment a node is assigned to can be set in using a configuration
+  file located on the puppetserver.
+
 .. _Deploy an Environment Using Local Module Repositories:
 
 Create and Deploy a Test Environment Using Local Module Repositories
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 This example uses the :ref:`Local deployment scenario<ug-local_module_deployment_scenario>`
-It steps through creating a new :term:`SIMP Omni-Environment`,
-deploying the SIMP modules and  add nodes to the new environemnt.
+It steps through creating a new :term:`SIMP Omni-Environment`, for which the
+SIMP :term:`secondary <SIMP Secondary Environment>` and :term:`writable <SIMP Writable Environment>`
+environments are linked to the corresponding directories in the existing ``production``
+environment.  This will allow the two environments to use common passwords and
+PKI certificates.  It is helpful to test out changes in SIMP or other Puppet modules.
 
 It assumes:
 
@@ -27,8 +50,7 @@ It assumes:
    Run the ``simp`` command to create a :term:`SIMP Omni-Environment`
    called  ``test`` for which the SIMP :term:`secondary <SIMP Secondary Environment>` and
    :term:`writable <SIMP Writable Environment>` environments are linked to the
-   corresponding directories in the existing ``production`` environment.  This
-   will allow the two environments to use common passwords and PKI certificates.
+   corresponding directories in the existing ``production`` environment.
 
    .. code-block:: sh
 
@@ -76,7 +98,7 @@ It assumes:
 
    You can assign the node to the new environment by changing the ``environment``
    setting in the node's ``/etc/puppetlabs/puppet/puppet.conf`` file, or, if you are
-   using :ref:`the ENC supplied the simp-util module<howto-simp-enc>`, adding a line
+   using :ref:`the ENC supplied by the simp-util module<howto-simp-enc>`, adding a line
    like the following to ``/etc/puppetlabs/puppet/environments.yaml``.
 
    .. code-block:: yaml
