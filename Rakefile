@@ -258,6 +258,19 @@ def run_build_cmd(cmd, outfile=nil)
   return status
 end
 
+
+def run_streaming_cmd(cmd)
+  require 'open3'
+  puts "== #{cmd}"
+
+  Open3.popen2e(cmd) do |stdin, stdout_stderr, wait_thread|
+    Thread.new do
+      stdout_stderr.each {|l| puts l }
+    end
+    wait_thread.value
+  end
+end
+
 ## End Custom Linting Checks
 
 namespace :docs do
@@ -452,13 +465,14 @@ which are simply available in the repository.
     port = args.to_hash.fetch(:port, 5000)
     require 'mkmf'
     autobuild_cmd = find_executable 'sphinx-autobuild'
-    if autobuild_cmd && false
-      cmd = "SIMP_FAST_DOCS=true #{autobuild_cmd} -p #{port} -H 0.0.0.0 --poll --ignore docs/dynamic/\*.rst docs html"
-      run_build_cmd(cmd)
+    env_str="SIMP_FAST_DOCS=true"
+    if autobuild_cmd
+      cmd = "#{env_str} #{autobuild_cmd} -p #{port} -H 0.0.0.0 --poll --ignore docs/dynamic/\*.rst docs html"
+      run_streaming_cmd(cmd)
     else
       puts "running web server on http://localhost:#{port}"
       Rake::Task['docs:html'].invoke
-      %x(ruby -run -e httpd html/ -p #{port})
+      run_streaming_cmd("#{env_str} ruby -run -e httpd html/ -p #{port}")
     end
   end
 end
