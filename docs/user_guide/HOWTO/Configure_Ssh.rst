@@ -69,6 +69,16 @@ In Hiera:
    ssh::server::conf::port: 2222
    ssh::server::conf::passwordauthentication: false
 
+Starting with version **6.8.0** of the ``simp-ssh`` module, multiple ports
+can be specified to listen for incoming SSH connections. So the
+``ssh::server::conf::port`` parameter in the previous example could be set
+as follows in Hiera to listen on multiple ports:
+
+In Hiera:
+
+.. code-block:: yaml
+
+   ssh::server::conf::port: [22, 2222, 22222]
 
 Managing Additional Settings with ``sshd_config``
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
