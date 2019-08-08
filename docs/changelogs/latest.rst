@@ -447,8 +447,8 @@ pupmod-simp-simp_apache
 * Fixed a bug in which the ``listen`` configuration parameter could only
   be specified as a port.  It can now be specified as either a port or
   a host address with port.
-* Fixed an issue where ``simp_apache::munge_httpd_networks`` was modifying
-  passed parameters.
+* Fixed an issue where the ``simp_apache::munge_httpd_networks`` function
+  was modifying passed parameters.
 
 pupmod-simp-simp_gitlab
 ^^^^^^^^^^^^^^^^^^^^^^^
