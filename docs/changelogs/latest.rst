@@ -172,7 +172,7 @@ Other important changes for SIMP 6.4.0
   converted to use the new ``cron`` types provided by ``simp/simplib``.  These
   changes allow more flexible ``cron`` scheduling.
 * Puppet 6 support for many of the modules.
-* Added compliance_markup data to many of the modules.
+* Added V2 ``compliance_markup`` data to many of the modules.
 * Increase in the minimum RAM requirement for a SIMP server.  It is now 3.4G.
   See :ref:`gsg-system_requirements` for more information.
 
