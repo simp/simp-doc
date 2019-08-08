@@ -528,8 +528,8 @@ rubygem-simp-cli
 * Fixed a bug where the web-routes.conf file was not being overwritten with a
   pristine copy. This meant that multiple calls to ``simp bootstrap`` would fail
   due to leftover CA entries in the file.
-* Fixed a typo in an info block that would cause ``simp bootstrap`` to fail if
-  it had already been successfully run.
+* Fixed a bug in log message processing that would cause ``simp bootstrap`` to
+  fail if it had already been successfully run.
 * Fixed a bug in which the tftpboot images copied into the rsync space in
   SIMP's secondary environment were not world readable, preventing clients from
   PXE booting.
