@@ -210,20 +210,20 @@ Execute the following steps as ``root``:
 
    .. code-block:: bash
 
-      $ yum install puppetserver
+      yum install puppetserver
 
 #. Run ``simp config`` with an option that tells it the SIMP Omni-Environment
    has already been created:
 
    .. code-block:: bash
 
-      $ simp config --force-config
+      simp config --force-config
 
 #. Run ``simp bootstrap``:
 
    .. code-block:: bash
 
-      $ simp bootstrap
+      simp bootstrap
 
 #. After ``simp bootstrap`` completes, add the following generated Hiera files
    in the ``production`` Puppet environment to the ``production`` branch in your

@@ -25,8 +25,8 @@ Clone simp-core:
 
 .. code-block:: bash
 
-   $ git clone https://github.com/simp/simp-core
-   $ cd simp-core
+   git clone https://github.com/simp/simp-core
+   cd simp-core
 
 Check out your desired branch of SIMP:
 
@@ -34,34 +34,34 @@ Check out your desired branch of SIMP:
 
 .. code::
 
-   $ git checkout tags/6.3.0-0
+   git checkout tags/6.3.0-0
 
 * To check out an unstable SIMP release, check out the latest ``master``:
 
 .. code::
 
-   $ git checkout master
+   git checkout master
 
 Run ``bundle`` to make sure that all of the build tools and dependencies are
 installed and up to date:
 
 .. code::
 
-   $ bundle install
+   bundle install
 
 Make an ``ISO`` directory, and copy in the CentOS/RHEL installation media:
 
 .. code-block:: bash
 
-   $ mkdir ISO
-   $ cp </path/to/dvd*.iso> ISO
+   mkdir ISO
+   cp </path/to/dvd*.iso> ISO
 
 Run the ``rpm_docker`` beaker suite, toggling build options with environment
 variables:
 
 .. code-block:: bash
 
-   $ <build ENV vars> bundle exec rake beaker:suites[rpm_docker]
+   <build ENV vars> bundle exec rake beaker:suites[rpm_docker]
 
 Build ENV vars:
 

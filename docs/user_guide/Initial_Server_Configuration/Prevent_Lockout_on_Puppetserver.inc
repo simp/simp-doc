@@ -108,8 +108,8 @@ information on how to create a Puppet module.
 
    .. code-block:: bash
 
-      $ sudo chown -R root:puppet  /etc/puppetlabs/code/environments/production/modules/mymodule
-      $ sudo chmod -R g+rX  /etc/puppetlabs/code/environments/production/modules/mymodule
+      sudo chown -R root:puppet  /etc/puppetlabs/code/environments/production/modules/mymodule
+      sudo chmod -R g+rX  /etc/puppetlabs/code/environments/production/modules/mymodule
 
 #. Add the module to the SIMP server's host YAML file class list:
 
@@ -128,10 +128,10 @@ information on how to create a Puppet module.
 
    .. code-block:: bash
 
-      $ sudo mkdir -p /etc/ssh/local_keys
-      $ sudo chmod 755 /etc/ssh/local_keys
-      $ sudo cp ~userx/.ssh/authorized_keys /etc/ssh/local_keys/userx
-      $ sudo chmod 644 /etc/ssh/local_keys/userx
+      sudo mkdir -p /etc/ssh/local_keys
+      sudo chmod 755 /etc/ssh/local_keys
+      sudo cp ~userx/.ssh/authorized_keys /etc/ssh/local_keys/userx
+      sudo chmod 644 /etc/ssh/local_keys/userx
 
 
 #. Add the module to the ``Puppetfile`` in the ``production`` environment:

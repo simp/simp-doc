@@ -78,7 +78,7 @@ Execute these steps as ``root``.
         .. code-block:: sh
 
            # Unpack the new SIMP ISO's RPMs into yum repositories
-           $ unpack_dvd </path/to/ISO>
+           unpack_dvd </path/to/ISO>
 
    * For RPM-based installation, follow your site's procedures to update your
      repositories.
@@ -88,10 +88,10 @@ Execute these steps as ``root``.
    .. code-block:: sh
 
       # Make sure yum picks up the new RPMs
-      $ yum clean all; yum makecache
+      yum clean all; yum makecache
 
       # Apply updates to the local master
-      $ yum update -y
+      yum update -y
 
    For SIMP 6.4 and later, this will also update the system-local, SIMP-managed
    Puppet module :term:`Git` repositories.
@@ -111,7 +111,7 @@ Execute these steps as ``root``.
 
    .. code-block:: sh
 
-      $ puppet agent -t
+      puppet agent -t
 
 Other deployment scenario incremental upgrade
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
