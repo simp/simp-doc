@@ -495,6 +495,8 @@ rubygem-simp-cli
   due to leftover CA entries in the file.
 * Fixed a typo in an info block that would cause ``simp bootstrap`` to fail if it
   had already been successfully run.
+* Fixed a bug in which ``simp config``'s lockfile instructions on how to prevent
+  possible root lockout from the SIMP server were incomplete.
 
 simp-environment-skeleton
 ^^^^^^^^^^^^^^^^^^^^^^^^^
