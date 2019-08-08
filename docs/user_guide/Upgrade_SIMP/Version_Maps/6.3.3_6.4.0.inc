@@ -165,12 +165,12 @@ The following shows three examples of how to include your modules in the ``Puppe
    mod 'site',
      :local => true
 
-   mod 'mymodule'
+   mod 'mymodule',
      :git => 'file:///usr/share/mymodules/mymodule',
      :tag => '1.1.1'
 
-   mod 'mysrvmod'
-     :git => 'https://gitserver.my.domain/mygitproject/mysrvmod.git'
+   mod 'mysrvmod',
+     :git => 'https://gitserver.my.domain/mygitproject/mysrvmod.git',
      :tag => '1.0.1'
 
 .. IMPORTANT::

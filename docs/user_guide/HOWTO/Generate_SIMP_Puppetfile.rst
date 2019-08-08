@@ -73,13 +73,13 @@ Edit the Puppetfile to include non-simp site modules
            :local => true
 
          # a Git repository that resides in a directory on the Puppet server
-         mod 'mymodule'
+         mod 'mymodule',
           :git => 'file:///usr/share/mymodules/mymodule',
           :tag => '1.1.1'
 
          #  a Git repository on a remote server
-         mod 'mysrvmod'
-           :git => 'https://gitserver.my.domain/mygitproject/mysrvmod.git'
+         mod 'mysrvmod',
+           :git => 'https://gitserver.my.domain/mygitproject/mysrvmod.git',
            :tag => '1.0.1'
 
      .. Note::
