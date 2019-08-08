@@ -414,7 +414,7 @@ pupmod-simp-pupmod
 * Fixed a bug where the Java memory maximum size setting on the ``puppetserver``
   command line, ``-Xmx``, could be empty and prevent the process from starting.
   This happened when the user specified a fixed RAM size for 
-  ``pupmod::master::sysocnfig::java_max_memory``, instead of a percentage.
+  ``pupmod::master::sysconfig::java_max_memory``, instead of a percentage.
   
 pupmod-simp-postfix
 ^^^^^^^^^^^^^^^^^^^
