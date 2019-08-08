@@ -409,11 +409,13 @@ pupmod-simp-pupmod
 
 * Add missing ``gem-path`` setting to ``puppetserver.conf`` template.
 * Fixed ordering issues with managing the installation of Puppet Server.
-* Fixed an issue preventing Puppet from running in envrironments
-  other than production.
-* Fixed a bug where $java_max_memory was undefined.
-
-
+* Fixed an issue preventing Puppet from running in environments
+  other than ``production``.
+* Fixed a bug where the Java memory maximum size setting on the ``puppetserver``
+  command line, ``-Xmx``, could be empty and prevent the process from starting.
+  This happened when the user specified a fixed RAM size for 
+  ``pupmod::master::sysocnfig::java_max_memory``, instead of a percentage.
+  
 pupmod-simp-postfix
 ^^^^^^^^^^^^^^^^^^^
 
