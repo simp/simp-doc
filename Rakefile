@@ -477,9 +477,11 @@ which are simply available in the repository.
     extra_args = ENV.fetch('SIMP_DOC_extra_sphinx_args', '')
     env_str = "SIMP_FAST_DOCS=#{ENV['SIMP_FAST_DOCS'] || 'true'}"
     cmd = "sphinx-build -E -n #{extra_args} -b pdf -d sphinx_cache docs pdf"
+    swp_ignores="--ignore '**/.*.sw?'"
     if autobuild_cmd
-      cmd = "#{env_str} #{autobuild_cmd} #{extra_args} -p #{port} -H 0.0.0.0" +
-        " --poll --ignore \*/.sw?  --ignore docs/dynamic/\*.rst docs html"
+      cmd = "#{env_str} #{autobuild_cmd} #{extra_args} --poll " +
+        "-p #{port} -H 0.0.0.0 #{swp_ignores} --ignore docs/dynamic/\*.rst " +
+        "docs html"
       run_streaming_cmd(cmd)
     else
       puts "running web server on http://localhost:#{port}"
