@@ -356,7 +356,7 @@ pupmod-simp-deferred_resources
 pupmod-simp-gdm
 ^^^^^^^^^^^^^^^
 
-* Fixed an issue where gdm::settings was not being applied to the system.
+* Fixed an issue where ``gdm::settings`` was not being applied to the system.
 
 pupmod-simp-ima
 ^^^^^^^^^^^^^^^
