@@ -172,7 +172,7 @@ Other important changes for SIMP 6.4.0
   converted to use the new ``cron`` types provided by ``simp/simplib``.  These
   changes allow more flexible ``cron`` scheduling.
 * Puppet 6 support for many of the modules.
-* Added V2 ``compliance_markup`` data to many of the modules.
+* Added v2 ``compliance_markup`` data to many of the modules.
 * Increase in the minimum RAM requirement for a SIMP server.  It is now 3.4G.
   See :ref:`gsg-system_requirements` for more information.
 
@@ -327,7 +327,7 @@ pupmod-simp-auditd
 * Fixed a bug in which ``restorecon`` was not explicitly audited in the
   STIG audit profile.
 * Fixed a bug where trailing newlines may not be present on custom rule
-  proviles, particularly with rules defined in an Array.
+  profiles, particularly with rules defined in an Array.
 
 pupmod-simp-compliance_markup
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -337,7 +337,7 @@ pupmod-simp-compliance_markup
   since use of LDAP is not guaranteed.
 * Fixed a bug in the compliance report functionality that did not correctly
   record the percent compliant in each report summary.
-* Fixed a bug in the call to Hiera.warn in the compliance mapper.
+* Fixed a bug in the call to ``Hiera.warn`` in the compliance mapper.
 * Fixed a bug in compliance markup validation for Defined Types.
 
 pupmod-simp-dconf
@@ -606,12 +606,6 @@ pupmod-simp-auditd
 * Allow users to optimize their audit processing by only collecting on specific
   SELinux types.
 
-pupmod-simp-clamav
-^^^^^^^^^^^^^^^^^^
-
-* Standardized cron datatypes to use the Simplib::Cron::### types to allow
-  more flexibility in cron scheduling.
-
 pupmod-simp-compliance_markup
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
@@ -632,8 +626,6 @@ pupmod-simp-compliance_markup
 * Removed experimental v1 data since it is no longer used.
 * Removed partial v2 data sets.
 * Added v2 data for the non-SIMP `yum` module.
-* Updated the spec tests to cover both versions and made the tests more
-  thorough.
 
 pupmod-simp-deferred_resources
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
