@@ -627,7 +627,7 @@ pupmod-simp-compliance_markup
   from triggering file resource changes every time.
 * Removed experimental v1 data since it is no longer used.
 * Removed partial v2 data sets.
-* Added v2 data for the non-SIMP `yum` module.
+* Added v2 data for the non-SIMP ``puppet-yum`` module.
 
 pupmod-simp-deferred_resources
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
