@@ -349,9 +349,9 @@ pupmod-simp-dconf
 pupmod-simp-deferred_resources
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-* Fixed an issue to allow users to set `absent` or `purged` when removing
-  packages, working around a bug in the Puppet `package` provider on EL
-  systems where `yum` is only used if you call `purged`
+* Fixed an issue to allow users to set ``absent`` or ``purged`` when removing
+  packages, working around a bug in the Puppet ``package`` provider on EL
+  systems where ``yum`` is only used if you call ``purged``.
 
 pupmod-simp-gdm
 ^^^^^^^^^^^^^^^
