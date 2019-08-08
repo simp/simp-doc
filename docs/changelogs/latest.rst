@@ -65,6 +65,7 @@ At the root of this change are the following major features:
   - A :term:`SIMP Secondary Environment` in ``/var/simp/environments``
   - A :term:`SIMP Writable Environment` in
     ``/opt/puppetlabs/server/data/puppetserver/simp/environments``.
+
 * The ``simp-environment-skeleton`` and ``simp-rsync-skeleton`` packages install
   a SIMP Omni-Environment skeleton at ``/usr/share/simp/environment-skeleton``.
 * Unless a ``production`` SIMP Omni-Environment already exists, ``simp config``
@@ -302,6 +303,7 @@ Other important changes for SIMP 6.4.0
   converted to use the new ``cron`` types provided by ``simp-simplib``.  These
   changes allow more flexible ``cron`` scheduling.
 * *Puppet 6 support for many of the modules*.
+* *Added v2 ``compliance_markup`` data to many of the modules*.
 * *Increase in the minimum RAM requirement for a SIMP server*.  It is now 3.4G.
   See :ref:`gsg-system_requirements` for more information.
 
@@ -349,7 +351,8 @@ Git repository, ``/usr/share/simp/git/puppet_modules/<owner>-<module name>``.
 The name of the repository is the top-level ``name`` field from the module's
 ``metadata.json``.
 
-The specific behavior of ``simp_rpm_helper`` during RPM operations is as follows:
+The specific behavior of ``simp_rpm_helper`` during RPM operations is as
+follows:
 
 * Upon module RPM install/upgrade/downgrade, the ``simp_rpm_helper``
 
@@ -357,18 +360,18 @@ The specific behavior of ``simp_rpm_helper`` during RPM operations is as follows
     excluding any empty directories.
   - Adds a Git tag to the repository that matches the version number in the
     module's ``metadata.json`` file, as necessary.  If the tag for the version
-    already exists but doesn't match the contents of the RPM, ``simp_rpm_helper``
-    will **overwrite** the tag with the correct content.
+    already exists but doesn't match the contents of the RPM,
+    ``simp_rpm_helper`` will **overwrite** the tag with the correct content.
 
 * Upon module RPM erase, the ``simp_rpm_helper``  does **NOT** remove the local
   module Git repo, but leaves it intact, in case it is still being used
   by r10K or Code Manager for an active Puppet environment.
 
-In addition to the change in ``simp_rpm_helper`` behavior, ``simp-adapter`` 1.0.1
-has three other significant packaging changes:
+In addition to the change in ``simp_rpm_helper`` behavior, ``simp-adapter``
+1.0.1 has three other significant packaging changes:
 
-* It no longer has dependencies upon a specific version of ``puppet-agent``, just
-  a minimum version.
+* It no longer has dependencies upon a specific version of ``puppet-agent``,
+  just a minimum version.
 * It no longer has any dependency on the Puppet Enterprise or FOSS versions of
   ``puppetserver``.
 * Since it now works for both Puppet Enterprise and the FOSS editions of Puppet,
@@ -454,6 +457,8 @@ pupmod-simp-auditd
   ``admin_space_left`` configuration parameter.
 * Fixed a bug in which ``restorecon`` was not explicitly audited in the
   STIG audit profile.
+* Fixed a bug where trailing newlines may not be present on custom rule
+  profiles, particularly with rules defined in an Array.
 
 pupmod-simp-compliance_markup
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -463,12 +468,32 @@ pupmod-simp-compliance_markup
   since use of LDAP is not guaranteed.
 * Fixed a bug in the compliance report functionality that did not correctly
   record the percent compliant in each report summary.
+* Fixed a bug in the call to ``Hiera.warn`` in the compliance mapper.
+* Fixed a bug in compliance markup validation for Defined Types.
 
 pupmod-simp-dconf
 ^^^^^^^^^^^^^^^^^
 
 * Fixed an issue with duplicate resources when creating multiple
   ``dconf::settings`` resources under the same namespace.
+
+pupmod-simp-deferred_resources
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+* Fixed an issue to allow users to set ``absent`` or ``purged`` when removing
+  packages, working around a bug in the Puppet ``package`` provider on EL
+  systems where ``yum`` is only used if you call ``purged``.
+
+pupmod-simp-gdm
+^^^^^^^^^^^^^^^
+
+* Fixed an issue where ``gdm::settings`` was not being applied to the system.
+
+pupmod-simp-ima
+^^^^^^^^^^^^^^^
+
+* Fixed a bug in which the ``ima_security_attr `` fact was not properly confined
+  to require the ``cmdline`` fact.
 
 pupmod-simp-incron
 ^^^^^^^^^^^^^^^^^^
@@ -514,7 +539,14 @@ pupmod-simp-pupmod
 ^^^^^^^^^^^^^^^^^^
 
 * Add missing ``gem-path`` setting to ``puppetserver.conf`` template.
-
+* Fixed ordering issues with managing the installation of Puppet Server.
+* Fixed an issue preventing Puppet from running in environments
+  other than ``production``.
+* Fixed a bug where the Java memory maximum size setting on the ``puppetserver``
+  command line, ``-Xmx``, could be empty and prevent the process from starting.
+  This happened when the user specified a fixed RAM size for 
+  ``pupmod::master::sysconfig::java_max_memory``, instead of a percentage.
+  
 pupmod-simp-postfix
 ^^^^^^^^^^^^^^^^^^^
 
@@ -536,6 +568,7 @@ pupmod-simp-simp
   ``/etc/simp/simp/version``.
 * Fixed a bug on EL6 systems in which the ``puppetdb-dlo-cleanup`` cron
   job from the ``puppetdb`` module could not be created.
+* Excluded the ``yum`` class from all Windows nodes.
 
 pupmod-simp-simp_apache
 ^^^^^^^^^^^^^^^^^^^^^^^
@@ -545,6 +578,8 @@ pupmod-simp-simp_apache
 * Fixed a bug in which the ``listen`` configuration parameter could only
   be specified as a port.  It can now be specified as either a port or
   a host address with port.
+* Fixed an issue where the ``simp_apache::munge_httpd_networks`` function
+  was modifying passed parameters.
 
 pupmod-simp-simp_gitlab
 ^^^^^^^^^^^^^^^^^^^^^^^
@@ -624,8 +659,11 @@ rubygem-simp-cli
 * Fixed a bug where the web-routes.conf file was not being overwritten with a
   pristine copy. This meant that multiple calls to ``simp bootstrap`` would fail
   due to leftover CA entries in the file.
-* Fixed a typo in an info block that would cause ``simp bootstrap`` to fail if it
-  had already been successfully run.
+* Fixed a bug in log message processing that would cause ``simp bootstrap`` to
+  fail if it had already been successfully run.
+* Fixed a bug in which the tftpboot images copied into the rsync space in
+  SIMP's secondary environment were not world readable, preventing clients from
+  PXE booting.
 
 simp-environment-skeleton
 ^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -716,6 +754,12 @@ pupmod-simp-compliance_markup
   - Added an option to append a string to the checks key.
   - Added additional helper scripts for v1 to v2 migration.
 
+* Made the 'timestamp' in the client-side report optional to prevent puppet
+  from triggering file resource changes every time.
+* Removed experimental v1 data since it is no longer used.
+* Removed partial v2 data sets.
+* Added v2 data for the non-SIMP ``puppet-yum`` module.
+
 pupmod-simp-deferred_resources
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
@@ -725,8 +769,9 @@ pupmod-simp-deferred_resources
   ``deferred_resources`` native type to allow file attributes to be
   overridden with more useful messages than what you get with resource
   collectors
-* Ensure that an override attribute is defined prior to removal
+* Ensure that an override attribute is defined prior to removal.
 * Defined deep merge strategies for the Hash and Array class arguments.
+* Switched all FIPS checks to use top level inherited checks.
 
 pupmod-simp-freeradius
 ^^^^^^^^^^^^^^^^^^^^^^
@@ -828,6 +873,13 @@ pupmod-simp-pupmod
   ``pupmod::master::sysconfig::jruby_jar``.
 * Change the default jar file for puppetserver to ``jruby-9k.jar`` for
   the FOSS puppetserver.  (It is already set to that for PE.)
+* Added a ``pupmod::server_distribution`` function for more accurately
+  determining the version of the puppet server installed on the target system.
+* Refactored some of the underlying code to use the new function and be safer
+  for PE installations.
+* Added Certificate Authority parameters for authorization extensions and 
+  subject alternative names.
+
 
 pupmod-simp-resolv
 ^^^^^^^^^^^^^^^^^^
@@ -844,8 +896,11 @@ pupmod-simp-rsync
 ^^^^^^^^^^^^^^^^^
 
 * Added the ability to have a server support being both a SIMP rsync server and
-  a SIMP rsync client of another server, simultaneously. This configuration is useful
-  for a PE Compile Master <-> Master of Masters host configuration scenario.
+  a SIMP rsync client of another server, simultaneously. This configuration is
+  useful for a PE Compile Master <-> Master of Masters host configuration
+  scenario.
+* Added a ``preserve_perms`` attribute to disable preservation of server-side
+  permissions.
 
 pupmod-simp-rsyslog
 ^^^^^^^^^^^^^^^^^^^
@@ -888,8 +943,13 @@ pupmod-simp-simp
 * Added a ``sysctl`` value to increase max number of ``inotify`` user watches.
 * Added 2 configuration parameters to ``simp::puppetdb``:
   ``simp::puppetdb::automatic_dlo_cleanup`` and ``simp::puppetdb::dlo_max_age``.
-
 * Update the URLS to the EPEL GPG keys.  The URLS have changed.
+
+pupmod-simp-simp_apache
+^^^^^^^^^^^^^^^^^^^^^^^
+
+* Split out service management into a ``simp_apache::service`` class and
+  provided users with a Hiera-driveable option to not manage the service.
 
 pupmod-simp-simp_bolt
 ^^^^^^^^^^^^^^^^^^^^^
@@ -917,6 +977,12 @@ pupmod-simp-simp_ipa
 
 *  Added Puppet Tasks for joining and leaving an IPA domain.
 
+pupmod-simp-simp_pki_service
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+* Modified API. These are minor breaking changes for this **experimental**
+  module.
+
 pupmod-simp-simplib
 ^^^^^^^^^^^^^^^^^^^
 
@@ -943,17 +1009,8 @@ pupmod-simp-simplib
 * Deprecated the remaining ``simplib`` Puppet 3.x functions and re-enabled
   ``simplib`` deprecation warnings by default.
 * Defer to inbuilt ``fips_enabled`` fact if it exists.
-
-pupmod-simp-simp_pki_service
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-* Modified API. These are minor breaking changes for this **experimental** module.
-
-pupmod-simp-sudo
-^^^^^^^^^^^^^^^^
-
-* Allow additional options to be specified by a Hash in
-  ``sudo::user_specification``.
+* Added a check for the environment variable, ``SIMPLIB_NOLOG_DEPRECATIONS``,
+  to disable SIMP function deprecation warnings.
 
 pupmod-simp-ssh
 ^^^^^^^^^^^^^^^
@@ -975,6 +1032,10 @@ pupmod-simp-ssh
 
 * Added a new class, ``ssh::authorized_keys``, that allows users to specify
   public keys in Hiera.
+* Added multiple port support
+
+  - The ssh::server::conf::port entry can now take an Array of ports
+  - ``selinux_port`` resources are created for each non-standard entry
 
 pupmod-simp-sssd
 ^^^^^^^^^^^^^^^^
@@ -982,6 +1043,12 @@ pupmod-simp-sssd
 * Change the ``sssd::provider::ldap::ldap_access_order`` defaults to
   ``['ppolicy','pwd_expire_policy_renew']`` to prevent accidental user
   lockout.
+
+pupmod-simp-sudo
+^^^^^^^^^^^^^^^^
+
+* Allow additional options to be specified by a Hash in
+  ``sudo::user_specification``.
 
 pupmod-simp-xinetd
 ^^^^^^^^^^^^^^^^^^
