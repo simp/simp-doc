@@ -361,8 +361,8 @@ pupmod-simp-gdm
 pupmod-simp-ima
 ^^^^^^^^^^^^^^^
 
-* Fixed a bug in facter to verify that Facter.value(:cmdline) is set before
-  testing for a value.
+* Fixed a bug in which the ``ima_security_attr `` fact was not properly confined
+  to require the ``cmdline`` fact.
 
 pupmod-simp-incron
 ^^^^^^^^^^^^^^^^^^
