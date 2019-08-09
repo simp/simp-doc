@@ -285,9 +285,8 @@ configurations.
 | SIMP Hiera &  | - Sets the ``$simp_scenario`` variable in the site.pp of the |
 | Site Manifest |   'production' environment to the user-selected scenario.    |
 |               | - If a host YAML file for the SIMP server does not already   |
-|               |   exist in ``/etc/puppetlabs/.../production/data/hosts``.    |
-|               |   does not already exist, ``simp config`` will create one    |
-|               |   from a SIMP template.                                      |
+|               |   exist in ``/etc/puppetlabs/.../production/data/hosts``     |
+|               |   ``simp config`` will create one from a SIMP template.      |
 |               | - Updates the SIMP server host YAML file with appropriate    |
 |               |   PuppetDB settings.                                         |
 |               | - Creates YAML file containing global data relevant to       |

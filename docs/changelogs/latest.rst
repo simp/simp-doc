@@ -134,46 +134,177 @@ module deploy.
 In addition, ``simp config`` has been updated to allow users to opt-out of
 SIMP-provided LDAP capabilities.
 
+Puppet 3 API Function Deprecations
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+In preparation for full Puppet 6 support, all SIMP-provided Puppet 3 API
+functions are officially deprecated and **will be removed** in the next SIMP
+release. The affected functions and their replacements, as appropriate,
+are listed in sub-sections below.
+
+In addition, SIMP deprecation warnings have been enabled by default. To
+disable SIMP deprecation warnings set environment variable
+``SIMP_NOLOG_DEPRECATIONS=true`` on the Puppet server.
+
+simp-compliance_markup Deprecated Functions
+"""""""""""""""""""""""""""""""""""""""""""
+
++-----------------------+---------------------------------------+---------------------------------+
+| Puppet 3 API Function | Replacement                           | Replacement Source              |
++=======================+=======================================+=================================+
+| **compliance_map**    | **compliance_markup::compliance_map** | simp-compliance_markup >= 3.0.0 |
++-----------------------+---------------------------------------+---------------------------------+
+
+simp-simp_apache Deprecated Functions
+"""""""""""""""""""""""""""""""""""""
+
++--------------------------+---------------------------------------+---------------------------+
+| Puppet 3 API Function    | Replacement                           | Replacement Source        |
++==========================+=======================================+===========================+
+| **apache_auth**          | **simp_apache::auth**                 | simp-simp_apache >= 6.0.1 |
++--------------------------+---------------------------------------+---------------------------+
+| **apache_limits**        | **simp_apache::limits**               | simp-simp_apache >= 6.0.1 |
++--------------------------+---------------------------------------+---------------------------+
+| **munge_httpd_networks** | **simp_apache::munge_httpd_networks** | simp-simp_apache >= 6.0.1 |
++--------------------------+---------------------------------------+---------------------------+
+
+simp-simplib Deprecated Functions
+"""""""""""""""""""""""""""""""""
+
+.. IMPORTANT::
+
+   Most but not all deprecated functions in the table below have replacements.
+   If any deprecated function without a replacement is essential to you, please
+   enter a `feature request <https://simp-project.atlassian.net>`_.
+
+
++------------------------------+------------------------------------+-------------------------------+
+| Puppet 3 API Function        | Replacement                        | Replacement Source            |
++==============================+====================================+===============================+
+| **array_include**            | Puppet language **in** *or*        | Puppet >= 5.2.0               |
+|                              | Puppet built-in **any** or **all** |                               |
++------------------------------+------------------------------------+-------------------------------+
+| **array_size**               | Puppet built-in **length**         | Puppet >= 5.5.0               |
++------------------------------+------------------------------------+-------------------------------+
+| **array_union**              | Puppet language **+** operator     | Puppet >= 5.0.0               |
+|                              | combined with Puppet built-in      |                               |
+|                              | **unique**                         |                               |
++------------------------------+------------------------------------+-------------------------------+
+| **bracketize**               | **simplib::bracketize**            | simp-simplib >= 3.15.0        |
++------------------------------+------------------------------------+-------------------------------+
+| **generate_reboot_msg**      | None                               | N/A                           |
++------------------------------+------------------------------------+-------------------------------+
+| **get_ports**                | None                               | N/A                           |
++------------------------------+------------------------------------+-------------------------------+
+| **h2n**                      | None                               | N/A                           |
++------------------------------+------------------------------------+-------------------------------+
+| **host_is_me**               | **simplib::host_is_me**            | simp-simplib >= 3.15.0        |
++------------------------------+------------------------------------+-------------------------------+
+| **inspect**                  | **simplib::inspect**               | simp-simplib >= 3.3.0         |
++------------------------------+------------------------------------+-------------------------------+
+| **ipaddresses**              | **simplib::ipaddresses**           | simp-simplib >= 3.5.0         |
++------------------------------+------------------------------------+-------------------------------+
+| **ip_is_me**                 | **simplib::host_is_me** (checks    | simp-simplib >= 3.15.0        |
+|                              | hostnames and IP addresses)        |                               |
++------------------------------+------------------------------------+-------------------------------+
+| **ip_to_cron**               | **simplib::ip_to_cron**            | simp-simplib >= 3.5.0         |
++------------------------------+------------------------------------+-------------------------------+
+| **join_mount_opts**          | **simplib::join_mount_opts**       | simp-simplib >= 3.8.0         |
++------------------------------+------------------------------------+-------------------------------+
+| **localuser**                | None                               | N/A                           |
++------------------------------+------------------------------------+-------------------------------+
+| **mapval**                   | None                               | N/A                           |
++------------------------------+------------------------------------+-------------------------------+
+| **nets2cidr**                | **simplib::nets2cidr**             | simp-simplib >= 3.7.0         |
++------------------------------+------------------------------------+-------------------------------+
+| **nets2ddq**                 | **simplib::nets2ddq**              | simp-simplib >= 3.8.0         |
++------------------------------+------------------------------------+-------------------------------+
+| **parse_hosts**              | **simplib::parse_hosts**           | simp-simplib >= 3.5.0         |
++------------------------------+------------------------------------+-------------------------------+
+| **passgen**                  | **simplib::passgen**               | simp-simplib >= 3.5.0         |
++------------------------------+------------------------------------+-------------------------------+
+| **rand_cron**                | **simplib::rand_cron**             | simp-simplib >= 3.5.0         |
++------------------------------+------------------------------------+-------------------------------+
+| **simp_version**             | **simplib::simp_version**          | simp-simplib >= 3.15.0        |
++------------------------------+------------------------------------+-------------------------------+
+| **simplib_deprecation**      | **simplib::deprecation**           | simp-simplib >= 3.5.0         |
++------------------------------+------------------------------------+-------------------------------+
+| **slice_array**              | Puppet built-in **slice**          | Puppet >= 4.0.0               |
+| **slice_array**              | Puppet built-in **slice**          | Puppet >= 4.0.0               |
++------------------------------+------------------------------------+-------------------------------+
+| **strip_ports**              | **simplib::strip_ports**           | simp-simplib >= 3.5.0         |
++------------------------------+------------------------------------+-------------------------------+
+| **to_integer**               | Puppet built-in **Integer** *or*   | **Integer**: Puppet >= 4.0.0; |
+|                              | **simplib::to_integer**            | **simplib::to_integer**:      |
+|                              |                                    | simp-simplib >= 3.5.0         |
++------------------------------+------------------------------------+-------------------------------+
+| **to_string**                | Puppet built-in **String**         | **String**: Puppet >= 4.0.0;  |
+|                              | *or* **simplib::to_string**        | **simplib::to_string**:       |
+|                              |                                    | simp-simplib >= 3.5.0         |
++------------------------------+------------------------------------+-------------------------------+
+| **validate_array_member**    | **simplib::validate_array_member** | simp-simplib >= 3.8.0         |
++------------------------------+------------------------------------+-------------------------------+
+| **validate_array_of_hashes** | Use a custom Puppet data type      | Puppet >= 4.0.0               |
+|                              | such as **Array[Hash]**            |                               |
++------------------------------+------------------------------------+-------------------------------+
+| **validate_between**         | **simplib::validate_between**      | simp-simplib >= 3.8.0         |
++------------------------------+------------------------------------+-------------------------------+
+| **validate_bool_simp**       | Use Puppet **Boolean** data type   | Puppet: >= 4.0.0;             |
+|                              | *or* **simplib::validate_bool**    | simp-simplib >= 3.8.0         |
++------------------------------+------------------------------------+-------------------------------+
+| **validate_deep_hash**       | **simplib::validate_deep_hash**    | simp-simplib >= 3.8.0         |
++------------------------------+------------------------------------+-------------------------------+
+| **validate_float**           | Use Puppet **Float** data type     | Puppet: >= 4.0.0;             |
+|                              | *or* a check using **is_float**    | **is_float**:                 |
+|                              | from **puppetlabs-stdlib**         | puppetlabs-stdlib >= 2.2.0    |
++------------------------------+------------------------------------+-------------------------------+
+| **validate_macaddress**      | Use **Simplib::Macaddress** data   | simp-simplib >= 3.7.0         |
+|                              | type                               |                               |
++------------------------------+------------------------------------+-------------------------------+
+| **validate_net_list**        | Use **Simplib::Netlist** data      | simp-simplib >= 3.5.0         |
+|                              | type *or*                          |                               |
+|                              | **simplib::validate_net_list**     |                               |
++------------------------------+------------------------------------+-------------------------------+
+| **validate_port**            | Use **Simplib::Port** data type    | simp-simplib >= 3.5.0         |
+|                              | *or*                               |                               |
+|                              | **simplib::validate_net_list**     |                               |
++------------------------------+------------------------------------+-------------------------------+
+| **validate_re_array**        | **simplib::validate_re_array**     | simp-simplib >= 3.7.0         |
++------------------------------+------------------------------------+-------------------------------+
+| **validate_sysctl_value**    | **simplib::validate_sysctl_value** | simp-simplib >= 3.7.0         |
++------------------------------+------------------------------------+-------------------------------+
+| **validate_umask**           | Use **Simplib::Umask** data type   | simp-simplib >= 3.7.0         |
++------------------------------+------------------------------------+-------------------------------+
+| **validate_uri_list**        | **simplib::validate_sysctl_value** | simp-simplib >= 3.7.0         |
++------------------------------+------------------------------------+-------------------------------+
+
+simp-ssh Deprecated Functions
+"""""""""""""""""""""""""""""
+
++----------------------------+-----------------------------+--------------------+
+| Puppet 3 API Function      | Replacement                 | Replacement Source |
++============================+=============================+====================+
+| **ssh_autokey**            | **ssh\::autokey**           | simp-ssh >= 6.2.0  |
++----------------------------+-----------------------------+--------------------+
+| **ssh_global_known_hosts** | **ssh\::global_know-hosts** | simp-ssh >= 6.2.0  |
++----------------------------+-----------------------------+--------------------+
+
+
 Other important changes for SIMP 6.4.0
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-* Use of SIMP's Puppet 4.x API functions (namespaced functions) or Puppet
-  built in functions in lieu of Puppet 3 functions.
-
-  - All SIMP modules now use Puppet 4.x API functions.
-  - All of SIMP's Puppet 3 functions have been deprecated and
-    **will be removed** in the next SIMP release.
-  - SIMP Deprecation warnings are on by default. To disable SIMP deprecation
-    warnings set environment variable ``SIMP_NOLOG_DEPRECATIONS=true`` on
-    the puppet server.
-  - The following functions were not upgraded to Puppet 4 functions
-    and will be removed in the next release:
-
-    - array_include
-    - array_size
-    - array_union
-    - generate_reboot_msg
-    - get_ports
-    - h2n
-    - ip_is_me
-    - localuser
-    - mapval
-    - slice_array
-    - validate_array_of_hashes
-    - validate_float
-
-* Non-breaking dependent module updates.  SIMP updated as many dependent
+* *Non-breaking dependent module updates*.  SIMP updated as many dependent
   modules as possible.  While numerous of these updates were major version
   bumps, the actual changes did not affect much of the SIMP infrastructure.
   The dependency version bumps did, however, require quite a few of the
   SIMP modules to update their respective ``metadata.json`` files.  These
   metadata changes, in turn, required SIMP module version updates.
-* Non-breaking use of new ``Simplib::Cron::*`` types.  Many modules were
-  converted to use the new ``cron`` types provided by ``simp/simplib``.  These
+* *Non-breaking use of new* ``Simplib::Cron::*`` *types*.  Many modules were
+  converted to use the new ``cron`` types provided by ``simp-simplib``.  These
   changes allow more flexible ``cron`` scheduling.
-* Puppet 6 support for many of the modules.
-* Added v2 ``compliance_markup`` data to many of the modules.
-* Increase in the minimum RAM requirement for a SIMP server.  It is now 3.4G.
+* *Puppet 6 support for many of the modules*.
+* *Added v2* ``compliance_markup`` *data to many of the modules*.
+* *Increase in the minimum RAM requirement for a SIMP server*.  It is now 3.4G.
   See :ref:`gsg-system_requirements` for more information.
 
 Security Announcements
@@ -301,7 +432,7 @@ pupmod-simp-simpcat
 
 This module is no longer necessary and uses the obsolete Puppet 3 function API.
 Within SIMP, all uses of this module have been replaced with uses of the
-``puppetlabs/concat`` module.
+``puppetlabs-concat`` module.
 
 pupmod-simp-site
 ^^^^^^^^^^^^^^^^
@@ -571,33 +702,33 @@ obsolete modules or temporary SIMP versions of modules.
 pupmod-camptocamp-systemd
 ^^^^^^^^^^^^^^^^^^^^^^^^^
 
-* Replacement for the ``simp/systemd`` module.  SIMP had temporarily
-  published ``simp/systemd`` while we were waiting for important updates
+* Replacement for the ``simp-systemd`` module.  SIMP had temporarily
+  published ``simp-systemd`` while we were waiting for important updates
   to ``camptocamp`` to be published.
 
 pupmod-puppet-gitlab
 ^^^^^^^^^^^^^^^^^^^^
 
-* Replacement for the OBE ``vshn/gitlab`` module.  The Vox Pupuli project
+* Replacement for the OBE ``vshn-gitlab`` module.  The Vox Pupuli project
   has assumed ownership of this module.
 
 pupmod-puppet-snmp
 ^^^^^^^^^^^^^^^^^^
 
-* Replacement for the OBE ``razorsedge/snmp`` module. The Vox Pupuli project
+* Replacement for the OBE ``razorsedge-snmp`` module. The Vox Pupuli project
   has assumed ownership of this module.
 
 pupmod-saz-timezone
 ^^^^^^^^^^^^^^^^^^^
 
-* Replacement for the ``simp/timezone`` module.  SIMP had temporarily
-  published ``simp/timezone`` while we were waiting for important updates
-  to ``saz/timezone`` to be published.
+* Replacement for the ``simp-timezone`` module.  SIMP had temporarily
+  published ``simp-timezone`` while we were waiting for important updates
+  to ``saz-timezone`` to be published.
 
 pupmod-simp-journald
 ^^^^^^^^^^^^^^^^^^^^
 
-* Replacement for the OBE ``cristifalcas/journald`` module.
+* Replacement for the OBE ``cristifalcas-journald`` module.
 
 New Features
 ------------
@@ -685,7 +816,7 @@ pupmod-simp-issue
 pupmod-simp-journald
 ^^^^^^^^^^^^^^^^^^^^
 
-* Forked from ``cristifalcas/puppet-journald``.
+* Forked from ``cristifalcas-puppet-journald``.
 * Refactored the API for ease of use and for Puppet 5 compatibility.
 
 pupmod-simp-network
@@ -831,7 +962,7 @@ pupmod-simp-simp_bolt
 pupmod-simp-simp_gitlab
 ^^^^^^^^^^^^^^^^^^^^^^^
 
-* Switched from ``vshn/gitlab`` 1.13.3 to its replacement ``puppet/gitlab``
+* Switched from ``vshn-gitlab`` 1.13.3 to its replacement ``puppet-gitlab``
   3.0.2 and reworked the manifests, as appropriate, to work with the newer
   module.
 * Added ``manage_package`` and ``package_ensure`` parameters to ``simp_gitlab``.
@@ -956,7 +1087,7 @@ remove this package if your site is not using a ``simp`` environment.
 simp-rsync-skeleton
 ^^^^^^^^^^^^^^^^^^^
 
-* Replacement moving forward for deprecated ``simp-rsync`` packaged.
+* Replacement moving forward for deprecated ``simp-rsync`` package.
 * All files are now installed in ``/usr/share/simp/environments-skeleton/rsync``.
 
 simp-selinux-policy
