@@ -664,6 +664,8 @@ rubygem-simp-cli
 * Fixed a bug in which the tftpboot images copied into the rsync space in
   SIMP's secondary environment were not world readable, preventing clients from
   PXE booting.
+* Fixed a bug in which ``simp config``'s lockfile instructions on how to prevent
+  possible root lockout from the SIMP server were incomplete.
 
 simp-environment-skeleton
 ^^^^^^^^^^^^^^^^^^^^^^^^^
