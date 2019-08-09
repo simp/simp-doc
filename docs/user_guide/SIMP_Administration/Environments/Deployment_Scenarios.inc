@@ -1,20 +1,19 @@
 .. _ug-sa-env-deployment-scenarios:
 
 .. ### Using some unicode
-
 .. include:: <isonum.txt>
 .. include:: <isopub.txt>
 
 ..  ### Replacement text (to keep the grid-style tables manageable):
 
-.. |local_dsc__link|    replace:: :ref:`Local module repos <ug-sa-env-deployment-scenarios--local>`
-.. |crepo_dsc__link|    replace:: :ref:`Manual r10k <ug-sa-env-deployment-scenarios--controlrepo>`
-.. |wh_crepo_dsc__link| replace:: :ref:`Webhook + r10k <ug-sa-env-deployment-scenarios--controlrepo>`
-.. |pe_crepo_dsc__link| replace:: :ref:`PE Code Manager <ug-sa-env-deployment-scenarios--cr+pe-codemanager>`
+.. |local_ds__link|     replace:: :ref:`Local module repos <ug-sa-env-deployment-scenarios--local>`
+.. |man_crepo_ds__link| replace:: :ref:`Manual r10k <ug-sa-env-deployment-scenarios--controlrepo>`
+.. |wh_crepo_ds__link|  replace:: :ref:`Webhook + r10k <ug-sa-env-deployment-scenarios--controlrepo>`
+.. |pe_crepo_ds__link|  replace:: :ref:`PE Code Manager <ug-sa-env-deployment-scenarios--cr+pe-codemanager>`
 .. |local_mods__link|   replace:: Local :ref:`(from RPMs) <ug-sa-env-local-module-repositories>`
 .. |remote_mods__link|  replace:: Remote (Git hosting service)
-.. |r10k_de| replace:: ``r10k deploy environment``
-.. |r10k_pi| replace:: ``r10k puppetfile install``
+.. |r10k_de|  replace:: ``r10k deploy environment``
+.. |r10k_pi|  replace:: ``r10k puppetfile install``
 .. |r10k_pcd| replace:: ``puppet code deploy``
 
 ..  ### Images
@@ -32,9 +31,9 @@ Deployment Scenarios
 --------------------
 
 SIMP supports deploying code using r10k or Code Manager, even when its Puppet
-modules are installed from RPMs.  However, site practices vary widely—the
-optimal practices for deploying SIMP will vary, depending on your deployment
-arcitecture.
+modules are installed from RPMs.  However, deployment scenarios vary widely.
+The optimal practices will depend on your preferences, infrastucture, and
+deployment architecture:
 
 .. table:: Deployment Scenarios
    :widths: 7 10 10 3 7 3
@@ -43,44 +42,68 @@ arcitecture.
    | Deployment | Variation            | r10k       | Control     | Module Repos        | Auto?   |
    | Scenario   |                      | command    | Repository? |                     |         |
    +============+======================+============+=============+=====================+=========+
-   | Local      | |local_dsc__link|    | |r10k_pi|  | No          | |local_mods__link|  |         |
+   | Local      | |local_ds__link|     | |r10k_pi|  | No          | |local_mods__link|  |         |
    +------------+----------------------+------------+-------------+---------------------+---------+
-   | Control    | |crepo_dsc__link|    | |r10k_de|  | Yes         | |remote_mods__link| |         |
+   | Control    | |man_crepo_ds__link| | |r10k_de|  | Yes         | |remote_mods__link| |         |
    | Repository +----------------------+------------+             |                     +---------+
-   |            | |wh_crepo_dsc__link| | |r10k_de|  |             |                     | |check| |
+   |            | |wh_crepo_ds__link|  | |r10k_de|  |             |                     | |check| |
    |            +----------------------+------------+             |                     +---------+
-   |            | |pe_crepo_dsc__link| | |r10k_pcd| |             |                     | |check| |
+   |            | |pe_crepo_ds__link|  | |r10k_pcd| |             |                     | |check| |
    +------------+----------------------+------------+-------------+---------------------+---------+
 
 .. _ug-sa-env-deployment-scenarios--local:
 
-Local deployment scenarios
-^^^^^^^^^^^^^^^^^^^^^^^^^^
+Local deployment scenario
+^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Local deployment scenarios will work out-of-the-box on systems where SIMP
-has been installed by ISO or RPM.  You don't need a control repository, a
-remote Git-hosting service, or even a functioning network
+The :dfn:`Local deployment scenario` requires the least preparation or
+infrastructure: it doesn't require a control repository, a remote Git-hosting
+service, or even a functioning network.
 
-relies on SIMP RPM-created Puppet module Git repository
+The local deployment scenario is recommended for:
 
-Deploying local (SIMP RPM-delivered) Puppet modules
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+* Systems that don't have access to a git-hosting service
+* Users who prefer to treat the SIMP framework as a vendor-packaged appliance
+* Users who prefer to avoid maintaining a control repository
+
+The local deployment scenario requires:
+
+* A SIMP master that has been installed from ISO or RPM
+* SIMP RPM-delivered :ref:`Local Module Git Repositories <ug-sa-env-local-module-repositories>`
+* The ``simp`` command
+* No additional compile masters.
+
+.. IMPORTANT::
+   The local deployment scenario is only suitable for a single monolithic SIMP
+   master.
+
+.. NOTE::
+   If you need to scale beyond a single master, you should :ref:`deploy
+   from a control repository <ug-sa-env-deployment-scenarios--controlrepo>`.
+
+Deploying from Local module repos
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 This is the initial deployment scenario immediately after
 :ref:`gsg-installing_simp_from_an_iso`.
 
 |r10k_local_repos__no_control_repo|
 
-Under this scenario, *local* Puppet admins:
+Under this scenario, a *local* r10k user will:
 
-* Deploy Puppet modules from an existing Puppet environment directory
 * Use the command ``r10k puppetfile install`` to deploy the modules defined in
   the local ``Puppetfile``
-* Reference module repos from Git repositories on the local filesystem
-  via ``file://`` urls in the ``Puppetfile``.
+* Deploy Puppet modules into an existing Puppet environment directory
+
+This is is the only scenario variation that deploys Puppet *modules* into an
+existing Puppet environment directory, instead of deploying a complete
+environment.
+
+The ``Puppetfile`` references modules using ``file://`` urls, from Git
+repositories on the local filesystem
+
 
 .. _ug-sa-env-deployment-scenarios--controlrepo:
-
 
 Control Repository deployment scenarios
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -96,8 +119,8 @@ Control Repository deployment scenarios
      * Keeping remote Puppet module repositories up-to-date with the
        versions that SIMP RPMs deliver to the local filesystem.
 
-Manual deployment
-~~~~~~~~~~~~~~~~~
+Manual ``r10k deploy``
+~~~~~~~~~~~~~~~~~~~~~~
 
 |r10k__control_repo__manual|
 
@@ -106,6 +129,7 @@ Under this scenario, Puppet admins:
 * Maintain a Puppet control repository from an external git service
 * Manually Deploy entire :term:`Puppet environment` directories (one per
   branch):
+
   * ``r10k deploy environment [ENVIRONMENT]``
   * ``r10k puppet code deploy [ENVIRONMENT]`` (Puppet Enterprise)
 * This might be done manually from the command line, or triggered
@@ -114,8 +138,9 @@ Under this scenario, Puppet admins:
 
 .. _ug-sa-env-deployment-scenarios--webhook+controlrepo:
 
-Webhook deploying from Code Repository
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+Webhook-triggered ``r10k deploy``
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
 |r10k__control_repo__webhook|
 
 Under this scenario, Puppet admins:
@@ -129,8 +154,9 @@ Under this scenario, Puppet admins:
 
 .. _ug-sa-env-deployment-scenarios--cr+pe-codemanager:
 
-Deploying from Code Manager
-^^^^^^^^^^^^^^^^^^^^^^^^^^^
+PE Code Manager
+^^^^^^^^^^^^^^^
+
 |enterprise__automated_deploy|
 
 Under this scenario, Puppet admins:
