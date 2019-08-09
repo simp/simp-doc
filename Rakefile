@@ -11,6 +11,8 @@ require 'find'
 CLEAN.include 'build/rpm_metadata'
 CLEAN.include 'linkcheck'
 
+CLOBBER.include 'html'
+
 desc 'Munge Prep'
   desc <<-EOM
 This task extracts the docs version and release from a simp.spec file

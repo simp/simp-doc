@@ -157,19 +157,62 @@ def known_os_compatibility_rst(simp_version_dict,
     simp_github_api_base=SIMP_GITHUB_API_BASE,
     default_simp_branch=DEFAULT_SIMP_BRANCH, on_rtd=ON_RTD):
 
-    """ Output the fully formatted OS Compatibility RST """
+    """ Output the fully-formatted OS Compatibility RST
 
-    ver_map = get_version_map(simp_version_dict['simp_branch'],
-        local_simp_core_path, simp_github_api_base,
-        default_simp_branch, on_rtd)
+    By default, this method will:
+      1. Download/read `release_mappings.yaml` files from a simp-core repo
+         * Downloads raw files from GitHub unless SIMP_CORE_PATH is set
+      2. Combine all data from all release mappings into one version map
+      3. Inject that data into a RestructuredText OS Compatibility page
+      4. Return the RestructuredText
+
+    However: if the environment variable SIMP_FAST_DOCS="true",
+    then it will simply substitute a note mentioning that it skipped all of the
+    above, and why.  This makes it easier to just preview the docs quickly, and
+    prevents sphinx-autobuild from incessantly downloading from GitHub.
+    """
+
+    if os.environ.get('SIMP_FAST_DOCS', 'false') == 'true':
+
+      compatibility_content = """
+      .. ATTENTION::
+
+        The Known OS Compatibility data was **skipped** when this documentation
+        was built, because the environment variable
+        ``SIMP_FAST_DOCS`` was set to **true**.
+
+        .. NOTE::
+
+          This mode allows developers to quickly preview changes to static
+          content, and prevents live-reload tools like `sphinx-autobuild` from
+          incessantly downloading the same four URLs from GitHub whenever a file
+          changes under `docs/`.
+
+        .. WARNING::
+
+          Make sure you don't have ``SIMP_FAST_DOCS`` on when
+          building the final documentation!
+
+        .. ATTENTION::
+
+          Also, SIMP_FAST_DOCS is `%s`
+
+      """ % (os.environ.get('SIMP_FAST_DOCS', 'wat'))
+
+    else:
+      ver_map = get_version_map(simp_version_dict['simp_branch'],
+          local_simp_core_path, simp_github_api_base,
+          default_simp_branch, on_rtd)
+      compatibility_content = version_map_to_rst(
+          simp_version_dict['full_version'],
+          simp_version_dict['version_family'], ver_map)
 
     os_compat_rst = """
     Known OS Compatibility
     ----------------------
 
     {0}
-    """.format(version_map_to_rst(simp_version_dict['full_version'],
-        simp_version_dict['version_family'], ver_map))
+    """.format(compatibility_content)
 
     return dedent(os_compat_rst)
 
