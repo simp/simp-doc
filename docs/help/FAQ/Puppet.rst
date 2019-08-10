@@ -119,8 +119,6 @@ by running the following command:
 
 .. code-block:: bash
 
-   # Deploy `production` environment with group ownership and permissions the
-   # Puppet Server can read:
    ( umask 0027 && sg puppet -c '/usr/share/simp/bin/r10k deploy environment production )
 
 This will deploy the environment with the correct permissions and group
