@@ -255,6 +255,19 @@ Before proceding with this section, you should
       # Push the branch
       git push dev1 control_repo
 
+#. To continue configuring the environment, move on :ref:`Client_Management` section in
+the :ref:`simp-user-guide`.
+
+By default this environment will be using a different Certificate
+Authority for  :ref:`Infrastructure Certificates<ug-sa-ga-infrastructure-certificates>`. It
+therefore may not be able to communicate to a server in another envirnment when
+certificate authentication is required,  for example LDAP.  You will have to create a new LDAP server
+or add the new CA to the list of trusted CA's in the other environment.
+
+This environment will also generate a new set of passwords when ``simplib::passgen`` function is
+used in a puppet module.  It therefore may not be able to talk to a server in another environment
+that requires password authentication.
+
 
 .. _Puppet, Inc.'s control repository documentation: https://docs.puppet.com/pe/latest/cmgmt_control_repo.html
 .. _simp-core repository: https://github.com/simp/simp-core
