@@ -6,9 +6,7 @@ Set Up SIMP's External Node Classifier
 An :term:`External Node Classifier`, ENC, can be used to determine what
 Puppet environment is used by a node.
 
-.. TIP::
 
-   For an ENC overview, please see `Puppet's ENC documentation`_.
 
 SIMP provides a simple, YAML-based ENC, ``/usr/local/bin/set_environment``,
 available from the ``simp-utils`` RPM.  That package will already be installed
@@ -93,5 +91,6 @@ To use this script for your ENC, do the following as ``root``:
       # On EL7
       systemctl restart puppetserver
 
+For more information on ENCs, please see `Puppet's ENC documentation`_.
 
 .. _Puppet's ENC documentation: https://puppet.com/docs/puppet/latest/nodes_external.html
