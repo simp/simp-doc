@@ -10,6 +10,8 @@ management scenario.
 
    All SIMP CLI environment management commands need to be run as ``root``.
 
+.. _ug-sa-env-cli-simp-environment-new:
+
 simp environment new
 ^^^^^^^^^^^^^^^^^^^^
 
@@ -91,6 +93,8 @@ following actions:
     environment will be automatically generated, as needed, when ``puppet``
     is run
 
+.. _ug-sa-env-cli-simp-environment-fix:
+
 simp environment fix
 ^^^^^^^^^^^^^^^^^^^^
 
@@ -124,6 +128,8 @@ following actions:
 * Restores SELinux contexts under ``/var/simp/environments/<env name>``.
 * Applies FACL rules to ``/var/simp/environments/<env name>/rsync``
 
+
+.. _ug-sa-env-cli-simp-puppetfile-generate:
 
 simp puppetfile generate
 ^^^^^^^^^^^^^^^^^^^^^^^^
