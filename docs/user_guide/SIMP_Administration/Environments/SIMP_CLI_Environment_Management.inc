@@ -72,19 +72,18 @@ following actions:
   #. If any ``tftpboot`` :term:`PXE` image files can be found in directories
      matching ``/var/www/yum/CentOS/**/x86_64/images/pxeboot``, copies those files
      into the appropriate sub-directory in
-    ``/var/simp/environments/<env name>/rsync/RedHat/Global/tftpboot/linux-install``.
-  #.  Creates a new FakeCA cacertkey file at
+     ``/var/simp/environments/<env name>/rsync/RedHat/Global/tftpboot/linux-install``.
+  #. Creates a new FakeCA cacertkey file at
      ``/var/simp/environments/<env name>/FakeCA/cacertkey``. The file is populated with
      a random string.
+  #. Re-applies the :term:`FACLs <FACL>`, :term:`SELinux` contexts, and permissions
+     to the newly-created directory trees.
 
-  * Re-applies the :term:`FACLs <FACL>`, :term:`SELinux` contexts, and permissions
-    to the newly-created directory trees.
+     - Equivalent to executing: ``simp puppetfile fix <env name>``
 
-    - Equivalent to executing: ``simp puppetfile fix <env name>``
-
-  * Does not create the Writable environment, because in this scenario, that
-    environment will be automatically generated, as needed, when ``puppet``
-    is run
+  #. Does not create the Writable environment, because in this scenario, that
+     environment will be automatically generated, as needed, when ``puppet``
+     is run
 
 .. ug-sa-env-cli-simp-environment-fix:
 

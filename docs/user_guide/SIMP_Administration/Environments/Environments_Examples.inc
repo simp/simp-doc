@@ -23,7 +23,7 @@ You might also find the following HOWTO documents to be helpful:
   is set up, the environment a node is assigned to can be set in using a configuration
   file located on the puppetserver.
 
-.. _example_create_and_deploy_new_env
+.. _example_create_and_deploy_new_env:
 
 Creating and Deploying a Test Environment Using Local Module Repositories
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
