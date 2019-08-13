@@ -3,57 +3,131 @@
 Puppet-Related Issues
 =====================
 
+.. contents:: :local:
+
 .. _faq-puppet-debug_mode_crash:
 
-Running Puppet Agent in Debug Mode Crashes
-------------------------------------------
+Why is my Puppet Agent crashing when run with ``--debug``?
+----------------------------------------------------------
 
-The `FACT-1732`_ bug, present in some versions of `Facter 3`_, can cause
-`facter` to crash when attempting to print `Bignum`_ level numbers.
+The bug `FACT-1732`_ can cause Facter to crash while attempting to print a
+`Bignum`_-sized number.  On 64-bit systems, this is any integer greater than
+**4611686018427387903** [#]_.
 
 .. NOTE::
-   On a 64-bit system, a ``Bignum`` value is ``(2**62)`` or higher
 
-This will affect runs of ``puppet agent -t --debug`` as well as ``facter -p``.
+   Facts provided by SIMP's modules are **not affected** by FACT-1732.
 
-If you are using version < 3.5.0 of the ``simp-simplib`` module, you will
-encounter this problem with its ``shmall`` fact.
+* This issue only affects facts introduced from *non-SIMP* sources.
+* It will cause the commands ``puppet agent -t --debug`` and ``facter -p``
+  to fail with errors when they encounter Bignum-sized *numeric* fact values.
+* You can fix your own facts to avoid FACT-1732 by returning any potentially
+  large numeric value as a String.
 
-.. _Bignum: https://ruby-doc.org/core-2.2.0/Bignum.html
+.. rubric:: Older versions of SIMP and FACT-1732
+
+SIMP modules' facts haven't been susceptible to FACT-1732 since SIMP
+6.1.0-0.  Before that, the ``shmall`` and ``shmax`` facts from
+:program:`simp-simplib` would crash on systems with a lot of memory.
+
+.. _Bignum: https://ruby-doc.org/core-2.3.0/Bignum.html
 .. _FACT-1732: https://tickets.puppetlabs.com/browse/FACT-1732
 .. _Facter 3: https://docs.puppet.com/facter/3.8/
+.. [#] 4611686018427387904 == 2 :sup:`62`
 
 .. _faq-puppet-generate_types:
 
-When Should I Run `puppet generate types`?
-------------------------------------------
+When should I run ``puppet generate types``?
+--------------------------------------------
 
-The `puppet generate types`_ command was added to help solve the `SERVER-94`_
-:term:`puppet environment` isolation issue by caching :term:`custom type`
-definitions in each environment.
+The ``puppet generate types`` command addresses the problem of `Puppet
+Environment isolation`_ (`SERVER-94`_) by generating :term:`custom type`
+metadata definitions for each environment.  The command must therefore be
+re-run in response to changes in Puppet environments and compilers.
 
-SIMP has a Puppet class called ``pupmod::master::generate_types``, which is
-enabled by default, and uses ``incron`` to automatically run ``puppet generate
-types`` in the following cases:
+By default, SIMP automates some of these cases using :program:`incron`
+triggers. However, there are still some situations where you will have to make
+sure that ``puppet generate types`` is run.
+
+Situations :program:`incron` handles automatically
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+By default, SIMP configures the :program:`incron` daemon to automatically run
+``puppet generate types`` under either of the following circumstances:
 
   * The ``puppet`` or ``puppetserver`` binaries have been updated.
-  * A new environment is added to the system.
+  * A new :term:`Puppet environment` directory is added to the system.
 
-You will need to run ``puppet generate types`` manually if the following occurs:
+This behavior is managed by the Puppet class ``pupmod::master::generate_types``.
 
-  * A new module is added to your environment that includes custom types.
-  * An existing custom type has its code modified.
+.. rubric:: Differences from Previous versions of SIMP
 
-.. NOTE::
-   Versions 7.6.0 through 7.7.1 of the ``simp-pupmod`` Puppet module tried
-   to include all of the cases above to ensure that users did not need to
-   manually adjust any aspects of their systems. However, this proved to
-   potentially add too much load to the system in certain situations and
-   was reduced to the current functionality.
+Earlier versions of :program:`simp-pupmod` (7.6.0 through 7.7.1, shipped with
+SIMP 6.2.0-0 through 6.3.1-0) attempted to automatically trigger ``puppet
+generate types`` under every relevant circumstance.  However, some of the
+triggers could add too much load on the system and were removed from the
+:program:`incron`'s watchlist.
 
-If you are using :term:`r10k` then you can add a `postrun`_ snippet to run
-``puppet generate types`` on the modified environments.
+These situations must be addressed by other means (see below).
+
+
+Situations :program:`incron` doesn't handle
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+:program:`incron` does not handle all cases, so you will need to ensure that
+``puppet generate types`` is after the following events:
+
+  * A new *module* that includes custom types is added to an existing environment.
+  * An existing custom type's internal code is updated.
+
+
+Generating types manually
+^^^^^^^^^^^^^^^^^^^^^^^^^
+
+You can run the ``puppet generate types`` command as **root** on the Puppet
+Server.  However, in order to ensure that the Puppet Server process can read
+the generated files, you must also ensure they have the correct ownership and
+permissions.  One way to do this is by running the following command:
+
+.. code-block:: bash
+
+   (umask 0027 && sg puppet -c 'puppet generate types --environment ENVIRONMENT')
+
+This creates all files with the correct group ownership.
+
+
+Automatically generating types after ``r10k deploy environment``
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+If you are using :term:`r10k` to deploy :term:`Control Repository` branches
+using ``r10k deploy environment``, you can set the `"generate_types" option`_
+in the :file:`r10k.yaml` file to automatically run :command:`puppet generate
+types` for each environment after it is deployed:
+
+.. code-block:: yaml
+   :emphasize-lines: 3
+   :caption: Inside :file:`r10k.yaml`:
+
+   # Important: this option *must* be defined under a top-level `deploy:`
+   deploy:
+     generate_types: true
+
+If you use :program:`r10k` to deploy modules as **root** on the Puppet Server,
+you must ensure that the generated files have the correct ownership and
+permissions for the Puppet Server process to read them.  One way to do this is
+by running the following command:
+
+.. code-block:: bash
+
+   ( umask 0027 && sg puppet -c '/usr/share/simp/bin/r10k deploy environment production )
+
+This will deploy the environment with the correct permissions and group
+ownership.  If ``deploy/generate_types`` is set to ``true``, it will also
+generate environment-safe type metadata files  with the same permissions and
+ownership.
 
 .. _SERVER-94: https://tickets.puppetlabs.com/browse/SERVER-94
 .. _postrun: https://github.com/puppetlabs/r10k/blob/master/doc/dynamic-environments/configuration.mkd#postrun
-.. _puppet generate types: https://puppet.com/docs/puppet/latest/environment_isolation.html
+.. _generate_types: https://github.com/puppetlabs/r10k/blob/master/doc/dynamic-environments/configuration.mkd#generate_types
+.. _"generate_types" option: https://github.com/puppetlabs/r10k/blob/master/doc/dynamic-environments/configuration.mkd#generate_types
+.. _Puppet Environment isolation: https://puppet.com/docs/puppet/5.5/environment_isolation.html
