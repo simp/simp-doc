@@ -33,21 +33,21 @@ Before proceding with this section, you should
    :local:
 
 
-Create a Control Repository on a SIMP Server
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+Creating a Control Repository on a SIMP Server
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 This section assumes you have installed SIMP using the installation guide either
 from ISO or RPM Repository and want to create a R10K control repository
 from the installation.  This procedure needs to be done on the SIMP server.
 
 
-#. Create a GIT Repository
+#. Create a git repository
 
    .. code-block:: sh
 
       cd /etc/puppetlabs/code/environments/production
       git init .
 
-#. Add the files to the git repository:
+#. Add the files to the git repository
 
    .. code-block:: sh
 
@@ -73,8 +73,8 @@ from the installation.  This procedure needs to be done on the SIMP server.
       git push dev1 control_repo
 
 
-Create a Control Repository without SIMP installed
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+Creating a Control Repository without SIMP installed
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 This section describes how to create a control repository for an environment
 called dev1   that uses the SIMP internet puppet modules repositories.
 
