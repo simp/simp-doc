@@ -1,4 +1,4 @@
-.. _Examples for Deploying SIMP Environments:
+.. _ug-sa-env-examples-for-deploying:
 
 Examples for Deploying SIMP Environments
 ----------------------------------------
@@ -9,7 +9,7 @@ You might also find the following HOWTO documents to be helpful:
 * :ref:`How To Generate a  SIMP Puppetfile<howto-generate-a-simp-puppetfile>`
 
   Gives detailed examples of how to generate a Puppetfile for use with r10k
-  from a :ref:`Local deployment scenario<ug-local_module_deployment_scenario>`
+  from a :ref:`Local deployment scenario<ug-sa-env-deployment-scenarios--local>`
   or using Internet Repos.
 
 * :ref:`How To Create a Control Repository<howto-setup-a-simp-control-repository>`
@@ -23,12 +23,12 @@ You might also find the following HOWTO documents to be helpful:
   is set up, the environment a node is assigned to can be set in using a configuration
   file located on the puppetserver.
 
-.. _Deploy an Environment Using Local Module Repositories:
+.. _example_create_and_deploy_new_env
 
-Create and Deploy a Test Environment Using Local Module Repositories
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+Creating and Deploying a Test Environment Using Local Module Repositories
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-This example uses the :ref:`Local deployment scenario<ug-local_module_deployment_scenario>`
+This example uses the :ref:`Local deployment scenario<ug-sa-env-deployment-scenarios--local>`
 It steps through creating a new :term:`SIMP Omni-Environment`, for which the
 SIMP :term:`secondary <SIMP Secondary Environment>` and :term:`writable <SIMP Writable Environment>`
 environments are linked to the corresponding directories in the existing ``production``
@@ -56,7 +56,7 @@ It assumes:
 
       simp environment new test --link production
 
-   This will
+   This will:
 
    * Create the Puppet environment ``test``
    * Copy over the entire ``production`` Puppet environment over to the ``test``
@@ -131,14 +131,16 @@ It assumes:
 
 .. _howto-setup-a-simp-control-repository:
 
-Set up a SIMP Environment in a Control Repository using Remote GIT repositories
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+Setting up a SIMP Environment in a Control Repository using Remote Git repositories
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 Although (with a detailed understanding of SIMP internals) you can have a
 a :term:`SIMP server` that will function with just a Puppet environment, by
-default, a functioning SIMP server **requires** its entire SIMP Omni-Environment.
-This example creates a SIMP Omni-Environment skeleton
-whose Puppet environment you can check into a branch in your control repository.
+default, a functioning SIMP server **requires** its entire :term:`SIMP
+Omni-Environment`.
+
+This example creates a SIMP Omni-Environment skeleton whose Puppet environment
+you can check into a branch in your control repository.
 
 This example  assumes the new SIMP Omni-Environment will be
 using its own secondary and writable environments.
@@ -155,10 +157,9 @@ Before proceding with this section, you should
   - local, SIMP-managed Git repositories maintained by SIMP Puppet module RPMs
   - SIMP :term:`CLI` commands to assist with SIMP Omni-Environment management.
 
-.. TIP::
 
-   You may find it helpful to read the section that explains how a control
-   repository works in `Puppet, Inc.'s control repository documentation`_ .
+* You may find it helpful to read the section that explains how a control
+  repository works in `Puppet, Inc.'s control repository documentation`_ .
 
 #. Install Prerequisite Packages
 
@@ -255,8 +256,8 @@ Before proceding with this section, you should
       # Push the branch
       git push dev1 control_repo
 
-#. To continue configuring the environment, move on :ref:`Client_Management` section in
-the :ref:`simp-user-guide`.
+#. To continue configuring the environment, move on to the :ref:`Client_Management`
+   section in the :ref:`simp-user-guide`.
 
 By default this environment will be using a different Certificate
 Authority for  :ref:`Infrastructure Certificates<ug-sa-ga-infrastructure-certificates>`. It
