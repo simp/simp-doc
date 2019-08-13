@@ -39,13 +39,15 @@ Incremental Upgrades
 
 For ``Y`` and ``Z`` SIMP changes, you should feel comfortable dropping the
 changes directly into your **test** systems. The promotion cycle from test to
-production should be short and painless if you reference the version upgrade
-documentation.
+production should be short and painless if you reference the :ref:`version
+upgrade documentation <ug-version-specific-upgrade-instructions>`.
 
-Beginning with SIMP 6.4.0, simply installing SIMP-packaged Puppet module RPMs
-will no longer apply the module updates to the ``simp`` :term:`Puppet environment`.
-You must deploy the Puppet modules to the desired Puppet environment(s) using
-the mechanism appropriate for your :ref:`deployment scenario <ug-deployment_scenarios>`.
+
+Beginning with SIMP 6.4.0, SIMP-packaged Puppet module RPMs
+no longer install updates directly into the ``simp/`` :term:`Puppet
+environment` directory. You must upgrade your Puppet modules using the
+mechanism appropriate for your :ref:`environment deployment
+scenario<ug-sa-env-deployment-scenarios>`:
 
 .. IMPORTANT::
 
@@ -53,16 +55,16 @@ the mechanism appropriate for your :ref:`deployment scenario <ug-deployment_scen
    executing an Incremental Upgrade. There may be specific instructions
    regarding the upgrade process that you should follow.
 
+
 .. _ug-incremental-upgrades-w-iso:
 
-Local deployment scenario incremental upgrade
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+Upgrading systems using the local deployment scenario
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-The following instructions assume the Puppet environment you are updating is
-named ``test`` and are specific to a
-:ref:`Local deployment scenario<ug-local_module_deployment_scenario>`.
-
-Execute these steps as ``root``.
+The following instructions are specific to the :ref:`Local deployment
+scenario<ug-sa-env-deployment-scenarios--local>`.  They assume the Puppet
+environment you are updating is named ``test``, and that you execute these
+steps as ``root``:
 
 #. Update the YUM Repositories
 
@@ -113,8 +115,8 @@ Execute these steps as ``root``.
 
       puppet agent -t
 
-Other deployment scenario incremental upgrade
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+Upgrading systems that use control repositories
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 If you manage your SIMP server using :term:`r10k` or :term:`Code Manager` and
 are not using the server-local, SIMP-managed Git module repositories, you
@@ -149,8 +151,8 @@ sets as required by their environment. That being said, the SIMP team does not
 test all combinations of modules and may have difficulty providing support for
 untested combinations.
 
-New Server Creation and Client Migration
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+Creating a new server and migrating clients
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 The recommended method for upgrading **major** breaking changes (``X`` bump) is
 to create a new Puppet Server and migrate your data and clients to it. This
