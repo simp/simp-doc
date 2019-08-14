@@ -127,7 +127,7 @@ Using SIMP internet repositories
           yum deplist simp-extras
 
 
-Copy the Pupptfile and Puppetfile.simp to top level of the environment
+Copy the Puppetfile and Puppetfile.simp to top level of the environment
 directory or the top level of the control repo.
 
 

@@ -8,10 +8,10 @@ required in a Puppet infrastructure.  Managing the control repository with
 :term:`Git` allows sysadmins to utilize a workflow when updating and developing
 their infrastructure.
 
-This HOWTO will describe how to create control repostiories from a local installation
+This HOWTO will describe how to create control repositories from a local installation
 and from the internet repos.
 
-Before proceding with this section, you should
+Before proceeding with this section, you should
 
 * Have a basic understanding of control repositories.
 * Have a basic understanding of how to use ``git``.

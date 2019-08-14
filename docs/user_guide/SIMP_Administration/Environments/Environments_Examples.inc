@@ -69,7 +69,7 @@ It assumes:
 #. **Update the Puppetfile Pair**
 
    Edit /etc/puppetlabs/code/environment/test/Puppetfile and add/update
-   any of you own  puppet modules that you are updating.
+   any of your own puppet modules that you are updating.
 
    Then update /etc/puppetlabs/code/environment/test/Puppetfile.simp using the
    following:
