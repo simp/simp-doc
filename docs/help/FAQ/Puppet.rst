@@ -119,7 +119,7 @@ by running the following command:
 
 .. code-block:: bash
 
-   ( umask 0027 && sg puppet -c '/usr/share/simp/bin/r10k deploy environment production )
+   ( umask 0027 && sg puppet -c '/usr/share/simp/bin/r10k deploy environment production' )
 
 This will deploy the environment with the correct permissions and group
 ownership.  If ``deploy/generate_types`` is set to ``true``, it will also

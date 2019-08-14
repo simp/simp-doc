@@ -761,6 +761,7 @@ pupmod-simp-compliance_markup
 * Removed experimental v1 data since it is no longer used.
 * Removed partial v2 data sets.
 * Added v2 data for the non-SIMP ``puppet-yum`` module.
+* Added confinement on modules and facts to SIMP Compliance Engine.
 
 pupmod-simp-deferred_resources
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
