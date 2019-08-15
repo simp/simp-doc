@@ -137,10 +137,9 @@ Control Repository deployment scenario
 The :dfn:`Control Repository deployment scenario` deploys complete Puppet
 **environments** from a remotely-hosted :term:`Control Repository`.
 
-Control repositories are the standard mechanism to manage and deploy Puppet
-environments.  However, SIMP administrators must ensure that each deployed Puppet
-environment is associated with an appropriate :term:`SIMP Omni-environment` (or
-doesn't need to be).  A good starting point is to review the article,
+SIMP administrators must ensure that each deployed Puppet environment is
+associated with an appropriate :term:`SIMP Omni-environment` (or doesn't need
+to be).  A good starting point is to review the article,
 :ref:`howto-setup-a-simp-control-repository`
 
 The Control repository deployment scenario is recommended for:
