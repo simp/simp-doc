@@ -3,58 +3,84 @@
 HOWTO Set up a SIMP Environment in a Control Repository
 =======================================================
 
-A :term:`Control Repository` contains the modules, hieradata, and roles/profiles
-required in a Puppet infrastructure.  Managing the control repository with
-:term:`Git` allows sysadmins to utilize a workflow when updating and developing
-their infrastructure.
-
-This HOWTO will describe how to create control repositories from a local installation
-and from the internet repos.
-
-Before proceeding with this section, you should
-
-* Have a basic understanding of control repositories.
-* Have a basic understanding of how to use ``git``.
-* Have a Git repository that you will be using as your control repository.
-* Have read :ref:`Deploying SIMP Environments`.  It contains detailed
-  descriptions of key topics:
-
-  - the :term:`SIMP Omni-Environment`
-  - local, SIMP-managed Git repositories maintained by SIMP Puppet module RPMs
-  - SIMP :term:`CLI` commands to assist with SIMP Omni-Environment management.
-
-.. TIP::
-
-   You may find it helpful to read the section that explains how a control
-   repository works in `Puppet, Inc.'s control repository documentation`_ .
+This HOWTO describes how to create Puppet :term:`control repositories <Control
+Repository>` for use with a :ref:`Control Repository deployment scenario
+<ug-sa-env-deployment-scenarios--controlrepo>`.
 
 .. contents:: Contents
    :depth: 3
    :local:
 
 
+Requirements
+^^^^^^^^^^^^
+
+To use any of the procedures in this section, you must:
+
+#. Have access to a remotely-hosted :term:`Git` repository where you will host your
+   control repository.
+#. Have a basic understanding of:
+
+   * Puppet :term:`Control Repositories <Control Repository>`.
+   * How to use the ``git`` command.
+   * The topics covered in ":ref:`Deploying SIMP Environments`," particularly:
+
+     - The composition of :ref:`ug-sa-simp-environments`
+     - The :ref:`Local Deployment Scenario <ug-sa-env-deployment-scenarios--local>`
+     - The ``simp`` commands needed to manage a :term:`SIMP Omni-Environment`
+
+You may find it helpful to read the section that explains how a control
+repository works in `Puppet, Inc.'s control repository documentation`_ .
+
+
 Creating a Control Repository on a SIMP Server
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-This section assumes you have installed SIMP using the installation guide either
-from ISO or RPM Repository and want to create a R10K control repository
-from the installation.  This procedure needs to be done on the SIMP server.
+
+This procedure creates an r10k control repository from a fresh SIMP ISO/RPM
+installation.  It is currently limited to to *just* the control repository—the
+RPM-provided Puppet module git repositories will remain on the SIMP server's
+local filesystem.
+
+.. IMPORTANT::
+   This procedure does NOT describe how to migrate or host SIMP Puppet modules
+   in remote git Repositories, or how to update the Puppetfile.simp file to
+   deploy them.
 
 
-#. Create a git repository
+.. rubric:: Prerequisites
+
+* You have installed SIMP (per the installation guide) from :ref:`ISO
+  <gsg-installing_simp_from_an_iso>` or :ref:`RPM Repository
+  <gsg-installing_simp_from_a_repository>`.
+* This procedure needs to be done on the SIMP server.
+
+.. rubric:: Procedure
+
+#. Create a git repository inside the ``production`` Puppet environment
+   directory:
 
    .. code-block:: sh
 
       cd /etc/puppetlabs/code/environments/production
       git init .
 
-#. Add the files to the git repository
+#. Create a new branch for the ``production`` Puppet environment:
+
+   .. code-block:: sh
+
+      git checkout -b production
+
+#. Add files to the git repository.
+   (Do **not** add the ``modules/`` directory or ``.resource_types/`` directory):
 
    .. code-block:: sh
 
       # Add the files
       git add Puppetfile Puppetfile.simp hiera.yaml environment.conf
-      # Add directories.  Do not add modules directory or .resource_types directory
-      git add manifests data
+
+      # Add directories
+      git add manifests/ data/
+
 
 #. Commit the changes
 
@@ -70,85 +96,101 @@ from the installation.  This procedure needs to be done on the SIMP server.
       git remote add control_repo <URL to the control repo>
 
       # Push the branch
-      git push dev1 control_repo
+      git push production control_repo
 
 
 Creating a Control Repository without SIMP installed
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-This section describes how to create a control repository for an environment
-called dev1   that uses the SIMP internet puppet modules repositories.
 
-Prerequisites
-~~~~~~~~~~~~~
-This section requires the following SIMP RPMs to be installed on your server
-
-* ``simp-environment-skeleton``
-
-Configuring the SIMP repositories is described in :ref:`gsg-installing_simp_from_a_repository` if you need it.
-
-
-Procedure
-~~~~~~~~~
+This procedure creates a control repository with a branch for an environment
+named called ``dev1``.  The Puppet modules will be deployed from the SIMP
+project's public git repositories over the internet.
 
 .. IMPORTANT::
 
-   If you intend to bootstrap a SIMP server from the environment created
-   in this section, it **must** be named ``production``, instead of ``dev1``.
+   If you intend to use this environment :ref:`to bootstrap a SIMP server
+   without RPMs <howto-bootstrapping-a-simpserver-without-rpms>`,
+   it **must** be named ``production`` (and not ``dev1``).
+
+.. rubric:: Prerequisites
+
+You will need the SIMP Puppet environment "skeleton" directory, which can be
+obtained from one of the following sources:
+
+* ``/usr/share/simp/environment-skeleton/puppet/`` when the RPM package
+  **simp-environment-skeleton** is installed [1]_.
+* ``environments/puppet/`` under a checkout of the git repository
+  https://github.com/simp/simp-environment-skeleton.git.
+
+.. [1] If your working host doesn't have the **simp-environment-skeleton** RPM
+       and you'd like to install it, you can set up the SIMP yum repositories
+       (see ":ref:`gsg-installing_simp_from_a_repository`)."
+
+.. rubric:: Procedure
 
 #. Create an empty git repository:
 
    .. code-block:: bash
 
-      mkdir  $HOME/dev1
-      cd $HOME/dev1
+      mkdir $HOME/control-repo
+      cd $HOME/control-repo
       git init .
 
 #. Copy the puppet environment skeleton into your git repository:
 
    .. code-block:: bash
 
-      # You should still be in $HOME/dev1 directory
+      cd $HOME/control-repo
       cp -R /usr/share/simp/environment-skeleton/puppet/* .
+
+
+#. Substitute your environment's name into ``environment.conf``:
+
+   .. code-block:: bash
+
       sed -e "s/%%SKELETON_ENVIRONMENT%%/dev1/g" ./environment.conf.TEMPLATE > ./environment.conf
       chmod 640 environment.conf
       rm environment.conf.TEMPLATE
 
-#. Generate the Puppetfile.simp file
+#. Download and edit the ``Puppetfile.simp`` file:
 
-   - Download the ``Puppetfile`` used to create a SIMP ISO for a specific release
-     from the SIMP `simp-core repository`_. In this example, we are going to use
-     the SIMP ``6.4.0-0`` release.
+   a.   Download the ``Puppetfile`` used to create a SIMP ISO for a specific release
+        from the SIMP `simp-core repository`_ (in this example, it is ``6.4.0-0``):
 
-     .. code-block:: bash
+        .. code-block:: bash
 
-        cd /etc/puppetlabs/code/environments/dev1
-        curl -o Puppetfile.simp https://github.com/simp/simp-core/blob/6.4.0-0/Puppetfile.pinned
+           cd /etc/puppetlabs/code/environments/dev1
+           curl -o Puppetfile.simp https://github.com/simp/simp-core/blob/6.4.0-0/Puppetfile.pinned
 
-   - Manually edit the ``Puppetfile.simp`` to remove components that are not Puppet
-     modules, by deleting all lines up to and including
-     ``moduledir  'src/puppet/modules'``.
+   b.   Edit ``Puppetfile.simp`` to remove components that are not Puppet modules,
+        deleting all lines up to and including ``moduledir 'src/puppet/modules'``.
+        You can do this from the command line by running:
 
-   - Optionally, edit the ``Puppetfile.simp`` to remove any non-core SIMP
-     modules that are packaged with the ``simp-extras`` RPM, but you don't need.
-     You can discover the list of the SIMP extra modules by examining the RPM
-     requirements of the ``simp-extras`` RPM as follows:
+        .. code-block:: bash
 
-     .. code-block:: bash
+           sed -i -e "0,/^moduledir 'src\/puppet\/modules'/d" Puppetfile.simp
 
-        yum deplist simp-extras
+   c.   (Optionally,) edit ``Puppetfile.simp`` to remove any non-core SIMP modules
+        (e.g., the ones packaged with ``simp-extras``) that you don't need. You
+        can discover the list of the SIMP extra modules by examining the
+        dependencies of the ``simp-extras`` RPM:
 
-#. Create the Puppetfile
+        .. code-block:: bash
 
-   Create $HOME/dev1/Puppetfile and include the following line:
+           yum deplist simp-extras | grep dependency:
 
-   .. code-block:: ruby
+#. Create the ``Puppetfile``:
 
-      instance_eval(File.read(File.join(__dir__,"Puppetfile.simp")))
+   a.   Create the file ``$HOME/control-repo/Puppetfile``, which should include the
+        following line:
 
-   Also add entries for any other non-SIMP modules your site requires.
+        .. code-block:: ruby
 
-#. Add/adjust any of the :term:`Hiera` files in the data directory.
+           instance_eval(File.read(File.join(__dir__,"Puppetfile.simp")))
 
+   b.   (Optionally,) also add entries for any non-SIMP modules your site requires.
+
+#. Add/adjust any of the :term:`Hiera` files in the ``data/`` directory.
 
 #. Add all the files to a branch named for the environment in this repository:
 
@@ -179,6 +221,8 @@ Procedure
 Advanced Topics
 ^^^^^^^^^^^^^^^
 
+.. _howto-bootstrapping-a-simpserver-without-rpms:
+
 Bootstrapping A SIMP Server without SIMP Module RPMs
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
@@ -188,7 +232,7 @@ be initially configured. With a slight change to the procedures listed in
 with a ``production`` SIMP Omni-Environment skeleton, such as one created
 in this HOWTO.
 
-.. TIP::
+.. NOTE::
 
    You may want to read through :ref:`ug-initial_server_configuration`
    before proceeding.  It provides additional information that will not be
