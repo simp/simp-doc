@@ -129,7 +129,7 @@ It assumes:
 
 
 
-.. _howto-setup-a-simp-control-repository:
+.. _ug-sa-env-examples-setting-up-a-control-repo-using-remote-git-repos:
 
 Setting up a SIMP Environment in a Control Repository using Remote Git repositories
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -188,13 +188,13 @@ Before proceding with this section, you should
 
       simp environment new dev1 --no-puppetfile-gen
 
-   This will do the following:
+   This will create two skeleton directories:
 
-   * Create a skeleton Puppet directory at ``/etc/puppetlabs/code/environments/dev1``.
-   * Create a skeleton Secondary directory at ``/var/simp/environments/dev1``.
+   * a Puppet directory at ``/etc/puppetlabs/code/environments/dev1``.
+   * a Secondary directory at ``/var/simp/environments/dev1``.
 
-   It does not have to create the Writable environment, because that will be
-   automatically generated, as needed, when ``puppet`` is run.
+   A new Writable environment directory will be automatically generated, as
+   needed, when ``puppet`` is run.
 
 #. Generate the Puppetfile:
 
