@@ -3,8 +3,7 @@ SIMP CLI Commands for Environment Management
 
 The SIMP CLI provides commands to aid you in many facets of Puppet
 environment management.  This section will explain the basics of each command,
-and then demonstrate how to use these commands in a typical environment
-management scenario.
+many of which were used in :ref:`example_create_and_deploy_new_env`.
 
 .. NOTE::
 
@@ -32,68 +31,61 @@ documentation. To see the options available, execute the following:
 
 .. code-block:: bash
 
-   $ simp environment new -h
+   simp environment new -h
 
 Default Behavior
 ~~~~~~~~~~~~~~~~
 
-When no options are specified, ``simp environment new <env name>`` , takes the
+When no options are specified, ``simp environment new <env name>`` takes the
 following actions:
 
-  * Creates the Puppet environment ``/etc/puppetlabs/code/environments/<env name>``
-    from ``/usr/share/simp/environment-skeleton/puppet``.
+  #. Creates the Puppet environment ``/etc/puppetlabs/code/environments/<env name>``
+     from ``/usr/share/simp/environment-skeleton/puppet``.
 
-    - This includes creating the appropriate ``environment.conf`` file from the
-      skeleton's ``environment.conf.TEMPLATE``.
+     - This includes creating the appropriate ``environment.conf`` file from the
+       skeleton's ``environment.conf.TEMPLATE``.
 
-  * Generates ``Puppetfile`` and ``Puppetfile.simp`` in
-    ``/etc/puppetlabs/code/environments/<env name>``
+  #. Generates the files ``Puppetfile`` and ``Puppetfile.simp`` under the new
+     Puppet environment's directory:
 
-      * Equivalent to executing:
+        ::
+
+          /etc/puppetlabs/code/environments/<env_name>/
+            ├── Puppetfile
+            └── Puppetfile.simp
+
+      * This was equivalent to executing:
 
         .. code-block:: bash
 
-           $ cd /etc/puppetlabs/code/environments/<env name>
-           $ simp puppetfile generate --skeleton > Puppetfile
-           $ simp puppetfile generate > Puppetfile.simp
+           cd /etc/puppetlabs/code/environments/<env name>
+           simp puppetfile generate --skeleton > Puppetfile
+           simp puppetfile generate > Puppetfile.simp
 
-      * *Puppetfile*:
-          An empty parent Puppetfile that includes ``Puppetfile.simp`` and is
-          where you would put site-specific module entries. Is used to deploy
-          *all* the Puppet modules in both Puppetfiles.
-
-      * *Puppetfile.simp*:
-          A SIMP-only Puppetfile that could be used to deploy the latest versions
-          of Puppet modules from local SIMP-managed Git repositories. These local
-          repositories are created/updated when SIMP-packaged Puppet module RPMs
-          are installed and can be easily updated with each SIMP release by
-          executing ``simp puppetfile generate > Puppetfile.simp``.
-
-      * See `simp puppetfile generate`_ for an explanation about the benefits
+      * See "`simp puppetfile generate`_" for an explanation about the benefits
         of having these two Puppetfiles.
 
-  * Creates the secondary environment ``/var/simp/environments/<env name>`` from
-    ``/usr/share/simp/environment-skeleton/secondary``.
-  * Copies files from ``/usr/share/simp/environment-skeleton/rsync`` into
-    ``/var/simp/environments/<env name>/rsync``.
-  * If any ``tftpboot`` :term:`PXE` image files can be found in directories
-    matching ``/var/www/yum/CentOS/**/x86_64/images/pxeboot``, copies those files
-    into the appropriate sub-directory in
-    ``/var/simp/environments/<env name>/rsync/RedHat/Global/tftpboot/linux-install``.
-  * Creates a new FakeCA cacertkey file at
-    ``/var/simp/environments/<env name>/FakeCA/cacertkey``. The file is populated with
-    a random string.
+  #. Creates the secondary environment ``/var/simp/environments/<env name>`` from
+     ``/usr/share/simp/environment-skeleton/secondary``.
+  #. Copies files from ``/usr/share/simp/environment-skeleton/rsync`` into
+     ``/var/simp/environments/<env name>/rsync``.
+  #. If any ``tftpboot`` :term:`PXE` image files can be found in directories
+     matching ``/var/www/yum/CentOS/**/x86_64/images/pxeboot``, copies those files
+     into the appropriate sub-directory in
+     ``/var/simp/environments/<env name>/rsync/RedHat/Global/tftpboot/linux-install``.
+  #. Creates a new FakeCA cacertkey file at
+     ``/var/simp/environments/<env name>/FakeCA/cacertkey``. The file is populated with
+     a random string.
+  #. Re-applies the :term:`FACLs <FACL>`, :term:`SELinux` contexts, and permissions
+     to the newly-created directory trees.
 
-  * Re-applies the :term:`FACLs <FACL>`, :term:`SELinux` contexts, and permissions
-    to the newly-created directory trees.
+     - Equivalent to executing: ``simp puppetfile fix <env name>``
 
-    - Equivalent to executing: ``simp puppetfile fix <env name>``
+  #. Does not create the Writable environment, because in this scenario, that
+     environment will be automatically generated, as needed, when ``puppet``
+     is run
 
-  * Does not create the Writable environment, because in this scenario, that
-    environment will be automatically generated, as needed, when ``puppet``
-    is run
-
-.. _ug-sa-env-cli-simp-environment-fix:
+.. ug-sa-env-cli-simp-environment-fix:
 
 simp environment fix
 ^^^^^^^^^^^^^^^^^^^^
@@ -112,7 +104,7 @@ documentation. To see the options available, execute the following:
 
 .. code-block:: bash
 
-   $ simp environment fix -h
+   simp environment fix -h
 
 Default Behavior
 ~~~~~~~~~~~~~~~~
@@ -137,40 +129,58 @@ simp puppetfile generate
 ``simp puppetfile generate`` creates one of two different types of
 :term:`Puppetfiles <Puppetfile>`:
 
-* *SIMP-only Puppetfile*:
-    A Puppetfile that could be used to deploy the latest versions of Puppet
-    modules from local SIMP-managed Git repositories. These local repositories
-    are created/updated when SIMP-packaged Puppet module RPMs are installed.
 
-* *Puppetfile that includes the SIMP-only Puppetfile*:
-    An empty parent Puppetfile that includes the SIMP-only Puppetfile
-    (``Puppetfile.simp`` in the same directory), provides a place for you
-    to put site-specific module entries, and can be used to deploy *all* the
-    modules in both Puppetfiles.
+:samp:`Puppetfile.simp`
+    The :dfn:`SIMP-only Puppetfile`, used to deploy SIMP's Puppet modules from
+    local SIMP-managed Git repositories. These local repositories are
+    created/updated when SIMP-packaged Puppet module RPMs are installed.
+    This file can be regenerated to deploy the version of each module under
+    ``/usr/share/simp/modules`` using the command:
 
-SIMP intentionally designed the ``simp puppetfile generate`` with these
-different generation capabilities, because the separation of SIMP-only modules
-and site-specific modules into different Puppetfiles allows easy update of
-SIMP-only Puppet modules, while still allowing all the modules to be deployed
-from a single file (the parent Puppetfile).
+    .. code-block:: bash
+
+       simp puppetfile generate > Puppetfile.simp
+
+:samp:`Puppetfile`
+    The :dfn:`Parent Puppetfile`, which deploys all modules from *both*
+    Puppetfiles.
+    Administrators can customize this file to declare any additional
+    (non-SIMP) modules they may need.  It also includes the content from the
+    SIMP-only Puppetfile from the same directory.
+    A fresh parent Puppetfile can be generated by running:
+
+    .. code-block:: bash
+
+       simp puppetfile generate --skeleton > Puppetfile
+
+The files are kept side-by-side at the top level of each Puppet environment directory:
+::
+
+    <puppet_environment>/
+    ├── Puppetfile.simp
+    └── Puppetfile
+
+``simp puppetfile generate`` generates these two files separately so
+administrators can manage any non-SIMP modules in the `Puppetfile`, while
+permitting simp to regenerate ``Puppetfile.simp`` as the SIMP-only modules are
+updated.  :term:`r10k` will deploy all the modules in both Puppetfiles.
 
 If you want to update SIMP-only Puppetfile entries after installing/upgrading
 SIMP module RPMs, all you have to do is to execute:
 
 .. code-block:: bash
 
-   $ simp puppetfile generate > <your SIMP-only Puppetfile path>
+   simp puppetfile generate > <path to your environment>/Puppetfile.simp
 
-Your list of site-specific Puppet modules in the parent Puppetfile will be
-unaffected.
+Any Puppet modules defined in the parent Puppetfile will be unaffected.
 
 For example, to update the SIMP-only Puppetfile created by ``simp config`` in
 a standard SIMP server install from SIMP ISO or SIMP RPMs, execute:
 
 .. code-block:: bash
 
-   $ cd /etc/puppetlabs/code/environments/production
-   $ simp puppetfile generate > Puppetfile.simp
+   cd /etc/puppetlabs/code/environments/production
+   simp puppetfile generate > Puppetfile.simp
 
 Default Behavior: Generating Latest SIMP-only Puppetfile Content
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -195,7 +205,7 @@ that local repository.
 
 SIMP chose the naming convention to match that of :term:`PuppetForge`.
 
-.. TIP::
+.. NOTE::
 
    The corresponding SIMP-packaged Puppet module RPM name is
 
@@ -228,10 +238,4 @@ SIMP CLI documentation. To see the options available, execute the following:
 
 .. code-block:: bash
 
-   $ simp puppetfile generate -h
-
-
-Example:  Create a test environment for assessing a new SIMP version
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-*Under Construction*
+   simp puppetfile generate -h

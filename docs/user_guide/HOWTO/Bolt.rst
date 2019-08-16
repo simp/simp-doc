@@ -126,7 +126,7 @@ as the local user on the Bolt controller:
 
 .. code-block:: bash
 
-  $ bolt puppetfile show-modules
+  bolt puppetfile show-modules
 
 The output of this command should be a list of modules. To download additional
 modules from the Puppet Forge or a Git repository, create a :term:`Puppetfile`
@@ -149,7 +149,7 @@ Then execute the command:
 
 .. code-block:: bash
 
-  $ bolt puppetfile install
+  bolt puppetfile install
 
 to download and install the specified modules.
 
@@ -192,7 +192,7 @@ The manifest can then be applied to target systems with the command:
 
 .. code-block:: bash
 
-  $ bolt apply site.pp --nodes 'comma, separated, list, of, target, nodes'
+  bolt apply site.pp --nodes 'comma, separated, list, of, target, nodes'
 
 As mentioned previously, Bolt is configured to use ssh as its transport
 mechanism to remote systems so it may be necessary to troubleshoot the

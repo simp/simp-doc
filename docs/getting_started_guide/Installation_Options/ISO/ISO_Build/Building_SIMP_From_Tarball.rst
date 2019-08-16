@@ -48,15 +48,15 @@ Clone simp-core:
 
 .. code-block:: bash
 
-  $ git clone https://github.com/simp/simp-core
+  git clone https://github.com/simp/simp-core
 
 Change into the ``simp-core`` directory and make sure you are on the correct
 branch for your target SIMP version:
 
 .. code::
 
-   $ cd simp-core
-   $ git checkout tags/6.2.0-0 # for SIMP 6.2
+   cd simp-core
+   git checkout tags/6.2.0-0 # for SIMP 6.2
 
 Update your Dependencies
 ^^^^^^^^^^^^^^^^^^^^^^^^
@@ -66,7 +66,7 @@ installed and up to date:
 
 .. code::
 
-   $ bundle update
+   bundle update
 
 
 Inject the Tar File
@@ -83,8 +83,8 @@ build with CentOS 7,
 
 .. code::
 
-   $ mkdir build/distributions/CentOS/7/x86_64/DVD_Overlay
-   $ cp </path/to/.tar> build/distributions/CentOS/7/x86_64/DVD_Overlay
+   mkdir build/distributions/CentOS/7/x86_64/DVD_Overlay
+   cp </path/to/.tar> build/distributions/CentOS/7/x86_64/DVD_Overlay
 
 
 Optional - Update your Source Repositories
@@ -120,7 +120,7 @@ Run the ``build:auto`` rake task to create a bootable ISO:
 
 .. code::
 
-   $ SIMP_BUILD_rm_staging_dir=no SIMP_BUILD_prompt=yes SIMP_ENV_NO_SELINUX_DEPS=yes bundle exec rake build:auto[<directory containing source ISOs>]
+   SIMP_BUILD_rm_staging_dir=no SIMP_BUILD_prompt=yes SIMP_ENV_NO_SELINUX_DEPS=yes bundle exec rake build:auto[<directory containing source ISOs>]
 
 **Answer ``N`` when asked if you want to overwrite the tar file.**
 

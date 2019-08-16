@@ -146,9 +146,15 @@ Glossary of Terms
    Control Repository
       A version control repository containing all of the required modules, data,
       and configuration for one or more Puppet environments.  Each branch of
-      the control repository maps to a specific Puppet environment.
+      the control repository deploys as a separate Puppet environment using
+      :term:`r10k` or :term:`Code Manager`.
 
-      See Puppet, Inc. documentation: https://docs.puppet.com/pe/latest/cmgmt_control_repo.html
+      See:
+        * Puppet's documentation at
+          https://docs.puppet.com/pe/latest/cmgmt_control_repo.html
+        * :ref:`howto-setup-a-simp-control-repository`
+        * :ref:`ug-sa-env-examples-setting-up-a-control-repo-using-remote-git-repos`
+
 
    CPU
    Central Processing Unit
