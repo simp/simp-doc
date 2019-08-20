@@ -102,17 +102,6 @@ This check verifies the component's dependencies are correct in the
    and if present, the component's entry in the
    ``simp-core/build/rpm/dependencies.yaml``.
 
-Verify a Puppet module can be created
--------------------------------------
-
-This check verifies that a `PuppetForge`_-deployable Puppet module can
-be created:
-
-.. code-block:: bash
-
-   bundle exec rake metadata_lint
-   puppet module build
-
 Verify RPMs can be created
 --------------------------
 
