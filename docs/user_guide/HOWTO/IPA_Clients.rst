@@ -209,9 +209,9 @@ about user accounts that are worth noting:
 
    .. code-block:: bash
 
-      $ kinit admin
+      kinit admin
       # by default this will be a POSIX group
-      $ ipa group-add posixusers --desc "A POSIX group for users"
+      ipa group-add posixusers --desc "A POSIX group for users"
 
 *  The default UID and GID ranges are very high in IPA (generated randomly by
    default and can be in the low billions), so they are a lot higher than both

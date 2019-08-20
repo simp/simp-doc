@@ -22,9 +22,9 @@ and use **haveged**.
 
 .. code-block:: bash
 
-   $ sudo yum install haveged
-   $ sudo systemctl start haveged
-   $ sudo systemctl enable haveged
+   sudo yum install haveged
+   sudo systemctl start haveged
+   sudo systemctl enable haveged
 
 Set Up Ruby
 -----------
@@ -41,11 +41,11 @@ install :term:`RVM` for your user.
 
 .. code-block:: bash
 
-   $ gpg2 --keyserver hkp://keys.gnupg.net --recv-keys \
+   gpg2 --keyserver hkp://keys.gnupg.net --recv-keys \
        409B6B1796C275462A1703113804BB82D39DC0E3 \
        7D2BAF1CF37B13E2069D6956105BD0E739499BDB
-   $ \curl -sSL https://get.rvm.io | bash -s stable --ruby=2.4.4
-   $ source ~/.rvm/scripts/rvm
+   \curl -sSL https://get.rvm.io | bash -s stable --ruby=2.4.4
+   source ~/.rvm/scripts/rvm
 
 
 Set the Default Ruby
@@ -56,7 +56,7 @@ development.
 
 .. code-block:: bash
 
-   $ rvm use --default 2.4.4
+   rvm use --default 2.4.4
 
 .. NOTE::
 
@@ -76,7 +76,7 @@ with the repo. More info on Bundler can be found on the
 
 .. code-block:: bash
 
-   $ rvm all do gem install bundler
+   rvm all do gem install bundler
 
 Set Up Docker
 -------------
@@ -86,20 +86,20 @@ repository depending on your distribution.
 
 .. code-block:: bash
 
-   $ sudo yum install docker
+   sudo yum install docker
 
 The Docker package may not provide a `dockerroot` group.  If it does not exist
 post installation, create it:
 
 .. code-block:: bash
 
-   $ sudo groupadd dockerroot
+   sudo groupadd dockerroot
 
 Allow your (non-root) user to run docker:
 
 .. code-block:: bash
 
-   $ sudo usermod -aG dockerroot <user>
+   sudo usermod -aG dockerroot <user>
 
 When you build your system make sure you set the default size for the docker
 container or the ISO build may not work properly.
@@ -136,8 +136,8 @@ Start the docker daemon:
 
 .. code-block:: bash
 
-   $ sudo systemctl start docker
-   $ sudo systemctl enable docker
+   sudo systemctl start docker
+   sudo systemctl enable docker
 
 Build Your Build Containers
 ---------------------------

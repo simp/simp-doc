@@ -110,14 +110,14 @@ To change the password, you will need to perform the following steps.
 
     .. code-block:: bash
 
-       $ cryptsetup luksAddKey --key-slot 1 --key-file /etc/.cryptcreds UUID=<uuid> /etc/.cryptcreds.new
-       $ cryptsetup luksKillSlot --key-file /etc/.cryptcreds 0
+       cryptsetup luksAddKey --key-slot 1 --key-file /etc/.cryptcreds UUID=<uuid> /etc/.cryptcreds.new
+       cryptsetup luksKillSlot --key-file /etc/.cryptcreds 0
 
-       $ cryptsetup luksAddKey --key-slot 0 --key-file /etc/.cryptcreds.new UUID=<uuid> /etc/.cryptcreds.new
-       $ cryptsetup luksKillSlot --key-file /etc/.cryptcreds.new 1
+       cryptsetup luksAddKey --key-slot 0 --key-file /etc/.cryptcreds.new UUID=<uuid> /etc/.cryptcreds.new
+       cryptsetup luksKillSlot --key-file /etc/.cryptcreds.new 1
 
        # Only do this step if the previous steps succeeded!
-       $ mv /etc/.cryptcreds.new /etc/.cryptcreds
+       mv /etc/.cryptcreds.new /etc/.cryptcreds
 
 5. Update your :term:`initrd` files
 

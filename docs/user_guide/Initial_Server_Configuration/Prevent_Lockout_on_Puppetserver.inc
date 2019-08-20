@@ -46,10 +46,14 @@ This example creates a manifest in a local module, ``mymodule``, in the
 ``production`` Puppet environment.  See `Puppet module documentation`_ for
 information on how to create a Puppet module.
 
-#. Create a local user account, as needed, using ``useradd``.  This examples
+#. Create a local user account, as needed, using ``useradd``.  This example
    assumes the local user is ``userx``.
 
-#. Create a ``local_user.pp`` manifest in ``mymodule`` to enable
+   * Be sure to set the user's password if the user is logging in with a password.
+   * SIMP is configured to create a home directory for the user, if it does
+     not exist when the user first logs in.
+
+#. Create a ``local_user.pp`` manifest in ``mymodule/manifests`` to enable
    ``sudo su - root`` and allow ``ssh`` access for the user you created/selected:
 
    .. code-block:: ruby
@@ -75,12 +79,37 @@ information on how to create a Puppet module.
         }
       }
 
+#. Create a mymodule/metadata.json file.  It should look something like the following:
+   See `Puppet metadata documentation`_ for more information on metadata.json files.
+
+   .. code-block:: yaml
+
+     {
+       "name": "mymodule",
+       "version": "0.0.1",
+       "author": "Your name or group here",
+       "summary": "Configures Local User for sudo access",
+       "license": "Apache-2.0",
+       "source": "Your gitlab url or local",
+       "dependencies": [
+         {
+           "name": "simp/pam",
+           "version_requirement": ">= 6.0.0 "
+         },
+         {
+           "name": "simp/sudo",
+           "version_requirement": ">= 5.1.0 "
+         },
+
+       ],
+     }
+
 #. Make sure the permissions are correct on the module:
 
    .. code-block:: bash
 
-      $ sudo chown -R root:puppet  /etc/puppetlabs/code/environments/production/mymodule
-      $ sudo chmod -R g+rX  /etc/puppetlabs/code/environments/production/mymodule
+      sudo chown -R root:puppet  /etc/puppetlabs/code/environments/production/modules/mymodule
+      sudo chmod -R g+rX  /etc/puppetlabs/code/environments/production/modules/mymodule
 
 #. Add the module to the SIMP server's host YAML file class list:
 
@@ -99,10 +128,10 @@ information on how to create a Puppet module.
 
    .. code-block:: bash
 
-      $ sudo mkdir -p /etc/ssh/local_keys
-      $ sudo chmod 755 /etc/ssh/local_keys
-      $ sudo cp ~userx/.ssh/authorized_keys /etc/ssh/local_keys/userx
-      $ sudo chmod 644 /etc/ssh/local_keys/userx
+      sudo mkdir -p /etc/ssh/local_keys
+      sudo chmod 755 /etc/ssh/local_keys
+      sudo cp ~userx/.ssh/authorized_keys /etc/ssh/local_keys/userx
+      sudo chmod 644 /etc/ssh/local_keys/userx
 
 
 #. Add the module to the ``Puppetfile`` in the ``production`` environment:
@@ -113,6 +142,8 @@ information on how to create a Puppet module.
 
    .. code-block:: yaml
 
-      mod 'mymodule'; :local => true
+      mod 'mymodule', :local => true
 
 .. _Puppet module documentation: https://puppet.com/docs/puppet/5.5/modules.html
+
+.. _Puppet metadata documentation: https://puppet.com/docs/puppet/latest/modules_metadata.html#metadatajson-example

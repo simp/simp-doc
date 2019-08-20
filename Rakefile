@@ -232,7 +232,10 @@ def lint_files_with_bad_tags
   file_issues
 end
 
-def run_build_cmd(cmd)
+# @param cmd document build command to execute
+# @param outfile the build output file to print to the console; may contain
+#   warnings
+def run_build_cmd(cmd, outfile=nil)
   require 'open3'
 
   puts "== #{cmd}"
@@ -248,12 +251,17 @@ def run_build_cmd(cmd)
     exit(1)
   end
 
+  if outfile && File.exist?(outfile)
+    system("cat #{outfile}")
+  end
+
   return status
 end
 
 ## End Custom Linting Checks
 
 namespace :docs do
+  SPHINX_BUILD_OUTFILE = 'warnings.txt'
   namespace :rpm do
     desc 'Update the RPM lists'
     task :external do
@@ -392,39 +400,39 @@ which are simply available in the repository.
   desc 'build HTML docs'
   task :html => [:lint] do
     extra_args = ENV.fetch('SIMP_DOC_extra_sphinx_args', '')
-    cmd = "sphinx-build -E -n #{extra_args} -b html -d sphinx_cache docs html"
-    run_build_cmd(cmd)
+    cmd = "sphinx-build -E -n #{extra_args} -b html -w #{SPHINX_BUILD_OUTFILE} -d sphinx_cache docs html"
+    run_build_cmd(cmd, SPHINX_BUILD_OUTFILE)
   end
 
   desc 'build HTML docs (single page)'
   task :singlehtml => [:lint] do
     extra_args = ENV.fetch('SIMP_DOC_extra_sphinx_args', '')
-    cmd = "sphinx-build -E -n #{extra_args} -b singlehtml -d sphinx_cache docs html-single"
-    run_build_cmd(cmd)
+    cmd = "sphinx-build -E -n #{extra_args} -b singlehtml -w #{SPHINX_BUILD_OUTFILE} -d sphinx_cache docs html-single"
+    run_build_cmd(cmd, SPHINX_BUILD_OUTFILE)
   end
 
   desc 'build Sphinx PDF docs using the RTD resources (SLOWEST) TODO: BROKEN'
   task :sphinxpdf => [:lint] do
     extra_args = ENV.fetch('SIMP_DOC_extra_sphinx_args', '')
-    [ "sphinx-build -E -n #{extra_args} -b latex -D language=en -d sphinx_cache docs latex",
+    [ "sphinx-build -E -n #{extra_args} -b latex -D language=en -w #{SPHINX_BUILD_OUTFILE} -d sphinx_cache docs latex",
       "pdflatex -interaction=nonstopmode -halt-on-error ./latex/*.tex"
     ].each do |cmd|
-      run_build_cmd(cmd)
+      run_build_cmd(cmd, SPHINX_BUILD_OUTFILE)
     end
   end
 
   desc 'build PDF docs (SLOWEST)'
   task :pdf => [:lint] do
     extra_args = ENV.fetch('SIMP_DOC_extra_sphinx_args', '')
-    cmd = "sphinx-build -E -n #{extra_args} -b pdf -d sphinx_cache docs pdf"
+    cmd = "sphinx-build -E -n #{extra_args} -b pdf -w #{SPHINX_BUILD_OUTFILE} -d sphinx_cache docs pdf"
     run_build_cmd(cmd)
   end
 
   desc 'Check for broken external links'
   task :linkcheck => [:lint] do
     extra_args = ENV.fetch('SIMP_DOC_extra_linkcheck_args', '')
-    cmd = "sphinx-build -E -n #{extra_args} -b linkcheck -d sphinx_cache docs linkcheck"
-    run_build_cmd(cmd)
+    cmd = "sphinx-build -E -n #{extra_args} -b linkcheck -w #{SPHINX_BUILD_OUTFILE} -d sphinx_cache docs linkcheck"
+    run_build_cmd(cmd, SPHINX_BUILD_OUTFILE)
   end
 
   desc <<-EOF

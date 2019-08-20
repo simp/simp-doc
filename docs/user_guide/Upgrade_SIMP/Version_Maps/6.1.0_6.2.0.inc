@@ -174,7 +174,7 @@ On a SIMP server, the example ``dhcpd.conf`` file is installed in
    The commands below can be used to extract the new config file from the RPM,
    which can then be merged with the existing ``dhcpd.conf`` file.
 
-   #. Run ``$ rpm2cpio simp-rsync-6.2.1-0.el7.noarch.rpm |cpio -ir
+   #. Run ``rpm2cpio simp-rsync-6.2.1-0.el7.noarch.rpm |cpio -ir
       "*dhcpd.conf"``
 
        *  rpm2cpio converts the RPM file to cpio archive.  In this example, the

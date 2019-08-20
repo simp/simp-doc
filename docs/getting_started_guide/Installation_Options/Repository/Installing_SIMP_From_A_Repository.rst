@@ -25,8 +25,8 @@ Enable EPEL
 
 .. code-block:: bash
 
-   $ sudo yum install epel-release -y
-   $ sudo yum install pygpgme yum-utils -y
+   sudo yum install epel-release -y
+   sudo yum install pygpgme yum-utils -y
 
 Install The SIMP-Project Repositories
 -------------------------------------
@@ -83,7 +83,7 @@ Rebuild The Yum Cache
 
 .. code-block:: bash
 
-   $ sudo yum makecache
+   sudo yum makecache
 
 Install the SIMP Server
 -----------------------
@@ -92,13 +92,13 @@ Install the ``puppetserver`` package as follows:
 
 .. code-block:: bash
 
-   $ sudo yum install -y puppetserver
+   sudo yum install -y puppetserver
 
 Install the core SIMP packages as follows:
 
 .. code-block:: bash
 
-   $ sudo yum install -y simp
+   sudo yum install -y simp
 
 The ``simp`` RPM installs the SIMP core Puppet modules and other critical
 SIMP assets such as its environment skeleton, custom SELinux policy, CLI,

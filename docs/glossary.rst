@@ -142,12 +142,19 @@ Glossary of Terms
       Source: `Managing code with Code Manager <https://docs.puppet.com/pe/latest/code_mgr.html>`__
       See Also: :term:`r10k`
 
-   Control Repository
    Control Repo
+   Control Repository
       A version control repository containing all of the required modules, data,
-      and configuration for a Puppet environment.
+      and configuration for one or more Puppet environments.  Each branch of
+      the control repository deploys as a separate Puppet environment using
+      :term:`r10k` or :term:`Code Manager`.
 
-      See Puppet, Inc. documentation: https://docs.puppet.com/pe/latest/cmgmt_control_repo.html
+      See:
+        * Puppet's documentation at
+          https://docs.puppet.com/pe/latest/cmgmt_control_repo.html
+        * :ref:`howto-setup-a-simp-control-repository`
+        * :ref:`ug-sa-env-examples-setting-up-a-control-repo-using-remote-git-repos`
+
 
    CPU
    Central Processing Unit
@@ -307,7 +314,6 @@ Glossary of Terms
       can only be interpreted one way.
 
    Git
-   git
       A version control system that supports branches.
 
    GPG
@@ -838,6 +844,10 @@ Glossary of Terms
       a :term:`SIMP Secondary Environment`, and a :term:`SIMP Writable Environment`.
 
       See: :ref:`ug-sa-simp-environments`
+
+   SIMP Omni-Environment skeleton
+      A :term:`SIMP Omni-Environment` in which modules have not been deployed
+      yet.
 
    SIMP Secondary Environment
    Secondary Environment

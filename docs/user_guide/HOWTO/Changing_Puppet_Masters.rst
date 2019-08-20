@@ -38,7 +38,7 @@ Secondary Environment>`:
 
   .. WARNING::
 
-    If you deploy your agents' Hiera data from a :ref:`Control Repository` on
+    If you deploy your agents' Hiera data from a :term:`Control Repository <Control Repo>` on
     the new Puppet master, ensure the agent's Hiera data is in the relevant
     branches and **skip this step.**
 
@@ -56,7 +56,7 @@ Remove agent-specific Hiera data from all environments
 .. WARNING::
 
   **Skip this section** if you deploy your agents' Hiera data from
-  a :ref:`Control Repository`
+  a :term:`Control Repository`
 
 1. Remove agent-specific Hiera data from all environments
 
