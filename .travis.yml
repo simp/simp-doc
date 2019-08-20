@@ -8,13 +8,6 @@ python:
   - 2.7
 script: true
 
-stages:
-  - name: Python unit tests
-  - name: Sphinx HTML build
-  - name: Sphinx PDF build
-    if: 'env(BUILD_PDF) = yes'
-  - name: Sphinx link check
-
 jobs:
   include:
     - stage: Python unit tests
@@ -24,11 +17,14 @@ jobs:
     # on the master branch. It always returns a 403 error, even if it's given a token.
     - script: pytest -x --capture=no docs/conflib/release_mapping_test.py || true
 
-    - stage: Sphinx HTML build
+    - stage: Sphinx docs build
+      name: Sphinx HTML build
       script: sphinx-build -n -b html -d sphinx_cache docs html
 
-    - stage: Sphinx PDF build
+    - stage: Sphinx docs build
+      name: Sphinx PDF build
       script: sphinx-build -E -n -b pdf -d sphinx_cache docs pdf
+      if: 'env(BUILD_PDF) = yes'
 
     - stage: Sphinx link check
       script: sphinx-build -E -n -b linkcheck docs linkcheck || ( cat linkcheck/output.txt ; false )
