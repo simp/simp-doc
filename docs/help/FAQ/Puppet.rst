@@ -5,6 +5,37 @@ Puppet-Related Issues
 
 .. contents:: :local:
 
+.. _faq-puppet-debug_certs:
+
+What do I do when puppet gets certificate verification errors?
+--------------------------------------------------------------
+
+If you are experiencing an error when running puppet such as ``certificate
+verify failed`` then there are a few things that you can try in an attempt to
+troubleshoot the issue.
+
+#. Make sure that your system clocks within one hour of each other.
+#. Ensure that the forward and reverse lookup for the FQDN of your systems is
+   correct and matches the hostnames listed in the output of
+   ``openssl x509 -text -noout -in $(puppet config print hostcert) | less``
+
+   HINT: Look at the `Subject` and `X509v3 Subject Alternative Name` sections.
+
+#. Check that the connection from the client system to the server can
+   successfully connect:
+
+   .. code-block:: bash
+
+      openssl s_client -host $(puppet config print server) \
+      -port $(puppet config print masterport) \
+      -cert $(puppet config print hostcert) \
+      -key $(puppet config print hostprivkey) \
+      -CAfile $(puppet config print cacert)
+
+If none of these items provides useful information, you may need to check
+permissions on your server and/or dig more closely into the puppetserver or
+client logs.
+
 .. _faq-puppet-debug_mode_crash:
 
 Why is my Puppet Agent crashing when run with ``--debug``?
