@@ -7,17 +7,8 @@ that must be executed before proceeding with the release.  If any
 of these checks fail, the problem identified must be fixed before
 you can proceed with the tag and release steps.
 
-* `Verify a release is warranted`_
-* `Verify the CHANGELOG`_
-* `Verify the component's dependencies`_
-* `Verify a Puppet module can be created`_
-* `Verify RPMs can be created`_
-* `Verify unit tests pass`_
-* `Verify acceptance tests pass`_
-* `Verify interoperability with last SIMP release`_
-* `Verify the component RPM upgrade succeeds`_
-* `Verify the component yields valid SIMP ISOs`_
-* `Verify the component works in an actual SIMP system`_
+.. contents:: Checklist Steps
+   :local:
 
 Verify a release is warranted
 -----------------------------
