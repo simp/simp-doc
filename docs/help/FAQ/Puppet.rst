@@ -14,7 +14,7 @@ If you are experiencing an error when running puppet such as ``certificate
 verify failed`` then there are a few things that you can try in an attempt to
 troubleshoot the issue.
 
-#. Make sure that your system clocks within one hour of each other.
+#. Make sure that your system clocks are within one hour of each other.
 #. Ensure that the forward and reverse lookup for the FQDN of your systems is
    correct and matches the hostnames listed in the output of
    ``openssl x509 -text -noout -in $(puppet config print hostcert) | less``
