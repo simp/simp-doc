@@ -152,5 +152,5 @@ may easily be offloaded for analysis and processing and fully documented in the
 `simp-compliance_markup`_ Puppet module.
 
 .. _`Hiera config file syntax`: https://puppet.com/docs/puppet/latest/hiera_config_yaml_5.html
-.. _`perform a Hiera migration`: https://puppet.com/docs/puppet/5.0/hiera_migrate_v3_yaml.html
+.. _`perform a Hiera migration`: https://puppet.com/docs/puppet/latest/hiera_migrate.html
 .. _`simp-compliance_markup`: https://github.com/simp/pupmod-simp-compliance_markup

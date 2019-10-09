@@ -108,4 +108,4 @@ If the ``.rpmnew`` file does not exist the new global ``hiera.yaml`` file should
 .. _Hiera 5 upgrade: https://puppet.com/docs/puppet/5.5/hiera_migrate.html
 .. _Puppet 5 release notes: https://puppet.com/docs/puppet/5.5/release_notes.html
 .. _enable the Hiera environment layer: https://puppet.com/docs/puppet/5.5/hiera_migrate.html#enable-the-environment-layer-for-existing-hiera-data
-.. _environment layer:  https://puppet.com/docs/puppet/5.0/hiera_layers.html
+.. _environment layer: https://puppet.com/docs/puppet/latest/hiera_intro.html#hiera-s-three-config-layers

@@ -1,3 +1,6 @@
+* Wed Oct 02 2019 Trevor Vaughan <tvaughan@onyxpoint.com>
+- Add section on troubleshooting Puppet certificate errors
+
 * Mon Jun 24 2019 Trevor Vaughan <tvaughan@onyxpoint.com>
 - Update password requirements
 - Fix link to the DISA STIGs
