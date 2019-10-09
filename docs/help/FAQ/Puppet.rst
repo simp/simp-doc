@@ -30,7 +30,7 @@ troubleshoot the issue.
       -port $(puppet config print masterport) \
       -cert $(puppet config print hostcert) \
       -key $(puppet config print hostprivkey) \
-      -CAfile $(puppet config print cacert)
+      -CAfile $(puppet config print localcacert)
 
 If none of these items provides useful information, you may need to check
 permissions on your server and/or dig more closely into the puppetserver or
