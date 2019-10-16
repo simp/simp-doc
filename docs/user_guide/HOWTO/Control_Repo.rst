@@ -120,7 +120,7 @@ obtained from one of the following sources:
 * ``/usr/share/simp/environment-skeleton/puppet/`` when the RPM package
   **simp-environment-skeleton** is installed [1]_.
 * ``environments/puppet/`` under a checkout of the git repository
-  https://github.com/simp/simp-environment-skeleton.git.
+  https://github.com/simp/simp-environment-skeleton.
 
 .. [1] If your working host doesn't have the **simp-environment-skeleton** RPM
        and you'd like to install it, you can set up the SIMP yum repositories
