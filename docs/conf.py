@@ -156,8 +156,18 @@ exclude_patterns = [
 # In testing the 'html' target, this took the build time on a fast system from
 # 40s to 9s.
 
+# NOTE: When this is enabled, expect errors from sphix-build in the form of:
+#
+# (Sphinx 1.7:)
+#     WARNING: toctree contains reference to nonexisting document u'security_conop/index'
+#
+# (Sphinx 1.8:)
+#     WARNING: toctree contains reference to excluded document u'security_mapping/index
+#     WARNING: undefined label: cm-2 (if the link has no caption the label must precede a section header)
+#
 if os.environ.get('SIMP_FAST_DOCS', 'false') == 'true':
     exclude_patterns.append('security_mapping')
+    exclude_patterns.append('security_mapping/index')
 
 # The reST default role (used for this markup: `text`) to use for all
 # documents.
@@ -231,8 +241,16 @@ linkcheck_ignore = [
     r'^http[s]:\/\/puppet.com\/docs\/.+\/latest\/.+',
     # FIXME: This site is currently dead
     r'^http[s]:\/\/www.open-scap.org.*'
-
  ]
+
+# Env var LINKCHECK_IGNORE_LIST will ignore a space-separated list of URLs.
+#
+# This is useful to temporarily work around URLs where our CI hosts have tripped
+# DOS protection (but we can validate manually from other hosts)
+if os.environ.get('LINKCHECK_IGNORE_LIST', False):
+    for _link in os.environ.get('LINKCHECK_IGNORE_LIST').split(' '):
+        linkcheck_ignore.append(_link)
+
 
 # -- Options for HTML output ----------------------------------------------
 

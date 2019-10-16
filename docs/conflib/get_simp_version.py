@@ -45,9 +45,17 @@ def get_simp_version(rootdir=ROOTDIR, simp_github_raw_base=SIMP_GITHUB_RAW_BASE,
         'simp_branch': None
     }
 
+    if os.environ.get('SIMP_VERSION', False):
+      env_simp_version =  os.environ.get('SIMP_VERSION', False)
+      ver_split = env_simp_version.split('-')
+      release = '0' if len(ver_split) == 1 else ver_split[1]
+      retval['version'] = ver_split[0]
+      retval['release'] = release
+      retval['simp_branch'] = None
+
     # If we're running on ReadTheDocs, we should go fetch the content from the
     # actual branch that we're using
-    if on_rtd:
+    elif on_rtd:
         rtd_version = os.environ.get('READTHEDOCS_VERSION')
         old_version_regex = re.compile('^4.|^5.|^6.0')
         if (old_version_regex.match(rtd_version) == None):
@@ -92,7 +100,6 @@ def get_simp_version(rootdir=ROOTDIR, simp_github_raw_base=SIMP_GITHUB_RAW_BASE,
     patch_wildcard = re.sub(r'\.\d$', '.X', retval['version'])
     minor_wildcard = re.sub(r'\.\d\.X$', '.X', patch_wildcard)
     retval['version_family'] = [patch_wildcard, minor_wildcard]
-
     return retval
 
 ### Private Methods

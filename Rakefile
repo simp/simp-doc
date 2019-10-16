@@ -11,6 +11,8 @@ require 'find'
 CLEAN.include 'build/rpm_metadata'
 CLEAN.include 'linkcheck'
 
+CLOBBER.include 'html'
+
 desc 'Munge Prep'
   desc <<-EOM
 This task extracts the docs version and release from a simp.spec file
@@ -258,6 +260,19 @@ def run_build_cmd(cmd, outfile=nil)
   return status
 end
 
+
+def run_streaming_cmd(cmd)
+  require 'open3'
+  puts "\n== #{cmd}\n"
+
+  Open3.popen2e(cmd) do |stdin, stdout_stderr, wait_thread|
+    Thread.new do
+      stdout_stderr.each {|l| puts l }
+    end
+    wait_thread.value
+  end
+end
+
 ## End Custom Linting Checks
 
 namespace :docs do
@@ -435,11 +450,20 @@ which are simply available in the repository.
     run_build_cmd(cmd, SPHINX_BUILD_OUTFILE)
   end
 
-  desc <<-EOF
+  desc <<-EOF.gsub(/^ {4}/,'')
     Run a local web server to view HTML docs on http://localhost:port'
 
     ARGS:
       * port => The port the local webserver will listen on (default: 5000)
+
+    ENVIRONMENT VARIABLES:
+      * SIMP_DOC_extra_sphinx_args => additional arguments to inject into
+                                      invocation of `sphinx-build` or `sphinx-autobuild`
+      * SIMP_FAST_DOCS             => (used inside conf.py) defaults to 'true'
+                                       exclude certain long-running sections of
+                                       the documentation (~66% faster)
+      * READTHEDOCS_VERSION        => (used inside docs/conflib/*.py) masquerade as a
+                                      particular RTD/git ref of SIMP (e.g., '6.4.0-0')
 
     NOTES:
       * If `sphinx-autobuild` is available, it will be used to provide a
@@ -452,13 +476,19 @@ which are simply available in the repository.
     port = args.to_hash.fetch(:port, 5000)
     require 'mkmf'
     autobuild_cmd = find_executable 'sphinx-autobuild'
-    if autobuild_cmd && false
-      cmd = "SIMP_FAST_DOCS=true #{autobuild_cmd} -p #{port} -H 0.0.0.0 --poll --ignore docs/dynamic/\*.rst docs html"
-      run_build_cmd(cmd)
+    extra_args = ENV.fetch('SIMP_DOC_extra_sphinx_args', '')
+    env_str = "SIMP_FAST_DOCS=#{ENV['SIMP_FAST_DOCS'] || 'true'}"
+    cmd = "sphinx-build -E -n #{extra_args} -b pdf -d sphinx_cache docs pdf"
+    swp_ignores="--ignore '**/.*.sw?'"
+    if autobuild_cmd
+      cmd = "#{env_str} #{autobuild_cmd} #{extra_args} --poll " +
+        "-p #{port} -H 0.0.0.0 #{swp_ignores} --ignore docs/dynamic/\*.rst " +
+        "docs html"
+      run_streaming_cmd(cmd)
     else
       puts "running web server on http://localhost:#{port}"
       Rake::Task['docs:html'].invoke
-      %x(ruby -run -e httpd html/ -p #{port})
+      run_streaming_cmd("#{env_str} ruby -run -e httpd html/ -p #{port}")
     end
   end
 end

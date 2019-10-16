@@ -8,6 +8,8 @@
   * [Building the docs](#building-the-docs)
   * [Maintaining the data](#maintaining-the-data)
 * [Environment variables](#environment-variables)
+  * [`SIMP_FAST_DOCS=true`](#simp_fast_docstrue)
+    * [`LINKCHECK_IGNORE_LIST`](#linkcheck_ignore_list)
   * [`SIMP_CORE_PATH`](#simp_core_path)
   * [`SIMP_BRANCH`](#simp_branch)
 * [Managing Sphinx prerequisites with `pip`](#managing-sphinx-prerequisites-with-pip)
@@ -80,6 +82,38 @@ rake docs:rpm:simp
 ```
 
 ## Environment variables
+
+### `SIMP_FAST_DOCS=true`
+
+Strips out certain sections and dynamic content that cause the build to be
+slow or cumbersome:
+
+* Excludes everything under `docs/security_mapping/*` (causes WARNINGS)
+* Skips all logic to download/load the Known OS Mappings section, and
+  instead replaces it with some (static) placeholder content.
+
+This should not be used for real documentation builds, but is great for 90% of
+all testing. (In testing the 'html' target, this took the build time on a fast
+system from 40s to 9s.)
+
+NOTE: When this is enabled, expect errors from `sphinx-build` in the form of:
+
+(Sphinx 1.7:)
+
+       WARNING: toctree contains reference to nonexisting document u'security_conop/index'
+
+(Sphinx 1.8:)
+
+       WARNING: toctree contains reference to excluded document u'security_mapping/index
+       WARNING: undefined label: cm-2 (if the link has no caption the label must precede a section header)
+
+#### `LINKCHECK_IGNORE_LIST`
+
+A space-delimited list of URLs to ignore during `sphinx-build -b linkcheck`
+tests.  This is useful to temporarily ignore URLs that are intermittently
+reported as broken from our CI hosts (e.g., after they trip the sites' DDOS
+protection), but validate from other locations.
+
 
 ### `SIMP_CORE_PATH`
 
