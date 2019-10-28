@@ -230,16 +230,17 @@ linkcheck_ignore = [
     # they need to fix
     r'^http[s]:\/\/puppet.com\/docs\/.+\/latest\/.+',
     # FIXME: This site is currently dead
-    r'^http[s]:\/\/www.open-scap.org.*'
-
- ]
+    r'^http[s]:\/\/www.open-scap.org.*',
+    # Qualys randomly fails
+    r'^http[s]:\/\/.*.qualys.com.*'
+]
 
 # -- Options for HTML output ----------------------------------------------
 
 # The theme to use for HTML and HTML Help pages.  See the documentation for
 # a list of builtin themes.
 html_theme_path = ["_themes"]
-html_theme      = "sphinx_rtd_theme"
+html_theme = "sphinx_rtd_theme"
 
 # adds a file for overwriting the default css. We use this for fixing tables
 html_context = {
@@ -260,7 +261,7 @@ html_context = {
 
 # The name for this set of Sphinx documents.  If None, it defaults to
 # "<project> v<release> documentation".
-html_title = "%s %s documentation" % (project, full_version )
+html_title = "%s %s documentation" % (project, full_version)
 
 # A shorter title for the navigation bar.  Default is the same as html_title.
 #html_short_title = None
@@ -362,8 +363,8 @@ latex_elements = {
 # (source start file, target name, title,
 #  author, documentclass [howto, manual, or own class]).
 latex_documents = [
-  (master_doc, 'SIMP.tex', u'SIMP Documentation',
-   u'THE SIMP TEAM', 'manual'),
+    (master_doc, 'SIMP.tex', u'SIMP Documentation',
+     u'THE SIMP TEAM', 'manual')
 ]
 
 # The name of an image file (relative to this directory) to place at the top of
@@ -406,9 +407,9 @@ man_pages = [
 # (source start file, target name, title, author,
 #  dir menu entry, description, category)
 texinfo_documents = [
-  (master_doc, 'SIMP', u'SIMP Documentation',
-   author, 'SIMP', 'One line description of project.',
-   'Miscellaneous'),
+    (master_doc, 'SIMP', u'SIMP Documentation',
+     author, 'SIMP', 'One line description of project.',
+     'Miscellaneous')
 ]
 
 # Documents to append as an appendix to all manuals.
@@ -429,13 +430,13 @@ texinfo_documents = [
 
 # PDF
 pdf_documents = [
-    (master_doc, u'SIMP_Documentation',u'SIMP Documentation', u'SIMP'),
+    (master_doc, u'SIMP_Documentation', u'SIMP Documentation', u'SIMP')
 ]
 
 pdf_language = "en_US"
 pdf_fit_background_mode = "scale"
 pdf_compressed = True
-pdf_stylesheets = ['sphinx','kerning','letter']
+pdf_stylesheets = ['sphinx', 'kerning', 'letter']
 pdf_use_toc = 'True'
 pdf_use_index = False
 pdf_toc_depth = 3
