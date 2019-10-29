@@ -19,7 +19,7 @@ Assumptions
 
 #. You are using the ``production`` :term:`Puppet Environment`
 
-#. You have a regular user named ``stiguser`` that you will be used for remote
+#. You have a regular user named ``stiguser`` that will be used for remote
    access to your system and for escalation of privileges to ``root``. This is
    due to the fact that, by default, SIMP does not allow remote ``root`` access.
 
@@ -68,7 +68,7 @@ Configure selinux to allow ``stiguser`` to run privileged commands
 Place the system in STIG-enforcing mode
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Now that you have ensured that ``stiguser`` can both access your system as well
+Now that you have ensured that ``stiguser`` can access your system as well
 as escalate to an administrative user without being blocked by SELinux, you are
 ready to enable STIG-enforcing mode.
 
