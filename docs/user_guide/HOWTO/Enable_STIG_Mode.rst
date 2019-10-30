@@ -105,7 +105,7 @@ The simplest invocation is as follows:
 
 .. code:: bash
 
-   [stiguser@localhost ~]$ sudo -i -r unconfined_r
+   [stiguser@localhost ~]$ sudo -r unconfined_r su - root
 
 For additional information see the `vendor documentation on confined and unconfined users`_
 and/or `Dan Walsh's blog`_.
