@@ -13,6 +13,7 @@ with more commonly sought items towards the top.
   :maxdepth: 1
 
   Configure SIMP for Compliance Enforcement <HOWTO/Compliance_Enforcement>
+  Enable STIG Mode <HOWTO/Enable_STIG_Mode>
   Customize settings for SSH <HOWTO/Configure_Ssh>
   Set up SSH Authorized Keys <HOWTO/SSH_Keys>
   Disable SSH Management <HOWTO/Disable_Ssh>
