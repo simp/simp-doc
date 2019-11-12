@@ -72,12 +72,41 @@ Now that you have ensured that ``stiguser`` can access your system as well
 as escalate to an administrative user without being blocked by SELinux, you are
 ready to enable STIG-enforcing mode.
 
-To do this, add the following to the ``stig.your.domain.yaml`` file that we
+First, include the SIMP Compliance Engine backend in the hierachy defined
+in the environments hiera.yml,
+/etc/puppetlabs/code/environments/production/hiera.yml.
+Place it under the hierachy tag just before default:
+
+.. code-block:: yaml
+   :emphasize-lines: 11,12
+
+   ---
+   version: 5
+   defaults:
+     datadir: data
+     data_hash: yaml_data
+
+   hierarchy:
+
+   ...
+
+   - name: SIMP Compliance Engine
+     lookup_key: compliance_markup::enforcement
+
+   - name: General data
+     paths:
+     - "default.yaml"
+     - "common.yaml"
+
+   ...
+
+Then  add the following to the ``stig.your.domain.yaml`` file that we
 have been editing:
 
 .. code:: yaml
 
    compliance_markup::enforcement: disa_stig
+
 
 Next Steps
 ----------
