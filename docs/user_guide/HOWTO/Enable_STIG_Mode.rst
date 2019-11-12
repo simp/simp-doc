@@ -72,7 +72,7 @@ Now that you have ensured that ``stiguser`` can access your system as well
 as escalate to an administrative user without being blocked by SELinux, you are
 ready to enable STIG-enforcing mode.
 
-To do this, add the following to your the ``stig.your.domain.yaml`` file that we
+To do this, add the following to the ``stig.your.domain.yaml`` file that we
 have been editing:
 
 .. code:: yaml
