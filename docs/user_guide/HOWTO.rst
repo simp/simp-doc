@@ -41,3 +41,4 @@ with more commonly sought items towards the top.
   Set up and Utilize Bolt <HOWTO/Bolt>
   Block or Cache Facts<HOWTO/Block_or_Cache_Facts>
   Upgrade SIMP <HOWTO/Upgrade_SIMP>
+  Use the SIMP Release RPM<HOWTO/Using_the_SIMP_Release_RPM>

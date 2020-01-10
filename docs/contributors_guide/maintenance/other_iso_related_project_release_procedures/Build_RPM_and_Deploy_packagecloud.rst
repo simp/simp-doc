@@ -1,4 +1,4 @@
-Build Signed RPM and Deploy to packagecloud
-===========================================
+Build Signed RPM and Deploy to Download Server
+==============================================
 
-.. include:: ../common/Build_RPM_and_Deploy_packagecloud.inc
+.. include:: ../common/Build_RPM_and_Deploy.inc

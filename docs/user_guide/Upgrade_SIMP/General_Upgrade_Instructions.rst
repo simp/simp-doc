@@ -188,7 +188,7 @@ Create a New Server
 """""""""""""""""""
 
 Obtain an `official SIMP ISO <https://download.simp-project.com/simp/ISO/>`_ or point your
-server at the latest `YUM Repositories <https://packagecloud.io/simp-project>`_
+server at the latest `YUM Repositories: <https://download.simp-project.com/simp/yum/releases/latest`_
 and follow the :ref:`gsg_iso_installation_options` or
 :ref:`gsg-installing_simp_from_a_repository` as appropriate.
 
