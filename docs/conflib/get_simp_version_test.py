@@ -1,12 +1,12 @@
 #!/usr/bin/python
 
-from __future__ import print_function
+
 import sys
 import re
 import unittest
 
-from get_simp_version import *
-from constants import *
+from .get_simp_version import *
+from .constants import *
 
 # Globals
 debug = False

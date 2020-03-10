@@ -1,4 +1,4 @@
-from __future__ import print_function
+
 import base64
 import copy
 import glob
@@ -7,7 +7,7 @@ import os
 import re
 import sys
 import time
-import urllib2
+import urllib.request, urllib.error, urllib.parse
 from textwrap import dedent
 import yaml
 
@@ -18,11 +18,11 @@ from conflib.constants import *
 
 def github_api_get(url):
   token = os.environ.get('GITHUB_API_KEY')
-  request = urllib2.Request(url)
+  request = urllib.request.Request(url)
   request.add_header('User-Agent', 'Mozilla/55.0')
   if token is not None:
     request.add_header('Authorization','token %s' % token)
-  return urllib2.urlopen(request)
+  return urllib.request.urlopen(request)
 
 def get_version_map(simp_branch, local_simp_core_path, simp_github_api_base,
     default_simp_branch, on_rtd):
@@ -76,15 +76,15 @@ def get_version_map(simp_branch, local_simp_core_path, simp_github_api_base,
 
                 for i in range(0, MAX_SIMP_URL_GET_ATTEMPTS):
                     try:
-                        release_yaml_string = urllib2.urlopen(url).read()
+                        release_yaml_string = urllib.request.urlopen(url).read()
                         release_yaml = __yaml_load(release_yaml_string)
-                        if isinstance(release_yaml, basestring):
+                        if isinstance(release_yaml, str):
                           # This is ugly...
                           # A string is returned when the release mapping file
                           # is actually a link.  So, need to pull down the
                           # content of the link, instead.
                           parts = release_yaml.split('/')
-                          partial_url = '/'.join(filter(lambda a: a != '..', parts))
+                          partial_url = '/'.join([a for a in parts if a != '..'])
                           for target in release_mapping_targets:
                             if partial_url in target['path']:
                               url = SIMP_GITHUB_RAW_BASE + '/simp-core/' + branch_to_query + \
@@ -95,18 +95,18 @@ def get_version_map(simp_branch, local_simp_core_path, simp_github_api_base,
 
                         __update_ver_map(ver_map, release_yaml)
 
-                    except urllib2.URLError as url_obj:
+                    except urllib.error.URLError as url_obj:
                         print('Error downloading ' + url, file=sys.stderr)
                         r = re.compile("^Status:")
-                        print('Error status: ' + filter(r.match,url_obj.info().headers)[0])
+                        print('Error status: ' + list(filter(r.match,url_obj.info().headers))[0])
                         time.sleep(1)
                         continue
                     break
 
-        except urllib2.URLError as url_obj:
+        except urllib.error.URLError as url_obj:
             print('Error downloading ' + github_api_target + github_opts, file=sys.stderr)
             r = re.compile("^Status:")
-            print('Error status: ' + filter(r.match,url_obj.info().headers)[0])
+            print('Error status: ' + list(filter(r.match,url_obj.info().headers))[0])
 
     return ver_map
 
@@ -124,7 +124,7 @@ def version_map_to_rst(full_version, version_family, ver_map):
     # Build the Release mapping table for insertion into the docs
     release_mapping_list = []
 
-    ver_map_releases = ver_map.keys()
+    ver_map_releases = list(ver_map.keys())
     simp_release = full_version
     if not simp_release in ver_map_releases:
         for ver in simp_release_list:
@@ -181,10 +181,10 @@ def __update_ver_map(ver_map, data):
     something that can be output to the Compatibility list in a sane manner
     """
 
-    simp_versions = sorted(data['simp_releases'].keys(), reverse=True)
+    simp_versions = sorted(list(data['simp_releases'].keys()), reverse=True)
 
     for simp_version in simp_versions:
-        for flavor in data['simp_releases'][simp_version]['flavors'].keys():
+        for flavor in list(data['simp_releases'][simp_version]['flavors'].keys()):
             isos = data['simp_releases'][simp_version]['flavors'][flavor]['isos']
             os_key = flavor + ' ' + data['simp_releases'][simp_version]['flavors'][flavor]['os_version']
 
