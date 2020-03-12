@@ -124,13 +124,13 @@ def __extract_from_url(simp_spec_url):
             # Read the version out of the spec file and run with it.
             for line in simp_spec_content:
                 _tmp = line.split()
-                if 'Version:' in _tmp:
-                    version_list = _tmp[-1].split('.')
+                if 'Version:'.encode('ASCII') in _tmp:
+                    version_list = _tmp[-1].decode('ASCII').split('.')
                     version = '.'.join(version_list[0:3]).strip()
                     result['version'] = re.sub(r'%\{.*?\}', '', version)
-
-                elif 'Release:' in _tmp:
-                    release = _tmp[-1].strip()
+  
+                elif 'Release:'.encode('ASCII') in _tmp:
+                    release = _tmp[-1].decode('ASCII').strip()
                     result['release'] = re.sub(r'%\{.*?\}', '', release)
         except urllib.error.URLError:
             print('WARNING:  Could not download ' + simp_spec_url, file=sys.stderr)
