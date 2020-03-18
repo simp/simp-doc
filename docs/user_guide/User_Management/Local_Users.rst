@@ -185,4 +185,4 @@ addition, check the ``/etc/security/access.conf`` file to ensure that it
 contains the user or user's group in an allow statement. See ``access.conf(5)``
 for details.
 
-.. _GitHub documentation: https://help.github.com/en/articles/connecting-to-github-with-ssh
+.. _GitHub documentation: https://help.github.com/en/github/authenticating-to-github/connecting-to-github-with-ssh

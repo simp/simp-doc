@@ -56,7 +56,7 @@ section:
    end
 
 .. _Bundler: https://bundler.io/
-.. _fix: https://github.com/bundler/bundler/pull/5440
-.. _new bug: https://github.com/bundler/bundler/pull/5584
-.. _original bug: https://github.com/bundler/bundler/issues/4989
-.. _some issues: https://github.com/bundler/bundler/issues/4989#issuecomment-280503064
+.. _fix: https://github.com/rubygems/bundler/issues/5440
+.. _new bug: https://github.com/rubygems/bundler/issues/5584
+.. _original bug: https://github.com/rubygems/bundler/issues/4989
+.. _some issues: https://github.com/rubygems/bundler/issues/4989#issuecomment-280503064
