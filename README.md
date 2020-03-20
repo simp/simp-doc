@@ -29,6 +29,7 @@ and visit our [developer wiki](https://simp-project.atlassian.net/wiki/display/S
 ## Usage
 
 ### Building the docs
+NOTE: This procedure has been updated to run in Python 3
 ```bash
 # build HTML docs, dumps the resulting files in doc/;
 rake docs:html

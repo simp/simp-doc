@@ -107,7 +107,7 @@ Buildarch: noarch
 Requires: links
 %if 0%{?el6}
 BuildRequires: centos-release-scl
-BuildRequires: python36
+BuildRequires: python33
 %endif
 BuildRequires: python-pip
 BuildRequires: python-virtualenv
@@ -136,7 +136,7 @@ Alternatively, you can read the docs at https://simp.readthedocs.org
 
 %if 0%{?el6}
 # We can't use the normal SCL commands in mock so we do this manually!
-source /opt/rh/python36/enable
+source /opt/rh/python33/enable
 %endif
 
 virtualenv venv
