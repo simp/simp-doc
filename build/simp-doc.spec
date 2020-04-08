@@ -105,9 +105,9 @@ Buildroot: %{_tmppath}/%{name}-%{version}-%{release}-buildroot
 Buildarch: noarch
 %{lua: print(package_requires) }
 Requires: links
-%if 0%{?el6}
+%if 0%{?rhel}
 BuildRequires: centos-release-scl
-BuildRequires: python33
+BuildRequires: rh-python36
 %endif
 BuildRequires: python-pip
 BuildRequires: python-virtualenv
@@ -134,9 +134,9 @@ Alternatively, you can read the docs at https://simp.readthedocs.org
 # We need the latest version of sphinx and rst2pdf
 # Make sure we play nice with our neighbors...
 
-%if 0%{?el6}
+%if 0%{?rhel}
 # We can't use the normal SCL commands in mock so we do this manually!
-source /opt/rh/python33/enable
+source /opt/rh/rh-python36/enable
 %endif
 
 virtualenv venv
