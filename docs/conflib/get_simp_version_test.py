@@ -1,12 +1,12 @@
 #!/usr/bin/python
 
-from __future__ import print_function
+
 import sys
 import re
 import unittest
 
-from get_simp_version import *
-from constants import *
+from .get_simp_version import *
+from .constants import *
 
 # Globals
 debug = False
@@ -31,7 +31,7 @@ def create_release_file(version=None, release=None, separator=':'):
   # if we don't eliminate buffering, the small file doesn't
   # get written until program exits (even though we have closed it!)
    # (Calling release_file.flush() doesn't solve the problem either.)
-  release_file = open(release_filename, 'w', 0)
+  release_file = open(release_filename, 'w')
   if version:
     release_file.write("version" + separator + version + "\n")
 

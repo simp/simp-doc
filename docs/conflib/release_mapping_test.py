@@ -1,14 +1,14 @@
 #!/usr/bin/python
 
-from __future__ import print_function
+
 import pprint
 import shutil
 import sys
 import tempfile
 import unittest
 
-from release_mapping import *
-from constants import *
+from .release_mapping import *
+from .constants import *
 
 # Globals
 debug = True

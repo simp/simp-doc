@@ -92,7 +92,7 @@ described in the :ref:`User_Management`.
 .. NOTE::
 
    Information on how the create salted ({SSHA}) passwords can be found at the
-   `OpenLDAP site <http://www.openldap.org/faq/data/cache/347.html>`__.
+   `OpenLDAP site <www.openldap.org/faq/data/cache/347.html>`__.
 
 Set up the Redundant (Slave) Servers
 ------------------------------------
@@ -260,5 +260,5 @@ LDAP server.   Use the following ldif to update the bind entry in LDAP:
 Further Information
 --------------------
 
-The `OpenLDAP site <http://www.openldap.org/doc/admin24/intro.html>`__ contains
+The `OpenLDAP site <https://www.openldap.org/doc/admin24/intro.html>`__ contains
 more information on configuring and maintaining OpenLDAP servers.
