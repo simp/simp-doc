@@ -20,7 +20,7 @@ the first rule is applied. Any subsequent rules are discarded.
    *not* be rotated!
 
 Because the location of the SIMP-managed ``logrotate`` rules has changed,
-existing, but now obsolete, SIMP rules will still reside in
+any previously existing (but now obsolete) SIMP rules will still reside in
 ``/etc/logrotate.d``.  Although these rules cause no issues with ``logrotate``,
 they may be confusing to system administrators.  So, you may wish to manually
 remove these rules.
