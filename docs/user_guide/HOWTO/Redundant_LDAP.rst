@@ -260,5 +260,5 @@ LDAP server.   Use the following ldif to update the bind entry in LDAP:
 Further Information
 --------------------
 
-The `OpenLDAP site <http://www.openldap.org/doc/admin24/intro.html>`__ contains
+The `OpenLDAP site <https://www.openldap.org/doc/admin24/intro.html>`__ contains
 more information on configuring and maintaining OpenLDAP servers.
