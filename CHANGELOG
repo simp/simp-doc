@@ -1,3 +1,6 @@
+* Wed Apr 08 2020 Trevor Vaughan <tvaughan@onyxpoint.com>
+- Add FAQ on duplicate logrotate entries
+
 * Wed Mar 18 2020 judy johnson <judyfinkjohnson@gmail.com>
 - Updated for Python 3
 
