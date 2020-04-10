@@ -28,5 +28,6 @@ remove these rules.
 The following script can be used to identify obsolete SIMP ``logrotate`` rules
 and they can be removed manually as necessary.
 
-.. code-block: sh
-   GRep -rl 'managed by puppet' /etc/logrotate.d
+.. code-block:: sh
+
+   grep -rl 'managed by puppet' /etc/logrotate.d
