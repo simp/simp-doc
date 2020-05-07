@@ -25,11 +25,11 @@ users.
 These scans should be added, as applicable, to the
 :ref:`security-conop-evaluation-artifacts` section of the documentation.
 
-Verify RPMs are available in PackageCloud
------------------------------------------
+Verify RPMs are available on the Download Server
+------------------------------------------------
 
 This check is to verify that all artifacts used to create the ISO
-exist as signed RPMs in `PackageCloud`_.  This will include:
+exist as signed RPMs in the appropriate location under https://download.simp-project.com.  This will include:
 
 * SIMP-owned Puppet modules
 * Other Puppet modules
@@ -73,22 +73,24 @@ the RPMs for those projects exist by executing the ``pkg:check_published`` Rake 
 
       If you see a message like
       ``Warning:  Unable to generate build-specific YUM cache``, your
-      results are invalid, as connection to `PackageCloud`_ failed.
+      results are invalid, as connection to the specified repo under
+      https://download.simp-project.com failed.
 
-#. Manually verify the appropriate ``simp-doc`` RPM exists at `PackageCloud`_.
+#. Manually verify the appropriate ``simp-doc`` RPM exists in the appropriate
+location under https://download.simp-project.com.
 
 
 For the external vendor RPMs
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-* Upload all vendor RPMs to the ``VERSION_Dependencies`` repository in
-  `PackageCloud`_. Any existing RPMs will not be overwritten.
+* Upload all vendor RPMs to the proper vendor repository in the relevant version
+  repository under https://download.simp-project.com. Any existing RPMs will not be overwritten.
 
   * ``package_cloud push simp-project/VERSION_Dependencies/el/OS_MAJOR_VERSION /path/to/packages``
 
 .. WARNING::
 
-   **DO NOT** push any Core Operating System RPMs up to PackageCloud, those
+   **DO NOT** push any Core Operating System RPMs up to the Download Server, those
    should be retrieved from official vendor sources.
 
 
@@ -199,7 +201,9 @@ Verify ISOs can be created
 --------------------------
 
 This check verifies that SIMP ISOs for CentOS 6 and CentOS 7 can be
-built from the local ``simp-core`` clone  and RPMs pushed to PackageCloud.
+built from the local ``simp-core`` clone  and RPMs pushed to the SIMP
+Download Server.
+
 For CentOS 6 and CentOS 7:
 
 #. Login to a machine that has `Docker`_ installed and the ``docker``
@@ -452,7 +456,8 @@ This check verifies that CentOS 6 and CentOS 7 SIMP servers can be
 installed using the set of RPMs contained in the SIMP ISOs
 The verification steps largely follow the details in
 :ref:`gsg-installing_simp_from_a_repository`.  All RPMs except
-the ``simp-core`` RPM should be able to be pulled from `PackageCloud`_.
+the ``simp-core`` RPM should be able to be pulled from the appropriate location
+under https://download.simp-project.com.
 
 Verify SIMP server RPM upgrade
 ------------------------------
@@ -504,7 +509,5 @@ tested in a ``simp-core`` acceptance test, all verification is handled by
 
 .. _Docker: https://www.docker.com
 .. _GitHub: https://github.com
-.. _PackageCloud: https://packagecloud.io/simp-project
 .. _TravisCI: https://travis-ci.org
 .. _simp-packer: https://github.com/simp/simp-packer
-.. _simp-project: http://download.simp-project.com/simp/ISO

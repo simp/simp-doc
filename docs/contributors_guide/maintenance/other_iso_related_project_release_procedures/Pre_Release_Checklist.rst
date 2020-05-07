@@ -248,7 +248,6 @@ CentOS 6 and CentOS 7:
 
 .. _Docker: https://www.docker.com
 .. _GitHub: https://github.com
-.. _packagecloud: https://packagecloud.io/simp-project
 .. _simp-packer: https://github.com/simp/simp-packer
 .. _`RPM spec file template`: https://raw.githubusercontent.com/simp/rubygem-simp-rake-helpers/master/lib/simp/rake/helpers/assets/rpm_spec/simpdefault.spec
 .. _TravisCI: https://travis-ci.org

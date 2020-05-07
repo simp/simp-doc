@@ -25,4 +25,3 @@ its development branch.
 
 .. _GitHub: https://github.com
 .. _PuppetForge: https://forge.puppet.com
-.. _packagecloud: https://packagecloud.io/simp-project

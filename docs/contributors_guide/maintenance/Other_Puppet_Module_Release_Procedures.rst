@@ -47,7 +47,7 @@ and has been used for testing SIMP components in unit (rspec), acceptance
 #. Verify the ``Puppetfile.tracking`` file of the ``simp-core``
    project match the version being released.
 
-.. include:: common/Build_RPM_and_Deploy_packagecloud.inc
+.. include:: common/Build_RPM_and_Deploy.inc
 
 .. _GitHub: https://github.com
 .. _PuppetForge: https://forge.puppet.com

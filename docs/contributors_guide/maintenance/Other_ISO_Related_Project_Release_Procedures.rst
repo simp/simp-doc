@@ -23,4 +23,4 @@ project, which uses the ``master`` branch as its development branch.
 
    other_iso_related_project_release_procedures/Pre_Release_Checklist
    other_iso_related_project_release_procedures/Release_GitHub
-   other_iso_related_project_release_procedures/Build_RPM_and_Deploy_packagecloud
+   other_iso_related_project_release_procedures/Build_RPM_and_Deploy

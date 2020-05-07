@@ -9,14 +9,14 @@ Tagging and Releasing Components
    best served by reading the version from the ``master`` branch of the
    ``simp-doc`` repository.
 
-This section describes the release procedures for SIMP.  The SIMP
+This section describes the release procedures for SIMP. The SIMP
 Team releases:
 
 * Individual Puppet modules as tar files to `PuppetForge`_
-* Individual Puppet modules as signed RPMs to `packagecloud`_ and the `SIMP Archive`_
+* Individual Puppet modules as signed RPMs to the appropriate path at https://download.simp-project.com/simp/yum/.
 * Ruby gems for building and testing to `RubyGems.org`_
-* SIMP system dependencies as signed RPMs to `packagecloud`_ and the `SIMP Archive`_
-* SIMP-system ISOs to `simp-project.com`_
+* SIMP system dependencies as signed RPMs to the  appropriate path at https://download.simp-project.com/simp/yum/.
+* SIMP-system ISOs to https://download.simp-project.com/simp/ISO/.
 
 SIMP component releases listed above are based off of an official
 `GitHub`_ release the SIMP Team has made to a corresponding `SIMP GitHub`_
@@ -49,7 +49,4 @@ component RPMs and dependencies into an ISO.
 .. _GitHub: https://github.com
 .. _PuppetForge: https://forge.puppet.com
 .. _RubyGems.org: https://rubygems.org/
-.. _SIMP Archive: https://download.simp-project.com/simp/archive/yum
 .. _SIMP GitHub: https://github.com/simp
-.. _packagecloud: https://packagecloud.io/simp-project
-.. _simp-project.com: https://download.simp-project.com/simp/ISO

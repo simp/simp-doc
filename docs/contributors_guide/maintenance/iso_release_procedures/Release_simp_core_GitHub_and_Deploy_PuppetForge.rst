@@ -38,6 +38,5 @@ To create the releases from an annotated tag:
    created by ``simp-auto``.
 
 .. _GitHub: https://github.com
-.. _packagecloud: https://packagecloud.io/simp-project
 .. _PuppetForge: https://forge.puppet.com
 .. _TravisCI: https://travis-ci.org
