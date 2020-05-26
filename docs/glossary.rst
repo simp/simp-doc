@@ -166,6 +166,9 @@ Glossary of Terms
 
       Source: `Wikipedia: Central Processing Unit <https://en.wikipedia.org/wiki/Central_processing_unit>`__
 
+   Core Dump
+       A dump of the contents of main memory.
+
    DAC
    Discretionary Access Control
       A type of access control defined by the Trusted Computer System

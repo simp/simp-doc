@@ -24,6 +24,7 @@ with more commonly sought items towards the top.
   Work with the SIMP Rsync Shares <HOWTO/Work_With_Rsync>
   Set up Central Log Collection with Rsyslog <HOWTO/Central_Log_Collection_with_Rsyslog>
   Change Puppet Masters <HOWTO/Changing_Puppet_Masters>
+  Enable Core Dumps <HOWTO/Enable_Core_Dumps>
   Discard Mail to Root <HOWTO/Discard_Mail_to_Root>
   Exclude YUM Repositories from Nightly Updates <HOWTO/Exclude_Repositories>
   Configure NFS <HOWTO/NFS>

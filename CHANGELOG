@@ -1,3 +1,6 @@
+* Tue May 26 2020 Trevor Vaughan <tvaughan@onyxpoint.com>
+- Added HOWTO on enabling system core dumps.
+
 * Wed May 20 2020 Trevor Vaughan <tvaughan@onyxpoint.com>
 - Update the client installation guide to make it more straightforward to add
   existing nodes into management.
