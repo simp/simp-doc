@@ -4,8 +4,8 @@
 Client Management
 =================
 
-This chapter provides guidance to install and configure SIMP clients, via
-kickstart, with the resources supplied by the SIMP ISO.
+This chapter provides guidance to install and configure SIMP clients with the
+resources supplied by the SIMP installation.
 
 This guide also assumes that your SIMP server is a :term:`yum` package
 repository and that you are configuring the ``production``
@@ -141,6 +141,37 @@ Run ``puppet agent -t`` on the Puppet master to apply the changes.
 
 Setting up the Client
 =====================
+
+Existing Clients
+----------------
+
+Cloud environments, such as AWS, Azure, OpenStack, and GCE do not need to follow
+the PXE model shown below. Likewise, pre-existing physical clients can be
+integrated into the SIMP environment using the method outlined in this section.
+
+The SIMP system contains a bootstrap script that is able to be downloaded from
+the server. You should examine the actual client application to determine if it
+meets your needs as written but, in general, it should be well suited most
+applications.
+
+The following invocation waits for the server to provide a signed PKI
+certificate prior to proceeding. This is the safest method but will hang if the
+client certificate is not signed.
+
+.. code-block:: bash
+
+   curl -k -O https://<puppet.server.fqdn>/ks/bootstrap_simp_client
+
+   # Use the puppet provided ruby for a guaranteed compatible version
+   /opt/puppetlabs/puppet/bin/ruby ./bootstrap_simp_client \
+     --puppet-server <puppet.server.fqdn> \
+     --puppet-ca <puppet.server.fqdn> \
+     --puppet-wait-for-cert 0 \
+     --debug
+     --print-stats
+
+PXE Booting
+-----------
 
 The following lists the steps to :term:`PXE` boot the system and set up the
 client.
