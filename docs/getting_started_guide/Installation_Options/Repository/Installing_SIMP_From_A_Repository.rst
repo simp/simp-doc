@@ -31,7 +31,7 @@ Enable EPEL
 Install The SIMP-Project Repositories
 -------------------------------------
 
-Please reference :ref:`howto-use-the-simp-platform-rpm`.
+Please reference :ref:`howto-use-the-simp-release-rpm`.
 
 Rebuild The Yum Cache
 ---------------------
