@@ -18,4 +18,4 @@ freezing``, follow these instructions:
 #. Reboot
 
 .. _EL6: https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/6/html/deployment_guide/sec-single-user_mode
-.. _EL7: https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/7/html/system_administrators_guide/sec-terminal_menu_editing_during_boot
+.. _EL7: https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/7/html-single/system_administrators_guide/index#sec-Terminal_Menu_Editing_During_Boot

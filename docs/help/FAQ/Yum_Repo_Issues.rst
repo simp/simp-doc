@@ -33,5 +33,5 @@ show as a finding during STIG compliance scans.
 Alternatively, you can update each repository that is having issues and disable
 GPG checking for just that repository using the `yumrepo puppet resource`_.
 
-.. _SCAP Security Guide Mailing List Thread: https://lists.fedorahosted.org/archives/list/scap-security-guide@lists.fedorahosted.org/thread/ZDKOEZN3BRXRED6K3ACYEJUXRPDTPJWW/
+.. _SCAP Security Guide Mailing List Thread: https://lists.fedoraproject.org/archives/list/scap-security-guide@lists.fedorahosted.org/thread/ZDKOEZN3BRXRED6K3ACYEJUXRPDTPJWW/
 .. _yumrepo puppet resource: https://puppet.com/docs/puppet/5.5/types/yumrepo.html

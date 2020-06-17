@@ -108,10 +108,10 @@ called ``RPM-GPG-KEY-SIMP_dev``. This key can be added to your clients, or
 served via a web server, if you need to install from a centralized :term:`yum`
 repository.
 
-Please see the `Red Hat Guide to Configuring YUM and YUM Repositories`_ for
+Please see the `Red Hat Guide to Configuring Yum and Yum Repositories`_ for
 additional information.
 
 .. _CentOS-7-x86_64-DVD-1611.iso: http://isoredirect.centos.org/centos/7/isos/x86_64/CentOS-7-x86_64-DVD-1611.iso
 .. _DVD1 and DVD2: http://isoredirect.centos.org/centos/6/isos/x86_64/
-.. _Red Hat Guide to Configuring YUM and YUM Repositories: https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/7/html/system_administrators_guide/sec-configuring_yum_and_yum_repositories
+.. _Red Hat Guide to Configuring Yum and Yum Repositories: https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/7/html/system_administrators_guide/ch-yum#sec-Configuring_Yum_and_Yum_Repositories
 .. _simp-core: https://github.com/simp/simp-core
