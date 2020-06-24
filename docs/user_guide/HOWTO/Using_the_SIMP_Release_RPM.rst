@@ -1,8 +1,8 @@
 .. _howto-use-the-simp-release-rpm:
 
-===========================
-SIMP Release RPM
-===========================
+===============================
+How to Use the SIMP Release RPM
+===============================
 
 Download Details
 ---------------------------------

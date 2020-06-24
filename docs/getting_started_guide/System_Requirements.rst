@@ -19,7 +19,7 @@ Official `hardware requirements` **for your SIMP server**:
 With less than 3.4 GB it is possible for either the puppet database or
 puppet server to not start.
 
-We recommend the following `hardware requirements` **for your SIMP
+We recommend the following `hardware requirements`_ **for your SIMP
 server**:
 
 * **2** CPUs and **6 GB** of RAM, at a minimum

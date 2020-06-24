@@ -1077,7 +1077,7 @@ Glossary of Terms
       environment setup time, increases development/production parity, and
       makes the "works on my machine" excuse a relic of the past.
 
-      Source: `Vagrant: About Vagrant <https://www.vagrantup.com/intro/index.html>`__
+      Source: `Vagrant: About Vagrant <https://www.vagrantup.com/intro>`__
 
    VirtualBox
       A general-purpose full virtualizer for x86 hardware, targeted at server,
