@@ -1,8 +1,14 @@
 HOWTO Enable Redundant LDAP
 ===========================
 
-This section describes how to set up redundant OpenLDAP servers in SIMP. These
-servers are also referred to as "slave" servers.
+This section describes how to set up consumer OpenLDAP servers in SIMP. These
+servers are were previously referred to as "slave" servers.
+
+.. NOTE::
+
+   The SIMP team is in the process of renaming ``slave`` to ``consumer`` per current
+   LDAP practices.  Please pardon our progress as we attempt to update our language 
+   consistently with our code.
 
 Set up the Master
 -----------------
@@ -94,17 +100,17 @@ described in the :ref:`User_Management`.
    Information on how the create salted ({SSHA}) passwords can be found at the
    `OpenLDAP site <www.openldap.org/faq/data/cache/347.html>`__.
 
-Set up the Redundant (Slave) Servers
-------------------------------------
+Set up the Redundant (Consumer) Servers
+---------------------------------------
 
 Default Settings
 ~~~~~~~~~~~~~~~~
 
-Once the LDAP master is ready, LDAP slave nodes can be configured to replicate
+Once the LDAP master is ready, LDAP consumer nodes can be configured to replicate
 data from the master. These servers are read-only, and modifications cannot be
 made to LDAP entries while the master is down.
 
-Slave nodes can be configured via Hiera by setting
+Consumer nodes can be configured via Hiera by setting
 ``simp::server::ldap::is_slave`` to ``true``, setting the
 replication id (RID) , and adding the ``simp::server::ldap``
 class. This will set up your redundant server using the defaults. To do these
@@ -167,7 +173,7 @@ The name of the ``simp_openldap::server::syncrepl`` instance must be a unique
 replication id.
 
 Place this file in the ``site`` module's  ``manifests/`` directory using the name
-`ldap_slave.pp`. Include this class from the slave server's Hiera YAML file:
+`ldap_slave.pp`. Include this class from the ldap server's Hiera YAML file:
 
 .. code-block:: yaml
 
@@ -178,10 +184,10 @@ Place this file in the ``site`` module's  ``manifests/`` directory using the nam
 Lastly, add the server to the URI_ listing in ``default.yaml`` so all the
 clients know about it once they have updated from the Puppet master.
 
-Promote a Slave Node
---------------------
+Promote a Consumer Node
+-----------------------
 
-Slave nodes can be promoted to act as the LDAP master node. To do this, change
+Consumer nodes can be promoted to act as LDAP master nodes. To do this, change
 the node classifications of the relevant hosts. For a node with the default
 settings, just remove the ``simp::server::ldap::is_slave : true`` from the
 server's Hiera YAML file and change the setting for the master LDAP in Hiera.
@@ -200,13 +206,13 @@ the servers yaml file and set the master setting in the Hiera as shown above.
 In both cases, if the current master is not down, make sure it has completed
 replication before changing the settings. Once the settings are changed, run
 ``puppet agent -t`` on the LDAP server. After the next Puppet run on all the
-hosts the server will be promoted to master and all the slaves will point to
+hosts the server will be promoted to master and all the consumers will point to
 it.
 
 Remove a Node or Demote a Master
 --------------------------------
 
-To demote a master, simply configure it as slave in either of the
+To demote a master, simply configure it as consumer in either of the
 configurations above after the new master has been configured and put in place.
 Then run the Puppet agent. Lastly, manually remove the active database from
 the server. (Check the setting ``simp_openldap::server::conf::directory``
