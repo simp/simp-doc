@@ -6,25 +6,27 @@ servers are were previously referred to as "slave" servers.
 
 .. NOTE::
 
-   The SIMP team is in the process of renaming ``slave`` to ``consumer`` per current
-   LDAP practices.  Please pardon our progress as we attempt to update our language 
-   consistently with our code.
+   The concept of master/slave has been deprecated in openldap in favor of the more 
+   flexible concept of provider/consumer. The SIMP team is in the process of updating 
+   both our code and documentation to reflect this.  Please bear with us in this 
+   process, and feel free to pose any questions via any of the 
+   `SIMP community resources <https://www.simp-project.com/#community>`__
 
 Set up the Master
 -----------------
 
-The easiest way to set up an LDAP master is to set it up on the Puppet master
+The easiest way to set up an LDAP primary server is to set it up on the Puppet master
 using ``simp config`` during the initial configuration of the Puppet master.
 This is done by answering "yes" when asked if you want to use LDAP during your
 initial ``simp config`` run and answering the basic questions it asks you. If
-it is not desirable to have the LDAP server on the Puppet master, a LDAP server
-can be set up on an alternate server by including the ``simp::server::ldap`` on
-the node of your choice.
+it is not desirable to have the LDAP primary server on the Puppet master, the 
+LDAP primary server can be set up on an alternate server by including the 
+``simp::server::ldap`` on the node of your choice.
 
 .. NOTE::
 
    If you use another node, you may want to re-run ``simp config`` and answer
-   the questions with this new LDAP master server in mind.
+   the questions with this new LDAP primary server in mind.
 
 If you do not want to run ``simp config`` again, you will need to configure the
 following settings in :term:`Hiera`:
@@ -106,9 +108,9 @@ Set up the Redundant (Consumer) Servers
 Default Settings
 ~~~~~~~~~~~~~~~~
 
-Once the LDAP master is ready, LDAP consumer nodes can be configured to replicate
-data from the master. These servers are read-only, and modifications cannot be
-made to LDAP entries while the master is down.
+Once the LDAP primary server is ready, LDAP consumer nodes can be configured to 
+replicate data from the primary server. These consumer servers are read-only, and 
+modifications cannot be made to LDAP entries while the primary server is down.
 
 Consumer nodes can be configured via Hiera by setting
 ``simp::server::ldap::is_slave`` to ``true``, setting the
@@ -187,33 +189,33 @@ clients know about it once they have updated from the Puppet master.
 Promote a Consumer Node
 -----------------------
 
-Consumer nodes can be promoted to act as LDAP master nodes. To do this, change
+A consumer node can be promoted to act as an LDAP primary server. To do this, change
 the node classifications of the relevant hosts. For a node with the default
 settings, just remove the ``simp::server::ldap::is_slave : true`` from the
-server's Hiera YAML file and change the setting for the master LDAP in Hiera.
+server's Hiera YAML file and change the setting for the LDAP primary server in Hiera.
 This setting is needed by all LDAP servers. (It defaults to the Puppet master
 if it is not set.)
 
 .. code-block:: yaml
 
-   # This is the LDAP master in URI form (ldap://server)
+   # This is the LDAP primary server in URI form (ldap://server)
    simp_options::ldap::master: ldap://ldap_server2.your.domain
 
 For a redundant server setup using custom settings, remove the call to the
 custom class and replace it with the call to the ``site::ldap_server`` class in
-the servers yaml file and set the master setting in the Hiera as shown above.
+the servers yaml file and set the primary server setting in the Hiera as shown above.
 
-In both cases, if the current master is not down, make sure it has completed
+In both cases, if the current primary server is not down, make sure it has completed
 replication before changing the settings. Once the settings are changed, run
-``puppet agent -t`` on the LDAP server. After the next Puppet run on all the
-hosts the server will be promoted to master and all the consumers will point to
+``puppet agent -t`` on the LDAP primary server. After the next Puppet run on all the
+hosts the server will be promoted to primary server and all the consumers will point to
 it.
 
-Remove a Node or Demote a Master
---------------------------------
+Remove a Node or Demote a Primary LDAP Server
+---------------------------------------------
 
-To demote a master, simply configure it as consumer in either of the
-configurations above after the new master has been configured and put in place.
+To demote the primary server, simply configure it as consumer in either of the
+configurations above after the new server has been configured and put in place.
 Then run the Puppet agent. Lastly, manually remove the active database from
 the server. (Check the setting ``simp_openldap::server::conf::directory``
 setting for the location of the files.)
