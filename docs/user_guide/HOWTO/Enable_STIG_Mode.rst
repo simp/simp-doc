@@ -105,7 +105,8 @@ have been editing:
 
 .. code:: yaml
 
-   compliance_markup::enforcement: disa_stig
+   compliance_markup::enforcement:
+     - disa_stig
 
 
 Next Steps
