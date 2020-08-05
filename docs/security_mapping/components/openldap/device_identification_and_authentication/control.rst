@@ -2,7 +2,7 @@ Device Identification and Authentication
 ----------------------------------------
 
 There is an account and password setup to authenticate devices needing to
-synchronize with the LDAD server.  The username for that account is ``LDAPSync``
+synchronize with the LDAP server.  The username for that account is ``LDAPSync``
 and the account and associated password are stored in LDAP.
 
 There is also an account for a device to authenticate prior to being allowed to
