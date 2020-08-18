@@ -134,7 +134,7 @@ It assumes:
 Setting up a SIMP Environment in a Control Repository using Remote Git repositories
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Although (with a detailed understanding of SIMP internals) you can have a
+Although (with a detailed understanding of SIMP internals) you can have
 a :term:`SIMP server` that will function with just a Puppet environment, by
 default, a functioning SIMP server **requires** its entire :term:`SIMP
 Omni-Environment`.
@@ -145,7 +145,7 @@ you can check into a branch in your control repository.
 This example  assumes the new SIMP Omni-Environment will be
 using its own secondary and writable environments.
 
-Before proceding with this section, you should
+Before proceeding with this section, you should
 
 * Have a basic understanding of control repositories.
 * Have a basic understanding of how to use ``git``.
@@ -259,9 +259,9 @@ Before proceding with this section, you should
 #. To continue configuring the environment, move on to the :ref:`Client_Management`
    section in the :ref:`simp-user-guide`.
 
-By default this environment will be using a different Certificate
+By default, this environment will be using a different Certificate
 Authority for  :ref:`Infrastructure Certificates<ug-sa-ga-infrastructure-certificates>`. It
-therefore may not be able to communicate to a server in another envirnment when
+therefore may not be able to communicate to a server in another environment when
 certificate authentication is required,  for example LDAP.  You will have to create a new LDAP server
 or add the new CA to the list of trusted CA's in the other environment.
 

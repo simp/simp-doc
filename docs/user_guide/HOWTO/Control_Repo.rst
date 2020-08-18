@@ -37,7 +37,7 @@ Creating a Control Repository on a SIMP Server
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 This procedure creates an r10k control repository from a fresh SIMP ISO/RPM
-installation.  It is currently limited to to *just* the control repository—the
+installation.  It is currently limited to *just* the control repository—the
 RPM-provided Puppet module git repositories will remain on the SIMP server's
 local filesystem.
 
@@ -86,7 +86,7 @@ local filesystem.
 
    .. code-block:: sh
 
-      git commit -m "Initial production environemnt"
+      git commit -m "Initial production environment"
 
 #. Push the branch to your control repository:
 

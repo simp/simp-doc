@@ -32,7 +32,7 @@ This release is known to work with:
    At this point, all vendor support for Puppet 4 will be discontinued as will
    SIMP CE support for Puppet prior to 4.10.4.
 
-   SIMP CE will no longer provide any support for Puppet 4 after after June 30
+   SIMP CE will no longer provide any support for Puppet 4 after June 30
    2019.
 
 Breaking Changes
@@ -82,7 +82,7 @@ Significant Updates
   improvements will also not be noted below.
 
 * The ``simp_gitlab`` module no longer supports EL6. This is due to integration
-  issues with GitLab that cannot be readily fixed by the module maintance team,
+  issues with GitLab that cannot be readily fixed by the module maintenance team,
   alone.  The EL community had shown no interest in fixing minor issues with EL6
   in the GitLab platform.
 
@@ -511,7 +511,7 @@ pupmod-simp-simp
 * Removed ``simp::mcollective`` class due to global deprecation.
 * Removed group management for the ``root`` user based on feedback.
 * Set the ownership and permissions of ``/etc/puppet/puppetdb.conf`` so that
-  systems that already have the ``root`` ``umsak`` set to ``077`` work
+  systems that already have the ``root`` ``umask`` set to ``077`` work
   properly.
 * Added a ``simp::netconsole`` class to allow users to configure the
   ``netconsole`` kernel parameter for boot time logging.

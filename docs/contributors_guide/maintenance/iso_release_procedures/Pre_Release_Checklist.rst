@@ -416,7 +416,7 @@ tested in acceptance/simp-packer tests) do function as advertised:
   enforcing.
 * A local user with sudo privileges can be created and login to both
   the SIMP server and client on CentOS 6 and CentOS 7.
-* An LDAP user user in the ``administrators`` group can login to both
+* An LDAP user in the ``administrators`` group can login to both
   the SIMP server and client on CentOS 6 and CentOS 7.
 * Local and LDAP users can change their passwords on both the SIMP
   server and client on CentOS 6 and CentOS 7.

@@ -237,7 +237,7 @@ Utilize the SIMP profile module ``simp_nfs``:
 
    The simp_nfs module utilizes an NFS root mount which must be used to export
    any further directories from this server.
-   See :ref:`Additional_Directories` for and example of how to do this.
+   See :ref:`Additional_Directories` for an example of how to do this.
 
 Client
 ^^^^^^
@@ -383,7 +383,7 @@ profile module is ``site`` and the manifest ``nfs_client.pp``
 
      $mount_point = '/share'
 
-     # Since it the nfs server uses a nfs_root, you onlt put the path
+     # Since it the nfs server uses a nfs_root, you only put the path
      # relative to the root.
      $remote_path = '/share1'
 

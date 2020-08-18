@@ -48,7 +48,7 @@ To create the releases from an annotated tag:
        For markdown-style changelogs, you will need to specify
        ``--cleanup=whitespace`` so comment headers are not stripped.
 
-#. Verify `TravisCi`_ completes successfully
+#. Verify `TravisCI`_ completes successfully
 
    .. IMPORTANT::
       If any of the required TravisCI builds for the project fail, for

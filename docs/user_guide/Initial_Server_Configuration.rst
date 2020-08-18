@@ -56,7 +56,7 @@ Configuring the SIMP Server
    -  ``simp config`` will prompt you with the follow:
 
       - ``Ready to create the SIMP omni-environment?`` Enter ``yes``.
-      - ``Ready to start the questionaire?`` Enter ``yes``.
+      - ``Ready to start the questionnaire?`` Enter ``yes``.
 
    -  ``simp config`` will then prompt you for system settings and apply them as
       appropriate for bootstrapping the system. When applicable, ``simp config``

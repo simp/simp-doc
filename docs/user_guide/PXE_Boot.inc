@@ -113,7 +113,7 @@ This section describes how to configure the kickstart server.
    these files, name them appropriately and update URLS and links inside and
    anything else you may need. (You must know what you are doing before
    attempting this.) If you are booting more than one OS you must also make
-   sure your YUM server has the OS packages for the other OSs. By default the
+   sure your YUM server has the OS packages for the other OSs. By default, the
    YUM server on SIMP has the packages only for the version of OS installed on
    the SIMP server.
 
@@ -290,7 +290,7 @@ to set up the various files to model different systems.
 #. Add the ``site::tftpboot`` class on your puppet server node via
    :term:`Hiera`. Create the file (or edit if it exists):
    ``/etc/puppetlabs/code/environments/production/data/hosts/<tftp.server.fqdn>.yaml``.
-   (By default the TFTP server is the same as your puppet server so it should
+   (By default, the TFTP server is the same as your puppet server so it should
    exist.) Add the following example code to that yaml file.
 
    .. code-block:: yaml

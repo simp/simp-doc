@@ -590,7 +590,7 @@ pupmod-simp-simp_gitlab
 pupmod-simp-simp_ipa
 ^^^^^^^^^^^^^^^^^^^^
 
-* Fixed a bg in which ``ntp-server`` was not passed into the client install.
+* Fixed a bug in which ``ntp-server`` was not passed into the client install.
 
 pupmod-simp-simplib
 ^^^^^^^^^^^^^^^^^^^

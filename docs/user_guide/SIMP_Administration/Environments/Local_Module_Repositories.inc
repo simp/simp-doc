@@ -45,7 +45,7 @@ is guaranteed to be unique across all Puppet modules published to the
 
       - It is **NOT** a copy of the module's Git development history from its
         public repository.
-      - It does **NOT** track the highest version availabile from the
+      - It does **NOT** track the highest version available from the
         repository.
       - The branch head will be whatever the most recent successful RPM
         %postinstall was—even if that was a *downgrade*.

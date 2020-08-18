@@ -5,7 +5,7 @@ Contribution Procedure
 
 We use the standard `GitHub workflow`_ for SIMP development with the exception
 that we use a `Squash and Merge`_ merge method for pulling in changes. This is
-done to to maintain a more legible commit history on `master`.
+done to maintain a more legible commit history on `master`.
 
 #. Search the `SIMP JIRA`_ for an open ticket that is relevant to the issue or
    open a new one.
@@ -30,17 +30,17 @@ done to to maintain a more legible commit history on `master`.
    .. IMPORTANT::
       The **first** commit should use the `Commit Message Conventions`_
 
-#. Push your changes to Github on your feature branch:
+#. Push your changes to GitHub on your feature branch:
 
    * ``git push origin SIMP-XXXX``
 
 #. Using the GitHub GUI, create a `pull request`_ from your feature branch to
    the branch of the original repo that you want to contribute to. Leave the
    '`Allow edits from maintainers`_' checkbox checked to let a team member add
-   add commits to your pull request.
+   commits to your pull request.
 
 #. `Travis-CI`_ will run the spec tests for the branch and a member of the SIMP
-   team will `review`_ your submission. You should receive emails from Github as
+   team will `review`_ your submission. You should receive emails from GitHub as
    code reviews progress.
 
 Commit Message Conventions

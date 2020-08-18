@@ -101,7 +101,7 @@ Glossary of Terms
       must set a value themselves (either in their external data or an
       override). As such, you should supply defaults wherever possible.
 
-      Each parameter can be preceeded by an optional data type. If you include
+      Each parameter can be preceded by an optional data type. If you include
       one, Puppet will check the parameter’s value at runtime to make sure that
       it has the right data type, and raise an error if the value is illegal.
       If no data type is provided, the parameter will accept values of any data

@@ -53,7 +53,7 @@ Edit the Puppetfile to include non-simp site modules
 
      * a directive to include the file ``Puppetfile.simp``
      * a local entry for each module presently in the ``production``
-       environment, that does not have a local, SIMP-managed Git repostory and
+       environment, that does not have a local, SIMP-managed Git repository and
        does not appear to be managed by Git.
 
 

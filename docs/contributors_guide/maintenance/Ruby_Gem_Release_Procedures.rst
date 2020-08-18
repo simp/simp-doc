@@ -1,7 +1,7 @@
 Ruby Gem Release Procedures
 ===========================
 
-This section will decribe the release procedures for the SIMP Ruby gems
+This section will describe the release procedures for the SIMP Ruby gems
 used to build and test SIMP components. The relevant components include
 
 * ``rubygem-simp-beaker-helpers``

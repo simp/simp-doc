@@ -477,7 +477,7 @@ Trusted Boot Debugging Tips and Warnings
 *  The ``tboot`` kernel option ``min_ram=0x2000000`` (which is default) is
    **REQUIRED** on systems with more than 4GB of memory.
 *  Trusted Boot measures the file required to boot into a Linux environment,
-   and updating those file will cause a system to boot into an untrusted state.
+   and updating those files will cause a system to boot into an untrusted state.
    Be careful updating the ``kernel`` packages and rebuilding the ``initramfs``
    (or running ``dracut``).
 

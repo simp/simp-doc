@@ -70,7 +70,7 @@ the upgrade.
 #. Run ``puppet agent -t`` again to ensure that everything runs cleanly.
 
 
-.. admonition:: Recovering if the **puppeserver** fails to restart
+.. admonition:: Recovering if the **puppetserver** fails to restart
 
    If, during the upgrade, the ``puppetserver`` service fails to start with the
    error:

@@ -1,7 +1,7 @@
 HOWTO Enable STIG Mode on a SIMP System
 =======================================
 
-Enabling :term:`STIG` mode in SIMP involves using the :ref:`SIMP Compliance
+Enabling :term:`STIG` mode in SIMP involves using :ref:`SIMP Compliance
 Engine` to apply the STIG-specific :term:`SIMP compliance profile`.
 
 Like everything in :term:`Puppet`, STIG-mode only applies to those nodes that
@@ -72,10 +72,10 @@ Now that you have ensured that ``stiguser`` can access your system as well
 as escalate to an administrative user without being blocked by SELinux, you are
 ready to enable STIG-enforcing mode.
 
-First, include the SIMP Compliance Engine backend in the hierachy defined
-in the environments hiera.yml,
-/etc/puppetlabs/code/environments/production/hiera.yml.
-Place it under the hierachy tag just before default:
+First, include the SIMP Compliance Engine backend in the hierarchy defined
+in the environments hiera.yaml,
+/etc/puppetlabs/code/environments/production/hiera.yaml.
+Place it under the hierarchy tag just before default:
 
 .. code-block:: yaml
    :emphasize-lines: 11,12

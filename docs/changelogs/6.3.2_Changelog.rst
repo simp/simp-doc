@@ -99,7 +99,7 @@ pupmod-simp-simplib
 
 * Ensure that IPA fact does not hang indefinitely.
 * Added 'defined type' lookup capability, ``simplib::dlookup`` that provides a
-  consistent method for rerieving defined type parameters from Hiera in an
+  consistent method for retrieving defined type parameters from Hiera in an
   opt-in manner. (Required for fixing the ``stunnel`` bug).
 * Fixed YARD documentation issues
 
@@ -131,13 +131,13 @@ pupmod-simp-stunnel
 ^^^^^^^^^^^^^^^^^^^
 
 * Add ability for users to override ``stunnel::connection`` and
-  ``stunnel::instance`` options either globally or by specific indentified
+  ``stunnel::instance`` options either globally or by specific identified
   instances using the new ``simplib::dlookup`` function.
 * Fixed ``stunnel::connection`` and ``stunnel::instance`` bugs:
 
   * ``sni`` is not applicable on EL6
-  * ``retry`` is ony applicable when ``exec`` is specified and needed to be
-    translated from a booolean to ``yes/no``
+  * ``retry`` is only applicable when ``exec`` is specified and needed to be
+    translated from a boolean to ``yes/no``
   * ``session`` is only applicable on EL6
 
 rubygem_simp_cli
