@@ -340,7 +340,7 @@ pupmod-simp-pupmod
 * Added a SHA256-based option to generate the minute parameter for a client's
   ``puppet agent`` cron entry based on its IP Address
 
-  * This option is intended mitigate the undesirable clustering of client
+  * This option is intended to mitigate the undesirable clustering of client
     ``puppet agent`` runs, when the number of IPs to be transformed is less
     than the minute range over which the randomization is requested (60) and/or
     the client IPs are not linearly assigned

@@ -42,7 +42,7 @@ against.
    SIMP 6.2 release and can obtain commercial support if further Puppet 4
    support is required.
 
-   From this point on, all components are tested againt Puppet 5 and Puppet 4
+   From this point on, all components are tested against Puppet 5 and Puppet 4
    support may be removed from any module as a non-breaking change at any time.
 
 6.3.0-0 Errata

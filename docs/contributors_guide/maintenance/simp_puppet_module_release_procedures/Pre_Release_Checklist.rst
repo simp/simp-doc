@@ -283,8 +283,8 @@ do the following:
 Verify the component yields valid SIMP ISOs
 -------------------------------------------
 
-This check verifies that with this component, valid SIMP ISOs for
-for CentoOS 6 and CentOS 7 can be built. An ISO is considered
+This check verifies that with this component, valid SIMP ISOs
+for CentOS 6 and CentOS 7 can be built. An ISO is considered
 to be valid when a SIMP server can be booted from it, configured via
 ``simp config``, and then bootstrapped via ``simp bootstrap``.  For
 CentOS 6 and CentOS 7:

@@ -174,7 +174,7 @@ clients.
       successfully migrated and is in production under the new server.
 
 #. Consider vital services other than Puppet that are housed on your current
-   Puppet server node (eg. DNS, DHCP, LDAP, custom kickstart, YUM, NFS, etc.).
+   Puppet server node (e.g., DNS, DHCP, LDAP, custom kickstart, YUM, NFS, etc.).
    You may choose to keep many of these services running on your old Puppet
    server node. Anything not preserved must be migrated to a new system.
 

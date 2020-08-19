@@ -3,7 +3,7 @@ Release to GitHub
 
 At this time only one ISO-related SIMP project (``rubygem-simp-cli``)
 is configured to automatically release to GitHub. So, this section will
-decribe both the automated steps and the manual steps required to release
+describe both the automated steps and the manual steps required to release
 the other ISO-related projects to GitHub.
 
 Automated Release Steps
@@ -49,7 +49,7 @@ To create the a release from an annotated tag:
       For markdown-style changelogs, you will need to specify
       ``--cleanup=whitespace`` so comment headers are not stripped.
 
-#. Verify `TravisCi`_ completes successfully
+#. Verify `TravisCI`_ completes successfully
 
    .. IMPORTANT::
       If any of the required TravisCI builds for the project fail, for
@@ -101,7 +101,7 @@ To create the release from an annotated tag:
       For markdown-style changelogs, you will need to specify
       ``--cleanup=whitespace`` so comment headers are not stripped.
 
-#. Verify `TravisCi`_ completes successfully
+#. Verify `TravisCI`_ completes successfully
 
 #. Create a release of the annotated tag on GitHub.
 

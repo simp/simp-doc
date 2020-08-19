@@ -250,7 +250,7 @@ sync user information in LDAP.
    replace: userPassword
    userPassword: <Hash from simp_options::ldap::sync_hash>
 
-Likewise if the  bind password has changed in heira,  the
+Likewise if the  bind password has changed in hiera,  the
 ``simp_options::ldap::bind_pw`` and ``simp_options::ldap::bind_hash`` in
 the ``simp_config_settings.yaml`` file, the password must be updated
 in LDAP.  If it is not, the clients will not be able to connect to the

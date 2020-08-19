@@ -16,7 +16,7 @@ Amending Changes to Submitted Pull Requests
         We use ``git clone`` instead of ``hub clone`` so that we can't
         accidentally push to the main SIMP repositories. While we have
         `protected branches`_ for the critical components, one wrong command
-        and and life can get unpleasant.
+        and life can get unpleasant.
 
 #. Pull down the pull request (PR) as found on the GitHub GUI. The local branch
    should match the branch in the PR (for example, branch SIMP-XXXX):

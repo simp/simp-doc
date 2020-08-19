@@ -173,7 +173,7 @@ code in the ``simp_options`` module. In particular, we have changed not only the
 value in hiera, but every module parameter that uses this value's name from
 ``client_nets`` to ``simp_options::trusted_nets``. Other changes were less
 obtrusive, for example ``enable_selinux`` and other variations are now all
-called ``simp_options::selinux``. Every Catayst is strongly typed and documented
+called ``simp_options::selinux``. Every Catalyst is strongly typed and documented
 in the module.
 
 New catalysts are as follows:

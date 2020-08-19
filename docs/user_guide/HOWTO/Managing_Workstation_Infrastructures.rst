@@ -231,7 +231,7 @@ The following example class, ``site::print::client`` may be written to
 Setting up a Print Server
 """""""""""""""""""""""""
 
-The following example, ``site::print::server``, may be written to
+The following example, ``site::print::server``, may be written
 to ``site/manifests/print/server.pp`` and sets up server-side printing:
 
 .. code-block:: ruby
