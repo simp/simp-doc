@@ -24,6 +24,10 @@ For a list of the commands ``simp`` provides, type ``simp help``. Type
     changing anything and then run ``simp config  -a /root/.simp/simp_conf.yaml``
     to apply the changes.
 
+  * ``simp config`` uses the ``production`` :term:`Puppet Environment` by
+    default. If you want to use a different intial environment, see
+    :ref:`howto-use-an-alternate-simp-config-environment`.
+
 - ``simp bootstrap`` uses several targeted Puppet runs to configure the rest
   of the system and generates a log file under ``/root/.simp/``.
 
