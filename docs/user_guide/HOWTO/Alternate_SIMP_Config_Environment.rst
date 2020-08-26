@@ -1,6 +1,6 @@
 .. _howto-use-an-alternate-simp-config-environment:
 
-HOWTO Use an Alternate ``simp config`` Environment
+HOWTO Use an Alternate 'simp config' Environment
 ==================================================
 
 Generally, when running the ``simp config`` and ``simp bootstrap`` commands, all
