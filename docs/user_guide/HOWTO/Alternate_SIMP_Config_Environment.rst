@@ -10,9 +10,10 @@ items will be placed into the ``production`` :term:`Puppet Environment` and
 If you are installing SIMP onto a preexisting system, you may want to instead
 install into an environment other than ``production``.
 
-As of version 6.0.0, the ``simp-cli`` was updated to support setting an
-alternate initial environment using a shell environment variable called
-``SIMP_ENVIRONMENT``.
+As of ``simp-cli`` version 6.0.0 (new with SIMP 6.5), you can configure
+the ``simp config`` and ``simp bootstrap`` commands to use an
+alternate initial environment by setting the shell environment 
+variable, ``$SIMP_ENVIRONMENT``.
 
 For example, if you wanted to name your initial environment ``simp``, then you
 would do the following:
