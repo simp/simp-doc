@@ -2,7 +2,7 @@
 Babel>=2.8.0
 Jinja2>=2.11.1
 MarkupSafe>=1.1.1
-Pillow>=5.4.1,<6
+Pillow>=7.1.0
 PyYAML>=5.3
 Pygments>=2.5.2
 Sphinx>=1.7.9,<1.8.0
