@@ -1,3 +1,6 @@
+* Wed Aug 19 2020 Trevor Vaughan <tvaughan@onyxpoint.com>
+- Added HOWTO on changing the inital 'simp config' puppet environment
+
 * Tue May 26 2020 Trevor Vaughan <tvaughan@onyxpoint.com>
 - Added HOWTO on enabling system core dumps.
 
