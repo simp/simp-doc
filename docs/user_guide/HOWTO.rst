@@ -40,6 +40,7 @@ with more commonly sought items towards the top.
   Enroll hosts in an IPA domain <HOWTO/IPA_Clients>
   Manage TPM <HOWTO/Manage_TPM>
   Set up and Utilize Bolt <HOWTO/Bolt>
-  Block or Cache Facts<HOWTO/Block_or_Cache_Facts>
+  Block or Cache Facts <HOWTO/Block_or_Cache_Facts>
   Upgrade SIMP <HOWTO/Upgrade_SIMP>
+  Use an Alternate ``simp config`` Environment <HOWTO/Alternate_SIMP_Config_Environment>
   Use the SIMP Release RPM<HOWTO/Using_the_SIMP_Release_RPM>

@@ -114,7 +114,7 @@ To do this on a :term:`EL` system, set the following in
 
 .. code-block:: bash
 
-   DOCKER_STORAGE_OPTIONS= --storage-opt dm.basesize=100G
+   DOCKER_STORAGE_OPTIONS="--storage-opt dm.basesize=100G"
 
 
 .. NOTE::
