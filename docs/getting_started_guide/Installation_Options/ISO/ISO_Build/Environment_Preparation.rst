@@ -143,16 +143,17 @@ Build Your Build Containers
 ---------------------------
 
 The `simp-core`_ project provides suitable build Dockerfiles for both
-:term:`EL` 6 and :term:`EL` 7 in the ``build/Dockerfiles`` directory.
+:term:`EL` 6 and :term:`EL` 7 under the ``build/Dockerfiles/`` directory.
 
-These work well for building both :term:`CentOS` 6 and 7 artifacts and the
-usage is noted at the top of those files.
+These work well for building both :term:`CentOS` 6 and 7 artifacts.  Their
+usage is noted in the comments at the top of each file.
 
-Unfortunately, getting this to work with :term:`RHEL` has proven to be a
-challenge so you should use the Dockerfiles to see what packages you need to
-install on your local host to be able to successfully build.
+Unfortunately: making distributable build containers for :term:`RHEL` has
+proven to be a challenge, so you'll need to run RHEL builds directly on a local
+host. Use the Dockerfiles as a guide to see what packages you'll need in order
+to build successfully.
 
-A simple way to get a quick list is to run ``grep "yum .* -y"`` on the
+A simple way to get a quick package list is to run ``grep "yum .* -y"`` on the
 appropriate Dockerfile.
 
 .. _Bundler Rationale Page: https://bundler.io/rationale.html
