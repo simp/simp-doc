@@ -89,6 +89,7 @@ EOM
 
       require 'open-uri'
       begin
+        warn("Downloading '#{spec_url}'")
         open(spec_url) do |specfile|
           tmpspec.write(specfile.read)
         end
@@ -111,6 +112,9 @@ EOM
         warn("Could not obtain valid version/release information from #{specfile}, please check for consistency. Defaulting to: '#{default_simp_version}'")
       end
     end
+
+    release = "#{rpm_metadata.release.split(rpm_metadata.dist).first}"
+    warn "\nSetting #{rel_file} with version:#{rpm_metadata.version} release:#{release}"
 
     # Set the version and release in the rel_file
     %x(sed -i s/version:.*/version:#{rpm_metadata.version}/ #{rel_file})
