@@ -25,12 +25,13 @@ To create the releases from an annotated tag:
       cd rubygem-simp-rake-helpers
       git checkout BRANCH # this step isn't needed for master branch
 
-#. Generate the changelog content
+#. Manually generate the changelog content in a file.
 
-   .. code-block:: bash
+   * The first line should be blank.
+   * The second line should be 'Release of x.y.z'
+   * The third line should be blank
+   * The remaining lines should contain the list of changes.
 
-      bundle update
-      bundle exec rake pkg:create_tag_changelog > foo
 
 #. Create the annotated tag.  In this example the content of ``foo`` is:
 
