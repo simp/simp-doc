@@ -1,18 +1,20 @@
 Release to GitHub
 =================
 
-At this time only one ISO-related SIMP project (``rubygem-simp-cli``)
-is configured to automatically release to GitHub. So, this section will
-describe both the automated steps and the manual steps required to release
-the other ISO-related projects to GitHub.
+At this time all of the ISO-related SIMP projects are configured to
+automatically release to GitHub, but as we transition to the new
+deploy strategy, there may be issues with old deploy keys.
+This section will describe both the automated steps and the manual
+corrective steps required to release the other ISO-related projects to
+GitHub.
 
 Automated Release Steps
 -----------------------
 
-Some SIMP ISO-related project are configured to automatically create a
+All SIMP ISO-related project are configured to automatically create a
 `GitHub`_ release, when an annotated tag is created for the `GitHub`_
 project **and** the `TravisCI`_ tests for the annotated tag push succeed.
-Such a project will contain a deploy step for the ``releases`` provider
+Each project contains a deploy step for the ``releases`` provider
 in its ``.travis.yml`` file.
 
 To create the a release from an annotated tag:
@@ -28,9 +30,10 @@ To create the a release from an annotated tag:
 
 #. Generate the changelog content
 
-   * Manually extract the changelog content from the ``CHANGELOG.md``,
-     ``CHANGELOG``, or ``build/<component>.spec`` file and write
-     into a file.  In this example, the written file will be ``foo``.
+   .. code-block:: bash
+
+      bundle update
+      bundle exec rake pkg:create_tag_changelog > foo
 
 #. Create the annotated tag.  In this example the content of 'foo' is::
 
@@ -44,64 +47,24 @@ To create the a release from an annotated tag:
       git tag -a 4.0.4 -F foo
       git push origin 4.0.4
 
-   .. NOTE::
-
-      For markdown-style changelogs, you will need to specify
-      ``--cleanup=whitespace`` so comment headers are not stripped.
-
 #. Verify `TravisCI`_ completes successfully
 
    .. IMPORTANT::
       If any of the required TravisCI builds for the project fail, for
       example due to intermittent connectivity problems with `GitHub`_,
       you can complete the release process by manually restarting the
-      failed build on the Travis page for that build.
+      failed build on the Travis page for that build.  However, if the
+      build fails due to deploy key issues skip to the next section.
 
 #. Verify release exists on `GitHub`_.  This release will have been created by
    ``simp-auto``.
 
-Manual Release Steps
---------------------
+Fixing a Failed Deploy to GitHub
+--------------------------------
 
-Some SIMP ISO-related projects require manual steps to generate a
-`GitHub`_ release.  None of these projects will contain a deploy step
-in its ``.travis.yml`` file.
-
-To create the release from an annotated tag:
-
-#. Clone the component repository and checkout the development
-   branch to be tagged
-
-   .. code-block:: bash
-
-      git clone git@github.com:simp/simp-adapter.git
-      cd simp-adapter
-      git checkout master # this step isn't needed for master branch
-
-#. Generate the changelog content
-
-   * Manually extract the changelog content from the ``build/<name>.spec``,
-     file and write into a file.  In this example, the written file
-     will be ``foo``.
-
-#. Create the annotated tag.  In this example the content of 'foo' is::
-
-      Release of 0.0.5
-
-      * Fri Oct 20 2017 Trevor Vaughan <tvaughan@onyxpoint.com> - 0.0.5-0
-        - Fixed the Changelog dates
-
-   .. code-block:: bash
-
-      git tag -a 0.0.5 -F foo
-      git push origin 0.0.5
-
-   .. NOTE::
-
-      For markdown-style changelogs, you will need to specify
-      ``--cleanup=whitespace`` so comment headers are not stripped.
-
-#. Verify `TravisCI`_ completes successfully
+If the deploy stage for a project fails to release to GitHub because of
+deploy key issues, the following manual steps can be followed to manually
+correct the issue:
 
 #. Create a release of the annotated tag on GitHub.
 
