@@ -12,7 +12,11 @@ If running SIMP 6.4.0 and you encounter this error:
       >> Puppet environment 'production' exists
       >> Secondary environment 'production' does not exist
 
-This is because you have either already sun simp config, or you have already set up your environment.
+This is because you have either already run simp config, PE has set up that directory, or you have already set up your environment.
 
 If your environment has been set up and you would like to start over, then just rename the 
-production directory to `production.bak` and try again with a clean start.
+production directory `(/var/simp/environments/production)` to `production.bak` and try again with a clean start.
+
+If you are using Puppet Enterprise, we recommend you use a control repo. See the section on 
+:ref:`howto-setup-a-simp-control-repository`
+ 
