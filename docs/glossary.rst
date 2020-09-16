@@ -636,6 +636,11 @@ Glossary of Terms
 
       See: `Language: Data Types <https://puppet.com/docs/puppet/latest/lang_data_type.html>`__
 
+   PE
+   Puppet Enterprise
+      A version of Puppet with commercial support by `Puppet, Inc. <https://puppet.com>`__
+      that provides additional capabilities beyond :term:`Puppet`.
+
    Puppet Environment
    Puppet Environments
       Isolated groups of Puppet agent nodes from the perspective of the
