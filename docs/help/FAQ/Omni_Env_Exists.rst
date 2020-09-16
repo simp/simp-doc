@@ -3,7 +3,8 @@
 OMNI Environment Already Exists Error
 =====================================
 
-This FAQ covers what to do when running simp config gives you the "Unable to configure: Invalid SIMP omni-environment for 'production' exists" error
+This FAQ covers what to do when running simp config gives you the 
+``"Unable to configure: Invalid SIMP omni-environment for 'production' exists"`` error
 
 If installing SIMP on Puppet Enterprise (or an already configured server), a user may encounter this error when running `simp config`:
 
@@ -13,7 +14,7 @@ If installing SIMP on Puppet Enterprise (or an already configured server), a use
       >> Puppet environment 'production' exists
       >> Secondary environment 'production' does not exist
 
-or (depending on the version)
+or (depending on the version):
 
 .. code-block:: bash
 
