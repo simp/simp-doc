@@ -196,7 +196,7 @@ the future.
 .. _JIRA issues can be referenced: https://confluence.atlassian.com/bitbucket/processing-jira-software-issues-with-smart-commit-messages-298979931.html
 .. _SIMP JIRA: https://simp-project.atlassian.net
 .. _Squash and Merge: https://github.blog/2016-04-01-squash-your-commits/
-.. _Travis-CI: http://travis-ci.org/simp
+.. _Travis-CI: http://travis-ci.com/simp
 .. _feature branch: https://www.atlassian.com/git/tutorials/comparing-workflows#feature-branch-workflow
 .. _pull request: https://help.github.com/en/github/collaborating-with-issues-and-pull-requests/about-pull-requests
 .. _review: https://help.github.com/en/github/collaborating-with-issues-and-pull-requests/reviewing-proposed-changes-in-a-pull-request

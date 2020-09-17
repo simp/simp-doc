@@ -85,7 +85,7 @@ in `TravisCI`_:
 * Navigate to the project's `TravisCI`_ results page and verify the
   tests for the development branch to be tagged and released have
   passed.  For our project, this page is
-  https://travis-ci.org/simp/rubygem-simp-rake-helpers/branches
+  https://travis-ci.com/simp/rubygem-simp-rake-helpers/branches
 
   .. IMPORTANT::
 
@@ -155,4 +155,4 @@ and test tasks.
 
 .. _GitHub: https://github.com
 .. _RubyGems.org: https://rubygems.org/
-.. _TravisCI: https://travis-ci.org
+.. _TravisCI: https://travis-ci.com

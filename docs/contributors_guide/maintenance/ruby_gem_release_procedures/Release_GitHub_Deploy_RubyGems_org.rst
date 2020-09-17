@@ -100,4 +100,4 @@ To create the releases from an annotated tag:
 
 .. _GitHub: https://github.com
 .. _RubyGems.org: https://rubygems.org/
-.. _TravisCI: https://travis-ci.org
+.. _TravisCI: https://travis-ci.com

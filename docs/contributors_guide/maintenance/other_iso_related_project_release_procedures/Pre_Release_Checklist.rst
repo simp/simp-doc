@@ -114,7 +114,7 @@ in `TravisCI`_:
 * Navigate to the project's `TravisCI`_ results page and verify the
   tests for the development branch to be tagged and released have
   passed.  For our project, this page is
-  https://travis-ci.org/simp/simp-adapter/branches
+  https://travis-ci.com/simp/simp-adapter/branches
 
 .. IMPORTANT::
 
@@ -250,4 +250,4 @@ CentOS 6 and CentOS 7:
 .. _GitHub: https://github.com
 .. _simp-packer: https://github.com/simp/simp-packer
 .. _`RPM spec file template`: https://raw.githubusercontent.com/simp/rubygem-simp-rake-helpers/master/lib/simp/rake/helpers/assets/rpm_spec/simpdefault.spec
-.. _TravisCI: https://travis-ci.org
+.. _TravisCI: https://travis-ci.com

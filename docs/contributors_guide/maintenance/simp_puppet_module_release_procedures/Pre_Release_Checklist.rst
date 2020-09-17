@@ -135,7 +135,7 @@ in `TravisCI`_:
 * Navigate to the project's TravisCI results page and verify the
   tests for the development branch to be tagged and released have
   passed.  For our project, this page is
-  https://travis-ci.org/simp/pupmod-simp-iptables/branches
+  https://travis-ci.com/simp/pupmod-simp-iptables/branches
 
 .. IMPORTANT::
 
@@ -371,4 +371,4 @@ development environment:
 .. _PuppetForge: https://forge.puppet.com
 .. _simp-packer: https://github.com/simp/simp-packer
 .. _`RPM spec file template`: https://raw.githubusercontent.com/simp/rubygem-simp-rake-helpers/master/lib/simp/rake/helpers/assets/rpm_spec/simpdefault.spec
-.. _TravisCI: https://travis-ci.org
+.. _TravisCI: https://travis-ci.com
