@@ -1,7 +1,18 @@
-# .readthedocs.yaml
+# Read the Docs build configuration file
+# ------------------------------------------------------------------------------
+# v2 config reference: https://docs.readthedocs.io/en/stable/config-file/v2.html
+# ------------------------------------------------------------------------------
 
+version: 2
+
+formats: all
+
+# The Docker image used for building the docs
+# NOTE: Check the v2 config docs for the available python versions in each image
 build:
   image: latest
 
 python:
-  version: 3.6
+  version: 3.7
+  install:
+    - requirements: requirements.txt

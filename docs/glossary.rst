@@ -264,7 +264,7 @@ Glossary of Terms
       `The Foreman <https://theforeman.org/>`__ are two examples of External
       Node Classifiers.
 
-      Source: `External Node Classifiers <https://docs.puppet.com/guides/external_nodes.html>`__
+      Source: `External Node Classifiers <https://puppet.com/docs/puppet/latest/nodes_external.html>`__
 
    EPEL
    Extra Packages for Enterprise Linux
