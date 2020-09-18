@@ -165,7 +165,7 @@ the test results in `TravisCI`_.
    * Navigate to the project's TravisCI results page and verify the
      tests for the development branch to be tagged and released have
      passed.  For our project, this page is
-     https://travis-ci.org/simp/simp-core/branches
+     https://travis-ci.com/simp/simp-core/branches
 
      .. IMPORTANT::
 
@@ -509,5 +509,5 @@ tested in a ``simp-core`` acceptance test, all verification is handled by
 
 .. _Docker: https://www.docker.com
 .. _GitHub: https://github.com
-.. _TravisCI: https://travis-ci.org
+.. _TravisCI: https://travis-ci.com
 .. _simp-packer: https://github.com/simp/simp-packer

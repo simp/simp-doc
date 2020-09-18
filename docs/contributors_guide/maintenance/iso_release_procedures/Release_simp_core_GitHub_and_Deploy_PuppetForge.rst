@@ -39,4 +39,4 @@ To create the releases from an annotated tag:
 
 .. _GitHub: https://github.com
 .. _PuppetForge: https://forge.puppet.com
-.. _TravisCI: https://travis-ci.org
+.. _TravisCI: https://travis-ci.com
