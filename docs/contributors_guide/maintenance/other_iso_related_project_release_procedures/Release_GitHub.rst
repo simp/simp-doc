@@ -76,4 +76,4 @@ correct the issue:
      notes.
 
 .. _GitHub: https://github.com
-.. _TravisCI: https://travis-ci.org
+.. _TravisCI: https://travis-ci.com
