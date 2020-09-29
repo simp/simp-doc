@@ -32,7 +32,7 @@ This OS compatibility is subject to the following limitations:
   RPM for use on EL8 client nodes.
 
   * Full EL8 SIMP server and ISO support will be provided in the next SIMP
-    release.
+    minor release.
   * Some Puppet modules provided by the ``simp-extras`` RPM have been updated
     for EL8.
   * EL8 updates to the remaining Puppet modules will be phased in over future
@@ -140,7 +140,6 @@ simp-simplib Removed Functions
 | **simplib_deprecation**      | **simplib::deprecation**           | simp-simplib >= 3.5.0         |
 +------------------------------+------------------------------------+-------------------------------+
 | **slice_array**              | Puppet built-in **slice**          | Puppet >= 4.0.0               |
-| **slice_array**              | Puppet built-in **slice**          | Puppet >= 4.0.0               |
 +------------------------------+------------------------------------+-------------------------------+
 | **strip_ports**              | **simplib::strip_ports**           | simp-simplib >= 3.5.0         |
 +------------------------------+------------------------------------+-------------------------------+
@@ -235,7 +234,7 @@ This release provides basic support for an EL8 client, including all
 Puppet modules provided by the ``simp-extras`` RPM.
 
 * The remaining changes required for an EL8 SIMP server and ISO will be
-  available in the next SIMP release.
+  available in the next SIMP minor release.
 * EL8 updates to the remaining, optional, Puppet modules will be phased in
   over future SIMP releases. This includes the following SIMP modules:
 
@@ -253,7 +252,7 @@ Puppet modules provided by the ``simp-extras`` RPM.
 Full Puppet 6 Support
 ^^^^^^^^^^^^^^^^^^^^^
 
-All SIMP Puppet modules now work with both Puppet 5 and Puppet 6 and the SIMP-6.5.0
+All SIMP Puppet modules now work with both Puppet 5 and Puppet 6, and the SIMP-6.5.0
 ISOs deliver Puppet 6 application RPMs.
 
 firewalld Support
@@ -721,7 +720,7 @@ pupmod-simp-auditd
         *syslog.conf*, it will not disable auditd logging to syslog.
         Disable the syslog plugin as described above.
 
-    * The settings for *syslog.conf* were updated and to work for new and old
+    * The settings for *syslog.conf* were updated to work for new and old
       versions of auditd.
     * Added installation of audisp-syslog package when using auditd v3.
 
@@ -742,11 +741,11 @@ understand the current usage.  Notable feature/API changes:
     a directory fully managed by this module.
   * */etc/auto.master.d* is left unmanaged by Puppet.
   * Auto-converts from old maps directory to current maps directory and
-    emit a warning. This it to help 90% of the users who aren't doing
+    emits a warning. This is to help the 90% of the users who aren't doing
     anything special with this module.
 
 * Added a ``autofs::map`` defined type that allows the user to specify all
-  the parameters for a 'file' map in once place.  This resource will
+  the parameters for a 'file' map in one place.  This resource will
   generate the appropriate resources to create both the auto.master entry
   file and the map file.
 * Added ``autofs::masterfile`` defined type to replace deprecated
@@ -786,7 +785,7 @@ understand the current usage.  Notable feature/API changes:
   * Added ``maps_dir`` to specify the location of SIMP-managed maps and
     changed the directory name from */etc/autofs* to */etc/autofs.maps.simp.d*
     for clarity.
-  * Added ``maps`` to allow users to specifie 'file' type maps in Hieradata.
+  * Added ``maps`` to allow users to specify 'file' type maps in Hieradata.
 
     * Each map specifies the contents of an autofs master entry file and
       its mapping file.
@@ -972,7 +971,7 @@ understand the current usage.  Notable feature/API changes:
     * The NFS client sends the NFS server Network Status Manager (NSM)
       notifications via UDP, exclusively.
     * At multi-NFS-server sites, a unique rpcbind port per server is
-      required in order for a NFS client to be able tunnel its
+      required in order for a NFS client to be able to tunnel its
       server-specific RPC requests to the appropriate server.
 
   * ``nfs`` class
@@ -1090,7 +1089,7 @@ pupmod-simp-polkit
 * Ensure that the polkit user is managed by default and placed into the
   supplementary group bound to the 'gid' option on '/proc', if one is set.
   This is necessary to work around issues with 'hidepid' > 0.
-* Made the entire main class inert on unsupported OSs and log a warning on the
+* Made the entire main class inert on unsupported OSs; logs a warning on the
   server that can be disabled.
 
 pupmod-simp-pupmod
@@ -1194,7 +1193,7 @@ pupmod-simp-simp
     * Added support for mymachines and myhostname by default.
     * Removed all NIS references since NIS should not be in general usage any
       longer and was never natively supported by SIMP.
-    * Configuration files are now common cross all supported OSs since nsswitch
+    * Configuration files are now common across all supported OSs since nsswitch
       "does the right thing" when it hits a module that it does not recognize.
 
   * Allow nsswitch overrides.
@@ -1360,7 +1359,7 @@ Added the following functions:
 | **simplib::debug::inspect** | Enhanced version of the                     |
 |                             | **simplib::inspect**.                       |
 +-----------------------------+---------------------------------------------+
-| **simplib::debug::\         | Prints a trace of all catagog resources     |
+| **simplib::debug::\         | Prints a trace of all catalog resources     |
 | classtrace**                | traversed to get to the current point.      |
 +-----------------------------+---------------------------------------------+
 | **simplib::debug::\         | Prints a trace of all files traversed to    |
@@ -1567,7 +1566,7 @@ rubygem-simp-cli
   * When setting passwords, disabled libpwquality/cracklib validation of
     user-entered passwords, by default, because not all passwords managed
     by ``simplib::passgen`` are user passwords.  This validation can be
-    re-enabled with the '--validate' option of the ``simp passgen set``
+    re-enabled with the ``--validate`` option of the ``simp passgen set``
     command.
 
   * Added the following command line options when creating passwords
@@ -1618,6 +1617,8 @@ simp-rsync-skeleton
 ^^^^^^^^^^^^^^^^^^^
 
 * Added mitigation for CVE-2019-6477 to the sample, RedHat 7 *named.conf*.
+  * See  https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2019-6477
+    for more information.
 * Removed *rndc.key* files from sample named configuration to prevent users
   from accidentally using a published, sample secret key.
 
