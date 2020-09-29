@@ -18,27 +18,27 @@ This release is known to work with:
 
   * CentOS 6.10 x86_64
   * CentOS 7.0 2003 x86_64
-  * CentOS 8.2 2004 x86_64
+  * CentOS 8.2 2004 x86_64 (client systems only)
   * OEL 6.10 x86_64
   * OEL 7.8 x86_64
-  * OEL 8.2 x86_64
+  * OEL 8.2 x86_64 (client systems only)
   * RHEL 6.10 x86_64
   * RHEL 7.8 x86_64
-  * RHEL 8.2 x86_64
+  * RHEL 8.2 x86_64 (client systems only)
 
 This OS compatibility is subject to the following limitations:
 
 * EL8 support is currently limited to Puppet modules provided by the ``simp``
   RPM for use on EL8 client nodes.
 
-  * Full EL8 SIMP server and ISO support will be provided in the next SIMP
-    release.
-  * Some Puppet modules provided by the ``simp-extras`` RPM have been updated
+  * Full EL8 SIMP server and ISO support will be provided in SIMP 6.6.0.
+  * All modules provided as core dependencies of the ``simp`` RPM support EL8.
+  * Not all modules provided by the ``simp-extras`` RPM have been updated
     for EL8.
-  * EL8 updates to the remaining Puppet modules will be phased in over future
-    SIMP releases.
+  * EL8 updates to the remaining ``simp-extras`` modules will be phased in over
+    future SIMP releases.
 
-* New modules do not support CentOS 6.10, as that OS is EOL in November 2020.
+* New modules may not explicitly support CentOS 6 since that OS is EOL in November 2020.
 * Some optional modules provided by the ``simp-extras`` package no longer
   support EL6. This includes ``simp-autofs``, ``simp-nfs``, and
   ``simp-simp_nfs``.  If you need those capabilities on EL6, please use earlier
@@ -83,110 +83,111 @@ simp-simplib Removed Functions
 
 .. IMPORTANT::
 
-   Most but not all removed functions in the table below have replacements.
+   Most, but not all, removed functions in the table below have replacements.
    If any removed function without a replacement is essential to you, please
    enter a `feature request <https://simp-project.atlassian.net>`_.
 
 
-+------------------------------+------------------------------------+-------------------------------+
-| Puppet 3 API Function        | Replacement                        | Replacement Source            |
-+==============================+====================================+===============================+
-| **array_include**            | Puppet language **in** *or*        | Puppet >= 5.2.0               |
-|                              | Puppet built-in **any** or **all** |                               |
-+------------------------------+------------------------------------+-------------------------------+
-| **array_size**               | Puppet built-in **length**         | Puppet >= 5.5.0               |
-+------------------------------+------------------------------------+-------------------------------+
-| **array_union**              | Puppet language **+** operator     | Puppet >= 5.0.0               |
-|                              | combined with Puppet built-in      |                               |
-|                              | **unique**                         |                               |
-+------------------------------+------------------------------------+-------------------------------+
-| **bracketize**               | **simplib::bracketize**            | simp-simplib >= 3.15.0        |
-+------------------------------+------------------------------------+-------------------------------+
-| **generate_reboot_msg**      | None                               | N/A                           |
-+------------------------------+------------------------------------+-------------------------------+
-| **get_ports**                | None                               | N/A                           |
-+------------------------------+------------------------------------+-------------------------------+
-| **h2n**                      | None                               | N/A                           |
-+------------------------------+------------------------------------+-------------------------------+
-| **host_is_me**               | **simplib::host_is_me**            | simp-simplib >= 3.15.0        |
-+------------------------------+------------------------------------+-------------------------------+
-| **inspect**                  | **simplib::inspect**               | simp-simplib >= 3.3.0         |
-+------------------------------+------------------------------------+-------------------------------+
-| **ipaddresses**              | **simplib::ipaddresses**           | simp-simplib >= 3.5.0         |
-+------------------------------+------------------------------------+-------------------------------+
-| **ip_is_me**                 | **simplib::host_is_me** (checks    | simp-simplib >= 3.15.0        |
-|                              | hostnames and IP addresses)        |                               |
-+------------------------------+------------------------------------+-------------------------------+
-| **ip_to_cron**               | **simplib::ip_to_cron**            | simp-simplib >= 3.5.0         |
-+------------------------------+------------------------------------+-------------------------------+
-| **join_mount_opts**          | **simplib::join_mount_opts**       | simp-simplib >= 3.8.0         |
-+------------------------------+------------------------------------+-------------------------------+
-| **localuser**                | None                               | N/A                           |
-+------------------------------+------------------------------------+-------------------------------+
-| **mapval**                   | None                               | N/A                           |
-+------------------------------+------------------------------------+-------------------------------+
-| **nets2cidr**                | **simplib::nets2cidr**             | simp-simplib >= 3.7.0         |
-+------------------------------+------------------------------------+-------------------------------+
-| **nets2ddq**                 | **simplib::nets2ddq**              | simp-simplib >= 3.8.0         |
-+------------------------------+------------------------------------+-------------------------------+
-| **parse_hosts**              | **simplib::parse_hosts**           | simp-simplib >= 3.5.0         |
-+------------------------------+------------------------------------+-------------------------------+
-| **passgen**                  | **simplib::passgen**               | simp-simplib >= 3.5.0         |
-+------------------------------+------------------------------------+-------------------------------+
-| **rand_cron**                | **simplib::rand_cron**             | simp-simplib >= 3.5.0         |
-+------------------------------+------------------------------------+-------------------------------+
-| **simp_version**             | **simplib::simp_version**          | simp-simplib >= 3.15.0        |
-+------------------------------+------------------------------------+-------------------------------+
-| **simplib_deprecation**      | **simplib::deprecation**           | simp-simplib >= 3.5.0         |
-+------------------------------+------------------------------------+-------------------------------+
-| **slice_array**              | Puppet built-in **slice**          | Puppet >= 4.0.0               |
-| **slice_array**              | Puppet built-in **slice**          | Puppet >= 4.0.0               |
-+------------------------------+------------------------------------+-------------------------------+
-| **strip_ports**              | **simplib::strip_ports**           | simp-simplib >= 3.5.0         |
-+------------------------------+------------------------------------+-------------------------------+
-| **to_integer**               | Puppet built-in **Integer** *or*   | **Integer**: Puppet >= 4.0.0; |
-|                              | **simplib::to_integer**            | **simplib::to_integer**:      |
-|                              |                                    | simp-simplib >= 3.5.0         |
-+------------------------------+------------------------------------+-------------------------------+
-| **to_string**                | Puppet built-in **String**         | **String**: Puppet >= 4.0.0;  |
-|                              | *or* **simplib::to_string**        | **simplib::to_string**:       |
-|                              |                                    | simp-simplib >= 3.5.0         |
-+------------------------------+------------------------------------+-------------------------------+
-| **validate_array_member**    | **simplib::validate_array_member** | simp-simplib >= 3.8.0         |
-+------------------------------+------------------------------------+-------------------------------+
-| **validate_array_of_hashes** | Use a custom Puppet data type      | Puppet >= 4.0.0               |
-|                              | such as **Array[Hash]**            |                               |
-+------------------------------+------------------------------------+-------------------------------+
-| **validate_between**         | **simplib::validate_between**      | simp-simplib >= 3.8.0         |
-+------------------------------+------------------------------------+-------------------------------+
-| **validate_bool_simp**       | Use Puppet **Boolean** data type   | Puppet: >= 4.0.0;             |
-|                              | *or* **simplib::validate_bool**    | simp-simplib >= 3.8.0         |
-+------------------------------+------------------------------------+-------------------------------+
-| **validate_deep_hash**       | **simplib::validate_deep_hash**    | simp-simplib >= 3.8.0         |
-+------------------------------+------------------------------------+-------------------------------+
-| **validate_float**           | Use Puppet **Float** data type     | Puppet: >= 4.0.0;             |
-|                              | *or* a check using **is_float**    | **is_float**:                 |
-|                              | from **puppetlabs-stdlib**         | puppetlabs-stdlib >= 2.2.0    |
-+------------------------------+------------------------------------+-------------------------------+
-| **validate_macaddress**      | Use **Simplib::Macaddress** data   | simp-simplib >= 3.7.0         |
-|                              | type                               |                               |
-+------------------------------+------------------------------------+-------------------------------+
-| **validate_net_list**        | Use **Simplib::Netlist** data      | simp-simplib >= 3.5.0         |
-|                              | type *or*                          |                               |
-|                              | **simplib::validate_net_list**     |                               |
-+------------------------------+------------------------------------+-------------------------------+
-| **validate_port**            | Use **Simplib::Port** data type    | simp-simplib >= 3.5.0         |
-|                              | *or*                               |                               |
-|                              | **simplib::validate_net_list**     |                               |
-+------------------------------+------------------------------------+-------------------------------+
-| **validate_re_array**        | **simplib::validate_re_array**     | simp-simplib >= 3.7.0         |
-+------------------------------+------------------------------------+-------------------------------+
-| **validate_sysctl_value**    | **simplib::validate_sysctl_value** | simp-simplib >= 3.7.0         |
-+------------------------------+------------------------------------+-------------------------------+
-| **validate_umask**           | Use **Simplib::Umask** data type   | simp-simplib >= 3.7.0         |
-+------------------------------+------------------------------------+-------------------------------+
-| **validate_uri_list**        | **simplib::validate_sysctl_value** | simp-simplib >= 3.7.0         |
-+------------------------------+------------------------------------+-------------------------------+
++------------------------------+-------------------------------------------+-------------------------------+
+| Puppet 3 API Function        | Replacement                               | Replacement Source            |
++==============================+===========================================+===============================+
+| **array_include**            | Puppet language **in** *or*               | Puppet >= 5.2.0               |
+|                              | Puppet built-in **any** or **all**        |                               |
++------------------------------+-------------------------------------------+-------------------------------+
+| **array_size**               | Puppet built-in **length**                | Puppet >= 5.5.0               |
++------------------------------+-------------------------------------------+-------------------------------+
+| **array_union**              | Puppet language **+** operator            | Puppet >= 5.0.0               |
+|                              | combined with Puppet built-in             |                               |
+|                              | **unique**                                |                               |
++------------------------------+-------------------------------------------+-------------------------------+
+| **bracketize**               | **simplib::bracketize**                   | simp-simplib >= 3.15.0        |
++------------------------------+-------------------------------------------+-------------------------------+
+| **generate_reboot_msg**      | None                                      | N/A                           |
++------------------------------+-------------------------------------------+-------------------------------+
+| **get_ports**                | None                                      | N/A                           |
++------------------------------+-------------------------------------------+-------------------------------+
+| **h2n**                      | None                                      | N/A                           |
++------------------------------+-------------------------------------------+-------------------------------+
+| **host_is_me**               | **simplib::host_is_me**                   | simp-simplib >= 3.15.0        |
++------------------------------+-------------------------------------------+-------------------------------+
+| **inspect**                  | **simplib::inspect**                      | simp-simplib >= 3.3.0         |
++------------------------------+-------------------------------------------+-------------------------------+
+| **ipaddresses**              | **simplib::ipaddresses**                  | simp-simplib >= 3.5.0         |
++------------------------------+-------------------------------------------+-------------------------------+
+| **ip_is_me**                 | **simplib::host_is_me** (checks           | simp-simplib >= 3.15.0        |
+|                              | hostnames and IP addresses)               |                               |
++------------------------------+-------------------------------------------+-------------------------------+
+| **ip_to_cron**               | **simplib::ip_to_cron**                   | simp-simplib >= 3.5.0         |
++------------------------------+-------------------------------------------+-------------------------------+
+| **join_mount_opts**          | **simplib::join_mount_opts**              | simp-simplib >= 3.8.0         |
++------------------------------+-------------------------------------------+-------------------------------+
+| **localuser**                | None                                      | N/A                           |
++------------------------------+-------------------------------------------+-------------------------------+
+| **mapval**                   | None                                      | N/A                           |
++------------------------------+-------------------------------------------+-------------------------------+
+| **nets2cidr**                | **simplib::nets2cidr**                    | simp-simplib >= 3.7.0         |
++------------------------------+-------------------------------------------+-------------------------------+
+| **nets2ddq**                 | **simplib::nets2ddq**                     | simp-simplib >= 3.8.0         |
++------------------------------+-------------------------------------------+-------------------------------+
+| **parse_hosts**              | **simplib::parse_hosts**                  | simp-simplib >= 3.5.0         |
++------------------------------+-------------------------------------------+-------------------------------+
+| **passgen**                  | **simplib::passgen**                      | simp-simplib >= 3.5.0         |
++------------------------------+-------------------------------------------+-------------------------------+
+| **rand_cron**                | **simplib::rand_cron**                    | simp-simplib >= 3.5.0         |
++------------------------------+-------------------------------------------+-------------------------------+
+| **simp_version**             | **simplib::simp_version**                 | simp-simplib >= 3.15.0        |
++------------------------------+-------------------------------------------+-------------------------------+
+| **simplib_deprecation**      | **simplib::deprecation**                  | simp-simplib >= 3.5.0         |
++------------------------------+-------------------------------------------+-------------------------------+
+| **slice_array**              | Puppet built-in **slice**                 | Puppet >= 4.0.0               |
+| **slice_array**              | Puppet built-in **slice**                 | Puppet >= 4.0.0               |
++------------------------------+-------------------------------------------+-------------------------------+
+| **strip_ports**              | **simplib::strip_ports**                  | simp-simplib >= 3.5.0         |
++------------------------------+-------------------------------------------+-------------------------------+
+| **to_integer**               | Puppet built-in **Integer** *or*          | **Integer**: Puppet >= 4.0.0; |
+|                              | **simplib::to_integer**                   | **simplib::to_integer**:      |
+|                              |                                           | simp-simplib >= 3.5.0         |
++------------------------------+-------------------------------------------+-------------------------------+
+| **to_string**                | Puppet built-in **String**                | **String**: Puppet >= 4.0.0;  |
+|                              | *or* **simplib::to_string**               | **simplib::to_string**:       |
+|                              |                                           | simp-simplib >= 3.5.0         |
++------------------------------+-------------------------------------------+-------------------------------+
+| **validate_array_member**    | **simplib::validate_array_member**        | simp-simplib >= 3.8.0         |
++------------------------------+-------------------------------------------+-------------------------------+
+| **validate_array_of_hashes** | Use a custom Puppet data type             | Puppet >= 4.0.0               |
+|                              | such as **Array[Hash]**                   |                               |
++------------------------------+-------------------------------------------+-------------------------------+
+| **validate_between**         | Puppet data types**Integer** or **Float** | simp-simplib >= 3.8.0         |
+|                              |  *or* **simplib::validate_between**       |                               |
++------------------------------+-------------------------------------------+-------------------------------+
+| **validate_bool_simp**       | Use Puppet **Boolean** data type          | Puppet: >= 4.0.0;             |
+|                              | *or* **simplib::validate_bool**           | simp-simplib >= 3.8.0         |
++------------------------------+-------------------------------------------+-------------------------------+
+| **validate_deep_hash**       | **simplib::validate_deep_hash**           | simp-simplib >= 3.8.0         |
++------------------------------+-------------------------------------------+-------------------------------+
+| **validate_float**           | Use Puppet **Float** data type            | Puppet: >= 4.0.0;             |
+|                              | *or* a check using **is_float**           | **is_float**:                 |
+|                              | from **puppetlabs-stdlib**                | puppetlabs-stdlib >= 2.2.0    |
++------------------------------+-------------------------------------------+-------------------------------+
+| **validate_macaddress**      | Use **Simplib::Macaddress** data          | simp-simplib >= 3.7.0         |
+|                              | type                                      |                               |
++------------------------------+-------------------------------------------+-------------------------------+
+| **validate_net_list**        | Use **Simplib::Netlist** data             | simp-simplib >= 3.5.0         |
+|                              | type *or*                                 |                               |
+|                              | **simplib::validate_net_list**            |                               |
++------------------------------+-------------------------------------------+-------------------------------+
+| **validate_port**            | Use **Simplib::Port** data type           | simp-simplib >= 3.5.0         |
+|                              | *or*                                      |                               |
+|                              | **simplib::validate_net_list**            |                               |
++------------------------------+-------------------------------------------+-------------------------------+
+| **validate_re_array**        | **simplib::validate_re_array**            | simp-simplib >= 3.7.0         |
++------------------------------+-------------------------------------------+-------------------------------+
+| **validate_sysctl_value**    | **simplib::validate_sysctl_value**        | simp-simplib >= 3.7.0         |
++------------------------------+-------------------------------------------+-------------------------------+
+| **validate_umask**           | Use **Simplib::Umask** data type          | simp-simplib >= 3.7.0         |
++------------------------------+-------------------------------------------+-------------------------------+
+| **validate_uri_list**        | **simplib::validate_sysctl_value**        | simp-simplib >= 3.7.0         |
++------------------------------+-------------------------------------------+-------------------------------+
 
 simp-ssh Removed Functions
 """"""""""""""""""""""""""
@@ -194,9 +195,9 @@ simp-ssh Removed Functions
 +----------------------------+-----------------------------+--------------------+
 | Puppet 3 API Function      | Replacement                 | Replacement Source |
 +============================+=============================+====================+
-| **ssh_autokey**            | **ssh\::autokey**           | simp-ssh >= 6.2.0  |
+| **ssh_autokey**            | **ssh::autokey**            | simp-ssh >= 6.2.0  |
 +----------------------------+-----------------------------+--------------------+
-| **ssh_global_known_hosts** | **ssh\::global_know-hosts** | simp-ssh >= 6.2.0  |
+| **ssh_global_known_hosts** | **ssh::global_known_hosts** | simp-ssh >= 6.2.0  |
 +----------------------------+-----------------------------+--------------------+
 
 Primary API Changed in Optional Modules
@@ -230,9 +231,9 @@ Significant Updates
 EL8 SIMP Client Node Support
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-This release provides basic support for an EL8 client, including all
-(appropriate) Puppet modules provided by the ``simp`` RPM, and a subset of the
-Puppet modules provided by the ``simp-extras`` RPM.
+This release provides support for EL8 clients.
+This includes all (appropriate) Puppet modules provided by the ``simp`` RPM, and
+a subset of the Puppet modules provided by the ``simp-extras`` RPM.
 
 * The remaining changes required for an EL8 SIMP server and ISO will be
   available in the next SIMP release.
@@ -250,8 +251,8 @@ Puppet modules provided by the ``simp-extras`` RPM.
   * ``simp-vnc``
   * ``simp-x2go``
 
-Full Puppet 6 Support
-^^^^^^^^^^^^^^^^^^^^^
+Full Puppet 6 Support and Puppet 6 Default Components
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 All SIMP Puppet modules now work with both Puppet 5 and Puppet 6 and the SIMP-6.5.0
 ISOs deliver Puppet 6 application RPMs.
@@ -272,7 +273,7 @@ is now available.
 
   * To enable ``firewalld`` mode on supported operating systems, simply set
     ``iptables::use_firewalld`` to ``true`` via Hiera.
-  * EL 8 systems will enable ``firewalld`` mode by default.
+  * EL8 systems enable ``firewalld`` mode by default.
   * Use of any of the ``iptables::listen::*`` defined types will work
     seamlessly in ``firewalld`` mode.
   * Direct calls to ``iptables::rule`` in ``firewalld`` mode will emit
@@ -315,7 +316,7 @@ version updates.
 Security Announcements
 ----------------------
 
-SIMP 6.5.0 Added mitigation for the following CVEs:
+SIMP 6.5.0 Added mitigations for the following CVEs:
 
 * CVE-2020-7942
 * CVE-2019-14287
@@ -343,6 +344,14 @@ The following Puppet RPMs are packaged with the SIMP 6.5.0 ISOs:
 | puppetserver        | 6.13.0-1  |
 +---------------------+-----------+
 
+.. WARNING::
+
+   You do **NOT** need to update your version of Puppet from 5.X to use the
+   modules supplied with this version of SIMP.
+
+   If you decide to update from 5.X, please back up your server and test the
+   upgrade carefully.
+
 
 Removed Modules
 ---------------
@@ -366,8 +375,8 @@ Docker Modules
 ^^^^^^^^^^^^^^
 
 The packages for the following Docker Puppet modules have been permanently
-removed from the SIMP ISOs, because SIMP is no longer maintaining its
-Docker profile module.
+removed from the SIMP ISOs, because SIMP is moving towards ``podman`` support
+over ``docker``.
 
 * pupmod-puppetlabs-docker
 * pupmod-simp-simp_docker
@@ -389,9 +398,9 @@ pupmod-simp-journald
 ^^^^^^^^^^^^^^^^^^^^
 
 The pupmod-simp-journald package has been removed from SIMP ISOs, because
-the functionality the ``simp-journald`` module provided can now be provided by
+the functionality the ``simp-journald`` module provided is now provided by
 the ``camptocamp-systemd`` module.  If you used ``simp-journald``, you will
-have to update your manifests to use ``camptocamp-systemd``.
+need to update your manifests to use ``camptocamp-systemd``.
 
 
 Fixed Bugs
@@ -702,20 +711,20 @@ pupmod-simp-auditd
 
         .. code-block:: yaml
 
-          ---
-          auditd::syslog: true
-          auditd::config::audisp::syslog::enable: true.
-          # The drop_audit_logs is still there for backwards compatibility and
-          # needs to be disabled.
-          auditd::config::audisp::syslog::drop_audit_logs: false
+           ---
+           auditd::syslog: true
+           auditd::config::audisp::syslog::enable: true.
+           # The drop_audit_logs is still there for backwards compatibility and
+           # needs to be disabled.
+           auditd::config::audisp::syslog::drop_audit_logs: false
 
       * To stop auditd logging to syslog set the following in hiera
 
         .. code-block:: yaml
 
-          ---
-          auditd::syslog: true
-          auditd::config::plugins::syslog::enable: false.
+           ---
+           auditd::syslog: true
+           auditd::config::plugins::syslog::enable: false.
 
       * Setting ``auditd::syslog`` to false will stop Puppet from managing the
         *syslog.conf*, it will not disable auditd logging to syslog.
