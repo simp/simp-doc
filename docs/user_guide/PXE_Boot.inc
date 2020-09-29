@@ -144,8 +144,8 @@ Type ``cd /var/simp/environments/production/rsync/<OSTYPE>/Global/tftpboot``
 Verify there is a ``linux-install`` directory and cd to this directory.
 
 Under the linux-install directory you should find a directory named
-``OSTYPE-MAJORRELEASE.MINORRELEASE-ARCH`` and a link to this directory named
-``OSTYPE-MAJORRELEASE-ARCH``.
+``OSTYPE-MAJORRELEASE.MINORRELEASE-ARCH`` and a **relative**-link to this
+directory named ``OSTYPE-MAJORRELEASE-ARCH``.
 
 Under OSTYPE-MAJORRELEASE.MINORRELEASE-ARCH you should find the files:
 
