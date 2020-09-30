@@ -13,6 +13,11 @@ This is very SIMP-specific and does not preclude you from using rsync however
 you like. However, if you want multi-environment support, you will need to
 replicate something like what we have done for your custom directories.
 
+.. WARNING::
+
+   All symlinks in the ``rsync`` space must be relative links. Do **not** use
+   absolute paths as this may result in misconfiguration of client nodes.
+
 Why SIMP Uses Rsync
 -------------------
 
