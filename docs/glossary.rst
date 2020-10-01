@@ -386,7 +386,7 @@ Glossary of Terms
       language for specifying compliance, security and other policy
       requirements.
 
-      Source: `InSpec Homepage <https://www.community.chef.io/products/chef-inspec/>`__
+      Source: `InSpec Homepage <https://community.chef.io/products/chef-inspec/>`__
 
    IP
    IP Address
