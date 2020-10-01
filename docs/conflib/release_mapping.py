@@ -98,7 +98,6 @@ def get_version_map(simp_branch, local_simp_core_path, simp_github_api_base,
                     except urllib.error.HTTPError as e:
                         print('Error downloading ' + url, file=sys.stderr)
                         print('Error status: ', e.status)
-                        print('Error response: ',  e.read(0))
                         time.sleep(1)
                         continue
                     except urllib.error.URLError as e:
@@ -111,7 +110,6 @@ def get_version_map(simp_branch, local_simp_core_path, simp_github_api_base,
         except urllib.error.HTTPError as e:
             print('Error downloading ' + github_api_target + github_opts, file=sys.stderr)
             print('Error status: ', e.status)
-            print('Error response: ',  e.read(0))
 
         except urllib.error.URLError as e:
             print('Error downloading ' + github_api_target + github_opts, file=sys.stderr)
