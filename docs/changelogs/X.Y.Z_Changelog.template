@@ -17,12 +17,14 @@ SIMP Community Edition (CE) X.Y.Z-Alpha
 This release is known to work with:
 
   * CentOS 6.10 x86_64
-  * CentOS 7.0 1804 x86_64
+  * CentOS 7.0 2003 x86_64
+  * CentOS 8.2 2004 x86_64
   * OEL 6.10 x86_64
-  * OEL 7.5 x86_64
+  * OEL 7.8 x86_64
+  * OEL 8.2 x86_64
   * RHEL 6.10 x86_64
-  * RHEL 7.5 x86_64
-
+  * RHEL 7.8 x86_64
+  * RHEL 8.2 x86_64
 
 .. WARNING::
 
