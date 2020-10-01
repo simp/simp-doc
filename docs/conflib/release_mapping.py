@@ -95,18 +95,27 @@ def get_version_map(simp_branch, local_simp_core_path, simp_github_api_base,
 
                         __update_ver_map(ver_map, release_yaml)
 
-                    except urllib.error.URLError as url_obj:
+                    except urllib.error.HTTPError as e:
                         print('Error downloading ' + url, file=sys.stderr)
-                        r = re.compile("^Status:")
-                        print('Error status: ' + list(filter(r.match,url_obj.info().headers))[0])
+                        print('Error status: ' + e.status)
+                        print('Error response: ' + e.read(0))
+                        time.sleep(1)
+                        continue
+                    except urllib.error.URLError as e:
+                        print('Error downloading ' + url, file=sys.stderr)
+                        print('Failed to reach server: ' + e.reason)
                         time.sleep(1)
                         continue
                     break
 
-        except urllib.error.URLError as url_obj:
+        except urllib.error.HTTPError as e:
             print('Error downloading ' + github_api_target + github_opts, file=sys.stderr)
-            r = re.compile("^Status:")
-            print('Error status: ' + list(filter(r.match,url_obj.info().headers))[0])
+            print('Error status: ' + e.status)
+            print('Error response: ' + e.read(0))
+
+        except urllib.error.URLError as e:
+            print('Error downloading ' + github_api_target + github_opts, file=sys.stderr)
+            print('Failed to reach server: ' + e.reason)
 
     return ver_map
 
