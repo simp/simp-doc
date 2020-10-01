@@ -192,8 +192,8 @@ the future.
 .. _Allow edits from maintainers: https://help.github.com/en/github/collaborating-with-issues-and-pull-requests/allowing-changes-to-a-pull-request-branch-created-from-a-fork
 .. _GitHub GUI to fork and clone: https://help.github.com/en/github/getting-started-with-github/fork-a-repo
 .. _GitHub Workflow: https://guides.github.com/introduction/flow/
-.. _JIRA Smart Commit Tags: https://confluence.atlassian.com/bitbucket/processing-jira-software-issues-with-smart-commit-messages-298979931.html
-.. _JIRA issues can be referenced: https://confluence.atlassian.com/bitbucket/processing-jira-software-issues-with-smart-commit-messages-298979931.html
+.. _JIRA Smart Commit Tags: https://support.atlassian.com/bitbucket-cloud/docs/use-smart-commits/
+.. _JIRA issues can be referenced: https://support.atlassian.com/bitbucket-cloud/docs/use-smart-commits
 .. _SIMP JIRA: https://simp-project.atlassian.net
 .. _Squash and Merge: https://github.blog/2016-04-01-squash-your-commits/
 .. _TravisCI: https://travis-ci.com/simp
