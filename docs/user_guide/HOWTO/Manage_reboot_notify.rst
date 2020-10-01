@@ -21,6 +21,7 @@ For instance, setting the following via :term:`Hiera` will ensure that you only
 see log messages when running in ``debug`` mode:
 
 .. code-block:: yaml
+
    ---
    simplib::reboot_notify::log_level: debug
 
