@@ -502,7 +502,7 @@ To install and configure the HIRS TPM Provisioner, add the following Hiera:
 
 .. _IBM's Software TPM 1.2: https://sourceforge.net/projects/ibmswtpm/
 .. _IBM's Software TPM 2.0: https://sourceforge.net/projects/ibmswtpm2/
-.. _Intel Site: https://software.intel.com/en-us/articles/intel-trusted-execution-technology
+.. _Intel Site: https://software.intel.com/content/www/us/en/develop/articles/intel-trusted-execution-technology.html
 .. _SIMP TPM 1.2 Simulator: https://github.com/simp/simp-tpm12-simulator
 .. _SIMP TPM 2.0 Simulator: https://github.com/simp/simp-tpm2-simulator
 .. _SIMP hirs_provisioner module: https://github.com/simp/pupmod-simp-hirs_provisioner

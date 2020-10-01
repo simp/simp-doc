@@ -49,9 +49,10 @@ Glossary of Terms
       auditd.conf file.
 
    Beaker
-      An acceptance testing harness, written in Ruby, by the Puppet team.
+      A Ruby-based acceptance testing harness, created by the Puppet team and
+      maintained by Vox Pupuli.
 
-      Source: `Beaker Source Repository: <https://github.com/puppetlabs/beaker>`__
+      Source: `Beaker Source Repository: <https://github.com/voxpupuli/beaker>`__
 
    BIOS
    Basic Input/Output System
@@ -385,7 +386,7 @@ Glossary of Terms
       language for specifying compliance, security and other policy
       requirements.
 
-      Source: `InSpec Homepage <https://www.inspec.io/>`__
+      Source: `InSpec Homepage <https://community.chef.io/products/chef-inspec/>`__
 
    IP
    IP Address

@@ -1,3 +1,6 @@
+* Wed Sep 30 2020 Trevor Vaughan <tvaughan@onyxpoint.com>
+- Added HOWTO for managing simplib::reboot_notify
+
 * Wed Aug 19 2020 Trevor Vaughan <tvaughan@onyxpoint.com>
 - Added HOWTO on changing the inital 'simp config' puppet environment
 
