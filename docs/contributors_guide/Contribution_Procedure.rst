@@ -193,7 +193,7 @@ the future.
 .. _GitHub GUI to fork and clone: https://help.github.com/en/github/getting-started-with-github/fork-a-repo
 .. _GitHub Workflow: https://guides.github.com/introduction/flow/
 .. _JIRA Smart Commit Tags: https://support.atlassian.com/bitbucket-cloud/docs/use-smart-commits/
-.. _JIRA issues can be referenced: https://support.atlassian.com/bitbucket-cloud/docs/use-smart-commits
+.. _JIRA issues can be referenced: https://support.atlassian.com/bitbucket-cloud/docs/use-smart-commits/
 .. _SIMP JIRA: https://simp-project.atlassian.net
 .. _Squash and Merge: https://github.blog/2016-04-01-squash-your-commits/
 .. _TravisCI: https://travis-ci.com/simp
