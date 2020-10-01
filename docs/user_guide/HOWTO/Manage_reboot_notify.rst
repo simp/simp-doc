@@ -3,7 +3,7 @@
 Manage reboot_notify
 ====================
 
-``simplib::reboot_notify`` was added to provide a capibility for notifying
+``simplib::reboot_notify`` was added to provide a capability for notifying
 users, across puppet runs, that their system needed to be rebooted.
 
 It was originally created due to updates to kernel settings requiring a reboot
