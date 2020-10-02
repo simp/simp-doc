@@ -33,7 +33,7 @@
 #. Deploy the modules from the local Git repositories into the environment
 
    Use ``r10k`` to deploy the modules, making sure the ``umask`` and ``group``
-   are set correctly so that the ``puppetserver`` has access to the files.
+   are set correctly so that the ``puppetserver`` has access to the files. 
 
    .. code-block:: sh
 
@@ -42,6 +42,9 @@
       ( umask 0027 && sg puppet -c '/usr/share/simp/bin/r10k puppetfile install \
       --puppetfile /etc/puppetlabs/code/environments/test/Puppetfile \
       --moduledir /etc/puppetlabs/code/environments/test/modules' )
+
+    Use the --force option if you get warnings that local changes will get
+    overwritten.
 
 .. TIP::
 
