@@ -141,6 +141,12 @@ vendor ISOs using the following procedure:
 
    Run: ``unpack_dvd CentOS-RHEL_MAJOR_VERSION-x86_64-DVD-####.iso``
 
+   .. WARNING::
+
+      If the server where you are unpacking the vendor ISO was **not** built
+      using the SIMP ISO , you will need to also unpack the associated SIMP ISO
+      using the ``unpack_dvd`` utility.
+
 #. Ensure that subsequent :term:`yum` operations are aware of the new RPM
    packages by refreshing the system's yum cache:
 
