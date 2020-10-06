@@ -195,8 +195,8 @@ environment you are updating.)
 
    # Make sure the umask is set properly
 
-   # Set the umask and Run r10k as the puppet group to make sure the modules
-   # to make sure the permissions and ownership are correct on the modules
+   # Set the umask and Run r10k as the puppet group to make sure 
+   # the permissions and ownership are correct on the modules
    ( umask 0027 && sg puppet -c '/usr/share/simp/bin/r10k puppetfile install \
    --puppetfile /etc/puppetlabs/code/environments/myenv/Puppetfile \
    --moduledir /etc/puppetlabs/code/environments/myenv/modules' )
