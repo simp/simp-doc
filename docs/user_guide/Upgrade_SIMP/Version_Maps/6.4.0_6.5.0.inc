@@ -12,7 +12,7 @@ Before Upgrading to 6.5.0
 ^^^^^^^^^^^^^^^^^^^^^^^^^
 #. EL6 Systems
 
-   The changelog has a list of puppet modules that do not support EL6 any longer.
+   The changelog has a list of Puppet modules that do not support EL6 any longer.
    Identify EL6 machines that still need these modules and either update them
    to EL7 or create a :ref:`SIMP 6.4.0 environment<Deploying SIMP Environments>`
    for these machines.
@@ -28,8 +28,8 @@ Before Upgrading to 6.5.0
 
 #. Update NFS settings
 
-   The NFS modules have been updated to only accept IP addresses for the nfs server
-   value.  If hostnames are being used they will have to be changed to ip adresses.
+   The NFS modules have been updated to only accept IP addresses for the NFS server
+   value.  If hostnames are being used they will have to be changed to IP addresses.
 
    The following parameters are affected.
 
@@ -45,19 +45,20 @@ Before Upgrading to 6.5.0
 
 #. Update DNS RNDC key.
 
-   The following only needs to be done if you are using pupmod-simp-named
-   to configure your DNS server and it copies the files from rsync.
+   The following only needs to be done if you are using ``simp-named``
+   to configure your DNS server and it copies DNS configuration files from 
+   SIMP's rsync directories.
 
-   On the simp puppet server remove the rndc.key from the rsync directories:
+   On the SIMP puppet server remove the rndc.key file from the rsync directories:
 
    .. code-block:: sh
 
      find /var/simp/environments/ -name rndc.key -exec rm -f {} \;
 
 
-   On your DNS servers. View the /etc/rndc.key.  If the algorithm is hmac-md5 generate
-   a new rndc key.  replace <keyname> with the name in the key field in your /etc/rndc.key
-   files.  (It should be the same as the  name used in your /etc/named.conf.)
+   On each DNS server, view the /etc/rndc.key file.  If the algorithm is hmac-md5, generate
+   a new RNDC key and then replace its <keyname> with the name in the key field in the /etc/named.conf
+   on that server.
 
    .. code-block:: sh
 
@@ -65,12 +66,13 @@ Before Upgrading to 6.5.0
 
 #. SVCKILL mode setting
 
-   If svckill is set tp ``enforcing`` mode set it to warning until the new modules
+   If svckill is set to 'enforcing' mode set it to 'warning' until the new modules
    have been deployed.
 
-   Puppet made changes to how it returns services and if svckill::mode is set to enforce
-   it is possible system services could be killed between updating puppet and deploying
-   the new modules which could cause the system to reboot.
+   In Puppet made changes to how it reports systemd services in its internal API on . This significantly
+   impacted ``simp-svckill``.  If ``svckill::mode`` is set to 'enforcing' in older versions of
+   ``simp-svckill``, it is possible system services could be killed between updating Puppet and
+    deploying the new modules which could cause the system to reboot.
 
    .. code-block:: yaml
 
@@ -83,7 +85,7 @@ Before Upgrading to 6.5.0
    scenario<ug-sa-env-deployment-scenarios--local>`.
    The following list of modules in the simp-extras module were not updated and will
    cause yum update to fail if they are not removed.  If you installed them
-   by  installing simp-extras, then updating simp-extras will take care the dependencies.
+   by installing simp-extras, then updating simp-extras will take care the dependencies.
    Otherwise you will need to do a yum remove of any of the following rpms
    installed on your system:
 
@@ -118,15 +120,20 @@ After Upgrading to 6.5.0
 
 #. SVCKILL
 
-   Once the upgrade is complete the svckill::mode can be set back to enforcing.
+   Once the upgrade is complete the svckill::mode can be set back to enforcing:
+      
+   .. code-block:: yaml
+
+     # Change the setting in hiera
+     svckill::mode: 'enforcing'
 
 #. Mcstransd syslog errors
 
-   If the mcstransd deamon is enabled on a system, changes to how /proc was mounted
+   If the mcstransd daemon is enabled on a system, changes to how */proc* was mounted
    to allow polkit to work can cause mcstransd to send a lot of errors
-   to the system log.  Pupmod-simp-selinux has a fix for this but does not manage
-   mcstransd by default.  To enable management of mcstransd by the selinux module
-   set the following in hiera:
+   to the system log.  ``simp-selinux`` has a fix for this when it manages mcstrand,
+   but no longer manages mcstransd by default.  To enable management of mcstransd to
+   pick up the fix, set the following in hiera:
 
    .. code-block:: yaml
 
