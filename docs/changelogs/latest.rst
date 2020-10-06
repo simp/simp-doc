@@ -864,6 +864,8 @@ pupmod-simp-compliance_markup
 
 * Removed all support for v1 data since it was experimental and removed in
   3.0.0.
+* Load data from the ``compliance_markup::compliance_map`` Hiera key after
+  compliance profiles in modules to allow for profile tailoring via Hiera.
 
 pupmod-simp-cron
 ^^^^^^^^^^^^^^^^
