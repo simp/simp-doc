@@ -44,7 +44,7 @@
       --moduledir /etc/puppetlabs/code/environments/test/modules' )
 
     Use the --force option if you get warnings that local changes will get
-    overwritten.
+    overwritten and you are sure you do not have changes that need saving.
 
 .. TIP::
 
