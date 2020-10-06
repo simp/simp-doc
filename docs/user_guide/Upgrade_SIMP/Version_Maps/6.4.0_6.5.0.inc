@@ -72,7 +72,7 @@ Before Upgrading to 6.5.0
    In Puppet made changes to how it reports systemd services in its internal API on . This significantly
    impacted ``simp-svckill``.  If ``svckill::mode`` is set to 'enforcing' in older versions of
    ``simp-svckill``, it is possible system services could be killed between updating Puppet and
-    deploying the new modules which could cause the system to reboot.
+   deploying the new modules which could cause the system to reboot.
 
    .. code-block:: yaml
 
