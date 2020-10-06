@@ -108,8 +108,15 @@ steps as ``root``:
    ** **This ends the steps that are only for 6.4 or later.**  The next steps apply
    to all systems.
 
+#. Update the generated types for the environment
+
+   .. code-block:: sh
+
+     puppet generate types  --environment test
+
 
 #. Apply the changes by running ``puppet``
+
 
    .. code-block:: sh
 
