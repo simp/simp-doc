@@ -112,7 +112,7 @@ steps as ``root``:
 
    .. code-block:: sh
 
-     puppet generate types  --environment test
+     /usr/local/sbin/simp_generate_types -p /etc/puppetlabs/code/environments/test
 
 
 #. Apply the changes by running ``puppet``
