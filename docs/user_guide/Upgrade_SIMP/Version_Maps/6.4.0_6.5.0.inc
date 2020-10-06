@@ -5,137 +5,171 @@ Upgrading from SIMP-6.4.0 to SIMP-6.5.0
 
 .. WARNING::
 
-   You **MUST** be on at least SIMP 6.4.0 to upgrade to 6.5.0 because of
-   changes to the deployment methods in SIMP 6.4.0.
+   To upgrade to SIMP 6.5.0, you **MUST** upgrade from SIMP 6.4.0+,
+   because of changes to the deployment methods in SIMP 6.4.0.
+
+.. contents:: :local:
+   :depth: 3
+
+.. _before-upgrading-to-6.5.0:
 
 Before Upgrading to 6.5.0
 ^^^^^^^^^^^^^^^^^^^^^^^^^
-#. EL6 Systems
 
-   The changelog has a list of Puppet modules that do not support EL6 any longer.
-   Identify EL6 machines that still need these modules and either update them
-   to EL7 or create a :ref:`SIMP 6.4.0 environment<Deploying SIMP Environments>`
-   for these machines.
+Survey EL6 Systems
+""""""""""""""""""
 
-   .. NOTE::
+.. WARNING::
 
-     CentOS is stopping support of EL6 in Nov 2020.
+Maintenance Updates for EL6 are EOL, and will stop on November 30 2020 for
+both `CentOS <https://wiki.centos.org/About/Product>`_ and `RHEL
+<https://access.redhat.com/support/policy/updates/errata#Maintenance_Support_2_Phase>`_.
 
-#. Puppet 6
+The SIMP 6.5.0 changelog contains a :ref:`list of (optional) Puppet modules
+that no longer support EL6
+<changelog-6.5.0-el6-support-dropped-from-some-optional-puppet-modules>`.
+Prior to upgrading, identify any EL6 nodes that still require these modules and either:
 
-   Puppet is being updated to Puppet 6 in this release.  Make sure all of your own
-   modules work with Puppet 6.
+  1. Update the affected EL6 nodes to EL7, or
+  2. Manage the affected EL6 nodes from a :ref:`SIMP 6.4.0 environment<Deploying
+     SIMP Environments>`.
 
-#. Update NFS settings
+Ensure Local Modules work with Puppet 6
+"""""""""""""""""""""""""""""""""""""""
 
-   The NFS modules have been updated to only accept IP addresses for the NFS server
-   value.  If hostnames are being used they will have to be changed to IP addresses.
+This release updates ``puppet-agent`` to Puppet 6.  Make sure all of your
+own Puppet modules work with Puppet 6 prior to upgrading.
 
-   The following parameters are affected.
+Update NFS settings
+"""""""""""""""""""
 
-   .. code-block:: ruby
+The NFS Puppet modules have been updated to only accept IP addresses for the
+NFS server in order to support firewalld integration.  If your site currently
+references NFS servers by hostname or FQDN,ange them to IP addresses before
+upgrading.  This affects the parameters ``simp_nfs::home_dir_server`` and
+``nfs::client::mount::nfs_server``.
 
-     simp_nfs::home_dir_server: <change to server  ip>
+In Hiera:
 
-     nfs::client::mount { 'my directory':
-       nfs_server =>  <change to server ip>,
-       ...
-     }
+.. code-block:: yaml
 
+   simp_nfs::home_dir_server: '<change to server  ip>'
 
-#. Update DNS RNDC key.
+In Puppet code:
 
-   The following only needs to be done if you are using ``simp-named``
-   to configure your DNS server and it copies DNS configuration files from 
-   SIMP's rsync directories.
+.. code-block:: ruby
 
-   On the SIMP puppet server remove the rndc.key file from the rsync directories:
-
-   .. code-block:: sh
-
-     find /var/simp/environments/ -name rndc.key -exec rm -f {} \;
+   nfs::client::mount { 'my directory':
+     nfs_server =>  '<change to server ip>',
+     # ...
+   }
 
 
-   On each DNS server, view the /etc/rndc.key file.  If the algorithm is hmac-md5, generate
-   a new RNDC key and then replace its <keyname> with the name in the key field in the /etc/named.conf
-   on that server.
+Update DNS RNDC key
+"""""""""""""""""""
 
-   .. code-block:: sh
+(The following only needs to be done if you are using ``pupmod-simp-named```
+to configure your DNS server and it copies the files using rsync:)
 
-     rndc-confgen -a -k <keyname> -b 256
+On the SIMP Puppet server, remove the ``rndc.key`` from the rsync directories:
 
-#. SVCKILL mode setting
+.. code-block:: sh
 
-   If svckill is set to 'enforcing' mode set it to 'warning' until the new modules
-   have been deployed.
+   find /var/simp/environments/ -name rndc.key -exec rm -f {} \;
 
-   In Puppet made changes to how it reports systemd services in its internal API on . This significantly
-   impacted ``simp-svckill``.  If ``svckill::mode`` is set to 'enforcing' in older versions of
-   ``simp-svckill``, it is possible system services could be killed between updating Puppet and
-   deploying the new modules which could cause the system to reboot.
+On your DNS servers, view the ``/etc/rndc.key``.  If the algorithm is
+``hmac-md5``, generate a new rndc key:  Replace ``<keyname>`` with the name
+in the key field in your ``/etc/rndc.key`` files.  (It should be the same as
+the name used in your ``/etc/named.conf``.)
 
-   .. code-block:: yaml
+.. code-block:: sh
 
-     # Change the setting in hiera
-     svckill::mode: 'warning'
+    rndc-confgen -a -k <keyname> -b 256
 
-#. Uninstall out of date puppet modules.
+Set ``svckill::mode`` to ``warning``
+""""""""""""""""""""""""""""""""""""
 
-   This only affect user with a :ref:`Local deployment
-   scenario<ug-sa-env-deployment-scenarios--local>`.
-   The following list of modules in the simp-extras module were not updated and will
-   cause yum update to fail if they are not removed.  If you installed them
-   by installing simp-extras, then updating simp-extras will take care the dependencies.
-   Otherwise you will need to do a yum remove of any of the following rpms
-   installed on your system:
+Puppet recently made changes to how it internally enumerates services, with the
+consequence that—if ``svckill::mode`` is set to ``enforcing``—it is possible
+that it could kill system services between updating to the new Puppet version
+and deploying the new Puppet modules.
 
-   - pupmod-simp-journald
-   - pupmod-simp-simp_snmpd
-   - pupmod-simp-simp_gitlab
-   - pupmod-puppetlabs-docker
+As a safety precaution before upgrading, set ``svckill::mode`` from
+``enforcing``  to ``warning`` until SIMP 6.5.0's Puppet modules have been
+deployed.
 
-  This will not remove the local git repositories and they can still be deployed to
-  in 6.4 environments.
+In Hiera:
+
+.. code-block:: yaml
+
+   svckill::mode: 'warning'
+
+
+Uninstall out-of-date Puppet modules
+""""""""""""""""""""""""""""""""""""
+
+This only affects user with a :ref:`Local deployment
+scenario<ug-sa-env-deployment-scenarios--local>`.
+The following list of optional Puppet modules required by the
+``simp-extras`` RPM were not updated for SIMP 6.5.0.
+
+If they are classified, they will ``yum update`` to fail.   if they are not removed.  If you installed them by
+installing simp-extras, then updating simp-extras will take care the
+dependencies.  Otherwise you will need to do a yum remove of any of the
+following rpms installed on your system:
+
+  - ``pupmod-simp-journald``
+  - ``pupmod-simp-simp_snmpd``
+  - ``pupmod-simp-simp_gitlab``
+  - ``pupmod-puppetlabs-docker``
+
+Note that this will **not** remove the local git repositories created for
+each Puppet module during previous SIMP RPM installations.  The git
+repositories can still be referenced from SIMP 6.4 Puppetfiles and
+:ref:`deployed into a SIMP environment<Deploying SIMP Environments>` that is
+still using SIMP 6.4 modules.
 
 Upgrading to 6.5.0
 ^^^^^^^^^^^^^^^^^^
 
-After taking care of all the items in the Before section
-follow the :ref:`Incremental Upgrade instruction <ug-incremental-upgrades>`.
+After taking care of all of the applicable items in the :ref:`Before Upgrading
+to 6.5.0 <before-upgrading-to-6.5.0>` section, follow the :ref:`Incremental
+Upgrades <ug-incremental-upgrades>` instructions.
 
-The following error might be seen:
+During/after the upgrade, you might see the following error during Puppet agent
+runs:
 
-.. code-block:: sh
+.. code-block:: text
 
   Error: /Stage[main]/Aide/Exec[update_aide_db]: Failed to call refresh: Command exceeded timeout
   Error: /Stage[main]/Aide/Exec[update_aide_db]: Command exceeded timeout
 
-This indicates that the rebuilding of the AIDE database has timed out.  This is not
-unusual because so many changes have been made to the OS and puppet modules.
-Use whatever means are normally employed to update the AIDE database after an
-update has been made to the system.
+This indicates that the rebuilding of the AIDE database has timed out.  This
+is expected, because many changes have been made to the OS and Puppet modules.
+Follow whatever process you normally employ to update the AIDE database after
+the SIMP 6.5.0 updates have been made to the system.
 
 After Upgrading to 6.5.0
 ^^^^^^^^^^^^^^^^^^^^^^^^
 
-#. SVCKILL
+Set ``svckill::mode`` back to ``enforcing`` (if applicable)
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
-   Once the upgrade is complete the svckill::mode can be set back to enforcing:
-      
-   .. code-block:: yaml
+If you changed ``svckill::mode`` from ``enforcing`` to ``warning`` before the
+upgrade, you can set it back to ``enforcing`` after the upgrade is complete.
 
-     # Change the setting in hiera
-     svckill::mode: 'enforcing'
+Mcstransd syslog errors
+"""""""""""""""""""""""
 
-#. Mcstransd syslog errors
+If the ``mcstransd`` daemon is enabled on a system, changes to how ``/proc`` was
+mounted to allow polkit to work can cause mcstransd to send a lot of errors to
+the system log.
 
-   If the mcstransd daemon is enabled on a system, changes to how */proc* was mounted
-   to allow polkit to work can cause mcstransd to send a lot of errors
-   to the system log.  ``simp-selinux`` has a fix for this when it manages mcstrand,
-   but no longer manages mcstransd by default.  To enable management of mcstransd to
-   pick up the fix, set the following in hiera:
+``pupmod-simp-selinux`` has been updated with a fix for this, however it does
+not manage ``mcstransd`` by default.  To manage ``mcstransd`` with the selinux
+module, set the following in Hiera:
 
-   .. code-block:: yaml
+.. code-block:: yaml
 
-     selinux::manage_mcstrans_service: true
+   selinux::manage_mcstrans_service: true
 

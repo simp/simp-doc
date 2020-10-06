@@ -3,6 +3,9 @@
 Upgrading from SIMP-6.3.3 to SIMP-6.4.0
 ---------------------------------------
 
+.. contents:: :local:
+   :depth: 3
+
 .. WARNING::
 
    You **MUST** be on at least SIMP 6.3.3 to upgrade to 6.4.0 due to issues in
