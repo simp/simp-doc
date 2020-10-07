@@ -38,7 +38,7 @@ Ensure Local Modules work with Puppet 6
 This release updates ``puppet-agent`` to Puppet 6.  Make sure all of your
 own Puppet modules work with Puppet 6 prior to upgrading.
 
-.. INFO::
+.. NOTE::
 
    You may choose to stay on Puppet 5 by not upgrading the ``puppet-agent`` and
    ``puppetserver`` packages.
