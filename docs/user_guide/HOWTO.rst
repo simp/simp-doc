@@ -18,6 +18,7 @@ with more commonly sought items towards the top.
   Set up SSH Authorized Keys <HOWTO/SSH_Keys>
   Disable SSH Management <HOWTO/Disable_Ssh>
   Restrict SSH Network Access <HOWTO/SSH_Restrict_Network_Access>
+  Migrate to a New Puppet Server <HOWTO/Migrate_to_New_Puppet_Server>
   Enable SFTP Restricted Accounts <HOWTO/SFTP_Restricted_Accounts>
   Manage Reboot Notify <HOWTO/Manage_reboot_notify>
   Modify the Nightly Package Update Schedule <HOWTO/Control_Nightly_Update_Schedule>

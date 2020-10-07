@@ -1,3 +1,4 @@
+.. _changelog-latest:
 .. _changelog-6.5.0:
 
 SIMP Community Edition (CE) 6.5.0-Alpha
