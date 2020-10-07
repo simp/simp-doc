@@ -3,6 +3,9 @@
 Upgrading from SIMP-6.3.0 to SIMP-6.3.2
 ---------------------------------------
 
+.. contents:: :local:
+   :depth: 3
+
 The 6.3.2 release of SIMP is a major bugfix release.
 
 You can follow :ref:`ug-incremental-upgrades` for upgrading.

@@ -3,6 +3,10 @@
 Upgrading from SIMP-6.2.0 to SIMP-6.3.0
 ---------------------------------------
 
+.. contents:: :local:
+   :depth: 3
+
+
 The main purpose of the SIMP 6.3 release is to upgrade to Puppet 5/Hiera 5. You
 should familiarize yourself with the `Puppet 5 release notes`_ and the
 `Hiera 5 upgrade`_ documents.

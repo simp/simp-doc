@@ -3,6 +3,9 @@
 Upgrading from SIMP-6.3.3 to SIMP-6.4.0
 ---------------------------------------
 
+.. contents:: :local:
+   :depth: 3
+
 .. WARNING::
 
    You **MUST** be on at least SIMP 6.3.3 to upgrade to 6.4.0 due to issues in
@@ -195,8 +198,8 @@ environment you are updating.)
 
    # Make sure the umask is set properly
 
-   # Set the umask and Run r10k as the puppet group to make sure the modules
-   # to make sure the permissions and ownership are correct on the modules
+   # Set the umask and Run r10k as the puppet group to make sure 
+   # the permissions and ownership are correct on the modules
    ( umask 0027 && sg puppet -c '/usr/share/simp/bin/r10k puppetfile install \
    --puppetfile /etc/puppetlabs/code/environments/myenv/Puppetfile \
    --moduledir /etc/puppetlabs/code/environments/myenv/modules' )
