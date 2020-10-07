@@ -93,7 +93,7 @@ install the extra software needed:
 
    class site::repos {
      yumrepo { 'myrepo':
-       #what ever parameters you need
+       # whatever parameters you need
      }
    }
 
@@ -119,8 +119,8 @@ The following example class, ``site::gui``, may be written to
 
      Class['Gnome'] -> Class['Site::gui']
 
-     #SIMP gnome package provides a basic interface.
-     #Add gnome extensions for the users.
+     # SIMP gnome package provides a basic interface.
+     # Add gnome extensions for the users.
      package { [
        'gnome-color-manager',
        'gnome-shell-extension-windowsNavigator',
@@ -129,7 +129,7 @@ The following example class, ``site::gui``, may be written to
         ensure => installed,
      }
 
-     #Gui applications
+     # GUI applications
      if $libreoffice {
        package { 'libreoffice': ensure => installed }
      }
@@ -278,21 +278,22 @@ The ``workstation.yaml`` file will include settings for all the workstations.
 
 The following example includes the GUI settings discussed here, in addition
 to settings for NFS mounted home directories.
-See :ref:`Exporting_Home_Directories` for more information.
+See :ref:`Exporting_Home_Directories` :ref:`ug-howto-configure-nfs` and for more
+information.
 
 .. code-block:: yaml
 
    ---
 
-   #Set the run level so it will bring up a graphical interface
+   # Set the run level so it will bring up a graphical interface
    simp::runlevel: 'graphical'
    timezone::timezone: 'EST'
 
-   #Settings for home server. See HOWTO NFS for more info.
+   # Settings for home server
    nfs::is_server: false
    simp_nfs::home_dir_server: myhome.server.com
 
-   #The site::workstation manifest will do most of the work.
+   # The site::workstation manifest will do most of the work.
    simp::classes:
      - site::workstation
      - simp_nfs

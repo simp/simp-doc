@@ -1,3 +1,5 @@
+.. _ug-howto-configure-nfs:
+
 HOWTO Configure NFS
 ===================
 
@@ -6,6 +8,13 @@ HOWTO Configure NFS
 
 All implementations are based on the ``simp-nfs``, ``simp-simp_nfs``,
 and ``simp-simp`` modules.
+
+.. WARNING::
+
+   ``simp-nfs`` version 7.0.0 and ``simp-autofs`` version 7.0.0 had major
+   breaking changes in the pursuit of fixing long-standing bugs. General usage
+   as noted in this document remains the same but a lot of the nuanced usage
+   under the hood has changed. Please check your settings carefully on upgrade.
 
 For ease of explanation, examples in this section use the concept of a
 :term:`site profile` and are namespaced accordingly.  The manifests are in a
@@ -23,8 +32,8 @@ Known Issues
 
 .. WARNING::
 
-  A number of issues may render NFS inoperable.  Please read through the known
-  issues below before deploying into your environment.
+   A number of issues may render NFS inoperable. Please read through the known
+   issues below before deploying into your environment.
 
 Stunnel and Autofs
 ^^^^^^^^^^^^^^^^^^
@@ -50,7 +59,7 @@ To force the package to the desired version:
 * Make sure the package is available via your package-management facility then
   set the package version in :term:`Hiera`:
 
-In :term:`EL` 7:
+In :term:`EL` 7+:
 
 .. code-block:: puppet
 
@@ -85,7 +94,7 @@ The ``autofs`` option in ``nfs::client::mount`` resource currently only works
 with indirect wild-card mounts.  For all other ``autofs`` options use the
 ``autofs`` module directly.
 
-SIMP-2944 in `JIRA Bug Tracking`_.
+See: `SIMP-2944`_.
 
 Kerberos and Home Directories
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -93,7 +102,7 @@ Kerberos and Home Directories
 The ``simp-krb5`` module is not fully integrated with NFS home directories at
 this time.
 
-SIMP-1407 in `JIRA Bug Tracking`_.
+See `SIMP-1407`_ .
 
 Exporting Directories
 ---------------------
@@ -121,7 +130,7 @@ site profile module is ``site`` and the manifest ``nfs_server.pp``
      Simplib::Netlist                                 $trusted_nets = simplib::lookup('simp_options::trusted_nets', { 'default_value' => ['127.0.0.1'] }),
      Array[Enum['none','sys','krb5','krb5i','krb5p']] $sec          = ['sys']
    ){
-     include '::nfs::server'
+     include nfs::server
 
      file { $data_dir:
        ensure => 'directory',
@@ -130,7 +139,7 @@ site profile module is ``site`` and the manifest ``nfs_server.pp``
        mode   => '0644'
      }
 
-     if !$::nfs::stunnel {
+     if !$nfs::stunnel {
        nfs::server::export { 'nfs_share':
          clients     => $trusted_nets,
          export_path => $data_dir,
@@ -203,8 +212,10 @@ In ``hosts/<your_client_fqdn>.yaml``:
 .. WARNING::
 
    Non-wildcard indirect autofs mounts configured via ``nfs::client::mount``
-   are not working properly at this time. See SIMP-2944 in our
-   `JIRA Bug Tracking`_.  You may wish to manually configure the mount via
+   are not working properly at this time. See `SIMP-2944`_ for additional
+   information.
+
+   You may wish to manually configure the mount via
    ``autofs::map::master``, and ``autofs::map::entry`` instead.
 
 .. NOTE::
@@ -260,7 +271,7 @@ Server
 .. code-block:: yaml
 
    nfs::is_server: true
-   simp_nfs::export_home::create_home_dirs: true
+   simp_nfs::export::home::create_home_dirs: true
 
    simp::classes:
      - simp_nfs::export::home
@@ -303,7 +314,7 @@ profile module is ``site`` and the manifest ``nfs_server.pp``
    #  Exporting directories from the home directory server when
    #  using the simp_nfs module.
    #
-     include '::nfs::server'
+     include nfs::server
 
    # Create the directory where the data exists.
      file { '/var/nfs/share1':
@@ -335,7 +346,7 @@ profile module is ``site`` and the manifest ``nfs_server.pp``
      }
 
    # Export the directory
-     if !$::nfs::stunnel {
+     if !$nfs::stunnel {
        nfs::server::export { 'share1':
          clients     => nets2cidr($trusted_nets),
          export_path => "${data_dir}/nfs/exports/share1",
@@ -358,11 +369,11 @@ Include this manifest in the servers Hiera file.
 .. code-block:: yaml
 
    ---
+   nfs::is_server: true
+
    simp::classes:
      - site::nfs_server
      - simp_nfs
-
-   nfs::is_server: true
 
 Client
 ^^^^^^
@@ -376,7 +387,7 @@ profile module is ``site`` and the manifest ``nfs_client.pp``
 
    class site::nfs_client (
      Simplib::Host                      $nfs_server,
-     Enum['sys','krb5','krb5i','krb5p'] $sec           = 'sys',
+     Enum['sys','krb5','krb5i','krb5p'] $sec = 'sys',
    ){
 
      include nfs
@@ -403,7 +414,7 @@ profile module is ``site`` and the manifest ``nfs_client.pp``
 
      nfs::client::mount { "${mount_point}":
        nfs_server         => $nfs_server,
-       remote_path        => "${remote_path}",
+       remote_path        => $remote_path,
        nfs_version        => 'nfs4',
        sec                => $sec,
        autofs             => false,
@@ -417,11 +428,11 @@ share.
 .. code-block:: yaml
 
    ---
-   simp::classes:
-     - site::nfs_client
-
    nfs::is_server: false
    site::nfs_client::nfs_server: server21.simp.test
+
+   simp::classes:
+     - site::nfs_client
 
 
 Enabling/Disabling Stunnel
@@ -471,7 +482,7 @@ Enabling Kerberos
 .. WARNING::
 
    This functionality is incomplete. It does not work with home directories.
-   See ticket SIMP-1407 in our `JIRA Bug Tracking`_ .
+   See ticket `SIMP-1407`_.
 
 In addition to the sharing code (not the ``stunnel`` code) above, add the
 following:
@@ -508,6 +519,7 @@ Clients
    simp::classes:
      - 'simp_nfs'
 
-.. _JIRA Bug Tracking: https://simp-project.atlassian.net/
+.. _SIMP-1407: https://simp-project.atlassian.net/browse/SIMP-1407
+.. _SIMP-2944: https://simp-project.atlassian.net/browse/SIMP-2944
 .. _autofs-5.0.5-122: http://vault.centos.org/6.8/os/x86_64/Packages/autofs-5.0.5-122.el6.x86_64.rpm
 .. _autofs-5.0.7-56: http://vault.centos.org/7.3.1611/os/x86_64/Packages/autofs-5.0.7-56.el7.x86_64.rpm
