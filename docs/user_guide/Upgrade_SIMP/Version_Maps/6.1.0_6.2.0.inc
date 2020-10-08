@@ -3,6 +3,10 @@
 Upgrading from SIMP-6.1.0 to SIMP-6.2.0
 ---------------------------------------
 
+.. contents:: :local:
+   :depth: 3
+
+
 .. IMPORTANT::
 
    It is *highly recommended* that you read the information in this section

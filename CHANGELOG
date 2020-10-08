@@ -1,3 +1,6 @@
+* Tue Oct 06 2020 Jeanne Greulich <jeanne.greulich@onyxpoint.com>
+- Added upgrade instructions for 6.4.0 to 6.5.0
+
 * Wed Sep 30 2020 Trevor Vaughan <tvaughan@onyxpoint.com>
 - Added HOWTO for managing simplib::reboot_notify
 
