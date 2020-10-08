@@ -278,8 +278,8 @@ The ``workstation.yaml`` file will include settings for all the workstations.
 
 The following example includes the GUI settings discussed here, in addition
 to settings for NFS mounted home directories.
-See :ref:`Exporting_Home_Directories` :ref:`ug-howto-configure-nfs` and for more
-information.
+See :ref:`Exporting_Home_Directories_For_LDAP_Users` :ref:`ug-howto-configure-nfs`
+and for more information.
 
 .. code-block:: yaml
 
@@ -289,9 +289,8 @@ information.
    simp::runlevel: 'graphical'
    timezone::timezone: 'EST'
 
-   # Settings for home server
-   nfs::is_server: false
-   simp_nfs::home_dir_server: myhome.server.com
+   # Settings to mount home server
+   simp_nfs::home_dir_server: <home server's IP address>
 
    # The site::workstation manifest will do most of the work.
    simp::classes:
