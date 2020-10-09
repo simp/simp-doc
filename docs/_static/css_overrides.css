@@ -79,3 +79,7 @@ a:hover   { color: #29b929; }
   background: #FFDFD5;
 }
 
+.rst-content .rst-content tt.literal, .rst-content code.literal{
+  color: #445588;
+  background: #ececec;
+}
