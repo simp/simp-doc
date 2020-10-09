@@ -275,22 +275,31 @@ firewalld Support
 As of SIMP 6.5.0, preliminary ``firewalld`` support within the SIMP ecosystem
 is now available.
 
-* *New simp-simp_firewalld module*: SIMP now includes ``simp-simp_firewalld``
+* **New simp-simp_firewalld module**: SIMP now includes ``simp-simp_firewalld``
   which provides a profile class and defined type to manage the system's
   ``firewalld`` with "safe" defaults and safety checks for ``firewalld`` rules.
-* *firewalld support in simp-iptables for backward compatibility*:  The
+* **firewalld support in simp-iptables for backward compatibility**:  The
   ``simp-iptables`` module has preliminary support for acting as a pass-through
-  to various ``firewalld`` capabilities using the ``simp/simp_firewalld``
+  to various ``firewalld`` capabilities using the ``simp-simp_firewalld``
   module.
 
   * To enable ``firewalld`` mode on supported operating systems, simply set
     ``iptables::use_firewalld`` to ``true`` via Hiera.
   * EL8 systems enable ``firewalld`` mode by default.
   * Use of any of the ``iptables::listen::*`` defined types will work
-    seamlessly in ``firewalld`` mode.
+    seamlessly in ``firewalld`` mode, as long as IP addresses are used
+    in their ``trusted_net`` parameters.
   * Direct calls to ``iptables::rule`` in ``firewalld`` mode will emit
     a warning notification that directs the user to convert their rules to
     ``simp_iptables::rule`` types.
+
+.. IMPORTANT::
+
+   Be aware that ``firewalld`` rules do not support hostnames. IP addresses
+   must be used. This may impact your use of any manifests that contain
+   ``iptables::listen::*`` resources, including resources from some SIMP
+   modules. You will have to change hostnames to IP addresses for the
+   affected resources when using ``firewalld``.
 
 Optional Dependency Handling
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -342,19 +351,19 @@ Puppet RPMs
 
 The following Puppet RPMs are packaged with the SIMP 6.5.0 ISOs:
 
-+----------------------+-----------+
-| Package              | Version   |
-+======================+===========+
-| ``puppet-agent``     | 6.18.0-1  |
-+----------------------+-----------+
-| ``puppet-bolt``      | 2.29.0-1  |
-+----------------------+-----------+
-| ``puppetdb``         | 6.12.0-1  |
-+----------------------+-----------+
-| ``puppetdb-termini`` | 6.12.0-1  |
-+----------------------+-----------+
-| ``puppetserver``     | 6.13.0-1  |
-+----------------------+-----------+
++----------------------+----------+
+| Package              | Version  |
++======================+==========+
+| ``puppet-agent``     | 6.18.0-1 |
++----------------------+----------+
+| ``puppet-bolt``      | 2.29.0-1 |
++----------------------+----------+
+| ``puppetdb``         | 6.12.0-1 |
++----------------------+----------+
+| ``puppetdb-termini`` | 6.12.0-1 |
++----------------------+----------+
+| ``puppetserver``     | 6.13.0-1 |
++----------------------+----------+
 
 .. WARNING::
 
@@ -936,7 +945,7 @@ pupmod-simp-iptables
 ^^^^^^^^^^^^^^^^^^^^
 
 * Added preliminary support for acting as a pass-through to various
-  ``firewalld`` capabilities using the ``simp/simp_firewalld`` module.
+  ``firewalld`` capabilities using the ``simp-simp_firewalld`` module.
 
   * Using any of the ``iptables::listen::*`` defined types will work seamlessly
     in ``firewalld`` mode but direct calls to ``iptables::rule`` will fail.

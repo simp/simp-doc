@@ -30,13 +30,13 @@ The warning looks like:
 
 If you have access to the console, have the ``root`` password, and have enabled
 ``root`` console access by setting ``useradd::securetty`` in :term:`Hiera` to a
-valid tty (e.g., ``tty0``), you can simply remove the file
-``/root/.simp/simp_bootstrap_start_lock`` and continue with the bootstrap
-process.
+valid tty (e.g., ``tty0``), the login lockout warning is not applicable. After
+you address any other issues identified in ``/root/.simp/simp_bootstrap_start_lock``
+(see :ref:`ug-other-bootstrap-lock-issues`), you can simply remove the file and
+continue with the bootstrap process.
 
-Otherwise follow the instructions below to enable login from a local account,
-and then remove ``/root/.simp/simp_bootstrap_start_lock`` and continue with the
-bootstrap process.
+Otherwise follow the instructions in the subsections below to create a local
+user who can successfully access the system and sudo to ``root``.
 
 
 Configure Local User for Access
@@ -45,6 +45,8 @@ Configure Local User for Access
 This example creates a manifest in a local module, ``mymodule``, in the
 ``production`` Puppet environment.  See `Puppet module documentation`_ for
 information on how to create a Puppet module.
+
+This example also assumes you are logged in as ``root``.
 
 #. Create a local user account, as needed, using ``useradd``.  This example
    assumes the local user is ``userx``.
@@ -56,31 +58,46 @@ information on how to create a Puppet module.
 #. Create a ``local_user.pp`` manifest in ``mymodule/manifests`` to enable
    ``sudo su - root`` and allow ``ssh`` access for the user you created/selected:
 
-   .. code-block:: ruby
+   a. Create the ``mymodule`` module directory and its ``manifests`` sub-directory
 
-      class mymodule::local_user (
-      Boolean $pam = simplib::lookup('simp_options::pam', { 'default_value' => false }),
-      ) {
+      .. code-block:: sh
 
-        sudo::user_specification { 'default_userx':
-          user_list => ['userx'],
-          runas     => 'root',
-          cmnd      => ['/bin/su root', '/bin/su - root']
-        }
+         $ mkdir -p /etc/puppetlabs/code/environments/production/modules/mymodule/manifests
 
-        if $pam {
-          include '::pam'
+   b. Create ``mymodule/manifests/local_user.pp`` with the following content:
 
-          pam::access::rule { 'allow_userx':
-            users   => ['userx'],
-            origins => ['ALL'],
-            comment => 'The local user, used to remotely login to the system in the case of a lockout.'
-          }
-        }
-      }
+      .. code-block:: ruby
 
-#. Create a mymodule/metadata.json file.  It should look something like the following:
-   See `Puppet metadata documentation`_ for more information on metadata.json files.
+         class mymodule::local_user (
+           Boolean $pam = simplib::lookup('simp_options::pam', { 'default_value' => false }),
+         ) {
+
+           sudo::user_specification { 'default_userx':
+             user_list => ['userx'],
+             runas     => 'root',
+          #   passwd    => false,   # only needed if user logs in without a password
+             cmnd      => ['/bin/su root', '/bin/su - root']
+           }
+
+           if $pam {
+             include 'pam'
+
+             pam::access::rule { 'allow_userx':
+               users   => ['userx'],
+               origins => ['ALL'],
+               comment => 'The local user, used to remotely login to the system in the case of a lockout.'
+             }
+           }
+         }
+
+   #. Uncomment out the ``passwd`` line in ``sudo::user_specification`` if the local
+      user is configured to login with pre-shared keys instead of a password
+      (typical cloud configuration).
+
+#. Create a ``mymodule/metadata.json`` file.
+
+   * See `Puppet metadata documentation`_ for more information on metadata.json files.
+   * It should look something like the following:
 
    .. code-block:: yaml
 
@@ -93,33 +110,33 @@ information on how to create a Puppet module.
        "source": "Your gitlab url or local",
        "dependencies": [
          {
-           "name": "simp/pam",
-           "version_requirement": ">= 6.0.0 "
+           "name": "simp/pam"
          },
          {
-           "name": "simp/sudo",
-           "version_requirement": ">= 5.1.0 "
+           "name": "simp/simplib"
          },
-
-       ],
+         {
+           "name": "simp/sudo"
+         }
+       ]
      }
 
 #. Make sure the permissions are correct on the module:
 
    .. code-block:: bash
 
-      sudo chown -R root:puppet  /etc/puppetlabs/code/environments/production/modules/mymodule
-      sudo chmod -R g+rX  /etc/puppetlabs/code/environments/production/modules/mymodule
+      $ chown -R root:puppet  /etc/puppetlabs/code/environments/production/modules/mymodule
+      $ chmod -R g+rX  /etc/puppetlabs/code/environments/production/modules/mymodule
 
 #. Add the module to the SIMP server's host YAML file class list:
 
    Edit the SIMP server's YAML file,
-   ``/etc/puppetlabs/code/environments/production/data/<SIMP server FQDN>.yaml``
-   and add the ``mymodule::local_user`` to the ``classes`` array:
+   ``/etc/puppetlabs/code/environments/production/data/hosts/<SIMP server FQDN>.yaml``
+   and add the ``mymodule::local_user`` to the ``simp::classes`` array:
 
    .. code-block:: yaml
 
-      classes:
+      simp::classes:
         - mymodule::local_user
 
 #. If the local user is configured to login with pre-shared keys instead of a
@@ -128,10 +145,10 @@ information on how to create a Puppet module.
 
    .. code-block:: bash
 
-      sudo mkdir -p /etc/ssh/local_keys
-      sudo chmod 755 /etc/ssh/local_keys
-      sudo cp ~userx/.ssh/authorized_keys /etc/ssh/local_keys/userx
-      sudo chmod 644 /etc/ssh/local_keys/userx
+      $ mkdir -p /etc/ssh/local_keys
+      $ chmod 755 /etc/ssh/local_keys
+      $ cp ~userx/.ssh/authorized_keys /etc/ssh/local_keys/userx
+      $ chmod 644 /etc/ssh/local_keys/userx
 
 
 #. Add the module to the ``Puppetfile`` in the ``production`` environment:
@@ -144,6 +161,62 @@ information on how to create a Puppet module.
 
       mod 'mymodule', :local => true
 
-.. _Puppet module documentation: https://puppet.com/docs/puppet/5.5/modules.html
+
+.. _ug-other-bootstrap-lock-issues:
+
+Resolve Other Issues in Bootstrap Lock File
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+The bootstrap lock file can identify other issues than user lockout.
+If any other issues are identified in ``/root/.simp/simp_bootstrap_start_lock``,
+address those issues, before removing the file.
+
+  * Currently, the only other issue ``simp config`` will identify is a possible
+    misconfiguration of YUM repositories. ``simp config`` will lock out
+    bootstrap if it cannot find a few of the key packages needed for
+    bootstrapping.  Fix your yum repository configuration and then verify the
+    fix using the verification instructions in the lock message.
+
+Resume Bootstrap Operation and Verify User Access
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. IMPORTANT::
+
+   DO NOT REBOOT BEFORE VERIFYING USER ACCESS
+
+#. Remove ``/root/.simp/simp_bootstrap_start_lock``.
+#. Run ``simp bootstrap``.
+#. Run ``puppet agent -t`` to verify that there are no warning or error
+   messages related to ``mymodule``.
+
+   * You will see a reboot notification which is expected and not an issue.
+   * You may see warning/errors related to other modules that manage
+     services you have not completely set up, such as ``named``. These are
+     expected.
+   * You may see ``svckill`` warnings about services found that would
+     be killed if ``svckill::mode`` was set to 'enforcing'. You can
+     address those later, after you have examined those services and
+     determined which, if any, are necessary for your system.
+     See :ref:`Services_dying`.
+
+#. Verify user accesss
+
+  a. Verify your new user can ssh into the system.
+  b. Verify your new user can sudo to ``root`` by executing ``sudo su - root``
+
+  .. WARNING::
+
+     If your new user cannot ssh into the server and sudo to ``root``, do not
+     reboot the server until you resolve the problem!
+
+Finalize Bootstrap Operation
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+To finalize the bootstrap operation, reboot the server, log back in,
+wait for the ``puppetserver`` service to start and accept connections
+(can take over a minute), and then as ``root`` run ``puppet agent -t``.
+
+
+.. _Puppet module documentation: https://puppet.com/docs/puppet/latest/modules.html
 
 .. _Puppet metadata documentation: https://puppet.com/docs/puppet/latest/modules_metadata.html#metadatajson-example

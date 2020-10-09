@@ -12,9 +12,9 @@ Destructive Reasoning with `svckill`
 Most security guides that have been published on the Internet strongly
 suggest disabling all services that are not necessary for system
 operation. However, to list every possible service that may be
-controlled by the chkconfig type on a given system in a manifest would
-not be useful and would bloat the memory space of the running Puppet
-process.
+controlled by the ``chkconfig`` or ``systemctl`` on a given system
+in a manifest would not be useful and would bloat the memory space of
+the running Puppet process.
 
 As an alternative solution, the SIMP Team implemented the svckill
 module that runs with every Puppet run.
@@ -22,10 +22,11 @@ module that runs with every Puppet run.
 The svckill module:
 
 -  Collects a list of all services on the system. These are the same
-   services that the user sees after typing ``chkconfig --list``
+   services that the user sees after typing ``chkconfig --list`` on EL6
+   or ``systemctl list-unit-files --type=service --state=enabled`` on EL > 6.
 
--  Ignores certain critical services, including Puppet, IPtables, and
-   the network.
+-  Ignores certain critical services, including those for Puppet,
+   IPtables/firewalld, and the network.
 
 -  Collects a list of all services that are defined in the manifests and
    modules.
@@ -38,19 +39,25 @@ The svckill module:
 Avoiding Destruction
 --------------------
 
-If certain services should not be killed, declare them in the node
-manifest space or in the `svckill::ignore` array in Hiera.
+If certain services should not be killed, you have two options:
 
-.. NOTE::
+#. Add the service names to the ``svckill::ignore`` array in :term:`Hiera`.
 
-   The key is to declare the services and not set them to any other
-   option. By adding them to the manifest, the *svckill* module will
-   ignore them.
+   .. code-block::  yaml
 
-The example below demonstrates this in a manifest, assuming that the
-*keepmealive* service is added to the *chkconfig*.
+      svckill::ignore:
+      - keepmealive1
+      - keepmealive2
 
-.. code-block:: ruby
+#. Declare the services in the node manifest space:
 
-   #Preventing a service from being killed by svckill
-   service { "keepmealive": }
+  .. code-block:: ruby
+
+     # Preventing these services from being killed by svckill
+     service { "keepmealive1": }
+     service { "keepmealive2": }
+
+  .. NOTE::
+
+     The key to declaring the services in manifests is to use the
+     ``service`` resource without setting any other options.

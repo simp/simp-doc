@@ -32,7 +32,7 @@ connections to ``sshd``.  However, if the ``svckill`` class (from the
 ``simp-svckill`` Puppet module) is also included in your SIMP scenario, it
 will *not* automatically kill ``sshd`` when you cease management of the SSH
 configuration. This is because ``sshd`` has been whitelisted by
-``svckill::ignore_default``.  So, if you want ``svckill`` to kill running
+``svckill::ignore_defaults``.  So, if you want ``svckill`` to kill running
 ``sshd`` services, you must add the following to your Hiera configuration:
 
 .. code-block::  yaml
