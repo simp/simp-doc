@@ -8,39 +8,39 @@ By default, SIMP:
   * Disables remote logins for all users.
   * Disables ``root`` logins at the console.
 
-If one of the following scenarios applies, you must enable ``sudo`` and ``ssh`` access for a local
-user. If you do not do this, you may lose access to your system.
+If either of the following scenarios applies, you must enable ``sudo`` and
+``ssh`` access for a local user. If you do not do this, you may lose access to
+your system.
 
-**Scenario 1:**
-
-  * Console access is available, but not allowed, for ``root`` and no other
-    user account is available.
+Scenario 1:
+  Console access is available, but not allowed.  Only the ``root`` user (and
+  no other user account) is available.
 
     * This generally occurs when SIMP is installed from RPM and the user accepts
       ``simp config``'s default value for ``useradd:securetty`` (an empty array).
 
-**Scenario 2:**
-
-  * Console access is not available and the administrative user's ``ssh``
-    access has not yet been enabled permanently via Puppet.
+Scenario 2:
+  Console access is not available, and the administrative user's ``ssh``
+  access has not yet been enabled permanently via Puppet.
 
     * This generally occurs when SIMP is installed from RPM on cloud systems.
 
-In either of these scenarios ``simp config`` will issue the following warning
-and write a lock file to prevent ``simp bootstrap`` from running.
+In either of these scenarios, ``simp config`` will issue the following warning
+and write a lock file to prevent ``simp bootstrap`` from running:
 
-::
+.. code-block:: text
 
   'simp bootstrap' has been locked due to potential login lockout.
   * See /root/.simp/simp_bootstrap_start_lock for details
 
-This remainder of this document provides instructions on creating a local user that has the
-appropriate level of system access.
+The remainder of this document provides instructions on creating a local user
+that has the appropriate level of system access.
 
 After you address all issues identified in
-``/root/.simp/simp_bootstrap_start_lock`` (see :ref:`ug-other-bootstrap-lock-issues`),
-you should remove the file and
-:ref:`continue with the bootstrap process<ug-initial_server_configuration-run_bootstrap>`.
+``/root/.simp/simp_bootstrap_start_lock`` (see
+:ref:`ug-other-bootstrap-lock-issues`), you should remove the file and
+:ref:`continue with the bootstrap
+process<ug-initial_server_configuration-run_bootstrap>`.
 
 
 Configure Local User for Access
@@ -68,14 +68,14 @@ This example creates a ``local_system_access`` :term:`Puppet module` in the
 
    .. code-block:: sh
 
-      $ umask 022
+      umask 022
 
 #. Create a ``local_system_access`` puppet module directory and change to the directory.
 
    .. code-block:: sh
 
-      $ mkdir -p /etc/puppetlabs/code/environments/production/modules/local_system_access/manifests
-      $ cd /etc/puppetlabs/code/environments/production/modules/local_system_access
+      mkdir -p /etc/puppetlabs/code/environments/production/modules/local_system_access/manifests
+      cd /etc/puppetlabs/code/environments/production/modules/local_system_access
 
 #. Add the following to a new ``manifests/local_user.pp`` file to enable ``sudo su - root``
    and allow ``ssh`` access for the user you created/selected:
@@ -129,20 +129,20 @@ This example creates a ``local_system_access`` :term:`Puppet module` in the
         ]
       }
 
-   * See the `Puppet metadata documentation`_ for more information on metadata.json files.
+   (See the `Puppet metadata documentation`_ for more information on metadata.json files.)
 
 #. Make sure the permissions are correct on the module:
 
    .. code-block:: bash
 
-      $ chown -R root:puppet $PWD
-      $ chmod -R g+rX $PWD
+      chown -R root:puppet $PWD
+      chmod -R g+rX $PWD
 
 #. Add the module to the SIMP server's host YAML file class list:
 
    .. code-block:: bash
 
-      $ cd /etc/puppetlabs/code/environments/production/data/hosts
+      cd /etc/puppetlabs/code/environments/production/data/hosts
 
    Add ``local_system_access::local_user`` to the ``simp::classes:`` array in ``<SIMP server FQDN>.yaml``
 
@@ -166,15 +166,16 @@ This example creates a ``local_system_access`` :term:`Puppet module` in the
 If Your Local User Uses an SSH Public Key
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-* If the local user has an SSH public key available, copy the ``authorized_keys`` file for
-  that user to the SIMP-managed location for authorized keys ``/etc/ssh/local_keys`` as shown below:
+If the local user has an SSH public key available, copy the ``authorized_keys``
+file for that user to the SIMP-managed location for authorized keys
+``/etc/ssh/local_keys``:
 
    .. code-block:: bash
 
-      $ mkdir -p /etc/ssh/local_keys
-      $ chmod 755 /etc/ssh/local_keys
-      $ cp ~userx/.ssh/authorized_keys /etc/ssh/local_keys/userx
-      $ chmod 644 /etc/ssh/local_keys/userx
+      mkdir -p /etc/ssh/local_keys
+      chmod 755 /etc/ssh/local_keys
+      cp ~userx/.ssh/authorized_keys /etc/ssh/local_keys/userx
+      chmod 644 /etc/ssh/local_keys/userx
 
 
 .. _ug-other-bootstrap-lock-issues:
@@ -196,26 +197,30 @@ Resume Bootstrap Operation and Verify User Access
 
 .. WARNING::
 
-   **DO NOT REBOOT BEFORE VERIFYING USER ACCESS USING AN ALTERNATE TERMINAL OR SSH SESSION**
+   **DO NOT REBOOT BEFORE VERIFYING USER ACCESS USING AN ALTERNATE TERMINAL OR
+   SSH SESSION**
 
 #. Remove the lock file and bootstrap the system
 
-   * ``$ rm /root/.simp/simp_bootstrap_start_lock``
-   * ``$ simp bootstrap``
-   * ``$ puppet agent -t``
+   * ``rm /root/.simp/simp_bootstrap_start_lock``
+   * ``simp bootstrap``
+   * ``puppet agent -t``
 
-   The following items are not failures and can be ignored. All other errors or warnings should be
-   addressed prior to proceeding:
+   The following items are not failures and can be ignored. All other errors or
+   warnings should be addressed prior to proceeding:
 
      * Reboot notifications.
-     * Warning/errors related to modules that manage services you have not completely set up, such as ``named``.
-     * ``svckill`` warnings regarding services found that would be killed if ``svckill::mode`` was set to ``enforcing``.
+     * Warning/errors related to modules that manage services you have not
+       completely set up, such as ``named``.
+     * ``svckill`` warnings regarding services found that would be killed if
+       ``svckill::mode`` was set to ``enforcing``.
 
        * See :ref:`Services_dying`.
 
 #. Verify user accesss
 
-   * Using a **NEW SSH SESSION OR TERMINAL** (do NOT close your working session)
+   * Using a **NEW SSH SESSION OR TERMINAL** (do NOT close your working
+     session)
 
      * Log in as ``userx``
      * ``sudo su - root``
@@ -225,14 +230,15 @@ Resume Bootstrap Operation and Verify User Access
      If your new user cannot ssh into the server and sudo to ``root``
 
      * DO NOT reboot the server until you resolve the problem!
-     * DO NOT log out of your primary work teerminal unti you resolve the problem!
+     * DO NOT log out of your primary work terminal unti you resolve the
+       problem!
 
 Finalization
 ^^^^^^^^^^^^
 
 Reboot your system to enact the kernel-level enforcement changes:
 
-* ``$ reboot``
+* ``reboot``
 
 Re-verify system access:
 
