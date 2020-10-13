@@ -14,7 +14,7 @@ options of the ``simp`` command
 For a list of the commands ``simp`` provides, type ``simp help``. Type
 ``simp <Command> --help`` for more information on a specific command.
 
-- ``simp config`` sets up configuration required to bootstrap the SIMP server
+* ``simp config`` sets up configuration required to bootstrap the SIMP server
   with Puppet.  It asks questions, generates configuration files, and applies
   preliminary server configuration based on the answers.  It records the options
   chosen in a file, ``/root/.simp/simp_conf.yaml`` and generates a log file
@@ -28,7 +28,7 @@ For a list of the commands ``simp`` provides, type ``simp help``. Type
     default. If you want to use a different intial environment, see
     :ref:`howto-use-an-alternate-simp-config-environment`.
 
-- ``simp bootstrap`` uses several targeted Puppet runs to configure the rest
+* ``simp bootstrap`` uses several targeted Puppet runs to configure the rest
   of the system and generates a log file under ``/root/.simp/``.
 
 For more details about initial configuration provided by ``simp config`` see
@@ -39,118 +39,102 @@ Configuring the SIMP Server
 
 .. WARNING::
 
-   Puppet has problems when hostnames contain capital letters
-   (`SERVER-1809`_) — do not use them!
+   Puppet has problems when hostnames contain capital letters (`SERVER-1809`_) — do not use them!
 
    .. _SERVER-1809: https://tickets.puppetlabs.com/browse/SERVER-1809
 
-#. Log on as a user that can gain ``root`` access and ``su`` to ``root``.
+#. Log on as a user that can gain ``root`` access and ``sudo`` to ``root``.
 
-   - If you installed from the ISO, it created the ``simp`` user.
-     Log in with ``simp`` and run  ``su -``.
-   - If you installed from RPM, create a privileged user or log in as ``root``.
-     There will be instructions later about how to configure access for the
-     privileged user on the SIMP server, so that after bootstrap, you are not
-     locked out of the server.  This step is **essential** on cloud instances.
+   * **If you installed from the ISO**
 
-#. Run ``simp config`` and configure the system as prompted.  (The ``--dry-run``
-   option will run through all of the prompts without applying any changes to
-   the system.)
+     * Log in as ``simp``.
+     * Run  ``sudo su - root``.
 
-   -  ``simp config`` will prompt you with the follow:
+   * **If you installed from RPM**
 
-      - ``Ready to create the SIMP omni-environment?`` Enter ``yes``.
-      - ``Ready to start the questionnaire?`` Enter ``yes``.
+     * Create a local user that can escalate to ``root`` and use it to access the ``root`` account.
 
-   -  ``simp config`` will then prompt you for system settings and apply them as
-      appropriate for bootstrapping the system. When applicable, ``simp config``
-      will present you with a recommendation for each setting. For each question:
+#. Run ``simp config`` and configure the system as prompted.
 
-      - Press *Enter* to keep a recommended value.
-      - Otherwise, enter your desired value.
+   * These settings will be used to set up files appropriate for bootstrapping the system.
 
-   -  When the questionnaire is finished and you are prompted with
+     * For each setting:
 
-      -  ``Ready to apply?`` Enter ``yes`` to continue.
+       * Press *Enter* to keep the recommended value or enter your desired value.
 
-   -  ``simp config`` then applies the information and generates its
-      configuration files.
+  * For more details about ``simp config``'s installation variables and actions, see
+    :ref:`gsg-advanced-configuration`.
 
+  .. NOTE::
 
-      .. Important::
+     If you see a message about 'simp bootstrap' being 'locked', follow the steps in
+     :ref:`ug-prevent-lockout`:
 
-         If you have installed SIMP from RPM and see the following failure, go
-         to the :ref:`ug-prevent-lockout`  section and follow the steps to
-         configure a user that has ``su -`` capability.
+.. _ug-initial_server_configuration-run_bootstrap:
 
-           ``'simp bootstrap' has been locked due to potential login lockout.``
+3. Run ``simp bootstrap``.
 
-             ``* See /root/.simp/simp_bootstrap_start_lock for details``
+   If your SIMP server is on a virtual machine, or slow system, the default timeout for the
+   Puppet server to start (5 minutes) may be too short.  You will want to extend this time by using
+   the ``-w`` option.
 
-   - For more details about ``simp config``'s installation variables and
-     actions, see :ref:`gsg-advanced-configuration`.
+   For example, to extend the timeout to 10 minutes:
 
+   .. code:: bash
 
-#. Run ``simp bootstrap``.
-
-   If your SIMP server is a virtual machine in a cloud, the default
-   timeout for the Puppet server to start (5 minutes) may be too short.
-   You will want to extend this time by using the ``-w`` option.  For
-   example, to extend that timeout to 10 minutes:
-
-   ``simp bootstrap -w 10``
-
+      $ simp bootstrap -w 10
 
    .. NOTE::
 
-      If the bootstrap finishes quickly and the progress bars of each Puppet run
-      are of equal length, it is very likely that  a problem has occurred due to
-      an error in SIMP configuration. Refer to the previous step and make sure
-      that all configuration options are correct.
+      If the bootstrap progress bars of each Puppet run are of equal length, a problem has probably
+      occurred due to an error in SIMP configuration. Refer to the previous step and make sure that
+      all configuration options are correct.
 
-      If this happens, you can debug by either looking at the log files or by
-      running ``puppet agent -t --masterport=8150``.
+      You can debug issues by either looking at the log files in ``/root/.simp`` or by running
+      ``puppet agent -t --masterport=8150``.
 
 #. Run ``reboot`` to restart your system and apply the necessary kernel
    configuration items.
 
+After rebooting, SIMP-managed security settings have been applied and the SIMP server is ready for
+site-specific configuration.
 
-When your systems comes back up, SIMP-managed security settings have been applied
-and the SIMP server (``puppetserver``) is ready for site-specific configuration.
-To ``su`` to ``root`` from the  ``simp`` user, you must now use ``sudo su -t root``.
+To ``su`` to ``root`` from the  ``simp`` user, you must now use ``sudo su - root``.
 
-Next steps:
+Next Steps
+----------
 
-* To continue configuring the system, move on to the next section in the
-  :ref:`simp-user-guide`, :ref:`Client_Management`.
-* To learn more details about what the ``simp`` utility just did to your system,
-  see :ref:`gsg-advanced-configuration`.
+* To continue configuring the system, move on to the next section in the :ref:`simp-user-guide`,
+  :ref:`Client_Management`.
+* To learn more details about how your system has just been configured see :ref:`gsg-advanced-configuration`.
 
-Optional: Extract the full OS RPM Package Set
+Optional: Extract the Full OS RPM Package Set
 ---------------------------------------------
 
-The SIMP ISO only provides enough RPM packages to run a basic system. If you
-require additional stock OS packages, you can extract additional packages from
-vendor ISOs using the following procedure:
+The SIMP ISO provides a minimal set of packages.
 
-#. Log on as ``simp`` and run ``su -`` to gain root access.
+If you require additional OS packages, you can extract them from vendor ISOs using the following
+procedure:
+
+#. Log on as ``simp`` and run ``sudo su - root``.
 #. Run ``puppet agent -t`` to ensure system consistency.
 #. Copy the appropriate vendor OS ISO(s) to the server and unpack using the
    ``unpack_dvd`` utility. This will create a new directory tree under
    ``/var/www/yum/<OperatingSystem>`` suitable for serving to clients.
 
-   Run: ``unpack_dvd CentOS-RHEL_MAJOR_VERSION-x86_64-DVD-####.iso``
+   .. code:: bash
+
+      $ unpack_dvd CentOS-RHEL_MAJOR_VERSION-x86_64-DVD-####.iso
 
    .. WARNING::
 
-      If the server where you are unpacking the vendor ISO was **not** built
-      using the SIMP ISO , you will need to also unpack the associated SIMP ISO
-      using the ``unpack_dvd`` utility.
+      If the server where you are unpacking the vendor ISO was **NOT** built using the SIMP ISO ,
+      you must also unpack the associated SIMP ISO using the ``unpack_dvd`` utility.
 
 #. Ensure that subsequent :term:`yum` operations are aware of the new RPM
    packages by refreshing the system's yum cache:
 
-   Run: ``yum clean all; yum makecache``
+   Run: ``yum clean all && yum makecache``
 
 .. include::  Initial_Server_Configuration/Prevent_Lockout_on_Puppetserver.inc
 
