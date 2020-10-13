@@ -79,7 +79,51 @@ a:hover   { color: #29b929; }
   background: #FFDFD5;
 }
 
-.rst-content .rst-content tt.literal, .rst-content code.literal{
-  color: #445588;
+.rst-content tt.literal, .rst-content code.literal {
+  color: #554488;
   background: #ececec;
 }
+
+.rst-content code.code {
+  color: #a43d1d;
+  background: beige;
+}
+
+
+.simp-package, .command {
+  font-family: Consolas,"Andale Mono WT","Andale Mono","Lucida Console","Lucida Sans Typewriter","DejaVu Sans Mono","Bitstream Vera Sans Mono","Liberation Mono","Nimbus Mono L",Monaco,"Courier New",Courier,monospace;
+}
+
+.rst-content .simp-package{
+  color: #543;
+  background: transparent;
+  font-weight: bold;
+  border-color: none;
+}
+
+
+.rst-content code.file {
+  color: #930;
+  background: none;
+  font-weight: bold;
+  border-style: none;
+  padding: unset;
+}
+
+
+.rst-content code.simp-pupmod, .rst-content .simp-pupmod {
+  color: #303;
+  background: none;
+  font-weight: bold;
+  border-style: none;
+  padding: unset;
+}
+
+
+.rst-content .command {
+  color: #0f0;
+  background: #000;
+  border: solid #000;
+  font-weight: normal;
+}
+
