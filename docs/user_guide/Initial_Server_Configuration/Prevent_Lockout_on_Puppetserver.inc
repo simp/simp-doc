@@ -35,7 +35,7 @@ you address any other issues identified in ``/root/.simp/simp_bootstrap_start_lo
 (see :ref:`ug-other-bootstrap-lock-issues`), you can simply remove the file and
 continue with the bootstrap process.
 
-Otherwise follow the instructions in the subsections below to create a local
+Otherwise, follow the instructions in the subsections below to create a local
 user who can successfully access the system and sudo to ``root``.
 
 
@@ -167,9 +167,9 @@ This example also assumes you are logged in as ``root``.
 Resolve Other Issues in Bootstrap Lock File
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-The bootstrap lock file can identify other issues than user lockout.
+The bootstrap lock file can identify other issues, in addition to user lockout.
 If any other issues are identified in ``/root/.simp/simp_bootstrap_start_lock``,
-address those issues, before removing the file.
+address those issues before removing the file.
 
   * Currently, the only other issue ``simp config`` will identify is a possible
     misconfiguration of YUM repositories. ``simp config`` will lock out

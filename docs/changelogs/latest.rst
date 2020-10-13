@@ -295,8 +295,8 @@ is now available.
 
 .. IMPORTANT::
 
-   Be aware that ``firewalld`` rules do not support hostnames. IP addresses
-   must be used. This may impact your use of any manifests that contain
+   Be aware that ``firewalld`` rules do not support hostnames; IP addresses
+   must be used. This may impact any manifests that contain
    ``iptables::listen::*`` resources, including resources from some SIMP
    modules. You will have to change hostnames to IP addresses for the
    affected resources when using ``firewalld``.
@@ -1668,4 +1668,3 @@ Nothing significant at this time.
 The SIMP project in JIRA can be used to `file bugs`_.
 
 .. _file bugs: https://simp-project.atlassian.net
-
