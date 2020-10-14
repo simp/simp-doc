@@ -107,7 +107,7 @@ The example :term:`kickstart` file (:file:`pupclient_86_64.cfg`—see
 modeled on older versions of this file should backport these changes.  New,
 OS-specific versions of this file are included in the SIMP-6.2.0 ISOs, but may
 also be found in the `simp-core repository`_ under
-:file:`build/distributions/<OS>/<OS Major Version>/<Architecture>/DVD/ks/`.
+:file:`build/distributions/{OS}/{OS Major Version}/{Architecture}/DVD/ks/`.
 
 .. IMPORTANT::
 
@@ -144,8 +144,7 @@ Two major changes were made:
      the generated Puppet configuration would erroneously use ``localhost`` for
      the client hostname.  This problem was solved by setting the static
      hostname of the client at the beginning of the client Puppet bootstrap
-     ystemd
-rocess.
+     process.
 
    In addition to solving these specific problems, the new bootstrap scripts
    use a configurable backoff algorithm in order prevent flooding a
@@ -190,7 +189,7 @@ On a SIMP server, the example :file:`dhcpd.conf` file is installed in
        *  :program:`rpm2cpio` converts the RPM file to cpio archive.  In this
           example, the command is being run from the directory containing the
           RPM file; if the file is not in the current working directory, the
-           full path to the file must be provided.
+          full path to the file must be provided.
        *  :program:`cpio` extracts files from the cpio archive.  In this case, the cpio
           options ``-i``, ``-r``, and ``"\*dhcpd.conf"`` direct cpio to extract
           one or more files from the archive, interactively rename the file,
@@ -212,7 +211,7 @@ The default :term:`TFTP` root directory was changed to
 :file:`/tftpboot` set :code:`tftpboot::tftpboot_root_dir` in Hiera to
 :code:`/tftpboot`.  Alternately, to use the new directory, copy any files not
 managed by the :pupmod:`rsync` module (i.e., not stored in
-:file:`/var/simp/environments/<environment>/rsync/<OS>/Global/tftpboot`) to the
+:file:`/var/simp/environments/{environment}/rsync/{OS}/Global/tftpboot`) to the
 new directory.  Make sure the permissions, including selinux context, are
 correct. TFTP boot will fail to find boot files that have the incorrect selinux
 context.

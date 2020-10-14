@@ -3,35 +3,52 @@
 DEMONSTRATION: New Formatting roles, and how they look:
 -------------------------------------------------------
 
-Inline with double backticks: ``inline code``
+.. admonition:: This page demonstrates a bunch of new style roles
+  :class: "neutral-bg"
 
-.. list-table:: Roles built into Sphinx
-     :header-rows: 1
+  This page has been updated to demonstrate how using ReStructuredText roles
+  could keep a document consistent and avoid getting overwhelmed by
+  double-backticks.
 
-     * - Role
-       - Example
-     * - code
-       - :code:`simp/simplib`
-     * - command
-       - :command:`yum update -y`
-     * - file
-       - :file:`/etc/simp/version.{x}.{y}`
-     * - program
-       - :program:`mcstransd`
+  Inline with double backticks: ``inline code``
 
-.. list-table:: Custom roles for simp-doc
-     :header-rows: 1
+  .. list-table:: Roles already built into Sphinx
+       :header-rows: 1
 
-     * - Role
-       - Example
-     * - github link
-       - :github:`simp/simp-doc`
-     * - jira
-       - :jira:`SIMP-8464`
-     * - package
-       - :package:`simp-utils`
-     * - pupmod
-       - :pupmod:`simp/simplib`
+       * - Role
+         - Example
+         - Code
+       * - code
+         - :code:`simp/simplib`
+         - ``:code:`simp/simplib```
+       * - command
+         - :command:`yum update -y`
+         - ``:command:`yum update -y```
+       * - file
+         - :file:`/etc/simp/version.{x}.{y}`
+         - ``:file:`/etc/simp/version.{x}.{y}```
+       * - program
+         - :program:`mcstransd`
+         - ``:program:`mcstransd```
+
+  .. list-table:: Custom roles, created for simp-doc
+       :header-rows: 1
+
+       * - Role
+         - Example
+         - Code
+       * - github link
+         - :github:`simp/simp-doc`
+         - ``:github:`simp/simp-doc```
+       * - jira
+         - :jira:`SIMP-8464`
+         - ``:jira:`SIMP-8464```
+       * - package
+         - :package:`simp-utils`
+         - ``:package:`simp-utils```
+       * - pupmod
+         - :pupmod:`simp/simplib`
+         - ``:pupmod:`simp/simplib```
 
 
 Upgrading from SIMP-6.4.0 to SIMP-6.5.0

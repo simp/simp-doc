@@ -103,13 +103,20 @@ a:hover   { color: #29b929; }
 
 
 .rst-content code.file {
-  color: #930;
+  color: #830;
   background: none;
   font-weight: bold;
   border-style: none;
   padding: unset;
 }
 
+.rst-content code.file em {
+  font-weight: 800;
+  color: red;
+  color: #669;
+  color: #c30;
+  text-decoration: underline dotted;
+}
 
 .rst-content code.simp-pupmod, .rst-content .simp-pupmod {
   color: #303;
@@ -119,11 +126,16 @@ a:hover   { color: #29b929; }
   padding: unset;
 }
 
+.rst-content .neutral-bg {
+  background: #eee;
+}
 
 .rst-content .command {
   color: #0f0;
   background: #000;
   border: solid #000;
   font-weight: normal;
+  border-radius: 0.3em;
+  padding: 0.05em 0.1em;
 }
 
