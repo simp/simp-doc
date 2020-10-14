@@ -74,8 +74,9 @@ This example creates a ``local_system_access`` :term:`Puppet module` in the
 
    .. code-block:: sh
 
-      mkdir -p /etc/puppetlabs/code/environments/production/modules/local_system_access/manifests
-      cd /etc/puppetlabs/code/environments/production/modules/local_system_access
+      cd /etc/puppetlabs/code/environments/production/modules
+      mkdir -p local_system_access/manifests
+      cd local_system_access
 
 #. Add the following to a new ``manifests/local_user.pp`` file to enable ``sudo su - root``
    and allow ``ssh`` access for the user you created/selected:
@@ -89,7 +90,8 @@ This example creates a ``local_system_access`` :term:`Puppet module` in the
         sudo::user_specification { 'default_userx':
           user_list => ['userx'],
           runas     => 'root',
-          passwd    => false,   # ONLY NEEDED IF YOUR USER DOES NOT USE A PASSWORD
+          # ONLY NEEDED IF YOUR USER DOES NOT USE A PASSWORD
+          passwd    => false,
           cmnd      => ['/bin/su root', '/bin/su - root']
         }
 
@@ -99,7 +101,7 @@ This example creates a ``local_system_access`` :term:`Puppet module` in the
           pam::access::rule { 'allow_userx':
             users   => ['userx'],
             origins => ['ALL'],
-            comment => 'The local user, used to remotely login to the system in the case of a lockout.'
+            comment => 'Local user for lockout prevention'
           }
         }
       }
