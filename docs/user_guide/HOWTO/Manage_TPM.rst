@@ -444,7 +444,7 @@ Steps
       tpm::tboot::sinit_source: 'file:///root/txt/2nd_gen_i5_i7-SINIT_51/2nd_gen_i5_i7_SINIT_51.BIN'
       tpm::tboot::owner_password: "%{alias('tpm::ownership::owner_pass')}"
 
-#. Add the ``tpm::tboot`` class to the classes array with ``tpm``.
+#. Add the ``tpm::tboot`` class to the ``simp::classes`` array with ``tpm``.
 
    * The ``tpm::tboot`` class adds two boot entries to the GRUB configuration.
      One should read ``tboot``, and there should be one above it called

@@ -87,7 +87,7 @@ Hiera, for example: ``data/hosts/ldap_server1.your.domain.yaml``:
 
 .. code-block:: yaml
 
-   classes :
+   simp::classes:
      - 'simp::server::ldap'
 
 Leave any other classes that are there if they are needed. Run the Puppet
@@ -124,7 +124,7 @@ three things, add the following lines to the
    simp::server::ldap::is_consumer: true
    simp::server::ldap::rid: 888
 
-   classes :
+   simp::classes:
      - 'simp::server::ldap'
 
 .. _URI:
@@ -178,7 +178,7 @@ Place this file in the ``site`` module's  ``manifests/`` directory using the nam
 
 .. code-block:: yaml
 
-   classes :
+   simp::classes:
      - 'site::ldap_consumer'
 
 
