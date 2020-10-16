@@ -149,7 +149,7 @@ Set :code:`svckill::mode` to ``warning``
 """""""""""""""""""""""""""""""""""""""""
 
 Puppet recently made changes to how it internally enumerates services, with the
-consequence that, *if :code:`svckill::mode` is set to ``enforcing``*, it is
+consequence that, if :code:`svckill::mode` is set to ``enforcing``, it is
 possible that it could kill critical system services between updating to the
 new Puppet version and deploying the new Puppet modules.
 
