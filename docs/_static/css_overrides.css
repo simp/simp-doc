@@ -11,7 +11,6 @@ code, .rst-content tt, .rst-content code {
   font-size: 90%;
 }
 
-
 /*
  * === SIMP-specific styling ===
 */
@@ -85,8 +84,8 @@ a:hover   { color: #29b929; }
 }
 
 .rst-content code.code {
-  color: #a43d1d;
-  background: beige;
+  color: #657b83;        /* solarized-light fg (base00)  */
+  background: #fdf6e3;   /* solarized-light bg (base3) */
 }
 
 
@@ -131,9 +130,9 @@ a:hover   { color: #29b929; }
 }
 
 .rst-content .command {
-  color: #0f0;
-  background: #000;
-  border: solid #000;
+  color: #93a1a1;        /* solarized-dark fg (base9)  */
+  background: #002b36;   /* solarized-dark bg (base03) */
+  border: solid #002b36;
   font-weight: normal;
   border-radius: 0.3em;
   padding: 0.05em 0.1em;
