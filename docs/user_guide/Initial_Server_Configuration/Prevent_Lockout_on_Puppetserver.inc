@@ -33,8 +33,8 @@ and write a lock file to prevent ``simp bootstrap`` from running:
   'simp bootstrap' has been locked due to potential login lockout.
   * See /root/.simp/simp_bootstrap_start_lock for details
 
-The remainder of this document provides instructions on creating a local user
-that has the appropriate level of system access.
+The remainder of this document provides instructions on ensuring that a local user has the
+appropriate level of system access.
 
 After you address all issues identified in
 ``/root/.simp/simp_bootstrap_start_lock`` (see
@@ -43,11 +43,8 @@ After you address all issues identified in
 process<ug-initial_server_configuration-run_bootstrap>`.
 
 
-Configure Local User for Access
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-This example creates a ``local_system_access`` :term:`Puppet module` in the
-``production`` :term:`Puppet environment`.
+Ensuring Local User Access
+^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 * **If you already have an unprivileged account:**
 
@@ -61,109 +58,33 @@ This example creates a ``local_system_access`` :term:`Puppet module` in the
      * This example assumes the local user is named ``userx``.
      * Be sure to set the user's password if the user is logging in with a password!
 
-
 #. Run ``sudo su - root``
 
-#. Set your ``umask``.
+#. Run ``cd /etc/puppetlabs/code/environments/production/data/hosts``
 
-   .. code-block:: sh
+#. Add the following to ``<puppetserver fqdn>.yaml``
 
-      umask 022
+  .. code-block:: yaml
 
-#. Create a ``local_system_access`` puppet module directory and change to the directory.
-
-   .. code-block:: sh
-
-      cd /etc/puppetlabs/code/environments/production/modules
-      mkdir -p local_system_access/manifests
-      cd local_system_access
-
-#. Add the following to a new ``manifests/local_user.pp`` file to enable ``sudo su - root``
-   and allow ``ssh`` access for the user you created/selected:
-
-   .. code-block:: ruby
-
-      class local_system_access::local_user (
-        Boolean $pam = simplib::lookup('simp_options::pam', { 'default_value' => false }),
-      ) {
-
-        sudo::user_specification { 'default_userx':
-          user_list => ['userx'],
-          runas     => 'root',
-          # ONLY NEEDED IF YOUR USER DOES NOT USE A PASSWORD
-          passwd    => false,
-          cmnd      => ['/bin/su root', '/bin/su - root']
-        }
-
-        if $pam {
-          include 'pam'
-
-          pam::access::rule { 'allow_userx':
-            users   => ['userx'],
-            origins => ['ALL'],
-            comment => 'Local user for lockout prevention'
-          }
-        }
-      }
-
-#. Add the following to a new ``metadata.json`` file to enable proper
-   recognition of your module by the puppet server:
-
-   .. code-block:: yaml
-
-      {
-        "name": "local_system_access",
-        "version": "0.0.1",
-        "author": "Your name or group here",
-        "summary": "Configures Local User for sudo access",
-        "license": "Apache-2.0",
-        "source": "Your gitlab url or local",
-        "dependencies": [
-          {
-            "name": "simp/pam"
-          },
-          {
-            "name": "simp/simplib"
-          },
-          {
-            "name": "simp/sudo"
-          }
-        ]
-      }
-
-   (See the `Puppet metadata documentation`_ for more information on metadata.json files.)
-
-#. Make sure the permissions are correct on the module:
-
-   .. code-block:: bash
-
-      chown -R root:puppet $PWD
-      chmod -R g+rX $PWD
-
-#. Add the module to the SIMP server's host YAML file class list:
-
-   .. code-block:: bash
-
-      cd /etc/puppetlabs/code/environments/production/data/hosts
-
-   Add ``local_system_access::local_user`` to the ``simp::classes:`` array in ``<SIMP server FQDN>.yaml``
-
-   .. code-block:: yaml
-
-      simp::classes:
-        - local_system_access::local_user
-        # Do NOT remove other items in this array
-        # Make sure your whitespace lines up (spaces, not tabs)
-
-#. Add the ``local_system_access`` module to the ``Puppetfile`` in the ``production`` environment:
-
-   Edit ``/etc/puppetlabs/code/environments/production/Puppetfile``, and add the
-   following line under the section that says *"Add your own Puppet modules here"*
-
-   .. code-block:: ruby
-
-      mod 'local_system_access', :local => true
-
+     # Add sudo user rules
+     sudo::user_specifications:
+       # Any unique name
+       userx_su:
+         # The users to which to apply this sudo rule
+         user_list:
+           - userx
+         # The commands that the user is allowed to run
+         cmnd:
+           - ALL
+         # Whether or not the user must use a password
+         passwd: false
+     # Add a PAM remote access rule
+     pam::access::users:
+       # The user to add
+       userx:
+         # Allow access from everywhere
+         origins:
+           - ALL
 
 If Your Local User Uses an SSH Public Key
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
