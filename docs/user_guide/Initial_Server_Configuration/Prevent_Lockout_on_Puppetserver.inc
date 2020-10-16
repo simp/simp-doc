@@ -60,9 +60,9 @@ Ensuring Local User Access
 
 #. Run ``sudo su - root``
 
-#. Run ``cd /etc/puppetlabs/code/environments/production/data``
+#. Run ``cd /etc/puppetlabs/code/environments/production/data/hosts``
 
-#. Add the following to ``default.yaml``
+#. Add the following to ``<puppetserver fqdn>.yaml``
 
   .. code-block:: yaml
 
