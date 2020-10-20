@@ -103,7 +103,8 @@ extensions = [
     # Usage:
     #   .. ifconfig:: releaselevel in ('alpha', 'beta', 'rc')
     'sphinx.ext.ifconfig',
-    'rst2pdf.pdfbuilder'
+    'rst2pdf.pdfbuilder',
+    'crate.sphinx.csv' # docs: https://github.com/crate/sphinx_csv_filter
 ]
 
 # Add any paths that contain templates here, relative to this directory.

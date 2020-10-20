@@ -26,8 +26,8 @@ The upgrade script,
 :file:`/usr/share/simp/upgrade_scripts/upgrade_simp_6.0.0_to_6.1.0`,
 will assist with the upgrade from ``6.0.0`` to ``6.1.0``, taking into account
 all of the specific issues. This script is available in the
-:package:`simp-utils-6.1.0` package provided by SIMP 6.1.0 or the `simp-utils
-repository`_.
+:package:`simp-utils-6.1.0` package provided by SIMP 6.1.0 or the
+:github:`simp-utils` repository.
 
 As always, back up your system prior to upgrading!
 
@@ -93,4 +93,3 @@ transitory, see `Upgrading a PostgreSQL Cluster`_ for detailed instructions.
 
 .. _ClamAV Virus Database FAQ: https://www.clamav.net/documents/clamav-virus-database-faq.html
 .. _Upgrading a PostgreSQL Cluster: https://www.postgresql.org/docs/9.6/upgrading.html
-.. _simp-utils repository: https://github.com/simp/simp-utils

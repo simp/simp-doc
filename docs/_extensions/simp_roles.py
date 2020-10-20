@@ -4,11 +4,11 @@ from docutils.parsers.rst import roles
 import sphinx.errors
 
 def setup(app):
-    app.add_role('github', auto_class( 'github', 'inline', 'https://github.com/%s'))
-    app.add_role('jira', auto_class('jira', 'inline', 'https://simp-project.atlassian.net/browse/%s'))
+    app.add_role('pupmod',  pupmod_class())
     app.add_role('package', auto_class('package'))
-    app.add_role('pupmod', pupmod_class())
-    app.add_role('param', auto_class('param', 'literal'))
+    app.add_role('param',   auto_class('param', 'literal'))
+    app.add_role('jira',    auto_class('jira', 'inline', 'https://simp-project.atlassian.net/browse/%s'))
+    app.add_role('github',  github_class())
 
 # Ensure options dict contains a classes list with a 'simp-{role_name}' item
 def append_to_options_classes(options, role_name):
@@ -52,6 +52,23 @@ def pupmod_class():
         print("WARNING: Use '-' to separate Puppet module names (.e.g., %s', not '%s')\n" % (fixed_text, text))
     else:
       node = nodes.inline(rawtext, text, **options)
+
+    return [node], []
+  return role
+
+# Add a :github:`<text>` role that auto-links to GitHub and prepends simp/ to
+# any text without slashes
+def github_class():
+  def role(name, rawtext, text, lineno, inliner, options={}, content=[]):
+    options = append_to_options_classes(options, 'github')
+    path = text
+    path_segments = re.split("/", path)
+    if len(path_segments) == 1:
+      path = "simp/%s" % (path)
+
+    # Link to the repo on GitHub
+    url = 'https://github.com/%s' % (path)
+    node = nodes.reference(rawtext, text, refuri=url, **options)
 
     return [node], []
   return role
