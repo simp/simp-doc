@@ -622,6 +622,12 @@ pupmod-simp-tlog
 * Added a workaround to scripts in ``/etc/profile`` to handle a bug in tlog
   that would prevent logins if the system hostname could not be found.
 
+pupmod-simp-tpm2
+^^^^^^^^^^^^^^^^
+
+* Fixed a bug where the `tpm2_*` commands could return nothing which would
+  trigger an error in further logic.
+
 pupmod-simp-xinetd
 ^^^^^^^^^^^^^^^^^^
 
@@ -631,6 +637,13 @@ pupmod-simp-xinetd
 rubygem-simp-cli
 ^^^^^^^^^^^^^^^^
 
+* Fixed a bug in which `simp config` did not allow DNS domains that did
+  not include at least one '.'.  Domains are now validated
+  per RFC 3696.
+* Fixed a bug where 'simp config' recommended the wrong SSSD domain,
+  when the SIMP server was not the LDAP server.  It recommended the
+  'Local' domain, when the appropriate SIMP-created domain with the
+  'local' (EL6) or 'files' (EL7) provider is 'LOCAL'.
 * Fixed a bug in ``simp environment new`` in which the actual failure
   messages from a failed ``setfacl --restore`` execution were not logged.
 * Fixed a bug where ``simp config --dry-run`` would prompt the user to apply
@@ -975,6 +988,12 @@ pupmod-simp-krb5
 * Updated SELinux hotfix for EL8.
 * Migrated SELinux hotfix to ``vox_selinux::module``.
 
+pupmod-simp-libreswan
+^^^^^^^^^^^^^^^^^^^^^
+
+* Added support for IKEv2 Mobility (RFC-4555) and mobile client connections.
+* Added additional settings for DNS and Domains for libreswan v3.23+.
+
 pupmod-simp-libvirt
 ^^^^^^^^^^^^^^^^^^^
 
@@ -1266,6 +1285,37 @@ pupmod-simp-simp
       manually add the ``clamav`` class to the ``simp::classes`` Array in the
       SIMP server's Hiera file.
 
+* ``simp::yum::repo*`` updates:
+
+  * Added:
+
+    * ``simp::yum::repo::internet_simp`` class:
+
+      * Uses the SIMP yum repository package (simp-community-release) to
+        configure yum for SIMP's internet public repositories at simp-project.com.
+      * simp-project.com is the new host for SIMP's yum repositories.
+      * packagecloud is no longer being updated.
+
+    * ``simp::yum::repo::simp_release_version`` function: Returns the SIMP release
+      version for use in the SIMP internet yum repositories.
+    * ``Simp::Version`` data type alias for valid version strings for use in the
+      SIMP internet repositories.
+
+  * Deprecated:
+
+    * ``simp::yum::repo::internet_simp_server`` and
+      ``simp::yum::repo::internet_simp_dependencies`` classes:
+
+      * These resources are no longer useful because their API matches the OBE
+        packagecloud SIMP repositories.
+      * As a workaround, the classes have been modified to use
+        ``simp::yum::repo::internet_simp`` to configure the correct repositories
+        at simp-project.com.
+      * You should switch to using ``simp::yum::repo::internet_simp``, directly, as
+        these classes will be removed in a future release.
+
+    * ``simp::yum::repo::sanitize_simp_release_slug`` function: a function
+       only useful to the deprecated classes.
 
 pupmod-simp-simp_banners
 ^^^^^^^^^^^^^^^^^^^^^^^^
@@ -1371,6 +1421,8 @@ Added the following facts:
 +----------------------------------+----------------------------------------+
 | ``simplib__mountpoints``         | Returns a hash of mountpoints of       |
 |                                  | particular interest to SIMP modules.   |
++----------------------------------+----------------------------------------+
+| ``simplib__numa``                | Returns a hash of NUMA values.         |
 +----------------------------------+----------------------------------------+
 | ``simplib__efi_enabled``         | Returns ``true`` if the host is using  |
 |                                  | EFI.                                   |
@@ -1567,6 +1619,21 @@ pupmod-simp-useradd
 rubygem-simp-cli
 ^^^^^^^^^^^^^^^^
 
+* Updated the instructions provided in the local user lockout warning message
+  in the bootstrap lock file.
+
+  * Simplified instructions to create resources via hieradata.
+  * Tell the user to check that they can ssh into the server with the new
+    user after bootstrap but before rebooting. This step is imperative to
+    ensure that the user can also get through Puppet-managed
+    authentication!
+
+* Updated SIMP internet repositories configured by 'simp config'.
+
+  * Now uses simp-project.com repositories via new
+    ``simp::yum::repo::internet_simp`` class.
+  * The packagecloud repositories are no longer being updated.
+
 * Allow users to set the SIMP_ENVIRONMENT environment variable to change the
   initial environment from 'production' to a custom value, when running
   ``simp config`` or ``simp bootstrap``.
@@ -1619,6 +1686,8 @@ rubygem-simp-cli
     enabled, all available password information is displayed, not just the
     current and previous password values.
 
+* Updated HighLine from version 1.7.8 to 2.0.3.
+
 simp-environment-skeleton
 ^^^^^^^^^^^^^^^^^^^^^^^^^
 
@@ -1659,6 +1728,20 @@ simp-rsync-skeleton
 
   * The ``named`` service will create a key if one does not exist using the
     correct defaults for the system.
+
+simp-utils
+^^^^^^^^^^
+
+* Added (optional) ``--unpack-pxe [DIR]`` option to the ``unpack_dvd`` script.
+
+  * Added (optional) ``--environment ENV`` to set the PXE rsync environment.
+  * Added a new ``--[no-]unpack-yum`` (enabled by default), to permit users to
+    disable the RPM unpack.
+  * To enable unpacking PXE tftpboot files, run with ``--unpack-pxe``.
+  * To disable unpacking RPMs/yum repos, run with ``--no-unpack-yum``.
+  * See ``unpack_dvd --help`` for details.
+
+* Overhauled ``unpack_dvd --help``; output now fits on 80-character PTY consoles
 
 Known Bugs
 ----------
