@@ -135,7 +135,7 @@ Two major changes were made:
    systems, both of which can cause client Puppet bootstrapping to fail and
    require subsequent manual intervention in order to fix:
 
-   - On CentOS 7, :program:`systemd` was killing :program`runpuppet`, when it
+   - On CentOS 7, :program:`systemd` was killing :program:`runpuppet`, when it
      ran longer than 5 minutes.  This was solved by using an actual
      :program:`systemd` unit file
      (:file:`simp_client_bootstrap.service`) with a default timeout of 30
