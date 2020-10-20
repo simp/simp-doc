@@ -91,6 +91,7 @@ steps as ``root``:
 #. Install the RPMs
 
    .. code-block:: sh
+   
       # Make sure the puppet agent cron job does not run and pick up any
       # interim changes, including Puppet application RPM updates, until you
       # are ready for these changes.
