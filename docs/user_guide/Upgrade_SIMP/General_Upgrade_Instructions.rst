@@ -91,6 +91,11 @@ steps as ``root``:
 #. Install the RPMs
 
    .. code-block:: sh
+   
+      # Make sure the puppet agent cron job does not run and pick up any
+      # interim changes, including Puppet application RPM updates, until you
+      # are ready for these changes.
+      puppet agent --disable
 
       # Make sure yum picks up the new RPMs
       yum clean all; yum makecache
@@ -118,11 +123,12 @@ steps as ``root``:
      /usr/local/sbin/simp_generate_types -p /etc/puppetlabs/code/environments/test
 
 
-#. Apply the changes by running ``puppet``
+#. Re-enable Puppet and apply the changes
 
 
    .. code-block:: sh
 
+      puppet agent --enable
       puppet agent -t
 
 Upgrading systems that use control repositories
