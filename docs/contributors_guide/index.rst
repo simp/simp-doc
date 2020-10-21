@@ -9,5 +9,6 @@ Contributing to SIMP
   Introduction
   Contribution_Procedure
   Maintenance_Procedure
+  Documentation
   Testing_on_FIPS_Systems
   Resources

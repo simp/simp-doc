@@ -7,7 +7,7 @@ Upgrading from SIMP-6.3.2 to SIMP-6.3.3
    :depth: 3
 
 The 6.3.3 release of SIMP is a bugfix release focusing on a specific issue with
-the updated ``sssd`` module that may cause account lockouts on upgrade
+the updated :pupmod:`sssd` module that may cause account lockouts on upgrade
 depending on how your LDAP accounts have been maintained.
 
 You can follow :ref:`ug-incremental-upgrades` for upgrading.

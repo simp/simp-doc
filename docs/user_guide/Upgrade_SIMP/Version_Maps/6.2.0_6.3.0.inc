@@ -15,8 +15,8 @@ You can follow :ref:`ug-incremental-upgrades` for upgrading with only the
 exception noted below in Upgrade the Puppetserver section.
 
 After the system is upgraded you can enable the environment layer, by giving
-each environment its own hiera.yaml (recommended).  General instructions are
-given in the Updating Hiera section below.
+each environment its own :file:`hiera.yaml` (recommended).  General
+instructions are given in the Updating Hiera section below.
 
 Upgrade the Puppetserver
 ^^^^^^^^^^^^^^^^^^^^^^^^
@@ -27,14 +27,14 @@ the following two edits to the puppet configuration files.  If this is skipped
 the puppet server will not restart after it is upgraded to Puppet 5.
 
 File:
-   /etc/puppetlabs/puppetserver/services.d/ca.cfg
+   :file:`/etc/puppetlabs/puppetserver/services.d/ca.cfg`
 Add line:
-   puppetlabs.trapperkeeper.services.watcher.filesystem-watch-service/filesystem-watch-service
+   :code:`puppetlabs.trapperkeeper.services.watcher.filesystem-watch-service/filesystem-watch-service`
 
 File:
-   /etc/puppetlabs/puppetserver/conf.d/web-routes.conf
+   :file:`/etc/puppetlabs/puppetserver/conf.d/web-routes.conf`
 Add line:
-   "puppetlabs.trapperkeeper.services.metrics.metrics-service/metrics-webservice": "/metrics"
+   :code:`"puppetlabs.trapperkeeper.services.metrics.metrics-service/metrics-webservice": "/metrics"`
 
 Also note that you may see the following warnings multiple times during the upgrade::
 
@@ -50,10 +50,10 @@ This message is innocuous, but unavoidable unless you are comfortable with
 Restart PuppetDB
 ^^^^^^^^^^^^^^^^
 
-At this point, all packages should be updated and the ``puppetserver`` process
-has probably restarted. If you've been using your system with :term:`puppetdb`
-for a while, then you will want to restart the ``puppetdb`` process to ensure a
-successful database migration.
+At this point, all packages should be updated and the :program:`puppetserver`
+process has probably restarted. If you've been using your system with
+:term:`puppetdb` for a while, then you will want to restart the
+:program:`puppetdb` process to ensure a successful database migration.
 
 .. code-block:: bash
 
@@ -67,14 +67,15 @@ One of the major features of :term:`Hiera` 5 is the addition of the
 `environment layer`_.  You can `enable the Hiera environment layer`_ with the
 following steps.
 
-The new ``hiera.yaml`` file is installed by
-``simp-environment-5.3.0-0.<dist>.noarch.rpm`` into
-``/usr/share/simp/environments/simp``.  This hiera.yaml file uses ``data`` as
-the directory instead of ``hieradata``.  (If you have made changes to the hiera
-hierarchy make sure to incorporate these into the file.)
+The new :file:`hiera.yaml` file is installed by
+:package:`simp-environment-5.3.0-0.<dist>.noarch.rpm` into
+:file:`/usr/share/simp/environments/simp`.  This hiera.yaml file uses
+:file:`data/` as the directory instead of :file:`hieradata/`.  (If you have
+made changes to the hiera hierarchy, make sure to incorporate these into the
+file.)
 
-For every environment, copy the new hiera.yaml to the environment and then
-rename the hieradata directory to data.
+For every environment, copy the new :file:`hiera.yaml` to the environment and
+then rename the :file:`hieradata/` directory to :file:`data/`.
 
 .. code-block:: bash
 
@@ -85,7 +86,8 @@ rename the hieradata directory to data.
    mv hieradata data
 
 
-When all the environments are converted, update the global ``hiera.yaml`` file:
+When all the environments are converted, update the global :file:`hiera.yaml`
+file:
 
 .. code-block:: bash
 
@@ -97,7 +99,8 @@ When all the environments are converted, update the global ``hiera.yaml`` file:
    chown root:puppet hiera.yaml
    chmod 640 hiera.yaml
 
-If the ``.rpmnew`` file does not exist the new global ``hiera.yaml`` file should look like:
+If the :file:`.rpmnew` file does not exist the new global :file:`hiera.yaml`
+file should look like:
 
 .. code-block:: ruby
 

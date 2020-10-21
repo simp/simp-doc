@@ -3,6 +3,12 @@
 Contribution Procedure
 ======================
 
+.. contents:: :local:
+   :depth: 3
+
+Contributing updates to SIMP
+----------------------------
+
 We use the standard `GitHub workflow`_ for SIMP development with the exception
 that we use a `Squash and Merge`_ merge method for pulling in changes. This is
 done to maintain a more legible commit history on `master`.
@@ -28,7 +34,8 @@ done to maintain a more legible commit history on `master`.
    when we merge it, so you can use as many commits as you'd like.
 
    .. IMPORTANT::
-      The **first** commit should use the `Commit Message Conventions`_
+      The **first** commit (and/or Pull Request) message should follow our
+      `Commit Message Conventions`_
 
 #. Push your changes to GitHub on your feature branch:
 
@@ -48,7 +55,7 @@ Commit Message Conventions
 
 An example commit message that following the SIMP conventions:
 
-  .. code-block:: none
+  .. code-block:: text
 
      (SIMP-999) Fix the broken thing [50 chars max]
 

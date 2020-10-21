@@ -22,10 +22,12 @@ Puppet masters.
 
    No changes are required on your clients for the upgrade to succeed.
 
-The upgrade script, ``/usr/share/simp/upgrade_scripts/upgrade_simp_6.0.0_to_6.1.0``,
+The upgrade script,
+:file:`/usr/share/simp/upgrade_scripts/upgrade_simp_6.0.0_to_6.1.0`,
 will assist with the upgrade from ``6.0.0`` to ``6.1.0``, taking into account
-all of the specific issues. This script is available in the ``simp-utils-6.1.0``
-package provided by SIMP 6.1.0 or the `simp-utils repository`_.
+all of the specific issues. This script is available in the
+:package:`simp-utils-6.1.0` package provided by SIMP 6.1.0 or the
+:github:`simp-utils` repository.
 
 As always, back up your system prior to upgrading!
 
@@ -38,41 +40,43 @@ As always, back up your system prior to upgrading!
 
 To perform the upgrade, with ``root`` permissions:
 
-#. Upgrade the ``simp-utils`` package, *only*, by executing ``yum update -y simp-utils``.
-#. Run the script: ``/usr/share/simp/upgrade_scripts/upgrade_simp_6.0.0_to_6.1.0``
+#. Upgrade the :package:`simp-utils` package, *only*, by executing
+   :command:`yum update -y simp-utils`.
+#. Run the script: :command:`/usr/share/simp/upgrade_scripts/upgrade_simp_6.0.0_to_6.1.0`
 
 .. NOTE::
 
    This script will:
 
-   #. Run a ``yum -y update``.
-   #. Reinstall ``simp-gpgkeys`` and ``pupmod-simp-timezone`` due to RPM issues.
-   #. Stop and uninstall the PostgresSQL 9.4 server to prevent ``postgresql``
-      upgrade issues.
-   #. Restart the ``puppetserver`` process.
-   #. Run ``puppet agent -t``.
+   #. Run a :command:`yum -y update`.
+   #. Reinstall :package:`simp-gpgkeys` and :package:`pupmod-simp-timezone` due
+      to RPM issues.
+   #. Stop and uninstall the PostgresSQL 9.4 server to prevent
+      :package:`postgresql` upgrade issues.
+   #. Restart the :program:`puppetserver` process.
+   #. Run :command:`puppet agent -t`.
 
-      * Some systems have shown issues with the ``postgresql`` upgrade
+      * Some systems have shown issues with the :package:`postgresql` upgrade
         during this step.
 
 Update auth.conf
 ^^^^^^^^^^^^^^^^
 
-The legacy ``auth.conf``, ``/etc/puppetlabs/puppet/auth.conf``, has been
-deprecated. ``pupmod-simp-pupmod`` will back up the legacy ``auth.conf`` after
-the upgrade.
+The legacy :file:`auth.conf`, :file:`/etc/puppetlabs/puppet/auth.conf`, has
+been deprecated. :package:`pupmod-simp-pupmod` will back up the legacy
+:file:`auth.conf` after the upgrade.
 
-The Puppet master's ``auth.conf`` is now managed by Puppet. You will need to
-reproduce any custom work done to legacy ``auth.conf`` via the new
-``puppet_authorization::rule`` define.  The stock rules are managed in
-``pupmod::master::simp_auth``.
+The Puppet master's :file:`auth.conf` is now managed by Puppet. You will need
+to reproduce any custom work done to legacy :file:`auth.conf` via the new
+:code:`puppet_authorization::rule` define.  The stock rules are managed in
+:code:`pupmod::master::simp_auth`.
 
 Set up ClamAV DAT Files Updates
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 Given the wide spacing of SIMP releases, the team determined that it was
-ineffective for us to maintain the ``simp-rsync-clamav`` RPM with upstream
-ClamAV DAT file updates.
+ineffective for us to maintain the :package:`simp-rsync-clamav` RPM with
+upstream ClamAV DAT file updates.
 
 From this point forward, SIMP will not ship with updated ClamAV DAT files and
 we highly recommend updating your DAT files from the authoritative upstream
@@ -89,4 +93,3 @@ transitory, see `Upgrading a PostgreSQL Cluster`_ for detailed instructions.
 
 .. _ClamAV Virus Database FAQ: https://www.clamav.net/documents/clamav-virus-database-faq.html
 .. _Upgrading a PostgreSQL Cluster: https://www.postgresql.org/docs/9.6/upgrading.html
-.. _simp-utils repository: https://github.com/simp/simp-utils

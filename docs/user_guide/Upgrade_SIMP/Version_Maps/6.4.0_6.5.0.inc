@@ -35,25 +35,25 @@ Survey EL6 Systems
 Ensure Local Modules work with Puppet 6
 """""""""""""""""""""""""""""""""""""""
 
-This release updates ``puppet-agent`` to Puppet 6.  Make sure all of your
+This release updates :program:`puppet-agent` to Puppet 6.  Make sure all of your
 own Puppet modules work with Puppet 6 prior to upgrading.
 
 .. NOTE::
 
-   You may choose to stay on Puppet 5 by not upgrading the ``puppet-agent`` and
-   ``puppetserver`` packages.
+   You may choose to stay on Puppet 5 by not upgrading the :package:`puppet-agent` and
+   :package:`puppetserver` packages.
 
-   If you choose to stay on Puppet 5, please check the ``metadata.json`` for new
+   If you choose to stay on Puppet 5, please check the :file:`metadata.json` for new
    modules to ensure that they still support Puppet 5 prior to using them.
 
 Update NFS settings
 """""""""""""""""""
 
 The NFS Puppet modules have been updated to only accept IP addresses for the
-NFS server in order to support ``firewalld`` integration.  If your site
+NFS server in order to support :program:`firewalld` integration.  If your site
 currently references NFS servers by hostname or FQDN, please change them to IP
 addresses before upgrading.  This affects the parameters
-``simp_nfs::home_dir_server`` and ``nfs::client::mount::nfs_server``.
+:code:`simp_nfs::home_dir_server` and :code:`nfs::client::mount::nfs_server`.
 
 In Hiera:
 
@@ -74,33 +74,35 @@ In Puppet code:
 Update DNS RNDC key
 """""""""""""""""""
 
-(The following only needs to be done if you are using ``pupmod-simp-named``
-to configure your DNS server and it copies the files using rsync:)
+(The following only needs to be done if you are using
+:package:`pupmod-simp-named` to configure your DNS server and it copies the
+files using rsync:)
 
-On the SIMP Puppet server, remove the ``rndc.key`` from the rsync directories:
+On the SIMP Puppet server, remove the :file:`rndc.key` from the rsync
+directories:
 
 .. code-block:: sh
 
    find /var/simp/environments/ -name rndc.key -exec rm -f {} \;
 
-On your DNS servers, view the ``/etc/rndc.key``.  If the algorithm is
+On your DNS servers, view the :file:`/etc/rndc.key`.  If the algorithm is
 ``hmac-md5``, generate a new rndc key:  Replace ``<keyname>`` with the name
-in the key field in your ``/etc/rndc.key`` files.  (It should be the same as
-the name used in your ``/etc/named.conf``.)
+in the key field in your :file:`/etc/rndc.key` files.  (It should be the same
+as the name used in your :file:`/etc/named.conf`.)
 
 .. code-block:: sh
 
    rndc-confgen -a -k <keyname> -b 256
 
-Set ``svckill::mode`` to ``warning``
-""""""""""""""""""""""""""""""""""""
+Set :code:`svckill::mode` to ``warning``
+"""""""""""""""""""""""""""""""""""""""""
 
 Puppet recently made changes to how it internally enumerates services, with the
-consequence that, *if ``svckill::mode`` is set to ``enforcing``*, it is possible
-that it could kill critical system services between updating to the new Puppet
-version and deploying the new Puppet modules.
+consequence that, if :code:`svckill::mode` is set to ``enforcing``, it is
+possible that it could kill critical system services between updating to the
+new Puppet version and deploying the new Puppet modules.
 
-As a safety precaution before upgrading, set ``svckill::mode`` from
+As a safety precaution before upgrading, set :code:`svckill::mode` from
 ``enforcing``  to ``warning`` until SIMP 6.5.0's Puppet modules have been
 deployed.
 
@@ -114,19 +116,21 @@ In Hiera:
 Uninstall out-of-date Puppet modules
 """"""""""""""""""""""""""""""""""""
 
-This only affects user with a :ref:`Local deployment scenario<ug-sa-env-deployment-scenarios--local>`.
-The following list of optional Puppet modules required by the ``simp-extras``
-RPM were not updated for SIMP 6.5.0.
+This only affects user with a :ref:`Local deployment
+scenario<ug-sa-env-deployment-scenarios--local>`.  The following list of
+optional Puppet modules required by the
+:package:`simp-extras` RPM were not updated for SIMP 6.5.0.
 
-If they are present, they will cause ``yum update`` to fail. If you installed
-them by installing ``simp-extras``, then updating ``simp-extras`` will
-automatically resolve the dependencies.  Otherwise you must do a ``yum remove``
-of any of the following rpms installed on your system:
+If they are present, they will cause :command:`yum update` to fail. If you
+installed them by installing :package:`simp-extras`, then updating
+:package:`simp-extras` will automatically resolve the dependencies.  Otherwise
+you must do a :command:`yum remove` of any of the following rpms installed on
+your system:
 
-  - ``pupmod-simp-journald``
-  - ``pupmod-simp-simp_snmpd``
-  - ``pupmod-simp-simp_gitlab``
-  - ``pupmod-puppetlabs-docker``
+  - :package:`pupmod-simp-journald`
+  - :package:`pupmod-simp-simp_snmpd`
+  - :package:`pupmod-simp-simp_gitlab`
+  - :package:`pupmod-puppetlabs-docker`
 
 Note that this will **not** remove the local git repositories created for
 each Puppet module during previous SIMP RPM installations.  The git
@@ -156,22 +160,23 @@ the SIMP 6.5.0 updates have been made to the system.
 After Upgrading to 6.5.0
 ^^^^^^^^^^^^^^^^^^^^^^^^
 
-Set ``svckill::mode`` back to ``enforcing`` (if applicable)
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+Set :code:`svckill::mode` back to ``enforcing`` (if applicable)
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
-If you changed ``svckill::mode`` from ``enforcing`` to ``warning`` before the
-upgrade, you can set it back to ``enforcing`` after the upgrade is complete.
+If you changed :code:`svckill::mode` from ``enforcing`` to ``warning`` before
+the upgrade, you can set it back to ``enforcing`` after the upgrade is
+complete.
 
 Mcstransd syslog errors
 """""""""""""""""""""""
 
-If the ``mcstransd`` daemon is enabled on a system, changes to how ``/proc`` was
-mounted to allow ``polkit`` to work can cause ``mcstransd`` to send a lot of
-errors to the system log.
+If the :program:`mcstransd` daemon is enabled on a system, changes to how
+:file:`/proc` was mounted to allow :program:`polkit` to work can cause
+:program:`mcstransd` to send a lot of errors to the system log.
 
-``pupmod-simp-selinux`` has been updated with a fix for this but it no longer
-manages ``mcstransd`` by default.  To manage ``mcstransd`` with the
-``simp-selinux`` module, set the following in Hiera:
+:pupmod:`simp-selinux` has been updated with a fix for this, but it no longer
+manages :program:`mcstransd` by default.  To manage :program:`mcstransd` with
+the :pupmod:`simp-selinux` module, set the following in Hiera:
 
 .. code-block:: yaml
 

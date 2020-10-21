@@ -456,7 +456,7 @@ which are simply available in the repository.
     port = args.to_hash.fetch(:port, 5000)
     require 'mkmf'
     autobuild_cmd = find_executable 'sphinx-autobuild'
-    if autobuild_cmd && false
+    if autobuild_cmd
       cmd = "SIMP_FAST_DOCS=true #{autobuild_cmd} -p #{port} -H 0.0.0.0 --poll --ignore docs/dynamic/\*.rst docs html"
       run_build_cmd(cmd)
     else
