@@ -13,6 +13,5 @@ Please see the following for a list of resources.
 .. toctree::
   :maxdepth: 2
 
-  FAQ
   Public_Resources
   Commercial_Resources
