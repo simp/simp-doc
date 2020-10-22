@@ -37,6 +37,8 @@ Contents:
   changelogs/index
   Getting Started <getting_started_guide/index>
   User Guide <user_guide/index>
+  HOWTO <HOWTO/index>
+  FAQ <FAQ/index>
   Contributing to SIMP <contributors_guide/index>
   Security Concept of Operations <security_conop/index>
   Security Control Mapping <security_mapping/index>
