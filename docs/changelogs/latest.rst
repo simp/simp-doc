@@ -33,24 +33,24 @@ OS compatibility is subject to the following limitations:
   support managing an EL8 SIMP Server or installing SIMP from an EL8 ISO.
 
   * EL8 management is supported by all Puppet modules provided as core
-    dependencies of the ``simp`` RPM.
-  * Not all modules provided by the ``simp-extras`` RPM have been updated
+    dependencies of the :package:`simp` RPM.
+  * Not all modules provided by the :package:`simp-extras` RPM have been updated
     for EL8.
-  * EL8 updates to the remaining ``simp-extras`` modules will be phased in over
-    future SIMP releases.
+  * EL8 updates to the remaining :package:`simp-extras` modules will be phased
+    in over future SIMP releases.
   * Support for managing an EL8 SIMP/Puppet server and installing from
-    EL8 ISOs) will be provided in a later SIMP release (SIMP 6.6.0).
+    EL8 ISOs will be provided in a later SIMP release (SIMP 6.6.0).
 
 * Support for managing EL6 system is drawing down.
 
   * EL6 maintenance support is EOL for both RHEL 6 and CentOS 6, and upstream
     vendor support will end on 30 November 2020.
   * New Puppet modules may not support EL6.
-  * Some optional Puppet modules (provided by the ``simp-extras`` RPM package)
-    no longer support EL6. In particular, this affects ``simp-autofs``,
-    ``simp-nfs``, and ``simp-simp_nfs``.  If you need those capabilities on
-    EL6, use earlier versions of these modules in EL6-specific Puppet
-    environments.
+  * Some optional Puppet modules (provided by the :package:`simp-extras` RPM)
+    no longer support EL6. In particular, this affects :pupmod:`simp/autofs`,
+    :pupmod:`simp/nfs`, and :pupmod:`simp/simp_nfs`.  If you need those
+    capabilities on EL6, use earlier versions of these modules in EL6-specific
+    Puppet environments.
 
 
 Breaking Changes
@@ -64,29 +64,29 @@ have now been removed in order to fully support Puppet 6. The affected
 functions and their replacements (when available) are listed in sub-sections
 below.
 
-Puppet 3 Functions Removed from simp-compliance_markup
+Puppet 3 Functions Removed from simp/compliance_markup
 """"""""""""""""""""""""""""""""""""""""""""""""""""""
 
-+-----------------------+---------------------------------------+---------------------------------+
-| Puppet 3 API Function | Replacement                           | Replacement Source              |
-+=======================+=======================================+=================================+
-| ``compliance_map``    | ``compliance_markup::compliance_map`` | simp-compliance_markup >= 3.0.0 |
-+-----------------------+---------------------------------------+---------------------------------+
++---------------------------+-------------------------------------------+-------------------------------------------+
+| Puppet 3 API Function     | Replacement                               | Replacement Source                        |
++===========================+===========================================+===========================================+
+| :code:`compliance_map`    | :code:`compliance_markup::compliance_map` | :pupmod:`simp/compliance_markup` >= 3.0.0 |
++---------------------------+-------------------------------------------+-------------------------------------------+
 
-Puppet 3 Functions Removed from simp-simp_apache
+Puppet 3 Functions Removed from simp/simp_apache
 """"""""""""""""""""""""""""""""""""""""""""""""
 
-+--------------------------+---------------------------------------+---------------------------+
-| Puppet 3 API Function    | Replacement                           | Replacement Source        |
-+==========================+=======================================+===========================+
-| ``apache_auth``          | ``simp_apache::auth``                 | simp-simp_apache >= 6.0.1 |
-+--------------------------+---------------------------------------+---------------------------+
-| ``apache_limits``        | ``simp_apache::limits``               | simp-simp_apache >= 6.0.1 |
-+--------------------------+---------------------------------------+---------------------------+
-| ``munge_httpd_networks`` | ``simp_apache::munge_httpd_networks`` | simp-simp_apache >= 6.0.1 |
-+--------------------------+---------------------------------------+---------------------------+
++------------------------------+-------------------------------------------+-------------------------------------+
+| Puppet 3 API Function        | Replacement                               | Replacement Source                  |
++==============================+===========================================+=====================================+
+| :code:`apache_auth`          | :code:`simp_apache::auth`                 | :pupmod:`simp/simp_apache` >= 6.0.1 |
++------------------------------+-------------------------------------------+-------------------------------------+
+| :code:`apache_limits`        | :code:`simp_apache::limits`               | :pupmod:`simp/simp_apache` >= 6.0.1 |
++------------------------------+-------------------------------------------+-------------------------------------+
+| :code:`munge_httpd_networks` | :code:`simp_apache::munge_httpd_networks` | :pupmod:`simp/simp_apache` >= 6.0.1 |
++------------------------------+-------------------------------------------+-------------------------------------+
 
-Puppet 3 Functions Removed from simp-simplib
+Puppet 3 Functions Removed from simp/simplib
 """"""""""""""""""""""""""""""""""""""""""""
 
 .. IMPORTANT::
@@ -96,129 +96,129 @@ Puppet 3 Functions Removed from simp-simplib
    essential to you, let us know by submitting a feature request at
    https://simp-project.atlassian.net.
 
-+------------------------------+--------------------------------------------+-------------------------------+
-| Puppet 3 API Function        | Replacement                                | Replacement Source            |
-+==============================+============================================+===============================+
-| ``array_include``            | Puppet language `in`_ operator *or* Puppet | Puppet >= 5.2.0               |
-|                              | built-in functions ``any`` or ``all``      |                               |
-+------------------------------+--------------------------------------------+-------------------------------+
-| ``array_size``               | Puppet built-in function ``length``        | Puppet >= 5.5.0               |
-+------------------------------+--------------------------------------------+-------------------------------+
-| ``array_union``              | Puppet language `+ (concatenation)`_       | Puppet >= 5.0.0               |
-|                              | operator, combined with Puppet built-in    |                               |
-|                              | function ``unique``                        |                               |
-+------------------------------+--------------------------------------------+-------------------------------+
-| ``bracketize``               | ``simplib::bracketize``                    | simp-simplib >= 3.15.0        |
-+------------------------------+--------------------------------------------+-------------------------------+
-| ``generate_reboot_msg``      | None                                       | N/A                           |
-+------------------------------+--------------------------------------------+-------------------------------+
-| ``get_ports``                | None                                       | N/A                           |
-+------------------------------+--------------------------------------------+-------------------------------+
-| ``h2n``                      | None                                       | N/A                           |
-+------------------------------+--------------------------------------------+-------------------------------+
-| ``host_is_me``               | ``simplib::host_is_me``                    | simp-simplib >= 3.15.0        |
-+------------------------------+--------------------------------------------+-------------------------------+
-| ``inspect``                  | ``simplib::inspect``                       | simp-simplib >= 3.3.0         |
-+------------------------------+--------------------------------------------+-------------------------------+
-| ``ipaddresses``              | ``simplib::ipaddresses``                   | simp-simplib >= 3.5.0         |
-+------------------------------+--------------------------------------------+-------------------------------+
-| ``ip_is_me``                 | ``simplib::host_is_me`` (checks hostnames  | simp-simplib >= 3.15.0        |
-|                              | and IP addresses)                          |                               |
-+------------------------------+--------------------------------------------+-------------------------------+
-| ``ip_to_cron``               | ``simplib::ip_to_cron``                    | simp-simplib >= 3.5.0         |
-+------------------------------+--------------------------------------------+-------------------------------+
-| ``join_mount_opts``          | ``simplib::join_mount_opts``               | simp-simplib >= 3.8.0         |
-+------------------------------+--------------------------------------------+-------------------------------+
-| ``localuser``                | None                                       | N/A                           |
-+------------------------------+--------------------------------------------+-------------------------------+
-| ``mapval``                   | None                                       | N/A                           |
-+------------------------------+--------------------------------------------+-------------------------------+
-| ``nets2cidr``                | ``simplib::nets2cidr``                     | simp-simplib >= 3.7.0         |
-+------------------------------+--------------------------------------------+-------------------------------+
-| ``nets2ddq``                 | ``simplib::nets2ddq``                      | simp-simplib >= 3.8.0         |
-+------------------------------+--------------------------------------------+-------------------------------+
-| ``parse_hosts``              | ``simplib::parse_hosts``                   | simp-simplib >= 3.5.0         |
-+------------------------------+--------------------------------------------+-------------------------------+
-| ``passgen``                  | ``simplib::passgen``                       | simp-simplib >= 3.5.0         |
-+------------------------------+--------------------------------------------+-------------------------------+
-| ``rand_cron``                | ``simplib::rand_cron``                     | simp-simplib >= 3.5.0         |
-+------------------------------+--------------------------------------------+-------------------------------+
-| ``simp_version``             | ``simplib::simp_version``                  | simp-simplib >= 3.15.0        |
-+------------------------------+--------------------------------------------+-------------------------------+
-| ``simplib_deprecation``      | ``simplib::deprecation``                   | simp-simplib >= 3.5.0         |
-+------------------------------+--------------------------------------------+-------------------------------+
-| ``slice_array``              | Puppet built-in ``slice``                  | Puppet >= 4.0.0               |
-+------------------------------+--------------------------------------------+-------------------------------+
-| ``strip_ports``              | ``simplib::strip_ports``                   | simp-simplib >= 3.5.0         |
-+------------------------------+--------------------------------------------+-------------------------------+
-| ``to_integer``               | Puppet built-in ``Integer`` *or*           | ``Integer``: Puppet >= 4.0.0; |
-|                              | ``simplib::to_integer``                    | ``simplib::to_integer``:      |
-|                              |                                            | simp-simplib >= 3.5.0         |
-+------------------------------+--------------------------------------------+-------------------------------+
-| ``to_string``                | Puppet built-in ``String``                 | ``String``: Puppet >= 4.0.0;  |
-|                              | *or* ``simplib::to_string``                | ``simplib::to_string``:       |
-|                              |                                            | simp-simplib >= 3.5.0         |
-+------------------------------+--------------------------------------------+-------------------------------+
-| ``validate_array_member``    | ``simplib::validate_array_member``         | simp-simplib >= 3.8.0         |
-+------------------------------+--------------------------------------------+-------------------------------+
-| ``validate_array_of_hashes`` | Use a custom Puppet data type              | Puppet >= 4.0.0               |
-|                              | such as ``Array[Hash]``                    |                               |
-+------------------------------+--------------------------------------------+-------------------------------+
-| ``validate_between``         | Puppet data types ``Integer`` or ``Float`` | simp-simplib >= 3.8.0         |
-|                              |  *or* ``simplib::validate_between``        |                               |
-+------------------------------+--------------------------------------------+-------------------------------+
-| ``validate_bool_simp``       | Use Puppet ``Boolean`` data type           | Puppet: >= 4.0.0;             |
-|                              | *or* ``simplib::validate_bool``            | simp-simplib >= 3.8.0         |
-+------------------------------+--------------------------------------------+-------------------------------+
-| ``validate_deep_hash``       | ``simplib::validate_deep_hash``            | simp-simplib >= 3.8.0         |
-+------------------------------+--------------------------------------------+-------------------------------+
-| ``validate_float``           | Use Puppet ``Float`` data type             | Puppet: >= 4.0.0;             |
-|                              | *or* a check using ``is_float``            | ``is_float``:                 |
-|                              | from ``puppetlabs-stdlib``                 | puppetlabs-stdlib >= 2.2.0    |
-+------------------------------+--------------------------------------------+-------------------------------+
-| ``validate_macaddress``      | Use ``Simplib::Macaddress`` data           | simp-simplib >= 3.7.0         |
-|                              | type                                       |                               |
-+------------------------------+--------------------------------------------+-------------------------------+
-| ``validate_net_list``        | Use ``Simplib::Netlist`` data              | simp-simplib >= 3.5.0         |
-|                              | type *or*                                  |                               |
-|                              | ``simplib::validate_net_list``             |                               |
-+------------------------------+--------------------------------------------+-------------------------------+
-| ``validate_port``            | Use ``Simplib::Port`` data type            | simp-simplib >= 3.5.0         |
-|                              | *or*                                       |                               |
-|                              | ``simplib::validate_net_list``             |                               |
-+------------------------------+--------------------------------------------+-------------------------------+
-| ``validate_re_array``        | ``simplib::validate_re_array``             | simp-simplib >= 3.7.0         |
-+------------------------------+--------------------------------------------+-------------------------------+
-| ``validate_sysctl_value``    | ``simplib::validate_sysctl_value``         | simp-simplib >= 3.7.0         |
-+------------------------------+--------------------------------------------+-------------------------------+
-| ``validate_umask``           | Use ``Simplib::Umask`` data type           | simp-simplib >= 3.7.0         |
-+------------------------------+--------------------------------------------+-------------------------------+
-| ``validate_uri_list``        | ``simplib::validate_sysctl_value``         | simp-simplib >= 3.7.0         |
-+------------------------------+--------------------------------------------+-------------------------------+
++----------------------------------+--------------------------------------------+-----------------------------------+
+| Puppet 3 API Function            | Replacement                                | Replacement Source                |
++==================================+============================================+===================================+
+| :code:`array_include`            | Puppet language `in`_ operator *or* Puppet | Puppet >= 5.2.0                   |
+|                                  | built-in functions :code:`any` or          |                                   |
+|                                  | :code:`all`                                |                                   |
++----------------------------------+--------------------------------------------+-----------------------------------+
+| :code:`array_size`               | Puppet built-in function :code:`length`    | Puppet >= 5.5.0                   |
++----------------------------------+--------------------------------------------+-----------------------------------+
+| :code:`array_union`              | Puppet language `+ (concatenation)`_       | Puppet >= 5.0.0                   |
+|                                  | operator, combined with Puppet built-in    |                                   |
+|                                  | function :code:`unique`                    |                                   |
++----------------------------------+--------------------------------------------+-----------------------------------+
+| :code:`bracketize`               | :code:`simplib::bracketize`                | :pupmod:`simp/simplib` >= 3.15.0  |
++----------------------------------+--------------------------------------------+-----------------------------------+
+| :code:`generate_reboot_msg`      | None                                       | N/A                               |
++----------------------------------+--------------------------------------------+-----------------------------------+
+| :code:`get_ports`                | None                                       | N/A                               |
++----------------------------------+--------------------------------------------+-----------------------------------+
+| :code:`h2n`                      | None                                       | N/A                               |
++----------------------------------+--------------------------------------------+-----------------------------------+
+| :code:`host_is_me`               | :code:`simplib::host_is_me`                | :pupmod:`simp/simplib` >= 3.15.0  |
++----------------------------------+--------------------------------------------+-----------------------------------+
+| :code:`inspect`                  | :code:`simplib::inspect`                   | :pupmod:`simp/simplib` >= 3.3.0   |
++----------------------------------+--------------------------------------------+-----------------------------------+
+| :code:`ipaddresses`              | :code:`simplib::ipaddresses`               | :pupmod:`simp/simplib` >= 3.5.0   |
++----------------------------------+--------------------------------------------+-----------------------------------+
+| :code:`ip_is_me`                 | :code:`simplib::host_is_me` (checks        | :pupmod:`simp/simplib` >= 3.15.0  |
+|                                  | hostnames and IP addresses)                |                                   |
++----------------------------------+--------------------------------------------+-----------------------------------+
+| :code:`ip_to_cron`               | :code:`simplib::ip_to_cron`                | :pupmod:`simp/simplib` >= 3.5.0   |
++----------------------------------+--------------------------------------------+-----------------------------------+
+| :code:`join_mount_opts`          | :code:`simplib::join_mount_opts`           | :pupmod:`simp/simplib` >= 3.8.0   |
++----------------------------------+--------------------------------------------+-----------------------------------+
+| :code:`localuser`                | None                                       | N/A                               |
++----------------------------------+--------------------------------------------+-----------------------------------+
+| :code:`mapval`                   | None                                       | N/A                               |
++----------------------------------+--------------------------------------------+-----------------------------------+
+| :code:`nets2cidr`                | :code:`simplib::nets2cidr`                 | :pupmod:`simp/simplib` >= 3.7.0   |
++----------------------------------+--------------------------------------------+-----------------------------------+
+| :code:`nets2ddq`                 | :code:`simplib::nets2ddq`                  | :pupmod:`simp/simplib` >= 3.8.0   |
++----------------------------------+--------------------------------------------+-----------------------------------+
+| :code:`parse_hosts`              | :code:`simplib::parse_hosts`               | :pupmod:`simp/simplib` >= 3.5.0   |
++----------------------------------+--------------------------------------------+-----------------------------------+
+| :code:`passgen`                  | :code:`simplib::passgen`                   | :pupmod:`simp/simplib` >= 3.5.0   |
++----------------------------------+--------------------------------------------+-----------------------------------+
+| :code:`rand_cron`                | :code:`simplib::rand_cron`                 | :pupmod:`simp/simplib` >= 3.5.0   |
++----------------------------------+--------------------------------------------+-----------------------------------+
+| :code:`simp_version`             | :code:`simplib::simp_version`              | :pupmod:`simp/simplib` >= 3.15.0  |
++----------------------------------+--------------------------------------------+-----------------------------------+
+| :code:`simplib_deprecation`      | :code:`simplib::deprecation`               | :pupmod:`simp/simplib` >= 3.5.0   |
++----------------------------------+--------------------------------------------+-----------------------------------+
+| :code:`slice_array`              | Puppet built-in :code:`slice`              | Puppet >= 4.0.0                   |
++----------------------------------+--------------------------------------------+-----------------------------------+
+| :code:`strip_ports`              | :code:`simplib::strip_ports`               | :pupmod:`simp/simplib` >= 3.5.0   |
++----------------------------------+--------------------------------------------+-----------------------------------+
+| :code:`to_integer`               | Puppet built-in :code:`Integer` *or*       | :code:`Integer`: Puppet >= 4.0.0; |
+|                                  | :code:`simplib::to_integer`                | :code:`simplib::to_integer`:      |
+|                                  |                                            | :pupmod:`simp/simplib` >= 3.5.0   |
++----------------------------------+--------------------------------------------+-----------------------------------+
+| :code:`to_string`                | Puppet built-in :code:`String`             | :code:`String`: Puppet >= 4.0.0;  |
+|                                  | *or* :code:`simplib::to_string`            | :code:`simplib::to_string`:       |
+|                                  |                                            | :pupmod:`simp/simplib` >= 3.5.0   |
++----------------------------------+--------------------------------------------+-----------------------------------+
+| :code:`validate_array_member`    | :code:`simplib::validate_array_member`     | :pupmod:`simp/simplib` >= 3.8.0   |
++----------------------------------+--------------------------------------------+-----------------------------------+
+| :code:`validate_array_of_hashes` | Use a custom Puppet data type              | Puppet >= 4.0.0                   |
+|                                  | such as :code:`Array[Hash]`                |                                   |
++----------------------------------+--------------------------------------------+-----------------------------------+
+| :code:`validate_between`         | Puppet data types :code:`Integer` or       | :pupmod:`simp/simplib` >= 3.8.0   |
+|                                  | :code:`Float` *or*                         |                                   |
+|                                  | :code:`simplib::validate_between`          |                                   |
++----------------------------------+--------------------------------------------+-----------------------------------+
+| :code:`validate_bool_simp`       | Use Puppet :code:`Boolean` data type       | Puppet: >= 4.0.0;                 |
+|                                  | *or* :code:`simplib::validate_bool`        | :pupmod:`simp/simplib` >= 3.8.0   |
++----------------------------------+--------------------------------------------+-----------------------------------+
+| :code:`validate_deep_hash`       | :code:`simplib::validate_deep_hash`        | :pupmod:`simp/simplib` >= 3.8.0   |
++----------------------------------+--------------------------------------------+-----------------------------------+
+| :code:`validate_float`           | Use Puppet :code:`Float` data type         | Puppet: >= 4.0.0;                 |
+|                                  | *or* a check using :code:`is_float`        | :code:`is_float`:                 |
+|                                  | from :pupmod:`puppetlabs/stdlib`           | :pupmod:`puppetlabs/stdlib` >=    |
+|                                  |                                            | 2.2.0                             |
++----------------------------------+--------------------------------------------+-----------------------------------+
+| :code:`validate_macaddress`      | Use :code:`Simplib::Macaddress` data type  | :pupmod:`simp/simplib` >= 3.7.0   |
++----------------------------------+--------------------------------------------+-----------------------------------+
+| :code:`validate_net_list`        | Use :code:`Simplib::Netlist` data type     | :pupmod:`simp/simplib` >= 3.5.0   |
+|                                  | *or* :code:`simplib::validate_net_list`    |                                   |
++----------------------------------+--------------------------------------------+-----------------------------------+
+| :code:`validate_port`            | Use :code:`Simplib::Port` data type *or*   | :pupmod:`simp/simplib` >= 3.5.0   |
+|                                  | :code:`simplib::validate_net_list`         |                                   |
++----------------------------------+--------------------------------------------+-----------------------------------+
+| :code:`validate_re_array`        | :code:`simplib::validate_re_array`         | :pupmod:`simp/simplib` >= 3.7.0   |
++----------------------------------+--------------------------------------------+-----------------------------------+
+| :code:`validate_sysctl_value`    | :code:`simplib::validate_sysctl_value`     | :pupmod:`simp/simplib` >= 3.7.0   |
++----------------------------------+--------------------------------------------+-----------------------------------+
+| :code:`validate_umask`           | Use :code:`Simplib::Umask` data type       | :pupmod:`simp/simplib` >= 3.7.0   |
++----------------------------------+--------------------------------------------+-----------------------------------+
+| :code:`validate_uri_list`        | :code:`simplib::validate_sysctl_value`     | :pupmod:`simp/simplib` >= 3.7.0   |
++----------------------------------+--------------------------------------------+-----------------------------------+
 
 .. _in:                https://puppet.com/docs/puppet/6.18/lang_expressions.html#in
 .. _+ (concatenation): https://puppet.com/docs/puppet/6.18/lang_expressions.html#+-(concatenation)
 
-simp-ssh Removed Functions
-""""""""""""""""""""""""""
+Puppet 3 Functions Removed from simp/ssh
+""""""""""""""""""""""""""""""""""""""""
 
-+----------------------------+-----------------------------+--------------------+
-| Puppet 3 API Function      | Replacement                 | Replacement Source |
-+============================+=============================+====================+
-| ``ssh_autokey``            | ``ssh::autokey``            | simp-ssh >= 6.2.0  |
-+----------------------------+-----------------------------+--------------------+
-| ``ssh_global_known_hosts`` | ``ssh::global_known_hosts`` | simp-ssh >= 6.2.0  |
-+----------------------------+-----------------------------+--------------------+
++--------------------------------+---------------------------------+------------------------------+
+| Puppet 3 API Function          | Replacement                     | Replacement Source           |
++================================+=================================+==============================+
+| :code:`ssh_autokey`            | :code:`ssh::autokey`            | :pupmod:`simp/ssh` >= 6.2.0  |
++--------------------------------+---------------------------------+------------------------------+
+| :code:`ssh_global_known_hosts` | :code:`ssh::global_known_hosts` | :pupmod:`simp/ssh` >= 6.2.0  |
++--------------------------------+---------------------------------+------------------------------+
 
 Primary API Changed in Optional Modules
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-The following SIMP modules from the ``simp-extras`` RPM have had breaking API
-changes:
+The following SIMP modules from the :package:`simp-extras` RPM have had breaking
+API changes:
 
-* ``simp-autofs``
-* ``simp-nfs``
-* ``simp-simp_nfs``
+* :pupmod:`simp/autofs`
+* :pupmod:`simp/nfs`
+* :pupmod:`simp/simp_nfs`
 
 The specific changes made are described in detail the New Features section.
 
@@ -229,9 +229,9 @@ EL6 Support Dropped from Some (Optional) Puppet Modules
 
 The following optional SIMP modules have dropped support for EL6:
 
-* ``simp-autofs``
-* ``simp-nfs``
-* ``simp-simp_nfs``
+* :pupmod:`simp/autofs`
+* :pupmod:`simp/nfs`
+* :pupmod:`simp/simp_nfs`
 
 If you need EL6 for a client node, place it in an environment with
 older versions of the appropriate modules.
@@ -244,62 +244,64 @@ EL8 SIMP Client Node Support
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 This release provides support for EL8 clients.
-This includes all (appropriate) Puppet modules provided by the ``simp`` RPM, and
-a subset of the Puppet modules provided by the ``simp-extras`` RPM.
+This includes all (appropriate) Puppet modules provided by the :package:`simp`
+RPM, and a subset of the Puppet modules provided by the :package:`simp-extras`
+RPM.
 
 * The remaining changes required for an EL8 SIMP server and ISO will be
   available in the next SIMP minor release.
 * EL8 updates to the remaining, optional, Puppet modules will be phased in
   over future SIMP releases. This includes the following SIMP modules:
 
-  * ``simp-gdm``
-  * ``simp-gnome``
-  * ``simp_hirs_provisioner``
-  * ``simp-mate``
-  * ``simp-simp_gitlab``
-  * ``simp-simp_pki_service``
-  * ``simp-simp_snmpd``
-  * ``simp-tuned``
-  * ``simp-vnc``
-  * ``simp-x2go``
+  * :pupmod:`simp/gdm`
+  * :pupmod:`simp/gnome`
+  * :pupmod:`simp_hirs_provisioner`
+  * :pupmod:`simp/mate`
+  * :pupmod:`simp/simp_gitlab`
+  * :pupmod:`simp/simp_pki_service`
+  * :pupmod:`simp/simp_snmpd`
+  * :pupmod:`simp/tuned`
+  * :pupmod:`simp/vnc`
+  * :pupmod:`simp/x2go`
 
 Full Puppet 6 Support and Puppet 6 Default Components
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-All SIMP Puppet modules now work with both Puppet 5 and Puppet 6, and the SIMP-6.5.0
-ISOs deliver Puppet 6 application RPMs.
+All SIMP Puppet modules now work with both Puppet 5 and Puppet 6, and the
+SIMP-6.5.0 ISOs deliver Puppet 6 application RPMs.
 
 firewalld Support
 ^^^^^^^^^^^^^^^^^
 
-As of SIMP 6.5.0, preliminary ``firewalld`` support within the SIMP ecosystem
-is now available.
+As of SIMP 6.5.0, preliminary :program:`firewalld` support within the SIMP
+ecosystem is now available.
 
-* **New simp-simp_firewalld module**: SIMP now includes ``simp-simp_firewalld``
-  which provides a profile class and defined type to manage the system's
-  ``firewalld`` with "safe" defaults and safety checks for ``firewalld`` rules.
-* **firewalld support in simp-iptables for backward compatibility**:  The
-  ``simp-iptables`` module has preliminary support for acting as a pass-through
-  to various ``firewalld`` capabilities using the ``simp-simp_firewalld``
-  module.
+* **New simp/simp_firewalld module**: SIMP now includes
+  :pupmod:`simp/simp_firewalld` which provides a profile class and defined type
+  to manage the system's :program:`firewalld` with "safe" defaults and safety
+  checks for :program:`firewalld` rules.
+* **firewalld support in simp/iptables for backward compatibility**:  The
+  :pupmod:`simp/iptables` module has preliminary support for acting as a
+  pass-through to various :program:`firewalld` capabilities using the
+  :pupmod:`simp/simp_firewalld` module.
 
-  * To enable ``firewalld`` mode on supported operating systems, simply set
-    ``iptables::use_firewalld`` to ``true`` via Hiera.
-  * EL8 systems enable ``firewalld`` mode by default.
-  * Use of any of the ``iptables::listen::*`` defined types will work
-    seamlessly in ``firewalld`` mode, as long as IP addresses are used
-    in their ``trusted_net`` parameters.
-  * Direct calls to ``iptables::rule`` in ``firewalld`` mode will emit
-    a warning notification that directs the user to convert their rules to
-    ``simp_iptables::rule`` types.
+  * To enable 'firewalld' mode on supported operating systems, simply set
+    :code:`iptables::use_firewalld` to :code:`true` via :term:`Hiera`.
+  * EL8 systems enable 'firewalld' mode by default.
+  * Use of any of the :code:`iptables::listen::*` defined types will work
+    seamlessly in 'firewalld' mode, as long as IP addresses are used in their
+    :code:`trusted_net` parameters.
+  * Direct calls to :code:`iptables::rule` in 'firewalld' mode will emit a
+    warning notification that directs the user to convert their rules to
+    :code:`simp_iptables::rule` types.
 
 .. IMPORTANT::
 
-   Be aware that ``firewalld`` rules do not support hostnames; IP addresses
-   must be used. This may impact any manifests that contain
-   ``iptables::listen::*`` resources, including resources from some SIMP
+   Be aware that :program:`firewalld` rules do not support hostnames; IP
+   addresses must be used. This may impact any manifests that contain
+   :code:`iptables::listen` resources, including resources from some SIMP
    modules. You will have to change hostnames to IP addresses for the
-   affected resources when using ``firewalld``.
+   affected resources when using :program:`firewalld`.
 
 Optional Dependency Handling
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -313,12 +315,12 @@ when the user is not using SIMP to manage specific capabilities.
 
 Key details about this feature are as follows:
 
-* Optional module dependencies are indicated in the *metadata.json* file using
-  an 'optional_dependencies' key within a 'simp' key.  For example,
-  `puppet-rsyslog's metadata.json <https://github.com/simp/pupmod-simp-rsyslog/blob/7.6.2/metadata.json>`_.
+* Optional module dependencies are indicated in the :file:`metadata.json` file
+  using an 'optional_dependencies' key within a 'simp' key.  For example,
+  `simp/rsyslog's metadata.json <https://github.com/simp/pupmod-simp-rsyslog/blob/7.6.2/metadata.json>`_.
 * The user has complete control over installation of the optional dependency
   modules.  These dependencies will not be installed automatically when
-  the module using them is installed via ``puppet module install``.
+  the module using them is installed via :code:`puppet module install`.
 * Modules that use this feature will fail manifest compilation, if
   the user enables the optional capabilities, but the optional dependencies
   required to implement that capability are not installed in the environment.
@@ -330,8 +332,8 @@ SIMP updated as many dependent modules as possible. This included major version
 bumps for several of the dependent modules. These changes did not have
 a significant impact on the SIMP infrastructure. The dependency version bumps
 did, however, require some of the SIMP modules to update their respective
-``metadata.json`` files.  These metadata changes, in turn, required SIMP module
-version updates.
+:file:`metadata.json` files.  These metadata changes, in turn, required SIMP
+module version updates.
 
 
 Security Announcements
@@ -351,19 +353,19 @@ Puppet RPMs
 
 The following Puppet RPMs are packaged with the SIMP 6.5.0 ISOs:
 
-+----------------------+----------+
-| Package              | Version  |
-+======================+==========+
-| ``puppet-agent``     | 6.18.0-1 |
-+----------------------+----------+
-| ``puppet-bolt``      | 2.29.0-1 |
-+----------------------+----------+
-| ``puppetdb``         | 6.12.0-1 |
-+----------------------+----------+
-| ``puppetdb-termini`` | 6.12.0-1 |
-+----------------------+----------+
-| ``puppetserver``     | 6.13.0-1 |
-+----------------------+----------+
++-----------------------------+----------+
+| Package                     | Version  |
++=============================+==========+
+| :package:`puppet-agent`     | 6.18.0-1 |
++-----------------------------+----------+
+| :package:`puppet-bolt`      | 2.29.0-1 |
++-----------------------------+----------+
+| :package:`puppetdb`         | 6.12.0-1 |
++-----------------------------+----------+
+| :package:`puppetdb-termini` | 6.12.0-1 |
++-----------------------------+----------+
+| :package:`puppetserver`     | 6.13.0-1 |
++-----------------------------+----------+
 
 .. WARNING::
 
@@ -382,24 +384,24 @@ Unused Augeasproviders Modules
 The following packages for unused Augeasproviders Puppet modules and one
 dependency were removed from the SIMP ISOs:
 
-* ``pupmod-herculesteam-augeasproviders_apache``
-* ``pupmod-herculesteam-augeasproviders_mounttab``
-* ``pupmod-herculesteam-augeasproviders_nagios``
-* ``pupmod-herculesteam-augeasproviders_pam``
-* ``pupmod-herculesteam-augeasproviders_postgresql``
-* ``pupmod-herculesteam-augeasproviders_puppet``
-* ``pupmod-herculesteam-augeasproviders_shellvar``
-* ``pupmod-puppetlabs-mount_providers``
+* :package:`pupmod-herculesteam-augeasproviders_apache`
+* :package:`pupmod-herculesteam-augeasproviders_mounttab`
+* :package:`pupmod-herculesteam-augeasproviders_nagios`
+* :package:`pupmod-herculesteam-augeasproviders_pam`
+* :package:`pupmod-herculesteam-augeasproviders_postgresql`
+* :package:`pupmod-herculesteam-augeasproviders_puppet`
+* :package:`pupmod-herculesteam-augeasproviders_shellvar`
+* :package:`pupmod-puppetlabs-mount_providers`
 
 Docker Modules
 ^^^^^^^^^^^^^^
 
 The packages for the following Docker Puppet modules have been permanently
-removed from the SIMP ISOs, because SIMP is moving towards ``podman`` support
-over ``docker``.
+removed from the SIMP ISOs, because SIMP is moving towards :program:`podman`
+support over :program:`docker`.
 
-* ``pupmod-puppetlabs-docker``
-* ``pupmod-simp-simp_docker``
+* :package:`pupmod-puppetlabs-docker`
+* :package:`pupmod-simp-simp_docker`
 
 Out-of-date Modules
 ^^^^^^^^^^^^^^^^^^^
@@ -408,19 +410,20 @@ The packages for the following SIMP profile Puppet modules and one dependent
 module were temporarily removed from SIMP 6.5.0 ISOs, because they were not
 able to be appropriately updated in time for the release:
 
-* ``pupmod-puppet-gitlab``
-* ``pupmod-simp-simp_gitlab``
-* ``pupmod-simp-simp_snmpd``
+* :package:`pupmod-puppet-gitlab`
+* :package:`pupmod-simp-simp_gitlab`
+* :package:`pupmod-simp-simp_snmpd`
 
 These modules are expected to be updated in future SIMP releases.
 
 pupmod-simp-journald
 ^^^^^^^^^^^^^^^^^^^^
 
-The pupmod-simp-journald package has been removed from SIMP ISOs, because
-the functionality the ``simp-journald`` module provided is now provided by
-the ``camptocamp-systemd`` module.  If you used ``simp-journald``, you will
-need to update your manifests to use ``camptocamp-systemd``.
+The :package:`pupmod-simp-journald` package has been removed from SIMP ISOs,
+because the functionality the :pupmod:`simp/journald` module provided is now
+provided by the :pupmod:`camptocamp/systemd` module. If you used
+:pupmod:`simp/journald`, you will need to update your manifests to use
+:pupmod:`camptocamp/systemd`.
 
 
 Fixed Bugs
@@ -434,18 +437,18 @@ pupmod-simp-aide
 pupmod-simp-auditd
 ^^^^^^^^^^^^^^^^^^
 
-* Fixed a bug in which the auditd service was managed when the kernel was
-  not enforcing auditing.
+* Fixed a bug in which the :program:`auditd` service was managed when the kernel
+  was not enforcing auditing.
 * Fixed a bug in which the facts were not properly confined.
-* Fixed a bug in which ``/etc/audit/audit.rules.prev`` caused unnecessary
+* Fixed a bug in which :file:`/etc/audit/audit.rules.prev` caused unnecessary
   flapping.
 * Fixed regex substitution for bad path characters.
-* Added missing ``herculesteam-augeasproviders_grub`` module dependency.
+* Added missing :pupmod:`herculesteam/augeasproviders_grub` module dependency.
 
 pupmod-simp-dconf
 ^^^^^^^^^^^^^^^^^
 
-* Fixed a bug in ``ensure = absent`` in ``dconf::settings``.
+* Fixed a bug in :code:`ensure = absent` in :code:`dconf::settings`.
 
 pupmod-simp-compliance_markup
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -463,15 +466,15 @@ pupmod-simp-freeradius
 pupmod-simp-iptables
 ^^^^^^^^^^^^^^^^^^^^
 
-* Fixed bugs in iptables rule address normalization:
+* Fixed bugs in :program:`iptables` rule address normalization:
 
   * Ensured that all addresses are normalized when rules are processed.
   * Removed nested looped rule normalization of addresses since it is no longer
     required.
-  * Fixed ``normalize_addresses()`` so that it simply grabs the netmask if
+  * Fixed :code:`normalize_addresses()` so that it simply grabs the netmask if
     present and slaps on the appropriate one if not.
 
-* Fixed some bugs in the 'munge' portions of the native types.
+* Fixed some bugs in the :code:`munge()` portions of the native types.
 
 pupmod-simp-libvirt
 ^^^^^^^^^^^^^^^^^^^
@@ -481,31 +484,32 @@ pupmod-simp-libvirt
 pupmod-simp-logrotate
 ^^^^^^^^^^^^^^^^^^^^^
 
-* Fixed a bug in which the 'size' parameter in the global logrotate
+* Fixed a bug in which the 'size' parameter in the global :program:`logrotate`
   configuration file was specified more than once.
 
 pupmod-simp-network
 ^^^^^^^^^^^^^^^^^^^^^
 
-* Fix a bug where both the legacy network and NetworkManager were activated in
-  all cases.
+* Fix a bug where both the legacy network and :program:`NetworkManager` were
+  activated in all cases.
 
 pupmod-simp-nfs
 ^^^^^^^^^^^^^^^
 
-* Fixed a bug in which IPv6 ``::1`` network entries were not being created in
-  ``/etc/exports``.  This could cause connections over stunnel to fail under
-  certain conditions.
+* Fixed a bug in which IPv6 '::1' network entries were not being created in
+  :file:`/etc/exports`.  This could cause connections over :program:`stunnel`
+  to fail under certain conditions.
 
-* ``rpc.rquotad`` service configuration was erroneously written to
-  ``/etc/sysconfig/nfs`` for EL7. It is now written to the correct file,
-  ``/etc/sysconfig/rpc-rquotad``.
-* Fixed idmapd-related bugs:
+* :program:`rpc.rquotad` service configuration was erroneously written to
+  :file:`/etc/sysconfig/nfs` for EL7. It is now written to the correct file,
+  :file:`/etc/sysconfig/rpc-rquotad`.
+* Fixed :program:`idmapd`-related bugs:
 
-  * ``idmapd`` was erroneously only enabled when NFSv3 was allowed. ``idmapd``
-    is an NFSv4 service.
-  * The idmapd client was not configured to use nfsidmap.  An nfsidmap entry
-    has now been added to ``/etc/request-key.conf``.
+  * :program:`idmapd` was erroneously only enabled when NFSv3 was allowed.
+    :program:`idmapd` is an NFSv4 service.
+  * The :program:`idmapd` client was not configured to use :program:`nfsidmap`.
+    An :program:`nfsidmap` entry has now been added to
+    :file:`/etc/request-key.conf`.
 
 * Fixed bugs in which bidirectional communication for NFSv3 was not properly
   configured.
@@ -513,171 +517,177 @@ pupmod-simp-nfs
   * NFSv3 lockd ports on the NFS client were not explicitly configured and
     thus not allowed through the firewall.  This would have affected file
     locking using NLM.
-  * ``rpcbind``, ``statd``, and ``lockd`` service names were not allowed by TCP
-    wrappers for the NFS client. This would have affected server to client
-    NFSv3 NSM and NLM protocol messages over TCP.
+  * :program:`rpcbind`, :program:`statd`, and :program:`lockd` service names
+    were not allowed by TCP Wrappers for the NFS client. This would have
+    affected server to client NFSv3 NSM and NLM protocol messages over TCP.
 
 * Fixed bugs in mount options
 
-  * Previously used the deprecated ``nfs4`` fstype.  This has been replaced with
-    the ``nfs`` fstype and use of the ``nfsvers`` option to specify the version of
+  * Previously used the deprecated 'nfs4' fstype.  This has been replaced with
+    the 'nfs' fstype and use of the 'nfsvers' option to specify the version of
     NFS to use.
-  * The mount option ``proto`` is now set to ``tcp`` when stunnel is enabled.
+  * The mount option 'proto' is now set to 'tcp' when :code:`stunnel` is
+    enabled.
 
-* Fixed a bug with a duplicate exec resource in ``nfs::client::mount`` when
-  stunnel was enabled.
+* Fixed a bug with a duplicate exec resource in :code:`nfs::client::mount` when
+  :program:`stunnel` was enabled.
 
 * Fixed erroneous server-only/client-only configuration that appeared to be
   able to be set independently for the NFS client and NFS server on the same
   node, but because of shared services, actually applied to the node as a
   whole.
 
-  * Removed ``nfs::client::firewall`` and ``nfs::server::firewall``. Use
-    ``nfs::firewall`` instead.
-  * Removed ``nfs::server::tcpwrappers``. Use ``nfs::tcpwrappers`` instead.
-  * Removed ``nfs::server::nfsv3``, ``nfs::server::lockd_arg``,
-    ``nfs::server::statdarg``, ``nfs::server::statd_ha_callout``,
-    ``nfs::server::rpcgssdargs``, and ``nfs::server::rpcsvcgssdargs``. Use
-    appropriate parameters in the ``nfs`` class instead.
+  * Removed :code:`nfs::client::firewall` and :code:`nfs::server::firewall`.
+    Use :code:`nfs::firewall` instead.
+  * Removed :code:`nfs::server::tcpwrappers`. Use :code:`nfs::tcpwrappers`
+    instead.
+  * Removed :code:`nfs::server::nfsv3`, :code:`nfs::server::lockd_arg`,
+    :code:`nfs::server::statdarg`, :code:`nfs::server::statd_ha_callout`,
+    :code:`nfs::server::rpcgssdargs`, and :code:`nfs::server::rpcsvcgssdargs`.
+    Use appropriate parameters in the :code:`nfs` class instead.
 
 pupmod-simp-pam
 ^^^^^^^^^^^^^^^
 
 * Fixed a bug in which a local user password could not be set.
 
-  * Moved the ``pam_unix.so`` check before the ``pam_sss.so`` check in the
-    password section of the auth files otherwise it returns an "authentication
-    token manipulation" error and local passwords cannot be changed.
+  * Moved the 'pam_unix.so' check before the 'pam_sss.so' check in the
+    password section of the auth files otherwise it returns an
+    ``authentication token manipulation`` error and local passwords cannot be
+    changed.
 
 pupmod-simp-polkit
 ^^^^^^^^^^^^^^^^^^
 
-* Fixed issue with ``basic_policy`` template that resulted in malformed rules.
+* Fixed issue with :code:`basic_policy` template that resulted in malformed
+  rules.
 
 pupmod-simp-pupmod
 ^^^^^^^^^^^^^^^^^^
 
-* Fixed a bug on EL6 nodes in which setting ``pupmod::master::generate_types``
-  to ``false`` caused the catalog compilation to fail.
-* Fixed a bug in puppetserver configuration in which the
-  ``profiler-output-file`` parameter was incorrectly specified as
-  ``profiling-output-file``.
-* Fixed a bug in managing group ownership of ``puppet.conf`` when using
+* Fixed a bug on EL6 nodes in which setting :code:`pupmod::master::generate_types`
+  to :code:`false` caused the catalog compilation to fail.
+* Fixed a bug in :program:`puppetserver` configuration in which the
+  'profiler-output-file' parameter was incorrectly specified as
+  'profiling-output-file'.
+* Fixed a bug in managing group ownership of :file:`puppet.conf` when using
   Puppet Enterprise.
 
-  * Ensured that ``pupmod::pass_two`` does not conflict with the internal
-    :term:`PE` configuration code for group ownership of ``puppet.conf``.
+  * Ensured that :code:`pupmod::pass_two` does not conflict with the internal
+    :term:`PE` configuration code for group ownership of :file:`puppet.conf`.
 
 pupmod-simp-rsyslog
 ^^^^^^^^^^^^^^^^^^^
 
-* Fixed a bug where the ``IncludeConfig`` directive for ``/etc/rsyslog.d``
-  allowed more than just ``.conf`` files to be parsed.
+* Fixed a bug where the 'IncludeConfig' directive for :file:`/etc/rsyslog.d`
+  allowed more than just :file:`.conf` files to be parsed.
 
 pupmod-simp-simp
 ^^^^^^^^^^^^^^^^
 
-* Removed the broken ``tasks/`` directory.
+* Removed the broken :file:`tasks/` directory.
 
 pupmod-simp-simplib
 ^^^^^^^^^^^^^^^^^^^
 
-* Fixed bugs in the ``grub_version`` and ``init_systems`` facts.
-* Fixed the ``simplib__auditd`` fact so that it detects the state of the
-  running auditd process.
-* Fixed ``Simplib::Systemd::ServiceName`` to accept instance services.
-* Fixed an issue in the ``simplib__sshd_config`` fact that would cause the
+* Fixed bugs in the :code:`grub_version` and :code:`init_systems` facts.
+* Fixed the :code:`simplib__auditd` fact so that it detects the state of the
+  running :program:`auditd` process.
+* Fixed :code:`Simplib::Systemd::ServiceName` to accept instance services.
+* Fixed an issue in the :code:`simplib__sshd_config` fact that would cause the
   daemon to start on an EL6 system that did not already have it running.
-* Fixed a bug in which ``simplib__firewalls`` fact was not properly confined
+* Fixed a bug in which :code:`simplib__firewalls` fact was not properly confined
   and would trigger on Windows+  systems.
-* Fixed an issue in ``simplib::ip::family_hash`` where the 'unknown' entries
+* Fixed an issue in :code:`simplib::ip::family_hash` where the 'unknown' entries
   were not properly populated.
-* Fixed bug in which ``simplib::simp_version`` did not work on Windows.
-* Fixed "uninitialized constant" error with the ``reboot_notify`` custom type.
+* Fixed bug in which :code:`simplib::simp_version` did not work on Windows.
+* Fixed ``uninitialized constant`` error with the :code:`reboot_notify` custom
+  type.
 
 pupmod-simp-simp_options
 ^^^^^^^^^^^^^^^^^^^^^^^^
 
-* Fixed :term:`PE` detection in ``simp_options::puppet::server_distribution``.
+* Fixed :term:`PE` detection in :code:`simp_options::puppet::server_distribution`.
 
 pupmod-simp-stunnel
 ^^^^^^^^^^^^^^^^^^^
 
-* Added the ``stunnel::instance_purge`` class to remedy the 'floating services'
-  issue.
+* Added the :code:`stunnel::instance_purge` class to remedy the
+  'floating services' issue.
 
 pupmod-simp-tftpboot
 ^^^^^^^^^^^^^^^^^^^^
 
-* Fixed a bug in which the internal rsync operation did not match the
+* Fixed a bug in which the internal :program:`rsync` operation did not match the
   documentation.
-* Fixed a bug in which the internal rsync operation would flip permissions
-  each puppet agent run.
 * Fixed a manifest ordering issue.
 
 pupmod-simp-tlog
 ^^^^^^^^^^^^^^^^
 
-* Fixed a bug in the tcsh template.
-* Added a workaround to scripts in ``/etc/profile`` to handle a bug in tlog
-  that would prevent logins if the system hostname could not be found.
+* Fixed a bug in the :program:`tcsh` template.
+* Added a workaround to scripts in :file:`/etc/profile` to handle a bug in
+  :program:`tlog` that would prevent logins if the system hostname could
+  not be found.
 
 pupmod-simp-tpm2
 ^^^^^^^^^^^^^^^^
 
-* Fixed a bug where the `tpm2_*` commands could return nothing which would
-  trigger an error in further logic.
+* Fixed a bug where the :program:`tpm2_*` commands could return nothing which
+  would trigger an error in further logic.
 
 pupmod-simp-xinetd
 ^^^^^^^^^^^^^^^^^^
 
-* Removed 'TRAFFIC' from the default ``log_on_success`` list since it may cause
-  information leakage and is not supported by all service types.
+* Removed 'TRAFFIC' from the default :code:`log_on_success` list since it may
+  cause information leakage and is not supported by all service types.
 
 rubygem-simp-cli
 ^^^^^^^^^^^^^^^^
 
-* Fixed a bug in which `simp config` did not allow DNS domains that did
-  not include at least one '.'.  Domains are now validated
-  per RFC 3696.
-* Fixed a bug where 'simp config' recommended the wrong SSSD domain,
-  when the SIMP server was not the LDAP server.  It recommended the
-  'Local' domain, when the appropriate SIMP-created domain with the
-  'local' (EL6) or 'files' (EL7) provider is 'LOCAL'.
-* Fixed a bug in ``simp environment new`` in which the actual failure
-  messages from a failed ``setfacl --restore`` execution were not logged.
-* Fixed a bug where ``simp config --dry-run`` would prompt the user to apply
-  actions instead of skipping them and then writing the
-  ``~/.simp/simp_conf.yaml`` file.
+* Fixed a bug in which :command:`simp config` did not allow DNS domains that
+  did not include at least one dot character.  Domains are now validated per
+  RFC 3696.
+* Fixed a bug where :command:`simp config` recommended the wrong SSSD domain,
+  when the SIMP server was not the LDAP server.  It recommended the 'Local'
+  domain, when the appropriate SIMP-created domain with the 'local' (EL6) or
+  'files' (EL7) provider is named 'LOCAL'.
+* Fixed a bug in :command:`simp environment new` in which the actual failure
+  messages from a failed :command:`setfacl --restore` execution were not logged.
+* Fixed a bug where :command:`simp config --dry-run` would prompt the user to
+  apply actions instead of skipping them and then writing the
+  :file:`~/.simp/simp_conf.yaml` file.
 
-  * Users would answer 'no' to the unexpected apply query and then ``simp config``
-    would only persist the answers to the interim answers file
-    (``~/.simp/.simp_conf.yaml``).
+  * Users would answer 'no' to the unexpected apply query and then
+    :program:`simp config` would only persist the answers to the interim
+    answers file (:file:`~/.simp/.simp_conf.yaml`).
 
-* Fixed Puppet Enterprise support for ``simp config`` and ``simp bootstrap``.
+* Fixed Puppet Enterprise support for :command:`simp config` and
+  :command:`simp bootstrap`.
 
-  * Fixed a fact-loading bug that prevented the :term:`PE` fact ('is_pe') from
-    being available.
-  * Hardened PE-detection logic for cases in which the 'is_pe' fact is not
-    yet available during ``simp config``.
+  * Fixed a fact-loading bug that prevented the :term:`PE` fact (:code:`is_pe`)
+    from being available.
+  * Hardened PE-detection logic for cases in which the :code:`is_pe` fact is
+    not yet available during :command:`simp config`.
   * Added support for SIMP server template Hiera data that is PE-specific.
   * Fixed a bug in which the module paths containing PE modules were not
-    excluded when ``simp config`` checked for modules in the 'production'
+    excluded when :command:`simp config` checked for modules in the 'production'
     Puppet environment. This forced the user to remove the skeleton
-    'production' environment installed by the puppet-agent RPM, in order to get
-    ``simp config`` to run on a freshly installed PE system.
+    'production' environment installed by the :package:`puppet-agent` RPM, in
+    order to get :command:`simp config` to run on a freshly installed PE system.
 
 simp-environment-skeleton
 ^^^^^^^^^^^^^^^^^^^^^^^^^
 
-* When running FakeCA in batch mode, do not request input from the user.
+* When running FakeCA certification-generation scripts in batch mode, do not
+  request input from the user.
 * Fixed a bug in which some non-script files were installed with executable
   permissions.
 
 simp-utils
 ^^^^^^^^^^
 
-* Fixed minor bugs in ``unpack_dvd``.
+* Fixed minor bugs in :program:`unpack_dvd`.
 
 
 New Features
@@ -687,61 +697,64 @@ pupmod-simp-aide
 ^^^^^^^^^^^^^^^^
 
 * Updated the EL8 ciphers to be safe on FIPS systems by default.
-* Removed overrides for ``aide::aliases`` on EL8 since it works properly in FIPS
-  mode.
-* Automatically add ``@@include`` lines to ``aide.conf``.
-  Previously, when declaring ``aide::rule`` resources, it was also
-  necessary to add the rule name to the ``aide::rules`` array.
+* Removed overrides for :code:`aide::aliases` on EL8 since it works properly
+  in FIPS mode.
+* Automatically add '@@include' lines to :file:`aide.conf`.  Previously, when
+  declaring :code:`aide::rule` resources, it was also necessary to add the
+  rule name to the :code:`aide::rules` array.
 * Moved the default rules to data in modules.
 
 pupmod-simp-auditd
 ^^^^^^^^^^^^^^^^^^
 
-* Allow ``auditd::space_left`` and ``auditd::admin_space_left`` to accept
-  percentages on supported versions.
-* Added ``INCREMENTAL_ASYNC`` to possible values for ``auditd::flush``.
-* Added a ``built_in`` audit profile to the subsystem that provides ability
+* Allow :code:`auditd::space_left` and :code:`auditd::admin_space_left` to
+  accept percentages on supported versions.
+* Added 'INCREMENTAL_ASYNC' to possible values for :code:`auditd::flush`.
+* Added a :code:`built_in` audit profile to the subsystem that provides ability
   to include and manage sample rulesets to be compiled into active rules.
-* Ensured that kmod is audited in all STIG modes on EL7+.
+* Ensured that :program:`kmod` is audited in all STIG modes on EL7+.
 * Allow users to knockout entries from arrays specified in Hiera.
 * Added rules based on best practices mostly pulled from
-  ``/usr/share/doc/auditd``:
+  :file:`/usr/share/doc/auditd`:
 
   * Audit 32 bit operations on 64 bit systems
-  * Audit calls to the auditd CLI commands
+  * Audit calls to the :program:`auditd` CLI commands
   * Audit IPv4 and IPv6 inbound connections
   * Optionally audit IPv4 and IPv6 outbound connections
   * Audit suspicious applications
   * Audit systemd
-  * Audit the auditd configuration space
+  * Audit the :program:`auditd` configuration space
   * Ignore time daemon logs (clutter)
-  * Ignore ``CRYPTO_KEY_USER`` logs (clutter)
-  * Add ability to set the ``backlog_wait_time``
-  * Set ``loginuid_immutable``
+  * Ignore 'CRYPTO_KEY_USER' logs (clutter)
+  * Add ability to set the 'backlog_wait_time'
+  * Set 'loginuid_immutable'
 
-* Set defaults for syslog parameters if auditd version is unknown.
-* Added a fact that determines the major version of auditd that is running
-  on the system, ``auditd_major_version``.  This is used in hiera.yaml hierarchy
-  to add module data specific to the versions.
-* Added support for auditd v3.0 which is used by RedHat 8.  Most of the changes
-  in auditd v3.0 were related to how the plugins are handled but there
-  are a few new parameters added to ``auditd.conf``. They are set to their
-  defaults according to man page of ``auditd.conf``.
+* Set defaults for syslog parameters if :program:`auditd` version is unknown.
+* Added a fact that determines the major version of :program:`auditd` that is
+  running on the system, :code:`auditd_major_version`.  This is used in the
+  :file:`hiera.yaml` hierarchy to add module data specific to the versions.
+* Added support for :program:`auditd` v3.0 which is used by RedHat 8.  Most of
+  the changes in :program:`auditd` v3.0 were related to how the plugins are
+  handled but there are a few new parameters added to :file:`auditd.conf`. They
+  are set to their defaults according to :program:`man` page of
+  :file:`auditd.conf`.
 
-  * Auditd V3.0 moved the handling of plugins into auditd from audispd.
-    The following changes were made to accommodate that:
+  * :program:`auditd` V3.0 moved the handling of plugins into :program:`auditd`
+    from :program:`audispd`.  The following changes were made to accommodate
+    that:
 
     * To make sure the parameters used to handle plugins where defined in
-      one place no matter what version of auditd was used, they were moved to
-      ``init.pp`` and referenced from there by the audisp manifest.
-      For backwards compatibility, they remain in ``audisp.conf`` and are aliased
-      in the hiera module data.
-    * For backwards compatibility ``auditd::syslog`` remains defaulting to the
-      value of ``simp_options::syslog`` although the two are not really the same
-      thing. You might want to review this setting and set ``auditd::syslog`` to
-      a setting that is appropriate for your system.
+      one place no matter what version of :program:`auditd` was used, they were
+      moved to :file:`init.pp` and referenced from there by the :code:`audisp`
+      manifest.  For backwards compatibility, they remain in :file:`audisp.conf`
+      and are aliased in the Hiera module data.
+    * For backwards compatibility :code:`auditd::syslog` remains defaulting to
+      the value of :code:`simp_options::syslog` although the two are not really
+      the same thing. You might want to review this setting and set
+      :code:`auditd::syslog` to a value that is appropriate for your system.
 
-      * To enable auditd logging to syslog set the following in hiera
+      * To enable :program:`auditd` logging to syslog, set the following in
+        Hiera
 
         .. code-block:: yaml
 
@@ -752,7 +765,7 @@ pupmod-simp-auditd
            # needs to be disabled.
            auditd::config::audisp::syslog::drop_audit_logs: false
 
-      * To stop auditd logging to syslog set the following in hiera
+      * To stop :program:`auditd` logging to syslog set the following in Hiera
 
         .. code-block:: yaml
 
@@ -760,117 +773,120 @@ pupmod-simp-auditd
            auditd::syslog: true
            auditd::config::plugins::syslog::enable: false.
 
-      * Setting ``auditd::syslog`` to false will stop Puppet from managing the
-        ``syslog.conf``, it will not disable auditd logging to syslog.
-        Disable the syslog plugin as described above.
+      * Setting :code:`auditd::syslog` to :code:`false` will stop Puppet from
+        managing the :file:`syslog.conf`, it will not disable :program:`auditd`
+        logging to syslog.  Disable the syslog plugin as described above.
 
-    * The settings for ``syslog.conf`` were updated to work for new and old
-      versions of auditd.
-    * Added installation of audisp-syslog package when using auditd v3.
+    * The settings for :file:`syslog.conf` were updated to work for new and old
+      versions of :program:`auditd`.
+    * Added installation of :package:`audisp-syslog` package when using
+      :program:`auditd` V3.
 
-* Added rules to monitor ``/usr/share/selinux``.
+* Added rules to monitor :file:`/usr/share/selinux`.
 
 pupmod-simp-autofs
 ^^^^^^^^^^^^^^^^^^
 
-This module was extensively refactored. Please read the updated README to
-understand the current usage.  Notable feature/API changes:
+This module was extensively refactored. Please read the updated :file:`README.md`
+to understand the current usage.  Notable feature/API changes:
 
-* Updated autofs service configuration to use ``/etc/autofs.conf`` in
-  addition to ``/etc/sysconfig/autofs``.
-* Updated autofs.master to load content from ``/etc/auto.master.simp.d/``
-  and ``/etc/auto.master.d/`` in lieu of specifying map entries directly.
+* Updated :program:`autofs` service configuration to use :file:`/etc/autofs.conf`
+  in addition to :file:`/etc/sysconfig/autofs`.
+* Updated :file:`/etc/autofs.master` to load content from
+  :file:`/etc/auto.master.simp.d/` and :file:`/etc/auto.master.d/` in lieu of
+  specifying map entries directly.
 
-  * auto.master entries are now written to files in ``/etc/auto.master.simp.d``,
-    a directory fully managed by this module.
-  * ``/etc/auto.master.d`` is left unmanaged by Puppet.
+  * 'auto.master' entries are now written to files in
+    :file:`/etc/auto.master.simp.d`, a directory fully managed by this module.
+  * :file:`/etc/auto.master.d` is left unmanaged by Puppet.
   * Auto-converts from old maps directory to current maps directory and
     emits a warning. This is to help the 90% of the users who aren't doing
     anything special with this module.
 
-* Added a ``autofs::map`` defined type that allows the user to specify all
-  the parameters for a ``file`` map in one place.  This resource will
-  generate the appropriate resources to create both the auto.master entry
+* Added a :code:`autofs::map` defined type that allows the user to specify all
+  the parameters for a 'file' map in one place.  This resource will
+  generate the appropriate resources to create both the 'auto.master' entry
   file and the map file.
-* Added ``autofs::masterfile`` defined type to replace deprecated
-  ``autofs::master::map``.
+* Added :code:`autofs::masterfile` defined type to replace deprecated
+  :code:`autofs::master::map`.
 
-  * ``autofs::masterfile`` creates an auto.master entry file in
-    ``autofs::master_conf_dir``.
-  * Unlike ``autofs::map::master``, ``autofs::masterfile`` does not have
-    a ``content`` parameter, because a user can simply use a file resource
-    to specify a custom auto.master entry file.
+  * :code:`autofs::masterfile` creates an 'auto.master' entry file in
+    :code:`autofs::master_conf_dir`.
+  * Unlike :code:`autofs::map::master`, :code:`autofs::masterfile` does not have
+    a :code:`content` parameter, because a user can simply use a :code:`file`
+    resource to specify a custom 'auto.master' entry file.
 
-* Added ``autofs::mapfile`` defined type to replace deprecated
-  ``autofs::master::entry``.
+* Added :code:`autofs::mapfile` defined type to replace deprecated
+  :code:`autofs::master::entry`.
 
-  * ``autofs::mapfile`` creates a mapfile for a direct mapping or one or
+  * :code:`autofs::mapfile` creates a mapfile for a direct mapping or one or
     more indirect mappings.
-  * Unlike ``autofs::master::entry``, it does not have duplicate resource
+  * Unlike :code:`autofs::master::entry`, it does not have duplicate resource
     naming problems (wildcard or otherwise).
 
-* ``autofs`` class changes
+* :code:`autofs` class changes
 
-  * Added the following new autofs service configuration parameters:
+  * Added the following new :program:`autofs` service configuration parameters:
 
-    * ``master_wait``
-    * ``mount_verbose``
-    * ``mount_nfs_default_protocol``
-    * ``force_standard_program_map_env``
-    * ``use_hostname_for_mounts``
-    * ``disable_not_found_message``
-    * ``sss_master_map_wait``
-    * ``use_mount_request_log_id``
-    * ``auth_conf_file``
-    * ``custom_autofs_conf_options``
+    * :code:`master_wait`
+    * :code:`mount_verbose`
+    * :code:`mount_nfs_default_protocol`
+    * :code:`force_standard_program_map_env`
+    * :code:`use_hostname_for_mounts`
+    * :code:`disable_not_found_message`
+    * :code:`sss_master_map_wait`
+    * :code:`use_mount_request_log_id`
+    * :code:`auth_conf_file`
+    * :code:`custom_autofs_conf_options`
 
-  * Added ``master_conf_dir`` and ``master_include_dirs`` parameters to allow
-    users to specify directories containing auto.master entry files.
-  * Added ``maps_dir`` to specify the location of SIMP-managed maps and
-    changed the directory name from ``/etc/autofs`` to ``/etc/autofs.maps.simp.d``
-    for clarity.
-  * Added ``maps`` to allow users to specify 'file' type maps in Hiera data.
+  * Added :code:`master_conf_dir` and :code:`master_include_dirs` parameters to
+    allow users to specify directories containing 'auto.master' entry files.
+  * Added :code:`maps_dir` to specify the location of SIMP-managed maps and
+    changed the directory name from :file:`/etc/autofs` to
+    :file:`/etc/autofs.maps.simp.d` for clarity.
+  * Added :code:`maps` to allow users to specify 'file' type maps in Hiera data.
 
-    * Each map specifies the contents of an autofs master entry file and
-      its mapping file.
+    * Each map specifies the contents of a 'auto.master` entry file and its
+      corresponding mapping file.
 
-  * Renamed ``options`` to ``automount_options`` for clarity.
-  * Renamed ``use_misc_device`` to ``automount_use_misc_device`` for clarity.
-  * Removed ``autofs::master_map_name``.
+  * Renamed :code:`options` to :code:`automount_options` for clarity.
+  * Renamed :code:`use_misc_device` to :code:`automount_use_misc_device` for
+    clarity.
+  * Removed :code:`autofs::master_map_name`.
 
-    * This parameter is not exposed in ``/etc/autofs.conf`` and does not look
-      like it is intended to be changed.
+    * This parameter is not exposed in :file:`/etc/autofs.conf` and does not
+      look like it is intended to be changed.
 
-  * Changed permissions of ``/etc/auto.master`` and ``/etc/sysconfig/autofs``
-    to match those of the delivered RPM.
+  * Changed permissions of :file:`/etc/auto.master` and
+    :file:`/etc/sysconfig/autofs` to match those of the delivered RPM.
 
-* ``autofs::ldap_auth`` class changes
+* :code:`autofs::ldap_auth` class changes
 
-  * ``autofs::ldap_auth`` is now a private class to ensure the name of the
+  * :code:`autofs::ldap_auth` is now a private class to ensure the name of the
     configuration file created by this class matches the 'auth_conf_file'
-    setting in ``/etc/autofs.conf``.
-  * Added ``encoded_secret`` optional parameter.  This parameter takes
-    precedence when both ``secret`` and ``encoded_secret`` parameters are
-    specified
+    setting in :file:`/etc/autofs.conf`.
+  * Added :code:`encoded_secret` optional parameter.  This parameter takes
+    precedence when both :code:`secret` and :code:`encoded_secret` parameters
+    are specified.
 
-* ``autofs::map::master`` has been deprecated by ``autofs::map`` or
-  ``autofs::masterfile``.  Its behavior has changed from writing a section
-  of ``/etc/auto.master`` to writing an autofs master entry file in
-  ``autofs::master_conf_dir``.
-* ``autofs::map::entry`` has been deprecated by ``autofs::map`` or
-  ``autofs::mapfile``.  Its behavior has changed from writing a file in
-  ``/etc/autofs`` to writing a file in ``autofs::maps_dir``.
+* :code:`autofs::map::master` has been deprecated by :code:`autofs::map` or
+  :code:`autofs::masterfile`.  Its behavior has changed from writing a section
+  of :file:`/etc/auto.master` to writing an `auto.master` entry file
+  in :code:`autofs::master_conf_dir`.
+* :code:`autofs::map::entry` has been deprecated by :code:`autofs::map` or
+  :code:`autofs::mapfile`.  Its behavior has changed from writing a file in
+  :file:`/etc/autofs` to writing a file in :code:`autofs::maps_dir`.
 
 pupmod-simp-clamav
 ^^^^^^^^^^^^^^^^^^
 
-* Updated documentation to clarify what ``simp_options::clamav`` actually does
-  and to note that clamav was removed from the SIMP's default class list
-  in SIMP 6.5.
-* Set the default for ``clamav::set_schedule::enable`` to lookup
-  ``clamav::enable``, so that the class will remove the clamav schedule if
-  clamav is disabled.
-* Disable rsync pulls by default.
+* Updated documentation to clarify what :code:`simp_options::clamav` actually
+  does and to note that :code:`clamav` was removed from the SIMP's default class
+  list in SIMP 6.5.
+* Set the default for :code:`clamav::set_schedule::enable` to lookup
+  :code:`clamav::enable`, so that the class will remove the 'clamscan'
+  :program:`cron` job if management of ClamAV is disabled.
+* Disable SIMP's :program:`rsync` pulls by default.
 
 pupmod-simp-compliance_markup
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -889,7 +905,7 @@ pupmod-simp-compliance_markup
 
   * Reduced the amount of data passed around in the Hiera backend.
   * Ensured that the Hiera backend recurses as little as possible.
-  * Removed useless loops in ``list_puppet_params()``.
+  * Removed useless loops in :code:`list_puppet_params()`.
 
 * Improved error handling and debugging:
 
@@ -900,15 +916,15 @@ pupmod-simp-compliance_markup
 * Removed all support for v1 data since it was experimental and removed in
   3.0.0.
 
-* Load data from the ``compliance_markup::compliance_map`` Hiera key after
-  compliance profiles in modules to allow for profile tailoring via Hiera.
-  This means that uses may now override all settings from the underlying
+* Load data from the :code:`compliance_markup::compliance_map` Hiera key
+  after compliance profiles in modules to allow for profile tailoring via
+  Hiera. This means that uses may now override all settings from the underlying
   compliance maps across all modules to fit their environment specifics.
 
 pupmod-simp-cron
 ^^^^^^^^^^^^^^^^
 
-* Manage cron packages by default.
+* Manage :program:`cron` packages by default.
 
 pupmod-simp-crypto_policy
 ^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -924,15 +940,17 @@ pupmod-simp-dconf
 pupmod-simp-deferred_resources
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-* Remove ``ftp`` and ``games`` users and groups when enforcing STIG compliance.
+* Remove 'ftp' and 'games' users and groups when enforcing STIG compliance.
 
 pupmod-simp-dhcp
 ^^^^^^^^^^^^^^^^
 
-* Made use of rsync optional (enabled by default for backwards compatibility).
-* Added support for passing in a full ``dhcpd.conf`` entry.
+* Made use of SIMP's :program:`rsync` operation optional (enabled by default for
+  backwards compatibility).
+* Added support for passing in a full :file:`dhcpd.conf` entry.
 * Ensured that the SELinux user and type are set for the configuration files.
-* Switched to using ``iptables::listen::udp`` for firewalld compatibility.
+* Switched to using :code:`iptables::listen::udp` for :program:`firewalld`
+  compatibility.
 
 pupmod-simp-fips
 ^^^^^^^^^^^^^^^^
@@ -942,86 +960,93 @@ pupmod-simp-fips
 
 pupmod-simp-freeradius
 ^^^^^^^^^^^^^^^^^^^^^^
-* Added support for overriding post-auth in LDAP.
-* Added support for overriding accounting in LDAP.
+* Added support for overriding 'post-auth' in LDAP.
+* Added support for overriding 'accounting' in LDAP.
 * Added support for specifying the entire file content.
-* Remove ``simp_options::puppet::server`` from the default lookup logic
-  for ``freeradius::v3::modules::ldap::server``. In systems that use Bolt
+* Removed :code:`simp_options::puppet::server` from the default lookup logic
+  for :code:`freeradius::v3::modules::ldap::server`. In systems that use Bolt
   to compile and apply manifests, that setting will not be available.
 
 pupmod-simp-incron
 ^^^^^^^^^^^^^^^^^^
 
-* Remove pinned versions of incron, since the upstream packages have been fixed.
+* Remove pinned versions of :package:`incron`, since the upstream packages have
+  been fixed.
 
 pupmod-simp-iptables
 ^^^^^^^^^^^^^^^^^^^^
 
 * Added preliminary support for acting as a pass-through to various
-  ``firewalld`` capabilities using the ``simp-simp_firewalld`` module.
+  :program:`firewalld` capabilities using the :pupmod:`simp/simp_firewalld`
+  module.
 
-  * Using any of the ``iptables::listen::*`` defined types will work seamlessly
-    in ``firewalld`` mode but direct calls to ``iptables::rule`` will fail.
+  * Using any of the :code:`iptables::listen::*` defined types will work
+    seamlessly in 'firewalld' mode but direct calls to
+    :code:`iptables::rule` will fail.
   * Calls to any of the native types included in this module will result in
     undefined behavior and is not advised.
-  * To enable ``firewalld`` mode on supported operating systems, simply set
-    ``iptables::use_firewalld`` to ``true`` via Hiera.
-  * EL 8 systems will enable ``firewalld`` mode by default.
+  * To enable 'firewalld' mode on supported operating systems, simply set
+    :code:`iptables::use_firewalld` to :code:`true` via Hiera.
+  * EL 8 systems will enable 'firewalld' mode by default.
 
 * Improved the internal rule matching to handle most netmask and port updates.
-* Added a ``exact_match`` Boolean to the ``iptables_optimize`` and
-  ``ip6tables_optimize`` native types to allow for more aggressive rule
+* Added a :code:`exact_match` Boolean to the :code:`iptables_optimize` and
+  :code:`ip6tables_optimize` native types to allow for more aggressive rule
   matching.
 
   * This change requires that inbound rules match whatever is returned by
-    ``iptables-save`` and/or ``ip6tables-save`` to prevent iptables flapping.
+    :program:`iptables-save` and/or :program:`ip6tables-save` to prevent
+    :program:`iptables` flapping.
 
-* Allow LOCAL-INPUT jump rule in FORWARD and INPUT chains to occur last as a
-  default action through the addition of an
-  ``iptables::rules::base::force_local_input`` parameter.
-* Allow users to disable adding the ``SIMP:`` prefix to the rule comment.
+* Allow 'LOCAL-INPUT' jump rule in 'FORWARD' and 'INPUT' chains to occur last as
+  a default action through the addition of an
+  :code:`iptables::rules::base::force_local_input` parameter.
+* Allow users to disable adding the 'SIMP:' prefix to the rule comment.
 * Allow users to disable comments on rules completely.
 
 pupmod-simp-krb5
 ^^^^^^^^^^^^^^^^
 
 * Updated SELinux hotfix for EL8.
-* Migrated SELinux hotfix to ``vox_selinux::module``.
+* Migrated SELinux hotfix to :code:`vox_selinux::module`.
 
 pupmod-simp-libreswan
 ^^^^^^^^^^^^^^^^^^^^^
 
 * Added support for IKEv2 Mobility (RFC-4555) and mobile client connections.
-* Added additional settings for DNS and Domains for libreswan v3.23+.
+* Added additional settings for DNS and Domains for Libreswan v3.23+.
 
 pupmod-simp-libvirt
 ^^^^^^^^^^^^^^^^^^^
 
-* Split out install and service into separate classes.
+* Split out install and service into separate classes to give users more
+  flexibility on what they manage with the module.
 
 pupmod-simp-logrotate
 ^^^^^^^^^^^^^^^^^^^^^
 
 * Allow all log size configuration parameters to be specified in bytes,
   kilobytes, megabytes, or gigabytes.
-* Added ability to specify ``maxsize`` configuration for specific log rotate rules.
+* Added ability to specify 'maxsize' configuration for specific
+  :program:`logrotate` rules.
 
 pupmod-simp-named
 ^^^^^^^^^^^^^^^^^
 
-* Allow users to force enabling/disabling of the chroot settings.
-* Allow users to easily set the ``named_write_master_zones`` SELinux boolean in
+* Allow users to force enabling/disabling of the :program:`chroot` settings.
+* Allow users to easily set the :code:`named_write_master_zones` SELinux boolean in
   case they need to support dynamic DNS or zone transfers.
 
 pupmod-simp-nfs
 ^^^^^^^^^^^^^^^
 
-This module was extensively refactored. Read the updated README to
+This module was extensively refactored. Read the updated :file:`README.md` to
 understand the current usage.  Notable feature/API changes:
 
 * Overall changes
 
-  * Dropped stunnel support for NFSv3.  This tunneling did not work because:
+  * Dropped :program:`stunnel` support for NFSv3.  This tunneling did not work
+    because:
 
     * The NFS client sends the NFS server Network Status Manager (NSM)
       notifications via UDP, exclusively.
@@ -1029,305 +1054,335 @@ understand the current usage.  Notable feature/API changes:
       required in order for a NFS client to be able to tunnel its
       server-specific RPC requests to the appropriate server.
 
-  * ``nfs`` class
+  * :code:`nfs` class
 
-    * Reworked parameters to reflect configuration of ``/etc/nfs.conf`` and,
-      for limited EL7-only configuration, ``/etc/sysconfig/nfs``.  See the class
-      documentation for full details.
+    * Reworked parameters to reflect configuration of :file:`/etc/nfs.conf` and,
+      for limited EL7-only configuration, :file:`/etc/sysconfig/nfs`.  See the
+      class documentation for full details.
 
-  * Removed ``stunnel_systemd_deps`` and ``sunnel_tcp_nodelay`` parameters
-    throughout the module.
+  * Removed :code:`stunnel_systemd_deps` and :code:`stunnel_tcp_nodelay`
+    parameters throughout the module.
 
     * These parameters were not consistently used in the manifest
       code (i.e., declared but not used) and were confusing.
-    * The corresponding ``stunnel_socket_options`` and ``stunnel_wantedby``
-      parameters in classes/defines now use defaults that were intended to be
-      set by those parameters.
+    * The corresponding :code:`stunnel_socket_options` and
+      :code:`stunnel_wantedby` parameters in classes/defines now use defaults
+      that were intended to be set by those parameters.
 
   * Now masks NFS services that are not needed, so they are not unnecessarily
-    started when the nfs-server.service or nfs-client.target are restarted.
+    started when the :program:`nfs-server.service` or
+    :program:`nfs-client.target` are restarted.
 
-* ``nfs::client`` changes
+* :code:`nfs::client` changes
 
-  * Added support for pNFS:  Set ``blkmap`` to true to enable the pNFS service,
-    nfs-blkmap.service.
-  * Added ``nfs::stunnel_socket_options`` and ``stunnel_wantedby``
-    parameters which provide the defaults for all
-    ``nfs::client::mount instances``.
+  * Added support for pNFS:  Set :code:`blkmap` to true to enable the pNFS
+    service, :program:`nfs-blkmap.service`.
+  * Added :code:`nfs::stunnel_socket_options` and :code:`stunnel_wantedby`
+    parameters which provide the defaults for all :code:`nfs::client::mount`
+    instances.
 
-* ``nfs::client::mount`` define changes
+* :code:`nfs::client::mount` define changes
 
-  * ``nfs_server`` must now be specified as an IP address.  This change was
-    necessary for firewalld.
-  * In ``options``, changed the default mount type to ``soft`` instead of
-    ``hard``.  Also removed deprecated ``intr`` option, as it has no effect.
+  * :code:`nfs_server` must now be specified as an IP address.  This change was
+    necessary for :program:`firewalld`.
+  * In :code:`options`, changed the default mount type to 'soft' instead of
+    'hard'.  Also removed deprecated 'intr' option, as it has no effect.
   * Reworked the remote autodetect logic to detect a local mount based
     on IP address instead of simply whether the node is also configured
     to be an NFS server.
   * Added support for direct autofs mounts and simplified specification of
-    indirect mounts.  When ``autofs_indirect_map_key`` is not specified, a
-    direct mount is specified by ``name``.  When ``autofs_indirect_map_key``
-    is specified, an indirect mount is specified with ``name`` as the mount
-    point and ``autofs_indirect_map_key`` as the mount key.
-  * Renamed ``autofs_map_to_user`` to ``autofs_add_key_subst`` to better
+    indirect mounts.  When :code:`autofs_indirect_map_key` is not specified, a
+    direct mount is specified by :code:`name`.  When
+    :code:`autofs_indirect_map_key` is specified, an indirect mount is specified
+    with :code:`name` as the mount point and :code:`autofs_indirect_map_key` as
+    the mount key.
+  * Renamed :code:`autofs_map_to_user` to :code:`autofs_add_key_subst` to better
     reflect automount terminology. This parameter simply adds key substitution
     to the remote location, which although can be used for user home
     directories, is not restricted to that use case.
-  * Renamed ``port`` to ``nfsd_port`` to be consistent with the name of that
-    parameter throughout the entire module.
-  * Renamed ``v4_remote_port`` to ``stunnel_nfsd_port`` for clarity and to
-    be consistent with the name of that parameter throughout the entire module.
-  * Exposed client stunnel configuration that was scattered throughout the
-    module to this API.  User can now specify ``stunnel_socket_options`` and
-    ``stunnel_verify`` for each mount.  When unspecified, the defaults from
-    the ``nfs`` class are used.
+  * Renamed :code:`port` to :code:`nfsd_port` to be consistent with the name of
+    that parameter throughout the entire module.
+  * Renamed :code:`v4_remote_port` to :code:`stunnel_nfsd_port` for clarity and
+    to be consistent with the name of that parameter throughout the entire
+    module.
+  * Exposed client :program:`stunnel` configuration that was scattered
+    throughout the module to this API.  User can now specify
+    :code:`stunnel_socket_options` and :code:`stunnel_verify` for each mount.
+    When unspecified, the defaults from the :code:`nfs` class are used.
 
-* ``nfs::server`` class changes
+* :code:`nfs::server` class changes
 
-  * Exposed server stunnel configuration that was scattered throughout the
-    module to this API.  User can now specify ``stunnel_accept_address``,
-    ``stunnel_nfsd_acccept_port``, ``stunnel_socket_options``,
-    ``stunnel_verify``, and ``stunnel_wantedby`` in this class.  When
-    unspecified, the defaults for all but ``stunnel_accept_address`` and
-    ``stunnel_wantedby`` are pulled from the ``nfs`` class.
-  * Added the following parameters: ``nfsd_vers4``, ``nfsd_vers4_0``,
-    ``nfsd_vers4_1``, ``nfsd_vers4_2``, and ``custom_rpcrquotad_opts``.
-  * Renamed ``nfsv3`` to ``nfsd_vers3`` to reflect its use in ``/etc/nfs.conf``.
-  * Moved ``nfs::rpcquotad_port`` to this class and renamed ``rpcrquotadopts``
-    to ``custom_rpcrquotad_opts`` for clarity.
-  * Moved ``nfs::mountd_port`` to this class and removed ``rpcmountdopts``.
-    Custom configuration for that daemon should now be made via
-    ``nfs::custom_nfs_conf_opts`` or ``nfs::custom_daemon_args`` as
-    appropriate.
-  * Removed the obsolete ``nfsd_module`` parameter.
+  * Exposed server :program:`stunnel` configuration that was scattered
+    throughout the module to this API.  User can now specify
+    :code:`stunnel_accept_address`, :code:`stunnel_nfsd_acccept_port`,
+    :code:`stunnel_socket_options`, :code:`stunnel_verify`, and
+    :code:`stunnel_wantedby` in this class. When unspecified, the defaults for
+    all but :code:`stunnel_accept_address` and
+    :code:`stunnel_wantedby` are pulled from the :code:`nfs` class.
+  * Added the following parameters: :code:`nfsd_vers4`, :code:`nfsd_vers4_0`,
+    :code:`nfsd_vers4_1`, :code:`nfsd_vers4_2`, and
+    :code:`custom_rpcrquotad_opts`.
+  * Renamed :code:`nfsv3` to :code:`nfsd_vers3` to reflect its use in
+    :file:`/etc/nfs.conf`.
+  * Moved :code:`nfs::rpcquotad_port` to this class and renamed
+    :code:`rpcrquotadopts` to :code:`custom_rpcrquotad_opts` for clarity.
+  * Moved :code:`nfs::mountd_port` to this class and removed
+    :code:`rpcmountdopts`.  Custom configuration for that daemon should now be
+    made via :code:`nfs::custom_nfs_conf_opts` or :code:`nfs::custom_daemon_args`
+    as appropriate.
+  * Removed the obsolete :code:`nfsd_module` parameter.
 
-* ``nfs::server::export`` define changes
+* :code:`nfs::server::export` define changes
 
-  * Added ``replicas``, ``pnfs``, and ``security_label`` parameters to
-    support additional export configuration parameters.
+  * Added :code:`replicas`, :code:`pnfs`, and :code:`security_label` parameters
+    to support additional export configuration parameters.
 
-* ``nfs::idmapd`` class changes
+* :code:`nfs::idmapd` class changes
 
   * Refactored into 3 classes to support distinct NFS server and client
     configuration
-  * Added ``no_strip`` and ``reformat_group`` to ``nfs::idmapd::config``
-    to support additional ``/etc/idmapd.conf`` configuration parameters.
+  * Added :code:`no_strip` and :code:`reformat_group` to
+    :code:`nfs::idmapd::config` to support additional
+    :file:`/etc/idmapd.conf` configuration parameters.
 
 pupmod-simp-oath
 ^^^^^^^^^^^^^^^^
 
-* Allow ``oath::config::user`` to be any string.
-* Disabled ``show_diff`` option in ``concat`` for  ``/etc/liboath/users.oath``
-  to prevent that information from being exposed in logs.
+* Allow :code:`oath::config::user` to be any string.
+* Disabled :code:`show_diff` option in :code:`concat` for
+  :file:`/etc/liboath/users.oath` to prevent that information from being exposed
+  in logs.
 
 pupmod-simp-pam
 ^^^^^^^^^^^^^^^
 
-* Ensured that ``pam_tty_audit`` is optional if auditing is not enabled on the
-  system.
-* Added the ability to specify ``pam::limits::rules`` via Hiera.
-* Ignore authconfig disable on EL8. Authconfig was replaced with authselect
-  and authselect does not overwrite settings unless you select the ``--force``
-  option.
-* Remove installation of ``pam_pkcs11`` and ``fprintd-pam`` by default, since
-  they aren't actually required for basic functionality.
+* Ensured that 'pam_tty_audit' is optional if auditing is not enabled on the
+   system.
+* Added the ability to specify :code:`pam::limits::rules` via Hiera.
+* Ignore :program:`authconfig` disable on EL8. Authconfig was replaced with
+  :program:`authselect` and :program:`authselect` does not overwrite settings
+  unless you select the :code:`--force` option.
+* Remove installation of :package:`pam_pkcs11` and :package:`fprintd-pam` by
+  default, since they aren't actually required for basic functionality.
 
 pupmod-simp-polkit
 ^^^^^^^^^^^^^^^^^^
 
 * Added the following classes:
 
-  * ``polkit::install``
-  * ``polkit::service``
-  * ``polkit::use``
+  * :code:`polkit::install`
+  * :code:`polkit::service`
+  * :code:`polkit::use`
 
 * Ensured that the polkit user is managed by default and placed into the
-  supplementary group bound to the ``gid`` option on ``/proc``, if one is set.
-  This is necessary to work around issues with ``hidepid`` > 0.
+  supplementary group bound to the 'gid' option on :file:`/proc`, if one
+  is set.  This is necessary to work around issues with 'hidepid' > 0.
 * Made the entire main class inert on unsupported OSs; logs a warning on the
   server that can be disabled.
 
 pupmod-simp-pupmod
 ^^^^^^^^^^^^^^^^^^
 
-* Set the default puppetserver ciphers to a safe set.
-* Added better auto-tuning support for puppetserver, based on best practices.
-* Added ``ReservedCodeCache`` puppetserver support.
-* Removed incron support in favor of using systemd path units to run
-  ``simp_generate_types``.
+* Set the default :program:`puppetserver` ciphers to a safe set.
+* Added better auto-tuning support for :program:`puppetserver`, based on best
+  practices.
+* Added 'ReservedCodeCache' :program:`puppetserver` support.
+* Removed :program:`incron` support in favor of using :program:`systemd` path
+  units to run :program:`simp_generate_types`.
 
-  * Attempts to activate the incron code will result in a warning message.
+  * Attempts to activate the :program:`incron` code will result in a warning
+    message.
 
 * Added mitigation for https://puppet.com/security/cve/CVE-2020-7942/
 * Added optional management of the Facter configuration file.
-* Removed the deprecated CA CRL pull cron job and the corresponding
-  ``pupmod::ca_crl_pull_interval`` parameter.
-* Removed deprecated *auth.conf* support for the legacy pki module and
+* Removed the deprecated CA CRL pull :program:`cron` job and the corresponding
+  :code:`pupmod::ca_crl_pull_interval` parameter.
+* Removed deprecated :file:`auth.conf` support for the legacy pki module and
   the corresponding parameters:
 
-  * ``pupmod::master::simp_auth::legacy_cacerts_all``
-  * ``pupmod::master::simp_auth::legacy_mcollective_all``
-  * ``pupmod::master::simp_auth::legacy_pki_keytabs_from_host``
+  * :code:`pupmod::master::simp_auth::legacy_cacerts_all`
+  * :code:`pupmod::master::simp_auth::legacy_mcollective_all`
+  * :code:`pupmod::master::simp_auth::legacy_pki_keytabs_from_host`
 
-* Removed the deprecated ``pupmod::master::simp_auth::server_distribution``
+* Removed the deprecated :code:`pupmod::master::simp_auth::server_distribution`
   parameter.
 
 pupmod-simp-resolv
 ^^^^^^^^^^^^^^^^^^
 
-* Added optional management of DNS servers via nmcli.
+* Added optional management of DNS servers via :program:`nmcli`.
 
 pupmod-simp-rsyslog
 ^^^^^^^^^^^^^^^^^^^
 
-* Added support for KeepAlive variables for imtcp and omfwd actions.
+* Added support for 'KeepAlive' variables for 'imtcp' and 'omfwd' actions.
 * Changed local rule defined type to use the same package defaults for
   action queues that are in the remote rule defined type.
 * Changed remote rule defined type to use package defaults for action
   queues.
-* Added a default rule to log packets dropped by firewalld to
-  ``/var/log/firewall.log``.
-* Added ``/var/log/firewall.log`` to SIMP's 'syslog' logrotate rule.
-* Added ``logrotate::rule`` options to ``rsyslog::conf::logrotate`` class.
+* Added a default rule to log packets dropped by :program:`firewalld` to
+  :file:`/var/log/firewall.log`.
+* Added :file:`/var/log/firewall.log` to SIMP's 'syslog' :program:`logrotate`
+  rule.
+* Added :code:`logrotate::rule` options to :code:`rsyslog::conf::logrotate`
+  class.
 * Removed params pattern and migrated to data in modules.
 
 pupmod-simp-selinux
 ^^^^^^^^^^^^^^^^^^^
 
-* No longer enable or install mcstransd by default.  It is a user convenience
-  feature and not required for core functionality.
-* Ensured that mcstransd is added to the GID assigned to ``/proc`` if one is
-  assigned on the system.
+* No longer enable or install :program:`mcstransd` by default.  It is a user
+  convenience feature and not required for core functionality.
+* Ensured that :program:`mcstransd` is added to the GID assigned to 
+  :file:`/proc` if one is assigned on the system.
 
 pupmod-simp-simp
 ^^^^^^^^^^^^^^^^
 
-* sssd configuration updates
+* :program:`sssd` configuration updates
 
-  * Do not configure the ``local`` provider for EL8.
-  * Use the ``files`` provider for the local domain for EL7 and later.
-  * Deprecated sssd client autofs, ssh and sudo settings.  The sssd
-    module configures services in ``sssd::services``.  Use that
-    setting to configure those entries.
-  * Configure sssd even if local and ldap domains are not configured for EL8.
+  * Configure the 'files' provider in lieu of the 'local' provider for EL7 and
+    later.
+  * Deprecated the following parameters in :code:`simp::sssd::client`:
+    :code:`autofs`, :code:`ssh` and :code:`sudo`.  The :pupmod:`simp/sssd`
+    module configures services in :code:`sssd::services`.  Use that
+    parameter to configure those entries.
+  * Configure :program:`sssd` for EL8, even if the :code:`ldap_domain` and
+    :code:`local_domain` parameters of :code:`simp::sssd::client` are set to
+    :code:`false`.
 
-* Updated ``simp::mountpoints::proc`` to ensure polkitd can be configured to
-  have access to ``/proc``:
+* Updated :code:`simp::mountpoints::proc` to ensure :program:`polkitd` can be
+  configured to have access to :file:`/proc`:
 
-  * Assign a group and gid by default
-  * Create a group by default
-  * Discover these values from the system if possible
+  * Assign a group and gid by default.
+  * Create a group by default.
+  * Discover these values from the system if possible.
 
 * Removed the following applications from the list of base OS applications
-  installed automatically by ``simp-simp``:
+  installed automatically by :pupmod:`simp/simp`:
 
-  * man
-  * man-pages
-  * vim-enhanced
-  * dos2unix
-  * elinks
-  * hunspell
-  * lsof
-  * mlocate
-  * pax
-  * pinfo
-  * sos
-  * star
-  * symlinks
-  * words
-  * x86info
+  * :package:`man`
+  * :package:`man-pages`
+  * :package:`vim-enhanced`
+  * :package:`dos2unix`
+  * :package:`elinks`
+  * :package:`hunspell`
+  * :package:`lsof`
+  * :package:`mlocate`
+  * :package:`pax`
+  * :package:`pinfo`
+  * :package:`sos`
+  * :package:`star`
+  * :package:`symlinks`
+  * :package:`words`
+  * :package:`x86info`
 
-* Deprecated the ``simp::base_apps::manage_elinks_config`` parameter.
+* Deprecated the :code:`simp::base_apps::manage_elinks_config` parameter.
 
   * It no longer has any effect.
 
-* ``simp::nsswitch`` updates
+* :code:`simp::nsswitch` updates
 
-  * Updated the ``simp::nsswitch`` class to have sane defaults
+  * Updated the :code:`simp::nsswitch` class to have sane defaults.
 
-    * Added support for mymachines and myhostname by default.
+    * Added support for 'mymachines' and 'myhostname' by default.
     * Removed all NIS references since NIS should not be in general usage any
       longer and was never natively supported by SIMP.
-    * Configuration files are now common across all supported OSs since nsswitch
-      "does the right thing" when it hits a module that it does not recognize.
+    * Configuration files are now common across all supported OSs since
+      :program:`nsswitch` "does the right thing" when it hits a module that it
+      does not recognize.
 
-  * Allow nsswitch overrides.
+  * Allow :program:`nsswitch` overrides.
 
-* Added chronyd support for EL8
+* Added :program:`chronyd` support for EL8
 
-  * Moved ntp to list of OS relevant applications for EL6 and EL7.
-  * Added chronyd for EL8.
+  * Moved :package:`ntp` to list of OS relevant applications for EL6 and EL7.
+  * Added :package:`chrony` for EL8.
 
 * Updated the client kickstart scripts/configuration
 
-  * Updated the ``bootstrap_simp_client`` script to use chrony if kernel version
-    is 4 or later.
-  * Deprecated the ``simp::server::kickstart::runpuppet`` parameter and removed
-    the old ``runpuppet`` kickstart scripts.  The ``simp_bootstrap_client``
-    scripts should be used instead.
+  * Updated the :program:`bootstrap_simp_client` script to use
+    :program:`chronyd` if the kernel version is 4 or later.
+  * Deprecated the :code:`simp::server::kickstart::runpuppet` parameter and
+    removed the old, corresponding :program:`runpuppet` kickstart scripts.
+    The :program:`simp_bootstrap_client` scripts should be used instead.
 
 * ClamAV updates:
 
-  * Removed ``clamav`` from the list of classes included by default in the
+  * Removed :code:`clamav` from the list of classes included by default in the
     SIMP scenarios.
 
     * This will not remove ClamAV from systems where it is installed; Puppet
       will simply stop managing it.
-    * To continue managing ClamAV with Puppet, add ``clamav`` to ``simp::classes``
-      in the appropriate Hiera file for that SIMP client.
-    * See the ``simp-clamav`` module for information on configuring or removing
-      ClamAV on a system.
+    * To continue managing ClamAV with Puppet, add :code:`clamav` to
+      :code:`simp::classes` in the appropriate Hiera file for that SIMP client.
+    * See the :pupmod:`simp/clamav` module for information on configuring or
+      removing ClamAV on a system.
 
-  * Deprecated ``simp::server::clamav``.
+  * Deprecated :code:`simp::server::clamav`.
 
     * This parameter will be removed in a future SIMP release.
     * To manage ClamAV on the SIMP server after the parameter is removed,
-      manually add the ``clamav`` class to the ``simp::classes`` Array in the
-      SIMP server's Hiera file.
+      manually add the :code:`clamav` class to the :code:`simp::classes` array
+      in the SIMP server's Hiera file.
 
-* ``simp::yum::repo*`` updates:
+* :code:`simp::yum::repo*` updates:
 
   * Added:
 
-    * ``simp::yum::repo::internet_simp`` class:
+    * :code:`simp::yum::repo::internet_simp` class:
 
-      * Uses the SIMP yum repository package (simp-community-release) to
-        configure yum for SIMP's internet public repositories at simp-project.com.
-      * simp-project.com is the new host for SIMP's yum repositories.
-      * packagecloud is no longer being updated.
+      * Uses the SIMP yum repository package (:package:`simp-community-release`)
+        to configure yum for SIMP's internet public repositories at
+        `simp-project.com`_.
+      * `simp-project.com`_ is the new host for SIMP's yum repositories.
+      * `packagecloud`_ is no longer being updated.
 
-    * ``simp::yum::repo::simp_release_version`` function: Returns the SIMP release
-      version for use in the SIMP internet yum repositories.
-    * ``Simp::Version`` data type alias for valid version strings for use in the
-      SIMP internet repositories.
+    * :code:`simp::yum::repo::simp_release_version` function: Returns the SIMP
+      release version for use in the SIMP internet yum repositories.
+    * :code:`Simp::Version` data type alias for valid version strings for use in
+      the SIMP internet repositories.
+
+    * New parameters to :code:`simp::yum::repo::local_simp` and
+      :code:`simp::yum::repo::local_os_updates`:
+
+      * :code:`relative_repo_path`, :code:`baseurl`, and :code:`gpgkey`.
+      * :code:`baseurl` and :code:`gpgkey` allow complete :code:`yumrepo`
+        resource overrides.
 
   * Deprecated:
 
-    * ``simp::yum::repo::internet_simp_server`` and
-      ``simp::yum::repo::internet_simp_dependencies`` classes:
+    * :code:`simp::yum::repo::internet_simp_server` and
+      :code:`simp::yum::repo::internet_simp_dependencies` classes:
 
       * These resources are no longer useful because their API matches the OBE
-        packagecloud SIMP repositories.
+        `packagecloud`_ SIMP repositories.
       * As a workaround, the classes have been modified to use
-        ``simp::yum::repo::internet_simp`` to configure the correct repositories
-        at simp-project.com.
-      * You should switch to using ``simp::yum::repo::internet_simp``, directly, as
-        these classes will be removed in a future release.
+        :code:`simp::yum::repo::internet_simp` to configure the correct
+        repositories at `simp-project.com`_.
+      * You should switch to using :code:`simp::yum::repo::internet_simp`,
+        directly, as these classes will be removed in a future release.
 
-    * ``simp::yum::repo::sanitize_simp_release_slug`` function: a function
-       only useful to the deprecated classes.
+    * :code:`simp::yum::repo::sanitize_simp_release_slug` function: a function
+      only useful to the deprecated classes.
+
+* Added :code:`simp::puppetdb::cipher_suites` parameter to manage the
+  cipher suites supported by PuppetDB's HTTP interface (Jetty).
+
+  * Used to set :code:`puppetdb::cipher_suites`.
+  * Value set to a safe set.
 
 pupmod-simp-simp_banners
 ^^^^^^^^^^^^^^^^^^^^^^^^
 
-* Removed all OS support statements from ``metadata.json`` since this is simply a
-  data-only module.
+* Removed all OS support statements from :file:`metadata.json`, since this is
+  simply a data-only module.
 
 
 pupmod-simp-simp_bolt
 ^^^^^^^^^^^^^^^^^^^^^
 
-* Added plan to install puppet-agent on target nodes.
+* Added plan to install :package:`puppet-agent` on target nodes.
 * Configured Bolt to request a pseudo TTY for SSH sessions if specified.
 * Configured new logs to be appended to the log file instead of overwriting.
 
@@ -1335,14 +1390,14 @@ pupmod-simp-simp_firewalld
 ^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 This is a new SIMP module that provides a profile class and defined type to
-manage the system's ``firewalld`` with "safe" defaults and safety checks for
-``firewalld`` rules.  It uses the ``puppet-firewalld`` module to update the
-system's ``firewalld`` configuration.
+manage the system's :program:`firewalld` with "safe" defaults and safety checks
+for :program:`firewalld` rules.  It uses the :pupmod:`puppet/firewalld` module to
+update the system's :program:`firewalld` configuration.
 
 pupmod-simp-simp_ipa
 ^^^^^^^^^^^^^^^^^^^^
 
-* Make the IPA server optional in the ``join`` task.  It is perfectly valid
+* Make the IPA server optional in the :code:`join` task.  It is perfectly valid
   to not specify a server when doing an IPA client install and instead
   rely on DNS auto discovery.
 
@@ -1350,38 +1405,39 @@ pupmod-simp-simp_nfs
 ^^^^^^^^^^^^^^^^^^^^
 
 * The following parameters had to be changed from hostnames or IP addresses
-  to only IP addresses due to use of firewalld on EL8:
+  to only IP addresses due to use of :program:`firewalld` on EL8:
 
-  * ``simp_nfs::home_dir_server``
-  * ``simp_nfs::mount::home::nfs_server``
+  * :code:`simp_nfs::home_dir_server`
+  * :code:`simp_nfs::mount::home::nfs_server`
 
 pupmod-simp-simp_options
 ^^^^^^^^^^^^^^^^^^^^^^^^
 
-* The ``simp_options::clamav`` catalyst has been deprecated.
+* The :code:`simp_options::clamav` catalyst has been deprecated.
 
-  * As of SIMP 6.5, SIMP's ``clamav`` class is no longer included in the class
-    list of the SIMP scenarios. So, this catalyst is not needed to disable it.
-  * To have SIMP manage ClamAV on your system, add the ``clamav`` class to
+  * As of SIMP 6.5, SIMP's :code:`clamav` class is no longer included in the
+    class list of the SIMP scenarios. So, this catalyst is not needed to
+    disable it.
+  * To have SIMP manage ClamAV on your system, add the :code:`clamav` class to
     your system's class list.
-  * See the SIMP ``clamav`` module README for information on managing ClamAV.
+  * See the :pupmod:`simp/clamav` module :file:`README.md` for information on
+    managing ClamAV.
 
-* ``simp_options::puppet::server`` and ``simp_options::puppet::ca`` are now
-  optional.
+* :code:`simp_options::puppet::server` and :code:`simp_options::puppet::ca` are
+  now optional.
 
   * These are no longer required at all times due to support for Bolt. Code that
     used these parameters will correctly fail and require users to add them to
     their configuration.
 
-* Updated ``simp_options::ldap`` to require the 'master' and 'uri' parameters if
-  ``simp_options::puppet::server`` is not defined.
+* Updated :code:`simp_options::ldap` to require the :code:`master` and
+  :code:`uri` parameters if :code:`simp_options::puppet::server` is not defined.
 
 pupmod-simp-simp_rsyslog
 ^^^^^^^^^^^^^^^^^^^^^^^^
 
-* Add support for firewalld log message collection.
-* Deep merge ``simp_rsyslog::log_collection``.
-
+* Add support for :program:`firewalld` log message collection.
+* Deep merge :code:`simp_rsyslog::log_collection`.
 
 pupmod-simp-simpkv
 ^^^^^^^^^^^^^^^^^^
@@ -1395,7 +1451,7 @@ This module provides
 * a configuration scheme that allows users to specify per-application use
   of different key/value store instances
 * adapter software that loads and uses store-specific interface software
-  provided by the simpkv module itself and other modules
+  provided by the :pupmod:`simp/simpkv` module itself and other modules
 * a Ruby API for the store interface software that developers can implement
   to provide their own store interface
 * a file-based store on the local filesystem and its interface software.
@@ -1410,30 +1466,31 @@ Facts Changes
 
 Added the following facts:
 
-+----------------------------------+----------------------------------------+
-| Fact                             | Description                            |
-+==================================+========================================+
-| ``simplib__auditd``              | Returns a hash of auditd status.       |
-+----------------------------------+----------------------------------------+
-| ``simplib__firewalls``           | Return an array of known firewall      |
-|                                  | commands that are present on the       |
-|                                  | system.                                |
-+----------------------------------+----------------------------------------+
-| ``simplib__mountpoints``         | Returns a hash of mountpoints of       |
-|                                  | particular interest to SIMP modules.   |
-+----------------------------------+----------------------------------------+
-| ``simplib__numa``                | Returns a hash of NUMA values.         |
-+----------------------------------+----------------------------------------+
-| ``simplib__efi_enabled``         | Returns ``true`` if the host is using  |
-|                                  | EFI.                                   |
-+----------------------------------+----------------------------------------+
-| ``simplib__secure_boot_enabled`` | Returns ``true`` if the host is using  |
-|                                  | UEFI Secure Boot.                      |
-+----------------------------------+----------------------------------------+
++--------------------------------------+--------------------------------------+
+| Fact                                 | Description                          |
++======================================+======================================+
+| :code:`simplib__auditd`              | Returns a hash of :program:`auditd`  |
+|                                      | status.                              |
++--------------------------------------+--------------------------------------+
+| :code:`simplib__firewalls`           | Return an array of known firewall    |
+|                                      | commands that are present on the     |
+|                                      | system.                              |
++--------------------------------------+--------------------------------------+
+| :code:`simplib__mountpoints`         | Returns a hash of mountpoints of     |
+|                                      | particular interest to SIMP modules. |
++--------------------------------------+--------------------------------------+
+| :code:`simplib__numa`                | Returns a hash of NUMA values.       |
++--------------------------------------+--------------------------------------+
+| :code:`simplib__efi_enabled`         | Returns :code:`true` if the host is  |
+|                                      | using EFI.                           |
++--------------------------------------+--------------------------------------+
+| :code:`simplib__secure_boot_enabled` | Returns :code:`true` if the host is  |
+|                                      | using UEFI Secure Boot.              |
++--------------------------------------+--------------------------------------+
 
 Deprecated the following facts:
 
-* ``tmp_mounts`` fact.  Use ``simplib__mountpoints``, instead.
+* :code:`tmp_mounts` fact.  Use :code:`simplib__mountpoints`, instead.
 
 
 Function Changes
@@ -1441,149 +1498,162 @@ Function Changes
 
 Added the following functions:
 
-+----------------------------------------------+---------------------------------------------+
-| Function                                     | Description                                 |
-+==============================================+=============================================+
-| ``simplib::debug::inspect``                  | Enhanced version of ``simplib::inspect``.   |
-+----------------------------------------------+---------------------------------------------+
-| ``simplib::debug::classtrace``               | Prints a trace of all catalog resources     |
-|                                              | traversed to get to the current point.      |
-+----------------------------------------------+---------------------------------------------+
-| ``simplib::debug::stacktrace``               | Prints a trace of all files traversed to    |
-|                                              | get to the current point.                   |
-+----------------------------------------------+---------------------------------------------+
-| ``simplib::ip::family_hash``                 | Takes an IP address or array of IP          |
-|                                              | addresses and returns a hash with the       |
-|                                              | addresses broken down by family. The        |
-|                                              | returned hash also contains additional      |
-|                                              | helpful metadata.                           |
-+----------------------------------------------+---------------------------------------------+
-| ``simplib::module_metadata::os_blacklisted`` | Determine if the passed module metadata     |
-|                                              | indicates that the current OS has been      |
-|                                              | blacklisted.                                |
-+----------------------------------------------+---------------------------------------------+
-| ``simplib::module_metadata::os_supported``   | Determine if the passed module metadata     |
-|                                              | indicates that the current OS is supported. |
-+----------------------------------------------+---------------------------------------------+
-| ``simplib::module_metadata::assert``         | Adds an assertion based on whether the OS   |
-|                                              | is supported or blacklisted.                |
-+----------------------------------------------+---------------------------------------------+
-| ``simplib::caller``                          | Determines what called a function.          |
-+----------------------------------------------+---------------------------------------------+
-| ``simplib::passgen::gen_password_and_salt``  | Generates a password and salt.              |
-+----------------------------------------------+---------------------------------------------+
-| ``simplib::passgen::gen_salt``               | Generates a salt.                           |
-+----------------------------------------------+---------------------------------------------+
-| ``simplib::passgen::get``                    | Retrieves a generated password and any      |
-|                                              | stored attributes.                          |
-+----------------------------------------------+---------------------------------------------+
-| ``simplib::passgen::list``                   | Retrieves the list of generated passwords   |
-|                                              | with attributes and the list of sub-folders |
-|                                              | stored at a ``simplib::passgen`` folder.    |
-+----------------------------------------------+---------------------------------------------+
-| ``simplib::passgen::remove``                 | Removes a generated password, history and   |
-|                                              | stored attributes.                          |
-+----------------------------------------------+---------------------------------------------+
-| ``simplib::passgen::set``                    | Sets a generated password with attributes.  |
-+----------------------------------------------+---------------------------------------------+
-| ``simplib::safe_filename``                   | Convert a string into a filename that is    |
-|                                              | 'path safe'.                                |
-+----------------------------------------------+---------------------------------------------+
++--------------------------------------------------+--------------------------------+
+| Function                                         | Description                    |
++==================================================+================================+
+| :code:`simplib::debug::inspect`                  | Enhanced version of            |
+|                                                  | :code:`simplib::inspect`.      |
++--------------------------------------------------+--------------------------------+
+| :code:`simplib::debug::classtrace`               | Prints a trace of all catalog  |
+|                                                  | resources traversed to get to  |
+|                                                  | the current point.             |
++--------------------------------------------------+--------------------------------+
+| :code:`simplib::debug::stacktrace`               | Prints a trace of all files    |
+|                                                  | traversed to get to the        |
+|                                                  | current point.                 |
++--------------------------------------------------+--------------------------------+
+| :code:`simplib::ip::family_hash`                 | Takes an IP address or array   |
+|                                                  | of IP addresses and returns a  |
+|                                                  | hash with the addresses        |
+|                                                  | broken down by family. The     |
+|                                                  | returned hash also contains    |
+|                                                  | additional helpful metadata.   |
++--------------------------------------------------+--------------------------------+
+| :code:`simplib::module_metadata::os_blacklisted` | Determine if the passed        |
+|                                                  | metadata indicates that the    |
+|                                                  | current OS has been            |
+|                                                  | blacklisted.                   |
++--------------------------------------------------+--------------------------------+
+| :code:`simplib::module_metadata::os_supported`   | Determine if the passed module |
+|                                                  | metadata indicates that the    |
+|                                                  | current OS is supported.       |
++--------------------------------------------------+--------------------------------+
+| :code:`simplib::module_metadata::assert`         | Adds an assertion based on     |
+|                                                  | whether the OS is supported or |
+|                                                  | blacklisted.                   |
++--------------------------------------------------+--------------------------------+
+| :code:`simplib::caller`                          | Determines what called a       |
+|                                                  | function.                      |
++--------------------------------------------------+--------------------------------+
+| :code:`simplib::passgen::gen_password_and_salt`  | Generates a password and salt. |
++--------------------------------------------------+--------------------------------+
+| :code:`simplib::passgen::gen_salt`               | Generates a salt.              |
++--------------------------------------------------+--------------------------------+
+| :code:`simplib::passgen::get`                    | Retrieves a generated password |
+|                                                  | and any stored attributes.     |
++--------------------------------------------------+--------------------------------+
+| :code:`simplib::passgen::list`                   | Retrieves the list of          |
+|                                                  | generated passwords with       |
+|                                                  | attributes and the list of     |
+|                                                  | sub-folders stored at a        |
+|                                                  | :code:`simplib::passgen`       |
+|                                                  | folder.                        |
++--------------------------------------------------+--------------------------------+
+| :code:`simplib::passgen::remove`                 | Removes a generated password,  |
+|                                                  | history and stored attributes. |
++--------------------------------------------------+--------------------------------+
+| :code:`simplib::passgen::set`                    | Sets a generated password with |
+|                                                  | attributes.                    |
++--------------------------------------------------+--------------------------------+
+| :code:`simplib::safe_filename`                   | Convert a string into a is     |
+|                                                  | filename that 'path safe'.     |
++--------------------------------------------------+--------------------------------+
 
 Updated the following functions:
 
-* ``simplib::passgen``
+* :code:`simplib::passgen`
 
-  * Added simpkv mode.
+  * Added 'simpkv' mode.
 
-    * Runs in legacy mode (default) or in a simpkv mode.
-    * simpkv mode is **EXPERIMENTAL**.
-    * When in simpkv mode, ``simplib:passgen`` uses ``simp-simpkv`` for
-      password persistence.
-    * simpkv mode is enabled by setting ``simplib::passgen::simpkv`` to
-      ``true`` in hieradata.
-    * If you enable simpkv mode in a system that already has passwords
+    * Runs in 'legacy' mode (default) or in a 'simpkv' mode.
+    * 'simpkv' mode is **EXPERIMENTAL**.
+    * When in 'simpkv' mode, :code:`simplib:passgen` uses :pupmod:`simp/simpkv`
+      for password persistence.
+    * 'simpkv' mode is enabled by setting :code:`simplib::passgen::simpkv` to
+      :code:`true` in Hiera.
+    * If you enable 'simpkv' mode in a system that already has passwords
       generated via the legacy code, currently, **all passwords will be
       regenerated**.
-    * Added ``simpkv_options`` parameter to ``simplib::passgen`` for use in
-      simpkv mode.
+    * Added :code:`simpkv_options` parameter to :code:`simplib::passgen` for use
+      in 'simpkv' mode.
 
-  * Enhanced ``simplib::passgen`` operation when in simpkv mode
+  * Enhanced :code:`simplib::passgen` operation when in 'simpkv' mode
 
-    * Stores 'complexity' and 'complex_only' setting in the password's simpkv
-      metadata, so that the password can be regenerated with the same
-      characteristics.
+    * Stores :code:`complexity` and :code:`complex_only` setting in the
+      password's simpkv metadata, so that the password can be regenerated with
+      the same characteristics.
     * Regenerates the password if the requested 'complexity' or 'complex_only'
       setting differs from the setting used for the latest persisted password.
     * Stores up to the lastest 10 <password,salt> pairs in the password's
       simpkv metadata.
 
-  * Added a ``gen_timeout_seconds`` password option.  Previously this was
+  * Added a :code:`gen_timeout_seconds` password option.  Previously this was
     hardcoded to 30 seconds.
 
   * Added ability to set the user and group for legacy
-    ``simplib::passgen`` files.
-  * Changed the default permissions on legacy ``simplib::passgen`` files
+    :code:`simplib::passgen` files.
+  * Changed the default permissions on legacy :code:`simplib::passgen` files
     to the user running the catalog compile.  This will allow bolt to set
     permissions correctly.
 
-* ``simplib::gen_random_password``:
+* :code:`simplib::gen_random_password`:
 
   * Intersperse special characters among the alpha-numeric characters,
-    when 'complexity' is 1 or 2 and 'complex_only' is ``false``.
-    Previously, this function grouped the all alpha-numeric characters
-    together and grouped all special characters together.  This generated
-    passwords that were not suitable for user passwords, as they would fail
-    the cracklib/libpwquality complexity checks.
+    when :code:`complexity` is 1 or 2 and :code:`complex_only` is
+    :code:`false`.  Previously, this function grouped the all alpha-numeric
+    characters together and grouped all special characters together.  This
+    generated passwords that were not suitable for user passwords, as they
+    would fail the :package`cracklib`/:package`libpwquality` complexity checks.
 
-* ``simplib::assert_metadata``:
+* :code:`simplib::assert_metadata`:
 
-  * Added ``blacklist`` option. This allows functionality to deliberately
-    fail on an OS that is listed in the module's ``metadata.json``, but is not
-    necessarily supported by all parts of the given module.
+  * Added :code:`blacklist` option. This allows functionality to deliberately
+    fail on an OS that is listed in the module's :file:`metadata.json`, but is
+    not necessarily supported by all parts of the given module.
 
 New data type aliases
 """""""""""""""""""""
 
-Added ``Simplib::Systemd::ServiceName`` for valid systemd service names.
+Added :code:`Simplib::Systemd::ServiceName` for valid :program:`systemd` service
+names.
 
 pupmod-simp-stunnel
 ^^^^^^^^^^^^^^^^^^^
 
-* Set default for ``stunnel::connection::ssl_version`` to TLSv1.2 for EL8
+* Set default for :code:`stunnel::connection::ssl_version` to TLSv1.2 for EL8
   compatibility.
-* Set default for ``stunnel::instance::ssl_version`` to TLSv1.2 for EL8
+* Set default for :code:`stunnel::instance::ssl_version` to TLSv1.2 for EL8
   compatibility.
-* Set the ``stunnel::connection::app_pki_crl parameter`` to ``undef`` by
+* Set the :code:`stunnel::connection::app_pki_crl parameter` to :code:`undef` by
   default due to issues with pointing the setting to an absent directory in EL8.
-* Set the ``stunnel::instance::app_pki_crl``` parameter to ``undef`` by default
-  due to issues with pointing the setting to an absent directory in EL8.
-* Updated valid ``ssl_version`` entries.
+* Set the :code:`stunnel::instance::app_pki_crl` parameter to :code:`undef` by
+  default due to issues with pointing the setting to an absent directory in EL8.
+* Updated valid :code:`ssl_version` entries.
 
 
 pupmod-simp-sudo
 ^^^^^^^^^^^^^^^^
 
-* Added parameters for ``sudo::default_entry`` and ``sudo::alias`` defined
-  types.
-* CVE-2019-14287 mitigation
+* Added parameters for :code:`sudo::default_entry` and :code:`sudo::alias`
+  defined types.
+* CVE-2019-14287 mitigation.
 
-  * Do not allow the use of userid or group id of '-1' when 'ALL' or '%ALL' are
-    used in the runas section of a sudo user specification and the version of
-    sudo is earlier than 1.8.28.
+  * Do not allow the use of user id or group id of '-1' when 'ALL' or '%ALL' are
+    used in the runas section of a :program:`sudo` user specification and the
+    version of :program:`sudo` is earlier than 1.8.28.
   * See  https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2019-14287
     for more information.
 
-* Deep merge ``user_specifications`` by default.
+* Deep merge :code:`user_specifications` by default.
 
 pupmod-simp-svckill
 ^^^^^^^^^^^^^^^^^^^
 
-* Updated the ``svckill`` provider to work with different Puppet ``service``
-  provider implementations.
+* Updated the :code:`svckill` provider to work with different Puppet
+  :code:`service` provider implementations.
 
-  * If after a Puppet upgrade you find that ``svckill`` is trying to kill
-    system services that it previously ignored, you need ``simp-svckill``
+  * If after a Puppet upgrade you find that :code:`svckill` is trying to kill
+    system services that it previously ignored, you need :pupmod:`simp/svckill`
     version 3.6.1 or later to fix the problem.
 
 * Updated service lists.
@@ -1591,22 +1661,23 @@ pupmod-simp-svckill
 pupmod-simp-swap
 ^^^^^^^^^^^^^^^^
 
-* Disable ``dynamic_swappiness`` by default.
-* Set static system swappiness to 60 by default.
+* Disable :code:`dynamic_swappiness` by default.
+* Set the static system swappiness to 60 by default.
 
 
 pupmod-simp-tcpwrappers
 ^^^^^^^^^^^^^^^^^^^^^^^
 
-* Enhanced behavior to do nothing when tcpwrappers is not supported by the OS.
+* Enhanced behavior to do nothing when TCP Wrappers is not supported by the OS.
 
 pupmod-simp-tpm2
 ^^^^^^^^^^^^^^^^
 
-* Removed the option for managing tools, ``tpm2::manage_tpm2_tools``.
+* Removed the option for managing tools, :code:`tpm2::manage_tpm2_tools`.
   Tools can be managed or not by removing them from the package list.
   Note that the tools package is needed to determine the status of the TPM.
-* Added support for setting ``tabrm_options`` for connecting to the simulator.
+* Added support for setting :code:`tabrm_options` for connecting to the
+  simulator.
 
 
 pupmod-simp-useradd
@@ -1622,90 +1693,90 @@ rubygem-simp-cli
 * Updated the instructions provided in the local user lockout warning message
   in the bootstrap lock file.
 
-  * Simplified instructions to create resources via hieradata.
-  * Tell the user to check that they can ssh into the server with the new
-    user after bootstrap but before rebooting. This step is imperative to
-    ensure that the user can also get through Puppet-managed
-    authentication!
+  * Simplified instructions to create resources via Hiera.
+  * Tell the user to check that they can :command:`ssh` into the server with the
+    new user after bootstrap but before rebooting. This step is imperative to
+    ensure that the user can also get through Puppet-managed authentication!
 
-* Updated SIMP internet repositories configured by 'simp config'.
+* Updated SIMP internet repositories configured by :command:`simp config`.
 
-  * Now uses simp-project.com repositories via new
-    ``simp::yum::repo::internet_simp`` class.
-  * The packagecloud repositories are no longer being updated.
+  * Now uses `simp-project.com`_ repositories via the new
+    :code:`simp::yum::repo::internet_simp` class.
+  * The `packagecloud`_ repositories are no longer being updated.
 
-* Allow users to set the SIMP_ENVIRONMENT environment variable to change the
+* Allow users to set the 'SIMP_ENVIRONMENT' environment variable to change the
   initial environment from 'production' to a custom value, when running
-  ``simp config`` or ``simp bootstrap``.
-* ``simp config`` changes
+  :command:`simp config` or :command:`simp bootstrap`.
+* :command:`simp config` changes
 
-  * Ensured that ``simp config`` uses the ``simp::classes`` parameter instead
-    of ``classes`` by default, but accept both ``simp::classes`` and
-    ``classes`` as valid existing configurations.
-  * Removed deprecated ``--non-interactive`` option.  Use ``--force-defaults``
-    instead.
+  * Ensured that :command:`simp config` uses the :code:`simp::classes` parameter
+    instead of :code:`classes` by default, but accept both :code:`simp::classes`
+    and :code:`classes` as valid existing configurations.
+  * Removed deprecated :code:`--non-interactive` option.  Use
+    :code:`--force-defaults` instead.
 
-* Added ``simp kv`` command family to allow users to manage and inspect
+* Added :command:`simp kv` command family to allow users to manage and inspect
   entries in a simpkv key/value store
-* ``simp passgen`` changes
+* :command:`simp passgen` changes
 
   * Split into sub-commands for ease of use:
 
-    * ``simp passgen envs``: List environments that may have ``simplib::passgen``
+    * :command:`simp passgen envs`: List environments that may have
+      :code:`simplib::passgen` passwords.
+    * :command:`simp passgen list`: List names of :code:`simplib::passgen`
       passwords.
-    * ``simp passgen list``: List names of ``simplib::passgen`` passwords.
-    * ``simp passgen remove``: Remove ``simplib::passgen`` passwords.
-    * ``simp passgen set``: Set ``simplib::passgen`` passwords.
-    * ``simp passgen show``:  Show ``simplib::passgen`` passwords and other
-      stored attributes.
+    * :command:`simp passgen remove`: Remove :code:`simplib::passgen` passwords.
+    * :command:`simp passgen set`: Set :code:`simplib::passgen` passwords.
+    * :command:`simp passgen show`:  Show :code:`simplib::passgen` passwords
+      and other stored attributes.
 
-  * Updated to work with simpkv-enabled ``simplib::passgen``.  Automatically
-    detects whether ``simplib::passgen`` is operating in legacy mode or
-    simpkv mode in the specified environment, and then executes password
+  * Updated to work with simpkv-enabled :code:`simplib::passgen`.  Automatically
+    detects whether :code:`simplib::passgen` is operating in 'legacy' mode or
+    'simpkv' mode in the specified environment, and then executes password
     operations using the appropriate mechanism for that mode.
-  * When setting passwords, disabled libpwquality/cracklib validation of
-    user-entered passwords, by default, because not all passwords managed
-    by ``simplib::passgen`` are user passwords.  This validation can be
-    re-enabled with the ``--validate`` option of the ``simp passgen set``
-    command.
+  * When setting passwords, disabled :package:`libpwquality`/:package`cracklib`
+    validation of user-entered passwords, by default, because not all passwords
+    managed by :code:`simplib::passgen` are user passwords.  This validation
+    can be re-enabled with the :code:`--validate` option of
+    :command:`simp passgen set`.
 
   * Added the following command line options when creating passwords
 
-    * ``--[no-]auto-gen``: Whether to auto-generate new passwords.
-    * ``--complexity``: Password complexity to use when a password is
-      auto-generated. Corresponds to the complexity option of
-      ``simplib::passgen``.
-    * ``--[no-]complex-only``: Whether to only use only complex characters
-      when a password is auto-generated. Corresponds to the complex_only
-      option of ``simplib::passgen``.
-    * ``--[no-]validate``: Enabled validation of new passwords with
-      libpwquality/cracklib.
-    * ``--length``: Password length to use when a password is auto-generated.
+    * :code:`--[no-]auto-gen`: Whether to auto-generate new passwords.
+    * :code:`--complexity`: Password complexity to use when a password is
+      auto-generated. Corresponds to the :code:`complexity` option of
+      :code:`simplib::passgen`.
+    * :code:`--[no-]complex-only`: Whether to only use only complex characters
+      when a password is auto-generated. Corresponds to the :code:`complex_only`
+      option of :code:`simplib::passgen`.
+    * :code:`--[no-]validate`: Enables validation of new passwords with
+      :package:`libpwquality`/:package:`cracklib`.
+    * :code:`--length`: Password length to use when a password is auto-generated.
 
-  * Added ``--[no-]details`` option when showing password information.  When
+  * Added :code:`--[no-]details` option when showing password information.  When
     enabled, all available password information is displayed, not just the
     current and previous password values.
 
-* Updated HighLine from version 1.7.8 to 2.0.3.
+* Updated :package:`HighLine` from version 1.7.8 to 2.0.3.
 
 simp-environment-skeleton
 ^^^^^^^^^^^^^^^^^^^^^^^^^
 
-* Ensured that the server hieradata defaults have ``simp::server`` in the
-  ``simp::classes`` array. Otherwise, it will never get picked up.
-* Replace ``classes`` with ``simp::classes`` and ``simp::server::classes`` as
-  appropriate in example Hiera YAML files.
-* FakeCA Updates
+* Ensured that the server Hiera defaults have :code:`simp::server` in the
+  :code:`simp::classes` array. Otherwise, it will never get picked up.
+* Replace :code:`classes` with :code:`simp::classes` and
+  :code:`simp::server::classes` as appropriate in example Hiera YAML files.
+* FakeCA updates
 
   * Added the CA code directly into the project to allow the code to work
     on newer OS versions
-  * Allow users to specify an alternate output directory via a KEYDIST
+  * Allow users to specify an alternate output directory via a 'KEYDIST'
     environment variable.
   * Consolidate the certificate request and revocation code.
   * Certificate revocation now runs in linear time.
 
 * Changed permissions for files and directories to be world readable.
-* Add a PE-suitable puppet YAML data template.
+* Add a PE-suitable Puppet server YAML data template.
 
 
 simp-gpgkeys
@@ -1718,30 +1789,33 @@ simp-gpgkeys
 simp-rsync-skeleton
 ^^^^^^^^^^^^^^^^^^^
 
-* Added mitigation for CVE-2019-6477 to the sample, RedHat 7 ``named.conf``.
+* Added mitigation for CVE-2019-6477 to the sample, RedHat 7 :file:`named.conf`.
 
   * See  https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2019-6477
     for more information.
 
-* Removed ``rndc.key`` files from sample named configuration to prevent users
-  from accidentally using a published, sample secret key.
+* Removed :file:`rndc.key` files from sample named configuration to prevent
+  users from accidentally using a published, sample secret key.
 
-  * The ``named`` service will create a key if one does not exist using the
-    correct defaults for the system.
+  * The :program:`named` service will create a key if one does not exist using
+    the correct defaults for the system.
 
 simp-utils
 ^^^^^^^^^^
 
-* Added (optional) ``--unpack-pxe [DIR]`` option to the ``unpack_dvd`` script.
+* Added (optional) :code:`--unpack-pxe [DIR]` option to the
+  :program:`unpack_dvd` script.
 
-  * Added (optional) ``--environment ENV`` to set the PXE rsync environment.
-  * Added a new ``--[no-]unpack-yum`` (enabled by default), to permit users to
-    disable the RPM unpack.
-  * To enable unpacking PXE tftpboot files, run with ``--unpack-pxe``.
-  * To disable unpacking RPMs/yum repos, run with ``--no-unpack-yum``.
-  * See ``unpack_dvd --help`` for details.
+  * Added (optional) :code:`--environment ENV` to set the PXE rsync
+    environment.
+  * Added a new :code:`--[no-]unpack-yum` (enabled by default), to permit users
+    to disable the RPM unpack.
+  * To enable unpacking PXE tftpboot files, run with :code:`--unpack-pxe`.
+  * To disable unpacking RPMs/yum repos, run with :code:`--no-unpack-yum`.
+  * See :command:`unpack_dvd --help` for details.
 
-* Overhauled ``unpack_dvd --help``; output now fits on 80-character PTY consoles
+* Overhauled :command:`unpack_dvd --help`; output now fits on 80-character PTY
+  consoles.
 
 Known Bugs
 ----------
@@ -1751,3 +1825,5 @@ Nothing significant at this time.
 The SIMP project in JIRA can be used to `file bugs`_.
 
 .. _file bugs: https://simp-project.atlassian.net
+.. _simp-project.com: https://simp-project.com
+.. _packagecloud: https://packagecloud.io/simp-project
