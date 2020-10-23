@@ -255,7 +255,7 @@ RPM.
 
   * :pupmod:`simp/gdm`
   * :pupmod:`simp/gnome`
-  * :pupmod:`simp_hirs_provisioner`
+  * :pupmod:`simp/hirs_provisioner`
   * :pupmod:`simp/mate`
   * :pupmod:`simp/simp_gitlab`
   * :pupmod:`simp/simp_pki_service`
