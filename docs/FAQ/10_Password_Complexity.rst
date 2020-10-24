@@ -49,8 +49,9 @@ Complexity Rules
 You can check whether or not a password will meet the system requirements
 as follows:
 
-* On systems that use ``pam_pwquality``, use the ``pwscore`` utility.
-* On systems that use ``pam_cracklib``, use the ``cracklib-check`` utility.
+
+* On systems that use :program:`pam_pwquality`, use the :program:`pwscore` utility.
+* On systems that use :program:`pam_cracklib`, use the :program:`cracklib-check` utility.
 
 .. NOTE::
 

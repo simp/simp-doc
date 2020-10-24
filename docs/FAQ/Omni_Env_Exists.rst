@@ -43,7 +43,7 @@ To do this, see :ref:`howto-use-an-alternate-simp-config-environment`.
 
 Remember to assign nodes to this environment using your :term:`ENC` of choice.
 
-For a simple inbuilt solution, see :ref:`howto-simp-enc`.
+For a simple built-in solution, see :ref:`howto-simp-enc`.
 
 Puppet Enterprise Users
 -----------------------
