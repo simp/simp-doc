@@ -3,7 +3,7 @@ Blocking or Caching Facts
 
 As described in `Configuring Facter with facter.conf`_, you can block or cache
 groups of facts on a node using settings in :file:`facter.conf` on that node.  SIMP
-has made this easier by adding management of ``facter.conf`` to :pupmod:`simp-pupmod`
+has made this easier by adding management of ``facter.conf`` to :pupmod:`simp/pupmod`
 (version >= '8.0.0'). Using this module, you can 
 managel :file:`facter.conf` and specify its configuration in :term:`Hiera`.
 

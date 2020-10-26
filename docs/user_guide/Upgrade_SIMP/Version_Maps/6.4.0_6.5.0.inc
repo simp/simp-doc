@@ -174,9 +174,9 @@ If the :program:`mcstransd` daemon is enabled on a system, changes to how
 :file:`/proc` was mounted to allow :program:`polkit` to work can cause
 :program:`mcstransd` to send a lot of errors to the system log.
 
-:pupmod:`simp-selinux` has been updated with a fix for this, but it no longer
+:pupmod:`simp/selinux` has been updated with a fix for this, but it no longer
 manages :program:`mcstransd` by default.  To manage :program:`mcstransd` with
-the :pupmod:`simp-selinux` module, set the following in Hiera:
+the :pupmod:`simp/selinux` module, set the following in Hiera:
 
 .. code-block:: yaml
 

@@ -11,7 +11,7 @@ same resources that IPA provides automation for. This includes:
 +-----------------+-----------------------------------------------------+-------------------+
 | Technology      | Related SIMP Features                               | Related Tickets   |
 +-----------------+-----------------------------------------------------+-------------------+
-| :code:`sudoers` | :pupmod:`simp/simp` and :pupmod:`simp-sudo` modules | :jira:`SIMP-4898` |
+| :code:`sudoers` | :pupmod:`simp/simp` and :pupmod:`simp/sudo` modules | :jira:`SIMP-4898` |
 +-----------------+-----------------------------------------------------+-------------------+
 | :code:`autofs`  | optional :pupmod:`simp/simp_nfs` module             | :jira:`SIMP-4168` |
 +-----------------+-----------------------------------------------------+-------------------+
@@ -228,7 +228,7 @@ about user accounts that are worth noting:
 
 *  Users and groups still have to be added to PAM to be able to log in!  You
    will need to allow access using the :code:`pam::access::rule` define from the
-   :pupmod:`simp-pam` Puppet module.  For example, to allow access to the
+   :pupmod:`simp/pam` Puppet module.  For example, to allow access to the
    ``posixusers`` group created above:
 
    .. code-block:: puppet
