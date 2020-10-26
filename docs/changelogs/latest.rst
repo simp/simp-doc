@@ -300,8 +300,86 @@ ecosystem is now available.
    Be aware that :program:`firewalld` rules do not support hostnames; IP
    addresses must be used. This may impact any manifests that contain
    :code:`iptables::listen` resources, including resources from some SIMP
-   modules. You will have to change hostnames to IP addresses for the
+   modules. You will have to change any hostnames to IP addresses for the
    affected resources when using :program:`firewalld`.
+
+
+The table below is a list of the SIMP resource parameters impacted by the lack
+of hostname support by :program:`firewalld`.
+
+* Many of these parameters default to :code:`simp_options:trusted_nets`, when it
+  is available.
+* Each network element can be specified as a network (CIDR notation), an IP address,
+  'ALL' or 'any'.
+* 'or' in the table below indicates the default value that will be used if the
+  previous value is not defined.
+
++---------------------------------------------------+----------------------------------------+
+| Parameter                                         | Default Value                          |
++===================================================+========================================+
+| :code:`freeradius::v3::conf::trusted_nets`        | :code:`simp_options::trusted_nets`     |
+|                                                   | or :code:`['127.0.0.1','::1']`         |
++---------------------------------------------------+----------------------------------------+
+| :code:`krb5::kdc::firewall::trusted_nets`         | :code:`simp_options::trusted_nets`     |
+|                                                   |  or :code:`['127.0.0.1','::1']`        |
++---------------------------------------------------+----------------------------------------+
+| :code:`krb5::kdc::realm::trusted_nets`            | :code:`krb5::kdc::trusted_nets`        |
+|                                                   |  or :code:`simp_options::trusted_nets` |
+|                                                   |  or :code:`['127.0.0.1']`              |
++---------------------------------------------------+----------------------------------------+
+| :code:`libreswan::trusted_nets`                   | :code:`simp_options::trusted_nets`     |
+|                                                   |  or :code:`['127.0.0.1/32']`           |
++---------------------------------------------------+----------------------------------------+
+| :code:`nfs::client::mount::nfs_server`            | N/A                                    |
++---------------------------------------------------+----------------------------------------+
+| :code:`nfs::server::trusted_nets`                 | :code:`simp_options::trusted_nets`     |
+|                                                   |  or :code:`['127.0.0.1']`              |
++---------------------------------------------------+----------------------------------------+
+| :code:`ntpd::trusted_nets`                        | :code:`simp_options::trusted_nets`     |
+|                                                   |  or :code:`['127.0.0.1','::1']`        |
++---------------------------------------------------+----------------------------------------+
+| :code:`postfix::server::trusted_nets`             | :code:`simp_options::trusted_nets`     |
+|                                                   |  or :code:`['127.0.0.1']`              |
++---------------------------------------------------+----------------------------------------+
+| :code:`pupmod::master::trusted_nets`              | :code:`simp_options::trusted_nets`     |
+|                                                   |  or :code:`['127.0.0.1','::1']`        |
++---------------------------------------------------+----------------------------------------+
+| :code:`rsync::server::trusted_nets`               | :code:`simp_options::trusted_nets`     |
+|                                                   |  or :code:`['127.0.0.1']`              |
++---------------------------------------------------+----------------------------------------+
+| :code:`rsyslog::trusted_nets`                     | :code:`simp_options::trusted_nets`     |
+|                                                   |  or :code:`['127.0.0.1/32']`           |
++---------------------------------------------------+----------------------------------------+
+| :code:`simp::puppetdb::trusted_nets`              | :code:`simp_options::trusted_nets`     |
+|                                                   |  or :code:`['127.0.0.1']`              |
++---------------------------------------------------+----------------------------------------+
+| :code:`simp_apache::ssl::trusted_nets`            | :code:`simp_options::trusted_nets`     |
+|                                                   |  or :code:`['127.0.0.1','::1']`        |
++---------------------------------------------------+----------------------------------------+
+| :code:`simp_apache::conf::allowroot`              | :code:`['127.0.0.1','::1']`            |
++---------------------------------------------------+----------------------------------------+
+| :code:`simp_nfs::home_dir_server`                 | N/A                                    |
++---------------------------------------------------+----------------------------------------+
+| :code:`simp_nfs::mount::home::nfs_server`         | N/A                                    |
++---------------------------------------------------+----------------------------------------+
+| :code:`simp_openldap::server::conf::trusted_nets` | :code:`simp_options::trusted_nets`     |
+|                                                   |  or :code:`['127.0.0.1']`              |
++---------------------------------------------------+----------------------------------------+
+| :code:`ssh::server::conf::trusted_nets`           | :code:`['ALL']`                        |
++---------------------------------------------------+----------------------------------------+
+| :code:`stunnel::connection::trusted_nets`         | :code:`simp_options::trusted_nets`     |
+|                                                   |  or :code:`['127.0.0.1']`              |
++---------------------------------------------------+----------------------------------------+
+| :code:`stunnel::instance::trusted_nets`           | :code:`simp_options::trusted_nets`     |
+|                                                   |  or :code:`['127.0.0.1']`              |
++---------------------------------------------------+----------------------------------------+
+| :code:`vsftpd::trusted_nets`                      | :code:`simp_options::trusted_nets`     |
+|                                                   |  or :code:`['127.0.0.1','::1']`        |
++---------------------------------------------------+----------------------------------------+
+| :code:`xinetd::service::trusted_nets`             | :code:`simp_options::trusted_nets`     |
+|                                                   |  or :code:`['127.0.0.1']`              |
++---------------------------------------------------+----------------------------------------+
+
 
 Optional Dependency Handling
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -1603,7 +1681,7 @@ Updated the following functions:
     :code:`false`.  Previously, this function grouped the all alpha-numeric
     characters together and grouped all special characters together.  This
     generated passwords that were not suitable for user passwords, as they
-    would fail the :package`cracklib`/:package`libpwquality` complexity checks.
+    would fail the :package:`cracklib`/:package:`libpwquality` complexity checks.
 
 * :code:`simplib::assert_metadata`:
 
@@ -1734,7 +1812,7 @@ rubygem-simp-cli
     detects whether :code:`simplib::passgen` is operating in 'legacy' mode or
     'simpkv' mode in the specified environment, and then executes password
     operations using the appropriate mechanism for that mode.
-  * When setting passwords, disabled :package:`libpwquality`/:package`cracklib`
+  * When setting passwords, disabled :package:`libpwquality`/:package:`cracklib`
     validation of user-entered passwords, by default, because not all passwords
     managed by :code:`simplib::passgen` are user passwords.  This validation
     can be re-enabled with the :code:`--validate` option of

@@ -47,6 +47,9 @@ def pupmod_class():
     if len(forge_names) == 2:
       url = 'https://forge.puppet.com/%s/%s' % (forge_names[0], forge_names[1])
       node = nodes.reference(rawtext, text, refuri=url, **options)
+      if re.search('-', text):
+        fixed_text = re.sub('-', '/', text)
+        print("WARNING: Use '/' to separate Puppet module names (.e.g., %s', not '%s')\n" % (fixed_text, text))
     else:
       node = nodes.inline(rawtext, text, **options)
 
