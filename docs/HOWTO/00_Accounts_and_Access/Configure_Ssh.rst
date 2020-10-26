@@ -108,7 +108,7 @@ need to be noted:
      you can add them using the :code:`sshd_config_match` resource from the
      `herculesteam-augeasproviders_ssh`_ module.  Since :pupmod:`simp/ssh` uses
      this module internally, the :code:`sshd_config_match` resource will be
-     available to you on any node using :pupmod:`simp-ssh`.
+     available to you on any node using :pupmod:`simp/ssh`.
 
 
 Managing Settings for the SSH Client
