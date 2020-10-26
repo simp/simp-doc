@@ -3,7 +3,7 @@
 Modifying the Puppet Cron Schedule
 ==================================
 
-SIMP deploys a cron-job, via :code:`pupmod::agent::cron` from the :pupmod:`simp-pupmod`
+SIMP deploys a cron-job, via :code:`pupmod::agent::cron` from the :pupmod:`simp/pupmod`
 Puppet module, to run a non-daemonized puppet agent to ensure compliance,
 over time. By default, the cron-job is run twice every hour on a semi-random
 interval, to ensure all agents do not run puppet simultaneously.  Additionally,
