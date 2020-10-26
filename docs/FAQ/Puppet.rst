@@ -135,7 +135,6 @@ in the :file:`r10k.yaml` file to automatically run :command:`puppet generate
 types` for each environment after it is deployed:
 
 .. code-block:: yaml
-
    :emphasize-lines: 3
    :caption: Inside :file:`r10k.yaml`:
 
