@@ -1681,7 +1681,7 @@ Updated the following functions:
     :code:`false`.  Previously, this function grouped the all alpha-numeric
     characters together and grouped all special characters together.  This
     generated passwords that were not suitable for user passwords, as they
-    would fail the :package`cracklib`/:package`libpwquality` complexity checks.
+    would fail the :package:`cracklib`/:package:`libpwquality` complexity checks.
 
 * :code:`simplib::assert_metadata`:
 
@@ -1812,7 +1812,7 @@ rubygem-simp-cli
     detects whether :code:`simplib::passgen` is operating in 'legacy' mode or
     'simpkv' mode in the specified environment, and then executes password
     operations using the appropriate mechanism for that mode.
-  * When setting passwords, disabled :package:`libpwquality`/:package`cracklib`
+  * When setting passwords, disabled :package:`libpwquality`/:package:`cracklib`
     validation of user-entered passwords, by default, because not all passwords
     managed by :code:`simplib::passgen` are user passwords.  This validation
     can be re-enabled with the :code:`--validate` option of
