@@ -40,5 +40,5 @@ differently.
       A setting of ``false`` does **not** disable the use of PKI in a module.
 
 The following sections describe how to populate the central key distribution
-directory that :pupmod:`pupmod-simp-pki` uses, when :code:`simp_options::pki`
+directory that :pupmod:'simp/pki` uses, when :code:`simp_options::pki`
 is set to ``simp``.
