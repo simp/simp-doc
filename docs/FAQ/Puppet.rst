@@ -32,8 +32,9 @@ troubleshoot the issue.
       -key $(puppet config print hostprivkey) \
       -CAfile $(puppet config print localcacert)
 
-If none of these items provides useful information, you may need to check permissions on your server
-and/or dig more closely into the :program:`puppetserver` or client logs.
+If none of these items provides useful information, you may need to check
+permissions on your server and/or dig more closely into the
+:program:`puppetserver` or client logs.
 
 .. _faq-puppet-debug_mode_crash:
 
@@ -125,8 +126,8 @@ permissions.  One way to do this is by running the following command:
 This creates all files with the correct group ownership.
 
 
-Automatically generating types after ``r10k deploy environment``
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+Automatically generating types after :command:`r10k deploy environment`
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 If you are using :term:`r10k` to deploy :term:`Control Repository` branches
 using :command:`r10k deploy environment`, you can set the `"generate_types" option`_
@@ -134,7 +135,6 @@ in the :file:`r10k.yaml` file to automatically run :command:`puppet generate
 types` for each environment after it is deployed:
 
 .. code-block:: yaml
-
    :emphasize-lines: 3
    :caption: Inside :file:`r10k.yaml`:
 
@@ -152,9 +152,9 @@ by running the following command:
    ( umask 0027 && sg puppet -c '/usr/share/simp/bin/r10k deploy environment production' )
 
 This will deploy the environment with the correct permissions and group
-ownership.  If ``deploy/generate_types`` is set to ``true``, it will also
-generate environment-safe type metadata files  with the same permissions and
-ownership.
+ownership.  If :code:`deploy/generate_types` is set to ``true`` in
+:file:`r10k.yaml`, it will also generate environment-safe type metadata files
+with the same permissions and ownership.
 
 .. _SERVER-94: https://tickets.puppetlabs.com/browse/SERVER-94
 .. _postrun: https://github.com/puppetlabs/r10k/blob/master/doc/dynamic-environments/configuration.mkd#postrun
