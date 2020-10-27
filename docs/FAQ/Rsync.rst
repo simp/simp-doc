@@ -9,10 +9,10 @@ rsync's syncing engine to reduce network load and Puppet run times.
 
 The common SIMP use cases for rsync include:
 
-   * ``clamav``
-   * ``tftpboot``
-   * ``named``
-   * ``dhcpd``
+   * :program:`clamav`
+   * :program:`tftpboot`
+   * :program:`named`
+   * :program:`dhcpd`
 
 
 Large Files
