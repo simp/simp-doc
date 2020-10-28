@@ -1890,7 +1890,7 @@ simp-rsync-skeleton
 * Updated the :file:`README` in :file:`rsync/RedHat/Global/tftpboot/linux-install`.
 
   * It now explains which boot files for the :term:`TFTP` boot server are
-    required when :code:`tftpboot:use_os_files` is set to :code:`false`.
+    required when :code:`tftpboot::use_os_files` is set to :code:`false`.
 
 simp-utils
 ^^^^^^^^^^
