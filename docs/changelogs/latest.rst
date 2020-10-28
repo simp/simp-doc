@@ -1,8 +1,8 @@
 .. _changelog-latest:
 .. _changelog-6.5.0:
 
-SIMP Community Edition (CE) 6.5.0-Alpha
-=======================================
+SIMP Community Edition (CE) 6.5.0-Beta
+======================================
 
 .. raw:: pdf
 
@@ -544,6 +544,12 @@ pupmod-simp-freeradius
 pupmod-simp-iptables
 ^^^^^^^^^^^^^^^^^^^^
 
+* Fixed a bug in which the module did not check for :program:`firewalld`
+  availability when :code:`iptables::use_firewalld` was set to :code:`true`.
+
+  * The module now ensures that systems that do not have :code:`firewalld`
+    do not attempt to configure it.
+
 * Fixed bugs in :program:`iptables` rule address normalization:
 
   * Ensured that all addresses are normalized when rules are processed.
@@ -643,6 +649,9 @@ pupmod-simp-polkit
 pupmod-simp-pupmod
 ^^^^^^^^^^^^^^^^^^
 
+* Fixed a bug in which the module could not determine the appropriate Puppet
+  configuration for Puppet >= 6.19.0 from the internal :code:`Puppet.settings`
+  method, because the 'master' section was renamed  to 'server'.
 * Fixed a bug on EL6 nodes in which setting :code:`pupmod::master::generate_types`
   to :code:`false` caused the catalog compilation to fail.
 * Fixed a bug in :program:`puppetserver` configuration in which the
@@ -1877,6 +1886,11 @@ simp-rsync-skeleton
 
   * The :program:`named` service will create a key if one does not exist using
     the correct defaults for the system.
+
+* Updated the :file:`README` in :file:`rsync/RedHat/Global/tftpboot/linux-install`.
+
+  * It now explains which boot files for the :term:`TFTP` boot server are
+    required when :code:`tftpboot:use_os_files` is set to :code:`false`.
 
 simp-utils
 ^^^^^^^^^^
