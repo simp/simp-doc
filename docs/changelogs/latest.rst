@@ -60,7 +60,9 @@ Breaking Changes
 IPTables Rule Refinement
 ^^^^^^^^^^^^^^^^^^^^^^^^
 
-**IPTables does NOT have breaking changes out of the box**
+.. IMPORTANT::
+
+   IPTables does NOT have breaking changes out of the box.
 
 A new parameter, :code:`iptables::precise_match` was added that performs higher
 precision matching on :program:`iptables` rules to detect the need to restart
@@ -72,7 +74,8 @@ changes, will appropriately restart
 :program:`iptables`.
 
 If you enable precision matching, do so with care since you may find that
-iptables updates are propagated that you thought had previously been applied.
+:program:`iptables` rule updates are propagated that you thought had previously
+been applied.
 
 It is highly recommended that you migrate to :code:`firewalld` if at all
 possible. See the relevant section below for more details.
