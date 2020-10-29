@@ -27,7 +27,7 @@ formatting such as bold ``*text*`` or double-backticks (``````):
      :file: documentation_custom_roles.csv
      :delim: |
      :included_cols: 0,1,2,3
-     :exclude: {4: '(?i)^(simp-only|inline)$'}
+     :include: {4: '(?i)^built-in$'}
 
 .. csv-filter:: Custom roles, created for simp-doc
      :header-rows: 1
@@ -35,7 +35,7 @@ formatting such as bold ``*text*`` or double-backticks (``````):
      :file: documentation_custom_roles.csv
      :delim: |
      :included_cols: 0,1,2,3
-     :exclude: {4: '(?i)^(built-in|inline)$'}
+     :include: {4: '(?i)^simp-only$'}
 
 .. csv-filter:: Inline formatting
      :header-rows: 1
@@ -43,7 +43,7 @@ formatting such as bold ``*text*`` or double-backticks (``````):
      :file: documentation_custom_roles.csv
      :delim: |
      :included_cols: 0,1,2,3
-     :exclude: {4: '(?i)^(simp-only|built-in)$'}
+     :include: {4: '(?i)^inline$'}
 
 SIMP Puppet modules
 """""""""""""""""""
