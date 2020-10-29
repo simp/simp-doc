@@ -29,9 +29,10 @@ This release is known to work with:
 
 OS compatibility is subject to the following limitations:
 
-* EL8 support is currently limited to Puppet agents—this release does **not**
-  support managing an EL8 SIMP Server or installing SIMP from an EL8 ISO.
+* EL8 support is currently limited to Puppet agents
 
+  * This release does **not** support managing an EL8 SIMP Server or installing
+    SIMP from an EL8 ISO.
   * EL8 management is supported by all Puppet modules provided as core
     dependencies of the :package:`simp` RPM.
   * Not all modules provided by the :package:`simp-extras` RPM have been updated
@@ -45,7 +46,7 @@ OS compatibility is subject to the following limitations:
 
   * EL6 maintenance support is EOL for both RHEL 6 and CentOS 6, and upstream
     vendor support will end on 30 November 2020.
-  * New Puppet modules may not support EL6.
+  * **New Puppet modules may not support EL6.**
   * Some optional Puppet modules (provided by the :package:`simp-extras` RPM)
     no longer support EL6. In particular, this affects :pupmod:`simp/autofs`,
     :pupmod:`simp/nfs`, and :pupmod:`simp/simp_nfs`.  If you need those
@@ -55,6 +56,26 @@ OS compatibility is subject to the following limitations:
 
 Breaking Changes
 ----------------
+
+IPTables Rule Refinement
+^^^^^^^^^^^^^^^^^^^^^^^^
+
+**IPTables does NOT have breaking changes out of the box**
+
+A new parameter, :code:`iptables::precise_match` was added that performs higher
+precision matching on :program:`iptables` rules to detect the need to restart
+:program:`iptables`.
+
+It is highly recommended that you set :code:`iptables::precise_match: true` in
+:term:`Hiera` so that minor changes, such as subnet updates or single port
+changes, will appropriately restart
+:program:`iptables`.
+
+If you enable precision matching, do so with care since you may find that
+iptables updates are propagated that you thought had previously been applied.
+
+It is highly recommended that you migrate to :code:`firewalld` if at all
+possible. See the relevant section below for more details.
 
 Deprecated Puppet 3 API Functions Removed
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -243,7 +264,8 @@ Significant Updates
 EL8 SIMP Client Node Support
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-This release provides support for EL8 clients.
+This release provides support for EL8 clients!
+
 This includes all (appropriate) Puppet modules provided by the :package:`simp`
 RPM, and a subset of the Puppet modules provided by the :package:`simp-extras`
 RPM.
@@ -310,7 +332,7 @@ of hostname support by :program:`firewalld`.
 * Many of these parameters default to :code:`simp_options:trusted_nets`, when it
   is available.
 * Each network element can be specified as a network (CIDR notation), an IP address,
-  'ALL' or 'any'.
+  :code:`'ALL'` or :code:`'any'`.
 * 'or' in the table below indicates the default value that will be used if the
   previous value is not defined.
 
@@ -419,9 +441,9 @@ Security Announcements
 
 SIMP 6.5.0 Added mitigations for the following CVEs:
 
-* CVE-2020-7942
-* CVE-2019-14287
-* CVE-2019-6477
+* :cve:`CVE-2020-7942`
+* :cve:`CVE-2019-14287`
+* :cve:`CVE-2019-6477`
 
 RPM Updates
 -----------
@@ -1280,7 +1302,7 @@ pupmod-simp-pupmod
   * Attempts to activate the :program:`incron` code will result in a warning
     message.
 
-* Added mitigation for https://puppet.com/security/cve/CVE-2020-7942/
+* Added mitigation for :cve:`CVE-2020-7942`
 * Added optional management of the Facter configuration file.
 * Removed the deprecated CA CRL pull :program:`cron` job and the corresponding
   :code:`pupmod::ca_crl_pull_interval` parameter.
@@ -1723,13 +1745,11 @@ pupmod-simp-sudo
 
 * Added parameters for :code:`sudo::default_entry` and :code:`sudo::alias`
   defined types.
-* CVE-2019-14287 mitigation.
+* :cve:`CVE-2019-14287` mitigation.
 
   * Do not allow the use of user id or group id of '-1' when 'ALL' or '%ALL' are
     used in the runas section of a :program:`sudo` user specification and the
     version of :program:`sudo` is earlier than 1.8.28.
-  * See  https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2019-14287
-    for more information.
 
 * Deep merge :code:`user_specifications` by default.
 
@@ -1876,10 +1896,7 @@ simp-gpgkeys
 simp-rsync-skeleton
 ^^^^^^^^^^^^^^^^^^^
 
-* Added mitigation for CVE-2019-6477 to the sample, RedHat 7 :file:`named.conf`.
-
-  * See  https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2019-6477
-    for more information.
+* Added mitigation for :cve:`CVE-2019-6477` to the sample, RedHat 7 :file:`named.conf`.
 
 * Removed :file:`rndc.key` files from sample named configuration to prevent
   users from accidentally using a published, sample secret key.

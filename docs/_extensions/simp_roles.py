@@ -4,11 +4,12 @@ from docutils.parsers.rst import roles
 import sphinx.errors
 
 def setup(app):
-    app.add_role('pupmod',  pupmod_class())
+    app.add_role('cve',     auto_class('cve', 'inline', 'https://cve.mitre.org/cgi-bin/cvename.cgi?name=%s'))
+    app.add_role('github',  github_class())
+    app.add_role('jira',    auto_class('jira', 'inline', 'https://simp-project.atlassian.net/browse/%s'))
     app.add_role('package', auto_class('package'))
     app.add_role('param',   auto_class('param', 'literal'))
-    app.add_role('jira',    auto_class('jira', 'inline', 'https://simp-project.atlassian.net/browse/%s'))
-    app.add_role('github',  github_class())
+    app.add_role('pupmod',  pupmod_class())
 
 # Ensure options dict contains a classes list with a 'simp-{role_name}' item
 def append_to_options_classes(options, role_name):

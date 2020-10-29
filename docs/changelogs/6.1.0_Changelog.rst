@@ -131,7 +131,7 @@ compilation will appear to pause at ``(/Stage[main]/Aide/Exec[update_aide_db])``
 Security Announcements
 ----------------------
 
-* CVE-2017-2299
+* :cve:`CVE-2017-2299`
 
   * Versions of the puppetlabs-apache module prior to 1.11.1 and 2.1.0 make it
     very easy to accidentally misconfigure TLS trust.
@@ -175,7 +175,7 @@ Security Updates
 
 pupmod-puppetlabs-apache
 ^^^^^^^^^^^^^^^^^^^^^^^^
-* Updated to 2.1.0 to fix CVE-2017-2299
+* Updated to 2.1.0 to fix :cve:`CVE-2017-2299`
 
 
 Fixed Bugs
