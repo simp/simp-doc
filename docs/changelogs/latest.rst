@@ -298,8 +298,8 @@ SIMP-6.5.0 ISOs deliver Puppet 6 application RPMs.
 firewalld Support
 ^^^^^^^^^^^^^^^^^
 
-As of SIMP 6.5.0, preliminary :program:`firewalld` support within the SIMP
-ecosystem is now available.
+As of SIMP 6.5.0, :program:`firewalld` support is available within the SIMP and is the default for
+all new installations on platforms that support it.
 
 * **New simp/simp_firewalld module**: SIMP now includes
   :pupmod:`simp/simp_firewalld` which provides a profile class and defined type
