@@ -15,34 +15,72 @@ SIMP Community Edition (CE) 6.5.0-Beta
 
   PageBreak
 
+
+OS compatibility
+----------------
+
+.. contents::
+  :depth: 2
+  :local:
+
 This release is known to work with:
 
   * CentOS 6.10 x86_64
   * CentOS 7.0 2003 x86_64
-  * CentOS 8.2 2004 x86_64 (client systems only)
+  * CentOS 8.2 2004 x86_64 — :ref:`client systems only<changelog-6-5-0-el8-client-only>`
   * OEL 6.10 x86_64
   * OEL 7.8 x86_64
-  * OEL 8.2 x86_64 (client systems only)
+  * OEL 8.2 x86_64 — :ref:`client systems only<changelog-6-5-0-el8-client-only>`
   * RHEL 6.10 x86_64
   * RHEL 7.8 x86_64
-  * RHEL 8.2 x86_64 (client systems only)
+  * RHEL 8.2 x86_64 — :ref:`client systems only<changelog-6-5-0-el8-client-only>`
+
+
+Important OS compatibility limitations
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 OS compatibility is subject to the following limitations:
 
-* EL8 support is currently limited to Puppet agents
 
-  * This release does **not** support managing an EL8 SIMP Server or installing
-    SIMP from an EL8 ISO.
-  * EL8 management is supported by all Puppet modules provided as core
-    dependencies of the :package:`simp` RPM.
-  * Not all modules provided by the :package:`simp-extras` RPM have been updated
-    for EL8.
-  * EL8 updates to the remaining :package:`simp-extras` modules will be phased
-    in over future SIMP releases.
-  * Support for managing an EL8 SIMP/Puppet server and installing from
-    EL8 ISOs will be provided in a later SIMP release (SIMP 6.6.0).
 
-* Support for managing EL6 system is drawing down.
+.. _changelog-6-5-0-el8-client-only:
+
+EL8 support is CLIENT ONLY
+""""""""""""""""""""""""""
+
+This release introduces client-only EL8 support in the core Puppet modules.
+
+* EL8 support is limited to managing EL8 Puppet *agents*
+* with the core Puppet modules.
+* All Puppet modules provided as core dependencies of the :package:`simp` RPM
+  support EL8.
+
+This release does NOT support EL8 for:
+
+* Managing an EL8 SIMP Server
+* Installing SIMP from an EL8 ISO.
+* Using the :program:`unpack_dvd` script on modular yum repositories found on
+  EL8 OS ISOs
+
+.. rubric:: Additional limitations with EL8
+
+* Not all modules provided by the :package:`simp-extras` RPM have been updated
+  for EL8.
+* EL8 updates to the remaining :package:`simp-extras` modules will be phased
+  in over future SIMP releases.
+* Support for managing an EL8 SIMP/Puppet server and installing from
+  EL8 ISOs will be provided in a later SIMP release (SIMP 6.6.0).
+
+* In SIMP 6.5.0,
+  :ref:`there are known issues<changelog-6-5-0-el8-client-limitations>` with
+  PXE kickstarting and unpacking ISOs as yum mirrors for EL8 clients.  These
+  issues particularly affect network-isolated environments.
+
+  * For details, see: :ref:`changelog-6-5-0-el8-client-limitations`.
+
+
+Support for managing EL6 is drawing down
+""""""""""""""""""""""""""""""""""""""""
 
   * EL6 maintenance support is EOL for both RHEL 6 and CentOS 6, and upstream
     vendor support will end on 30 November 2020.
@@ -56,6 +94,10 @@ OS compatibility is subject to the following limitations:
 
 Breaking Changes
 ----------------
+
+.. contents::
+  :depth: 2
+  :local:
 
 IPTables Rule Refinement
 ^^^^^^^^^^^^^^^^^^^^^^^^
@@ -79,6 +121,7 @@ been applied.
 
 It is highly recommended that you migrate to :code:`firewalld` if at all
 possible. See the relevant section below for more details.
+
 
 Deprecated Puppet 3 API Functions Removed
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -264,10 +307,16 @@ older versions of the appropriate modules.
 Significant Updates
 -------------------
 
+.. contents::
+  :depth: 2
+  :local:
+
+.. _changelog-6.5.0-el8-client-support:
+
 EL8 SIMP Client Node Support
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-This release provides support for EL8 clients!
+This release provides support for managing software on EL8 agents.
 
 This includes all (appropriate) Puppet modules provided by the :package:`simp`
 RPM, and a subset of the Puppet modules provided by the :package:`simp-extras`
@@ -288,6 +337,7 @@ RPM.
   * :pupmod:`simp/tuned`
   * :pupmod:`simp/vnc`
   * :pupmod:`simp/x2go`
+
 
 Full Puppet 6 Support and Puppet 6 Default Components
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -442,6 +492,10 @@ module version updates.
 Security Announcements
 ----------------------
 
+.. contents::
+  :depth: 2
+  :local:
+
 SIMP 6.5.0 Added mitigations for the following CVEs:
 
 * :cve:`CVE-2020-7942`
@@ -480,6 +534,10 @@ The following Puppet RPMs are packaged with the SIMP 6.5.0 ISOs:
 
 Removed Puppet Modules
 ----------------------
+
+.. contents::
+  :depth: 2
+  :local:
 
 Unused Augeasproviders Modules
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -531,6 +589,10 @@ provided by the :pupmod:`camptocamp/systemd` module. If you used
 
 Fixed Bugs
 ----------
+
+.. contents::
+  :depth: 2
+  :local:
 
 pupmod-simp-aide
 ^^^^^^^^^^^^^^^^
@@ -804,6 +866,10 @@ simp-utils
 
 New Features
 ------------
+
+.. contents::
+  :depth: 2
+  :local:
 
 pupmod-simp-aide
 ^^^^^^^^^^^^^^^^
@@ -1345,7 +1411,7 @@ pupmod-simp-selinux
 
 * No longer enable or install :program:`mcstransd` by default.  It is a user
   convenience feature and not required for core functionality.
-* Ensured that :program:`mcstransd` is added to the GID assigned to 
+* Ensured that :program:`mcstransd` is added to the GID assigned to
   :file:`/proc` if one is assigned on the system.
 
 pupmod-simp-simp
@@ -1929,13 +1995,56 @@ simp-utils
 * Overhauled :command:`unpack_dvd --help`; output now fits on 80-character PTY
   consoles.
 
-Known Bugs
-----------
 
-Nothing significant at this time.
+Known Bugs and Limitations
+--------------------------
 
-The SIMP project in JIRA can be used to `file bugs`_.
+Below are bugs and limitations known to affect this release. If you discover
+additional problems, please `submit an issue`_ to let use know.
 
-.. _file bugs: https://simp-project.atlassian.net
+.. contents::
+  :depth: 2
+  :local:
+
+.. _changelog-6-5-0-el8-client-limitations:
+
+Special considerations with EL8 clients
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+
+Network-isolated EL8 clients require EPEL8 and EL8 Base/Updates dnf mirrors
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+Because there is no SIMP 6.5 EL8 server release, there is no accompanying EL8
+ISO or package tarball that can be used to create a self-hosted dnf repository
+for SIMP-specific EL8 packages.
+
+In order to provide the necessary packages to EL8 agents on a network-isolated
+SIMP 6.5 infrastructure, admins must ensure that dnf repo mirrors are available
+for:
+
+  * EL8 Base/Updates
+  * `EPEL 8 <https://download.fedoraproject.org/pub/epel/8/Everything/x86_64/>`_
+  * `Puppet EL8 <http://yum.puppet.com/puppet/el/8/x86_64/>`_
+
+
+unpack_dvd does not (re-)create modular repos for EL8 dnf repos (:jira:`SIMP-8614`)
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+EL8 introduces `modular package repositories
+<https://docs.pagure.org/modularity/>`_. When unpacking an EL8 ISO to populate
+a yum repository, SIMP 6.5.0's :program:`unpack_dvd` script does not recognize
+or correctly package repository modules.  Consequently, EL8 Puppet agents
+applying catalogs that require modular EL8 packages may encounter errors like
+the following:
+
+.. code-block:: none
+
+   Error: /Stage[main]/Simp_apache::Install/Package[httpd]/ensure: change from 'purged' to 'latest' failed: Could not update: Execution of '/usr/bin/dnf -d 0 -e 1 -y install httpd' returned 1: No available modular metadata for modular package 'httpd-2.4.37-21.module_el8.2.0+382+15b0afa8.x86_64', it cannot be installed on the system
+   Error: No available modular metadata for modular package
+
+
+.. _submit an issue: https://simp-project.atlassian.net
 .. _simp-project.com: https://simp-project.com
 .. _packagecloud: https://packagecloud.io/simp-project
+
