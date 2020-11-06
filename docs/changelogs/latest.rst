@@ -50,8 +50,8 @@ EL8 support is CLIENT ONLY
 
 This release introduces client-only EL8 support in the core Puppet modules.
 
-* EL8 support is limited to managing EL8 Puppet *agents*
-* with the core Puppet modules.
+* EL8 support is limited to managing EL8 Puppet *agents* with the core Puppet
+  modules.
 * All Puppet modules provided as core dependencies of the :package:`simp` RPM
   support EL8.
 
@@ -1934,6 +1934,19 @@ rubygem-simp-cli
     current and previous password values.
 
 * Updated :package:`HighLine` from version 1.7.8 to 2.0.3.
+
+simp-adapter
+^^^^^^^^^^^^
+
+* Removed logic to ensure any existing, global :file:`hiera.yaml.simp` file is not
+  removed on upgrade from simp-adapter <= 0.0.6.
+
+  * This is not an issue when upgrading from SIMP 6.4.0 to SIMP 6.5.0 (i.e.,
+    :package:`simp-adapter` version 1.0.1 to version 2.0.0).
+  * If for some reason you are upgrading from :package:`simp-adapter` version
+    <= 0.0.6, manually save off :file:`/etc/puppetlabs/puppet/hiera.yaml.simp`
+    prior to the upgrade, and then restore that file after the upgrade is
+    complete.
 
 simp-environment-skeleton
 ^^^^^^^^^^^^^^^^^^^^^^^^^
