@@ -1,6 +1,6 @@
 .. _ug-update-and-deploy-using-local-repos:
 
-#. Generate the new ``Puppetfile.simp``, a Puppetfile containing the latest
+#. Generate the new :file:`Puppetfile.simp`, a Puppetfile containing the latest
    versions of only SIMP-packaged Puppet modules:
 
    .. code-block:: sh
@@ -8,17 +8,17 @@
       cd /etc/puppetlabs/code/environments/test
       simp puppetfile generate > Puppetfile.simp
 
-#. Verify the environment's ``Puppetfile``:
+#. Verify the environment's :file:`Puppetfile`:
 
    .. Warning::
 
-      Any module not listed in the ``Puppetfile`` will be deleted from the
-      target environment's ``modules`` directory, when you use :term:`r10k` to
+      Any module not listed in the :file:`Puppetfile` will be deleted from the
+      target environment's :file:`modules` directory, when you use :term:`r10k` to
       deploy the modules.
 
-   Make sure the ``Puppetfile`` you will be deploying from includes the following:
+   Make sure the :file:`Puppetfile` you will be deploying from includes the following:
 
-   * A line that includes the ``Puppetfile.simp`` which should look like:
+   * A line that includes the :file:`Puppetfile.simp` which should look like:
 
      .. code-block:: ruby
 
@@ -32,8 +32,8 @@
 
 #. Deploy the modules from the local Git repositories into the environment
 
-   Use ``r10k`` to deploy the modules, making sure the ``umask`` and ``group``
-   are set correctly so that the ``puppetserver`` has access to the files. 
+   Use :command:`r10k` to deploy the modules, making sure the ``umask`` and ``group``
+   are set correctly so that the puppetserver has access to the files.
 
    .. code-block:: sh
 
@@ -48,6 +48,6 @@
 
 .. TIP::
 
-   Use ``simp --help`` for more information on the ``simp`` utility and alternate
+   Use :command:`simp --help` for more information on the :command:`simp` utility and alternate
    options provided for each command.
 
