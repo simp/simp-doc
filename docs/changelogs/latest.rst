@@ -287,7 +287,8 @@ API changes:
 * :pupmod:`simp/nfs`
 * :pupmod:`simp/simp_nfs`
 
-The specific changes made are described in detail the New Features section.
+The specific changes made are described in detail in the
+:ref:`New Features section<changelog-6-5-0-new-features>`.
 
 .. _changelog-6.5.0-el6-support-dropped-from-some-optional-puppet-modules:
 
@@ -753,17 +754,28 @@ pupmod-simp-pupmod
 pupmod-simp-rsyslog
 ^^^^^^^^^^^^^^^^^^^
 
+* Fixed the default security collection string for :program:`firewalld` rules.
 * Fixed a bug where the 'IncludeConfig' directive for :file:`/etc/rsyslog.d`
   allowed more than just :file:`.conf` files to be parsed.
 
 pupmod-simp-simp
 ^^^^^^^^^^^^^^^^
 
+* Ensure that the :program:`sudoers` rule for removing the Puppet SSL directory
+  is not created when running from Bolt, since the directory target is changed
+  at each Bolt run and will result in non-idempotency.
+* Fixed a bug in which the 'gpgkey' and 'baseurl' configuration strings were
+  required for the local YUM repositories managed by
+  :code:`simp::yum::repo::local_os_updates` and :code:`simp::yum::repo::local_simp`.
+
+  - Both are optional in the :code:`yumrepo` type if they already exist on disk.
+
 * Removed the broken :file:`tasks/` directory.
 
 pupmod-simp-simplib
 ^^^^^^^^^^^^^^^^^^^
 
+* Fixed the use of :code:`simplib::debug::inspect` when using Bolt.
 * Fixed bugs in the :code:`grub_version` and :code:`init_systems` facts.
 * Fixed the :code:`simplib__auditd` fact so that it detects the state of the
   running :program:`auditd` process.
@@ -863,6 +875,8 @@ simp-utils
 
 * Fixed minor bugs in :program:`unpack_dvd`.
 
+
+.. _changelog-6-5-0-new-features:
 
 New Features
 ------------
@@ -1191,6 +1205,7 @@ pupmod-simp-krb5
 pupmod-simp-libreswan
 ^^^^^^^^^^^^^^^^^^^^^
 
+* Removed unused :code:`libreswan::use_certs_parameter` parameter.
 * Added support for IKEv2 Mobility (RFC-4555) and mobile client connections.
 * Added additional settings for DNS and Domains for Libreswan v3.23+.
 
@@ -1361,6 +1376,15 @@ pupmod-simp-polkit
 pupmod-simp-pupmod
 ^^^^^^^^^^^^^^^^^^
 
+* Default :code:`pupmod::master::ssl_protocols` to TLSv1.2 only.
+* Use :code:`$facts['certname']`, when available, in the parameters below,
+  because :code:`$facts['fqdn` may not be appropriate when the system does not
+  use its primary NIC/FQDN for its Puppet certificate.
+
+  * :code:`pupmod::certname`
+  * :code:`pupmod::master::ca_status_whitelist`
+  * :code:`pupmod::master::admin_api_whitelist`
+
 * Set the default :program:`puppetserver` ciphers to a safe set.
 * Added better auto-tuning support for :program:`puppetserver`, based on best
   practices.
@@ -1404,6 +1428,8 @@ pupmod-simp-rsyslog
   rule.
 * Added :code:`logrotate::rule` options to :code:`rsyslog::conf::logrotate`
   class.
+* Removed the :code:`filter_` rules that were present for an old (and broken)
+  version of the :pupmod:`simp/simp_firewalld` module.
 * Removed params pattern and migrated to data in modules.
 
 pupmod-simp-selinux
@@ -1614,8 +1640,10 @@ pupmod-simp-simp_options
 pupmod-simp-simp_rsyslog
 ^^^^^^^^^^^^^^^^^^^^^^^^
 
-* Add support for :program:`firewalld` log message collection.
+* Added support for :program:`firewalld` log message collection.
 * Deep merge :code:`simp_rsyslog::log_collection`.
+* Removed the :code:`filter_IN_99_simp_DROP` rules that were present for an old
+  (and broken) version of the :pupmod:`simp/simp_firewalld` module.
 
 pupmod-simp-simpkv
 ^^^^^^^^^^^^^^^^^^
@@ -1938,6 +1966,8 @@ rubygem-simp-cli
 simp-environment-skeleton
 ^^^^^^^^^^^^^^^^^^^^^^^^^
 
+* Ensure that :program:`firewalld` is used by default in the applicable SIMP
+  scenarios.
 * Ensured that the server Hiera defaults have :code:`simp::server` in the
   :code:`simp::classes` array. Otherwise, it will never get picked up.
 * Replace :code:`classes` with :code:`simp::classes` and
