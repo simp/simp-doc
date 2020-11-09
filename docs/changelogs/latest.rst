@@ -286,6 +286,7 @@ API changes:
 * :pupmod:`simp/autofs`
 * :pupmod:`simp/nfs`
 * :pupmod:`simp/simp_nfs`
+* :pupmod:`simp/simp_snmpd`
 
 The specific changes made are described in detail in the
 :ref:`New Features section<changelog-6-5-0-new-features>`.
@@ -334,7 +335,6 @@ RPM.
   * :pupmod:`simp/mate`
   * :pupmod:`simp/simp_gitlab`
   * :pupmod:`simp/simp_pki_service`
-  * :pupmod:`simp/simp_snmpd`
   * :pupmod:`simp/tuned`
   * :pupmod:`simp/vnc`
   * :pupmod:`simp/x2go`
@@ -794,6 +794,23 @@ pupmod-simp-simp_options
 ^^^^^^^^^^^^^^^^^^^^^^^^
 
 * Fixed :term:`PE` detection in :code:`simp_options::puppet::server_distribution`.
+
+pupmod-simp-simp_snmpd
+^^^^^^^^^^^^^^^^^^^^^^
+
+* Fixed a bug in which the PID file option was missing from the default options
+  for the :program:`snmpd` daemon in EL6.  The daemon failed to start without
+  this option.
+
+* Fixed a bug where the default for access security level was incorrectly set.
+
+  * The default access security level is now by the new parameter
+    :code:`simp_snmpd::defvacmlevel` instead of
+    :code:`simp_snmpd::defsecuritylevel`.
+  * :code:`simp_snmpd::defsecuritylevel` sets the default security
+    level for the client.
+
+* Added a missing dependency on :pupmod:`simp/tcpwrappers`.
 
 pupmod-simp-stunnel
 ^^^^^^^^^^^^^^^^^^^
@@ -1644,6 +1661,55 @@ pupmod-simp-simp_rsyslog
 * Deep merge :code:`simp_rsyslog::log_collection`.
 * Removed the :code:`filter_IN_99_simp_DROP` rules that were present for an old
   (and broken) version of the :pupmod:`simp/simp_firewalld` module.
+
+pupmod-simp-simp_snmpd
+^^^^^^^^^^^^^^^^^^^^^^
+
+* Changes:
+
+  * Updated to use :pupmod:`puppet/snmp` version 5.1.2.
+  * The default configuration for this module has not changed but some settings
+    are now placed in the :file:`snmpd.conf` file instead of in a subdirectory.
+  * The user directory for :program:`snmpd` configuration,
+    :file:`/etc/snmp/snmpd.d`, is not included by default.
+
+    * :file:`/etc/snmp/simp_snmpd.d` is always included.
+    * The new parameter :code:`simp_snmpd::include_userdir` must be set to
+      :code:`true` to include :file:`/etc/snmp/snmpd.d`.
+
+  * The configuration parameter :code:`simp_snmpd::snmpd_conf_file` has been
+    renamed to :code:`simp_snmpd::service_config`.
+  * The type of the :code:`simp_snmpd::services` parameter has been changed
+    from a :code:`String` to an :code:`Integer`.
+  * :code:`simp_snmpd::system_info`, :code:`simp_snmpd::contact`,
+    :code:`simp_snmpd::location`, :code:`simp_snmpd::sysName`, and
+    :code:`simp_snmpd::sysServices` have been deprecated.
+
+    * These parameters are inert, because :pupmod:`puppet/snmpd` no longer
+      supports this configuration.
+
+* New features:
+
+  * Added settings to allow users to change owner/group and permissions
+    on configuration files:
+
+    * :code:`simp_snmpd::service_config_dir_owner`
+    * :code:`simp_snmpd::service_config_dir_group`
+    * :code:`simp_snmpd::service_config_dir_perms`
+    * :code:`simp_snmpd::service_config_perms`
+
+  * Added configuration of :program:`snmpd` user and group IDs, as well
+    as optional managment of the user and group:
+
+    * :code:`simp_snmpd::snmpd_uid`
+    * :code:`simp_snmpd::snmpd_gid`
+    * :code:`simp_snmpd::manage_snmpd_user`
+    * :code:`simp_snmpd::manage_snmpd_group`
+
+  * Added :program:`snmpd` configuration parameters:
+
+    * :code:`simp_snmpd::trap_service_config`
+    * :code:`simp_snmpd::snmpdtrapd_options`
 
 pupmod-simp-simpkv
 ^^^^^^^^^^^^^^^^^^
