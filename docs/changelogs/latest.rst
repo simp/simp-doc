@@ -286,6 +286,7 @@ API changes:
 * :pupmod:`simp/autofs`
 * :pupmod:`simp/nfs`
 * :pupmod:`simp/simp_nfs`
+* :pupmod:`simp/simp_snmpd`
 
 The specific changes made are described in detail in the
 :ref:`New Features section<changelog-6-5-0-new-features>`.
@@ -334,7 +335,6 @@ RPM.
   * :pupmod:`simp/mate`
   * :pupmod:`simp/simp_gitlab`
   * :pupmod:`simp/simp_pki_service`
-  * :pupmod:`simp/simp_snmpd`
   * :pupmod:`simp/tuned`
   * :pupmod:`simp/vnc`
   * :pupmod:`simp/x2go`
@@ -574,7 +574,6 @@ able to be appropriately updated in time for the release:
 
 * :package:`pupmod-puppet-gitlab`
 * :package:`pupmod-simp-simp_gitlab`
-* :package:`pupmod-simp-simp_snmpd`
 
 These modules are expected to be updated in future SIMP releases.
 
@@ -794,6 +793,23 @@ pupmod-simp-simp_options
 ^^^^^^^^^^^^^^^^^^^^^^^^
 
 * Fixed :term:`PE` detection in :code:`simp_options::puppet::server_distribution`.
+
+pupmod-simp-simp_snmpd
+^^^^^^^^^^^^^^^^^^^^^^
+
+* Fixed a bug in which the PID file option was missing from the default options
+  for the :program:`snmpd` daemon in EL6.  The daemon failed to start without
+  this option.
+
+* Fixed a bug where the default for client security level was incorrectly set.
+
+  * The default access security level is now by the new parameter
+    :code:`simp_snmpd::defvacmlevel` instead of
+    :code:`simp_snmpd::defsecuritylevel`.
+  * :code:`simp_snmpd::defsecuritylevel` sets the default security
+    level for the client.
+
+* Added a missing dependency on :pupmod:`simp/tcpwrappers`.
 
 pupmod-simp-stunnel
 ^^^^^^^^^^^^^^^^^^^
@@ -1645,6 +1661,64 @@ pupmod-simp-simp_rsyslog
 * Removed the :code:`filter_IN_99_simp_DROP` rules that were present for an old
   (and broken) version of the :pupmod:`simp/simp_firewalld` module.
 
+pupmod-simp-simp_snmpd
+^^^^^^^^^^^^^^^^^^^^^^
+
+* Changes:
+
+  * Updated to use :pupmod:`puppet/snmp` version 5.1.2.
+  * The default configuration for this module has not changed but some settings
+    are now placed in the :file:`snmpd.conf` file instead of in a subdirectory.
+  * In the previous version the user directory was automatically included.
+    Now the user must set :code:`simp_snmpd::include_userdir` to :code:`true`
+    for files in the user directory to be included. The relevant parameters are
+    as follows:
+
+    * :code:`simp_snmpd::include_userdir`
+    * :code:`simp_snmpd::user_snmpd_dir`
+
+  * The configuration parameter :code:`simp_snmpd::snmpd_conf_file` has been
+    renamed to :code:`simp_snmpd::service_config`. This is the location of the
+    the :file:`snmpd.conf` file.
+  * The type of the :code:`simp_snmpd::services` parameter has been changed
+    from a :code:`String` to an :code:`Integer`.
+  * The :code:`simp_snmpd::system_info` parameter has been deprecated.
+    :pupmod:`puppet/snmp` now includes these settings by default and
+    they can't be removed.  This means that :program:`net-snmp` will set them
+    as not writable and they can not be changed by a :code:`set` call from an
+    :program:`snmpd` manager or client.
+
+* New features:
+
+  * Added settings to allow users to change owner/group and permissions
+    on configuration files:
+
+    * :code:`simp_snmpd::service_config_dir_owner`
+    * :code:`simp_snmpd::service_config_dir_group`
+    * :code:`simp_snmpd::service_config_dir_perms`
+    * :code:`simp_snmpd::service_config_perms`
+
+  * Added configuration of :program:`snmpd` user and group IDs, as well
+    as optional managment of the user and group:
+
+    * :code:`simp_snmpd::snmpd_uid`
+    * :code:`simp_snmpd::snmpd_gid`
+    * :code:`simp_snmpd::manage_snmpd_user`
+    * :code:`simp_snmpd::manage_snmpd_group`
+
+  * The SNMP trap daemon is still stopped by default. New parameters can be used
+    to enable the daemon, set the command line options on the daemon and start
+    it at boot.  The default settings in :pupmod:`puppet/snmp` are used.
+    Configuration files placed in a user directory can created by the user for
+    any additional configuration.  The following settings have been added to
+    create this behavior:
+
+    * :code:`simp_snmpd::trap_service_ensure`
+    * :code:`simp_snmpd::trap_service_startatboot`
+    * :code:`simp_snmpd::trap_service_config`
+    * :code:`simp_snmpd::snmpdtrapd_options`
+    * :code:`simp_snmpd::user_trapd_dir`
+
 pupmod-simp-simpkv
 ^^^^^^^^^^^^^^^^^^
 
@@ -2024,6 +2098,16 @@ simp-rsync-skeleton
 simp-utils
 ^^^^^^^^^^
 
+* Added a check to the :program:`unpack_dvd` script for dangerously unspecific
+  OS versions (e.g., '7' instead of '7.0.2003').
+
+  * This is common when :program:`unpack_dvd` autodetects the OS version from
+    the ISO's :file:`.treeinfo` on some OSes (particularly CentOS).
+  * It can result in clobbering of existing OS files, when the script unpacks
+    files into a directory names for the major OS version.
+  * The script will exit with an informative message and instructions for how
+    the user can address the issue with the :code:`-v` option.
+
 * Added (optional) :code:`--unpack-pxe [DIR]` option to the
   :program:`unpack_dvd` script.
 
@@ -2037,6 +2121,16 @@ simp-utils
 
 * Overhauled :command:`unpack_dvd --help`; output now fits on 80-character PTY
   consoles.
+
+SIMP ISO
+^^^^^^^^
+
+* Fixed a bug in the instructions about enabling encryption in non-FIPS
+  mode in the sample client kickstart files.
+
+  * Following the erronous instructions prevented automatic decryption from
+    happening at client boot, because the encrypted disk credentials were not
+    added to the :program:`dracut` configuration.
 
 
 Known Bugs and Limitations
