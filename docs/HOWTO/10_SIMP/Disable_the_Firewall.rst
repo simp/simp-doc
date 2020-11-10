@@ -17,6 +17,7 @@ following via :term:`Hiera`:
 
    iptables::enable: false
    firewalld::service_enable: false
+   firewalld::service_ensure: 'stopped'
 
 As per usual, once this is set, Puppet will ensure that the firewall is fully disabled until the
 settings are reversed.
