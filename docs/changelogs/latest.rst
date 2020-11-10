@@ -574,7 +574,6 @@ able to be appropriately updated in time for the release:
 
 * :package:`pupmod-puppet-gitlab`
 * :package:`pupmod-simp-simp_gitlab`
-* :package:`pupmod-simp-simp_snmpd`
 
 These modules are expected to be updated in future SIMP releases.
 
@@ -802,7 +801,7 @@ pupmod-simp-simp_snmpd
   for the :program:`snmpd` daemon in EL6.  The daemon failed to start without
   this option.
 
-* Fixed a bug where the default for access security level was incorrectly set.
+* Fixed a bug where the default for client security level was incorrectly set.
 
   * The default access security level is now by the new parameter
     :code:`simp_snmpd::defvacmlevel` instead of
@@ -1670,23 +1669,24 @@ pupmod-simp-simp_snmpd
   * Updated to use :pupmod:`puppet/snmp` version 5.1.2.
   * The default configuration for this module has not changed but some settings
     are now placed in the :file:`snmpd.conf` file instead of in a subdirectory.
-  * The user directory for :program:`snmpd` configuration,
-    :file:`/etc/snmp/snmpd.d`, is not included by default.
+  * In the previous version the user directory was automatically included.
+    Now the user must set :code:`simp_snmpd::include_userdir` to :code:`true`
+    for files in the user directory to be included. The relevant parameters are
+    as follows:
 
-    * :file:`/etc/snmp/simp_snmpd.d` is always included.
-    * The new parameter :code:`simp_snmpd::include_userdir` must be set to
-      :code:`true` to include :file:`/etc/snmp/snmpd.d`.
+    * :code:`simp_snmpd::include_userdir`
+    * :code:`simp_snmpd::user_snmpd_dir`
 
   * The configuration parameter :code:`simp_snmpd::snmpd_conf_file` has been
-    renamed to :code:`simp_snmpd::service_config`.
+    renamed to :code:`simp_snmpd::service_config`. This is the location of the
+    the :file:`snmpd.conf` file.
   * The type of the :code:`simp_snmpd::services` parameter has been changed
     from a :code:`String` to an :code:`Integer`.
-  * :code:`simp_snmpd::system_info`, :code:`simp_snmpd::contact`,
-    :code:`simp_snmpd::location`, :code:`simp_snmpd::sysName`, and
-    :code:`simp_snmpd::sysServices` have been deprecated.
-
-    * These parameters are inert, because :pupmod:`puppet/snmpd` no longer
-      supports this configuration.
+  * The :code:`simp_snmpd::system_info` parameter has been deprecated.
+    :pupmod:`puppet/snmp` now includes these settings by default and
+    they can't be removed.  This means that :program:`net-snmp` will set them
+    as not writable and they can not be changed by a :code:`set` call from an
+    :program:`snmpd` manager or client.
 
 * New features:
 
@@ -1706,10 +1706,18 @@ pupmod-simp-simp_snmpd
     * :code:`simp_snmpd::manage_snmpd_user`
     * :code:`simp_snmpd::manage_snmpd_group`
 
-  * Added :program:`snmpd` configuration parameters:
+  * The SNMP trap daemon is still stopped by default. New parameters can be used
+    to enable the daemon, set the command line options on the daemon and start
+    it at boot.  The default settings in :pupmod:`puppet/snmp` are used.
+    Configuration files placed in a user directory can created by the user for
+    any additional configuration.  The following settings have been added to
+    create this behavior:
 
+    * :code:`simp_snmpd::trap_service_ensure`
+    * :code:`simp_snmpd::trap_service_startatboot`
     * :code:`simp_snmpd::trap_service_config`
     * :code:`simp_snmpd::snmpdtrapd_options`
+    * :code:`simp_snmpd::user_trapd_dir`
 
 pupmod-simp-simpkv
 ^^^^^^^^^^^^^^^^^^
