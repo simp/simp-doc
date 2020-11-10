@@ -2112,6 +2112,16 @@ simp-utils
 * Overhauled :command:`unpack_dvd --help`; output now fits on 80-character PTY
   consoles.
 
+SIMP ISO
+^^^^^^^^
+
+* Fixed a bug in the instructions about enabling encryption in non-FIPS
+  mode in the sample client kickstart files.
+
+  * Following the erronous instructions prevented automatic decryption from
+    happening at client boot, because the encrypted disk credentials were not
+    added to the :program:`dracut` configuration.
+
 
 Known Bugs and Limitations
 --------------------------
