@@ -1670,22 +1670,23 @@ pupmod-simp-simp_snmpd
   * The default configuration for this module has not changed but some settings
     are now placed in the :file:`snmpd.conf` file instead of in a subdirectory.
   * In the previous version the user directory was automatically included.
-    Now the user must set include_userdir to :code:`true`
-    for files in the user directory to be included.
+    Now the user must set :code:`simp_snmpd::include_userdir` to :code:`true`
+    for files in the user directory to be included. The relevant parameters are
+    as follows:
 
     * :code:`simp_snmpd::include_userdir`
-    * :code:`simp_snmmpd::user_snmpd_dir`
+    * :code:`simp_snmpd::user_snmpd_dir`
 
   * The configuration parameter :code:`simp_snmpd::snmpd_conf_file` has been
     renamed to :code:`simp_snmpd::service_config`. This is the location of the
-    the snmpd.conf file.
+    the :file:`snmpd.conf` file.
   * The type of the :code:`simp_snmpd::services` parameter has been changed
     from a :code:`String` to an :code:`Integer`.
   * The :code:`simp_snmpd::system_info` parameter has been deprecated.
     :pupmod:`puppet/snmp` now includes these settings by default and
     they can't be removed.  This means that :program:`net-snmp` will set them
     as not writable and they can not be changed by a :code:`set` call from an
-    snmpd manager or client.
+    :program:`snmpd` manager or client.
 
 * New features:
 
@@ -1705,11 +1706,12 @@ pupmod-simp-simp_snmpd
     * :code:`simp_snmpd::manage_snmpd_user`
     * :code:`simp_snmpd::manage_snmpd_group`
 
-  * The trap deamon is still stopped by default. New paramters can be used
-    to enable the daemon, set the command line options on the daemon and start it at boot.
-    The default settings in :pupmod:`puppet/snmp` are used. Configuration files placed
-    in a user directory can created by the user for any additional configuration.
-    The following settings have been added to create this behavior:
+  * The SNMP trap daemon is still stopped by default. New parameters can be used
+    to enable the daemon, set the command line options on the daemon and start
+    it at boot.  The default settings in :pupmod:`puppet/snmp` are used.
+    Configuration files placed in a user directory can created by the user for
+    any additional configuration.  The following settings have been added to
+    create this behavior:
 
     * :code:`simp_snmpd::trap_service_ensure`
     * :code:`simp_snmpd::trap_service_startatboot`
