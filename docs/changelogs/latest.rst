@@ -2098,6 +2098,16 @@ simp-rsync-skeleton
 simp-utils
 ^^^^^^^^^^
 
+* Added a check to the :program:`unpack_dvd` script for dangerously unspecific
+  OS versions (e.g., '7' instead of '7.0.2003').
+
+  * This is common when :program:`unpack_dvd` autodetects the OS version from
+    the ISO's :file:`.treeinfo` on some OSes (particularly CentOS).
+  * It can result in clobbering of existing OS files, when the script unpacks
+    files into a directory names for the major OS version.
+  * The script will exit with an informative message and instructions for how
+    the user can address the issue with the :code:`-v` option.
+
 * Added (optional) :code:`--unpack-pxe [DIR]` option to the
   :program:`unpack_dvd` script.
 
