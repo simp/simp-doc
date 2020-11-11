@@ -74,8 +74,14 @@ steps as ``root``:
    * Update the repositories using a SIMP ISO:
 
      If you have the latest SIMP ISO available to you and have installed the
-     ``simp-utils`` package, update the YUM repositories by unpacking the ISO
-     using ``unpack_dvd`` from that package:
+     :pupmod:`simp-utils` package, update the YUM repositories by unpacking the ISO
+     using :program:`unpack_dvd` from that package. 
+
+     :code:`unpack_dvd` uses the  :file:`.treeinfo` to determine the version of the OS included
+     on the DVD.  This file sometimes only supplies the major version of the OS so you should supply
+     the a more detailed version number for the OS.  In later versions of :code:`unpack_dvd` you will
+     get an error if it finds only the major version and you have not supplied a specific version
+     using the ``-v`` option.
 
      #. Copy the new SIMP ISO file to the SIMP master
      #. From the SIMP master (as ``root``):
@@ -83,7 +89,7 @@ steps as ``root``:
         .. code-block:: sh
 
            # Unpack the new SIMP ISO's RPMs into yum repositories
-           unpack_dvd </path/to/ISO>
+           unpack_dvd -v <OS version number> </path/to/ISO>
 
    * For RPM-based installation, follow your site's procedures to update your
      repositories.
