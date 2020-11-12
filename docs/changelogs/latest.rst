@@ -1592,6 +1592,11 @@ pupmod-simp-simp
   * Used to set :code:`puppetdb::cipher_suites`.
   * Value set to a safe set.
 
+pupmod-simp-simp_apache
+^^^^^^^^^^^^^^^^^^^^^^^
+
+* Default to only TLS1.2.
+
 pupmod-simp-simp_banners
 ^^^^^^^^^^^^^^^^^^^^^^^^
 
@@ -1613,6 +1618,90 @@ This is a new SIMP module that provides a profile class and defined type to
 manage the system's :program:`firewalld` with "safe" defaults and safety checks
 for :program:`firewalld` rules.  It uses the :pupmod:`puppet/firewalld` module to
 update the system's :program:`firewalld` configuration.
+
+pupmod-simp-simp_gitlab
+^^^^^^^^^^^^^^^^^^^^^^^
+
+Updated for the latest GitLab application (13.5.x) and :pupmod:`puppet/gitlab`
+(6.0.1).
+
+* Removed:
+
+  * Support for GitLab < 12.3.0.
+  * TLSv1.1 from the default for :code:`simp_gitlab::ssl_protocols`.
+
+* Changed:
+
+  * Set the GitLab root password in a fashion that minimizes coupling of
+    :pupmod:`simp/simp_gitlab` with the internals of :pupmod:`puppet/gitlab`.
+
+    * Set a throw-away password during initial GitLab package installation
+      using GitLab configuration in :file:`/etc/gitlab/gitlab.rb`. Setting the
+      password during initial install is the **only** way to ensure the
+      password is not set by an external user. Otherwise, the first GitLab
+      page that comes up is the page to reset the root password.
+    * After GitLab initial configuration, set the real root password using
+      a script that implements
+      `Gitlab-provided procedures <https://docs.gitlab.com/ee/security/reset_user_password.html>`_
+      for resetting the password.
+
+  * Use :program:`chronyd` instead of :program:`ntpd`, as GitLab itself uses
+    :program:`chronyd` and :program:`chronyd` is required for EL8.
+  * Use :pupmod:`puppet/gitlab` for managing packages again.
+  * Renamed the 'gitlab_monitor' key to 'gitlab_exporter' in the configuration
+    hash.
+
+    * The name change is required for GitLab >= 12.3.0.
+
+  * No longer set :code:`gitlab::external_port`
+
+    * The custom port is already appropriately configured via the
+      :code:`gitlab::external_url`.
+    * 'external_port' is no longer a supported GitLab configuration key and
+      causes :command:`gitlab-ctl reconfigure` to fail.
+
+  * :pupmod:`simp/simp_gitlab` now fails to compile when the node is in
+    :term:`FIPS` mode, unless :code:`simp_gitlab::allow_fips` (a new parameter)
+    is set to :code:`true`.
+
+* Added:
+
+  * Parameters to enable setting the GitLab root password
+
+    * :code:`simp_gitlab::set_gitlab_root_password`
+    * :code:`simp_gitlab::gitlab_root_password`
+    * :code:`simp_gitlab::rails_console_load_timeout`
+
+  * A script to change the GitLab root password,
+    :program:`/usr/local/sbin/change_gitlab_root_password`.
+
+  * Disabling of Let's Encrypt usage in GitLab, by default.
+
+    * The integration of SIMP PKI management with with Let's Encrypt has not
+      yet been done.
+    * To use Let's Encrypt, disable SIMP management of PKI by setting
+      :code:`simp_gitlab::pki` to :code:`false` and then manage the
+      certificates manually.
+
+  - :code:`svckill::ignore` rule for the GitLab service. Since the service
+    is no longer managed by default by :code:`gitlab::service`, this prevents
+    the service from being inadvertently killed when it is unmanaged.
+
+.. IMPORTANT::
+
+   As a side effect of the changes related to setting the GitLab root password,
+   upon module upgrade, the GitLab root password will be automatically set to
+   the value of :code:`simp_gitlab::gitlab_root_password`, unless the (empty)
+   marker file :file:`/etc/gitlab/.root_password_set` exists or the parameter
+   :code:`simp_gitlab::set_gitlab_root_password` is set to :code:`false`.  If
+   you forget to disable this automation or just want to reset the GitLab root
+   password, simply run
+
+   .. code-block:: bash
+
+      /usr/local/sbin/change_gitlab_root_password <new_password>
+
+   You do not need to know the previous password to set the new password.
 
 pupmod-simp-simp_ipa
 ^^^^^^^^^^^^^^^^^^^^
