@@ -774,6 +774,9 @@ pupmod-simp-simp
 pupmod-simp-simplib
 ^^^^^^^^^^^^^^^^^^^
 
+* Fixed the :code:`simplib::puppet::metadata::os_support` data type to allow
+  :code:`operatingsystemrelease` to be optionally defined.
+* Added Amazon Linux support
 * Fixed the use of :code:`simplib::debug::inspect` when using Bolt.
 * Fixed bugs in the :code:`grub_version` and :code:`init_systems` facts.
 * Fixed the :code:`simplib__auditd` fact so that it detects the state of the
