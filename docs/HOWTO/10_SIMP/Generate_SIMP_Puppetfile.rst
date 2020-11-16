@@ -1,7 +1,7 @@
 .. _howto-generate-a-simp-puppetfile:
 
-Generate a Puppetfile
-=====================
+HOWTO Generate a Puppetfile
+===========================
 
 This section describes how to create a :term:`Puppetfile` to be used by r10k
 or code manager to deploy SIMP and site modules.  It assumes the user is

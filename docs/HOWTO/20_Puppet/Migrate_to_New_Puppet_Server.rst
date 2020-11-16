@@ -1,7 +1,7 @@
 .. _howto-migrate-to-new-puppet-server:
 
-Migrating to a New Puppet Server
-================================
+HOWTO Migrate to a New Puppet Server
+====================================
 
 Creating a new server and migrating clients
 -------------------------------------------

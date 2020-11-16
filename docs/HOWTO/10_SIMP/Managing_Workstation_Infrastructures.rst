@@ -1,7 +1,7 @@
 .. _Infrastructure-Setup:
 
-Managing Workstation Infrastructures
-====================================
+HOWTO Manage Workstation Infrastructures
+========================================
 
 This chapter describes example code used to manage client workstations with a
 SIMP system including the :term:`GUI`, repositories, virtualization, printing,

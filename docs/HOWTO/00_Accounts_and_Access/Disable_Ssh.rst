@@ -1,7 +1,7 @@
 .. _disable_ssh_management:
 
-Disable SSH Management
-======================
+HOWTO Disable SSH Management
+============================
 
 If the :code:`ssh` class from :pupmod:`simp/ssh` is included in your SIMP scenario and you wish
 remove it from the class list and stop managing SSH configuration, add to your :term:`Hiera`

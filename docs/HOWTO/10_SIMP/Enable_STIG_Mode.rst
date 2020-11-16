@@ -1,5 +1,5 @@
-Enabling STIG Mode on a SIMP System
-===================================
+HOWTO Enable STIG Mode on a SIMP System
+=======================================
 
 Enabling :term:`STIG` mode in SIMP involves using :ref:`SIMP Compliance
 Engine` to apply the STIG-specific :term:`SIMP compliance profile`.

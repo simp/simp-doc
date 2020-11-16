@@ -1,5 +1,5 @@
-How to Manage a TPM Device with SIMP
-====================================
+HOWTO Manage a TPM Device with SIMP
+===================================
 
 This document serves as a guide to enable and use TPM devices in SIMP.
 Currently, both :term:`TPM` **1.2** and **2.0** are supported, but TPM 2.0
