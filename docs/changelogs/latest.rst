@@ -333,7 +333,6 @@ RPM.
   * :pupmod:`simp/gnome`
   * :pupmod:`simp/hirs_provisioner`
   * :pupmod:`simp/mate`
-  * :pupmod:`simp/simp_gitlab`
   * :pupmod:`simp/simp_pki_service`
   * :pupmod:`simp/tuned`
   * :pupmod:`simp/vnc`
@@ -564,18 +563,6 @@ support over :program:`docker`.
 
 * :package:`pupmod-puppetlabs-docker`
 * :package:`pupmod-simp-simp_docker`
-
-Out-of-date Modules
-^^^^^^^^^^^^^^^^^^^
-
-The packages for the following SIMP profile Puppet modules and one dependent
-module were temporarily removed from SIMP 6.5.0 ISOs, because they were not
-able to be appropriately updated in time for the release:
-
-* :package:`pupmod-puppet-gitlab`
-* :package:`pupmod-simp-simp_gitlab`
-
-These modules are expected to be updated in future SIMP releases.
 
 pupmod-simp-journald
 ^^^^^^^^^^^^^^^^^^^^
