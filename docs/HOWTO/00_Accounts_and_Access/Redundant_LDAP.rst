@@ -1,5 +1,5 @@
-Enable Redundant LDAP
-=====================
+HOWTO Enable Redundant LDAP
+===========================
 
 This section describes how to set up consumer OpenLDAP servers in SIMP.
 
