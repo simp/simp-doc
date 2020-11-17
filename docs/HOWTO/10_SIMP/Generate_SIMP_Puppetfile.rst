@@ -44,7 +44,7 @@ Edit the Puppetfile to include non-simp site modules
      Git source control and, when removed by :program:`r10k`, may not be able to be
      readily restored.
 
-     To generate a list of local modules in an environment (``production`` in
+     To generate a list of local modules in an environment ( ``production`` in
      this example) do the following:
 
      .. code-block:: sh

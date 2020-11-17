@@ -106,10 +106,13 @@ Next Steps
 
 * To continue configuring the system, move on to the next section in the :ref:`simp-user-guide`,
   :ref:`Client_Management`.
+
+The following are links to other information in the user guide that are answers to questions sometimes
+asked at this time:
+
 * To learn more details about how your system has just been configured see :ref:`gsg-advanced-configuration`.
+* To add additional simp modules or you own site modules to the environment :ref:`Updating an Existing Environment<ug-environments-deploying-from-local-repositories>`
 * To extract the Full OS to the yum server see :ref:`howto-unpack-dvd`
-* To add your own modules to the deployment  see :ref:`Edit the Puppetfile to include non-simp site modules<howto-include-non-simp-modules-in-puppetfile>`
-* To add SIMP puppet modules to your environment follow the instructions :ref:`Deploy from local Git repositories<ug-environments-deploying-from-local-repositories>`
 
 .. include::  Initial_Server_Configuration/Prevent_Lockout_on_Puppetserver.inc
 

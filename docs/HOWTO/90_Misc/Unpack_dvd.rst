@@ -1,7 +1,7 @@
 .. _howto-unpack-dvd:
 
-Optional: Extract the Full OS RPM Package Set
----------------------------------------------
+Extract the Full OS RPM Package Set
+-----------------------------------
 
 The SIMP ISO provides a minimal set of packages.
 
@@ -10,15 +10,14 @@ the :program:`unpack_dvd`.
 
 The :program:`unpack_dvd` extracts the OS rpms to :file:`/var/www/yum/<OperatingSystem>`
 in a directory named after the OS version in the :file:`.treeinfo` file on the DVD.
-It then creates a link to the major version.  So if version 7.6 is extracted, 7 will be linked to
-7.6.
+It then creates a link to the major version.  If version 7.6 is extracted, 
+7 will be linked to 7.6.
 
 .. NOTE::
 
    If the OS version in the :file:`.treeinfo`  is just the major version, as it is on
-   most CentOS versions, :program:`unpack_dvd` will ask you to supply a more descriptive
+   most CentOS ISOs, :program:`unpack_dvd` will ask you to supply a more descriptive
    version number using ``-v`` option.
-
 
 #. Log on as ``simp`` and run :command:`sudo su - root`.
 #. Copy the appropriate vendor OS ISO(s) to the server.
@@ -40,6 +39,9 @@ It then creates a link to the major version.  So if version 7.6 is extracted, 7 
 
       yum clean all && yum makecache
 
+Use the help option :code:`unpack_dvd --help` to see all options available for unpack_dvd.
+
+Run :code:`unpack_dvd --help` to see more options and features of :program:`unpack_dvd`.
 
 .. WARNING::
 

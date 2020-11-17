@@ -23,6 +23,62 @@ You might also find the following HOWTO documents to be helpful:
   is set up, the environment a node is assigned to can be set in using a configuration
   file located on the puppetserver.
 
+.. _ug-environments-deploying-from-local-repositories:
+
+Updating an Existing Environment
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+When you are using the :ref:`Local deployment
+scenario<ug-sa-env-deployment-scenarios--local>`
+the following steps can be used to update and deploy puppet modules from
+the local git repositories to an existing environment or to update any
+of your site specific modules in your environment.
+
+#. **Update Site Specific Puppet Modules**
+
+   Follow your site procedures to update any of your site specific
+   puppet modules.
+
+   Make sure all your modules have an entry in the :file:`Puppetfile`.
+   See  :ref:`Edit the Puppetfile to include non-simp site modules<howto-generate-a-simp-puppetfile>`
+   for more details.
+
+#. **Update SIMP Local Git Repositories**
+
+   On the yum server (usually the SIMP master on smaller deployments)
+   add any new or updated SIMP module RPMs to the yum repositories using
+   your sites procedures.
+
+   On your SIMP master, clear the yum cache
+
+   .. code-block:: sh
+
+      yum clean all; yum makecache
+
+   Then install or update any modules
+
+   .. code-block:: sh
+
+      # For example if installing all the modules in simp-extras
+      yum install simp-extras
+      # or a simp puppet module with a patch
+      yum update pupmod-simp-aide
+
+   This will update the local git repositories on the puppetserver.
+
+#. **Deploy the Environment**
+
+.. include:: ../common/Update_and_Deploy_Local_Environment.inc
+
+#. **Apply node configuration**
+
+   Any new modules will now be available to use in configurations on your nodes
+   in the updated envirments.
+   Any changes in updated modules will be applied on the next scheduled  puppet run
+   on any node in the environment. Run :code:`puppet agent -t` to force puppet
+   to run on any node in the environment if you do not want to wait for a scheduled
+   run.
+
 .. _example_create_and_deploy_new_env:
 
 Creating and Deploying a Test Environment Using Local Module Repositories
