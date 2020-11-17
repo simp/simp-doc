@@ -1,10 +1,10 @@
 .. _howto-guides-puppet:
 
 
-Puppet HOWTO Guides
-===================
+Puppet Guides
+=============
 
-HOWTO guides in this section relate to the configuration and use of Puppet.
+Guides in this section relate to the configuration and use of Puppet.
 
 .. toctree::
   :maxdepth: 1

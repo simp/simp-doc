@@ -1,7 +1,7 @@
 .. _howto-ipa_clients:
 
-Enroll Hosts into an IPA Domain
-===============================
+HOWTO Enroll Hosts into an IPA Domain
+=====================================
 
 Hosts should be able to join an IPA domain with a few catches. SIMP already uses
 the login stack that IPA uses (PAM, SSSD), but it also optionally manages the

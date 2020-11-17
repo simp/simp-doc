@@ -1,5 +1,5 @@
-Customize Settings for SSH
-==========================
+HOWTO Customize Settings for SSH
+================================
 
 By default, SIMP includes the :code:`ssh` class from the :pupmod:`simp/ssh` module
 under most of the :ref:`SIMP scenarios <simp scenarios>`.  If it is absent

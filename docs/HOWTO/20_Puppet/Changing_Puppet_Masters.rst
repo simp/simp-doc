@@ -1,7 +1,7 @@
 .. _ug-howto-change-puppet-masters:
 
-Moving a Client to a new Puppet Server
-======================================
+HOWTO Move a Client to a new Puppet Server
+==========================================
 
 The following provides details on how to move an client to a new Puppet server.
 

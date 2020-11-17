@@ -1,7 +1,7 @@
 .. _ht-disconnect-puppetdb:
 
-Disconnecting PuppetDB from the Puppet Server
-=============================================
+HOWTO Disconnect PuppetDB from the Puppet Server
+================================================
 
 This section covers how to disconnect :term:`PuppetDB` from the
 :term:`Puppet Server` for troubleshooting, or to allow SIMP to repair the

@@ -1,7 +1,7 @@
 .. _howto-disable-the-firewall:
 
-Fully Disabling the System Firewall
-===================================
+HOWTO Fully Disable the System Firewall
+=======================================
 
 Though we hope that you never actually want to do this, there may be situations where you want to
 use puppet to fully disable the system firewall.
