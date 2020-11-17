@@ -1,7 +1,7 @@
 .. _howto-simp-enc:
 
-Set Up SIMP's External Node Classifier
-=======================================
+HOWTO Set Up SIMP's External Node Classifier
+============================================
 
 An :term:`External Node Classifier`, ENC, can be used to determine what
 Puppet environment is used by a node.

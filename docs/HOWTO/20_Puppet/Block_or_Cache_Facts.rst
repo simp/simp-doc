@@ -1,5 +1,5 @@
-Blocking or Caching Facts
-=========================
+HOWTO Block or Cache Facts
+==========================
 
 As described in `Configuring Facter with facter.conf`_, you can block or cache
 groups of facts on a node using settings in :file:`facter.conf` on that node.  SIMP

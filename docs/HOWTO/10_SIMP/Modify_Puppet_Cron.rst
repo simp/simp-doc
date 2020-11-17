@@ -1,7 +1,7 @@
 .. _howto-modify-puppet-cron:
 
-Modifying the Puppet Cron Schedule
-==================================
+HOWTO Modify the Puppet Cron Schedule
+=====================================
 
 SIMP deploys a cron-job, via :code:`pupmod::agent::cron` from the :pupmod:`simp/pupmod`
 Puppet module, to run a non-daemonized puppet agent to ensure compliance,

@@ -1,7 +1,7 @@
 .. _howto-manage-reboot-notify:
 
-Manage reboot_notify
-====================
+HOWTO Manage reboot_notify
+==========================
 
 :code:`simplib::reboot_notify` was added to provide a capability for notifying
 users, across puppet runs, that their system needed to be rebooted.

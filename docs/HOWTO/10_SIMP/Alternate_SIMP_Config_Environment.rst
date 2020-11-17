@@ -1,7 +1,7 @@
 .. _howto-use-an-alternate-simp-config-environment:
 
-Using an Alternate 'simp config' Environment
-============================================
+HOWTO Use an Alternate 'simp config' Environment
+================================================
 
 Generally, when running the :program:`simp config` and :program:`simp bootstrap` commands, all
 items will be placed into the :code:`production` :term:`Puppet Environment` and

@@ -1,5 +1,5 @@
-Set up SSH Authorized Keys
-==========================
+HOWTO Set up SSH Authorized Keys
+================================
 
 This section provides guidance on managing SSH authorized keys within the SIMP
 environment.
