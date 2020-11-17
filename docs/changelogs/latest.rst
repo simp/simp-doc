@@ -50,8 +50,8 @@ EL8 support is CLIENT ONLY
 
 This release introduces client-only EL8 support in the core Puppet modules.
 
-* EL8 support is limited to managing EL8 Puppet *agents*
-* with the core Puppet modules.
+* EL8 support is limited to managing EL8 Puppet *agents* with the core Puppet
+  modules.
 * All Puppet modules provided as core dependencies of the :package:`simp` RPM
   support EL8.
 
@@ -286,8 +286,10 @@ API changes:
 * :pupmod:`simp/autofs`
 * :pupmod:`simp/nfs`
 * :pupmod:`simp/simp_nfs`
+* :pupmod:`simp/simp_snmpd`
 
-The specific changes made are described in detail the New Features section.
+The specific changes made are described in detail in the
+:ref:`New Features section<changelog-6-5-0-new-features>`.
 
 .. _changelog-6.5.0-el6-support-dropped-from-some-optional-puppet-modules:
 
@@ -331,9 +333,7 @@ RPM.
   * :pupmod:`simp/gnome`
   * :pupmod:`simp/hirs_provisioner`
   * :pupmod:`simp/mate`
-  * :pupmod:`simp/simp_gitlab`
   * :pupmod:`simp/simp_pki_service`
-  * :pupmod:`simp/simp_snmpd`
   * :pupmod:`simp/tuned`
   * :pupmod:`simp/vnc`
   * :pupmod:`simp/x2go`
@@ -348,8 +348,8 @@ SIMP-6.5.0 ISOs deliver Puppet 6 application RPMs.
 firewalld Support
 ^^^^^^^^^^^^^^^^^
 
-As of SIMP 6.5.0, preliminary :program:`firewalld` support within the SIMP
-ecosystem is now available.
+As of SIMP 6.5.0, :program:`firewalld` support is available within the SIMP and is the default for
+all new installations on platforms that support it.
 
 * **New simp/simp_firewalld module**: SIMP now includes
   :pupmod:`simp/simp_firewalld` which provides a profile class and defined type
@@ -564,19 +564,6 @@ support over :program:`docker`.
 * :package:`pupmod-puppetlabs-docker`
 * :package:`pupmod-simp-simp_docker`
 
-Out-of-date Modules
-^^^^^^^^^^^^^^^^^^^
-
-The packages for the following SIMP profile Puppet modules and one dependent
-module were temporarily removed from SIMP 6.5.0 ISOs, because they were not
-able to be appropriately updated in time for the release:
-
-* :package:`pupmod-puppet-gitlab`
-* :package:`pupmod-simp-simp_gitlab`
-* :package:`pupmod-simp-simp_snmpd`
-
-These modules are expected to be updated in future SIMP releases.
-
 pupmod-simp-journald
 ^^^^^^^^^^^^^^^^^^^^
 
@@ -753,17 +740,31 @@ pupmod-simp-pupmod
 pupmod-simp-rsyslog
 ^^^^^^^^^^^^^^^^^^^
 
+* Fixed the default security collection string for :program:`firewalld` rules.
 * Fixed a bug where the 'IncludeConfig' directive for :file:`/etc/rsyslog.d`
   allowed more than just :file:`.conf` files to be parsed.
 
 pupmod-simp-simp
 ^^^^^^^^^^^^^^^^
 
+* Ensure that the :program:`sudoers` rule for removing the Puppet SSL directory
+  is not created when running from Bolt, since the directory target is changed
+  at each Bolt run and will result in non-idempotency.
+* Fixed a bug in which the 'gpgkey' and 'baseurl' configuration strings were
+  required for the local YUM repositories managed by
+  :code:`simp::yum::repo::local_os_updates` and :code:`simp::yum::repo::local_simp`.
+
+  - Both are optional in the :code:`yumrepo` type if they already exist on disk.
+
 * Removed the broken :file:`tasks/` directory.
 
 pupmod-simp-simplib
 ^^^^^^^^^^^^^^^^^^^
 
+* Fixed the :code:`simplib::puppet::metadata::os_support` data type to allow
+  :code:`operatingsystemrelease` to be optionally defined.
+* Added Amazon Linux support
+* Fixed the use of :code:`simplib::debug::inspect` when using Bolt.
 * Fixed bugs in the :code:`grub_version` and :code:`init_systems` facts.
 * Fixed the :code:`simplib__auditd` fact so that it detects the state of the
   running :program:`auditd` process.
@@ -782,6 +783,23 @@ pupmod-simp-simp_options
 ^^^^^^^^^^^^^^^^^^^^^^^^
 
 * Fixed :term:`PE` detection in :code:`simp_options::puppet::server_distribution`.
+
+pupmod-simp-simp_snmpd
+^^^^^^^^^^^^^^^^^^^^^^
+
+* Fixed a bug in which the PID file option was missing from the default options
+  for the :program:`snmpd` daemon in EL6.  The daemon failed to start without
+  this option.
+
+* Fixed a bug where the default for client security level was incorrectly set.
+
+  * The default access security level is now by the new parameter
+    :code:`simp_snmpd::defvacmlevel` instead of
+    :code:`simp_snmpd::defsecuritylevel`.
+  * :code:`simp_snmpd::defsecuritylevel` sets the default security
+    level for the client.
+
+* Added a missing dependency on :pupmod:`simp/tcpwrappers`.
 
 pupmod-simp-stunnel
 ^^^^^^^^^^^^^^^^^^^
@@ -863,6 +881,8 @@ simp-utils
 
 * Fixed minor bugs in :program:`unpack_dvd`.
 
+
+.. _changelog-6-5-0-new-features:
 
 New Features
 ------------
@@ -1191,6 +1211,7 @@ pupmod-simp-krb5
 pupmod-simp-libreswan
 ^^^^^^^^^^^^^^^^^^^^^
 
+* Removed unused :code:`libreswan::use_certs_parameter` parameter.
 * Added support for IKEv2 Mobility (RFC-4555) and mobile client connections.
 * Added additional settings for DNS and Domains for Libreswan v3.23+.
 
@@ -1361,6 +1382,15 @@ pupmod-simp-polkit
 pupmod-simp-pupmod
 ^^^^^^^^^^^^^^^^^^
 
+* Default :code:`pupmod::master::ssl_protocols` to TLSv1.2 only.
+* Use :code:`$facts['certname']`, when available, in the parameters below,
+  because :code:`$facts['fqdn` may not be appropriate when the system does not
+  use its primary NIC/FQDN for its Puppet certificate.
+
+  * :code:`pupmod::certname`
+  * :code:`pupmod::master::ca_status_whitelist`
+  * :code:`pupmod::master::admin_api_whitelist`
+
 * Set the default :program:`puppetserver` ciphers to a safe set.
 * Added better auto-tuning support for :program:`puppetserver`, based on best
   practices.
@@ -1404,6 +1434,8 @@ pupmod-simp-rsyslog
   rule.
 * Added :code:`logrotate::rule` options to :code:`rsyslog::conf::logrotate`
   class.
+* Removed the :code:`filter_` rules that were present for an old (and broken)
+  version of the :pupmod:`simp/simp_firewalld` module.
 * Removed params pattern and migrated to data in modules.
 
 pupmod-simp-selinux
@@ -1550,6 +1582,11 @@ pupmod-simp-simp
   * Used to set :code:`puppetdb::cipher_suites`.
   * Value set to a safe set.
 
+pupmod-simp-simp_apache
+^^^^^^^^^^^^^^^^^^^^^^^
+
+* Default to only TLS1.2.
+
 pupmod-simp-simp_banners
 ^^^^^^^^^^^^^^^^^^^^^^^^
 
@@ -1571,6 +1608,90 @@ This is a new SIMP module that provides a profile class and defined type to
 manage the system's :program:`firewalld` with "safe" defaults and safety checks
 for :program:`firewalld` rules.  It uses the :pupmod:`puppet/firewalld` module to
 update the system's :program:`firewalld` configuration.
+
+pupmod-simp-simp_gitlab
+^^^^^^^^^^^^^^^^^^^^^^^
+
+Updated for the latest GitLab application (13.5.x) and :pupmod:`puppet/gitlab`
+(6.0.1).
+
+* Removed:
+
+  * Support for GitLab < 12.3.0.
+  * TLSv1.1 from the default for :code:`simp_gitlab::ssl_protocols`.
+
+* Changed:
+
+  * Set the GitLab root password in a fashion that minimizes coupling of
+    :pupmod:`simp/simp_gitlab` with the internals of :pupmod:`puppet/gitlab`.
+
+    * Set a throw-away password during initial GitLab package installation
+      using GitLab configuration in :file:`/etc/gitlab/gitlab.rb`. Setting the
+      password during initial install is the **only** way to ensure the
+      password is not set by an external user. Otherwise, the first GitLab
+      page that comes up is the page to reset the root password.
+    * After GitLab initial configuration, set the real root password using
+      a script that implements
+      `Gitlab-provided procedures <https://docs.gitlab.com/ee/security/reset_user_password.html>`_
+      for resetting the password.
+
+  * Use :program:`chronyd` instead of :program:`ntpd`, as GitLab itself uses
+    :program:`chronyd` and :program:`chronyd` is required for EL8.
+  * Use :pupmod:`puppet/gitlab` for managing packages again.
+  * Renamed the 'gitlab_monitor' key to 'gitlab_exporter' in the configuration
+    hash.
+
+    * The name change is required for GitLab >= 12.3.0.
+
+  * No longer set :code:`gitlab::external_port`
+
+    * The custom port is already appropriately configured via the
+      :code:`gitlab::external_url`.
+    * 'external_port' is no longer a supported GitLab configuration key and
+      causes :command:`gitlab-ctl reconfigure` to fail.
+
+  * :pupmod:`simp/simp_gitlab` now fails to compile when the node is in
+    :term:`FIPS` mode, unless :code:`simp_gitlab::allow_fips` (a new parameter)
+    is set to :code:`true`.
+
+* Added:
+
+  * Parameters to enable setting the GitLab root password
+
+    * :code:`simp_gitlab::set_gitlab_root_password`
+    * :code:`simp_gitlab::gitlab_root_password`
+    * :code:`simp_gitlab::rails_console_load_timeout`
+
+  * A script to change the GitLab root password,
+    :program:`/usr/local/sbin/change_gitlab_root_password`.
+
+  * Disabling of Let's Encrypt usage in GitLab, by default.
+
+    * The integration of SIMP PKI management with with Let's Encrypt has not
+      yet been done.
+    * To use Let's Encrypt, disable SIMP management of PKI by setting
+      :code:`simp_gitlab::pki` to :code:`false` and then manage the
+      certificates manually.
+
+  - :code:`svckill::ignore` rule for the GitLab service. Since the service
+    is no longer managed by default by :code:`gitlab::service`, this prevents
+    the service from being inadvertently killed when it is unmanaged.
+
+.. IMPORTANT::
+
+   As a side effect of the changes related to setting the GitLab root password,
+   upon module upgrade, the GitLab root password will be automatically set to
+   the value of :code:`simp_gitlab::gitlab_root_password`, unless the (empty)
+   marker file :file:`/etc/gitlab/.root_password_set` exists or the parameter
+   :code:`simp_gitlab::set_gitlab_root_password` is set to :code:`false`.  If
+   you forget to disable this automation or just want to reset the GitLab root
+   password, simply run
+
+   .. code-block:: bash
+
+      /usr/local/sbin/change_gitlab_root_password <new_password>
+
+   You do not need to know the previous password to set the new password.
 
 pupmod-simp-simp_ipa
 ^^^^^^^^^^^^^^^^^^^^
@@ -1614,8 +1735,68 @@ pupmod-simp-simp_options
 pupmod-simp-simp_rsyslog
 ^^^^^^^^^^^^^^^^^^^^^^^^
 
-* Add support for :program:`firewalld` log message collection.
+* Added support for :program:`firewalld` log message collection.
 * Deep merge :code:`simp_rsyslog::log_collection`.
+* Removed the :code:`filter_IN_99_simp_DROP` rules that were present for an old
+  (and broken) version of the :pupmod:`simp/simp_firewalld` module.
+
+pupmod-simp-simp_snmpd
+^^^^^^^^^^^^^^^^^^^^^^
+
+* Changes:
+
+  * Updated to use :pupmod:`puppet/snmp` version 5.1.2.
+  * The default configuration for this module has not changed but some settings
+    are now placed in the :file:`snmpd.conf` file instead of in a subdirectory.
+  * In the previous version the user directory was automatically included.
+    Now the user must set :code:`simp_snmpd::include_userdir` to :code:`true`
+    for files in the user directory to be included. The relevant parameters are
+    as follows:
+
+    * :code:`simp_snmpd::include_userdir`
+    * :code:`simp_snmpd::user_snmpd_dir`
+
+  * The configuration parameter :code:`simp_snmpd::snmpd_conf_file` has been
+    renamed to :code:`simp_snmpd::service_config`. This is the location of the
+    the :file:`snmpd.conf` file.
+  * The type of the :code:`simp_snmpd::services` parameter has been changed
+    from a :code:`String` to an :code:`Integer`.
+  * The :code:`simp_snmpd::system_info` parameter has been deprecated.
+    :pupmod:`puppet/snmp` now includes these settings by default and
+    they can't be removed.  This means that :program:`net-snmp` will set them
+    as not writable and they can not be changed by a :code:`set` call from an
+    :program:`snmpd` manager or client.
+
+* New features:
+
+  * Added settings to allow users to change owner/group and permissions
+    on configuration files:
+
+    * :code:`simp_snmpd::service_config_dir_owner`
+    * :code:`simp_snmpd::service_config_dir_group`
+    * :code:`simp_snmpd::service_config_dir_perms`
+    * :code:`simp_snmpd::service_config_perms`
+
+  * Added configuration of :program:`snmpd` user and group IDs, as well
+    as optional managment of the user and group:
+
+    * :code:`simp_snmpd::snmpd_uid`
+    * :code:`simp_snmpd::snmpd_gid`
+    * :code:`simp_snmpd::manage_snmpd_user`
+    * :code:`simp_snmpd::manage_snmpd_group`
+
+  * The SNMP trap daemon is still stopped by default. New parameters can be used
+    to enable the daemon, set the command line options on the daemon and start
+    it at boot.  The default settings in :pupmod:`puppet/snmp` are used.
+    Configuration files placed in a user directory can created by the user for
+    any additional configuration.  The following settings have been added to
+    create this behavior:
+
+    * :code:`simp_snmpd::trap_service_ensure`
+    * :code:`simp_snmpd::trap_service_startatboot`
+    * :code:`simp_snmpd::trap_service_config`
+    * :code:`simp_snmpd::snmpdtrapd_options`
+    * :code:`simp_snmpd::user_trapd_dir`
 
 pupmod-simp-simpkv
 ^^^^^^^^^^^^^^^^^^
@@ -1935,9 +2116,24 @@ rubygem-simp-cli
 
 * Updated :package:`HighLine` from version 1.7.8 to 2.0.3.
 
+simp-adapter
+^^^^^^^^^^^^
+
+* Removed logic to ensure any existing, global :file:`hiera.yaml.simp` file is not
+  removed on upgrade from simp-adapter <= 0.0.6.
+
+  * This is not an issue when upgrading from SIMP 6.4.0 to SIMP 6.5.0 (i.e.,
+    :package:`simp-adapter` version 1.0.1 to version 2.0.0).
+  * If for some reason you are upgrading from :package:`simp-adapter` version
+    <= 0.0.6, manually save off :file:`/etc/puppetlabs/puppet/hiera.yaml.simp`
+    prior to the upgrade, and then restore that file after the upgrade is
+    complete.
+
 simp-environment-skeleton
 ^^^^^^^^^^^^^^^^^^^^^^^^^
 
+* Ensure that :program:`firewalld` is used by default in the applicable SIMP
+  scenarios.
 * Ensured that the server Hiera defaults have :code:`simp::server` in the
   :code:`simp::classes` array. Otherwise, it will never get picked up.
 * Replace :code:`classes` with :code:`simp::classes` and
@@ -1981,6 +2177,16 @@ simp-rsync-skeleton
 simp-utils
 ^^^^^^^^^^
 
+* Added a check to the :program:`unpack_dvd` script for dangerously unspecific
+  OS versions (e.g., '7' instead of '7.0.2003').
+
+  * This is common when :program:`unpack_dvd` autodetects the OS version from
+    the ISO's :file:`.treeinfo` on some OSes (particularly CentOS).
+  * It can result in clobbering of existing OS files, when the script unpacks
+    files into a directory names for the major OS version.
+  * The script will exit with an informative message and instructions for how
+    the user can address the issue with the :code:`-v` option.
+
 * Added (optional) :code:`--unpack-pxe [DIR]` option to the
   :program:`unpack_dvd` script.
 
@@ -1994,6 +2200,16 @@ simp-utils
 
 * Overhauled :command:`unpack_dvd --help`; output now fits on 80-character PTY
   consoles.
+
+SIMP ISO
+^^^^^^^^
+
+* Fixed a bug in the instructions about enabling encryption in non-FIPS
+  mode in the sample client kickstart files.
+
+  * Following the erronous instructions prevented automatic decryption from
+    happening at client boot, because the encrypted disk credentials were not
+    added to the :program:`dracut` configuration.
 
 
 Known Bugs and Limitations

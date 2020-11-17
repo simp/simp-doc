@@ -1,10 +1,10 @@
 .. _howto-guides-simp:
 
 
-SIMP HOWTO Guides
-=================
+SIMP Guides
+===========
 
-HOWTO guides in this section relate to configuring the SIMP framework itself.
+Guides in this section relate to configuring the SIMP framework itself.
 
 .. toctree::
   :maxdepth: 1

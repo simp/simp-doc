@@ -1,7 +1,7 @@
 .. _ug-howto-back-up-the-puppet-master:
 
-Backing up the Puppet Server
-============================
+HOWTO Back up the Puppet Server
+===============================
 
 This section details the steps required to back up the Puppet master.
 

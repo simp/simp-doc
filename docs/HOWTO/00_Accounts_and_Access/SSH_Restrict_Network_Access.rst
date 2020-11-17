@@ -1,5 +1,5 @@
-Restrict Network Access to SSH
-==============================
+HOWTO Restrict Network Access to SSH
+====================================
 
 Like most SIMP modules, the SSH module utilizes a :code:`trusted_nets` parameter to control access
 to the SSH service via both IPTables and TCPWrappers.

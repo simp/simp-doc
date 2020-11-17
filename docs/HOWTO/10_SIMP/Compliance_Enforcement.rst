@@ -1,5 +1,5 @@
-Configuring SIMP for Compliance Enforcement
-===========================================
+HOWTO Configure SIMP for Compliance Enforcement
+===============================================
 
 SIMP provides the capability to easily enforce specific compliance settings
 across all Puppet classes as long as a suitable :term:`SIMP compliance profile`

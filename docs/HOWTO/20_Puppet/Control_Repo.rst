@@ -1,7 +1,7 @@
 .. _howto-setup-a-simp-control-repository:
 
-Setting up a SIMP Environment in a Control Repository
-=====================================================
+HOWTO Set up a SIMP Environment in a Control Repository
+=======================================================
 
 This HOWTO describes how to create Puppet :term:`control repositories <Control
 Repository>` for use with a :ref:`Control Repository deployment scenario

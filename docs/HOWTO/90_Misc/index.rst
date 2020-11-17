@@ -1,10 +1,10 @@
 .. _howto-guides-misc:
 
 
-Miscellaneous HOWTO Guides
-==========================
+Miscellaneous Guides
+====================
 
-HOWTO guides in this section do not cleanly fit into any other section.
+Guides in this section do not cleanly fit into any other section.
 
 .. toctree::
   :maxdepth: 1
