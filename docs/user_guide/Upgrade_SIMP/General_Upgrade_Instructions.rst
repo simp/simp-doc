@@ -74,7 +74,7 @@ steps as ``root``:
    * Update the repositories using a SIMP ISO:
 
      :program:`unpack_dvd` can be used to extract the SIMP puppet module RPMs and the minimal OS
-     RPMs from the SIMP ISO. :program:`unpack_dvd` is installed from the :pupmod:`simp-utils` package.
+     RPMs from the SIMP ISO. :program:`unpack_dvd` is installed from the :package:`simp-utils` package.
 
      By default :program:`unpack_dvd` uses information on the ISO to determine where to copy the RPMs
      to under :file:`/var/www/yum` and then links the OS major version to the newly extracted OS directory.
