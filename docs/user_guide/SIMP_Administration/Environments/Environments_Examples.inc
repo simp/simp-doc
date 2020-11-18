@@ -73,7 +73,7 @@ of your site specific modules in your environment.
 #. **Apply node configuration**
 
    Any new modules will now be available to use in configurations on your nodes
-   in the updated envirments.
+   in the updated environments.
    Any changes in updated modules will be applied on the next scheduled  puppet run
    on any node in the environment. Run :command:`puppet agent -t` to force puppet
    to run on any node in the environment if you do not want to wait for a scheduled
