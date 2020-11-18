@@ -79,7 +79,7 @@ steps as ``root``:
      By default :program:`unpack_dvd` uses information on the ISO to determine where to copy the RPMs
      to under :file:`/var/www/yum` and then links the OS major version to the newly extracted OS directory.
      Since sometimes :program:`unpack_dvd` can only determine the major version
-     of the OS you should supply a detailed version number for the OS using the -v option.
+     of the OS, you should supply a detailed version number for the OS using the -v option.
      The SIMP version release notes will tell you the version of the OS that is packaged with
      SIMP release.
 

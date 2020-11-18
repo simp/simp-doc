@@ -8,7 +8,7 @@ The SIMP ISO provides a minimal set of packages.
 If you require additional OS packages, you can extract them from vendor ISOs using
 :program:`unpack_dvd`.
 
-:program:`Unpack_dvd` extracts the OS rpms to :file:`/var/www/yum/<OperatingSystem>`
+:program:`Unpack_dvd` extracts the OS RPMs to :file:`/var/www/yum/<OperatingSystem>`
 in a directory named after the OS version it determines from files on the ISO.
 It then creates a link to the major version.  If version 7.6 is extracted,
 7 will be linked to 7.6.
@@ -43,6 +43,6 @@ Use the help option :code:`unpack_dvd --help` to see all options available for :
 .. WARNING::
 
    At this time :program:`unpack_dvd` does not work with EL8 ISOs.  EL8 introduced
-   modules to repositories and it can not handle these.  It will extract some but
-   all of RPMs on an EL8 ISO.
+   modules to repositories and :program:`unpack_dvd` can not handle these.
+   It will extract some but not all of RPMs on an EL8 ISO.
 

@@ -1,12 +1,9 @@
-.. _ug-update-and-deploy-using-local-repos:
-
   * Generate the Environment's Puppetfile.simp
 
     Run :program:`simp` to pull all the latest versions of the SIMP-packaged Puppet modules
     from the local git repositories:
 
     .. code-block:: sh
-
 
        # The environment in this example is called `test`.  Replace `test` with the
        # name of your environment.
@@ -45,6 +42,5 @@
        --puppetfile /etc/puppetlabs/code/environments/test/Puppetfile \
        --moduledir /etc/puppetlabs/code/environments/test/modules' )
 
-     Use the --force option if you get warnings that local changes will get
+     Use the :command:`--force` option if you get warnings that local changes will get
      overwritten and you are sure you do not have changes that need saving.
-
