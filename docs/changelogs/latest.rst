@@ -1,8 +1,8 @@
 .. _changelog-latest:
 .. _changelog-6.5.0:
 
-SIMP Community Edition (CE) 6.5.0-Beta
-======================================
+SIMP Community Edition (CE) 6.5.0-RC1
+=====================================
 
 .. raw:: pdf
 
@@ -618,6 +618,14 @@ pupmod-simp-freeradius
 pupmod-simp-iptables
 ^^^^^^^^^^^^^^^^^^^^
 
+* Fixed a bug in which the :program:`iptables` services and rules were not
+  managed when :code:`iptables::use_firewalld` was set to :code:`true` on an
+  EL6 system.
+
+* Fixed an ordering issue with setting :code:`xt_recent` parameters that could
+  occur on OEL7 nodes. However, there are other issues with :code:`xt_recent`
+  on OEL that may prevent this module from working on OEL in some circumstances.
+
 * Fixed a bug in which the module did not check for :program:`firewalld`
   availability when :code:`iptables::use_firewalld` was set to :code:`true`.
 
@@ -743,6 +751,13 @@ pupmod-simp-rsyslog
 * Fixed the default security collection string for :program:`firewalld` rules.
 * Fixed a bug where the 'IncludeConfig' directive for :file:`/etc/rsyslog.d`
   allowed more than just :file:`.conf` files to be parsed.
+
+pupmod-simp-selinux
+^^^^^^^^^^^^^^^^^^^
+* Fixed a bug in which the module would attempt to create :code:`selinux_login`
+  resources when :code:`selinux::login_resources` was set but selinux was
+  disabled.  This resulted in an error message `Could not find a suitable
+  provider for selinux_login` during catalog compilation.
 
 pupmod-simp-simp
 ^^^^^^^^^^^^^^^^
@@ -1441,6 +1456,10 @@ pupmod-simp-rsyslog
 pupmod-simp-selinux
 ^^^^^^^^^^^^^^^^^^^
 
+* Allow users to include :code:`selinux::install` without needing full SELinux
+  system management. This is particularly important when the native types are
+  to be used in different modules but you don't want to include full management
+  just to get the required packages
 * No longer enable or install :program:`mcstransd` by default.  It is a user
   convenience feature and not required for core functionality.
 * Ensured that :program:`mcstransd` is added to the GID assigned to
@@ -1581,6 +1600,9 @@ pupmod-simp-simp
 
   * Used to set :code:`puppetdb::cipher_suites`.
   * Value set to a safe set.
+
+* Call :code:`selinux::install` prior to using native types that require the
+  packages to be installed.
 
 pupmod-simp-simp_apache
 ^^^^^^^^^^^^^^^^^^^^^^^
