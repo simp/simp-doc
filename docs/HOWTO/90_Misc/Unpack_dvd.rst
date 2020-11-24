@@ -31,7 +31,7 @@ versioned directory.
 The following example will:
 
 * extract the RPMs to :file:`/var/www/yum/CentOS/7.8.2003`
-* run create repo in the above directory
+* create a repository in the above directory
 * link :file:`/var/www/yum/CentOS/7` to the above directory.
 
 #. Log on as ``simp`` and run :command:`sudo su - root`.
@@ -74,22 +74,28 @@ The rsync directory or the directory you specified must exist before running :pr
 
 The following example will
 
-* extract the RPMs as described Extract OS Packages above to :file:`/var/www/yum/CentOS/8.0.1905`
+* extract the RPMs to :file:`/var/www/yum/CentOS/8.0.1905`
+* create a repository in the above directory
+* link :file:`/var/www/yum/CentOS/8` to the above directory
 * extract the PXE files to :file:`/var/simp/environments/test/rsync/CentOS/Global/tftpboot/linux-install/centos-8.0.1905-x86_64`
+* link `/var/simp/environments/test/rsync/CentOS/Global/tftpboot/linux-install/centos-8-x86_64` to the above directory.
+
 
 .. code:: bash
 
    # Place the -X options after the ISO name
-   unpack_dvd -v 8.0.1905 /myisodir/CentOS--x86_64-1905-dvd1.iso -X -e test
+   unpack_dvd -v 8.0.1905 -n /myisodir/CentOS--x86_64-1905-dvd1.iso -X -e test
 
 The following example will
 
-* extract the RPMs as described Extract OS Packages above to :file:`/my/repodir/yum/CentOS/8.0.1905`
+* extract the RPMs  to :file:`/my/repodir/yum/CentOS/8.0.1905`
+* create a repository in the above directory
 * extract the PXE files to :file:`/my/tftpboot/`
 
 .. code:: bash
 
    # The PXE directory must follow the -X option.
+   # Use the -n to prevent the creation of the links.
    unpack_dvd -v 8.0.1905 -d /my/repodir /myisodir/CentOS--x86_64-1905-dvd1.iso -X /my/tftpboot
 
 .. NOTE::
