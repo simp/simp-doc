@@ -6,8 +6,8 @@ HOWTO Use unpack_dvd to Extract the Full OS RPM Package Set
 The SIMP ISO provides a minimal set of packages.
 
 If you require additional OS packages, you can extract them from vendor ISOs using
-:program:`unpack_dvd`.  Additionally you can extract the extract the PXE boot
-TFTP boot files from the ISO to the rsync directories.
+:program:`unpack_dvd`.  Additionally you can extract the PXE
+files from the ISO to the rsync directories.
 
 Use option :code:`unpack_dvd --help` to see all options available for :program:`unpack_dvd`.
 
