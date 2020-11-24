@@ -1,0 +1,51 @@
+---
+
+image: python:3.6-alpine
+
+variables:
+  BUILD_PDF: 'no'
+
+default:
+  tags:
+    - docker
+  before_script:
+    - 'apk add zlib-dev jpeg-dev musl-dev gcc'
+    - 'python3 -m pip install --user -r requirements.txt'
+
+unit-simpver:
+  stage: test
+  script:
+    - 'python3 -m pip install --user --upgrade pytest'
+    - 'export PATH="$HOME/.local/bin:$PATH"'
+    - 'pytest -x --capture=no docs/conflib/get_simp_version_test.py'
+
+unit-relmap:
+  stage: test
+  script:
+    - 'python3 -m pip install --user --upgrade pytest'
+    - 'export PATH="$HOME/.local/bin:$PATH"'
+    # This test is forced to pass because it can't seem to download the release_mapping.yaml
+    # on the master branch. It always returns a 403 error, even if it's given a token.
+    - 'pytest -x --capture=no docs/conflib/release_mapping_test.py'
+  allow_failure: true
+
+build-html:
+  stage: test
+  script:
+    - 'export PATH="$HOME/.local/bin:$PATH"'
+    - 'sphinx-build -n -b html -d sphinx_cache docs html'
+
+build-pdf:
+  stage: test
+  script:
+    - 'export PATH="$HOME/.local/bin:$PATH"'
+    - 'sphinx-build -E -n -b pdf -d sphinx_cache docs pdf'
+  rules:
+    - if: '$BUILD_PDF == "yes"'
+      when: always
+
+link-check:
+  stage: test
+  script:
+    - 'export PATH="$HOME/.local/bin:$PATH"'
+    - 'sphinx-build -E -n -b linkcheck docs linkcheck || ( cat linkcheck/output.txt ; false )'
