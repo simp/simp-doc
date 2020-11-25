@@ -9,8 +9,6 @@ If you require additional OS packages, you can extract them from vendor ISOs usi
 :program:`unpack_dvd`.  Additionally you can extract the PXE
 files from the ISO to the rsync directories.
 
-
-
 Extract the OS Packages
 -----------------------
 
@@ -67,15 +65,15 @@ The following example will:
 Extract PXE files
 -----------------
 
-Extracting the PXE files was added to :program:`unpack_dvd` in :package:`simp-utils-6.4.0`.  Use the ``-X`` option to tell :program:`unpack_dvd` to extract the PXE files and the ``--no-unpack-yum`` option if you do not want to extract the yum files.
+Extracting the PXE files was added to :program:`unpack_dvd` in :package:`simp-utils-6.4.0`.  Use the :code:`-X` option to tell :program:`unpack_dvd` to extract the PXE files and the :code:`--no-unpack-yum` option if you do not want to extract the yum files.
 
-When PXE file extraction is enabled with the :command:-X option,
+When PXE file extraction is enabled with the :code:`-X` option,
 :program:`unpack_dvd` will, by default,
 
   * extract OS version information from the ISO metadata
   * create a directory for the PXE files in the rsync directory used by :pupmod:`simp/tftpboot` in the production environment.
     * named <os-family>-<version>-<arch>
-    * The default rsync directory is :file:`/var/simp/environments/production/rsync/<os family>/Global/tftpboot/linux-install/`.
+    * The default rsync directory is :file:`/var/simp/environments/production/rsync/<os-family>/Global/tftpboot/linux-install/`.
   * extract the files to the created OS directory.
   * create a link <os-family>-<major-version>-<arch> to the above directory.
   * if run as root, change the permisions recursivley on created directoy and its contents to those of the rsync directory.
