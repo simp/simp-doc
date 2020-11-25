@@ -589,6 +589,9 @@ pupmod-simp-aide
 pupmod-simp-auditd
 ^^^^^^^^^^^^^^^^^^
 
+* Fixed a bug in which the module could not enable auditing on a system
+  with auditing already disabled in the kernel, when replication of the
+  audit logs to syslog was required.
 * Fixed a bug in which the :program:`auditd` service was managed when the kernel
   was not enforcing auditing.
 * Fixed a bug in which the facts were not properly confined.
@@ -1998,6 +2001,13 @@ New data type aliases
 Added :code:`Simplib::Systemd::ServiceName` for valid :program:`systemd` service
 names.
 
+pupmod-simp-ssh
+^^^^^^^^^^^^^^^
+
+* Migrated to the updated version of :pupmod:`simp/selinux` that allows for isolated
+  package installation in support of the SELinux native types.
+* Allow users to use the :pupmod:`puppet/selinux` module instead of SIMP components.
+
 pupmod-simp-stunnel
 ^^^^^^^^^^^^^^^^^^^
 
@@ -2199,6 +2209,8 @@ simp-rsync-skeleton
 simp-utils
 ^^^^^^^^^^
 
+* Added sample kickstart files to :file:`/usr/share/simp/` to allow users to have
+  access to all OS-specific versions of the kickstart files.
 * Added a check to the :program:`unpack_dvd` script for dangerously unspecific
   OS versions (e.g., '7' instead of '7.0.2003').
 
