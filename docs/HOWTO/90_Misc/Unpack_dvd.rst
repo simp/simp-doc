@@ -9,24 +9,29 @@ If you require additional OS packages, you can extract them from vendor ISOs usi
 :program:`unpack_dvd`.  Additionally you can extract the PXE
 files from the ISO to the rsync directories.
 
-Use option :code:`unpack_dvd --help` to see all options available for :program:`unpack_dvd`.
 
-The defaults used in :program:`unpack_dvd` correspond to defaults used in SIMP puppet modules
-to configure the tftp server and local os yum repository installed when SIMP is installed from ISO.
 
 Extract the OS Packages
 -----------------------
 
-:program:`Unpack_dvd` extracts the OS RPMs to the :file:`/var/www/yum/<os-family>/<os-version>` directory.
-It creates links under the :file:`Updates` directory locate under that directory to all RPMs extracted and then runs :program:`createrepo` in the :file:`Updates` directory.
+:program:`Unpack_dvd` will, by default
 
-By default the os-family and os-version are determined from files on the ISO. The base directory
-can be changed using -d option and the os-version can be changed using the ``-v`` option.  The base directory
-must already exist.
+  * extract OS metadata from the ISO
+  * create a directory named :file:`<os-family>/<os-version>` under :file:`/var/www/yum`, the directory used for the yum server in :pupmod:`simp/simp`.
+  * extract the files on the ISO that directory.
+  * create a link  :file:`/var/www/yum/<os-family>/<os-major-version>` to above directory.
+  * create :file:`Updates` directory if it does not exist
+  * create a link for all RPMs extracted from the ISO under the :file:`Updates` directory.
+  * run :program:`createrepo` in the :file:`Updates` directory.
+  * If run as root, change permissions recursively on :file:`Updates` and any directory with RPMs to be owned and readable by group ``apache``
 
-If run as root, :program:`unpack_dvd` will recursively change the group on any directory containing RPMs to ``apache`` and give group access to the files.  The group can be changed with the ``-g`` option.
+Use :code:`unpack_dvd --help` to see all options available.
 
-:program:`Unpack_dvd` will create a link from the version unpacked to the major version.  (For example :file:`7.6` will be linked to :file:`7`).  Therefore if :program:`unpack_dvd` can only determine the major OS version from the files on the ISO, it will fail and ask you to supply a more descriptive version number using ``-v`` option.
+.. NOTE::
+
+  If unpack_dvd can only determine the OS major version from the ISO metadata
+  it will fail and ask you to supply a more detail version number using
+  the ``-v`` option.
 
 The following example will:
 
@@ -34,11 +39,9 @@ The following example will:
 * create a repository in :file:`/var/www/yum/CentOS/7.8.2003/Updates` directory
 * link :file:`/var/www/yum/CentOS/7` to  :file:`/var/www/yum/CentOS/7.8.2003`.
 
-#. Log on and run :command:`sudo su - root`.
+#. Log on and run :code:`sudo su - root`.
 #. Copy the appropriate vendor OS ISO(s) to the server.
-#. If the server where you are unpacking the vendor ISO was **NOT** built using the SIMP ISO ,
-   you must create :file:`/var/www/yum` (or the directory you indicated in ``-d``
-   option.)
+#. If the server where you are unpacking the vendor ISO was **NOT** built using the SIMP ISO , you must create :file:`/var/www/yum`.
 #. unpack using :program:`unpack_dvd`
 
    .. code:: bash
@@ -66,34 +69,38 @@ Extract PXE files
 
 Extracting the PXE files was added to :program:`unpack_dvd` in :package:`simp-utils-6.4.0`.  Use the ``-X`` option to tell :program:`unpack_dvd` to extract the PXE files and the ``--no-unpack-yum`` option if you do not want to extract the yum files.
 
-By default :program:`unpack_dvd` will pull information off the ISO and, using this information, create a directory named <os-family>-<version>-<arch> under the tftpboot rsync directory and extract the PXE files there.
+When PXE file extraction is enabled with the :command:-X option,
+:program:`unpack_dvd` will, by default,
 
-The default rsync directory is :file:`/var/simp/environments/production/rsync/<os family>/Global/tftpboot/linux-install/`.  To change the environment in rsync directory use ``-e`` option.  To use an alternate directory specify the path after the ``-X`` option.
+  * extract OS version information from the ISO metadata
+  * create a directory for the PXE files in the rsync directory used by :pupmod:`simp/tftpboot` in the production environment.
+    * named <os-family>-<version>-<arch>
+    * The default rsync directory is :file:`/var/simp/environments/production/rsync/<os family>/Global/tftpboot/linux-install/`.
+  * extract the files to the created OS directory.
+  * create a link <os-family>-<major-version>-<arch> to the above directory.
+  * if run as root, change the permisions recursivley on created directoy and its contents to those of the rsync directory.
 
-The rsync directory or the directory you specified must exist before running :program:`unpack_dvd`.
+Use :code:`unpack_dvd --help` for options to change some of the defaults.
 
-If run as root, :program:`unpack_dvd` will the set permissions on the PXE files from the
-directory it copies them to.
-
-The following example will just extract the PXE files
-
-* extract the PXE files to :file:`/var/simp/environments/production/rsync/CentOS/Global/tftpboot/linux-install/centos-8.0.1905-x86_64`
-* link `/var/simp/environments/production/rsync/CentOS/Global/tftpboot/linux-install/centos-8-x86_64` to the above directory.
+The following example will extract only the PXE files to the rsync directory:
 
 .. code:: bash
 
-   # Place the -X options after the ISO name
+   # Place the -X options after the ISO name.
+   sudo su - root
+   # copy the iso to the system
    unpack_dvd -v 8.0.1905 --no-unpack-yum /myisodir/CentOS--x86_64-1905-dvd1.iso -X
 
-The following example will
-
-* extract the RPMs to :file:`/my/repodir/yum/CentOS/8.0.1905`
-* create the repo under :file:`/my/repodir/yum/CentOS/8.0.1905/Updates`
-* extract the PXE files to :file:`/my/tftpboot/`
+The following example will extract both the RPMs and PXE files to alternate directories:
 
 .. code:: bash
 
+   sudo su - root
+   # Make the directories.  Set the permissions as needed.
+   mkdir -p /my/repodir
+   mkdir -p /my/tftpboot
    # The PXE directory must follow the -X option.
-   # Use the -n to prevent the creation of the links.
+   # The -d options changes the directory to extract OS files
    unpack_dvd -v 8.0.1905 -d /my/repodir /myisodir/CentOS--x86_64-1905-dvd1.iso -X /my/tftpboot
+   yum clean all && yum makecache
 
