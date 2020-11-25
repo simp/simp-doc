@@ -11,32 +11,30 @@ files from the ISO to the rsync directories.
 
 Use option :code:`unpack_dvd --help` to see all options available for :program:`unpack_dvd`.
 
+The defaults used in :program:`unpack_dvd` correspond to defaults used in SIMP puppet modules
+to configure the tftp server and local os yum repository installed when SIMP is installed from ISO.
+
 Extract the OS Packages
 -----------------------
 
-:program:`Unpack_dvd` extracts the OS RPMs to :file:`/var/www/yum/<OperatingSystem>`
-in a directory named after the OS version it determines from files on the ISO.
-It then creates a link to the major version.  If version 7.6 is extracted,
-7 will be linked to 7.6.
+:program:`Unpack_dvd` extracts the OS RPMs to the :file:`/var/www/yum/<os-family>/<os-version>` directory.
+It creates links under the :file:`Updates` directory locate under that directory to all RPMs extracted and then runs :program:`createrepo` in the :file:`Updates` directory.
 
-After extracting all the RPMs it will create or update a repository in the
-versioned directory.
+By default the os-family and os-version are determined from files on the ISO. The base directory
+can be changed using -d option and the os-version can be changed using the ``-v`` option.  The base directory
+must already exist.
 
-.. NOTE::
+If run as root, :program:`unpack_dvd` will recursively change the group on any directory containing RPMs to ``apache`` and give group access to the files.  The group can be changed with the ``-g`` option.
 
-   If unpack_dvd can only determine the major OS version from the files
-   on the ISO, :program:`unpack_dvd` will ask you to supply a more descriptive
-   version number using ``-v`` option.
+:program:`Unpack_dvd` will create a link from the version unpacked to the major version.  (For example :file:`7.6` will be linked to :file:`7`).  Therefore if :program:`unpack_dvd` can only determine the major OS version from the files on the ISO, it will fail and ask you to supply a more descriptive version number using ``-v`` option.
 
 The following example will:
 
 * extract the RPMs to :file:`/var/www/yum/CentOS/7.8.2003`
-* create a repository in the above directory
-* link :file:`/var/www/yum/CentOS/7` to the above directory.
+* create a repository in :file:`/var/www/yum/CentOS/7.8.2003/Updates` directory
+* link :file:`/var/www/yum/CentOS/7` to  :file:`/var/www/yum/CentOS/7.8.2003`.
 
-#. Log on as ``simp`` and run :command:`sudo su - root`.  If run as root it will
-   change the permissions on the repo directory to be owned by group ``apache``
-   and make them group accessable.  The group can be changed with the -g option.
+#. Log on and run :command:`sudo su - root`.
 #. Copy the appropriate vendor OS ISO(s) to the server.
 #. If the server where you are unpacking the vendor ISO was **NOT** built using the SIMP ISO ,
    you must create :file:`/var/www/yum` (or the directory you indicated in ``-d``
@@ -66,17 +64,16 @@ The following example will:
 Extract PXE files
 -----------------
 
-Extracting the PXE files along with the OS files, was added to :program:`unpack_dvd` in :package:`simp-utils-6.4.0`.  Use the -X option to tell it to extract the PXE files and add the --no-unpack-yum option if you do not also want to extract the yum files.
+Extracting the PXE files was added to :program:`unpack_dvd` in :package:`simp-utils-6.4.0`.  Use the ``-X`` option to tell :program:`unpack_dvd` to extract the PXE files and the ``--no-unpack-yum`` option if you do not want to extract the yum files.
 
 By default :program:`unpack_dvd` will pull information off the ISO and, using this information, create a directory named <os-family>-<version>-<arch> under the tftpboot rsync directory and extract the PXE files there.
 
-The default rsync directory is :file:`/var/simp/environments/production/rsync/<os family>/Global/tftpboot/linux-install/`.  Options exist to change the environment in the rsync directory or to specify an alternate directory.
+The default rsync directory is :file:`/var/simp/environments/production/rsync/<os family>/Global/tftpboot/linux-install/`.  To change the environment in rsync directory use ``-e`` option.  To use an alternate directory specify the path after the ``-X`` option.
 
 The rsync directory or the directory you specified must exist before running :program:`unpack_dvd`.
 
 If run as root, :program:`unpack_dvd` will the set permissions on the PXE files from the
-directory it it copies them to.
-
+directory it copies them to.
 
 The following example will just extract the PXE files
 
@@ -90,8 +87,8 @@ The following example will just extract the PXE files
 
 The following example will
 
-* extract the RPMs  to :file:`/my/repodir/yum/CentOS/8.0.1905`
-* create a repository in the above directory
+* extract the RPMs to :file:`/my/repodir/yum/CentOS/8.0.1905`
+* create the repo under :file:`/my/repodir/yum/CentOS/8.0.1905/Updates`
 * extract the PXE files to :file:`/my/tftpboot/`
 
 .. code:: bash
