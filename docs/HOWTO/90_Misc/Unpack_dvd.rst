@@ -31,11 +31,7 @@ Use :code:`unpack_dvd --help` to see all options available.
   it will fail and ask you to supply a more detail version number using
   the ``-v`` option.
 
-The following example will:
-
-* extract the RPMs to :file:`/var/www/yum/CentOS/7.8.2003`
-* create a repository in :file:`/var/www/yum/CentOS/7.8.2003/Updates` directory
-* link :file:`/var/www/yum/CentOS/7` to  :file:`/var/www/yum/CentOS/7.8.2003`.
+The following example will extract to the default location:
 
 #. Log on and run :code:`sudo su - root`.
 #. Copy the appropriate vendor OS ISO(s) to the server.
