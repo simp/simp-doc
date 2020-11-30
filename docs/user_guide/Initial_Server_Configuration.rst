@@ -106,35 +106,13 @@ Next Steps
 
 * To continue configuring the system, move on to the next section in the :ref:`simp-user-guide`,
   :ref:`Client_Management`.
+
+The following are links to other information in the user guide that are answers to questions sometimes
+asked at this time:
+
 * To learn more details about how your system has just been configured see :ref:`gsg-advanced-configuration`.
-
-Optional: Extract the Full OS RPM Package Set
----------------------------------------------
-
-The SIMP ISO provides a minimal set of packages.
-
-If you require additional OS packages, you can extract them from vendor ISOs using the following
-procedure:
-
-#. Log on as ``simp`` and run ``sudo su - root``.
-#. Run ``puppet agent -t`` to ensure system consistency.
-#. Copy the appropriate vendor OS ISO(s) to the server and unpack using the
-   ``unpack_dvd`` utility. This will create a new directory tree under
-   ``/var/www/yum/<OperatingSystem>`` suitable for serving to clients.
-
-   .. code:: bash
-
-      $ unpack_dvd CentOS-RHEL_MAJOR_VERSION-x86_64-DVD-####.iso
-
-   .. WARNING::
-
-      If the server where you are unpacking the vendor ISO was **NOT** built using the SIMP ISO ,
-      you must also unpack the associated SIMP ISO using the ``unpack_dvd`` utility.
-
-#. Ensure that subsequent :term:`yum` operations are aware of the new RPM
-   packages by refreshing the system's yum cache:
-
-   Run: ``yum clean all && yum makecache``
+* To add additional simp modules or you own site modules to the environment :ref:`Updating an Existing Environment<ug-environments-deploying-from-local-repositories>`
+* To extract the Full OS to the yum server see :ref:`howto-unpack-dvd`
 
 .. include::  Initial_Server_Configuration/Prevent_Lockout_on_Puppetserver.inc
 

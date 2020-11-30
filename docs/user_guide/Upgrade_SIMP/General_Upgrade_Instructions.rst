@@ -73,25 +73,38 @@ steps as ``root``:
 
    * Update the repositories using a SIMP ISO:
 
-     If you have the latest SIMP ISO available to you and have installed the
-     ``simp-utils`` package, update the YUM repositories by unpacking the ISO
-     using ``unpack_dvd`` from that package:
+     :program:`unpack_dvd` can be used to extract the SIMP puppet module RPMs and the minimal OS
+     RPMs from the SIMP ISO. :program:`unpack_dvd` is installed from the :package:`simp-utils` package.
 
-     #. Copy the new SIMP ISO file to the SIMP master
-     #. From the SIMP master (as ``root``):
+     By default :program:`unpack_dvd` uses information on the ISO to determine where to copy the RPMs
+     to under :file:`/var/www/yum` and then links the OS major version to the newly extracted OS directory.
+     Since sometimes :program:`unpack_dvd` can only determine the major version
+     of the OS, you should supply a detailed version number for the OS using the -v option.
+     The SIMP version release notes will tell you the version of the OS that is packaged with
+     SIMP release.
+
+     Use :code:`unpack_dvd --help` for more information on the :program:`unpack_dvd` and its options
+     to modify any of the behavior described above.
+
+     #. Copy the new SIMP ISO file to the yum server.
+     #. From the yum server (as ``root``):
 
         .. code-block:: sh
 
            # Unpack the new SIMP ISO's RPMs into yum repositories
-           unpack_dvd </path/to/ISO>
+           unpack_dvd -v <OS version number> </path/to/ISO>
+
 
    * For RPM-based installation, follow your site's procedures to update your
      repositories.
 
-#. Install the RPMs
+#. Install the RPMs on your SIMP master:
+
+   After updating the repositories log onto the SIMP master  and su to root to
+   perform the rest of the upgrade.
 
    .. code-block:: sh
-   
+
       # Make sure the puppet agent cron job does not run and pick up any
       # interim changes, including Puppet application RPM updates, until you
       # are ready for these changes.
@@ -106,8 +119,8 @@ steps as ``root``:
    For SIMP 6.4 and later, this will also update the system-local, SIMP-managed
    Puppet module :term:`Git` repositories.
 
-#. If you are upgrading from a version prior to SIMP 6.4 you can skip to the last
-   step, *Apply the changes by running puppet*.
+#. If you are upgrading from a version prior to SIMP 6.4 you can skip to the
+   step *Update the generated types for the environment*
 
    ** **The following steps only apply for upgrades from version 6.4 or later**
 

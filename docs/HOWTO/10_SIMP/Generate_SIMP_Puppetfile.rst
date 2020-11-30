@@ -24,6 +24,8 @@ Generate the Puppetfile skeleton
 
       simp puppetfile generate -s > Puppetfile
 
+.. _howto-include-non-simp-modules-in-puppetfile:
+
 Edit the Puppetfile to include non-simp site modules
 ----------------------------------------------------
 

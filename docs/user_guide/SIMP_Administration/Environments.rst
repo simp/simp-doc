@@ -21,7 +21,6 @@ integrate SIMP environments into your site's deployment strategy.
   Here are some probable topics to consider
 
  .. include::  Environments/Deploying_Simp_Environments.inc
- .. include::  Environments/Deploying_from_local_repositories.inc
 
  // optional, covers later deployment scenarios
  .. include::  Environments/Deploying_from_internet_repositories.inc
