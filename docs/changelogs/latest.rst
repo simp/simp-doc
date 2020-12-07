@@ -25,13 +25,13 @@ OS compatibility
 
 This release is known to work with:
 
-  * CentOS 6.10 x86_64
+  * CentOS 6.10 x86_64 — no server ISO or release tarball
   * CentOS 7.0 2003 x86_64
   * CentOS 8.2 2004 x86_64 — :ref:`client systems only<changelog-6-5-0-el8-client-only>`
-  * OEL 6.10 x86_64
+  * OEL 6.10 x86_64 — no server ISO or release tarball
   * OEL 7.8 x86_64
   * OEL 8.2 x86_64 — :ref:`client systems only<changelog-6-5-0-el8-client-only>`
-  * RHEL 6.10 x86_64
+  * RHEL 6.10 x86_64 — no server ISO or release tarball
   * RHEL 7.8 x86_64
   * RHEL 8.2 x86_64 — :ref:`client systems only<changelog-6-5-0-el8-client-only>`
 
@@ -79,17 +79,23 @@ This release does NOT support EL8 for:
   * For details, see: :ref:`changelog-6-5-0-el8-client-limitations`.
 
 
-Support for managing EL6 is drawing down
-""""""""""""""""""""""""""""""""""""""""
+EL6 support is EOL
+""""""""""""""""""
 
-  * EL6 maintenance support is EOL for both RHEL 6 and CentOS 6, and upstream
-    vendor support will end on 30 November 2020.
-  * **New Puppet modules may not support EL6.**
-  * Some optional Puppet modules (provided by the :package:`simp-extras` RPM)
-    no longer support EL6. In particular, this affects :pupmod:`simp/autofs`,
-    :pupmod:`simp/nfs`, and :pupmod:`simp/simp_nfs`.  If you need those
-    capabilities on EL6, use earlier versions of these modules in EL6-specific
-    Puppet environments.
+* EL6 maintenance support is EOL for both RHEL 6 and CentOS 6.
+  * Upstream vendor support ended on 30 November 2020.
+* **New Puppet modules may not support EL6.**
+* **EL6 SIMP tarball and ISO releases have been discontinued.**
+  * There will be no CentOS6 server tarball or ISO release for SIMP 6.5.0.
+* EL6 _has_ been tested for use with SIMP 6.5.0's Puppet modules, the
+  ``unpack_dvd`` script, and PXE kickstarts.
+  * However: **No further EL6 support is planned for SIMP Puppet modules**
+  * **EL6 support may be removed completely in each module's next release.**
+* Some optional Puppet modules (provided by the :package:`simp-extras` RPM) no
+  longer support EL6. In particular, this affects :pupmod:`simp/autofs`,
+  :pupmod:`simp/nfs`, and :pupmod:`simp/simp_nfs`.  If you need those
+  capabilities on EL6, use earlier versions of these modules in EL6-specific
+  Puppet environments.
 
 
 Breaking Changes
