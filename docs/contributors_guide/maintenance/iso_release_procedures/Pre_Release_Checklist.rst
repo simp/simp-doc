@@ -200,11 +200,11 @@ To verify that the ``simp-core`` acceptance tests have succeeded
 Verify ISOs can be created
 --------------------------
 
-This check verifies that SIMP ISOs for CentOS 6 and CentOS 7 can be
+This check verifies that SIMP ISOs for CentOS 7 can be
 built from the local ``simp-core`` clone  and RPMs pushed to the SIMP
 Download Server.
 
-For CentOS 6 and CentOS 7:
+For CentOS 7:
 
 #. Login to a machine that has `Docker`_ installed and the ``docker``
    service running.
@@ -220,7 +220,7 @@ For CentOS 6 and CentOS 7:
 
       git clone https://github.com/simp/simp-core.git
       cd simp-core
-#. Populate ``simp-core/ISO`` directory with CentOS 6/7 distribution ISOs
+#. Populate ``simp-core/ISO`` directory with CentOS 7 distribution ISOs
 
    .. code-block:: bash
 
@@ -228,7 +228,7 @@ For CentOS 6 and CentOS 7:
       cp /net/ISO/Distribution_ISOs/CentOS-6.9-x86_64-bin-DVD*.iso ISO/
       cp /net/ISO/Distribution_ISOs/CentOS-7-x86_64-1708.iso ISO/
 
-#. Build each ISO for CentOS 6 and CentOS 7.  For example,
+#. Build each ISO for supported CentOS versions.  For example,
 
    .. code-block:: bash
 
@@ -239,12 +239,6 @@ For CentOS 6 and CentOS 7:
       bundle exec rake beaker:suites[rpm_docker]
 
    .. IMPORTANT::
-
-      #. By default, the ``default.yml`` for the ``rpm_docker`` suite
-         builds an ISO for CentOS 7.  You must manually edit the
-         ``default.yml`` file to disable the ``el7-build-server``
-         instead of the ``el6-build-server``, in order to create
-         a CentOS 6 ISO.
 
       #. The most reliable way to build each ISO is from a clean checkout
          of ``simp-core``.
@@ -415,11 +409,11 @@ tested in acceptance/simp-packer tests) do function as advertised:
 * The SIMP server can be converted from Selinux permissive to Selinux
   enforcing.
 * A local user with sudo privileges can be created and login to both
-  the SIMP server and client on CentOS 6 and CentOS 7.
+  the SIMP server and client on CentOS 7.
 * An LDAP user in the ``administrators`` group can login to both
-  the SIMP server and client on CentOS 6 and CentOS 7.
+  the SIMP server and client on CentOS 7.
 * Local and LDAP users can change their passwords on both the SIMP
-  server and client on CentOS 6 and CentOS 7.
+  server and client on CentOS 7.
 * The Rsyslog rules from ``simp_rsyslog``, ``syslog`` and
   SIMP application modules (``aide``, ``tlog``, etc.) result
   in application log messages being written to the correct local
@@ -452,11 +446,10 @@ tested in acceptance/simp-packer tests) do function as advertised:
 Verify SIMP server RPM install
 ------------------------------
 
-This check verifies that CentOS 6 and CentOS 7 SIMP servers can be
-installed using the set of RPMs contained in the SIMP ISOs
-The verification steps largely follow the details in
-:ref:`gsg-installing_simp_from_a_repository`.  All RPMs except
-the ``simp-core`` RPM should be able to be pulled from the appropriate location
+This check verifies that CentOS 7 SIMP servers can be installed using the set
+of RPMs contained in the SIMP ISOs The verification steps largely follow the
+details in :ref:`gsg-installing_simp_from_a_repository`.  All RPMs except the
+``simp-core`` RPM should be able to be pulled from the appropriate location
 under https://download.simp-project.com.
 
 Verify SIMP server RPM upgrade
@@ -501,10 +494,10 @@ the last full SIMP release.
 Verify SIMP server R10K install
 -------------------------------
 
-This check verifies that CentOS 6 and CentOS 7 SIMP servers can be
-installed via :term:`r10k`.  Since this capability is already automatically
-tested in a ``simp-core`` acceptance test, all verification is handled by
-`Verify simp-core tests pass`_.
+This check verifies that CentOS 7 SIMP servers can be installed via
+:term:`r10k`.  Since this capability is already automatically tested in a
+``simp-core`` acceptance test, all verification is handled by `Verify simp-core
+tests pass`_.
 
 
 .. _Docker: https://www.docker.com

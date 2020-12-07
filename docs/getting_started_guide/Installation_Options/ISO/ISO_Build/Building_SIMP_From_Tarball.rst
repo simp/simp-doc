@@ -29,8 +29,7 @@ Download the SIMP release tar file, found on our `SIMP artifacts repository`_.
 Download the latest tar file according to your needs. If you are not sure what
 version you need, check the :ref:`faq-simp_version_guide`.
 
-  * The `latest 6.4 release (for EL 6)`_
-  * The `latest 6.4 release (for EL 7)`_
+  * The `latest 6.5 release (for EL 7)`_
   * The `latest checksums`_
 
 .. NOTE::
@@ -56,7 +55,7 @@ branch for your target SIMP version:
 .. code::
 
    cd simp-core
-   git checkout tags/6.4.0-0 # for SIMP 6.4
+   git checkout tags/6.4.0-0 # for SIMP 6.5
 
 Update your Dependencies
 ^^^^^^^^^^^^^^^^^^^^^^^^
@@ -128,6 +127,5 @@ Once the process completes, you should have a bootable SIMP ISO, in:
 ``build/distributions/<OS>/<Release>/<Arch>/SIMP_ISO/``
 
 .. _SIMP artifacts repository: https://download.simp-project.com/simp/ISO
-.. _latest 6.4 release (for EL 6): https://download.simp-project.com/simp/ISO/tar_bundles/SIMP-6.4.0-0.el6-CentOS-6-x86_64.tar.gz
-.. _latest 6.4 release (for EL 7): https://download.simp-project.com/simp/ISO/tar_bundles/SIMP-6.4.0-0.el7-CentOS-7-x86_64.tar.gz
+.. _latest 6.5 release (for EL 7): https://download.simp-project.com/simp/ISO/tar_bundles/SIMP-6.5.0-0.el7-CentOS-7-x86_64.tar.gz
 .. _latest checksums: https://download.simp-project.com/simp/ISO/tar_bundles/SHA512SUM

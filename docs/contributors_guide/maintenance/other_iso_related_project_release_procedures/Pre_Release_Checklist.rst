@@ -148,7 +148,7 @@ Verify the component RPM upgrade succeeds
 -----------------------------------------
 
 This check verifies that the RPM for this component can be used to
-upgrade the last full SIMP release.  For both CentOS 6 and CentOS 7,
+upgrade the last full SIMP release.  For CentOS 7,
 do the following:
 
 #. Bring up a CentOS server that was booted from the appropriate SIMP
@@ -185,10 +185,10 @@ Verify the component yields valid SIMP ISOs
 -------------------------------------------
 
 This check verifies that with this component, valid SIMP ISOs
-for CentOS 6 and CentOS 7 can be built. An ISO is considered
+for CentOS 7 can be built. An ISO is considered
 to be valid when a SIMP server can be booted from it, configured via
 ``simp config``, and then bootstrapped via ``simp bootstrap``.  For
-CentOS 6 and CentOS 7:
+CentOS 7:
 
 #. Login to a machine that has `Docker`_ installed and the ``docker``
    service running.
@@ -213,15 +213,14 @@ CentOS 6 and CentOS 7:
    any of its updated dependencies have been updated to reference
    the versions under test.
 
-#. Populate ``simp-core/ISO`` directory with CentOS6/7 distribution ISOs
+#. Populate ``simp-core/ISO`` directory with CentOS 7 distribution ISOs
 
    .. code-block:: bash
 
       mkdir ISO
-      cp /net/ISO/Distribution_ISOs/CentOS-6.9-x86_64-bin-DVD*.iso ISO/
       cp /net/ISO/Distribution_ISOs/CentOS-7-x86_64-1708.iso ISO/
 
-#. Build each ISO for CentOS 6 and CentOS 7.  For example,
+#. Build each ISO for CentOS.  For example,
 
    .. code-block:: bash
 
@@ -232,12 +231,6 @@ CentOS 6 and CentOS 7:
       bundle exec rake beaker:suites[rpm_docker]
 
    .. IMPORTANT::
-
-      #. By default, the ``default.yml`` for the ``rpm_docker`` suite
-         builds an ISO for CentOS 7.  You must manually edit the
-         ``default.yml`` file to disable the ``el7-build-server``
-         instead of the ``el6-build-server``, in order to create
-         a CentOS 6 ISO.
 
       #. The most reliable way to build each ISO is from a clean checkout
          of ``simp-core``.

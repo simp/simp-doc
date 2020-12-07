@@ -49,23 +49,19 @@ Install as follows:
 
    .. |bios_boot_options|           image:: ../../../images/screenshots/simp_boot_options.png
       :alt: SIMP boot options screen (BIOS)
-   .. |efi_grub097_boot_options|    image:: ../../../images/screenshots/simp_boot_options_efi__grub097.png
-      :alt: SIMP boot options screen (UEFI, el6)
    .. |efi_grub2_boot_options|      image:: ../../../images/screenshots/simp_boot_options_efi__grub2.png
       :alt: SIMP boot options screen (UEFI, el7)
    .. |efi_grub2_boot_options_submenu| image:: ../../../images/screenshots/simp_boot_options_efi__grub2_submenu.png
       :alt: SIMP boot options screen (UEFI, el7)
 
 
-   +------------+----------------------------------+
-   | BIOS       | |bios_boot_options|              |
-   +------------+----------------------------------+
-   | UEFI (el6) | |efi_grub097_boot_options|       |
-   +------------+----------------------------------+
-   | UEFI (el7) | |efi_grub2_boot_options|         |
-   +------------+----------------------------------+
-   |            | |efi_grub2_boot_options_submenu| |
-   +------------+----------------------------------+
+   +----------------+----------------------------------+
+   | BIOS           | |bios_boot_options|              |
+   +----------------+----------------------------------+
+   | UEFI           | |efi_grub2_boot_options|         |
+   +----------------+----------------------------------+
+   | UEFI (submenu) | |efi_grub2_boot_options_submenu| |
+   +----------------+----------------------------------+
 
 
 #. Press *Enter* to boot the standard SIMP installer, or customize the
