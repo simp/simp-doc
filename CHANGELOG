@@ -1,3 +1,7 @@
+* Mon Dec 08 2020 Chris Tessmer <chris.tessmer@onyxpoint.com>
+- Announced immediate deprecation of EL6 in 6.5.0 CHANGELOG
+- Removed references to EL6 ISO & tarball in various sections
+
 * Wed Nov 04 2020 Trevor Vaughan <tvaughan@onyxpoint.com>
 - Updated firewall-related docs in the changelog
 - Added a HOWTO for fully disabling a system's firewall
