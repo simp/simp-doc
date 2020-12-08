@@ -251,8 +251,7 @@ Verify the component RPM upgrade succeeds
 -----------------------------------------
 
 This check verifies that the RPM for this component can be used to
-upgrade the last full SIMP release.  For both CentOS 6 and CentOS 7,
-do the following:
+upgrade the last full SIMP release.  For CentOS 7, do the following:
 
 #. Bring up a CentOS server that was booted from the last SIMP ISO
    release and for which ``simp config`` and ``simp bootstrap`` has
@@ -284,10 +283,11 @@ Verify the component yields valid SIMP ISOs
 -------------------------------------------
 
 This check verifies that with this component, valid SIMP ISOs
-for CentOS 6 and CentOS 7 can be built. An ISO is considered
-to be valid when a SIMP server can be booted from it, configured via
-``simp config``, and then bootstrapped via ``simp bootstrap``.  For
-CentOS 6 and CentOS 7:
+for CentOS 7 can be built. An ISO is considered to be valid when a SIMP server
+can be booted from it, configured via ``simp config``, and then bootstrapped
+via ``simp bootstrap``.
+
+For CentOS 7:
 
 #. Login to a machine that has `Docker`_ installed and the ``docker``
    service running.
@@ -298,14 +298,14 @@ CentOS 6 and CentOS 7:
       that is available with CentOS works best.
 
 #. Checkout the ``simp-core`` project for the last SIMP release.
-   For this discussion, we will assume it is ``6.0.0-1``.
+   For this example, we will use ``6.5.0-0``.
 
    .. code-block:: bash
 
       git clone https://github.com/simp/simp-core.git
       cd simp-core
       git fetch -t origin
-      git checkout tags/6.0.0-1
+      git checkout tags/6.5.0-0
 
 #. Create a ``Puppetfile.tracking`` file that contains the contents
    of ``Puppetfile.stable`` in which the URLs for the component and
@@ -317,10 +317,9 @@ CentOS 6 and CentOS 7:
    .. code-block:: bash
 
       mkdir ISO
-      cp /net/ISO/Distribution_ISOs/CentOS-6.9-x86_64-bin-DVD*.iso ISO/
       cp /net/ISO/Distribution_ISOs/CentOS-7-x86_64-1708.iso ISO/
 
-#. Build each ISO for CentOS 6 and CentOS 7.  For example,
+#. Build ISO(s).  For example,
 
    .. code-block:: bash
 
@@ -332,16 +331,10 @@ CentOS 6 and CentOS 7:
 
    .. IMPORTANT::
 
-      #. By default, the ``default.yml`` for the ``rpm_docker`` suite
-         builds an ISO for CentOS 7.  You must manually edit the
-         ``default.yml`` file to disable the ``el7-build-server``
-         instead of the ``el6-build-server``, in order to create
-         a CentOS 6 ISO.
-
       #. The most reliable way to build each ISO is from a clean checkout
          of ``simp-core``.
 
-#. Use `simp-packer`_ to verify the SIMP ISO can be bootstrapped, when
+#. Use `simp-packer`_ to verify that the SIMP ISO can be bootstrapped, when
    booted with the default options.
 
 Verify the component works in an actual SIMP system
