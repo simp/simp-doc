@@ -83,19 +83,27 @@ EL6 support is EOL
 """"""""""""""""""
 
 * EL6 maintenance support is EOL for both RHEL 6 and CentOS 6.
+
   * Upstream vendor support ended on 30 November 2020.
-* **New Puppet modules may not support EL6.**
-* **EL6 SIMP tarball and ISO releases have been discontinued.**
-  * There will be no CentOS6 server tarball or ISO release for SIMP 6.5.0.
-* EL6 _has_ been tested for use with SIMP 6.5.0's Puppet modules, the
-  ``unpack_dvd`` script, and PXE kickstarts.
-  * However: **No further EL6 support is planned for SIMP Puppet modules**
-  * **EL6 support may be removed completely in each module's next release.**
+
+* SIMP tarball and ISO releases for EL6 **have been discontinued.**
+
+  * There will be **no EL6 tarball or server ISO release** for SIMP 6.5.0.
+
+* New SIMP Puppet modules **may not support EL6.**
+* EL6 *has* been tested with SIMP 6.5.0's Puppet modules, the ``unpack_dvd``
+  script, and PXE kickstarts.
+
+  * However: **No further EL6 support** is planned for SIMP Puppet modules.
+  * EL6 support **may be removed completely** in each module's next release.
+
 * Some optional Puppet modules (provided by the :package:`simp-extras` RPM) no
-  longer support EL6. In particular, this affects :pupmod:`simp/autofs`,
-  :pupmod:`simp/nfs`, and :pupmod:`simp/simp_nfs`.  If you need those
-  capabilities on EL6, use earlier versions of these modules in EL6-specific
-  Puppet environments.
+  longer support EL6.
+
+  * In particular, this affects :pupmod:`simp/autofs`, :pupmod:`simp/nfs`, and
+    :pupmod:`simp/simp_nfs`.
+  * If you need these capabilities on EL6, use earlier versions of these
+    modules in an EL6-specific Puppet environment.
 
 
 Breaking Changes
