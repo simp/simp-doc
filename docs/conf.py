@@ -200,42 +200,52 @@ linkcheck_anchors = False
 # A regex of links that the linkcheck builder should ignore
 linkcheck_ignore = [
     # ignore rpms
-    r'^http[s]?:\/\/.*\.(src\.)?rpm$',
+    r'^https?:\/\/.*\.(src\.)?rpm$',
     # ignore pdfs
-    r'^http[s]?:\/\/.*\.pdf$',
+    r'^https?:\/\/.*\.pdf$',
     # ignore doc
-    r'^http[s]?:\/\/.*\.doc(x)?$',
+    r'^https?:\/\/.*\.doc(x)?$',
     # ignore isos
-    r'^http[s]?:\/\/.*\.iso$',
+    r'^https?:\/\/.*\.iso$',
     # ignore tarballs
-    r'^http[s]?:\/\/.*\.tar(\..{2,3})?$',
+    r'^https?:\/\/.*\.tar(\..{2,3})?$',
     # links that the resolver has trouble with
-    r'^http[s]?:\/\/groups\.google\.com\/forum\/.+',
-    r'^http[s]?:\/\/travis-ci\.org(/.*|$)',
-    r'^http[s]?:\/\/bundler\.io/rationale\.html',
+    r'^https?:\/\/groups\.google\.com\/forum\/.+',
+    r'^https?:\/\/travis-ci\.org(/.*|$)',
+    r'^https?:\/\/bundler\.io/rationale\.html',
     # Puppet redirects everything everywhere
-    r'^http[s]?:\/\/.*\.puppet.com(/.*|$)',
+    r'^https?:\/\/.*\.puppet\.com(/.*|$)',
     # NIST redirects everything everywhere
-    r'^http[s]?:\/\/.*\.nist.gov(/.*|$)',
+    r'^https?:\/\/.*\.nist.gov(/.*|$)',
     # Microsoft redirects everything everywhere
-    r'^http[s]?:\/\/.*\.microsoft.com(/.*|$)',
+    r'^https?:\/\/.*\.microsoft\.com(/.*|$)',
     # SSL errors
-    r'^http[s]?:\/\/www\.elastic\.co(/.*|$)',
-    r'^http[s]?:\/\/opensource\.org(/.*|$)',
+    r'^https?:\/\/www\.elastic\.co(/.*|$)',
+    r'^https?:\/\/opensource\.org(/.*|$)',
     # Everything from pgp.mit.edu
-    r'^http[s]?:\/\/pgp\.mit\.edu(/.*|$)',
+    r'^https?:\/\/pgp\.mit\.edu(/.*|$)',
     # These are for the templates in the release emails
     r'.*VERSION.*Upgrade_SIMP.*',
     r'.*VERSION-.*NUM.*Changelog\.html',
     # Ignore github searches since they'll cause the API to timeout
-    r'^http[s]:\/\/github\.com\/search\?.*',
+    r'^https?:\/\/github\.com\/search\?.*',
     # FIXME: Puppet is redirecting permanently instead of temporarily which
     # they need to fix
-    r'^http[s]:\/\/puppet.com\/docs\/.+\/latest\/.+',
+    r'^https?:\/\/puppet\.com\/docs\/.+\/latest\/.+',
     # FIXME: This site is currently dead
-    r'^http[s]:\/\/www.open-scap.org.*',
+    r'^https?:\/\/www.open-scap.org.*',
     # Qualys randomly fails
-    r'^http[s]:\/\/.*.qualys.com.*'
+    r'^https?:\/\/.*.qualys\.com.*',
+    #
+    # https://wiki.x2go.org/doku.php started failing link checks because it
+    # used a newly-minted CA + cert as of 2020/12/10.  As of this comment,
+    # the latest python `certifi` release (v 2020.12.05) doesn't support the
+    # new CA.
+    #
+    # FIXME: Periodically retest with newer versions of `certifi`:
+    #    See: https://github.com/certifi/python-certifi/releases
+    #
+    r'^https?://wiki\.x2go\.org/?.*'
 ]
 
 # -- Options for HTML output ----------------------------------------------
