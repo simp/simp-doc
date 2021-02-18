@@ -363,6 +363,17 @@ Glossary of Terms
 
       See: `Hiera: How custom backends work <https://puppet.com/docs/puppet/latest/hiera_custom_backends.html>`__
 
+   hiera-eyaml
+   Hiera eyaml
+   EYAML
+      The Hiera eyaml backend uses yaml formatted files with the .eyaml extension. The encrypted strings are
+      prefixed with the encryption method, wrapped with ENC[] and placed in an eyaml file. You can mix your
+      plain values in as well or separate them into different files. Encrypted values can occur within arrays,
+      hashes, nested arrays and nested hashes.  The gem which supplies the backend also supplies an :command:`eyaml`
+      command that can be used to generated keys, edit .eyaml files, and encrypt and decrypt data.
+
+      Source: `Hiera eyaml <https://github.com/voxpupuli/hiera-eyaml>`__
+
    HIRS
    Host Integrity at Runtime and Start-up
       Attestation Certificate Authority (ACA) and :term:`TPM` Provisioning with
