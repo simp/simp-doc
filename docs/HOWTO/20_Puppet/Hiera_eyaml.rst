@@ -30,7 +30,7 @@ will provide the :command:`eyaml` command used to encrypt the data.
 
    $ gem install hiera-eyaml
 
-Set up the hiera eyaml hierachy
+Set up the hiera eyaml hierarchy
 -------------------------------
 
 On the Puppet Server, in the top level of the puppet environment,
@@ -96,7 +96,7 @@ and stored in the :file:`.eyaml` files.  The following is an example of how to
 encrypt the passwords used by the puppet module :code:`pupmod-simp-simp_snmpd`.
 
 The :code:`pupmod-simp-simp_snmpd` module uses the :code:`simp_snmpd::v3_users_hash`
-hiera data value to confiugre the net-snmp users.
+hiera data value to configure the net-snmp users.
 Unencrypted, the hiera value would be in a common hiera file in the environment,
 such as :file:`/etc/puppetlabs/code/environments/production/data/common.yaml`.
 The setting would look like:
@@ -180,7 +180,7 @@ Save the file and make sure the puppet server can read it.
 
 Remove the :code:`simp_snmpd::v3_users_hash` key from
 :file:`/etc/puppetlabs/code/environments/production/data/common.yaml` so the
-passwords are no longer visable.
+passwords are no longer visible.
 
 That completes the example.
 
