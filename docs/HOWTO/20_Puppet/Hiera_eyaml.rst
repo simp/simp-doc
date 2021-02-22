@@ -31,7 +31,7 @@ will provide the :command:`eyaml` command used to encrypt the data.
    $ gem install hiera-eyaml
 
 Set up the hiera eyaml hierarchy
--------------------------------
+--------------------------------
 
 On the Puppet Server, in the top level of the puppet environment,
 :file:`/etc/puppetlabs/code/environments/<environment name>`, edit the
