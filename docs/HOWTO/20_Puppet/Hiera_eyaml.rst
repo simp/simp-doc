@@ -37,10 +37,9 @@ On the Puppet Server, in the top level of the puppet environment,
 :file:`/etc/puppetlabs/code/environments/<environment name>`, edit the
 :file:`hiera.yaml` file and add the eyaml hierarchy.
 
-The following is an example of an eyaml hierarchy.  It was added to the
-:code:`simp-environment-skeleton` module in the  :file:`hiera.yaml` file in
-SIMP 6.6.0.  This example is a simple one.  You can have several entries
-that use different keys.
+The following is an example of an eyaml entry in the hiera hierarchy.
+The :code:`simp-environment-skeleton` module was updated in the SIMP 6.6.0
+release to contain an eyaml entries like this one.
 
 Note the :code:`lookup_key` and :code:`options` keys.  Also note
 that the files have a :code:`.eyaml` extension.
@@ -55,14 +54,9 @@ that the files have a :code:`.eyaml` extension.
     - name: Eyaml Data
       lookup_key: eyaml_lookup_key
       paths:
-      - "secrets/hosts/%{trusted.certname}.eyaml"
-      - "secrets/hosts/%{facts.fqdn}.eyaml"
-      - "secrets/hosts/%{facts.hostname}.eyaml"
-      - "secrets/domains/%{facts.domain}.eyaml"
-      - "secrets/hostgroups/%{::hostgroup}.eyaml"
-      - "secrets/common.eyaml"
-      # The keys list below needs to be generated using eyaml gem.
-      # See simp docs for details.
+      - "hosts/%{trusted.certname}.eyaml"
+      - "hosts/%{facts.fqdn}.eyaml"
+      - "hosts/%{facts.hostname}.eyaml"
       options:
         pkcs7_private_key: /var/lib/puppet/keys/private_key.pkcs7.pem
         pkcs7_public_key: /var/lib/puppet/keys/public_key.pkcs7.pem
@@ -73,7 +67,8 @@ Generate the keys
 
 The keys location is configured under :code:`options` in the above hierarchy.
 Use the :command:`eyaml` command to generate these keys. Make sure the permissions on the
-keys are set securely and the Puppet Server has access to them.
+keys are set securely, the Puppet Server has access to them and that they are backed up
+once they are created.
 
 .. code-block:: bash
 
