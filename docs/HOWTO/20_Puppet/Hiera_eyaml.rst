@@ -5,7 +5,7 @@ HOWTO Set up and Utilize Hiera-eyaml
 
 This section steps through configuring the :term:`hiera-eyaml`  backend
 for a puppet environment.  This backend allows you to encrypt data in
-the hiera files.
+the :term:`Hiera` files.
 
 An example of how to use the :command:`eyaml` command provided by the :term:`hiera-eyaml`
 gem to encrypt data is included at the end.
@@ -23,7 +23,7 @@ If the Puppet Server does not already have the hiera-eyaml gem installed run:
 
    $ puppetserver gem install hiera-eyaml
 
-The hiera-eyaml gem can be installed by users into their ruby environment. This
+The hiera-eyaml gem can be installed by users into their Ruby environment. This
 will provide the :command:`eyaml` command used to encrypt the data.
 
 .. code-block::  bash
@@ -33,12 +33,12 @@ will provide the :command:`eyaml` command used to encrypt the data.
 Set up the hiera eyaml hierarchy
 --------------------------------
 
-On the Puppet Server, in the top level of the puppet environment,
+On the Puppet Server, in the top level of the :term:`Puppet Environment`,
 :file:`/etc/puppetlabs/code/environments/<environment name>`, edit the
 :file:`hiera.yaml` file and add the eyaml hierarchy.
 
 The following is an example of an eyaml entry in the hiera hierarchy.
-The :code:`simp-environment-skeleton` module was updated in the SIMP 6.6.0
+The :package:`simp-environment-skeleton` RPM was updated in the SIMP 6.6.0
 release to contain an eyaml entries like this one.
 
 Note the :code:`lookup_key` and :code:`options` keys.  Also note
@@ -88,9 +88,9 @@ Encrypt values in hiera
 
 Once the hierarchy is set up in an environment, hiera values can be encrypted
 and stored in the :file:`.eyaml` files.  The following is an example of how to
-encrypt the passwords used by the puppet module :code:`pupmod-simp-simp_snmpd`.
+encrypt the passwords used by the puppet module :pupmod:`simp/simp_snmpd`.
 
-The :code:`pupmod-simp-simp_snmpd` module uses the :code:`simp_snmpd::v3_users_hash`
+The :pupmod:`simp/simp_snmpd` module uses the :code:`simp_snmpd::v3_users_hash`
 hiera data value to configure the net-snmp users.
 Unencrypted, the hiera value would be in a common hiera file in the environment,
 such as :file:`/etc/puppetlabs/code/environments/production/data/common.yaml`.
