@@ -366,13 +366,34 @@ Glossary of Terms
    hiera-eyaml
    Hiera eyaml
    EYAML
-      The Hiera eyaml backend uses yaml formatted files with the .eyaml extension. The encrypted strings are
-      prefixed with the encryption method, wrapped with ENC[] and placed in an eyaml file. You can mix your
-      plain values in as well or separate them into different files. Encrypted values can occur within arrays,
-      hashes, nested arrays and nested hashes.  The gem which supplies the backend also supplies an :command:`eyaml`
-      command that can be used to generated keys, edit .eyaml files, and encrypt and decrypt data.
+      Hiera eyaml provides a way to keep encrypted data in :term:`Hiera` data
+      files. It consists of:
 
-      Source: `Hiera eyaml <https://github.com/voxpupuli/hiera-eyaml>`__
+      * The ``eyaml`` :term:`Hiera backend`
+      * The :command:`eyaml` :term:`CLI` command
+      * :file:`.eyaml` Hiera data files
+
+      The Hiera backend is configured with decryption keys and reads from
+      :file:`.eyaml` files.  The CLI command is used to generate keys,
+      encrypt/decrypt data, and edit :file:`.eyaml` files.  The :file:`.eyaml`
+      files are YAML that may contain a mix of encrypted and plaintext
+      values—although for performance reasons, it is common practice to limit
+      :file:`.eyaml` files to encrypted data and use plaintext :file:`.yaml`
+      files for everything else.
+
+      Encrypted values are prefixed with their encryption method and wrapped
+      with :code:`ENC[]`. They can occur within arrays, hashes, nested arrays
+      and nested hashes.
+      The default encryption mechanism is PKCS7, however further encryption
+      types (like :term:`GPG`) can be added with plugins, which are
+      distributed as RubyGems.
+
+      The ``eyaml`` backend and CLI command are provided by the
+      :package:`hiera-eyaml` RubyGem, which has been packaged as part of the
+      :term:`Puppet Server` since 5.2 (SIMP 6.3.0-0).
+
+         | Puppet documentation: `Configuring a hierarchy level: hiera-eyaml <https://github.com/voxpupuli/hiera-eyam://puppet.com/docs/puppet/latest/hiera_config_yaml_5.html#hiera_eyaml>`__
+         | GitHub project for the :package:`hiera-eyaml` gem: `<https://github.com/voxpupuli/hiera-eyaml>`__
 
    HIRS
    Host Integrity at Runtime and Start-up
