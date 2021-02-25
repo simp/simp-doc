@@ -676,10 +676,37 @@ Glossary of Terms
 
    Puppet Environment
    Puppet Environments
-      Isolated groups of Puppet agent nodes from the perspective of the
-      :term:`Puppet Master`.
+      As the `Puppet Environment documentation
+      <https://puppet.com/docs/puppet/latest/environments_about.html>`__ puts
+      it:
 
-      See: `Environments: <https://puppet.com/docs/puppet/latest/environments_about.html>`__
+      .. pull-quote::
+
+         "An environment is a branch that gets turned into a directory on your
+         primary server."
+
+      Depending on the context, the term has several implications:
+
+      * When describing **infrastructure**, a Puppet environment is a group of
+        Puppet agent nodes the :term:`Puppet Server` manages in isolation from
+        other agent nodes (which belong to other Puppet environments).
+
+      * When discussing **file paths** or **directories** on a :term:`Puppet
+        Server`: a Puppet environment is a directory of source, data, and module
+        files used to compile Puppet catalogs for such a group of agents.
+
+        Each Puppet environment directory is located on a Puppet server at
+        :file:`/etc/puppetlabs/code/environments/{environment_name}`.
+
+      * In a :term:`Control Repository`, each **git branch** represents
+        a separate Puppet environment, which :term:`r10k` or PE :term:`Code
+        Manager` will deploy to a Puppet server as a Puppet environment directory
+        with the same name.
+
+      * From the perspective of the Puppet compiler and language, a Puppet
+        environment can be seen as a global **namespace**.
+
+      See: `<https://puppet.com/docs/puppet/latest/environments_about.html>`__
 
    Puppetfile
       A Ruby file that contains references to :term:`Puppet modules`.

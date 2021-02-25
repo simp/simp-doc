@@ -78,6 +78,8 @@ a:hover   { color: #29b929; }
   background: #FFDFD5;
 }
 
+/* External hyperlink decorations
+ * -------------------------------------------------------------------------- */
 .rst-content tt.literal, .rst-content code.literal {
   color: #554488;
   background: #ececec;
@@ -138,6 +140,13 @@ a:hover   { color: #29b929; }
   padding: 0.05em 0.1em;
 }
 
+.rst-content blockquote.pull-quote {
+  color: dimgray;
+  font-style: italic;
+}
+
+/* External hyperlink decorations
+ * -------------------------------------------------------------------------- */
 a.external:after, a.simp-github:after, a.simp-jira:after, a.simp-pupmod:after {
   vertical-align:super;
   opacity: 0.35;
@@ -159,5 +168,4 @@ a.simp-jira:after{
 a.simp-pupmod:after{
   content: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMiIgaGVpZ2h0PSIxMiIgdmlld0JveD0iMCAwIDE1MS4zOSAyMzMuMSI+PHRpdGxlPlB1cHBldC1Mb2dvLU1hcmstQW1iZXI8L3RpdGxlPjxzdHlsZT4KLmNvbG9ye2ZpbGw6I2ZmYWUxYTt9Cjwvc3R5bGU+PHBhdGggY2xhc3M9ImNvbG9yIiBkPSJNMTc0LjYyLDEwNUgxMjEuMzlsMCwwTDkyLjg0LDc2LjRWMjMuMjRIMjMuMjR2NjkuNkg3Ni40N0wxMDUsMTIxLjM4djM2Ljg0bDAsMEw3Ni40NCwxODYuNzRIMjMuMjR2NjkuNmg2OS42di01My4yaDBsMjguNTUtMjguNTVoNTMuMjNaTTQ2LjQ0LDQ2LjQ0aDIzLjJ2MjMuMkg0Ni40NFptMjMuMiwxODYuN0g0Ni40NHYtMjMuMmgyMy4yWiIgdHJhbnNmb3JtPSJ0cmFuc2xhdGUoLTIzLjI0IC0yMy4yNCkiLz48L3N2Zz4=");
 }
-
 
