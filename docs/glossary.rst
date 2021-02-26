@@ -392,7 +392,7 @@ Glossary of Terms
       :package:`hiera-eyaml` RubyGem, which has been packaged as part of the
       :term:`Puppet Server` since 5.2 (SIMP 6.3.0-0).
 
-         | Puppet documentation: `Configuring a hierarchy level: hiera-eyaml <https://github.com/voxpupuli/hiera-eyam://puppet.com/docs/puppet/latest/hiera_config_yaml_5.html#hiera_eyaml>`__
+         | Puppet documentation: `Configuring a hierarchy level: hiera-eyaml <https://puppet.com/docs/puppet/latest/hiera_config_yaml_5.html#hiera_eyaml>`__
          | GitHub project for the :package:`hiera-eyaml` gem: `<https://github.com/voxpupuli/hiera-eyaml>`__
 
    HIRS
