@@ -363,6 +363,38 @@ Glossary of Terms
 
       See: `Hiera: How custom backends work <https://puppet.com/docs/puppet/latest/hiera_custom_backends.html>`__
 
+   hiera-eyaml
+   Hiera eyaml
+   EYAML
+      Hiera eyaml provides a way to keep encrypted data in :term:`Hiera` data
+      files. It consists of:
+
+      * The ``eyaml`` :term:`Hiera backend`
+      * The :command:`eyaml` :term:`CLI` command
+      * :file:`.eyaml` Hiera data files
+
+      The Hiera backend is configured with decryption keys and reads from
+      :file:`.eyaml` files.  The CLI command is used to generate keys,
+      encrypt/decrypt data, and edit :file:`.eyaml` files.  The :file:`.eyaml`
+      files are YAML that may contain a mix of encrypted and plaintext
+      values—although for performance reasons, it is common practice to limit
+      :file:`.eyaml` files to encrypted data and use plaintext :file:`.yaml`
+      files for everything else.
+
+      Encrypted values are prefixed with their encryption method and wrapped
+      with :code:`ENC[]`. They can occur within arrays, hashes, nested arrays
+      and nested hashes.
+      The default encryption mechanism is PKCS7, however further encryption
+      types (like :term:`GPG`) can be added with plugins, which are
+      distributed as RubyGems.
+
+      The ``eyaml`` backend and CLI command are provided by the
+      :package:`hiera-eyaml` RubyGem, which has been packaged as part of the
+      :term:`Puppet Server` since 5.2 (SIMP 6.3.0-0).
+
+         | Puppet documentation: `Configuring a hierarchy level: hiera-eyaml <https://puppet.com/docs/puppet/latest/hiera_config_yaml_5.html#hiera_eyaml>`__
+         | GitHub project for the :package:`hiera-eyaml` gem: `<https://github.com/voxpupuli/hiera-eyaml>`__
+
    HIRS
    Host Integrity at Runtime and Start-up
       Attestation Certificate Authority (ACA) and :term:`TPM` Provisioning with
@@ -644,10 +676,37 @@ Glossary of Terms
 
    Puppet Environment
    Puppet Environments
-      Isolated groups of Puppet agent nodes from the perspective of the
-      :term:`Puppet Master`.
+      As the `Puppet Environment documentation
+      <https://puppet.com/docs/puppet/latest/environments_about.html>`__ puts
+      it:
 
-      See: `Environments: <https://puppet.com/docs/puppet/latest/environments_about.html>`__
+      .. pull-quote::
+
+         "An environment is a branch that gets turned into a directory on your
+         primary server."
+
+      Depending on the context, the term has several implications:
+
+      * When describing **infrastructure**, a Puppet environment is a group of
+        Puppet agent nodes the :term:`Puppet Server` manages in isolation from
+        other agent nodes (which belong to other Puppet environments).
+
+      * When discussing **file paths** or **directories** on a :term:`Puppet
+        Server`: a Puppet environment is a directory of source, data, and module
+        files used to compile Puppet catalogs for such a group of agents.
+
+        Each Puppet environment directory is located on a Puppet server at
+        :file:`/etc/puppetlabs/code/environments/{environment_name}`.
+
+      * In a :term:`Control Repository`, each **git branch** represents
+        a separate Puppet environment, which :term:`r10k` or PE :term:`Code
+        Manager` will deploy to a Puppet server as a Puppet environment directory
+        with the same name.
+
+      * From the perspective of the Puppet compiler and language, a Puppet
+        environment can be seen as a global **namespace**.
+
+      See: `<https://puppet.com/docs/puppet/latest/environments_about.html>`__
 
    Puppetfile
       A Ruby file that contains references to :term:`Puppet modules`.
