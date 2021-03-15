@@ -127,5 +127,5 @@ Once the process completes, you should have a bootable SIMP ISO, in:
 ``build/distributions/<OS>/<Release>/<Arch>/SIMP_ISO/``
 
 .. _SIMP artifacts repository: https://download.simp-project.com/simp/ISO
-.. _latest 6.5 release (for EL 7): https://download.simp-project.com/simp/ISO/tar_bundles/SIMP-6.5.0-0.el7-CentOS-7-x86_64.tar.gz
+.. _latest 6.5 release (for EL 7): https://download.simp-project.com/simp/ISO/tar_bundles/SIMP-6.5.0-1.el7-CentOS-7-x86_64.tar.gz
 .. _latest checksums: https://download.simp-project.com/simp/ISO/tar_bundles/SHA512SUM
