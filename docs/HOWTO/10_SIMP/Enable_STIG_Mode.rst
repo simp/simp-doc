@@ -53,7 +53,12 @@ Allow ``stiguser`` to escalate to ``root``
          - stiguser
        cmnd:
          - ALL
+       # You should change this to 'true' for full STIG compliance
+       # Ensure that you have a working password set first!
        passwd: false
+       options:
+         # Required for seamless root sudo commands
+         role: unconfined_r
 
 Configure selinux to allow ``stiguser`` to run privileged commands
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -135,7 +140,7 @@ The simplest invocation is as follows:
 
 .. code:: bash
 
-   [stiguser@localhost ~]$ sudo -r unconfined_r su - root
+   [stiguser@localhost ~]$ sudo su - root
 
 For additional information see the `vendor documentation on confined and unconfined users`_
 and/or `Dan Walsh's blog`_.
