@@ -99,7 +99,7 @@ described in the :ref:`User_Management`.
 .. NOTE::
 
    Information on how the create salted ({SSHA}) passwords can be found at the
-   `OpenLDAP site <www.openldap.org/faq/data/cache/347.html>`__.
+   `OpenLDAP site <https://www.openldap.org/faq/data/cache/347.html>`__.
 
 Set up the Redundant (Consumer) Servers
 ---------------------------------------
