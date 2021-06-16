@@ -194,7 +194,7 @@ To verify that the ``simp-core`` acceptance tests have succeeded
    If the GitLab instance for ``simp-core`` is current (it is sync'd
    every 3 hours), you can look at the latest acceptance test results
    run by GitLab, instead.  The results will be at
-   https://gitlab.com/simp/simp-core/pipelines.
+   https://gitlab.com/simp/simp-core/-/pipelines.
 
 
 Verify ISOs can be created

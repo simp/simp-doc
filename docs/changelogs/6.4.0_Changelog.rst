@@ -1037,7 +1037,7 @@ pupmod-simp-ssh
   public keys in Hiera.
 * Added multiple port support
 
-  - The ssh::server::conf::port entry can now take an Array of ports
+  - The ``ssh::server::conf::port`` entry can now take an Array of ports
   - ``selinux_port`` resources are created for each non-standard entry
 
 pupmod-simp-sssd

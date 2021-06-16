@@ -277,8 +277,8 @@ Puppet 3 Functions Removed from simp/simplib
 | :code:`validate_uri_list`        | :code:`simplib::validate_sysctl_value`     | :pupmod:`simp/simplib` >= 3.7.0   |
 +----------------------------------+--------------------------------------------+-----------------------------------+
 
-.. _in:                https://puppet.com/docs/puppet/6.18/lang_expressions.html#in
-.. _+ (concatenation): https://puppet.com/docs/puppet/6.18/lang_expressions.html#+-(concatenation)
+.. _in:                https://puppet.com/docs/puppet/6/lang_expressions.html#in
+.. _+ (concatenation): https://puppet.com/docs/puppet/6/lang_expressions.html#+-(concatenation)
 
 Puppet 3 Functions Removed from simp/ssh
 """"""""""""""""""""""""""""""""""""""""

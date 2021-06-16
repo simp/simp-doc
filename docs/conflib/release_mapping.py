@@ -93,7 +93,8 @@ def get_version_map(simp_branch, local_simp_core_path, simp_github_api_base,
                               release_yaml = __yaml_load(release_yaml_string)
                               break
 
-                        __update_ver_map(ver_map, release_yaml)
+                        if isinstance(release_yaml, dict):
+                            __update_ver_map(ver_map, release_yaml)
 
                     except urllib.error.HTTPError as e:
                         print('Error downloading ' + url, file=sys.stderr)

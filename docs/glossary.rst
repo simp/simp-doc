@@ -192,7 +192,7 @@ Glossary of Terms
       blocks of Puppet code that can be evaluated multiple times with different
       parameters.
 
-      Source: `Defined resource types <https://puppet.com/docs/puppet/6.4/lang_defined_types.html>`__
+      Source: `Defined resource types <https://puppet.com/docs/puppet/6/lang_defined_types.html>`__
 
    DevOps
       A set of software development practices that combines software
@@ -418,7 +418,7 @@ Glossary of Terms
       language for specifying compliance, security and other policy
       requirements.
 
-      Source: `InSpec Homepage <https://community.chef.io/products/chef-inspec/>`__
+      Source: `InSpec Homepage <https://community.chef.io/tools/chef-inspec/>`__
 
    IP
    IP Address
@@ -904,7 +904,7 @@ Glossary of Terms
       provides additional capabilities beyond :term:`SIMP CE`.
 
       Comparison: `SIMP Editions Overview <https://www.onyxpoint.com/simp.html>`__
-      Documentation: `SIMP Enterprise Edition <https://www.simp-project.com/docs/simp-enterprise/develop/>`__
+      Documentation: `SIMP Enterprise Edition <https://www.simp-project.com/docs/simp-enterprise/>`__
 
    SIMP Omni-Environment
       A set of 3 environments (directories) on the Puppet server that is required

@@ -196,8 +196,8 @@ releasing a full update. These may be added to the unstable ``master`` branch
 without testing but tests should be added if the changes will be released in
 the future.
 
-.. _Allow edits from maintainers: https://docs.github.com/en/free-pro-team@latest/github/collaborating-with-issues-and-pull-requests/allowing-changes-to-a-pull-request-branch-created-from-a-fork
-.. _GitHub GUI to fork and clone: https://docs.github.com/en/free-pro-team@latest/github/getting-started-with-github/fork-a-repo
+.. _Allow edits from maintainers: https://docs.github.com/en/github/collaborating-with-pull-requests/working-with-forks/allowing-changes-to-a-pull-request-branch-created-from-a-fork
+.. _GitHub GUI to fork and clone: https://docs.github.com/en/github/getting-started-with-github/quickstart/fork-a-repo
 .. _GitHub Workflow: https://guides.github.com/introduction/flow/
 .. _JIRA Smart Commit Tags: https://support.atlassian.com/bitbucket-cloud/docs/use-smart-commits/
 .. _JIRA issues can be referenced: https://support.atlassian.com/bitbucket-cloud/docs/use-smart-commits/
@@ -205,7 +205,7 @@ the future.
 .. _Squash and Merge: https://github.blog/2016-04-01-squash-your-commits/
 .. _TravisCI: https://travis-ci.com/simp
 .. _feature branch: https://www.atlassian.com/git/tutorials/comparing-workflows#feature-branch-workflow
-.. _pull request: https://docs.github.com/en/free-pro-team@latest/github/collaborating-with-issues-and-pull-requests/about-pull-requests
-.. _review: https://docs.github.com/en/free-pro-team@latest/github/collaborating-with-issues-and-pull-requests/reviewing-proposed-changes-in-a-pull-request
+.. _pull request: https://docs.github.com/en/github/collaborating-with-pull-requests/proposing-changes-to-your-work-with-pull-requests/about-pull-requests
+.. _review: https://docs.github.com/en/github/collaborating-with-pull-requests/reviewing-changes-in-pull-requests/reviewing-proposed-changes-in-a-pull-request
 .. _simp-doc: https://github.com/simp/simp-doc
 .. _squash: https://github.blog/2016-04-01-squash-your-commits/

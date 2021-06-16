@@ -1,4 +1,4 @@
-Sphinx>=1.7.9,<1.8.0
+Sphinx>=4.0.2,<5.0.0
 PyYAML
 rst2pdf
 sphinx-csv-filter>=0.3.0

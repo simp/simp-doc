@@ -165,7 +165,7 @@ succeeded:
    * If the GitLab instance for the project is current (it is
      sync'd every 3 hours), you can look at the latest acceptance
      test results run by GitLab.  For our project, the results will
-     be at https://gitlab.com/simp/pupmod-simp-iptables/pipelines.
+     be at https://gitlab.com/simp/pupmod-simp-iptables/-/pipelines.
 
 Verify interoperability with last SIMP release
 ----------------------------------------------

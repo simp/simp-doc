@@ -142,7 +142,7 @@ succeeded:
    current (it is sync'd every 3 hours), you can look at
    the latest acceptance test results run by GitLab.  For
    our project, the results would be at
-   https://gitlab.com/simp/simp-adapter/pipelines.
+   https://gitlab.com/simp/simp-adapter/-/pipelines.
 
 Verify the component RPM upgrade succeeds
 -----------------------------------------

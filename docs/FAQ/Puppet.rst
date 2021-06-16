@@ -158,6 +158,6 @@ with the same permissions and ownership.
 
 .. _SERVER-94: https://tickets.puppetlabs.com/browse/SERVER-94
 .. _postrun: https://github.com/puppetlabs/r10k/blob/master/doc/dynamic-environments/configuration.mkd#postrun
-.. _generate_types: https://github.com/puppetlabs/r10k/blob/master/doc/dynamic-environments/configuration.mkd#generate_types
-.. _"generate_types" option: https://github.com/puppetlabs/r10k/blob/master/doc/dynamic-environments/configuration.mkd#generate_types
+.. _generate_types: https://github.com/puppetlabs/r10k/blob/main/doc/dynamic-environments/configuration.mkd#generate_types
+.. _"generate_types" option: https://github.com/puppetlabs/r10k/blob/main/doc/dynamic-environments/configuration.mkd#generate_types
 .. _Puppet Environment isolation: https://puppet.com/docs/puppet/5.5/environment_isolation.html
