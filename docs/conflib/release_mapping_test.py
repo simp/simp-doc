@@ -55,7 +55,7 @@ simp_releases:
         build_command: 'bundle exec rake build:auto[5.2.1-0,RedHat-7-x86_64-DVD-1511.iso]'
         os_version: '7.2'
 """
-  mappings_file = open(os.path.join(build_path, 'release_mappings.yaml'), 'w', 0)
+  mappings_file = open(os.path.join(build_path, 'release_mappings.yaml'), 'w')
   mappings_file.write(content)
   mappings_file.close
 
