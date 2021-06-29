@@ -15,7 +15,7 @@ server. Client system configurations have been tested to support either system
 as a LDAP server.
 
 .. toctree::
-   :maxdepth: 2
+   :maxdepth: 1
 
    389-DS <LDAP/389_DS>
    OpenLDAP <LDAP/OpenLDAP>

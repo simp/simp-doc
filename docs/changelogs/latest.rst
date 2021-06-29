@@ -170,7 +170,7 @@ additional problems, please `submit an issue`_ to let use know.
   :depth: 2
   :local:
 
-.. _changelog-6.5.0-el8-client-limitations:
+.. _changelog-6.6.0-el8-client-limitations:
 
 Special considerations with EL8 clients
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
