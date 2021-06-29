@@ -1,0 +1,11 @@
+Managing 389-DS Accounts
+========================
+
+This section provides information on managing accounts in a SIMP-configured
+:term:`389-DS` server.
+
+.. toctree::
+   :maxdepth: 2
+
+   389-DS User Management <389_DS/manage_users>
+   389-DS Group Management <389_DS/manage_groups>

@@ -10,6 +10,14 @@ Glossary of Terms
 .. glossary::
    :sorted:
 
+   389-DS
+   389 Directory Server
+      An enterprise-class :term:`FOSS` :term:`LDAP` server for Linux.
+
+      See: `389 Directory Server <https://directory.fedoraproject.org>`__
+      See Also: :term:`Red Hat Directory Server`
+      See Also: :term:`FreeIPA`
+
    ACL
    Access Control List
       A list of permissions attached to an object. An ACL specifies which users
@@ -317,6 +325,11 @@ Glossary of Terms
       domain and the root zone. An FQDN is distinguished by its unambiguity; it
       can only be interpreted one way.
 
+   FreeIPA
+      A :term:`FOSS` identity management solution.
+
+      See: `FreeIPA <https://freeipa.org/page/Main_Page>`__
+
    Git
       A version control system that supports branches.
 
@@ -585,6 +598,11 @@ Glossary of Terms
 
       Source: `OpenSCAP Features <https://www.open-scap.org/features/>`__
 
+   OpenLDAP
+      A :term:`FOSS` implementation of :term:`LDAP`.
+
+      See: `OpenLDAP <https://www.openldap.org>`__
+
    OPSEC
    Operations Security
       A process that identifies critical information to determine if friendly
@@ -777,6 +795,13 @@ Glossary of Terms
       supplied by Red Hat®, Inc.
 
       See also :term:`RHEL`.
+
+   Red Hat Directory Server
+   RHDS
+     A commercially supported :term:`LDAP` offering from :term:`Red Hat` based
+     on :term:`389-DS`.
+
+     See: `Red Hat Directory Server <https://www.redhat.com/en/technologies/cloud-computing/directory-server>`__
 
    RHEL
    Red Hat Enterprise Linux

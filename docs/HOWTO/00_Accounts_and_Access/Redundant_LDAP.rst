@@ -1,7 +1,9 @@
 HOWTO Enable Redundant LDAP
 ===========================
 
-This section describes how to set up consumer OpenLDAP servers in SIMP.
+This section describes how to set up consumer :term:`OpenLDAP` servers in SIMP.
+
+:term:`389-DS` instructions will be made available at a future date.
 
 .. NOTE::
 

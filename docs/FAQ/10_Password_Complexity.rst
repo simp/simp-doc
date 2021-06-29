@@ -8,7 +8,11 @@ This is based off of an amalgam of various password policies and may vary based
 on individual policies that are set for your installation.
 
 The default complexity is enforced in both :term:`PAM` and :term:`LDAP`, which
-are managed by SIMP's :pupmod:`simp/pam` and :pupmod:`simp/simp_openldap` modules, respectively.
+are managed by SIMP's modules:
+
+  * :pupmod:`simp/pam` for pam
+  * :pupmod:`simp/simp_openldap` for :term:`OpenLDAP` servers
+  * :pupmod:`simp/simp_ds389` for :term:`389-DS` servers
 
 .. WARNING::
 

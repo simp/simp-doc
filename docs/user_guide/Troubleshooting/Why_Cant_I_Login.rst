@@ -65,18 +65,11 @@ will need to reset ``faillock`` before authentication can occur.  To do so, run
 LDAP Lockout
 ------------
 
-If your account is in LDAP, you may have locked yourself out.  Like
-:term:`PAM`, :term:`LDAP` has a maximum number of logins, **5** by default.
-See ``openldap::server::conf::default_ldif::ppolicy_pwd_max_failure``.
+If your account is in :term:`LDAP`, you may have locked yourself out.  Like
+:term:`PAM`, LDAP has a maximum number of logins, **5** by default.
 
-To determine if the account is locked, run the following on the LDAP server:
-
-.. code-block:: bash
-
-   slapcat -a uid=<user>
-
-If you see ``pwdAccountLockedTime`` then the account is locked, and you will
-need to follow the instructions in :ref:`unlock-ldap-label` to unlock it.
+For more information on unlocking LDAP accounts, see the appropriate section for
+the server that you are using in :ref:`Managing LDAP Users`.
 
 Troubleshooting DNS
 -------------------
