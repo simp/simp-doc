@@ -69,8 +69,8 @@ that user:
 
    .. code-block:: bash
 
-      # ldapadd -Z -x -W -D "cn=LDAPAdmin,ou=People,dc=your,dc=domain" \
-        -f /root/ldifs/add_user_with_password.ldif
+      ldapadd -Z -x -W -D "cn=LDAPAdmin,ou=People,dc=your,dc=domain" \
+      -f /root/ldifs/add_user_with_password.ldif
 
 Ensure that an administrative account is created as soon as the SIMP system has
 been properly configured. Administrative accounts should belong to the
@@ -134,8 +134,8 @@ for that user
 
    .. code-block:: bash
 
-      # ldapadd -Z -x -W -D "cn=LDAPAdmin,ou=People,dc=your,dc=domain" \
-        -f /root/ldifs/add_user_no_password.ldif
+      ldapadd -Z -x -W -D "cn=LDAPAdmin,ou=People,dc=your,dc=domain" \
+      -f /root/ldifs/add_user_no_password.ldif
 
 Remove a User from OpenLDAP
 ===========================
@@ -158,8 +158,8 @@ To remove a user from the system, along with a unique group for that user:
 
    .. code-block:: bash
 
-      # ldapmodify -Z -x -W -D "cn=LDAPAdmin,ou=People,dc=your,dc=domain" \
-        -f /root/ldifs/del_user.ldif
+      ldapmodify -Z -x -W -D "cn=LDAPAdmin,ou=People,dc=your,dc=domain" \
+      -f /root/ldifs/del_user.ldif
 
 
 Update a User's SSH Public Key in OpenLDAP
@@ -182,8 +182,8 @@ To update an SSH public key:
 
    .. code-block:: bash
 
-      # ldapmodify -Z -x -W -D "cn=LDAPAdmin,ou=People,dc=your,dc=domain" \
-        -f /root/ldif/mod_sshkey.ldif
+      ldapmodify -Z -x -W -D "cn=LDAPAdmin,ou=People,dc=your,dc=domain" \
+      -f /root/ldif/mod_sshkey.ldif
 
 
 Force a Password Reset in OpenLDAP
@@ -209,8 +209,8 @@ To force a password reset for a user:
 
    .. code-block:: bash
 
-      # ldapmodify -Z -x -W -D "cn=LDAPAdmin,ou=People,dc=your,dc=domain" \
-        -f /root/ldifs/force_password_reset.ldif
+      ldapmodify -Z -x -W -D "cn=LDAPAdmin,ou=People,dc=your,dc=domain" \
+      -f /root/ldifs/force_password_reset.ldif
 
 .. NOTE::
 
@@ -244,8 +244,8 @@ To lock an LDAP account:
 
    .. code-block:: bash
 
-      # ldapmodify -Z -x -W -D "cn=LDAPAdmin,ou=People,dc=your,dc=domain" \
-        -f /root/ldifs/lock_user.ldif
+      ldapmodify -Z -x -W -D "cn=LDAPAdmin,ou=People,dc=your,dc=domain" \
+      -f /root/ldifs/lock_user.ldif
 
 .. NOTE::
 
@@ -271,8 +271,8 @@ To unlock an LDAP account:
 
    .. code-block:: bash
 
-      # ldapmodify -Z -x -W -D "cn=LDAPAdmin,ou=People,dc=your,dc=domain" \
-        -f /root/ldifs/unlock_account.ldif
+      ldapmodify -Z -x -W -D "cn=LDAPAdmin,ou=People,dc=your,dc=domain" \
+      -f /root/ldifs/unlock_account.ldif
 
 .. NOTE::
 

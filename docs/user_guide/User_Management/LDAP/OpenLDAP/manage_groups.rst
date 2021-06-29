@@ -32,8 +32,8 @@ To add another group:
 
    .. code-block:: bash
 
-      # ldapadd -Z -x -W -D "cn=LDAPAdmin,ou=People,dc=your,dc=domain" \
-        -f /root/ldifs/add_group.ldif
+      ldapadd -Z -x -W -D "cn=LDAPAdmin,ou=People,dc=your,dc=domain" \
+      -f /root/ldifs/add_group.ldif
 
 Remove a Group
 --------------
@@ -53,8 +53,8 @@ To remove a group:
 
    .. code-block:: bash
 
-      # ldapmodify -Z -x -W -D "cn=LDAPAdmin,ou=People,dc=your,dc=domain" \
-        -f /root/ldifs/del_group.ldif
+      ldapmodify -Z -x -W -D "cn=LDAPAdmin,ou=People,dc=your,dc=domain" \
+      -f /root/ldifs/del_group.ldif
 
 Add Users to a Group
 --------------------
@@ -79,8 +79,8 @@ To add users to a group:
 
    .. code-block:: bash
 
-      # ldapmodify -Z -x -W -D "cn=LDAPAdmin,ou=People,dc=your,dc=domain" \
-        -f /root/ldifs/add_to_group.ldif
+      ldapmodify -Z -x -W -D "cn=LDAPAdmin,ou=People,dc=your,dc=domain" \
+      -f /root/ldifs/add_to_group.ldif
 
 Remove Users from a Group
 -------------------------
@@ -105,5 +105,5 @@ To remove users from a group:
 
    .. code-block:: bash
 
-      # ldapmodify -Z -x -W -D "cn=LDAPAdmin,ou=People,dc=your,dc=domain" \
+      ldapmodify -Z -x -W -D "cn=LDAPAdmin,ou=People,dc=your,dc=domain" \
         -f /root/ldifs/del_from_group.ldif
