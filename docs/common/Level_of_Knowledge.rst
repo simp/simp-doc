@@ -9,7 +9,7 @@ prerequisite knowledge are:
 - :term:`Dynamic Host Configuration Protocol` (DHCP) - Internet Systems
   Consortium (ISC) DHCP
 
-- :term:`Lightweight Directory Access Protocol` (LDAP) - OpenLDAP
+- :term:`Lightweight Directory Access Protocol` (LDAP) - :term:`OpenLDAP` for EL7 or :term:`389-DS` for EL8
 
 -  RedHat :term:`Kickstart`, including all technologies involved:
    :term:`Trivial File Transfer Protocol` (TFTP), :term:`PXE`, PXELinux, etc.
