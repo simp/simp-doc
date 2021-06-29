@@ -245,7 +245,9 @@ linkcheck_ignore = [
     # FIXME: Periodically retest with newer versions of `certifi`:
     #    See: https://github.com/certifi/python-certifi/releases
     #
-    r'^https?://wiki\.x2go\.org/?.*'
+    r'^https?://wiki\.x2go\.org/?.*',
+    # Broken cert
+    r'^https?://freeipa.org/?.*'
 ]
 
 # -- Options for HTML output ----------------------------------------------

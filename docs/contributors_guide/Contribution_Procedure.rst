@@ -197,7 +197,7 @@ without testing but tests should be added if the changes will be released in
 the future.
 
 .. _Allow edits from maintainers: https://docs.github.com/en/github/collaborating-with-pull-requests/working-with-forks/allowing-changes-to-a-pull-request-branch-created-from-a-fork
-.. _GitHub GUI to fork and clone: https://docs.github.com/en/github/getting-started-with-github/quickstart/fork-a-repo
+.. _GitHub GUI to fork and clone: https://docs.github.com/en/get-started/quickstart/fork-a-repo
 .. _GitHub Workflow: https://guides.github.com/introduction/flow/
 .. _JIRA Smart Commit Tags: https://support.atlassian.com/bitbucket-cloud/docs/use-smart-commits/
 .. _JIRA issues can be referenced: https://support.atlassian.com/bitbucket-cloud/docs/use-smart-commits/
