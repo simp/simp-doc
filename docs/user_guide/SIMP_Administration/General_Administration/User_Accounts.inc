@@ -11,4 +11,4 @@ information on managing LDAP users, refer to the :ref:`User_Management`
 chapter.
 
 If you need to create local system accounts, you can use the ``user`` and
-``group`` Native Types.
+``group`` :term:`Puppet Resources`.
