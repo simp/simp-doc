@@ -30,7 +30,7 @@ as follows:
 
    Note the use of ``posixgroup`` instead of ``group`` when adding groups.
 
-   * ``posixgropup`` => POSIX-style groups generally used for system accounts.
+   * ``posixgroup`` => POSIX-style groups generally used for system accounts.
    * ``group`` => Regular LDAP groups which may be useful for external services.
 
 Remove a Group from 389-DS

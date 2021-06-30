@@ -89,7 +89,7 @@ to ``~/.dsrc``:
 
    [<instance_name>]
    uri = ldapi://%%2fvar%%2frun%%2fslapd-<instance_name>.socket
-   basedn = dc=your,dc=domain
+   basedn = <base DN>
 
 For a more concrete example, we will use the ``accounts`` instance provided by
 the ``simp/simp_ds389`` module.
