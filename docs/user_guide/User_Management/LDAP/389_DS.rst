@@ -7,5 +7,6 @@ This section provides information on managing accounts in a SIMP-configured
 .. toctree::
    :maxdepth: 2
 
+   389-DS Cheat Sheet <389_DS/cheat_sheet>
    389-DS User Management <389_DS/manage_users>
    389-DS Group Management <389_DS/manage_groups>
