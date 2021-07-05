@@ -25,7 +25,7 @@ For a list of the commands ``simp`` provides, type ``simp help``. Type
     to apply the changes.
 
   * ``simp config`` uses the ``production`` :term:`Puppet Environment` by
-    default. If you want to use a different intial environment, see
+    default. If you want to use a different initial environment, see
     :ref:`howto-use-an-alternate-simp-config-environment`.
 
 * ``simp bootstrap`` uses several targeted Puppet runs to configure the rest

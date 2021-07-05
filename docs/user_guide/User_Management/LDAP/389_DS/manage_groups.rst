@@ -1,7 +1,7 @@
 .. _ug-user_management-ldap-389_ds-manage_groups:
 
 Group Management in 389-DS
-=========================
+==========================
 
 List 389-DS Groups
 ------------------

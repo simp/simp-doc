@@ -96,7 +96,7 @@ Leave any other classes that are there if they are needed. Run the Puppet
 agent on the LDAP server until it runs cleanly. Run the agent on the Puppet
 server. Once all the other clients update against the Puppet server, they will
 be able to authenticate against the LDAP server. Adding users and groups is
-described in the :ref:`User_Management`.
+described in the :ref:`User_Management` section.
 
 .. NOTE::
 

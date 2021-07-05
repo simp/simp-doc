@@ -1216,7 +1216,7 @@ pupmod-simp-iptables
     undefined behavior and is not advised.
   * To enable 'firewalld' mode on supported operating systems, simply set
     :code:`iptables::use_firewalld` to :code:`true` via Hiera.
-  * EL 8 systems will enable 'firewalld' mode by default.
+  * EL8 systems will enable 'firewalld' mode by default.
 
 * Improved the internal rule matching to handle most netmask and port updates.
 * Added a :code:`exact_match` Boolean to the :code:`iptables_optimize` and
@@ -1344,7 +1344,7 @@ understand the current usage.  Notable feature/API changes:
 
   * Exposed server :program:`stunnel` configuration that was scattered
     throughout the module to this API.  User can now specify
-    :code:`stunnel_accept_address`, :code:`stunnel_nfsd_acccept_port`,
+    :code:`stunnel_accept_address`, :code:`stunnel_nfsd_accept_port`,
     :code:`stunnel_socket_options`, :code:`stunnel_verify`, and
     :code:`stunnel_wantedby` in this class. When unspecified, the defaults for
     all but :code:`stunnel_accept_address` and
@@ -1816,7 +1816,7 @@ pupmod-simp-simp_snmpd
     * :code:`simp_snmpd::service_config_perms`
 
   * Added configuration of :program:`snmpd` user and group IDs, as well
-    as optional managment of the user and group:
+    as optional management of the user and group:
 
     * :code:`simp_snmpd::snmpd_uid`
     * :code:`simp_snmpd::snmpd_gid`
@@ -1981,7 +1981,7 @@ Updated the following functions:
       the same characteristics.
     * Regenerates the password if the requested 'complexity' or 'complex_only'
       setting differs from the setting used for the latest persisted password.
-    * Stores up to the lastest 10 <password,salt> pairs in the password's
+    * Stores up to the latest 10 <password,salt> pairs in the password's
       simpkv metadata.
 
   * Added a :code:`gen_timeout_seconds` password option.  Previously this was
@@ -2117,7 +2117,7 @@ rubygem-simp-cli
   * Removed deprecated :code:`--non-interactive` option.  Use
     :code:`--force-defaults` instead.
 
-* Added :command:`simp kv` command family to allow users to manage and inspect
+* Added :command:`simpkv` command family to allow users to manage and inspect
   entries in a simpkv key/value store
 * :command:`simp passgen` changes
 
@@ -2254,7 +2254,7 @@ SIMP ISO
 * Fixed a bug in the instructions about enabling encryption in non-FIPS
   mode in the sample client kickstart files.
 
-  * Following the erronous instructions prevented automatic decryption from
+  * Following the erroneous instructions prevented automatic decryption from
     happening at client boot, because the encrypted disk credentials were not
     added to the :program:`dracut` configuration.
 

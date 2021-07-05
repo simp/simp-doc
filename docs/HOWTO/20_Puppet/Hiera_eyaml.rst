@@ -204,7 +204,7 @@ Using :command:`eyaml edit`
 
 If a user editing the :file:`.eyaml` file has access to both the private and
 public keys, they can use :command:`eyaml edit file.eyaml` as a convenient
-alternative to the :command:`eyaml encrypt` example in th previous section.
+alternative to the :command:`eyaml encrypt` example in the previous section.
 
 :command:`eyaml edit` will automatically decrypt the file and bring up an editor
 to edit the values in plaintext.  After exiting the editor, any edited values
