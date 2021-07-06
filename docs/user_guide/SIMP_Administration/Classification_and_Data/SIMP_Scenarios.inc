@@ -22,7 +22,7 @@ turned off. This scenario was designed to make it easier to implement SIMP in an
 existing environment, because it might not be trivial to flip SELinux to
 Enforcing on all nodes.
 
-The *poss* option is the barebones option. It only includes the ``pupmod``
+The *poss* option is the bare-bones option. It only includes the ``pupmod``
 class, to configure Puppet agent on clients. All of the simp_options default to
 false, so SIMP will not do a lot of modification to clients through Puppet when
 using this scenario.

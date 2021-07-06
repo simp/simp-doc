@@ -34,7 +34,7 @@ version you need, check the :ref:`faq-simp_version_guide`.
 
 .. NOTE::
 
-   Even though the tar files are labelled as ``CentOS``, they will work
+   Even though the tar files are labeled as ``CentOS``, they will work
    properly for ``RHEL`` systems as well.
 
 Generating The ISO

@@ -229,7 +229,7 @@ Before proceeding with this section, you should
    All of these packages will already be installed if you have installed the SIMP
    server from ISO or from RPMs.
 
-   These RPMS can be obtained from an ISO or if the system has access to the internet
+   These RPMs can be obtained from an ISO or if the system has access to the internet
    the SIMP repositories can configured as described in :ref:`gsg-installing_simp_from_a_repository`.
 
    .. code-block:: bash
@@ -319,7 +319,7 @@ By default, this environment will be using a different Certificate
 Authority for  :ref:`Infrastructure Certificates<ug-sa-ga-infrastructure-certificates>`. It
 therefore may not be able to communicate to a server in another environment when
 certificate authentication is required,  for example LDAP.  You will have to create a new LDAP server
-or add the new CA to the list of trusted CA's in the other environment.
+or add the new CA to the list of trusted CAs in the other environment.
 
 This environment will also generate a new set of passwords when ``simplib::passgen`` function is
 used in a Puppet module.  It therefore may not be able to talk to a server in another environment

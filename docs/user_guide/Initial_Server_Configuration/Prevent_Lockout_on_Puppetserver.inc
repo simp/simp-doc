@@ -140,7 +140,7 @@ Resume Bootstrap Operation and Verify User Access
 
        * See :ref:`Services_dying`.
 
-#. Verify user accesss
+#. Verify user access
 
    * Using a **NEW SSH SESSION OR TERMINAL** (do NOT close your working
      session)
@@ -153,7 +153,7 @@ Resume Bootstrap Operation and Verify User Access
      If your new user cannot ssh into the server and sudo to ``root``
 
      * DO NOT reboot the server until you resolve the problem!
-     * DO NOT log out of your primary work terminal unti you resolve the
+     * DO NOT log out of your primary work terminal until you resolve the
        problem!
 
 Finalization

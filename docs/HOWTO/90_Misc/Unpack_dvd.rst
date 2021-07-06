@@ -72,7 +72,7 @@ When PXE file extraction is enabled with the :code:`-X` option,
     * The default rsync directory is :file:`/var/simp/environments/production/rsync/<os-family>/Global/tftpboot/linux-install/`.
   * extract the files to the created OS directory.
   * create a link <os-family>-<major-version>-<arch> to the above directory.
-  * if run as root, change the permisions recursivley on created directoy and its contents to those of the rsync directory.
+  * if run as root, change the permissions recursively on created directory and its contents to those of the rsync directory.
 
 Use :code:`unpack_dvd --help` for options to change some of the defaults.
 

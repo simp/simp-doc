@@ -96,7 +96,7 @@ Upgrade Steps
 These steps for upgrading are for use in SIMP systems that are not currently using
 :term:`r10k` or :term:`Code Manager`.
 
-Update OS and SIMP RPMS
+Update OS and SIMP RPMs
 """""""""""""""""""""""
 
 Update the repos for the :term:`OS` and SIMP and run :command:`yum update`.
