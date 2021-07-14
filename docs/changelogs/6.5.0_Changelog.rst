@@ -2308,6 +2308,5 @@ the following:
 
 
 .. _submit an issue: https://simp-project.atlassian.net
-.. _simp-project.com: https://simp-project.com
+.. _simp-project.com: https://www.simp-project.com
 .. _packagecloud: https://packagecloud.io/simp-project
-

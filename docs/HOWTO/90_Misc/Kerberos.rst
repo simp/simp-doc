@@ -107,7 +107,7 @@ Propagate the Keytabs
 
 Move all of the resulting keytab files SECURELY to
 ``/var/simp/environments/<client_environment>/site_files/krb5_files/keytabs/<fqdn>``
-on the Puppet master as appropriate for each file.
+on the :term:`Puppet Server` as appropriate for each file.
 
 .. NOTE::
 

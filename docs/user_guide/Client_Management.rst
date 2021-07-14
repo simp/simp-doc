@@ -22,10 +22,10 @@ Client systems should meet the following minimum requirements:
 -  HDD: 22 GB
 
 
-Configuring the Puppet Master
+Configuring the Puppet Server
 -----------------------------
 
-Perform the following actions as ``root`` on the Puppet master system **prior**
+Perform the following actions as ``root`` on the :term:`Puppet Server` **prior**
 to attempting to install a client.
 
 
@@ -66,12 +66,12 @@ can use an existing DNS infrastructure.
      :file:`named/var/named/reverse/0.0.10.db` and then rename these files
      to appropriately match your environment.
 
-#. Run :command:`puppet agent -t --tags named` on the Puppet master to apply
+#. Run :command:`puppet agent -t --tags named` on the Puppet Server to apply
    the changes.
 #. Validate DNS and ensure the :file:`/etc/resolv.conf` is updated appropriately.
 #. If an :file:`rndc.key` error appears when starting :program:`named`, see the
    `BIND Documentation`_.  Once you have resolved the issue, re-run
-   :command:`puppet agent -t` on the Puppet master to apply.
+   :command:`puppet agent -t` on the Puppet Server to apply.
 
 .. NOTE::
 
@@ -96,7 +96,7 @@ Configure DHCP
 
    MAC addresses in the following section need to be lower case letters.
 
-Perform the following actions as ``root`` on the Puppet master system
+Perform the following actions as ``root`` on the Puppet Server system
 prior to attempting to install a client.
 
 Open :file:`/var/simp/environments/production/rsync/<OSTYPE>/Global/dhcpd/dhcpd.conf`
@@ -124,7 +124,7 @@ and edit it to suit the necessary environment. Make sure the following is done:
 
 Save and close the file.
 
-Run :command:`puppet agent -t` on the Puppet master to apply the changes.
+Run :command:`puppet agent -t` on the Puppet Server to apply the changes.
 
 .. _PXE_Boot:
 
@@ -203,7 +203,7 @@ master, try the following options:
   serious issues with certificates.
 * Remove :file:`/etc/puppetlabs/puppet/ssl` on the client system; run
   :command:`puppetserver ca clean --certname <CLIENT.FQDN>` on the
-  Puppet master and try again.
+  Puppet Server and try again.
 
 If you are getting permission errors, make sure the SELinux context is correct
 on all files, as well as the owner and group permissions.

@@ -1,3 +1,8 @@
+* Wed Jul 14 2021 Trevor Vaughan <tvaughan@onyxpoint.com>
+- Correct SSL recovery documentation
+- Convert all instances of 'puppet master' to 'puppet server'
+- Correct a few links
+
 * Wed Jun 30 2021 Trevor Vaughan <tvaughan@onyxpoint.com>
 - Add 389-DS documentation
 

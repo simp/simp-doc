@@ -48,6 +48,10 @@ You may need some additional OS packages for building PDFs with sphinx
 Install python dependencies:
 
 ```sh
+virtualenv venv
+source venv/bin/activate
+
+pip install --upgrade pip setuptools
 pip install -r requirements.txt
 ```
 

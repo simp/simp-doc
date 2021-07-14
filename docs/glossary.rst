@@ -87,6 +87,12 @@ Glossary of Terms
    Certificate Authority
       An entity that issues :term:`X.509` digital certificates.
 
+   CRL
+   Certificate Revocation List
+      A list of digitical certificates that have been revoked by the :term:`CA`.
+
+      Source: `Wikipedia: Certificate revocation list <https://en.wikipedia.org/wiki/Certificate_revocation_list>`__
+
    Class
    Classes
    Puppet Class
@@ -729,17 +735,12 @@ Glossary of Terms
    Puppetfile
       A Ruby file that contains references to :term:`Puppet modules`.
 
-      See the Puppetfile spec: https://github.com/puppetlabs/r10k/blob/master/doc/puppetfile.mkd
+      See the Puppetfile spec: https://github.com/puppetlabs/r10k/blob/main/doc/puppetfile.mkd
 
    PuppetForge
       An official repository for Puppet modules
 
       See: https://forge.puppet.com/
-
-   Puppet Master
-      For the purposes of this document, this is the Server upon which the
-      :term:`puppetserver` process is running and to which your clients
-      connect.
 
    Puppet Module
    Puppet Modules
@@ -761,11 +762,9 @@ Glossary of Terms
 
    Puppetserver
    Puppet Server
-      An application that runs on the Java Virtual Machine (JVM) and provides
-      the same services as the classic Puppet master application. It mostly
-      does this by running the existing Puppet master code in several JRuby
-      interpreters, but it replaces some parts of the classic application with
-      new services written in Clojure.
+      An application that runs on the Java Virtual Machine (JVM) and provides a
+      puppet compiler service by running several JRuby interpreters running the
+      Puppet compiler through a Clojure-based service.
 
       Source: `Puppet's Services: Puppet Server <https://puppet.com/docs/puppetserver/latest/services_master_puppetserver.html>`__
 
@@ -953,7 +952,7 @@ Glossary of Terms
       The first server that is built in a SIMP environment and the server that
       is expected to be the nexus of control for the managed infrastructure.
 
-      See: :term:`Puppet Master`
+      See: :term:`Puppet Server`
 
    SIMP Writable Environment
    Writable Environment
@@ -997,6 +996,13 @@ Glossary of Terms
          $env=`puppet config print environment`
 
          echo "${env_path}/${env}/modules/site"
+
+   SNMP
+   Simple Network Management Protocol
+      A protocl for collecting and organizing information about managed devices
+      on IP networks.
+
+      Source: `Wikipedia: Simple Network Management Protocol <https://en.wikipedia.org/wiki/Simple_Network_Management_Protocol>`__
 
    Spectre
       A vulnerability that affects modern microprocessors that perform branch

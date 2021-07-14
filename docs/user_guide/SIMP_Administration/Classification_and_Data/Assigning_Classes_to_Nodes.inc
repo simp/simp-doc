@@ -7,8 +7,7 @@ section. The lists of included classed are controlled by the ``simp::classes``
 and ``simp::server::classes`` class parameters:
 
 * The ``simp::classes`` parameter is available for all nodes.
-* The ``simp::server::classes`` parameter is available only for the SIMP server
-  (Puppet master).
+* The ``simp::server::classes`` parameter is available only for the :term:`SIMP Server`.
 
 To preserve various levels of ordering and overrides, it is highly recommended
 that you use the ``simp::classes`` and ``simp::server::classes`` class parameters

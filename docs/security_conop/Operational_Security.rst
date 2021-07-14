@@ -15,9 +15,9 @@ Baseline Configurations
 SIMP baselines include configuration settings and Puppet modules.  Currently,
 baselines are maintained for both Red Hat/CentOS 6.x, and Red Hat/CentOS 7.x.
 Each configuration item that is managed by a Puppet module has an RPM installed
-on the Puppet Master in the form of ``pupmod-name-x.x.x-x``. This process
+on the :term:`Puppet Server` in the form of ``pupmod-name-x.x.x-x``. This process
 allows for one main SIMP baseline to be maintained and modules to be upgraded
-easily. An overall SIMP RPM is also installed on the Puppet Master, which
+easily. An overall SIMP RPM is also installed on the Puppet Server, which
 denotes the version number of SIMP that is installed.
 [:ref:`CM-2`, :ref:`CM-2 (2)`, :ref:`CM-2 (3)`, :ref:`CM-6`]
 
@@ -103,8 +103,8 @@ any file managed by Puppet). In the event that a managed file is changed
 locally, Puppet will revert the file back to its original state.  It is
 important to note that this is a function of Puppet and is intended to be more
 of a configuration management feature rather than a security feature. If a
-Puppet client has been compromised, the Puppet Master may not have the ability
-to retake control over that client.  However, the Puppet Master can configure
+Puppet client has been compromised, the Puppet Server may not have the ability
+to retake control over that client.  However, the Puppet Server can configure
 all other nodes to deny traffic from the compromised node if they are
 configured by the administrator to do so. There are additional configuration
 files that are checked by AIDE, which is triggered by a cron job. AIDE logs any
