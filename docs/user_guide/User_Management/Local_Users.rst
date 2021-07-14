@@ -104,7 +104,7 @@ Service Account
      $_svc_account_homedir = "/var/local/${_svc_account_user}"
 
      # Since this is a service account, automatically generate an SSH key for
-     # the user and store it on the Puppet master for distribution.
+     # the user and store it on the Puppet Server for distribution.
      $_svc_account_ssh_private_key = ssh_autokey($_svc_account_user, '2048', true)
      $_svc_account_ssh_public_key  = ssh_autokey($_svc_account_user, '2048')
 

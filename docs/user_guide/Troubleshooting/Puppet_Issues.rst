@@ -30,7 +30,7 @@ other choice, resulting in unavoidable error messages.
 
 ``[master] ca`` is marked as deprecated from Puppet 5.5.6 onward.  This results
 in a harmless—but unavoidable—deprecation warning whenever ``puppet`` is run
-on Puppet masters configured to `not` act as the Puppet CA
+on Puppet Servers configured to `not` act as the Puppet CA
 (``pupmod::master::enable_ca: false``):
 ::
 

@@ -148,7 +148,7 @@ Two major changes were made:
 
    In addition to solving these specific problems, the new bootstrap scripts
    use a configurable backoff algorithm in order prevent flooding a
-   heavily-loaded Puppet master with requests. See the
+   heavily-loaded :term:`Puppet Server` with requests. See the
    :code:`simp::server::kickstart::simp_client_bootstrap` class for details.
 
 

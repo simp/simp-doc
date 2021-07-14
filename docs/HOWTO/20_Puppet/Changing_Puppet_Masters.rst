@@ -3,7 +3,7 @@
 HOWTO Move a Client to a new Puppet Server
 ==========================================
 
-The following provides details on how to move an client to a new Puppet server.
+The following provides details on how to move an client to a new :term:`Puppet Server`.
 
 .. NOTE::
 
@@ -13,7 +13,7 @@ On the Old Puppet Server
 ------------------------
 
 The following procedures will archive the agent's artifacts from all environments, copy them to the new
-Puppet server, and clean out the agent's Hiera data.
+Puppet Server, and clean out the agent's :term:`Hiera` data.
 
 Archive the agent's artifacts from all environments
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -28,7 +28,7 @@ Archive the agent's artifacts from all environments
 
   .. code-block:: shell
 
-     find `puppet config --section master print vardir`/simp -name "*<agent-fqdn>*" -exec tar --selinux --xattrs -rpvf <agent-fqdn>_transfer.tar {} \;
+     find `puppet config --section server print vardir`/simp -name "*<agent-fqdn>*" -exec tar --selinux --xattrs -rpvf <agent-fqdn>_transfer.tar {} \;
 
 
 3. Archive the agent's Hiera data from all :term:`Puppet Environments`:
@@ -73,7 +73,7 @@ Remove agent-specific Hiera data from all environments
 
      puppetserver reload
 
-On the New Puppet Master
+On the New Puppet Server
 ------------------------
 
 .. WARNING::

@@ -174,7 +174,7 @@ do the following:
       If the component requires updated dependencies, those RPMs will
       have to be built and installed at the same time.
 
-#. Verify the ``puppet agent`` runs succeed on the Puppet master
+#. Verify the ``puppet agent`` runs succeed on the :term:`Puppet Server`
 
    * login as root
    * execute ``puppet agent -t``

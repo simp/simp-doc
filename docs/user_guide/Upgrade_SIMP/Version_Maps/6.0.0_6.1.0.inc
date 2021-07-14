@@ -15,8 +15,8 @@ Upgrade Script
 ^^^^^^^^^^^^^^
 
 There were several issues found during the SIMP 6.0.0 to 6.1.0 upgrade that
-necessitated the creation of an upgrade script that is to be run on your SIMP
-Puppet masters.
+necessitated the creation of an upgrade script that is to be run on your
+:term:`SIMP Server` systems.
 
 .. NOTE::
 
@@ -66,7 +66,7 @@ The legacy :file:`auth.conf`, :file:`/etc/puppetlabs/puppet/auth.conf`, has
 been deprecated. :package:`pupmod-simp-pupmod` will back up the legacy
 :file:`auth.conf` after the upgrade.
 
-The Puppet master's :file:`auth.conf` is now managed by Puppet. You will need
+The Puppet Server's :file:`auth.conf` is now managed by Puppet. You will need
 to reproduce any custom work done to legacy :file:`auth.conf` via the new
 :code:`puppet_authorization::rule` define.  The stock rules are managed in
 :code:`pupmod::master::simp_auth`.

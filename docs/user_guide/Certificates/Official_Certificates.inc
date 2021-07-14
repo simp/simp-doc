@@ -2,11 +2,11 @@ Installing Official Certificates
 --------------------------------
 
 This section describes how to install infrastructure certificates from an
-official certificate authority on the Puppet master for distribution to client
+official certificate authority on the :term:`SIMP Server` for distribution to client
 servers.  You need to have :code:`simp_options::pki` set to ``simp`` on the
 client for this to work.
 
-The key distribution directory on the Puppet master is the
+The key distribution directory on the SIMP Server is the
 :file:`site_files/pki_files/files/keydist` sub-directory located under the
 :term:`SIMP Secondary Environment`,
 :file:`/var/simp/environments/{environment}`.
@@ -34,7 +34,7 @@ Here is an example key distribution directory for a ``production``
    /var/simp/environments/production/site_files/pki_files/files/keydist/yourcomputer.your.domain/yourcomputer.your.domain.pem
    /var/simp/environments/production/site_files/pki_files/files/keydist/yourcomputer.your.domain/yourcomputer.your.domain.pub
 
-To install official certificates on the Puppet master, do the following:
+To install official certificates on the SIMP Server, do the following:
 
 #. Copy the certificates received from a proper :term:`CA` to the SIMP server.
 #. Add the certificates for the node to the key distribution directory in

@@ -10,4 +10,4 @@ Jira issues|:jira:`SIMP-8464`|``:jira:`SIMP-8464```| Auto-links to (SIMP project
 Literal text|``keyword``|````keyword````|ReST's basic markup for fixed-width text.  Only use this if there isn't an appropriate role.|inline
 Internal hyperlinks| :ref:`changelogs` | ``:ref:`changelogs```| ``:ref:`` crosslinks are actually built-in roles, but we'll group them here |inline
 Glossary terms|:term:`SIMP`|``:term:`SIMP```|Automatically creates internal hyperlink to term in Glossary|built-in
-External hyperlinks| `SIMP website <https://simp-project.com>`_ |```SIMP website <https://simp-project.com>`_``| External hyperlinks are decorated with a special icon|inline
+External hyperlinks| `SIMP website <https://www.simp-project.com>`_ |```SIMP website <https://www.simp-project.com>`_``| External hyperlinks are decorated with a special icon|inline
