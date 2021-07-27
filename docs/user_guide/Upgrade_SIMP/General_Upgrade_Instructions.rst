@@ -98,9 +98,9 @@ steps as ``root``:
    * For RPM-based installation, follow your site's procedures to update your
      repositories.
 
-#. Install the RPMs on your SIMP master:
+#. Install the RPMs on your SIMP server:
 
-   After updating the repositories log onto the SIMP master  and su to root to
+   After updating the repositories log onto the SIMP server and :program:`su` to :code:`root` to
    perform the rest of the upgrade.
 
    .. code-block:: sh
@@ -113,7 +113,7 @@ steps as ``root``:
       # Make sure yum picks up the new RPMs
       yum clean all; yum makecache
 
-      # Apply updates to the local master
+      # Apply updates to the local server
       yum update -y
 
    For SIMP 6.4 and later, this will also update the system-local, SIMP-managed

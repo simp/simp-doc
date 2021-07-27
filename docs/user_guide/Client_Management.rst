@@ -79,7 +79,7 @@ can use an existing DNS infrastructure.
    :file:`named/var/named/forward/<your.domain>.db` and
    :file:`named/var/named/reverse/<your reverse domain>.db` files at any time;
    just remember to run :command:`puppet agent -t --tags named` on the Puppet
-   master to propagate the updates.
+   server to propagate the updates.
 
 
 Configure DHCP

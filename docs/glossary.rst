@@ -150,7 +150,7 @@ Glossary of Terms
    Code Manager
       [Puppet] Code Manager automates the management and deployment of
       your :term:`Puppet` code. Push code updates to your source control repo,
-      and then Puppet syncs the code to your masters, so that all your servers
+      and then Puppet syncs the code to your servers, so that all your servers
       start running the new code at the same time, without interrupting agent
       runs.
 

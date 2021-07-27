@@ -45,11 +45,11 @@ of your site specific modules in your environment.
 
 #. **Update SIMP Local Git Repositories**
 
-   On the yum server (usually the SIMP master on smaller deployments)
+   On the yum server (usually the SIMP server on smaller deployments)
    add any new or updated SIMP module RPMs to the yum repositories using
    your sites procedures.
 
-   On your SIMP master, clear the yum cache
+   On your SIMP server, clear the yum cache
 
    .. code-block:: sh
 
@@ -64,7 +64,7 @@ of your site specific modules in your environment.
       # or a simp Puppet module with a patch
       yum update pupmod-simp-aide
 
-   This will update the local git repositories on the SIMP master.
+   This will update the local git repositories on the SIMP server.
 
 #. **Deploy the Environment**
 

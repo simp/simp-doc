@@ -54,7 +54,7 @@ Puppet Server Certificate Issues
 --------------------------------
 
 To fix the issue where the Puppet Server certificate was removed using
-``puppet cert clean``, run ``puppet cert generate <your puppetserver's cert name>``
+``puppetserver ca clean``, run ``puppetserver ca generate <your puppetserver's cert name>``
 and restart the puppetserver service.
 
 

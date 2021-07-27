@@ -12,7 +12,7 @@ Puppet Certificates
 ^^^^^^^^^^^^^^^^^^^
 
 Puppet certificates are issued and maintained strictly within Puppet.  Communication
-between the master and agents is granted and secured with HTTPS, which
+between the server and agents is granted and secured with HTTPS, which
 requires valid identifying SSL certificates. The :term:`Puppet Server` acts as the certificate
 authority for managing these certificates.
 
