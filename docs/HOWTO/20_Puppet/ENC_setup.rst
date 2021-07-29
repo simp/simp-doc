@@ -21,7 +21,7 @@ To use this script for your ENC, do the following as ``root``:
 
 #. Configure Puppet to use this script as an ENC
 
-   Set the following in the :code:`[master]` section of :file:`/etc/puppetlabs/puppet/puppet.conf`:
+   Set the following in the :code:`[server]` section of :file:`/etc/puppetlabs/puppet/puppet.conf`:
 
    a. Add or change the line :code:`node_terminus` to :code:`exec`.
    b. Set the :code:`external_nodes` entry to :file:`/usr/local/bin/set_environment`.
@@ -31,7 +31,7 @@ To use this script for your ENC, do the following as ``root``:
    .. code-block:: ini
 
       ...
-      [master]
+      [server]
       ...
       node_terminus = exec
       external_nodes = /usr/local/bin/set_environment
@@ -51,7 +51,7 @@ To use this script for your ENC, do the following as ``root``:
 
    .. code-block:: yaml
 
-      # The puppetmaster will use the production environment
+      # The puppet server will use the production environment
       'puppet.my.domain':            'production'
 
       # Any node in my.domain whose FQDN begins with test will use the test environment

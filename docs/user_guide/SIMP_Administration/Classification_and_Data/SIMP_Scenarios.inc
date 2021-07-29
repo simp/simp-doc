@@ -37,7 +37,7 @@ refer to this module.
 
 .. NOTE::
 
-   The SIMP or Puppet master is exempt from most of these settings, and will be
+   The :term:`SIMP Server` is exempt from most of these settings, and will be
    using most features from the *simp* scenario by default. The SIMP server
    should only have services on it related to Puppet and systems management,
    and SIMP modules all work with all security features enabled. See the

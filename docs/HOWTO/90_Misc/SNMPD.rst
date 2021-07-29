@@ -2,7 +2,7 @@ HOWTO Configure SNMPD
 =====================
 
 This document details how to use the ``simp-simp_snmpd`` Puppet profile module
-to configure the SNMP daemon.
+to configure the :term:`SNMP` daemon.
 
 Simple instructions to configure the snmpd daemon using the
 ``simp-simp_snmpd`` profile module are described in its README file.
@@ -87,7 +87,7 @@ The profile module, by default, installs two users:
 * ``snmp_rw`` is configured for read/write access to everything
 
 User passwords are auto-generated using ``simplib::passgen()`` and stored on
-the Puppet master in a sub-directory in the :term:`SIMP Writable Environment`:
+the :term:`SIMP Server` in a sub-directory in the :term:`SIMP Writable Environment`:
 
 ``/opt/puppetlabs/server/data/puppetserver/simp/environments/production/simp_autofile/gen_passwd``.
 
@@ -95,8 +95,8 @@ Access is configured by ``/etc/snmp/simp_snmpd.d/access.conf``
 
 * To create the ``access.conf`` file, the profile modules uses a set of hashes.
 * The default hashes are in the ``data/common.yaml`` file.
-* These hashes are merged with any hash you defined in the Hiera files on the
-  Puppet master.  Merging is described in
+* These hashes are merged with any hash you defined in the :term:`Hiera` files on the
+  :term:`Puppet Server`. Merging is described in
   `Puppet docs <https://puppet.com/docs/puppet/5.5/hiera_merging.html>`_
 * To remove something from the default hash add the name of object with no keys
 

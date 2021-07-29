@@ -24,12 +24,12 @@ describes the known areas in SIMP.
   - * Risk
     * Possible Mitigations
   - * **Disabling Puppet**: This can cause the clients to be out of sync with
-      the Puppet Master.
+      the :term:`Puppet Server`.
     * SIMP attempts to force a break on any locks and restart Puppet on all
       clients after a time of 4*runinterval (30 minutes by default).
       Implementations should ensure that further steps have not been taken to
       disable Puppet and should monitor their logs. Administrators can use the
-      puppetlast command on the Puppet Master to detect servers that have not
+      puppetlast command on the Puppet Server to detect servers that have not
       checked in within a reasonable time period.
   - * **Out of Date Patches**: SIMP can be built with the RPMs from CentOS or
       Red Hat. Those RPMs should be assumed out of date at the time a system is

@@ -8,7 +8,7 @@ Puppet Client Certificate Issues
 
 Most of the time, clients will have certificate issues due to the system clock
 not being properly set. Before taking any other measures, make sure that your
-system clock is correct on both the master and the clients!
+system clock is correct on both the server and the clients!
 
 If you need to fix client certificate issues outside of time, first make sure
 that you do not have a certificate already in place on your :term:`Puppet Server`.
@@ -26,7 +26,7 @@ the same name, remove that client's certificate from the system.
 
 .. WARNING::
 
-   If you delete the Puppet master's certificate, you will need to re-deploy
+   If you delete the Puppet Server's certificate, you will need to re-deploy
    Puppet certificates to **all** of your nodes!
 
 .. _rereg-puppet-client-certs:
@@ -43,22 +43,22 @@ simply run the following on your client once the server is ready.
    # puppet agent -t
 
 After running the puppet agent, sign off the new certificate request on the
-Puppet master.
+:term:`Puppet Server`.
 
 .. code-block:: bash
 
    # puppetserver ca list
    # puppetserver ca sign --certname <cert req name>
 
-Puppet Master Certificate Issues
+Puppet Server Certificate Issues
 --------------------------------
 
 To fix the issue where the Puppet Server certificate was removed using
-``puppet cert clean``, run ``puppet cert generate <your puppetserver's cert name>``
+``puppetserver ca clean``, run ``puppetserver ca generate <your puppetserver's cert name>``
 and restart the puppetserver service.
 
 
-If the ``/etc/puppetlabs/puppet/ssl`` directory was removed on the Puppet master
+If the ``/etc/puppetlabs/puppet/ssl`` directory was removed on the Puppet Server
 (and you do not have a backup of it) or for some other reason you need
 to regenerate all the Puppet certificates and the Puppet CA do the following:
 
@@ -69,24 +69,19 @@ to regenerate all the Puppet certificates and the Puppet CA do the following:
 
 #. Stop the ``puppetserver`` and ``puppetdb`` services.
 
-#. Remove the certificates and the CA on the Puppet master and generate the new
-   Puppet master and CA certificates.
+#. Remove the certificates and the CA on the Puppet Server and generate the new
+   Puppet Server and CA certificates.
 
    .. code-block:: bash
 
-      # puppet resource service puppet ensure=stopped
-      # puppet resource service puppetserver ensure=stopped
-      # rm -rf /etc/puppetlabs/puppet/ssl
-      # puppet master --no-daemonize --verbose
+      puppet resource service puppet ensure=stopped
+      puppet resource service puppetserver ensure=stopped
+      puppet resource service puppetdb ensure=stopped
 
-      # When you see "Notice: Starting Puppet master <VERSION>", type CTRL + C
+      puppet resource file /etc/puppetlabs/puppet/ssl ensure=absent force=true recurse=true
+      puppet apply -e '#noop'
 
-      # puppet resource service puppetserver ensure=running
-      # puppet resource service puppet ensure=running
-
-      # Confirm it is working again
-      # puppet agent -t
-
+      puppet resource service puppetserver ensure=running
 
 #. Remove the old certificates from each of the Puppet clients and re-register
    the client using the :ref:`rereg-puppet-client-certs` instructions.
@@ -96,10 +91,20 @@ to regenerate all the Puppet certificates and the Puppet CA do the following:
 
    .. code-block:: bash
 
-      # rm -rf /etc/puppetlabs/puppetdb/ssl/*
-      # puppetdb ssl-setup
+      puppet resource file /etc/puppetlabs/puppetdb/ssl ensure=absent force=true recurse=true
+      puppetdb ssl-setup
 
-#. Restart the ``puppetserver`` and ``puppetdb`` services
+#. Restart the ``puppetdb`` service
+
+   .. code-block:: bash
+
+      puppet resource service puppetdb ensure=running
+
+#. Confirm that everything is working
+
+   .. code-block:: bash
+
+      puppet agent -t
 
 Puppetserver and PuppetDB certificate mismatch
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~

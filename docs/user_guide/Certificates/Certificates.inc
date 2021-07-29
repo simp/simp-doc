@@ -23,7 +23,7 @@ differently.
 :code:`simp_options::pki` can have one of three settings:
 
 #. ``simp`` -  Keypairs are distributed from a central location on the Puppet
-   master to the :file:`/etc/pki/simp/x509` directory on the client. Any
+   server to the :file:`/etc/pki/simp/x509` directory on the client. Any
    applications using them will then make a copy in
    :file:`/etc/pki/simp_apps/<app name>/x509` with the correct permissions for
    an application to use.

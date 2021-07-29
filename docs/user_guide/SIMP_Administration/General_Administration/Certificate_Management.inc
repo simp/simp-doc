@@ -12,12 +12,12 @@ Puppet Certificates
 ^^^^^^^^^^^^^^^^^^^
 
 Puppet certificates are issued and maintained strictly within Puppet.  Communication
-between the master and agents is granted and secured with HTTPS, which
-requires valid identifying SSL certificates. The Puppet master acts as the certificate
+between the server and agents is granted and secured with HTTPS, which
+requires valid identifying SSL certificates. The :term:`Puppet Server` acts as the certificate
 authority for managing these certificates.
 
 The client will automatically send a certificate request to the server if it cannot find
-a valid certificate. The Puppet master will automatically sign a certificate request if
+a valid certificate. The Puppet Server will automatically sign a certificate request if
 the client's name is in the  ``autosign.conf`` file, otherwise an administrator must sign
 the request using the ``puppetserver ca`` tool.
 

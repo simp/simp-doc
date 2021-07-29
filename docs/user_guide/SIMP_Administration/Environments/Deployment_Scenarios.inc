@@ -76,7 +76,7 @@ environment's ``modules/`` directory.
 
 This scenario requires the least preparation: it doesn't require a control
 repository, a remote git-hosting service, or even a functioning network.  It
-also works automatically on any monolithic SIMP master (6.4.0+) that was
+also works automatically on any monolithic SIMP server (6.4.0+) that was
 installed from ISO or RPM.  In fact, the initial run of ``simp config`` uses
 this method to deploy the system's first modules into the production
 environment.
@@ -93,14 +93,15 @@ It requires:
 * The ``simp`` command
 * A pre-existing Puppet environment directory (``simp environment new``)
 * A simp Puppetfile (``simp puppetfile generate``)
-* No additional compile masters.
+* No additional compile servers.
 
 .. IMPORTANT::
+
    The local deployment scenario is only suitable for a single monolithic SIMP
-   master.
+   server.
 
 .. NOTE::
-   If you need to scale beyond a single master, you should :ref:`deploy
+   If you need to scale beyond a single server, you should :ref:`deploy
    from a control repository <ug-sa-env-deployment-scenarios--controlrepo>`.
 
 
@@ -145,7 +146,7 @@ to be).  A good starting point is to review the article,
 The Control repository deployment scenario is recommended for:
 
 * Environments that manage their infrastructure as code
-* Infrastructures that need to scale beyond a single master (e.g., compile masters)
+* Infrastructures that need to scale beyond a single server (e.g., compile servers)
 * Administrators who are comfortable with git and Puppet control repositories
 * Puppet Enterprise users
 
@@ -156,13 +157,13 @@ It requires:
 * :term:`r10k` and/or :term:`Code Manager`, configured to deploy from the Control Repository
 * Keeping all remote Puppet module repositories (and the control repository's
   ``Puppetfile``) up-to-date as SIMP RPMs deliver new module versions to the
-  master's local filesystem
+  server's local filesystem
 
 Depending on the variation, it may also require:
 
-* (optional) a local webhook on the Puppet master, configured to trigger the code deploy
+* (optional) a local webhook on the :term:`Puppet Server`, configured to trigger the code deploy
 * (optional) a webhook on the git-hosting service to trigger environment
-  deployments on the Puppet master after a control repository branch is updated
+  deployments on the Puppet Server after a control repository branch is updated
 
 .. IMPORTANT::
 
@@ -187,7 +188,7 @@ Under this scenario:
 * Puppet admins maintain a Puppet control repository (and Puppet module
   repositories) in an external git-hosting service.
 
-* An r10k user logs into the Puppet master and manually deploys entire
+* An r10k user logs into the Puppet Server and manually deploys entire
   :term:`Puppet environment` directories (one per branch) from the command
   line:
 
@@ -209,11 +210,11 @@ Under this scenario, Puppet admins:
 * Deploy a Puppet environment by pushing updates to a control repository branch
 
 When a control repository branch is updated, it automatically
-triggers an environment deployment on the Puppet master:
+triggers an environment deployment on the Puppet Server:
 
-  * The Git-hosting service uses a webhook to notify the Puppet master about
+  * The Git-hosting service uses a webhook to notify the Puppet Server about
     the branch that was changed
-  * The webhook on the Puppet master triggers r10k to deploy the branch as an
+  * The webhook on the Puppet Server triggers r10k to deploy the branch as an
     environment
 
 .. _ug-sa-env-deployment-scenarios--cr+pe-codemanager--variant:
@@ -230,11 +231,11 @@ Under this scenario, Puppet admins:
 * Deploy a Puppet environment by pushing updates to a control repository branch
 
 When a control repository branch is updated, it automatically
-triggers an environment deployment on the Puppet master:
+triggers an environment deployment on the Puppet Server:
 
-  * The Git-hosting service uses a webhook to notify the PE master/MoM about
+  * The Git-hosting service uses a webhook to notify the PE server/MoM about
     the branch that was changed
-  * The webhook on the Puppet master triggers PE Code Manager to deploy the branch
+  * The webhook on the Puppet Server triggers PE Code Manager to deploy the branch
     as a staged environment
   * The PE File Sync service distributes the staged environment to any compile
-    masters, and promotes the code from staging to live use.
+    servers, and promotes the code from staging to live use.

@@ -26,10 +26,10 @@ necessary during the upgrade.
      upgrading from 6.1.0, unless precautions are taken (detailed below).
 
    * SIMP installations that are upgraded using :term:`r10k` and :term:`Code
-     Manager` are unlikely to be affected, unless the SIMP master's
+     Manager` are unlikely to be affected, unless the SIMP server's
      :package:`puppet-agent` package is updated independently.
 
-   * These instructions only apply to the SIMP master—no changes are required on
+   * These instructions only apply to the SIMP server—no changes are required on
      clients.
 
 #. Before upgrading anything, add the following line to :file:`/etc/yum.conf`:
@@ -57,7 +57,7 @@ necessary during the upgrade.
       # Make sure yum picks up the new RPMs
       yum clean all; yum makecache
 
-      # Apply updates to the local master
+      # Apply updates to the local server
       yum update -y
 
 #. After running :command:`yum update`, remove the :code:`exclude=puppet-agent`
@@ -148,7 +148,7 @@ Two major changes were made:
 
    In addition to solving these specific problems, the new bootstrap scripts
    use a configurable backoff algorithm in order prevent flooding a
-   heavily-loaded Puppet master with requests. See the
+   heavily-loaded :term:`Puppet Server` with requests. See the
    :code:`simp::server::kickstart::simp_client_bootstrap` class for details.
 
 

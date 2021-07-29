@@ -186,7 +186,7 @@ Default Server Ports
 =========== ========= ========== ========= ======= =======================================================================
 Application Direction Protocol   Transport Ports   Comment
 =========== ========= ========== ========= ======= =======================================================================
-Puppet      Localhost HTTP       TCP       8140    The port upon which the Puppet master listens for client connections via Apache
+Puppet      Localhost HTTP       TCP       8140    The port upon which the :term:`Puppet Server` listens for client connections via Apache
 Puppet CA   In        HTTPS      TCP       8141    This is used to ensure that Apache can verify all certificates from external systems properly prior to allowing access to Puppet.
 Apache/YUM  In        HTTP       TCP       443     This is used for YUM and is encrypted using https.
 DHCPD       In        DHCP/BOOTP TCP/UDP   546,547 DHCP pooling is disabled by default and should only be used if the implementation requires the use of this protocol.
@@ -509,9 +509,9 @@ the log server over a TLS protected link.
 Time Synchronization
 --------------------
 
-Each SIMP client (including the Puppet Master) has ``ntpd`` enabled by default.
+Each SIMP client (including the Puppet Server) has ``ntpd`` enabled by default.
 Part of the installation directs the clients to a time server.  If no servers
-are available, the SIMP clients can use the Puppet Master as the central time
+are available, the SIMP clients can use the Puppet Server as the central time
 source. Audit logs receive their time stamp from the local server's system
 clock; therefore, the SIMP client must be connected to a central time source
 for timestamps in audit logs to be accurate.

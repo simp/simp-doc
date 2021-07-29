@@ -189,7 +189,7 @@ Verify the static files are in the correct location:
 Dynamic Linux Model Files
 ^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Create a :term:`site profile` module for the TFTP server on the Puppet master
+Create a :term:`site profile` module for the TFTP server on the :term:`Puppet Server`
 to set up the various files to model different systems.
 
 #. Create the file :file:`tftpboot.pp` in your :term:`site profile`.
@@ -215,10 +215,12 @@ to set up the various files to model different systems.
      kickstart file needed.
 
      .. NOTE::
+
         If using the default cfg files, know that they do not have the
         :file:`_el{[6,7]}` tags at the end of their names.
 
      .. NOTE::
+
         The :code:`simp_disk_crypt` option shown below switches on transparent
         disk encryption as described in the :ref:`ig-disk-encryption`
         documentation and is recommended if you have a requirement for disk
@@ -313,9 +315,10 @@ to set up the various files to model different systems.
 
 
 #. After updating the above file, type :command:`puppet agent -t --tags tftpboot` on
-   the Puppet master.
+   the Puppet Server.
 
    .. NOTE::
+
       To provide PXE boot configuration for more OSs, create, in the
       :file:`tftpboot.pp` file, a :code:`tftpboot::linux_model` or
       :code:`tftpboot::linux_model_efi` block for each OS type. Then, assign

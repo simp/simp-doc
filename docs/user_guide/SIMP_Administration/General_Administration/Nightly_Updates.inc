@@ -45,7 +45,7 @@ The Operating System Repos
 ^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 The default location for the :term:`Operating System` (OS) repositories, on the
-Puppet master, is ``/var/www/yum/<OSTYPE>/<MAJORRELEASE>/x86_64``.
+:term:`SIMP Server`, is ``/var/www/yum/<OSTYPE>/<MAJORRELEASE>/x86_64``.
 
 An ``Updates`` repository has been configured in this space. All OS updates
 should be placed within this directory.

@@ -18,7 +18,7 @@ restart the :program:`puppetserver` process without the connection.
    # /etc/puppetlabs/puppet (the default).
    mv /etc/puppetlabs/puppet/routes.yaml /etc/puppetlabs/puppet/routes.yaml.backup
 
-   puppet config set --section master storeconfigs false
+   puppet config set --section server storeconfigs false
    puppet config set --section main storeconfigs false
 
    puppet resource service puppetserver ensure=stopped

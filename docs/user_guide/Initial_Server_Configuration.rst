@@ -91,7 +91,7 @@ Configuring the SIMP Server
       all configuration options are correct.
 
       You can debug issues by either looking at the log files in ``/root/.simp`` or by running
-      ``puppet agent -t --masterport=8150``.
+      ``puppet agent -t --serverport=8150``.
 
 #. Run ``reboot`` to restart your system and apply the necessary kernel
    configuration items.

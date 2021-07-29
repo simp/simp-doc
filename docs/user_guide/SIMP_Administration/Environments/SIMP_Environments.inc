@@ -127,8 +127,8 @@ Building on the environments above, it is useful to consider the following
 Secondary and Writable environment directories pose a problem for
 Puppet scaling:
 
-* Load-balanced compile masters *must* keep the contents of *both* secondary and
-  writable environment directories in sync across all compile masters.
+* Load-balanced compile servers *must* keep the contents of *both* secondary and
+  writable environment directories in sync across all compile servers.
 * Alternatively, disciplined use of Hiera Eyaml encryption must be used to
   replace all parameters that default to using Writable-environment functions
   like `simplib::passgen()`_.

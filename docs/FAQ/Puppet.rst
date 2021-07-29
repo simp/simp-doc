@@ -27,7 +27,7 @@ troubleshoot the issue.
    .. code-block:: bash
 
       openssl s_client -host $(puppet config print server) \
-      -port $(puppet config print masterport) \
+      -port $(puppet config print serverport) \
       -cert $(puppet config print hostcert) \
       -key $(puppet config print hostprivkey) \
       -CAfile $(puppet config print localcacert)
