@@ -10,7 +10,7 @@ You can list all groups in the default SIMP :term:`389-DS` instance by running:
 
 .. code-block:: shell
 
-   dsidm accounts group list
+   dsidm accounts -b "<base DN>" group list
 
 If running a SIMP-generated default instance, you should see the usual ``users``
 and ``administrators`` groups.
@@ -24,7 +24,7 @@ as follows:
 
 .. code-block:: shell
 
-   dsidm accounts posixgroup create --cn alice --gidNumber 1000
+   dsidm accounts -b "<base DN>" posixgroup create --cn alice --gidNumber 1000
 
 .. NOTE::
 
@@ -40,7 +40,7 @@ To remove our `alice` group, run the following command:
 
 .. code-block:: shell
 
-   dsidm accounts group delete "<DN>"
+   dsidm accounts -b "<base DN>" group delete "<DN>"
 
 It will prompt you to type ``Yes I am sure`` to confirm deletion.
 
@@ -48,7 +48,7 @@ To get the DN for the group run:
 
 .. code-block:: shell
 
-   dsidm accounts group get alice | head -1 | cut -f2- -d' '
+   dsidm accounts -b "<base DN>" group get alice | head -1 | cut -f2- -d' '
 
 Get Information about a 389-DS Group
 ------------------------------------
@@ -57,7 +57,7 @@ Use the following command to get information about a specific group:
 
 .. code-block:: shell
 
-   dsidm accounts group get alice
+   dsidm accounts -b "<base DN>" group get alice
 
 Add a User to a 389-DS Group
 ----------------------------
@@ -66,13 +66,13 @@ Use the following command to add a user to a group:
 
 .. code-block:: shell
 
-   dsidm accounts group add_member "<DN>"
+   dsidm accounts -b "<base DN>" group add_member "<DN>"
 
 You can get the DN of a user by running:
 
 .. code-block:: shell
 
-   dsidm accounts user get <username> | head -1 | cut -f2- -d' '
+   dsidm accounts -b "<base DN>" user get <username> | head -1 | cut -f2- -d' '
 
 It is important to note that, by default, referential integrity is **not**
 preserved between users and groups. This means that you will need to manually

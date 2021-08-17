@@ -98,7 +98,7 @@ To find your base DN, you can run the following:
 
 .. code-block:: shell
 
-   dsidm accounts account list | head -1
+   dsidm accounts -b "<base DN>" account list | head -1
 
 Assuming that our base DN is ``dc=local,dc=com``, our configuration file would
 look like the following:
