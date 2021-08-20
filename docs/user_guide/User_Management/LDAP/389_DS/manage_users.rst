@@ -10,7 +10,7 @@ You can list all users in the default SIMP :term:`389-DS` instance by running:
 
 .. code-block:: shell
 
-   dsidm accounts user list
+   dsidm accounts -b "<base DN>" user list
 
 Add a User to 389-DS
 --------------------
@@ -21,7 +21,7 @@ follows:
 
 .. code-block:: shell
 
-   dsidm accounts user create --uid alice --cn "Alice User" --displayName 'Alice' \
+   dsidm accounts -b "<base DN>" user create --uid alice --cn "Alice User" --displayName 'Alice' \
      --uidNumber 1000 --gidNumber 1000 --homeDirectory /home/alice
 
 Remove a User from 389-DS
@@ -31,7 +31,7 @@ To remove our `alice` user, run the following command:
 
 .. code-block:: shell
 
-   dsidm accounts user delete <DN>
+   dsidm accounts -b "<base DN>" user delete <DN>
 
 It will prompt you to type ``Yes I am sure`` to confirm deletion.
 
@@ -39,7 +39,7 @@ To get the DN for the user run:
 
 .. code-block:: shell
 
-   dsidm accounts user get alice | head -1 | cut -f2- -d' '
+   dsidm accounts -b "<base DN>" user get alice | head -1 | cut -f2- -d' '
 
 Add a Password to a 389-DS User
 -------------------------------
@@ -60,13 +60,13 @@ To be prompted for the user credentials, you can run the following:
 
 .. code-block:: shell
 
-   dsidm accounts account reset_password "<DN>"
+   dsidm accounts -b "<base DN>" account reset_password "<DN>"
 
 To obtain the ``DN`` run:
 
 .. code-block:: shell
 
-   dsidm accounts user get alice | head -1 | cut -f2- -d' '
+   dsidm accounts -b "<base DN>" user get alice | head -1 | cut -f2- -d' '
 
 Direct Reset
 ^^^^^^^^^^^^
@@ -83,7 +83,7 @@ Then run the following, pasting the output of the previous command into
 
 .. code-block:: shell
 
-   dsidm accounts user modify alice add:userPassword:<GENERATED HASH>
+   dsidm accounts -b "<base DN>" user modify alice add:userPassword:<GENERATED HASH>
 
 
 Add a SSH Public Key to a 389-DS User
@@ -93,7 +93,7 @@ You can use the following command to add a SSH key to a 389-DS user:
 
 .. code-block:: shell
 
-   dsidm accounts user modify alice add:nsSshPublicKey:"<ssh-rsa AAA...>"
+   dsidm accounts -b "<base DN>" user modify alice add:nsSshPublicKey:"<ssh-rsa AAA...>"
 
 Remove a SSH Public Key from a 389-DS User
 ------------------------------------------
@@ -102,4 +102,4 @@ You can use the following command to remove a SSH key from a 389-DS user:
 
 .. code-block:: shell
 
-   dsidm accounts user modify alice delete:nsSshPublicKey:"<ssh-rsa AAA...>"
+   dsidm accounts -b "<base DN>" user modify alice delete:nsSshPublicKey:"<ssh-rsa AAA...>"
