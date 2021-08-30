@@ -72,7 +72,7 @@ Configuring the SIMP Server
 
 .. _ug-initial_server_configuration-run_bootstrap:
 
-3. Run ``simp bootstrap``.
+3. Run :command:`simp bootstrap`.
 
    If your SIMP server is on a virtual machine, or slow system, the default timeout for the
    Puppet server to start (5 minutes) may be too short.  You will want to extend this time by using
@@ -90,16 +90,16 @@ Configuring the SIMP Server
       occurred due to an error in SIMP configuration. Refer to the previous step and make sure that
       all configuration options are correct.
 
-      You can debug issues by either looking at the log files in ``/root/.simp`` or by running
-      ``puppet agent -t --serverport=8150``.
+      You can debug issues by either looking at the log files in :file:`/root/.simp` or by running
+      :command:`puppet agent -t --masterport=8150 --agent_disabled_lockfile /opt/puppetlabs/server/data/puppetserver/state/bootstrap.lock`.
 
-#. Run ``reboot`` to restart your system and apply the necessary kernel
+#. Run :command:`reboot` to restart your system and apply the necessary kernel
    configuration items.
 
 After rebooting, SIMP-managed security settings have been applied and the SIMP server is ready for
 site-specific configuration.
 
-To ``su`` to ``root`` from the  ``simp`` user, you must now use ``sudo su - root``.
+To ``su`` to ``root`` from the  ``simp`` user, you must now use :command:`sudo su - root`.
 
 Next Steps
 ----------
