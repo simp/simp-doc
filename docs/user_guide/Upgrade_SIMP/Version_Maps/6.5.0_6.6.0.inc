@@ -26,6 +26,9 @@ There are two changes for systems that use :term:`SSSD`:
 
   .. code-block:: yaml
 
+     # This is an example of the sssd::domains entry you might see in hiera.
+     # Remove the entire array if LOCAL is the only entry.  Otherwise just remove
+     # the LOCAL entry.
      sssd::domains:
        - LOCAL
 
@@ -114,7 +117,7 @@ Complete the General Steps
 """"""""""""""""""""""""""
 
 After resolving all applicable items in :ref:`Before Upgrading to 6.6.0 <before-upgrading-to-6.6.0>`,
-complete from step 2 on in the  :ref:`Incremental Upgrades <ug-incremental-upgrades>` instructions.
+complete from step 2 in the :ref:`Incremental Upgrades <ug-incremental-upgrades>` instructions.
 
 
 After Upgrading to 6.6.0
