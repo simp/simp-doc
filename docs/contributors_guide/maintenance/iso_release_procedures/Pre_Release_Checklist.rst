@@ -160,18 +160,18 @@ This check verifies that the ``simp-core`` unit and acceptance test
 have succeeded.
 
 To verify that the ``simp-core`` unit tests have succeeded, examine
-the test results in `TravisCI`_.
+the test results in GitHub Actions.
 
-   * Navigate to the project's TravisCI results page and verify the
+   * Navigate to the project's GitHub Actions results page and verify the
      tests for the development branch to be tagged and released have
      passed.  For our project, this page is
-     https://travis-ci.com/simp/simp-core/branches
+     https://github.com/simp/simp-core/actions
 
      .. IMPORTANT::
 
-        If the tests in TravisCI fail, you **must** fix them before
-        proceeding.  The automated release procedures will only
-        succeed, if the unit tests succeed in TravisCI.
+        If the tests in GitHub Actions fail, you **must** fix them before
+        proceeding.  The automated release procedures will only succeed, if the
+        tests succeed.
 
 To verify that the ``simp-core`` acceptance tests have succeeded
 
@@ -502,5 +502,4 @@ tests pass`_.
 
 .. _Docker: https://www.docker.com
 .. _GitHub: https://github.com
-.. _TravisCI: https://travis-ci.com
 .. _simp-packer: https://github.com/simp/simp-packer

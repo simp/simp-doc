@@ -13,9 +13,7 @@ Automated Release Steps
 
 All SIMP ISO-related project are configured to automatically create a
 `GitHub`_ release, when an annotated tag is created for the `GitHub`_
-project **and** the `TravisCI`_ tests for the annotated tag push succeed.
-Each project contains a deploy step for the ``releases`` provider
-in its ``.travis.yml`` file.
+project.
 
 To create the a release from an annotated tag:
 
@@ -47,15 +45,6 @@ To create the a release from an annotated tag:
       git tag -a 4.0.4 -F foo
       git push origin 4.0.4
 
-#. Verify `TravisCI`_ completes successfully
-
-   .. IMPORTANT::
-      If any of the required TravisCI builds for the project fail, for
-      example due to intermittent connectivity problems with `GitHub`_,
-      you can complete the release process by manually restarting the
-      failed build on the Travis page for that build.  However, if the
-      build fails due to deploy key issues skip to the next section.
-
 #. Verify release exists on `GitHub`_.  This release will have been created by
    ``simp-auto``.
 
@@ -76,4 +65,3 @@ correct the issue:
      notes.
 
 .. _GitHub: https://github.com
-.. _TravisCI: https://travis-ci.com
