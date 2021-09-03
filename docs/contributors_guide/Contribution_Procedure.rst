@@ -46,7 +46,7 @@ done to maintain a more legible commit history on `master`.
    '`Allow edits from maintainers`_' checkbox checked to let a team member add
    commits to your pull request.
 
-#. `TravisCI`_ will run the spec tests for the branch and a member of the SIMP
+#. GitHub Actions  will run the spec tests for the branch and a member of the SIMP
    team will `review`_ your submission. You should receive emails from GitHub as
    code reviews progress.
 
@@ -203,7 +203,6 @@ the future.
 .. _JIRA issues can be referenced: https://support.atlassian.com/bitbucket-cloud/docs/use-smart-commits/
 .. _SIMP JIRA: https://simp-project.atlassian.net
 .. _Squash and Merge: https://github.blog/2016-04-01-squash-your-commits/
-.. _TravisCI: https://travis-ci.com/simp
 .. _feature branch: https://www.atlassian.com/git/tutorials/comparing-workflows#feature-branch-workflow
 .. _pull request: https://docs.github.com/en/github/collaborating-with-pull-requests/proposing-changes-to-your-work-with-pull-requests/about-pull-requests
 .. _review: https://docs.github.com/en/github/collaborating-with-pull-requests/reviewing-changes-in-pull-requests/reviewing-proposed-changes-in-a-pull-request

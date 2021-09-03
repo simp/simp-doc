@@ -80,18 +80,18 @@ Verify unit tests pass
 ----------------------
 
 This check verifies that the component's unit tests have succeeded
-in `TravisCI`_:
+in GitHub Actions.
 
-* Navigate to the project's `TravisCI`_ results page and verify the
+* Navigate to the project's GitHub Actions results page and verify the
   tests for the development branch to be tagged and released have
   passed.  For our project, this page is
-  https://travis-ci.com/simp/rubygem-simp-rake-helpers/branches
+  https://github.com/simp/rubygem-simp-rake-helpers/actions
 
   .. IMPORTANT::
 
-     If the tests in TravisCI fail, you **must** fix them before
-     proceeding.  The automated release procedures will only
-     succeed, if the unit tests succeed in TravisCI.
+     If the tests in GitHub Actions fail, you **must** fix them before
+     proceeding.  The automated release procedures will only succeed, if the
+     unit tests succeed.
 
 Verify acceptance tests pass
 ----------------------------
@@ -155,4 +155,3 @@ and test tasks.
 
 .. _GitHub: https://github.com
 .. _RubyGems.org: https://rubygems.org/
-.. _TravisCI: https://travis-ci.com

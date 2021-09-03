@@ -1,10 +1,10 @@
 Release ``simp-core`` to GitHub and PuppetForge
 ===============================================
 
-``simp-core`` is configured to automatically create a `GitHub`_
-release and push the (meta-module) release to `PuppetForge`_, when an
-annotated tag is created for the `GitHub`_ project **and** the
-`TravisCI`_ tests for the annotated tag push succeed.
+``simp-core`` is configured to automatically create a `GitHub`_ release and push
+the (meta-module) release to `PuppetForge`_, when an annotated tag is created
+for the `GitHub`_ project **and** the GitHub Actions tests for the annotated tag push
+succeed.
 
 To create the releases from an annotated tag:
 
@@ -26,17 +26,17 @@ To create the releases from an annotated tag:
       git tag -a 6.0.2 -F Changelog.rst --cleanup--whitespace
       git push origin 6.0.2
 
-#. Verify `TravisCI`_ completes successfully
+#. Verify GitHub Actions tests complete successfully
 
    .. IMPORTANT::
-      If any of the required TravisCI builds for the project fail, for
-      example due to intermittent connectivity problems with `GitHub`_,
-      you can complete the release process by manually restarting the
-      failed build on the Travis page for that build.
+
+      If any of the required GitHub Actions builds for the project fail, for example
+      due to intermittent connectivity problems, you can complete the release
+      process by manually restarting the failed build on the GitHub Actions page
+      for that build.
 
 #. Verify release exists on `GitHub`_.  This release will have been
    created by ``simp-auto``.
 
 .. _GitHub: https://github.com
 .. _PuppetForge: https://forge.puppet.com
-.. _TravisCI: https://travis-ci.com

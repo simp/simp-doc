@@ -130,18 +130,18 @@ Verify unit tests pass
 ----------------------
 
 This check verifies that the component's unit tests have succeeded
-in `TravisCI`_:
+in GitHub Actions.
 
-* Navigate to the project's TravisCI results page and verify the
+* Navigate to the project's GitHub Actions results page and verify the
   tests for the development branch to be tagged and released have
   passed.  For our project, this page is
-  https://travis-ci.com/simp/pupmod-simp-iptables/branches
+  https://github.com/simp/pupmod-simp-iptables/actions
 
 .. IMPORTANT::
 
-   If the tests in TravisCI fail, you **must** fix them before
-   proceeding.  The automated release procedures will only
-   succeed, if the unit tests succeed in TravisCI.
+   If the tests in GitHub Actions fail, you **must** fix them before proceeding.
+   The automated release procedures will only succeed, if the unit tests
+   succeed.
 
 Verify acceptance tests pass
 ----------------------------
@@ -364,4 +364,3 @@ development environment:
 .. _PuppetForge: https://forge.puppet.com
 .. _simp-packer: https://github.com/simp/simp-packer
 .. _`RPM spec file template`: https://raw.githubusercontent.com/simp/rubygem-simp-rake-helpers/master/lib/simp/rake/helpers/assets/rpm_spec/simpdefault.spec
-.. _TravisCI: https://travis-ci.com

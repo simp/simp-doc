@@ -211,7 +211,6 @@ linkcheck_ignore = [
     r'^https?:\/\/.*\.tar(\..{2,3})?$',
     # links that the resolver has trouble with
     r'^https?:\/\/groups\.google\.com\/forum\/.+',
-    r'^https?:\/\/travis-ci\.org(/.*|$)',
     r'^https?:\/\/bundler\.io/rationale\.html',
     # Puppet redirects everything everywhere
     r'^https?:\/\/.*\.puppet\.com(/.*|$)',
