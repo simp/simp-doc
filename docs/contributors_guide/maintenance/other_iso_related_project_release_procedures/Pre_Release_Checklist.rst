@@ -108,19 +108,17 @@ This check verifies that an RPM can be generated for this module from
 Verify unit tests pass
 ----------------------
 
-This check verifies that the component's unit tests have succeeded
-in `TravisCI`_:
+This check verifies that the component's unit tests have succeeded.
 
-* Navigate to the project's `TravisCI`_ results page and verify the
+* Navigate to the project's GitHub Actions results page and verify the
   tests for the development branch to be tagged and released have
   passed.  For our project, this page is
-  https://travis-ci.com/simp/simp-adapter/branches
+  https://github.com/simp/simp-adapter/actions
 
 .. IMPORTANT::
 
-   If the tests in TravisCI fail, you **must** fix them before
-   proceeding.  The automated release procedures will only
-   succeed, if the unit tests succeed in TravisCI.
+   If the tests are failing, you **must** fix them before proceeding.  The
+   automated release procedures will only succeed if the unit tests succeed.
 
 Verify acceptance tests pass
 ----------------------------
@@ -243,4 +241,3 @@ CentOS 7:
 .. _GitHub: https://github.com
 .. _simp-packer: https://github.com/simp/simp-packer
 .. _`RPM spec file template`: https://raw.githubusercontent.com/simp/rubygem-simp-rake-helpers/master/lib/simp/rake/helpers/assets/rpm_spec/simpdefault.spec
-.. _TravisCI: https://travis-ci.com

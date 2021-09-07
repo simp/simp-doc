@@ -12,7 +12,7 @@ Common Release Steps
 Most of the SIMP Ruby gems are configured to automatically create a
 `GitHub`_ release and push the release to `RubyGems.org`_, when an
 annotated tag is created for the `GitHub`_ project **and** the
-`TravisCI`_ tests for the annotated tag push succeed.
+GitHub Actions tests for the annotated tag push succeed.
 
 To create the releases from an annotated tag:
 
@@ -50,20 +50,19 @@ To create the releases from an annotated tag:
       For markdown-style changelogs, you will need to specify
       ``--cleanup=whitespace`` so comment headers are not stripped.
 
-#. Verify `TravisCI`_ completes successfully
+#. Verify GitHub Actions completes successfully
 
    .. IMPORTANT::
 
-      If any of the required TravisCI builds for the project fail, for
-      example due to intermittent connectivity problems with `GitHub`_,
-      you can complete the release process by manually restarting the
-      failed build on the Travis page for that build.
+      If any of the required GitHub Actions builds for the project fail, for
+      example due to intermittent connectivity problems, you can complete the
+      release process by manually restarting the failed build on the GitHub
+      Actions page for that build.
 
 Automated Release Steps
 -----------------------
 
-This section applies to gems that have a ``deploy`` stage with a ``releases``
-provider in their ``.travis.yml`` file.
+This section applies to gems that have a ``release`` GitHub Action configured.
 
 #. Verify release exists on `GitHub`_.  This release will have been created by
    ``simp-auto``.
@@ -100,4 +99,3 @@ To create the releases from an annotated tag:
 
 .. _GitHub: https://github.com
 .. _RubyGems.org: https://rubygems.org/
-.. _TravisCI: https://travis-ci.com

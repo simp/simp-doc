@@ -465,6 +465,12 @@ Glossary of Terms
 
       Source: `Wikipedia: ISO_9660 <https://en.wikipedia.org/wiki/ISO_9660>`__
 
+   JSON
+   JavaScript Object Notation
+      A lightweight data-interchange format defined by ECMA-404.
+
+      Source: `JSON Homepage <https://www.json.org>`__
+
    Kerberos
       A computer network authentication protocol that works on the basis of
       "tickets" to allow nodes communicating over a non-secure network to prove
