@@ -193,7 +193,6 @@ Removed Puppet Modules
 The following modules were removed from the release
 
 * :package:`simp_pki_service`
-* :package:`simp_ipa`
 * :package:`simp_bolt`
 
 .. _changelog-6.6.0-fixed-bugs:
