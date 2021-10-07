@@ -11,41 +11,81 @@ Upgrading from SIMP-6.5.0 to SIMP-6.6.0
 Before Upgrading to 6.6.0
 ^^^^^^^^^^^^^^^^^^^^^^^^^
 
-SSSD hiera changes
+SSSD Hiera Changes
 """"""""""""""""""
+
 There are two changes for systems that use :term:`SSSD`:
 
+Set simp::sssd::client::ldap_server_type
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-* If LDAP and SSSD are both used, set the type of LDAP server in hiera. For EL7 servers with :term:`Openldap` set the following:
+If :term:`LDAP:` and :term:`SSSD` are both used, you must set the type of LDAP
+server in :term:`hiera` using the :code:`simp::sssd::client::ldap_server_type`
+parameter.
 
-  .. code-block:: yaml
+If the system is using an OpenLDAP server, you would set this option to
+:code:`plain`. For 389-DS-derived systems (389-DS, FreeIPA, RHDS, etc...) you
+would set this to :code:`389ds`. An example is provided below
 
-      simp::sssd::client:ldap_server_type: 'plain'
+.. code-block:: yaml
 
-* In previous versions of Red Hat, SSSD would fail without a LOCAL domain.  SSSD no longer requires a LOCAL domain and the :code:`simp::sssd::client` manifest no longer configures a LOCAL domain.  If you have not configured a LOCAL domain for some other reason you should remove LOCAL from the list of domains in hiera under the :code:`sssd::domains:` entry and disable the creation of the local domain by :code:`simp::sssd::client`.
+   # The upstream server is OpenLDAP
+   simp::sssd::client:ldap_server_type: 'plain'
 
-  .. code-block:: yaml
+   # The upstream server is 389-DS
+   simp::sssd::client:ldap_server_type: '389ds'
 
-     # This is an example of the sssd::domains entry you might see in hiera.
-     # Remove the entire array if LOCAL is the only entry.  Otherwise just remove
-     # the LOCAL entry.
-     sssd::domains:
-       - LOCAL
+Requirement for SSSD >= 1.16.0
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-* If there are errors in systems before 6.6.0 is fully installed the creation of the local domain can be prevented by setting the following in hiera:
+In systems using :program:`sssd` prior to 1.16.0, the daemon would fail to start
+without a :code:`LOCAL` domain. For security and supportability reasons, SIMP no
+longer supports :program:`sssd` prior to 1.16.0. Likewise, the
+:code:`simp::sssd::client` class no longer configures a :code:`LOCAL` domain.
 
-  .. code-block:: yaml
+If you have configured a :code:`LOCAL` domain for some other reason you must:
 
-     simp::sssd::client::local_domain: false
+* Remove :code:`LOCAL` from the list of domains in :term:`hiera` from
+  :code:`sssd::domains:`
+* Disable the creation of the local domain by :code:`simp::sssd::client`
+
+.. code-block:: yaml
+
+   # These are examples of the sssd::domains entry you might see in hiera.
+
+   # LOCAL is the only entry, remove everything
+   sssd::domains:
+     - LOCAL
+
+   # LOCAL is not the only entry, only remove LOCAL
+   sssd::domains:
+     - LOCAL #remove this
+     - MY_DOMAIN
+     - SOMETHING_ELSE
+
+If there are errors in systems before SIMP 6.6.0 has been fully installed, the
+creation of the :code:`LOCAL` domain can be prevented by setting the following
+in :term:`hiera`:
+
+.. code-block:: yaml
+
+   simp::sssd::client::local_domain: false
 
 NTP Changes
 """""""""""
 
-The simp_options parameter used to set the list of NTP servers has been changed to simp_options::ntp::servers.  Both ntpd and chronyd use simp_options::ntp::servers as the default.
+The :code:`simp_options::ntpd::servers` parameter has been changed to
+:code:`simp_options::ntp::servers`.
 
-In hiera rename simp_options::ntpd::servers to simp_options::ntp::servers and create an alias for backwards compatibility:
+Both :program:`ntpd` and :program:`chronyd` use
+:code:`simp_options::ntp::servers` as the default.
 
-Old hiera:
+In :term:`hiera`, users must:
+
+* Rename :code:`simp_options::ntpd::servers` to :code:`simp_options::ntp::servers`
+* Create an :code:`alias` for backwards compatibility
+
+Old :term:`hiera`:
 
 .. code-block:: yaml
 
@@ -55,7 +95,7 @@ Old hiera:
    - server3.time.server.org
    - 127.127.1.0
 
-New Hiera:
+New :term:`hiera`:
 
 .. code-block:: yaml
 
@@ -71,41 +111,57 @@ New Hiera:
 Update Yum Repositories
 """""""""""""""""""""""
 
-The following replaces step 1, Update the YUM Repositories,  of  :ref:`Incremental Upgrades <ug-incremental-upgrades>` instructions.
+Migrate to the New Format
+^^^^^^^^^^^^^^^^^^^^^^^^^
 
-The SIMP repo has been moved from :file:`/var/www/yum/SIMP` to :file:`/var/www/yum/SIMP/<os name>/<os version>`.
+**The following replaces Step 1**, `Update the YUM Repositories`, of the
+:ref:`Incremental Upgrades <ug-incremental-upgrades>` instructions.
 
-Updates were made to the  :code:`unpack_dvd` script in :package:`simp-utils` to extract the rpms to the new location.  The following commands step through updating simp_utils from the iso, extracting the iso, removing the old repository and linking the new repository to the old location for backwards compatibility.
+The SIMP :term:`YUM` repository has been moved from :file:`/var/www/yum/SIMP` to
+:file:`/var/www/yum/SIMP/<os name>/<os version>` to make supporting multiple
+client operating systems easier.
 
-.. code-block::
+Updates were made to the  :code:`unpack_dvd` script in :package:`simp-utils` to
+extract the RPMs to the new location.
+
+Use the following as `root` to properly migrate to the new format:
+
+.. code-block:: bash
 
   # Mount the ISO.
   mkdir /mnt/iso
   mount -o loop -t iso9660 <location of iso file>
+
   # Install the simp_utils RPM.
   cd /mnt/iso/SIMP/noarch
-  yum install ./simp-utils*.rpm
+  yum install -y ./simp-utils*.rpm || yum update -y ./simp-utils*.rpm
+
   # Unmount the ISO
-  cd /
+  cd $HOME
   umount /mnt/iso
+
   # Extract the ISO.
   unpack_dvd  -v 7.9.2009  <location of iso file>
+
   # Remove old files and link to the new files
   cd /var/www/yum/SIMP
   rm -rf noarch x86_64
   ln -s ./CentOS/7/noarch ./noarch
   ln -s ./CentOS/7/x86_64 ./x86_64
 
-If you use kickstart you will need to extract the PXE files before kickstarting new CentOS 7 machines.  See :ref:`howto-unpack-dvd-pxe` for more information.
+Install the new Puppet GPG Key
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Puppetlabs has a new :term:`GPG` key that must be used to install the new puppet agent.
-Install this key on the yum server by updating :package:`simp-gpgkeys`.
+Puppet, Inc. has a new :term:`GPG` key that must be used to install the new
+puppet agent.  Install this key on the YUM server by updating
+:package:`simp-gpgkeys`.
 
 .. code-block:: sh
 
    yum install simp-gpgkeys
 
-To ensure that all the clients pick up the new key add the following to the top level of Hiera:
+To ensure that all the clients pick up the new key add the following to the top
+level of :term:`Hiera`:
 
 .. code-block:: yaml
 
@@ -113,39 +169,60 @@ To ensure that all the clients pick up the new key add the following to the top 
    simp::yum::repo::local_simp::extra_gpgkey_urls:
      - https://<your yum server ip address>/yum/SIMP/GPGKEYS/RPM-GPG-KEY-puppet-20250406
 
+Kickstart Prep
+^^^^^^^^^^^^^^
+
+If you use kickstart, you will need to extract the PXEboot files before
+kickstarting new EL7 machines.  See :ref:`howto-unpack-dvd-pxe` for more
+information.
+
 Complete the General Steps
 """"""""""""""""""""""""""
 
-After resolving all applicable items in :ref:`Before Upgrading to 6.6.0 <before-upgrading-to-6.6.0>`,
-complete from step 2 in the :ref:`Incremental Upgrades <ug-incremental-upgrades>` instructions.
+After resolving all applicable items in :ref:`Before Upgrading to 6.6.0
+<before-upgrading-to-6.6.0>`, resume :ref:`Incremental Upgrades
+<ug-incremental-upgrades>` instructions **from Step 2**.
 
 
 After Upgrading to 6.6.0
 ^^^^^^^^^^^^^^^^^^^^^^^^
 
-Once the upgrade is complete do the following to clean up work arounds:
+Cleanup Tasks
+^^^^^^^^^^^^^
 
-On the puppetserver the following items can be removed if you used them:
+The following items can be removed from the :term:`puppetserver`:
 
 .. code-block:: yaml
 
    simp::yum::repo::local_simp::extra_gpgkey_urls:
      - https://<your yum server ip address>/yum/SIMP/GPGKEYS/RPM-GPG-KEY-puppet-20250406
+
    simp::sssd::client::local_domain: false
+
    simp_options::ntpd::servers: "%{alias('simp_options::ntp::servers')}"
 
-On the yum server remove the links in /var/www/yum/SIMP.
+The following items can be removed fro the :term:`YUM` server:
 
-.. code-block:: sh
+.. code-block:: bash
 
-   cd /var/www/yum/SIMP
-   unlink noarch
-   unlink x86_64
+   unlink /var/www/yum/SIMP/noarch
+   unlink /var/www/yum/SIMP/x86_64
 
 Upgrading to EL8
-^^^^^^^^^^^^^^^^
+----------------
 
-To upgrade your puppet server to EL8, you would follow the installation instructions and then the :ref:`howto-migrate-to-new-puppet-server`
+Main Server Migration
+^^^^^^^^^^^^^^^^^^^^^
 
-Scripts to transfer user and group entries from Openldap to 389-DS were included in :package:`simp-utils`.  They are installed under /usr/share/simp/transition_scripts/openldap_to_389ds with instructions in the README file in that directory.
+To upgrade your puppet server to EL8, you would follow the installation
+instructions and then the :ref:`howto-migrate-to-new-puppet-server`
 
+Migration to 389-DS from OpenLDAP
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Scripts to transfer user and group entries from OpenLDAP to 389-DS are included
+in :package:`simp-utils`.
+
+The scripts are installed at :file:`/usr/share/simp/transition_scripts/openldap_to_389ds`.
+
+Instructions can be found in the :file:`README` in the same directory.
