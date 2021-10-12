@@ -110,7 +110,7 @@ To remove all legacy SSL files, run:
 
 .. code-block:: shell
 
-   rm -rf `puppet config --section agent ssldir
+   rm -rf $(puppet config print --section agent ssldir)
 
 Update the Puppet Config
 ^^^^^^^^^^^^^^^^^^^^^^^^
