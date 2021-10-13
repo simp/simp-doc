@@ -43,7 +43,7 @@ back to `store`, set the following in :term:`Hiera`:
 PuppetDB Reports
 ----------------
 
-Prior to proceeding, you should read :ref:`ht-enable-puppetdb`_ if you have not
+Prior to proceeding, you should read :ref:`ht-enable-puppetdb` if you have not
 already enabled :program:`puppetdb`.
 
 If you want to use a :term:`GUI` application like `Puppetboard`_ to connect to
