@@ -26,7 +26,7 @@ OS compatibility
 This release is known to work with:
 
   * CentOS 7.0 2009 x86_64
-  * CentOS 8.4 2015 x86_64
+  * CentOS 8.4 2105 x86_64
   * OEL 7.9 x86_64
   * OEL 8.4 x86_64
   * RHEL 7.9 x86_64
