@@ -152,14 +152,14 @@ You can now add the repositories that you mirrored in
    mv /tmp/_download_path/*/* reposync
 
 At this point, the :file:`reposync` directory may contain both a :file:`puppet`
-and :file:`puppet7` directory. If you wish to use ``puppet`` version 7 by
-default, move the :file:`puppet` directory to :file:`puppet6` and rename
-:file:`puppet7` to :file:`puppet`.
+and :file:`puppet6` directory. If you wish to use ``puppet`` version 6 by
+default, move the :file:`puppet` directory to :file:`puppet7` and rename
+:file:`puppet6` to :file:`puppet`.
 
 .. code-block:: bash
 
-   mv reposync/puppet reposync/puppet6
-   mv reposync/puppet7 reposync/puppet
+   mv reposync/puppet reposync/puppet7
+   mv reposync/puppet6 reposync/puppet
 
 Modifying the Repositories (Optional)
 """""""""""""""""""""""""""""""""""""
@@ -206,6 +206,12 @@ version from :file:`release_mappings.yaml`:
 
 Once the process completes, you should have a bootable SIMP ISO, in:
 :file:`build/distributions/<OS>/<rel>/<arch>/SIMP_ISO/`
+
+You can download it as follows (using CentOS 8 as an example):
+
+.. code-block:: bash
+
+   podman cp simp_build_centos8:/home/build_user/simp-core/build/distributions/CentOS/8/x86_64/SIMP_ISO .
 
 Other Build Directories of Note
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^

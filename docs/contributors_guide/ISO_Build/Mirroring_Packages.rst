@@ -113,6 +113,7 @@ process.
 .. code-block:: bash
 
    podman cp _download_path/ simp_build_centos8:/tmp
+   podman exec -it simp_build_centos8 chown -R build_user:build_user /tmp/_download_path
 
 (Optional) Cleanup
 ------------------
