@@ -182,9 +182,9 @@ repository to pull down a matching build artifact. Failing that, a local copy is
 built for packaging. This copy is **authoritative** and will override anything
 from :file:`reposync`.
 
-The :file:`repos/` directory under :file:`yum_data/` holds a selection of
+The optional :file:`repos/` directory under :file:`yum_data/` holds a selection of
 repositories that will be used for fetching upstream SIMP RPMs from the official
-sources.
+sources. These files should be regular :term:`YUM` repository configuration files.
 
 Once downloaded, non-SIMP files will be housed in a :file:`packages` directory
 and the :file:`packages.yaml` file will be updated to reflect the download

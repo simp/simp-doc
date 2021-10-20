@@ -39,9 +39,18 @@ Using :github:`puppetlabs/bolt` and :github:`simp/bolt-pulp3`, set up the
 Clone the Packages
 ------------------
 
+This uses a configuration file from the target version of SIMP that you are
+going to build.
+
+You will either need to download the file from :github:`simp/simp-core` or clone
+the repository and checkout the git tag that you wish to build.
+
+For example, if you are going to build CentOS 8 for SIMP 6.6.0:
+
 .. code-block:: bash
 
-   ./slim-pulp-repo-copy.rb -f build/6.6.0/CentOS/8/x86_64/repo_packages.yaml
+   curl -O https://raw.githubusercontent.com/simp/simp-core/6.6.0-1/build/distributions/CentOS/8/x86_64/bolt_pulp3_config.yaml
+   ./slim-pulp-repo-copy.rb -f bolt_pulp3_config.yaml
 
 .. NOTE::
 

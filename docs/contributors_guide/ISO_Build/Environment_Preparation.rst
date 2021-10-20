@@ -93,3 +93,6 @@ The following provides an example of how to build and start the image:
    podman run -id --name simp_build_centos8 simp_build_centos8
    podman exec -it simp_build_centos8 bash
    su - build_user
+   cd simp-core
+   git tag
+   git checkout <tag of simp-core that you wish to build>
