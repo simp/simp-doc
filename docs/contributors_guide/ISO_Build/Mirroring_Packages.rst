@@ -103,7 +103,7 @@ process.
 
 .. code-block:: bash
 
-   podman cp _download_path/ el8build:/tmp
+   podman cp _download_path/ simp_build_centos8:/tmp
 
 (Optional) Cleanup
 ------------------

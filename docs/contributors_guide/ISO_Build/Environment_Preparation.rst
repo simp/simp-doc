@@ -62,10 +62,26 @@ This was done to work with modular repositories in EL8+.
 Setup Your Build Container
 ^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-SIMP needs to be built using the same distribution that you are trying to build.
-While the method for doing this is up to you, we recommend that you use the
-build-related Dockerfiles in the :github:`simp/simp-core` project under the
-:file:`build/Dockerfiles` subdirectory.
+SIMP needs to be built using the **exact same distribution** that the ISO
+targets.
+
+Use an Existing Image
+"""""""""""""""""""""
+
+For the fastest start, use a published image if one is available that matches
+your system.
+
+.. code-block:: bash
+
+   podman pull simpproject/simp_build_centos8
+
+Build a Fresh Container
+"""""""""""""""""""""""
+
+If a matching image is not available (or updates are available that have yet to
+be published) then use the build-related Dockerfiles in the
+:github:`simp/simp-core` project under the :file:`build/Dockerfiles`
+subdirectory.
 
 The following provides an example of how to build and start the image:
 
@@ -73,7 +89,7 @@ The following provides an example of how to build and start the image:
 
    git clone https://github.com/simp/simp-core
    cd simp-core/build/Dockerfiles
-   buildah bud --layers -f SIMP_EL8_Build.dockerfile -t el8build
-   podman run -id --name el8build el8build
-   podman exec -it el8build bash
+   buildah bud --layers -f SIMP_EL8_Build.dockerfile -t simp_build_centos8
+   podman run -id --name simp_build_centos8 simp_build_centos8
+   podman exec -it simp_build_centos8 bash
    su - build_user

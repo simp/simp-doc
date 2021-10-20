@@ -11,7 +11,7 @@ Please have your environment prepared as specified by
 accordance with :ref:`gsg-mirroring_packages` before continuing.
 
 All of the following items assume that you are running as ``build_user`` in the
-``el8build`` container.
+``simp_build_centos8`` container.
 
 Download the CentOS/RedHat installation media:
 
