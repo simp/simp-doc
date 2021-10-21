@@ -10,5 +10,6 @@ Contributing to SIMP
   Contribution_Procedure
   Maintenance_Procedure
   Documentation
+  Building_A_SIMP_ISO
   Testing_on_FIPS_Systems
   Resources
