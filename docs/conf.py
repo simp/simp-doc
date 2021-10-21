@@ -253,7 +253,7 @@ linkcheck_ignore = [
 
 # The theme to use for HTML and HTML Help pages.  See the documentation for
 # a list of builtin themes.
-html_theme_path = ["_themes"]
+#html_theme_path = ["_themes"]
 html_theme = "sphinx_rtd_theme"
 
 # adds a file for overwriting the default css. We use this for fixing tables
