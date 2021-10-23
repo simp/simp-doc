@@ -33,16 +33,25 @@ This release is known to work with:
   * RHEL 8.4 x86_64
 
 
-Important OS compatibility limitations
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+Full support for EL8
+^^^^^^^^^^^^^^^^^^^^
+
+This release introduces **full** EL8 support for the SIMP Puppet server and
+agents across the entire SIMP framework.
+
+EL8 support :ref:`was previously limited <changelog-6-5-0-el8-client-only>` to
+managing Puppet agents with the core SIMP Puppet modules.
 
 EL6 support has been removed
-""""""""""""""""""""""""""""
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-EL6 is no longer supported by SIMP CE.
+EL6 is EOL and is no longer supported by SIMP CE.
 
-If you need support for EL6 systems, please consider purchasing commercial
-support.
+All logic and testing in support of EL6 has been **completely removed** from
+the entire SIMP framework.
+
+If you require further support for EL6 systems, consider purchasing commercial support.
+
 
 .. _changelog-6.6.0-breaking-changes:
 
@@ -53,32 +62,38 @@ Breaking Changes
   :depth: 2
   :local:
 
-Unpacked ISOs Use a Full Base Path
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+ISOs Unpack into Unique Repository Paths
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Prior to this release, the :file:`SIMP` RPMs were all placed into :file:`/var/www/yum/SIMP`. This
-made it difficult to support multiple operating system releases. Starting from this release, items
-are now placed into :file:`/var/www/yum/SIMP/<os name>/<os version>/<arch>` which mirrors the layout
-of the base operating system repositories.
+The directory structure of yum repositories unpacked from SIMP ISOs has changed.
 
-The :program:`unpack_dvd` script has been updated to ensure that only compatible items are unpacked
-into the underlying repository and to fail with guidance if incompatibilities are discovered.
+Previously, all SIMP RPMs were placed into a single yum repository on the SIMP
+server, under :file:`/var/www/yum/SIMP/`.  This directory structure wasn't
+flexible enough to serve multiple operating systems/releases simultaneously
+without significant customization.
+
+Starting from this release, repositories will be placed under the directory
+structure :file:`/var/www/yum/SIMP/<os name>/<os version>/<arch>/`, which
+mirrors the layout of the base operating system repositories.
+
+The :program:`unpack_dvd` script has been updated to ensure that only
+compatible items are unpacked into the underlying repository.  If
+the script detects incompatibilities, it will fail and provide guidance.
 
 Rsyslog < 8.24.0 is no Longer Supported
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-The vendor recommends using :program:`rsyslog` 8 or later, therefore support for
-:program:`rsyslog` versions under 8.24.0 are no longer supported by the default
-module.
+Due to vendor recommendations, :pupmod:`simp/rsyslog` no longer supports
+:program:`rsyslog` versions under 8.24.0
 
-If you need to support older :program:`rsyslog` versions, please use
-:module:`simp/rsyslog` 7.6.4 in an alternate puppet environment.
+If you need to support older versions of :program:`rsyslog`, please use
+:pupmod:`simp/rsyslog` 7.6.4 in an alternate :term:`Puppet environment`.
 
 SSSD < 1.16.0 is no Longer Supported
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Multiple issues exist in versions of :program:`sssd` prior to 1.16.0 and users
-should upgrade to the latest release.
+There are multiple issues in versions of :program:`sssd` prior to 1.16.0.
+Users should upgrade to the latest release.
 
 .. _changelog-6.6.0-significant-updates:
 
@@ -86,74 +101,99 @@ Significant Updates
 -------------------
 
 .. contents::
-  :depth: 2
+  :depth: 3
   :local:
 
-EL8 SIMP Client Node Support
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-This release provides full support for both EL8 server and client systems.
+.. _changelog-6.6.0-el8-server-support:
 
-One of the biggest changes was the deprecation of OpenLDAP in EL8.
+SIMP Server Support on EL8
+^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-SIMP has replaced the native LDAP capabilities with 389-DS.
-
-Existing infrastructures will not be affected on upgrade but new environments
-will need to correctly configure their environment for the target LDAP server.
-
-.. todo::
-
-   Add links to the appropriate documentation sections
+This release provides full support for managing SIMP Puppet servers on EL8.
 
 Puppet 7 Support
 ^^^^^^^^^^^^^^^^
 
 All SIMP Puppet modules now work with both Puppet 6 and Puppet 7.
 
-Puppet 5 support has been dropped due to end-of-life.
+
+Puppet 5 Support Removed
+^^^^^^^^^^^^^^^^^^^^^^^^
+
+Puppet 5 is EOL and support for it has been removed from all modules.
+
 
 PuppetDB no Longer Configured by Default
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-A review of the newer :program:`puppetserver` defaults as well as the concept of "only run what you
-require" led to the removal of :program:`puppetdb` as a default installed/configured application.
+A review of the newer :program:`puppetserver` defaults as well as the concept
+of "only run what you require" led to the removal of :program:`puppetdb` as
+a default installed/configured application.
 
 This change should make it easier to run in resource-limited environments.
 
-Existing systems will not be affected but new systems will need to enable :program:`puppetdb` per
-:ref:`ht-enable-puppetdb`.
+Existing systems will not be affected, but new systems will need to enable
+:program:`puppetdb` per :ref:`ht-enable-puppetdb`.
 
-Switch from OpenLDAP to 389-DS in EL8
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-The upstream vendors dropped support for the OpenLDAP server in EL8+. The SIMP project now uses
-389-DS as the de-facto LDAP server on EL8 server systems.
+389 DS replaces OpenLDAP on EL8
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Clients are able to connect to either OpenLDAP or 389-DS as necessary. Please read the upgrade
-guide if you are switching from OpenLDAP to 389-DS. New systems will work out of the box.
+On EL8, :term:`389 Directory Server` replaces the (deprecated) :term:`OpenLDAP`
+server as the default LDAP service.
+
+Existing infrastructures will not be affected on upgrade, but new environments
+will need to configure correctly for their environment's LDAP server.
+
+LDAP Clients are still able to connect to either OpenLDAP server or 389 DS as
+necessary. :ref:`Please read the upgrade guide <before-upgrading-to-6.6.0>` if
+you are switching from OpenLDAP to 389 DS. New systems will require no
+additional configuration.
+
+.. TODO::
+
+   * Confirm that the upgrade guide link above is enough
+   * Otherwise, add links to the appropriate documentation sections
+   * FIXME: When done, remove this notice
+
 
 Switch from Cron to Systemd
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Where possible, all SIMP puppet modules have been updated to remove old :program:`cron` jobs and
-move to using :program:`systemd` timers instead. Eventually, this will allow the removal of
-:program:`cron` by default and has the added benefit of being easier to manage.
+With the deprecation of EL6, all supported OSes use systemd.  The framework
+is now in a position to take advantage of systemd-specific features that
+improve system maintenance and administration.
+
+Where possible, all SIMP puppet modules have been updated to replace old
+:program:`cron` jobs with :program:`systemd` timers. This enhances execution
+control and reporting for the scheduled jobs.
+
+This practice may eventually enable systems to opt out of installing
+:program:`cron` altogether, to the benefit of certain compliance profiles.  It
+also has the benefit of being easier to manage.
 
 Switch from Iptables to Firewalld
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-All SIMP modules now use :program:`firewalld` by default instead of directly managing
-:program:`iptables`. In general, this should be seamless for users unless advanced
-:program:`iptables` rulesets were being managed (NAT, etc...).
+All SIMP modules now use :program:`firewalld` by default instead of directly
+managing :program:`iptables`. In general, the transition should be seamless for
+users unless advanced :program:`iptables` rulesets were being managed (NAT,
+etc...).
 
-Users still have the ability to directly manage :program:`iptables` rules but should be aware that no
-further development will occur on :module:`simp-iptables` outside of maintaining the shims that hook
-it into :program:`firewalld`.
+Users still have the ability to directly manage :program:`iptables` rules, but
+should be aware that there will be no further development on
+:pupmod:`simp/iptables` outside of maintaining the shims that hook it into
+:program:`firewalld`.
 
 .. _changelog-6.6.0-security-anouncements:
 
 Security Announcements
 ----------------------
+
+.. TODO::
+
+   Were there really no security announcements?
 
 .. contents::
   :depth: 2
@@ -173,24 +213,24 @@ Puppet RPMs
 
 The following Puppet RPMs are packaged with the SIMP 6.6.0 ISOs:
 
-+-----------------------------+---------+
-| Package                     | Version |
-+=============================+=========+
-| :package:`puppet-agent`     | FIXME   |
-+-----------------------------+---------+
-| :package:`puppet-bolt`      | FIXME   |
-+-----------------------------+---------+
-| :package:`puppetdb`         | FIXME   |
-+-----------------------------+---------+
-| :package:`puppetdb-termini` | FIXME   |
-+-----------------------------+---------+
-| :package:`puppetserver`     | FIXME   |
-+-----------------------------+---------+
++-----------------------------+-----------------------------+
+| Package                     | Version                     |
++=============================+=============================+
+| :package:`puppet-agent`     | FIXME  6.22.1-1 or 7.12.0-1 |
++-----------------------------+-----------------------------+
+| :package:`puppet-bolt`      | FIXME  3.19.0-1 or FIXME    |
++-----------------------------+-----------------------------+
+| :package:`puppetdb`         | FIXME  6.16.1-1 or 7.7.0-1  |
++-----------------------------+-----------------------------+
+| :package:`puppetdb-termini` | FIXME  6.16.1-1 or 7.7.0-1  |
++-----------------------------+-----------------------------+
+| :package:`puppetserver`     | FIXME  6.15.3-1 or 7.4.1-1  |
++-----------------------------+-----------------------------+
 
 Removed Puppet Modules
 ----------------------
 
-The following modules were removed from the release
+The following modules were removed from the release:
 
 * :package:`simp_pki_service`
 * :package:`simp_bolt`
@@ -208,16 +248,19 @@ pupmod-simp-auditd
 ^^^^^^^^^^^^^^^^^^
 
 * Aligned the EL8 STIG settings
-* Always add the :code:`head` rules since they are required for proper functionality of the system
+* Always add the :code:`head` rules since they are required for proper
+  functionality of the system
 * Use :code:`-F key=` instead of :code:`-k` to match the STIG recommendations
-* Switched the audit rules to :code:`always,exit` instead of :code:`exit,always` to match the man pages
+* Switched the audit rules to :code:`always,exit` instead of
+  :code:`exit,always` to match the man pages
 
 pupmod-simp-aide
 ^^^^^^^^^^^^^^^^
 
-* Changed to using :code:`--check` instead of :code:`-C` by default to match the expectation of most security
-  scanners
-* Randomized the scheduling :code:`minute` field so that I/O load is reduced on hosting platforms
+* Changed to using :code:`--check` instead of :code:`-C` by default to match
+  the expectation of most security scanners
+* Randomized the scheduling :code:`minute` field so that I/O load is reduced on
+  hosting platforms
 
 pupmod-simp-cron
 ^^^^^^^^^^^^^^^^
@@ -227,31 +270,38 @@ pupmod-simp-cron
 pupmod-simp-fips
 ^^^^^^^^^^^^^^^^
 
-* Use the :program:`simplib__crypto_policy_state` fact instead of :program:`crypto_policy__state`
-* Ensure that :program:`dracut_rebuild` is called when the :code:`fips` kernel parameter is changed
+* Use the :program:`simplib__crypto_policy_state` fact instead of
+  :program:`crypto_policy__state`
+* Ensure that :program:`dracut_rebuild` is called when the :code:`fips` kernel
+  parameter is changed
 
 pupmod-simp-gdm
 ^^^^^^^^^^^^^^^
 
 * Fixed minor errors in the :file:`compliance_markup` data
-* Properly handle integration of :program:`systemd-logind` with the :code:`hidepid` flag on :file:`/proc`
-* Added a :code:`pam_access` entry for the :program:`gdm` user so that the greeter session can start
+* Properly handle integration of :program:`systemd-logind` with the
+  :code:`hidepid` flag on :file:`/proc`
+* Added a :code:`pam_access` entry for the :program:`gdm` user so that the
+  greeter session can start
 
 pupmod-simp-haveged
 ^^^^^^^^^^^^^^^^^^^
 
-* Mask the :program:`haveged` service when disabling it so that it is not restarted on reboot
+* Mask the :program:`haveged` service when disabling it so that it is not
+  restarted on reboot
 * Ensure that :program:`haveged` does not start if :program:`rngd` is running
 
 pupmod-simp-incron
 ^^^^^^^^^^^^^^^^^^
 
-* No longer pin the version of :program:`incron` since the upstream versions have been fixed
+* No longer pin the version of :program:`incron` since the upstream versions
+  have been fixed
 
 pupmod-simp-libreswan
 ^^^^^^^^^^^^^^^^^^^^^
 
-* Removed obsolete configuration items that prevented functionality on EL8
+* Removed obsolete configuration items that prevented functionality on EL8:
+
   * :code:`libreswan::ikeport`
   * :code:`libreswan::nat_ikeport`
   * :code:`libreswan::klipsdebug`
@@ -261,12 +311,14 @@ pupmod-simp-libreswan
 pupmod-simp-libvirt
 ^^^^^^^^^^^^^^^^^^^
 
-* Removed :package:`ipxe-roms` from the OEL package lists since they are now optional
+* Removed :package:`ipxe-roms` from the OEL package lists since they are now
+  optional
 
 pupmod-simp-network
 ^^^^^^^^^^^^^^^^^^^
 
-* Ensure that the :code:`network::eth` defined type honors the :code:`network::auto_restart` parameter
+* Ensure that the :code:`network::eth` defined type honors the
+  :code:`network::auto_restart` parameter
 
 pupmod-simp-nfs
 ^^^^^^^^^^^^^^^
@@ -278,7 +330,8 @@ pupmod-simp-ntpd
 ^^^^^^^^^^^^^^^^
 
 * Fixed a bug where :code:`ntp::allow::rules` was not being honored
-* Added :code:`simp_options::ntp::servers` to the default lookup list for :code:`ntpd::servers`
+* Added :code:`simp_options::ntp::servers` to the default lookup list for
+  :code:`ntpd::servers`
 
 pupmod-simp-openscap
 ^^^^^^^^^^^^^^^^^^^^
@@ -289,44 +342,52 @@ pupmod-simp-pam
 ^^^^^^^^^^^^^^^
 
 * Silenced unnecessary TTY messages
-* Added default Hiera deep merges for :code:`pam::access::users` and :code:`pam::limits::rules`
-* Fixed a bug in :file:`system-auth` where :program:`pam_tty_audit` was not skipped if
-  the login did not have a TTY. This prevented the GDM service login from
-  succeeding.
-* Set :program:`quiet` on :program:`pam_listfile` so that warnings do not get logged that look
-  like authentication failures
+* Added default Hiera deep merges for :code:`pam::access::users` and
+  :code:`pam::limits::rules`
+* Fixed a bug in :file:`system-auth` where :program:`pam_tty_audit` was not
+  skipped if the login did not have a TTY. This prevented the GDM service login
+  from succeeding.
+* Set :program:`quiet` on :program:`pam_listfile` so that warnings do not get
+  logged that look like authentication failures
 
 pupmod-simp-pupmod
 ^^^^^^^^^^^^^^^^^^
 
-* Changed all instances of setting items in the :code:`master` section to use :code:`server` instead
-* Added :code:`pupmod::master::sysconfig::use_code_cache_flushing` to reduce excessive memory usage
+* Changed all instances of setting items in the :code:`master` section to use
+  :code:`server` instead
+* Added :code:`pupmod::master::sysconfig::use_code_cache_flushing` to reduce
+  excessive memory usage
 * Disconnected the puppetserver from the system FIPS libraries since it causes
   conflicts with the vendor provided settings
 * Allow :code:`pupmod::puppet_server` to accept Arrays
 * Properly configure the server list when multiple puppet servers are specified
 * Converted all :program:`cron` settings to :program:`systemd` timers
 * Converted the 'cleanup' jobs to :program:`systemd.tmpfile` jobs
-* Fixed a bug where the :code:`pupmod::master::sysconfig` class was not being applied
-* Get :program:`certname` from trusted facts only for authenticated remote requests
+* Fixed a bug where the :code:`pupmod::master::sysconfig` class was not being
+  applied
+* Get :program:`certname` from trusted facts only for authenticated remote
+  requests
 * Fix bolt compatibility
 
 pupmod-simp-resolv
 ^^^^^^^^^^^^^^^^^^
 
 * Fixed bugs in the Augeas template
-* Use configuration files to manage the global :program:`NetworkManager` configuration
+* Use configuration files to manage the global :program:`NetworkManager`
+  configuration
 
 pupmod-simp-rkhunter
 ^^^^^^^^^^^^^^^^^^^^
 
-* Changed the :code:`minute` parameter on scheduled tasks to a random number to reduce
-  I/O load on hosting platforms
+* Changed the :code:`minute` parameter on scheduled tasks to a random number to
+  reduce I/O load on hosting platforms
 * Updated to use :program:`systemd` timers instead of :program:`cron` by default
-* Added default :code:`user_fileprop_files_dirs` to covert he puppet applications
-* Ensure that the initial :program:`propupd` command runs after the puppet run is complete
-* Added a :code:`rkhunter::propupd` class to ensure that the first cut of properties
-  is updated after all packages have competed in the puppet run
+* Added default :code:`user_fileprop_files_dirs` to covert he puppet
+  applications
+* Ensure that the initial :program:`propupd` command runs after the puppet run
+  is complete
+* Added a :code:`rkhunter::propupd` class to ensure that the first cut of
+  properties is updated after all packages have competed in the puppet run
 
 pupmod-simp-rsync
 ^^^^^^^^^^^^^^^^^
@@ -346,8 +407,9 @@ pupmod-simp-selinux
 ^^^^^^^^^^^^^^^^^^^
 
 * Fixed a dependency cycle when using :code:`vox_selinux::boolean`
-* Fixed a bug where the module would attempt to create :code:`selinux_login` resources
-  when :code:`selinux::login_resources` was set but :program:`selinux` was disabled
+* Fixed a bug where the module would attempt to create :code:`selinux_login`
+  resources when :code:`selinux::login_resources` was set but :program:`selinux`
+  was disabled
 
 pupmod-simp-simp
 ^^^^^^^^^^^^^^^^
@@ -364,17 +426,20 @@ pupmod-simp-simp
   * :code:`match_group_by_gid`
   * :code:`always_query_group_plugin`
 
-* Now use relative paths for the location for the SIMP GPG keys on YUM servers by default
+* Now use relative paths for the location for the SIMP GPG keys on YUM servers
+  by default
 * Support all valid values for :code:`simp::pam_limits::max_logins::value`
 * Added additional parameters to :code:`simp::admin` to allow for more
-  fine-grained control of global :code:`admin` and :code:`auditor` :program:`sudo` rules
+  fine-grained control of global :code:`admin` and :code:`auditor`
+  :program:`sudo` rules
 
 pupmod-simp-simp_apache
 ^^^^^^^^^^^^^^^^^^^^^^^
 
 * Ensure that all :code:`file` resources that manage more than permissions have
   an :code:`ensure` attribute
-* Moved the :file:`magic` file into an EPP template to work better with :program:`bolt`
+* Moved the :file:`magic` file into an EPP template to work better with
+  :program:`bolt`
 * Use :program:`systemd` to reload/restart the :program:`httpd` service
 
 pupmod-simp-simp_gitlab
@@ -392,8 +457,8 @@ pupmod-simp-simp_nfs
 pupmod-simp-simp_openldap
 ^^^^^^^^^^^^^^^^^^^^^^^^^
 
-* Fixed :code:`pki::copy` since the :program:`ldap` group is no longer created by the
-  OpenLDAP client packages
+* Fixed :code:`pki::copy` since the :program:`ldap` group is no longer created
+  by the OpenLDAP client packages
 * Fixed :code:`Float` to :code:`String` comparison error in
   :code:`simp_openldap::server::conf::tls_protocol_min`
 * Deprecated parameters only applicable to EL6:
@@ -421,7 +486,8 @@ pupmod-simp-ssh
   cause a service restart
 * Fixed a bug that caused a compilation error when
   :code:`ssh::conf::ensure_sshd_packages` was set to :code:`true`
-* Ensure that :code:`vox_selinux` is included prior to calling :code:`selinux_port`
+* Ensure that :code:`vox_selinux` is included prior to calling
+  :code:`selinux_port`
 * Ensure that parameters that do not apply to EL8+ systems are not set on the
   target system
 * No longer set :code:`HostKeyAlgorithms` on the client configuration by default
@@ -456,7 +522,8 @@ pupmod-simp-tlog
 pupmod-simp-tpm2
 ^^^^^^^^^^^^^^^^
 
-* Overrode the :program:`systemd` unit file for :program:`tpm2-abrmd` for TCTI compatibility
+* Overrode the :program:`systemd` unit file for :program:`tpm2-abrmd` for TCTI
+  compatibility
 
 pupmod-simp-vsftpd
 ^^^^^^^^^^^^^^^^^^
@@ -490,18 +557,22 @@ simp-rsync
 simp-utils
 ^^^^^^^^^^
 
-* Fixed the :program:`puppetlast` script and enabled it to read from filesystem reports
+* Fixed the :program:`puppetlast` script and enabled it to read from filesystem
+  reports
 
   * You will need to follow the instructions in :ref:`ht-enable-client-reporting`
 
 rubygem-simp-cli
 ^^^^^^^^^^^^^^^^
 
-* Changed set/get from :program:`master` to :program:`server` when updating the puppet configuration
-* Use the status endpoint instead of a CRL query to validate the puppetserver status
+* Changed set/get from :program:`master` to :program:`server` when updating the
+  puppet configuration
+* Use the status endpoint instead of a CRL query to validate the puppetserver
+  status
 * Use puppet to set the GRUB password
 * Ensure that updating entries in :file:`/etc/hosts` is idempotent
-* Removed the :program:`LOCAL` domain from the default :program:`sssd` configuration
+* Removed the :program:`LOCAL` domain from the default :program:`sssd`
+  configuration
 * No longer use the deprecated :code:`simp_options::ntpd::servers` setting
 * Simplified the instructions for the 'local user lockout' warning
 
@@ -515,8 +586,8 @@ New Features
   :local:
 
 The following items are common to most module updates and do not warrant
-specific inclusion below. For full details, see the :file:`CHANGELOG` of all delivered
-packages.
+specific inclusion below. For full details, see the :file:`CHANGELOG` of all
+delivered packages.
 
   * Removal of old Puppet version support
   * Removal of EL6 support
@@ -526,24 +597,26 @@ packages.
 pupmod-simp-ds389
 ^^^^^^^^^^^^^^^^^
 
-* New module for managing 389-DS
+* New module for managing 389 DS
 
 pupmod-simp-gnome
 ^^^^^^^^^^^^^^^^^
 
 * Removed support for GNOME2 since EL6 is no longer supported
-  * Also removed all gconf parameters and settings since they no longer have any use
+* Also removed all gconf parameters and settings since they no longer have any
+  use
 
 pupmod-simp-logrotate
 ^^^^^^^^^^^^^^^^^^^^^
 
-* Allow all log size configuration parameters to be specified in bytes, kilobytes, megabytes, or
-  gigabytes
+* Allow all log size configuration parameters to be specified in bytes,
+  kilobytes, megabytes, or gigabytes
 
 pupmod-simp-pam
 ^^^^^^^^^^^^^^^
 
-* Added a :program:`pre` section for setting auth file content to work with third party plugins
+* Added a :program:`pre` section for setting auth file content to work with
+  third party plugins
 * Added the ability to set extra content in the :program:`su` configuration
 
 pupmod-simp-resolv
@@ -556,7 +629,8 @@ pupmod-simp-resolv
 pupmod-simp-rsyslog
 ^^^^^^^^^^^^^^^^^^^
 
-Please read the module documentation and :file:`CHANGELOG` since there were numerous changes!
+Please read the module documentation and :file:`CHANGELOG` since there were
+numerous changes!
 
 * Dropped support for :program:`rsyslog` < 8.24.0
 * Added the ability to set the default template used for forwarding via
@@ -582,8 +656,8 @@ Please read the module documentation and :file:`CHANGELOG` since there were nume
 pupmod-simp-simp
 ^^^^^^^^^^^^^^^^
 
-* Added :code:`simp::puppetdb::disable_update_checking` to disable default analytics
-  in accordance with NIST guidance
+* Added :code:`simp::puppetdb::disable_update_checking` to disable default
+  analytics in accordance with NIST guidance
 * :program:`puppetdb` now sets :code:`UseCodeCacheFlushing` by default
 * The :program:`sssd` client configuration now sets the LDAP schema based on the
   :code:`simp::sssd:;client::ldap_server_type`
@@ -592,7 +666,7 @@ pupmod-simp-simp
 pupmod-simp-simp_ds389
 ^^^^^^^^^^^^^^^^^^^^^^
 
-* New module providing SIMP-specific settings for 389-DS for providing a
+* New module providing SIMP-specific settings for 389 DS for providing a
   suitable replacement for OpenLDAP
 
 pupmod-simp-simp_gitlab
@@ -666,9 +740,10 @@ simp-utils
 rubygem-simp-cli
 ^^^^^^^^^^^^^^^^
 
-* Removed management of :program:`puppetdb` components since it is no longer enabled by default
+* Removed management of :program:`puppetdb` components since it is no longer
+  enabled by default
 * Removed support for EL6
-* Use OpenLDAP by default on EL7 and 389-DS otherwise
+* Use OpenLDAP by default on EL7 and 389 DS otherwise
 * Set the defaults for both :program:`ntpd` and :program:`chronyd`
 
 Known Bugs and Limitations
