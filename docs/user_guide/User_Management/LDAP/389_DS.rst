@@ -2,7 +2,7 @@ Managing 389-DS Accounts
 ========================
 
 This section provides information on managing accounts in a SIMP-configured
-:term:`389-DS` server.
+:term:`389 DS` server.
 
 .. toctree::
    :maxdepth: 2
