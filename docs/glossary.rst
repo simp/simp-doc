@@ -10,13 +10,20 @@ Glossary of Terms
 .. glossary::
    :sorted:
 
+   389 DS
    389-DS
    389 Directory Server
-      An enterprise-class :term:`FOSS` :term:`LDAP` server for Linux.
+      An enterprise-class :term:`FOSS` :term:`LDAP` server for Linux, capable
+      of providing a full multi-master LDAPv3 infrastructure.
 
-      See: `389 Directory Server <https://directory.fedoraproject.org>`__
-      See Also: :term:`Red Hat Directory Server`
-      See Also: :term:`FreeIPA`
+      389 DS provides the main data store and directory service components for
+      :term:`FreeIPA` and IdM. :term:`Red Hat Directory Server` is the
+      commercially-supported version of 389 DS.
+
+      In SIMP, 389 DS replaces the (deprecated) :term:`OpenLDAP` server as
+      the default LDAP service for EL8+.
+
+      Website: https://directory.fedoraproject.org
 
    ACL
    Access Control List
@@ -71,10 +78,11 @@ Glossary of Terms
       Source: `Wikipedia: BIOS <https://en.wikipedia.org/wiki/BIOS>`__
 
    Bolt
-      An open source task runner that automates the manual work that
-      system administrators do to maintain their infrastructure. Bolt
-      can be used to automate tasks that you perform on your
-      infrastructure on an as-needed basis.
+   Puppet Bolt
+      An agentless open-source automation and orchestration tool that can execute
+      any scripts or commands as ad hoc tasks, coordinating them with logic in
+      :term:`Puppet DSL` plans.  Bolt's plugins, plans, and tasks are designed
+      to be distributed in Puppet modules.
 
       Source: `Puppetlabs Bolt <https://puppet.com/docs/bolt/latest/bolt.html>`__
 
@@ -320,7 +328,8 @@ Glossary of Terms
 
    FOSS
    Open Source
-      Following an Open Source Initiative approved License.
+      Software licensed in a manner that keeps its source code publicly
+      accessible and free to modify and redistribute.
 
       See: `The Open Source Definition <https://opensource.org/osd-annotated>`__
 
@@ -332,12 +341,23 @@ Glossary of Terms
       can only be interpreted one way.
 
    FreeIPA
-      A :term:`FOSS` identity management solution.
+      A :term:`FOSS` identity management solution for Linux, with an emphasis
+      on ease-of-use.
 
-      See: `FreeIPA <https://freeipa.org/page/Main_Page>`__
+      FreeIPA is managed from simple web interface and CLI commands.  Behind
+      the scenes, it combines :term:`389 DS`, MIT :term:`Kerberos`,
+      :term:`NTP`, :term:`DNS`, and the Dogtag PKI certificate manager.  Client
+      systems interact with FreeIPA via :term:`SSSD`.
+
+      Red Hat Identity Management (IdM) is the commercial subscription version
+      of FreeIPA.
+
+      Website: https://freeipa.org
 
    Git
-      A version control system that supports branches.
+      A distributed version control system that supports branches.
+
+      Website: https://www.git-scm.com
 
    GPG
    GnuPG
@@ -370,9 +390,14 @@ Glossary of Terms
       computer data.
 
    Hiera
-      A key/value lookup tool for configuration data, built to make
-      :term:`Puppet` better and let you set node-specific data without
-      repeating yourself.
+      A key/value lookup tool for user-defined data hierarchies, generally
+      organized based on :term:`Facter` facts.  :term:`Puppet` uses Hiera as it
+      compiles catalogs to provide data during :term:`Automatic Parameter
+      Lookup` or explicit :code:`lookup()` calls.
+
+      Hiera's hierarchy and data are usually stored as :term:`YANL` or
+      :term:`EYAML` files in the :term:`Control Repository`.  However, data can
+      be provided from any source with a custom :term:`Hiera backend`.
 
       Source: `Hiera Overview <https://docs.puppet.com/hiera/latest/>`__
 
@@ -380,7 +405,10 @@ Glossary of Terms
       A :term:`Hiera` plugin used to retrieve information from a data source
       and return it appropriately for use in :term:`Puppet`.
 
-      See: `Hiera: How custom backends work <https://puppet.com/docs/puppet/latest/hiera_custom_backends.html>`__
+      See: `Hiera: Writing new data backends <https://puppet.com/docs/puppet/latest/hiera_custom_backends.html>`__
+
+      The :term:`SIMP Compliance Engine` uses a custom Hiera backend to enforce
+      :term:`Compliance Profile` settings.
 
    hiera-eyaml
    Hiera eyaml
@@ -408,8 +436,8 @@ Glossary of Terms
       distributed as RubyGems.
 
       The ``eyaml`` backend and CLI command are provided by the
-      :package:`hiera-eyaml` RubyGem, which has been packaged as part of the
-      :term:`Puppet Server` since 5.2 (SIMP 6.3.0-0).
+      :package:`hiera-eyaml` RubyGem, which is been packaged as part of the
+      :term:`Puppet Server`.
 
          | Puppet documentation: `Configuring a hierarchy level: hiera-eyaml <https://puppet.com/docs/puppet/latest/hiera_config_yaml_5.html#hiera_eyaml>`__
          | GitHub project for the :package:`hiera-eyaml` gem: `<https://github.com/voxpupuli/hiera-eyaml>`__
@@ -602,6 +630,19 @@ Glossary of Terms
 
       Source: `OATH Reference Architecture <https://openauthentication.org/wp-content/uploads/2015/09/ReferenceArchitectureVersion2.pdf>`__
 
+   NTP
+   Network Time Protocol
+      A networking protocol designed to keep computer systems' clocks within a few
+      milliseconds of each other.
+
+      SIMP manages NTP servers and clients on EL7 using :pupmod:`simp/ntpd` and
+      on EL8 using :pupmod:`voxpopuli/chrony`.
+
+      See: `Wikipedia: Network Time Protocol <https://en.wikipedia.org/wiki/Network_Time_Protocol>`__
+
+      Website: https://www.ntp.org
+
+
    OpenSCAP
       The OpenSCAP project provides tools that are free to use anywhere you
       like, for any purpose. Availability of the code results in greater
@@ -611,9 +652,15 @@ Glossary of Terms
       Source: `OpenSCAP Features <https://www.open-scap.org/features/>`__
 
    OpenLDAP
-      A :term:`FOSS` implementation of :term:`LDAP`.
+      A :term:`FOSS` implementation of :term:`LDAP`.  The full suite
+      includes a server, libraries, utilities, and "sample" LDAP clients.
 
-      See: `OpenLDAP <https://www.openldap.org>`__
+      SIMP managed the OpenLDAP server as a default LDAP service through EL7.
+      However, the :package:`openldap-servers` package was `deprecated in
+      EL7.4`_ and removed in EL8.  SIMP supports the :term:`389 Directory
+      Server` as a replacement on EL8+.
+
+      See: `OpenLDAP website <https://www.openldap.org>`__
 
    OPSEC
    Operations Security
@@ -799,14 +846,14 @@ Glossary of Terms
       Linux® are GPG signed by Red Hat®, Inc. to indicate that they were
       supplied by Red Hat®, Inc.
 
-      See also :term:`RHEL`.
+      See also :term:`Red Hat Enterprise Linux`
 
    Red Hat Directory Server
    RHDS
-     A commercially supported :term:`LDAP` offering from :term:`Red Hat` based
-     on :term:`389-DS`.
+     A commercially-supported :term:`LDAP` server from :term:`Red Hat`, based
+     on :term:`389 DS`.
 
-     See: `Red Hat Directory Server <https://www.redhat.com/en/technologies/cloud-computing/directory-server>`__
+     Website: `Red Hat Directory Server <https://www.redhat.com/en/technologies/cloud-computing/directory-server>`__
 
    RHEL
    Red Hat Enterprise Linux
@@ -923,6 +970,7 @@ Glossary of Terms
 
       See: `SIMP Compliance Engine Repository <https://github.com/simp/pupmod-simp-compliance_markup>`__
 
+   Compliance Profile
    SIMP Compliance Profile
       A collection of data that maps policy directly to Puppet :term:`class`
       and :term:`defined type` parameters. These profiles are used by the
@@ -1032,10 +1080,10 @@ Glossary of Terms
       Source: `Stunnel Home Page <https://www.stunnel.org/>`__
 
    Sudo
-      ``sudo`` allows a permitted user to execute a command as the superuser or
-      another user, as specified by the security policy.  The invoking user's
-      real (not effective) user ID is used to determine the user name with
-      which to query the security policy.
+      :program:`sudo` allows a permitted user to execute a command as the
+      superuser or another user, as specified by the security policy.  The
+      invoking user's real (not effective) user ID is used to determine the
+      user name with which to query the security policy.
 
       Source: The ``SUDO(8)`` man page
 
@@ -1238,3 +1286,5 @@ Glossary of Terms
       used over a network or the Internet.
 
       See also :term:`RPM`.
+
+.. _deprecated in EL7.4: https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/7/html/7.4_release_notes/chap-red_hat_enterprise_linux-7.4_release_notes-deprecated_functionality_in_rhel7#idm140377684076976
