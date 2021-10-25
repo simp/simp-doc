@@ -12,7 +12,7 @@ as well as any version-specific upgrade procedures.
    strongly recommend that you:
 
    * Carefully read the CHANGELOG for the SIMP version to which you are
-     upgrading, as well as the Changelogs for any interim versions
+     upgrading, as well as the CHANGELOGs for any interim versions
      you are skipping over.
    * Test your upgrades in a development environment before deploying
      to a production environment.
