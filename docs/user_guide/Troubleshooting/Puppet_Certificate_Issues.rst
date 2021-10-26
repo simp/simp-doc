@@ -32,7 +32,7 @@ the same name, remove that client's certificate from the system.
 .. _rereg-puppet-client-certs:
 
 Puppet Client Re-Registration
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 If, for some reason, you need to re-register your client with a new server,
 simply run the following on your client once the server is ready.
@@ -53,10 +53,44 @@ After running the puppet agent, sign off the new certificate request on the
 Puppet Server Certificate Issues
 --------------------------------
 
-To fix the issue where the Puppet Server certificate was removed using
-``puppetserver ca clean``, run ``puppetserver ca generate <your puppetserver's cert name>``
-and restart the puppetserver service.
+Partial CA Setup
+^^^^^^^^^^^^^^^^
 
+If the ``puppetserver`` is interrupted during the initial setup, you may
+discover that the process appears to hang forever without ever listening on the
+expected TCP port.
+
+If this happens, when the process is killed (give it at least 10 minutes), you
+know that the CA has not set up properly if you see something like the following
+in the ``puppetserver`` log:
+
+```
+Cannot initialize CA with partial state; need all files or none.
+Found:
+/etc/puppetlabs/puppetserver/ca/serial
+Missing:
+/etc/puppetlabs/puppetserver/ca/ca_crt.pem
+/etc/puppetlabs/puppetserver/ca/ca_key.pem
+/etc/puppetlabs/puppetserver/ca/ca_crl.pem
+/etc/puppetlabs/puppetserver/ca/inventory.txt
+```
+
+To remedy this issue, run the following commands:
+
+``` bash
+puppet resource file /etc/puppetlabs/puppetserver/ca ensure=absent force=true recurse=true
+puppetserver ca setup
+```
+
+The Server Certificate was Removed
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+To fix the issue where the Puppet Server certificate was removed using
+``puppetserver ca clean``, run ``puppetserver ca generate --certname <your puppetserver's cert name>``
+and restart the ``puppetserver`` service.
+
+The SSL Directory was Removed
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 If the ``/etc/puppetlabs/puppet/ssl`` directory was removed on the Puppet Server
 (and you do not have a backup of it) or for some other reason you need
@@ -94,7 +128,9 @@ to regenerate all the Puppet certificates and the Puppet CA do the following:
       puppet resource file /etc/puppetlabs/puppetdb/ssl ensure=absent force=true recurse=true
       puppetdb ssl-setup
 
-#. Restart the ``puppetdb`` service
+#. (Optional) Restart the ``puppetdb`` service
+
+   Only do this if you wish to run puppetdb!
 
    .. code-block:: bash
 
@@ -106,8 +142,9 @@ to regenerate all the Puppet certificates and the Puppet CA do the following:
 
       puppet agent -t
 
-Puppetserver and PuppetDB certificate mismatch
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Puppetserver and PuppetDB Certificate Mismatch
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 If the puppetserver CA has been updated and the puppetdb
 certificates are not cleaned a puppet agent run produces an
