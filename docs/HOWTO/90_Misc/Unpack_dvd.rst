@@ -58,6 +58,8 @@ The following example will extract to the default location:
    are enough to kickstart a basic EL8 system but some of the application stream
    files are not extracted and added to the repository correctly.
 
+.. _howto-unpack-dvd-pxe:
+
 Extract PXE files
 -----------------
 
