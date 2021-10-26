@@ -312,12 +312,7 @@ Main Server Migration
 To upgrade your puppet server to EL8, you would follow the installation
 instructions and then the :ref:`howto-migrate-to-new-puppet-server`
 
-Migration to 389-DS from OpenLDAP
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+Migration to from OpenLDAP to 389-DS
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Scripts to transfer user and group entries from OpenLDAP to 389-DS are included
-in :package:`simp-utils`.
-
-The scripts are installed at :file:`/usr/share/simp/transition_scripts/openldap_to_389ds`.
-
-Instructions can be found in the :file:`README` in the same directory.
+See: :ref:`howto-migrate_openldap_to_389ds`.

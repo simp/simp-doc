@@ -4,6 +4,8 @@ Managing 389-DS Accounts
 This section provides information on managing accounts in a SIMP-configured
 :term:`389 DS` server.
 
+If you are migrating from OpenLDAP, see :ref:`howto-migrate_openldap_to_389ds`.
+
 .. toctree::
    :maxdepth: 2
 
