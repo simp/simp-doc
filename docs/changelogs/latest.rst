@@ -752,7 +752,11 @@ Known Bugs and Limitations
 Below are bugs and limitations known to affect this release. If you discover
 additional problems, please `submit an issue`_ to let use know.
 
-* None at this time!
+* SSSD does not always starto the ds389 LDAP server  immediately after kickstarting
+  an EL8 system.  An additional puppet run clears the problem.  The error in the log is
+
+  sssd.dataprovider.getDomains: Error [1432158215]: DP target is not configured
+
 
 .. _submit an issue: https://simp-project.atlassian.net
 .. _simp-project.com: https://simp-project.com
