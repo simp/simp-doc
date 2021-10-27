@@ -81,7 +81,7 @@ Glossary of Terms
    Puppet Bolt
       An agentless open-source automation and orchestration tool that can execute
       any scripts or commands as ad hoc tasks, coordinating them with logic in
-      :term:`Puppet DSL` plans.  Bolt's plugins, plans, and tasks are designed
+      Puppet :term:`DSL` plans.  Bolt's plugins, plans, and tasks are designed
       to be distributed in Puppet modules.
 
       Source: `Puppetlabs Bolt <https://puppet.com/docs/bolt/latest/bolt.html>`__
@@ -395,7 +395,7 @@ Glossary of Terms
       compiles catalogs to provide data during :term:`Automatic Parameter
       Lookup` or explicit :code:`lookup()` calls.
 
-      Hiera's hierarchy and data are usually stored as :term:`YANL` or
+      Hiera's hierarchy and data are usually stored as :term:`YAML` or
       :term:`EYAML` files in the :term:`Control Repository`.  However, data can
       be provided from any source with a custom :term:`Hiera backend`.
 
