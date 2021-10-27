@@ -105,12 +105,15 @@ Buildroot: %{_tmppath}/%{name}-%{version}-%{release}-buildroot
 Buildarch: noarch
 %{lua: print(package_requires) }
 Requires: links
-%if 0%{?rhel}
+%if 0%{?rhel} < 8
 BuildRequires: centos-release-scl
 BuildRequires: rh-python36
-%endif
 BuildRequires: python-pip
 BuildRequires: python-virtualenv
+%else
+BuildRequires: python3-pip
+BuildRequires: python3-virtualenv
+%endif
 BuildRequires: fontconfig
 BuildRequires: dejavu-sans-fonts
 BuildRequires: dejavu-sans-mono-fonts
@@ -134,7 +137,7 @@ Alternatively, you can read the docs at https://simp.readthedocs.org
 # We need the latest version of sphinx and rst2pdf
 # Make sure we play nice with our neighbors...
 
-%if 0%{?rhel}
+%if 0%{?rhel} < 8
 # We can't use the normal SCL commands in mock so we do this manually!
 source /opt/rh/rh-python36/enable
 %endif
