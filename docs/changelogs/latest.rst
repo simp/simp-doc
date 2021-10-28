@@ -501,6 +501,13 @@ pupmod-simp-sssd
 * Ensure that systems bound to FreeIPA, but not connected, do not cause
   compilation issues
 
+pupmod-simp-stunnel
+^^^^^^^^^^^^^^^^^^^
+
+* Worked around a bug in EL7 where a connection denied by :program:`tcpwrappers` would cause
+  :program:`stunnel` to hang and spike to 100% CPU usage indefinitely. All connections are still
+  blocked by the firewall but now are always allowed in :program:`tcpwrappers`.
+
 pupmod-simp-svckill
 ^^^^^^^^^^^^^^^^^^^
 
