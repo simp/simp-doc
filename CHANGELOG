@@ -1,3 +1,6 @@
+* Sat Nov 11 2021 Trevor Vaughan <tvaughan@sicura.us>
+- Add dist tag to the RPM
+
 * Tue Sep 07 2021 Trevor Vaughan <tvaughan@onyxpoint.com>
 - Add HOWTO for managing PuppetDB
 - Add HOWTO for enabling client reports
