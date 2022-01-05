@@ -1,0 +1,129 @@
+# When a SemVer tag is pushed, create GitHub release & trigger RPM build
+# ------------------------------------------------------------------------------
+#
+#             NOTICE: **This file is maintained with puppetsync**
+#
+# This file is updated automatically as part of a standardized asset baseline.
+#
+# The next baseline sync will overwrite any local changes to this file!
+#
+# ==============================================================================
+#
+# This pipeline uses the following GitHub Action Secrets:
+#
+#   GitHub Secret variable               Notes
+#   -------------------------------      ---------------------------------------
+#   SIMP_CORE_REF_FOR_BUILDING_RPMS      simp-core ref (tag) to use to build
+#                                        RPMs with `rake pkg:single`
+#   SIMP_DEV_GPG_SIGNING_KEY             GPG signing key's secret key
+#   SIMP_DEV_GPG_SIGNING_KEY_ID          User ID (name) of signing key
+#   SIMP_DEV_GPG_SIGNING_KEY_PASSPHRASE  Passphrase to use GPG signing key
+#
+# ------------------------------------------------------------------------------
+#
+# NOTES:
+#
+# * The CHANGELOG text is altered to remove RPM-style date headers, which don't
+#   render well as markdown on the GitHub release pages
+#
+---
+name: 'Tag: Release to GitHub'
+
+on:
+  push:
+    tags:
+      # NOTE: These filter patterns aren't actually regexes:
+      #   https://docs.github.com/en/actions/reference/workflow-syntax-for-github-actions#filter-pattern-cheat-sheet
+      - '[0-9]+\.[0-9]+\.[0-9]+'
+      - '[0-9]+\.[0-9]+\.[0-9]+\-[a-z]+[0-9]+'
+
+env:
+  PUPPET_VERSION: '~> 6'
+
+jobs:
+  create-github-release:
+    name: Deploy GitHub Release
+    if: github.repository_owner == 'simp'
+    runs-on: ubuntu-18.04
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+        with:
+          ref: ${{ github.ref }}
+          clean: true
+          fetch-depth: 0
+      - name: Get tag & annotation info (${{github.ref}})
+        id: tag-check
+        run: |
+          tag="${GITHUB_REF/refs\/tags\//}"
+          annotation="$(git for-each-ref "$GITHUB_REF" --format='%(contents)' --count=1)"
+          annotation_title="$(echo "$annotation" | head -1)"
+
+          echo "::set-output name=tag::${tag}"
+          echo "::set-output name=annotation_title::${annotation_title}"
+
+          if [[ "$tag" =~ ^(simp-|v)?[0-9]+\.[0-9]+\.[0-9]+(-(rc|alpha|beta|pre|post)?([0-9]+)?)?$ ]]; then
+            if [ -n "${BASH_REMATCH[2]}" ]; then
+              echo "::set-output name=prerelease::true"
+              annotation_title="Pre-release of ${tag}"
+            fi
+          else
+            printf '::error ::Release Tag format is not SemVer, X.Y.Z-R, X.Y.Z-<prerelease>: "%s"\n' "$RELEASE_TAG"
+            exit 88
+          fi
+
+          # Prepare annotation body as a file for the next step
+          #
+          # * The GitHub Release render the text in this file as markdown
+          # * The file is needed because :set-output only supports single lines
+          # * The `perl -pe` removes RPM-style date headers from the CHANGELOG,
+          #   because they don't render well as markdown on the Release page
+          #
+          echo "$annotation" |  tail -n +2 | \
+            perl -pe 'BEGIN{undef $/;} s/\n\* (Mon|Tue|Wed|Thu|Fri|Sat|Sun) .*?\n//smg;' > /tmp/annotation.body
+
+      - name: Create Release
+        uses: actions/create-release@v1
+        id: create_release
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          tag_name: ${{ github.ref }}
+          release_name: ${{ steps.tag-check.outputs.annotation_title }}
+          body_path: /tmp/annotation.body
+          prerelease: ${{ steps.tag-check.outputs.prerelease }}
+          draft: false
+
+  build-and-attach-rpms:
+    name: Trigger RPM release
+    needs: [ create-github-release ]
+    if: github.repository_owner == 'simp'
+    runs-on: ubuntu-18.04
+    env:
+      TARGET_REPO: ${{ github.repository }}
+    outputs:
+      prerelease: ${{ steps.tag-check.outputs.prerelease == 'true' }}
+    steps:
+      - name: Get tag & annotation info (${{github.ref}})
+        id: tag-check
+        run: echo "::set-output name=tag::${GITHUB_REF/refs\/tags\//}"
+      - name: Trigger RPM release workflow
+        uses: actions/github-script@v4
+        env:
+          DEFAULT_BRANCH: ${{ github.event.repository.default_branch }}
+          TARGET_TAG: ${{ steps.tag-check.outputs.tag }}
+        with:
+          github-token: ${{ secrets.SIMP_AUTO_GITHUB_TOKEN__REPO_SCOPE }}
+          script: |
+            const [owner, repo] = process.env.TARGET_REPO.split('/')
+            await github.request('POST /repos/{owner}/{repo}/actions/workflows/{workflow_id}/dispatches', {
+              owner: owner,
+              repo: repo,
+              workflow_id: 'release_rpms.yml',
+              ref: process.env.DEFAULT_BRANCH,
+              inputs: {
+                release_tag: process.env.TARGET_TAG
+              }
+            }).then( (result) => {
+              console.log( `== Submitted workflow dispatch: status ${result.status}` )
+            })

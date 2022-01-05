@@ -3,6 +3,14 @@
 # * Cancels all GLCI pipelines associated with the PR HEAD ref (branch)
 # * Removes the PR HEAD branch from the corresponding gitlab.com/org/ project
 #
+# ------------------------------------------------------------------------------
+#
+#             NOTICE: **This file is maintained with puppetsync**
+#
+# This file is updated automatically as part of a standardized asset baseline.
+#
+# The next baseline sync will overwrite any local changes to this file!
+#
 # ==============================================================================
 #
 # GitHub Action Secrets variables available for this pipeline:
