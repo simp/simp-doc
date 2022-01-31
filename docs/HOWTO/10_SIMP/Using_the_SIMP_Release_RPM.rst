@@ -9,12 +9,15 @@ Download Details
 Location
 ^^^^^^^^
 
-The latest SIMP Community Release RPM is always available at https://download.simp-project.com/simp-release-community.rpm.
+The latest SIMP Community Release RPMs are always available at https://download.simp-project.com/.
 Install it by running:
 
 .. code-block:: bash
+   # el7 Install
+   sudo yum install https://download.simp-project.com/simp-release-community.el7.rpm
 
-   sudo yum install https://download.simp-project.com/simp-release-community.rpm
+   # el8 Install
+   sudo yum install https://download.simp-project.com/simp-release-community.el8.rpm
 
 RPM Contents and Actions
 ^^^^^^^^^^^^^^^^^^^^^^^^
@@ -120,12 +123,16 @@ but access the vendor specific repositories maintained there.
 SIMP Enterprise Release RPM
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-The latest SIMP Enterprise Release RPM is always available at https://download.simp-project.com/simp-release-enterprise.rpm.
+The latest SIMP Enterprise Release RPMs are always available at https://download.simp-project.com/.
 You can install it as ``root`` by running
 
 .. code-block:: bash
 
-   yum install https://download.simp-project.com/simp-release-enterprise.rpm
+   # el7 Install
+   yum install https://download.simp-project.com/simp-release-enterprise.el7.rpm
+
+   # el8 Install
+   yum install https://download.simp-project.com/simp-release-enterprise.el8.rpm
 
 The Enterprise Release RPM includes the same files as the Community version, with added repo files for SIMP Enterprise, SIMP Console, and SIMP Scanner.
 
