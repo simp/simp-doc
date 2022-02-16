@@ -27,6 +27,7 @@
 # * If triggered by another workflow, it will be necessary to provide a GitHub
 #   access token via the the `target_repo_token` parameter
 #
+#
 ---
 name: 'RELENG: Build + attach RPMs to GitHub Release'
 
@@ -62,6 +63,10 @@ on:
       target_repo_token:
         description: "API token for uploading to target repo"
         required: false
+      path_to_build:
+        # Example: simp-core builds pupmod from . and simp* from src/assets/simp
+        description: "Subpath to alternative RPM project"
+        required: false
       dry_run:
         description: "Dry run (Test-build RPMs)"
         required: false
@@ -92,7 +97,7 @@ jobs:
             exit 88
           fi
 
-          if [[ "$RELEASE_TAG" =~ ^(simp-|v)?([0-9]+\.[0-9]+\.[0-9]+)(-(rc|alpha|beta|pre)?([0-9]+)?)?$ ]]; then
+          if [[ "$RELEASE_TAG" =~ ^(simp-|v)?([0-9]+\.[0-9]+\.[0-9]+)(-(rc|RC|[Aa]lpha|[Bb]eta|pre|post)?([0-9]+)?)?$ ]]; then
             if [ -n "${BASH_REMATCH[5]}" ]; then
               echo "::set-output name=prebuild_number::${BASH_REMATCH[5]#-}"
             fi
@@ -104,7 +109,7 @@ jobs:
             fi
           else
             printf '::error ::Release Tag format is not SemVer, X.Y.Z-R, X.Y.Z-<prerelease>: "%s"\n' "$RELEASE_TAG"
-            echo exit 88
+            exit 88
           fi
 
       - name: >
@@ -206,7 +211,7 @@ jobs:
         #
         run: |
           mkdir -p build/rpm_metadata
-          # simp-doc uses a different file format for /release (:facepalm:)
+          # Special case for simp-doc's unique data format in /release
           if [[ "$TARGET_REPO" =~ ^simp\/simp-doc$ ]]; then
             echo "version: $BUILD_SEMVER" > build/rpm_metadata/release
             echo "release: 0.${PREBUILD_NUMBER:-$GITHUB_RUN_NUMBER}.${PREBUILD_TAG}" >> build/rpm_metadata/release
@@ -228,7 +233,8 @@ jobs:
           gpg_signing_key_passphrase: ${{ secrets.SIMP_DEV_GPG_SIGNING_KEY_PASSPHRASE }}
           simp_core_ref_for_building_rpms: ${{ secrets.SIMP_CORE_REF_FOR_BUILDING_RPMS }}
           simp_builder_docker_image: 'docker.io/simpproject/simp_build_${{ github.event.inputs.build_container_os }}:latest'
-          verbose: "${{ github.event.inputs.verbose }}"
+          path_to_build: "${{ (github.event.inputs.path_to_build != null && format('{0}/{1}', github.workspace, github.event.inputs.path_to_build)) || github.workspace }}"
+          verbose: ${{ github.event.inputs.verbose }}
 
       - name: "Wipe all previous assets from GitHub Release (when clean == 'yes')"
         if: ${{ github.event.inputs.clean == 'yes' && github.event.inputs.dry_run != 'yes' }}
@@ -249,7 +255,7 @@ jobs:
               await github.repos.deleteReleaseAsset({ owner, repo, asset_id })
             })
 
-      - name: 'Upload RPM file(s) to GitHub Release (github-script)'
+      - name: "Upload RPM file(s) to GitHub Release (dry_run != 'yes')"
         if: ${{ github.event.inputs.dry_run != 'yes' }}
         uses: actions/github-script@v4
         env:
