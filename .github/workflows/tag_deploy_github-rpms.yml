@@ -27,7 +27,7 @@
 #   render well as markdown on the GitHub release pages
 #
 ---
-name: 'Tag: Release to GitHub'
+name: 'Tag: Release to GitHub w/RPMs'
 
 on:
   push:
@@ -44,7 +44,9 @@ jobs:
   create-github-release:
     name: Deploy GitHub Release
     if: github.repository_owner == 'simp'
-    runs-on: ubuntu-18.04
+    runs-on: ubuntu-latest
+    outputs:
+      prerelease: ${{ steps.tag-check.outputs.prerelease }}
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
@@ -52,6 +54,7 @@ jobs:
           ref: ${{ github.ref }}
           clean: true
           fetch-depth: 0
+
       - name: Get tag & annotation info (${{github.ref}})
         id: tag-check
         run: |
@@ -59,18 +62,20 @@ jobs:
           annotation="$(git for-each-ref "$GITHUB_REF" --format='%(contents)' --count=1)"
           annotation_title="$(echo "$annotation" | head -1)"
 
-          echo "::set-output name=tag::${tag}"
-          echo "::set-output name=annotation_title::${annotation_title}"
 
           if [[ "$tag" =~ ^(simp-|v)?[0-9]+\.[0-9]+\.[0-9]+(-(rc|alpha|beta|pre|post)?([0-9]+)?)?$ ]]; then
             if [ -n "${BASH_REMATCH[2]}" ]; then
-              echo "::set-output name=prerelease::true"
+              prerelease=yes
               annotation_title="Pre-release of ${tag}"
             fi
           else
             printf '::error ::Release Tag format is not SemVer, X.Y.Z-R, X.Y.Z-<prerelease>: "%s"\n' "$RELEASE_TAG"
             exit 88
           fi
+
+          echo "::set-output name=tag::${tag}"
+          echo "::set-output name=prerelease::${prerelease}"
+          echo "::set-output name=annotation_title::${annotation_title}"
 
           # Prepare annotation body as a file for the next step
           #
@@ -91,23 +96,26 @@ jobs:
           tag_name: ${{ github.ref }}
           release_name: ${{ steps.tag-check.outputs.annotation_title }}
           body_path: /tmp/annotation.body
-          prerelease: ${{ steps.tag-check.outputs.prerelease }}
+          prerelease: ${{ steps.tag-check.outputs.prerelease  == 'yes'}}
           draft: false
 
   build-and-attach-rpms:
     name: Trigger RPM release
     needs: [ create-github-release ]
     if: github.repository_owner == 'simp'
-    runs-on: ubuntu-18.04
+    runs-on: ubuntu-latest
     env:
       TARGET_REPO: ${{ github.repository }}
-    outputs:
-      prerelease: ${{ steps.tag-check.outputs.prerelease == 'true' }}
+    strategy:
+      matrix:
+        os:
+          - centos7
+          - centos8
     steps:
       - name: Get tag & annotation info (${{github.ref}})
         id: tag-check
         run: echo "::set-output name=tag::${GITHUB_REF/refs\/tags\//}"
-      - name: Trigger RPM release workflow
+      - name: Trigger RPM release workflow (${{ matrix.os }})
         uses: actions/github-script@v4
         env:
           DEFAULT_BRANCH: ${{ github.event.repository.default_branch }}
@@ -122,8 +130,11 @@ jobs:
               workflow_id: 'release_rpms.yml',
               ref: process.env.DEFAULT_BRANCH,
               inputs: {
-                release_tag: process.env.TARGET_TAG
+                release_tag: process.env.TARGET_TAG,
+                clean: 'no',
+                clobber: 'yes',
+                build_container_os: '${{ matrix.os }}'
               }
-            }).then( (result) => {
-              console.log( `== Submitted workflow dispatch: status ${result.status}` )
+            }).then((result) => {
+              console.log( `== Submitted workflow dispatch to build RPMs from ${{ matrix.os }}: status ${result.status}` )
             })
