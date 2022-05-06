@@ -106,7 +106,7 @@ need to be noted:
 * *No direct MATCH entry support*:
      Due to their complexity, :code:`Match` entries are not supported.  However,
      you can add them using the :code:`sshd_config_match` resource from the
-     `herculesteam-augeasproviders_ssh`_ module.  Since :pupmod:`simp/ssh` uses
+     :pupmod:`puppet/augeasproviders_ssh` module.  Since :pupmod:`simp/ssh` uses
      this module internally, the :code:`sshd_config_match` resource will be
      available to you on any node using :pupmod:`simp/ssh`.
 
@@ -161,7 +161,7 @@ Managing Additional Settings with ``ssh_config``
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 Starting with version **6.4.0** of the :pupmod:`simp/ssh` module, you can use the
-`ssh_config`_ resource from the `herculesteam-augeasproviders_ssh`_ module to
+`ssh_config`_ resource from the :pupmod:`puppet/augeasproviders_ssh` module to
 manage settings that the module does not cover.
 
 For instance, to ensure that the default host entry's :code:`RequestTTY` option is
@@ -176,5 +176,4 @@ set to ``auto``:
      value  => 'auto',
    }
 
-.. _herculesteam-augeasproviders_ssh: https://github.com/hercules-team/augeasproviders_ssh
 .. _ssh_config: https://github.com/hercules-team/augeasproviders_ssh/blob/master/README.md

@@ -91,6 +91,8 @@ Glossary of Terms
       An Enterprise-grade Operating System that is mostly compatible with a
       prominent Linux distribution.
 
+      Homepage: https://centos.org/
+
    CA
    Certificate Authority
       An entity that issues :term:`X.509` digital certificates.
@@ -270,7 +272,7 @@ Glossary of Terms
       centrally stores your data so you can discover the expected and uncover
       the unexpected.
 
-      Source: `Elasticsearch Homepage <https://www.elastic.co/products/elasticsearch>`__
+      Source: `Elasticsearch Homepage <https://www.elastic.co/elasticsearch>`__
 
    ELG
       An acronym for :term:`Elasticsearch`, :term:`Logstash`, and
@@ -302,7 +304,7 @@ Glossary of Terms
       including buildsystem, bugzilla instance, updates manager, mirror manager
       and more.
 
-      Source: `EPEL Homepage <https://fedoraproject.org/wiki/EPEL>`__
+      Source: `EPEL Homepage <https://docs.fedoraproject.org/en-US/epel>`__
 
    FACL
    File Access Control List
@@ -322,9 +324,12 @@ Glossary of Terms
       Commerce pursuant to the Federal Information Security Management Act
       (FISMA)
 
-      The particular standard of note in SIMP is `FIPS 140-2 <http://csrc.nist.gov/publications/fips/fips140-2/fips1402.pdf>`__
+      The particular standards of note in SIMP are:
 
-      Source: `FIPS Publications <http://csrc.nist.gov/publications/PubsFIPS.html>`__
+      * `FIPS 140-2 <http://csrc.nist.gov/publications/fips/fips140-2/fips1402.pdf>`__
+      * `FIPS 140-3 <https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.140-3.pdf>`__
+
+      Source: `FIPS Publications <https://csrc.nist.gov/publications/fips>`__
 
    FOSS
    Open Source
@@ -352,7 +357,7 @@ Glossary of Terms
       Red Hat Identity Management (IdM) is the commercial subscription version
       of FreeIPA.
 
-      Website: https://freeipa.org
+      Website: https://www.freeipa.org/page/Main_Page
 
    Git
       A distributed version control system that supports branches.
@@ -539,7 +544,7 @@ Glossary of Terms
       from a multitude of sources simultaneously, transforms it, and then sends
       it to your favorite “stash.”
 
-      Source: `Logstash Homepage <https://www.elastic.co/products/logstash>`__
+      Source: `Logstash Homepage <https://www.elastic.co/logstash>`__
 
    LUKS
    Linux Unified Key Setup
@@ -600,7 +605,7 @@ Glossary of Terms
       A set of publications that provide computer/cyber/information security
       and guidelines, recommendations, and reference materials.
 
-      See: `NIST Special Publications <http://csrc.nist.gov/publications/PubsSPs.html>`__
+      See: `NIST Special Publications <https://csrc.nist.gov/publications/sp>`__
 
    NIST 800-53
    NIST SP 800-53
@@ -640,7 +645,7 @@ Glossary of Terms
 
       See: `Wikipedia: Network Time Protocol <https://en.wikipedia.org/wiki/Network_Time_Protocol>`__
 
-      Website: https://www.ntp.org
+      Website: http://www.ntp.org
 
 
    OpenSCAP
@@ -861,6 +866,8 @@ Glossary of Terms
       RHEL is designed to provide an Enterprise-ready Linux distribution
       suitable to multiple target applications.
 
+      Homepage: https://www.redhat.com/en/technologies/linux-platforms/enterprise-linux
+
    RPM
    RPM Package Manager
       A package management system. The name RPM is associated with the .rpm
@@ -912,7 +919,7 @@ Glossary of Terms
    Security Content Automation Protocol
       A synthesis of interoperable specifications derived from community ideas.
 
-      Source: `SCAP Homepage <https://scap.nist.gov/>`__
+      Source: `SCAP Homepage <https://csrc.nist.gov/projects/security-content-automation-protocol/>`__
 
    SSG
    SCAP Security Guide
@@ -1145,7 +1152,7 @@ Glossary of Terms
       Tlog has replaced :term:`Sudosh` as the preferred terminal logging
       program in SIMP.
 
-      source: `The Tlog home page <https://github.com/Scribery/tlog/blob/master/README.md>`__
+      source: `The Tlog home page <https://github.com/Scribery/tlog/blob/main/README.md>`__
 
    TLS
    Transport Layer Security

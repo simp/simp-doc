@@ -22,8 +22,7 @@ module that runs with every Puppet run.
 The svckill module:
 
 -  Collects a list of all services on the system. These are the same
-   services that the user sees after typing ``chkconfig --list`` on EL6
-   or ``systemctl list-unit-files --type=service --state=enabled`` on EL > 6.
+   services that the user sees using ``systemctl list-unit-files --type=service --state=enabled``
 
 -  Ignores certain critical services, including those for Puppet,
    IPtables/firewalld, and the network.

@@ -21,9 +21,8 @@ Survey EL6 Systems
 
 .. WARNING::
 
-   Maintenance Updates for EL6 are EOL, and will stop on November 30 2020 for
-   both `CentOS <https://wiki.centos.org/About/Product>`_ and `RHEL
-   <https://access.redhat.com/support/policy/updates/errata#Maintenance_Support_2_Phase>`_.
+   Maintenance Updates for EL6 are EOL, and will stop on November 30 2020 for both :term:`CentOS`
+   and :term:`RHEL`.
 
    The SIMP 6.5.0 changelog contains a
    :ref:`list of (optional) Puppet modules that no longer support EL6 <changelog-6.5.0-el6-support-dropped-from-some-optional-puppet-modules>`.

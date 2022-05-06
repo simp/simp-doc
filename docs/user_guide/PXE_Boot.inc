@@ -100,8 +100,7 @@ This section describes how to configure the kickstart server.
      replaced with the use of two scripts, both provided by the
      :code:`simp::server::kickstart` class:
 
-     - A :program:`systemd` unit file for CentOS 7 (:file:`simp_client_bootstrap.service`)
-       or a :program:`systemv` init script for CentOS 6 (:file:`simp_client_bootstrap`).
+     - A :program:`systemd` unit file
      - A common bootstrap script (:file:`bootstrap_simp_client`) used by both.
 
 .. NOTE::
@@ -177,7 +176,7 @@ Verify the static files are in the correct location:
 5. Next, you need to set up the boot files for either BIOS boot mode, UEFI
    mode, or both.
 
-  For more information, see the `RedHat 7 Installation Source`_  or `RedHat 6
+  For more information, see the `RedHat 7 Installation Source`_  or `RedHat 8
   Installation Source`_ Installation Guides.
 
    .. NOTE::
@@ -197,7 +196,7 @@ to set up the various files to model different systems.
    a mapping of MAC addresses to each model.
 
    Use the source code example below. Linux model examples are given for
-   CentOS 6 and 7 using both UEFI and BIOS boot mode.
+   CentOS 7 and 8 using both UEFI and BIOS boot mode.
 
    * Replace :code:`KSSERVER` with the IP address of kickstart server (or the code
      to look up the IP Address using :term:`Hiera`).
@@ -217,7 +216,7 @@ to set up the various files to model different systems.
      .. NOTE::
 
         If using the default cfg files, know that they do not have the
-        :file:`_el{[6,7]}` tags at the end of their names.
+        :file:`_el{[8,7]}` tags at the end of their names.
 
      .. NOTE::
 
@@ -244,13 +243,12 @@ to set up the various files to model different systems.
             extra  => "inst.noverifyssl ksdevice=bootif simp_disk_crypt\nipappend 2"
           }
 
-          # For CentOS/RedHat 6 Legacy/BIOS boot
-          # Note the difference in the `extra` arguments here.
-          tftpboot::linux_model { 'el6_x86_64':
+          # For CentOS/RedHat 8 Legacy/BIOS boot
+          tftpboot::linux_model { 'el8_x86_64':
             kernel => 'OSTYPE-MAJORRELEASE-ARCH/vmlinuz',
             initrd => 'OSTYPE-MAJORRELEASE-ARCH/initrd.img',
-            ks     => "https://KSSERVER/ks/pupclient_x86_64_el6.cfg",
-            extra  => "noverifyssl ksdevice=bootif simp_disk_crypt\nipappend 2"
+            ks     => "https://KSSERVER/ks/pupclient_x86_64_el8.cfg",
+            extra  => "inst.noverifyssl ksdevice=bootif simp_disk_crypt\nipappend 2"
           }
 
           #------
@@ -270,14 +268,12 @@ to set up the various files to model different systems.
             extra  => "inst.noverifyssl simp_disk_crypt"
           }
 
-          # For CentOS/RedHat 6 UEFI boot
-          # Note the extra attribute legacy_grub.
-          tftpboot::linux_model_efi { 'el6_x86_64_efi':
+          # For CentOS/RedHat 8 UEFI boot
+          tftpboot::linux_model_efi { 'el8_x86_64_efi':
             kernel      => 'OSTYPE-MAJORRELEASE-ARCH/vmlinuz',
             initrd      => 'OSTYPE-MAJORRELEASE-ARCH/initrd.img',
-            ks          => "https://KSSERVER/ks/pupclient_x86_64_el6.cfg",
-            extra       => "noverifyssl simp_disk_crypt",
-            legacy_grub => true
+            ks          => "https://KSSERVER/ks/pupclient_x86_64_el8.cfg",
+            extra       => "inst.noverifyssl simp_disk_crypt"
           }
 
           #------
@@ -330,9 +326,9 @@ to set up the various files to model different systems.
    use, depending upon the boot mode of the PXE client. These changes are
    needed if you are booting UEFI systems.
 
-For more information see the `RedHat 6 PXE`_ or `RedHat 7 PXE`_ Installation Guides.
+For more information see the `RedHat 8 PXE`_ or `RedHat 7 PXE`_ Installation Guides.
 
 .. _RedHat 7 PXE: https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/7/html/installation_guide/chap-installation-server-setup#sect-network-boot-setup
 .. _RedHat 7 Installation Source: https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/7/html/installation_guide/sect-making-media-additional-sources#sect-making-media-sources-network
-.. _RedHat 6 PXE: https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/6/html/installation_guide/s1-netboot-pxe-config
-.. _RedHat 6 Installation Source: https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/6/html/installation_guide/ch-Preparing-x86#s1-steps-network-installs-x86
+.. _RedHat 8 PXE: https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/8/html/system_design_guide/getting-started_system-design-guide#booting-the-installation-using-pxe_booting-the-installer
+.. _RedHat 8 Installation Source: https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/8/html/system_design_guide/preparing-for-your-installation_system-design-guide#prepare-installation-source_preparing-for-your-installation

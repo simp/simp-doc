@@ -10,8 +10,7 @@ Most files have more restrictive permissions than provided by the RPMs. Some
 services, like ``openldap``, run as a service specific system user.
 
 
-The following exceptions are a combination of running the above command on an EL 6
-and EL 7 SIMP system:
+The following exceptions are a combination of running the above command on an EL 7 SIMP system:
 
 .. csv-table::
    :header-rows: 1

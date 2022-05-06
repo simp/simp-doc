@@ -362,10 +362,11 @@ integrity of data while in transit. The tables in :ref:`Flow_Enforcement`
 describe the protocols used to encrypt traffic and explain the protocols that
 cannot be protected at the transmission layer. :term:`SSH`, and :term:`TLS` all
 provide data transmission integrity and confidentiality. The software that
-controls them on Red Hat and CentOS are OpenSSH and OpenSSL. The SIMP team
-takes industry guidance into consideration when configuring these services. For
-example, the list the cryptographic ciphers available is limited to the highest
-ciphers that SIMP needs. All others are disabled.
+controls them on on the operating system are OpenSSH, OpenSSL, and GnuTLS. The SIMP team takes
+industry guidance into consideration when configuring these services. For example, the list the
+cryptographic ciphers available is limited to the highest ciphers that SIMP needs. All others are
+disabled.
+
 [:ref:`SC-8`, :ref:`SC-9`, :ref:`SC-23`, :ref:`SC-7`]
 
 Single User Mode
@@ -394,7 +395,7 @@ The *Fake CA* certificates should be replaced with your own hardware-generated
 certificates if at all possible. The *Puppet CA* may be replaced but please
 understand all ramifications to the infrastructure before doing so.
 
-More information on the Puppet CA can be found in the Puppet Labs `security documentation <https://docs.puppet.com/background/ssl/index.html>`__.
+More information on the Puppet CA can be found in the product `security documentation <https://puppet.com/docs/puppet/latest/ssl_certificates.html>`__.
 [:ref:`SC-17`, :ref:`SC-13`]
 
 .. WARNING::

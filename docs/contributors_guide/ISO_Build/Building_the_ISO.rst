@@ -258,4 +258,4 @@ repository.
 Please see the `Red Hat Guide to Configuring Yum and Yum Repositories`_ for
 additional information.
 
-.. _Red Hat Guide to Configuring Yum and Yum Repositories: https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/7/html/system_administrators_guide/ch-yum#sec-Configuring_Yum_and_Yum_Repositories
+.. _Red Hat Guide to Configuring Yum and Yum Repositories: https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/8/html/8.3_release_notes/distribution-of-content-in-rhel-8#package_management_with_yum_dnf

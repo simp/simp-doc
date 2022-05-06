@@ -312,12 +312,12 @@ For CentOS 7:
    any of its updated dependencies have been updated to reference
    the versions under test.
 
-#. Populate ``simp-core/ISO`` directory with CentOS6/7 distribution ISOs
+#. Populate ``simp-core/ISO`` directory with CentOS distribution ISOs
 
    .. code-block:: bash
 
       mkdir ISO
-      cp /net/ISO/Distribution_ISOs/CentOS-7-x86_64-1708.iso ISO/
+      <curl the distribution ISOs into the ISO directory>
 
 #. Build ISO(s).  For example,
 

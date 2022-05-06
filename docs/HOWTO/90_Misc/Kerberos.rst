@@ -39,7 +39,7 @@ Beginning with krb5
 
 The following sections give a brief guide on how to get started with manual
 Kerberos configuration and distribution of keytabs, for more information,
-please see the `official Red Hat documentation`_.
+please see the `MIT Kerberos documentation`_.
 
 Creating Admin Principals
 ^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -121,4 +121,4 @@ Once the Puppet Agent runs on the clients, your keytabs will copied to
 place as the default system keytab.
 
 .. _SIMP KRB5 Puppet Module: https://github.com/simp/pupmod-simp-krb5
-.. _official Red Hat documentation: https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/6/html/managing_smart_cards/configuring_a_kerberos_5_server
+.. _MIT Kerberos documentation: https://web.mit.edu/kerberos/krb5-latest/doc/
