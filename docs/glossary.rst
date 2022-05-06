@@ -91,6 +91,8 @@ Glossary of Terms
       An Enterprise-grade Operating System that is mostly compatible with a
       prominent Linux distribution.
 
+      Homepage: https://centos.org/
+
    CA
    Certificate Authority
       An entity that issues :term:`X.509` digital certificates.
@@ -863,6 +865,8 @@ Glossary of Terms
       A commercial Linux operating system produced by :term:`Red Hat®`, Inc.
       RHEL is designed to provide an Enterprise-ready Linux distribution
       suitable to multiple target applications.
+
+      Homepage: https://www.redhat.com/en/technologies/linux-platforms/enterprise-linux
 
    RPM
    RPM Package Manager
