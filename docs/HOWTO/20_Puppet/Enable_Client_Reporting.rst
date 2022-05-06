@@ -72,4 +72,4 @@ view of your environment.
 The :program:`puppetlast` command is provided by the :package:`simp-utils` RPM.
 
 .. _Puppetboard: https://github.com/voxpupuli/puppetboard
-.. _PuppetDB API: https://puppet.com/docs/puppetdb/latest/api/index.html
+.. _PuppetDB API: https://puppet.com/docs/puppetdb/7/api/overview.html

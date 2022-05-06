@@ -191,14 +191,12 @@ todo_include_todos = False
 if os.environ.get('SIMP_DOCS_TODO', 'false') == 'true':
     todo_include_todos = True
 
-# Need this to be > 1 for Travis
-linkcheck_retries = 3
-
 # This causes issues with our documentation
 linkcheck_anchors = False
 
 # A regex of links that the linkcheck builder should ignore
 linkcheck_ignore = [
+    r'^https?:\/\/.*samba.org',
     # ignore rpms
     r'^https?:\/\/.*\.(src\.)?rpm$',
     # ignore pdfs
@@ -212,15 +210,6 @@ linkcheck_ignore = [
     # links that the resolver has trouble with
     r'^https?:\/\/groups\.google\.com\/forum\/.+',
     r'^https?:\/\/bundler\.io/rationale\.html',
-    # Puppet redirects everything everywhere
-    r'^https?:\/\/.*\.puppet\.com(/.*|$)',
-    # NIST redirects everything everywhere
-    r'^https?:\/\/.*\.nist.gov(/.*|$)',
-    # Microsoft redirects everything everywhere
-    r'^https?:\/\/.*\.microsoft\.com(/.*|$)',
-    # SSL errors
-    r'^https?:\/\/www\.elastic\.co(/.*|$)',
-    r'^https?:\/\/opensource\.org(/.*|$)',
     # Everything from pgp.mit.edu
     r'^https?:\/\/pgp\.mit\.edu(/.*|$)',
     # These are for the templates in the release emails
@@ -228,25 +217,8 @@ linkcheck_ignore = [
     r'.*VERSION-.*NUM.*Changelog\.html',
     # Ignore github searches since they'll cause the API to timeout
     r'^https?:\/\/github\.com\/search\?.*',
-    # FIXME: Puppet is redirecting permanently instead of temporarily which
-    # they need to fix
-    r'^https?:\/\/puppet\.com\/docs\/.+\/latest\/.+',
-    # FIXME: This site is currently dead
-    r'^https?:\/\/www.open-scap.org.*',
     # Qualys randomly fails
-    r'^https?:\/\/.*.qualys\.com.*',
-    #
-    # https://wiki.x2go.org/doku.php started failing link checks because it
-    # used a newly-minted CA + cert as of 2020/12/10.  As of this comment,
-    # the latest python `certifi` release (v 2020.12.05) doesn't support the
-    # new CA.
-    #
-    # FIXME: Periodically retest with newer versions of `certifi`:
-    #    See: https://github.com/certifi/python-certifi/releases
-    #
-    r'^https?://wiki\.x2go\.org/?.*',
-    # Broken cert
-    r'^https?://freeipa.org/?.*'
+    r'^https?:\/\/.*.qualys\.com.*'
 ]
 
 # -- Options for HTML output ----------------------------------------------

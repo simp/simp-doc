@@ -1,7 +1,7 @@
 Pre-Release Checklist
 =====================
 
-The bulk of the work to release both :term:`EL` 6 and :term:`EL` 7 versions of
+The bulk of the work to release both :term:`EL` 7 and :term:`EL` 8 versions of
 a SIMP ISO is to verify that each ISO is ready for release. Below is
 the list of verifications that must be executed **for each ISO**, before
 proceeding with the release of that ISO. If any of these steps fail,
@@ -220,13 +220,12 @@ For CentOS 7:
 
       git clone https://github.com/simp/simp-core.git
       cd simp-core
-#. Populate ``simp-core/ISO`` directory with CentOS 7 distribution ISOs
+#. Populate ``simp-core/ISO`` directory with CentOS distribution ISOs
 
    .. code-block:: bash
 
       mkdir ISO
-      cp /net/ISO/Distribution_ISOs/CentOS-6.9-x86_64-bin-DVD*.iso ISO/
-      cp /net/ISO/Distribution_ISOs/CentOS-7-x86_64-1708.iso ISO/
+      <curl the latest EL8 and EL7 ISOs>
 
 #. Build each ISO for supported CentOS versions.  For example,
 

@@ -9,12 +9,11 @@ system.
 
 .. NOTE::
 
-   Prior to SSSD 1.16 (EL7+), there was a LOCAL provider. This can still be used
-   on EL6 systems but has been fully deprecated as of EL8 and is not recommended
-   for use by the vendor.
+   Prior to SSSD 1.16 (:`term:`EL 7+), there was a LOCAL provider. This has been fully deprecated as
+   on :term:`EL` 8 and should no longer be used.
 
    If you still need to use this capability, please see the documentation for
-   sssd::provider::local directly.
+   :code:`sssd::provider::local` directly.
 
 
 This section walks you through setting up local user and group support using the
@@ -27,7 +26,7 @@ presented as classes for simplicity.
 The Simple Method
 -----------------
 
-If you just want SSSD to pull from ``/etc/passwd`` and ``/etc/group`` then you
+If you just want SSSD to pull from :file:`/etc/passwd` and :file:`/etc/group` then you
 just need to set the following in :term:`Hiera`:
 
 .. code-block:: yaml
@@ -38,7 +37,7 @@ just need to set the following in :term:`Hiera`:
 Using Alternate Files
 ---------------------
 
-If you want to use your own files, as documented in the `sssd-files(5)` man
+If you want to use your own files, as documented in the :program:`sssd-files(5)` man
 page, then you will need to set up an explicit domain with the correct settings.
 
 To do this, use the following puppet code.
@@ -71,14 +70,14 @@ In ``default.yaml``:
    simp::classes:
      - 'site::sssd_local'
 
-In :term:`Hiera`, you will need to add the ``local`` ``sssd`` domain to
-``sssd::domains`` if it does not already exist.  If you wish to include the
-domain in all of ``$simp_options::trusted_nets``, simply add
-``sssd::domains`` variable to ``default.yaml``, copy existing domains from
-``simp_config_settings.yaml`` and add ``local`` to the list of domain
-``id_providers``.
+In :term:`Hiera`, you will need to add the :code:`local` :code:`sssd` domain to
+:code:`sssd::domains` if it does not already exist.
 
-In ``default.yaml``:
+If you wish to include the domain in all of :code:`$simp_options::trusted_nets`, add
+:code:`sssd::domains` variable to :file:`default.yaml`, copy existing domains from
+:file:`simp_config_settings.yaml` and add :code:`local` to the list of domain :code:`id_providers`.
+
+In :file:`default.yaml`:
 
 .. code-block:: yaml
 
@@ -86,12 +85,13 @@ In ``default.yaml``:
      - 'local'
      - <existing domains, ex. LDAP>
 
-Run ``puppet``. A ``local`` domain should be created and referenced in
-``/etc/sssd/sssd.conf`` and the ``sssd`` service should be running.
+Run :program:`puppet`.
+
+A :code:`local` domain should be created and referenced in :file:`/etc/sssd/sssd.conf` and the
+:program:`sssd` service should be running.
 
 Additional Resources
 ====================
 
 If you have any issues logging in, you may want to see the
 :ref:`Troubleshooting` section of the documentation.
-

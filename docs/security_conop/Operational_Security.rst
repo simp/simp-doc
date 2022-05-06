@@ -12,8 +12,9 @@ This section describes the management of various configurations within SIMP.
 Baseline Configurations
 ~~~~~~~~~~~~~~~~~~~~~~~
 
-SIMP baselines include configuration settings and Puppet modules.  Currently,
-baselines are maintained for both Red Hat/CentOS 6.x, and Red Hat/CentOS 7.x.
+SIMP baselines include configuration settings and Puppet modules. Currently supported baselines can
+be found in :ref:`changelog-latest`.
+
 Each configuration item that is managed by a Puppet module has an RPM installed
 on the :term:`Puppet Server` in the form of ``pupmod-name-x.x.x-x``. This process
 allows for one main SIMP baseline to be maintained and modules to be upgraded

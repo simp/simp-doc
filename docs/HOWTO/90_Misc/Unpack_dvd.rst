@@ -85,7 +85,7 @@ The following example will extract only the PXE files to the rsync directory:
    # Place the -X options after the ISO name.
    sudo su - root
    # copy the iso to the system
-   unpack_dvd -v 8.0.1905 --no-unpack-yum /myisodir/CentOS--x86_64-1905-dvd1.iso -X
+   unpack_dvd -v 8.0.1905 --no-unpack-yum /myisodir/CentOS-8-x86_64-1905-dvd1.iso -X
 
 The following example will extract both the RPMs and PXE files to alternate directories:
 
@@ -97,6 +97,6 @@ The following example will extract both the RPMs and PXE files to alternate dire
    mkdir -p /my/tftpboot
    # The PXE directory must follow the -X option.
    # The -d options changes the directory to extract OS files
-   unpack_dvd -v 8.0.1905 -d /my/repodir /myisodir/CentOS--x86_64-1905-dvd1.iso -X /my/tftpboot
+   unpack_dvd -v 8.0.1905 -d /my/repodir /myisodir/CentOS-8-x86_64-1905-dvd1.iso -X /my/tftpboot
    yum clean all && yum makecache
 

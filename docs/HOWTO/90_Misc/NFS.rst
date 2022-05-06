@@ -40,40 +40,14 @@ Known Issues
 Stunnel and Autofs
 ^^^^^^^^^^^^^^^^^^
 
-The ``autofs`` package that was released with CentOS 7.3 (`autofs-5.0.7-56`_)
-worked properly over a :term:`stunnel` connection.
+.. WARNING::
 
-The release shipped with with CentOS 7.4 (**5.0.7-69**) prevents any connection
-from happening to the local ``stunnel`` process and breaks mounts to remote systems
-over ``stunnel`` connections.
-
-The release that ship with CentOS 7.6 (**5.0.7-99**) has fixed the issue.
+   You must ensure that you are using :package:`autofs` greater than ``5.0.7-99``.
 
 To use :term:`NFS` over ``stunnel`` and ``automount`` directories with old
 CentOS 7 releases, you must use the appropriate ``autofs`` package.
 
 To determine what version of ``autofs`` is installed, run ``automount -V``.
-
-To force the package to the desired version:
-
-* Make sure the package is available via your package-management facility then
-  set the package version in :term:`Hiera`:
-
-.. code-block:: yaml
-
-   autofs::autofs_package_ensure: '5.0.7-99'
-
-* Alternatively, ensure that the latest packages are available and set the
-  following:
-
-.. code-block:: yaml
-
-   autofs::autofs_package_ensure: 'latest'
-
-
-The associated bug report can be found at:
-
-- CentOS 7  https://bugs.centos.org/view.php?id=14080.
 
 Limited Kerberos Support
 ^^^^^^^^^^^^^^^^^^^^^^^^

@@ -21,7 +21,7 @@ Enable EPEL
 
 .. NOTE::
 
-   RHEL systems will need to enable the `EPEL Repositories`_ manually.
+   RHEL systems will need to enable the :term:`EPEL` Repositories manually.
 
 .. code-block:: bash
 
@@ -72,8 +72,7 @@ can discover what extra modules are available by searching for ``pupmod`` via
 .. include:: ../jump_to_config.inc
 
 .. _AWS: https://aws.amazon.com/
-.. _EPEL Repositories: https://fedoraproject.org/wiki/EPEL
 .. _Google Cloud: https://cloud.google.com
-.. _Microsoft Azure: https://azure.microsoft.com
+.. _Microsoft Azure: https://azure.microsoft.com/en-us/
 .. _official SIMP YUM repositories: https://download.simp-project.com/simp/yum
 .. _simp-core Git repository: https://github.com/simp/simp-core/tree/master/build/distributions/CentOS/7/x86_64/DVD/ks

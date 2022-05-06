@@ -13,6 +13,7 @@ The latest SIMP Community Release RPMs are always available at https://download.
 Install it by running:
 
 .. code-block:: bash
+
    # el7 Install
    sudo yum install https://download.simp-project.com/simp-release-community.el7.rpm
 
