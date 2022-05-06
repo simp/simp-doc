@@ -26,11 +26,12 @@ OS compatibility
 This release is known to work with:
 
   * CentOS 7.0 2009 x86_64
-  * CentOS 8.4 2105 x86_64
+  * CentOS 8.5 2111 x86_64
+  * CentOS 8 Stream 20220423 x86_64
   * OEL 7.9 x86_64
-  * OEL 8.4 x86_64
+  * OEL 8.5 x86_64
   * RHEL 7.9 x86_64
-  * RHEL 8.4 x86_64
+  * RHEL 8.5 x86_64
 
 
 Full support for EL8
@@ -213,19 +214,19 @@ Puppet RPMs
 
 The following Puppet RPMs are packaged with the SIMP 6.6.0 ISOs:
 
-+-----------------------------+-----------------------------+
-| Package                     | Version                     |
-+=============================+=============================+
-| :package:`puppet-agent`     | FIXME  6.22.1-1 or 7.12.0-1 |
-+-----------------------------+-----------------------------+
-| :package:`puppet-bolt`      | FIXME  3.19.0-1 or FIXME    |
-+-----------------------------+-----------------------------+
-| :package:`puppetdb`         | FIXME  6.16.1-1 or 7.7.0-1  |
-+-----------------------------+-----------------------------+
-| :package:`puppetdb-termini` | FIXME  6.16.1-1 or 7.7.0-1  |
-+-----------------------------+-----------------------------+
-| :package:`puppetserver`     | FIXME  6.15.3-1 or 7.4.1-1  |
-+-----------------------------+-----------------------------+
++-----------------------------+----------------------+
+| Package                     | Version              |
++=============================+======================+
+| :package:`puppet-agent`     | 6.27.1-1 or 7.16.0-1 |
++-----------------------------+----------------------+
+| :package:`puppet-bolt`      | 3.22.1-1             |
++-----------------------------+----------------------+
+| :package:`puppetdb`         | 6.21.0-1 or 7.10.1-1 |
++-----------------------------+----------------------+
+| :package:`puppetdb-termini` | 6.21.0-1 or 7.10.1-1 |
++-----------------------------+----------------------+
+| :package:`puppetserver`     | 6.19.0-1 or 7.7.0-1  |
++-----------------------------+----------------------+
 
 Removed Puppet Modules
 ----------------------
@@ -234,6 +235,17 @@ The following modules were removed from the release:
 
 * :package:`simp_pki_service`
 * :package:`simp_bolt`
+
+Replaced Puppet Modules
+-----------------------
+
++---------------------------+-------------------------+
+| Original                  | Replacement             |
++===========================+=========================+
+| :pupmod:`aboe/chrony`     | :pupmod:`puppet/chrony` |
++---------------------------+-------------------------+
+| :pupmod:`camptocamp/kmod` | :pupmod:`puppet/kmod`   |
++---------------------------+-------------------------+
 
 .. _changelog-6.6.0-fixed-bugs:
 
@@ -355,8 +367,12 @@ pupmod-simp-pupmod
 
 * Changed all instances of setting items in the :code:`master` section to use
   :code:`server` instead
+* Updated :code:`pupmod::conf` to automcatically switch :code:`master` to :code:`server`
+* Automatically remove items from the puppet config in the :code:`master` section that are set in
+  the :code:`server` section
 * Added :code:`pupmod::master::sysconfig::use_code_cache_flushing` to reduce
   excessive memory usage
+* Removed SHA1 ciphers from the server cipher list
 * Disconnected the puppetserver from the system FIPS libraries since it causes
   conflicts with the vendor provided settings
 * Allow :code:`pupmod::puppet_server` to accept Arrays
@@ -414,6 +430,8 @@ pupmod-simp-selinux
 pupmod-simp-simp
 ^^^^^^^^^^^^^^^^
 
+* Updated :code:`simp::yum::repo::local_os_updates` to use the gpg keys installed into :file:`<yum
+  directory>/SIMP/GPGKEYS` to work around changes in EL8
 * Corrected the :code:`HeapDumpOnOutOfMemoryError` setting for :program:`puppetdb`
 * Ensure that :program:`nsswitch` :program:`SSSD` options for :file:`sudoers` do
   not stop on files
@@ -448,6 +466,11 @@ pupmod-simp-simp_gitlab
 * Fixed a bug where the :program:`change_gitlab_root_password` script did not
   work with GitLab after 13.6.0
 
+pupmod-simp-simp_grub
+^^^^^^^^^^^^^^^^^^^^^
+
+* Updated the documentation to better reflect GRUB2
+
 pupmod-simp-simp_nfs
 ^^^^^^^^^^^^^^^^^^^^
 
@@ -469,6 +492,7 @@ pupmod-simp-simp_openldap
 pupmod-simp-simplib
 ^^^^^^^^^^^^^^^^^^^
 
+* Fixed the call to `klist` to properly handle cache issues
 * Increased randomization in :code:`simplib::gen_random_password`
 * :code:`simplib::cron::hour_entry` now supports comma separated lists
 * :code:`simplib::cron::minute_entry` now supports comma separated lists
@@ -495,6 +519,8 @@ pupmod-simp-ssh
 pupmod-simp-sssd
 ^^^^^^^^^^^^^^^^
 
+* Added an option to :code:`sssd::install` to prevent installation of the :program:`sssd` client to
+  increase compatibility with other operating systems
 * Fixed multiple compatibility issues with non-OpenLDAP LDAP servers
 * No longer use :code:`concat` but instead drop configuration items into the
   :file:`/etc/sssd/conf.d` directory
@@ -523,6 +549,7 @@ pupmod-simp-swap
 pupmod-simp-tlog
 ^^^^^^^^^^^^^^^^
 
+* Add a :code:`file` resource if the file writer is specified
 * Corrected the login in :file:`tlog.sh.epp` in the case where a user does not
   have a login shell
 
@@ -555,6 +582,8 @@ simp-gpgkeys
 ^^^^^^^^^^^^
 
 * Fixed the target location for copying the GPG keys into the YUM repository
+* Removed EL6 keys
+* Updated the Red Hat release key
 
 simp-rsync
 ^^^^^^^^^^
@@ -606,6 +635,11 @@ pupmod-simp-ds389
 
 * New module for managing 389 DS
 
+pupmod-simp-simp_firewalld
+^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+* Added the :pupmod:`simp/simp_firewalld` module and set it to the default on EL8+
+
 pupmod-simp-gnome
 ^^^^^^^^^^^^^^^^^
 
@@ -622,6 +656,8 @@ pupmod-simp-logrotate
 pupmod-simp-pam
 ^^^^^^^^^^^^^^^
 
+* Added `dictcheck` and `faillock_log_file` parameter support
+* Added Amazon Linux 2 support
 * Added a :program:`pre` section for setting auth file content to work with
   third party plugins
 * Added the ability to set extra content in the :program:`su` configuration
@@ -663,6 +699,7 @@ numerous changes!
 pupmod-simp-simp
 ^^^^^^^^^^^^^^^^
 
+* Added EL8 support
 * Added :code:`simp::puppetdb::disable_update_checking` to disable default
   analytics in accordance with NIST guidance
 * :program:`puppetdb` now sets :code:`UseCodeCacheFlushing` by default
@@ -709,6 +746,12 @@ pupmod-simp-simplib
 * Added :program:`net.ipv6.conf.all.disable_ipv6` to the :program:`simplib_sysctl` fact
 * Added a :program:`simplib__cryhpto_policy_state` fact
 
+pupmod-simp-ssh
+^^^^^^^^^^^^^^^
+
+* Added an option to turn off managing the :code:`AuthorizedKeysFile` parameter in
+  :file:`/etc/ssh/sshd_config`
+
 pupmod-simp-sssd
 ^^^^^^^^^^^^^^^^
 
@@ -718,6 +761,11 @@ pupmod-simp-sssd
   into :file:`/etc/sssd/conf.d/zz_puppet_custom.conf`
 * Users can optionally purge the :file:`/etc/sssd/conf.d` directory if they want
   puppet to be authoritative
+
+pupmod-simp-sudo
+^^^^^^^^^^^^^^^^
+
+* Added the ability for users to create :code:`include` clauses in :file:`/etc/sudoers`
 
 pupmod-simp-tpm2
 ^^^^^^^^^^^^^^^^
@@ -759,7 +807,7 @@ Known Bugs and Limitations
 Below are bugs and limitations known to affect this release. If you discover
 additional problems, please `submit an issue`_ to let use know.
 
-* SSSD does not always start the ds389 LDAP server immediately after kickstarting
+* :program:`sssd` does not always start the :program:`ds389` LDAP server immediately after kickstarting
   an EL8 system.  An additional puppet run clears the problem.  The error in the log is
 
   sssd.dataprovider.getDomains: Error [1432158215]: DP target is not configured
