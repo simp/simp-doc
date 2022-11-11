@@ -1,22 +1,35 @@
-SIMP is designed for use by system administrators/users with a strong
-background in Linux operating systems. The core technologies that require
-prerequisite knowledge are:
+SIMP targets users with a strong background in Linux systems management.
+The core technologies that require prerequisite knowledge are:
 
-* :term:`Puppet` - 5.5 or later
-* :term:`Domain Name System` (DNS) - BIND 9
+* :term:`Puppet`
+
+* :term:`Domain Name System` (DNS) - :term:`BIND`
+
 * :term:`Dynamic Host Configuration Protocol` (DHCP) - Internet Systems
   Consortium (ISC) DHCP
-* :term:`Lightweight Directory Access Protocol` (LDAP) - :term:`OpenLDAP` for EL7 or :term:`389-DS` for EL8
+
+* :term:`Lightweight Directory Access Protocol` (LDAP)
+
+  * :term:`389-DS` for :term:`EL`\ 8
+
+  * :term:`OpenLDAP` for :term:`EL`\ 7
+
 * RedHat :term:`Kickstart`, including all technologies involved:
   :term:`Trivial File Transfer Protocol` (TFTP), :term:`PXE`, PXELinux, etc.
+
 * The Apache HTTP Server
+
 * The :term:`Yellowdog Updater, Modified` (YUM) package manager
+
 * :term:`Rsyslog` 8+
-* :term:`IPTables` (Internet Protocol Tables)/Firewalld, basic knowledge of
-  the rules
+
+* :term:`Firewalld` or :term:`IPTables`
+
 * :term:`Auditd`, Basic knowledge of how the daemon works
+
 * :term:`Advanced Intrusion Detection Environment` (AIDE), basic knowledge of
   the rules
+
 * Basic :term:`X.509`-based :term:`PKI` Key Management
 
 SIMP handles as much of the initial setup and management of these tools as
