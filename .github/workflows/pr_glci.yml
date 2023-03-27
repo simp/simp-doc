@@ -67,7 +67,7 @@ jobs:
     outputs:
       valid: ${{ steps.validate-glci-file.outputs.valid }}
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
         with:
           repository: ${{ github.event.pull_request.head.repo.full_name }}
           ref: ${{ github.event.pull_request.head.ref }}
@@ -80,11 +80,11 @@ jobs:
 
   contributor-permissions:
     name: 'PR contributor check'
-    runs-on: ubuntu-18.04
+    runs-on: ubuntu-latest
     outputs:
       permitted: ${{ steps.user-repo-permissions.outputs.permitted }}
     steps:
-      - uses: actions/github-script@v3
+      - uses: actions/github-script@v6
         id: user-repo-permissions
         with:
           github-token: ${{secrets.GITHUB_TOKEN}}
@@ -135,7 +135,7 @@ jobs:
     #     - Not implemented: For some reason, this conditional always fails
     #     - Unnecessary if on>pull_request_target>types doesn't include 'closed'
     if: github.event_name == 'pull_request_target' && ( github.event.action == 'opened' || github.event.action == 'reopened' || github.event.action == 'synchronize' ) && github.event.pull_request.merged != 'true' && needs.glci-syntax.outputs.valid == 'true' && needs.contributor-permissions.outputs.permitted == 'true'
-    runs-on: ubuntu-18.04
+    runs-on: ubuntu-latest
     steps:
       # Things we'd like to do:
       # - [ ] if there's no GitLab mirror, make one
@@ -145,7 +145,7 @@ jobs:
       #       - "created|waiting_for_resource|preparing|pending|running"
       #       - Exception: don't cancel existing pipeline for our own commit
       # - [x] if PR: force-push branch to GitLab
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
         if: needs.contributor-permissions.outputs.permitted == 'true'
         with:
           clean: true
