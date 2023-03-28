@@ -240,6 +240,18 @@ You can download it as follows (using CentOS 8 as an example):
 
    podman cp simp_build_centos8:/home/build_user/simp-core/build/distributions/CentOS/8/x86_64/SIMP_ISO .
 
+Rebuilding the ISO
+""""""""""""""""""
+
+If the ISO build fails for any reason or you simply want to re-build the ISO because you've made a change
+you need to run the following commands to clean up the previous run:
+
+.. code-block:: bash
+   rm -rf build/distributions/CentOS/8/x86_64/DVD_Overlay
+   rm -rf build/distributions/CentOS/8/x86_64/SIMP*
+
+After running these commands the ISO build can be safely re-run.
+
 Other Build Directories of Note
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
