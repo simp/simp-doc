@@ -21,6 +21,28 @@ Download the CentOS/RedHat installation media:
     repository in the :file:`build/distributions/<distribution>/<release>/<arch>`
     directory.
 
+Updating release_mappings.yaml
+""""""""""""""""""""""""""""""""
+
+It is very possible the versions outlined in the `release_mappings.yaml` are out of date,
+as such you may need to download a newer version of the installation media and create a new
+section inside of the file. You can either modify one of the existing release versions or
+create an entirely new one to house the information for the new iso. We recommend simply copying
+one of the existing releases, renaming it, and modifying the iso section as necessary.
+
+The size of the iso can be obtained with:
+
+.. code-block:: bash
+   ls -la </path/to/dvd*.iso>
+
+The checksum can be obtained with:
+
+.. code-block:: bash
+   sha256sum </path/to/dvd*.iso>
+
+After obtaining the information necessary, ensure that the iso name is correct, modify the
+build command to have the correct iso name and release version, and ensure that the OS version is correct.
+
 .. NOTE::
 
    The build process is handled by :github:`simp/rubygem-simp-rake-helpers`. If you
@@ -125,7 +147,7 @@ And the :file:`reposync` directory contains the following repositories:
 
    /BaseOS
    /appstream
-   /puppet
+   /SimpRepos/puppet
 
 The resulting ISO will contain the following:
 
@@ -148,10 +170,12 @@ You can now add the repositories that you mirrored in
    repositories will be used by default.
 
 .. code-block:: bash
+   mkdir reposync/SimpRepos
+   mv /tmp/_download_path/*/BaseOS reposync
+   mv /tmp/_download_path/*/AppStream reposync
+   mv /tmp/_download_path/*/* reposync/SimpRepos
 
-   mv /tmp/_download_path/*/* reposync
-
-At this point, the :file:`reposync` directory may contain both a :file:`puppet`
+At this point, the :file:`reposync/SimpRepos` directory may contain both a :file:`puppet`
 and :file:`puppet6` directory. If you wish to use ``puppet`` version 6 by
 default, move the :file:`puppet` directory to :file:`puppet7` and rename
 :file:`puppet6` to :file:`puppet`.
@@ -202,7 +226,10 @@ version from :file:`release_mappings.yaml`:
 .. code-block:: bash
 
    cd </path/to>/simp-core
-   bundle exec rake build:auto[$PWD/ISO,6.6]
+   SIMP_BUILD_prompt=yes \
+   SIMP_BUILD_reposync_only=yes \
+   SIMP_BUILD_distro=CentOS,8Stream,x86_64 \
+   bundle exec rake build:auto[$PWD/ISO,<release_version>] #The release_version is the desired release number defined in release_mappings.yaml
 
 Once the process completes, you should have a bootable SIMP ISO, in:
 :file:`build/distributions/<OS>/<rel>/<arch>/SIMP_ISO/`

@@ -89,7 +89,7 @@ The following provides an example of how to build and start the image:
 
    git clone https://github.com/simp/simp-core
    cd simp-core/build/Dockerfiles
-   buildah bud --layers -f SIMP_EL8_Build.dockerfile -t simp_build_centos8
+   buildah build --layers -f SIMP_EL8_Build.dockerfile -t simp_build_centos8
    podman run -id --name simp_build_centos8 simp_build_centos8
    podman exec -it simp_build_centos8 bash
    su - build_user
