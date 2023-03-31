@@ -94,7 +94,7 @@ To do this:
 .. code-block:: bash
 
    rm -rf output
-   rm -rf _donwload_data # Only if the reposync has been run
+   rm -rf _download_data # Only if the reposync has been run
    /opt/puppetlabs/bolt/bin/bolt plan run pulp3::in_one_container::destroy
    /opt/puppetlabs/bolt/bin/bolt plan run pulp3::in_one_container
    # Wait a few minutes for the service to get fully started
