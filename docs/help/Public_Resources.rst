@@ -18,43 +18,31 @@ Live Chat
 Mailing Lists
 -------------
 
-  * `SIMP Q&A Board`_
+* `SIMP Users Mailing List`_
 
-    * A Question and Answer board for the general community
+  * General user discussion
 
-  * `SIMP Users Mailing List`_
+* `SIMP Announcement List`_
 
-    * General user discussion
+  * Announcements about changes to the SIMP environment
 
- * `SIMP Developers List`_
+* `SIMP Security List`_ (security@simp-project.com)
 
-   * Discussion about development
-
- * `SIMP Announcement List`_
-
-   * Announcements about changes to the SIMP environment
-
- * `SIMP Security List`_ (security@simp-project.com)
-
-   * A post-only alias for alerting the SIMP team to security issues
-   * Use GPG Key `214BCB69`_ if you would like to encrypt messages
-   * If members of the U.S. Government wish to report a Security issue, please
-     send a message to this alias indicating that you wish to file a report
-     over official channels and someone will contact you with further
-     instructions.
+  * A post-only alias for alerting the SIMP team to security issues
 
 Bug Tracking
 ------------
 
-If you find a bug, we'd like to encourage you to file a bug in our
-`JIRA Bug Tracking`_ system. That said, we're happy to hear about issues in
-whatever manner is easiest for you.
+If you find a bug, we'd like to encourage you to file a bug in the associated project in the `SIMP GitHub`_ space.
 
-.. _214BCB69: https://pgp.mit.edu/pks/lookup?op=vindex&search=0x178D18EB214BCB69
-.. _JIRA Bug Tracking: https://simp-project.atlassian.net/
+If you do not know what project to choose, just drop it in `simp-core`_ and we'll figure it out!
+
+If you do not use GitHub, feel free to email your issues or use Slack via the links in the previous
+section.
+
 .. _SIMP Announcement List: https://groups.google.com/forum/?fromgroups#!forum/simp-announce
-.. _SIMP Developers List: https://groups.google.com/forum/?fromgroups#!forum/simp-dev
+.. _SIMP GitHub: https://github.com/simp
 .. _SIMP Project Chat: https://chat.simp-project.com
-.. _SIMP Q&A Board: https://groups.google.com/forum/?fromgroups#!forum/simp
 .. _SIMP Security List: mailto://security@simp-project.com
 .. _SIMP Users Mailing List: https://groups.google.com/forum/?fromgroups#!forum/simp-users
+.. _simp-core: https://github.com/simp/simp-core

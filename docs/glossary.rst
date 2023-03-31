@@ -69,6 +69,11 @@ Glossary of Terms
 
       Source: `Beaker Source Repository: <https://github.com/voxpupuli/beaker>`__
 
+   BIND
+     A flexible, full-featurend DNS system.
+
+     Source: `BIND 9 Homepage: <https://www.isc.org/bind/>`__
+
    BIOS
    Basic Input/Output System
       A type of firmware used to perform hardware initialization during
@@ -330,6 +335,12 @@ Glossary of Terms
       * `FIPS 140-3 <https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.140-3.pdf>`__
 
       Source: `FIPS Publications <https://csrc.nist.gov/publications/fips>`__
+
+   Firewalld
+     A dynamically managed firewall with support for network/firewall zones
+     that define the trust level of network connections or interfaces.
+
+     Source: `Firewalld Homepage <https://firewalld.org/>`__
 
    FOSS
    Open Source
