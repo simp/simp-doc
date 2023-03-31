@@ -2,7 +2,7 @@
 # ------------------------------------------------------------------------------
 #
 #             NOTICE: **This file is maintained with puppetsync**
-#
+
 # This file is updated automatically as part of a standardized asset baseline.
 #
 # The next baseline sync will overwrite any local changes to this file!
@@ -42,7 +42,7 @@ on:
 jobs:
   glci-syntax:
     name: '.gitlab-ci.yml Syntax'
-    runs-on: ubuntu-18.04
+    runs-on: ubuntu-latest
     outputs:
       valid: ${{ steps.validate-glci-file.outputs.valid }}
       pr_head_ref: ${{ steps.get-pr.outputs.pr_head_ref }}
@@ -50,7 +50,7 @@ jobs:
       pr_head_label: ${{ steps.get-pr.outputs.pr_head_label }}
       pr_head_full_name: ${{ steps.get-pr.outputs.pr_full_name }}
     steps:
-      - uses: actions/github-script@v3
+      - uses: actions/github-script@v6
         id: get-pr
         with:
           github-token: ${{secrets.NO_SCOPE_GITHUB_TOKEN}}
@@ -90,7 +90,7 @@ jobs:
             core.setOutput( 'pr_head_ref', pr.data.head.ref )
             core.setOutput( 'pr_head_label', pr.data.head.label )
             core.setOutput( 'pr_head_full_name', pr.data.head.full_name )
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
         with:
           repository: ${{ steps.get-pr.outputs.pr_head_full_name }}
           ref: ${{ steps.get-pr.outputs.pr_head_sha }}
@@ -106,9 +106,9 @@ jobs:
   trigger-when-user-has-repo-permissions:
     name: 'Trigger CI'
     needs: [ glci-syntax ]
-    runs-on: ubuntu-18.04
+    runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
         with:
           repository: ${{ needs.glci-syntax.outputs.pr_head_full_name }}
           ref: ${{ needs.glci-syntax.outputs.pr_head_sha }}
@@ -129,7 +129,7 @@ jobs:
 ###    needs: [ glci-syntax ]
 ###    name: 'Examine Context contents'
 ###    if: always()
-###    runs-on: ubuntu-18.04
+###    runs-on: ubuntu-latest
 ###    steps:
 ###      - name: Dump contexts
 ###        env:
