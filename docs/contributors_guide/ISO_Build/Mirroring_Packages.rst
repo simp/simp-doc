@@ -52,6 +52,11 @@ For example, if you are going to build CentOS 8 for SIMP 6.6.0:
    curl -O https://raw.githubusercontent.com/simp/simp-core/6.6.0-1/build/distributions/CentOS/8/x86_64/bolt_pulp3_config.yaml
    ./slim-pulp-repo-copy.rb -f bolt_pulp3_config.yaml
 
+or:
+
+.. code-block:: bash
+   ./slim-pulp-repo-copy.rb -f <path_to_cloned_simp-core_module>/build/distributions/<desired_distribution>/<desired_distribution_version>/x86_64/bolt_pulp3_config.yaml
+
 .. NOTE::
 
    You can change the ``url`` keys in the packages YAML file if you wish to use
@@ -89,7 +94,26 @@ To do this:
 .. code-block:: bash
 
    rm -rf output
-   ./slim-pulp-repo-copy.rb -f build/6.6.0/CentOS/8/x86_64/repo_packages.yaml -d
+   rm -rf _download_data # Only if the reposync has been run
+   /opt/puppetlabs/bolt/bin/bolt plan run pulp3::in_one_container::destroy
+   /opt/puppetlabs/bolt/bin/bolt plan run pulp3::in_one_container
+   # Wait a few minutes for the service to get fully started
+   ./slim-pulp-repo-copy.rb -f build/6.6.0/CentOS/8/x86_64/repo_packages.yaml
+
+If the slim-pulp-repo-copy.rb Fails
+"""""""""""""""""
+
+If the slim-pulp-repo-copy.rb fails for any reason, the pulp container
+could be in an unknown state. To ensure that nothing from the failed
+run will cause issues with future runs, do the following:
+
+.. code-block:: bash
+   /opt/puppetlabs/bolt/bin/bolt plan run pulp3::in_one_container::destroy
+   /opt/puppetlabs/bolt/bin/bolt plan run pulp3::in_one_container
+   # Wait a few minutes for the service to get fully started
+
+This will ensure that the container is removed and recreated in a fresh
+state.
 
 Copy the Repo Contents
 ----------------------
