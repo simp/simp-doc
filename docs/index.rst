@@ -1,11 +1,40 @@
 Welcome to the SIMP documentation!
 ==================================
 
-This is the documentation for the |simp_version| release of SIMP, which is
-compatible with CentOS and Red Hat Enterprise Linux (RHEL).  This guide will
-walk a user through the process of installing and managing a :term:`SIMP`
-system.  It also provides a mapping of security features to security
-requirements, which can be used to document a system's security conformance.
+This is the documentation for the |simp_version| release of SIMP.
+
+SIMP is generally compatible with Red Hat Enterprise Linux (\ :term:`RHEL`) and RHEL-derived distributions.
+
+Microsoft Windows support is available via the commercial `Sicura`_ product.
+
+
+This guide walks users through the process of installing and managing a :term:`SIMP` system. It also
+provides a mapping of security features to security requirements, which can be used to document a
+system's security conformance.
+
+--------------
+
+Sponsors
+--------
+
+We would like to thank the following for sponsoring the continued development of the :term:`SIMP` project:
+
+Sicura
+^^^^^^
+
+.. image:: images/Sicura_Logo.svg
+   :target: https://www.sicura.us
+
+|
+
+    `Sicura`_ is on a mission to automate security and compliance so that the organizations that power the world's critical technology systems can operate securely and efficiently.
+
+    https://www.sicura.us
+
+--------------
+
+The Guide
+---------
 
 .. WARNING::
 
@@ -22,7 +51,8 @@ Level of Knowledge
 
 .. include:: common/Level_of_Knowledge.rst
 
-Contents:
+Contents
+--------
 
 .. toctree::
   :hidden:
@@ -31,7 +61,7 @@ Contents:
 
 .. toctree::
   :numbered:
-  :maxdepth: 2
+  :maxdepth: 1
 
   Quick Start <getting_started_guide/Just_Install>
   changelogs/index

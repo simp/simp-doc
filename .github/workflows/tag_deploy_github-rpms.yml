@@ -49,7 +49,7 @@ jobs:
       prerelease: ${{ steps.tag-check.outputs.prerelease }}
     steps:
       - name: Checkout code
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
         with:
           ref: ${{ github.ref }}
           clean: true
@@ -62,7 +62,6 @@ jobs:
           annotation="$(git for-each-ref "$GITHUB_REF" --format='%(contents)' --count=1)"
           annotation_title="$(echo "$annotation" | head -1)"
 
-
           if [[ "$tag" =~ ^(simp-|v)?[0-9]+\.[0-9]+\.[0-9]+(-(rc|alpha|beta|pre|post)?([0-9]+)?)?$ ]]; then
             if [ -n "${BASH_REMATCH[2]}" ]; then
               prerelease=yes
@@ -73,14 +72,15 @@ jobs:
             exit 88
           fi
 
-          echo "::set-output name=tag::${tag}"
-          echo "::set-output name=prerelease::${prerelease}"
-          echo "::set-output name=annotation_title::${annotation_title}"
+          echo "tag=$tag" | tee -a "$GITHUB_OUTPUT"
+          echo "prerelease=$prerelease" | tee -a "$GITHUB_OUTPUT"
+          echo "annotation_title=$annotation_title" | tee -a "$GITHUB_OUTPUT"
+          echo "TARGET_TAG=$tag" | tee -a "$GITHUB_ENV"
 
           # Prepare annotation body as a file for the next step
           #
-          # * The GitHub Release render the text in this file as markdown
-          # * The file is needed because :set-output only supports single lines
+          # * The GitHub Release renders the text in this file as markdown
+          # * The file is needed because GITHUB_OUTPUT only supports single lines
           # * The `perl -pe` removes RPM-style date headers from the CHANGELOG,
           #   because they don't render well as markdown on the Release page
           #
@@ -114,15 +114,18 @@ jobs:
     steps:
       - name: Get tag & annotation info (${{github.ref}})
         id: tag-check
-        run: echo "::set-output name=tag::${GITHUB_REF/refs\/tags\//}"
+        run: |
+          tag="${GITHUB_REF/refs\/tags\//}"
+          echo "tag=$tag" >> $GITHUB_OUTPUT
       - name: Trigger RPM release workflow (${{ matrix.os }})
-        uses: actions/github-script@v4
+        uses: actions/github-script@v6
         env:
           DEFAULT_BRANCH: ${{ github.event.repository.default_branch }}
           TARGET_TAG: ${{ steps.tag-check.outputs.tag }}
         with:
           github-token: ${{ secrets.SIMP_AUTO_GITHUB_TOKEN__REPO_SCOPE }}
           script: |
+            console.log( `== Building tag: '${ process.env.TARGET_TAG }' for os '${{ matrix.os}}'` )
             const [owner, repo] = process.env.TARGET_REPO.split('/')
             await github.request('POST /repos/{owner}/{repo}/actions/workflows/{workflow_id}/dispatches', {
               owner: owner,

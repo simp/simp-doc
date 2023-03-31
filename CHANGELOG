@@ -1,7 +1,15 @@
-* Tue Mar 28 Mike Riddle <mike@sicura.us>
+* Tue Mar 28 2023 Mike Riddle <mike@sicura.us>
 - Updated ISO Build instructions
 
-* Sat Nov 11 2021 Trevor Vaughan <tvaughan@sicura.us>
+* Fri Nov 11 2022 Trevor Vaughan <tvaughan@sicura.us>
+- Restore the SIMP logo
+- Fix the bullets
+- Reword some items
+- Add sponsors section to the intro
+- Trim down the Help resources
+- Reduced the front page ToC to some level of sane
+
+* Fri Nov 11 2022 Trevor Vaughan <tvaughan@sicura.us>
 - Add dist tag to the RPM
 
 * Tue Sep 07 2021 Trevor Vaughan <tvaughan@onyxpoint.com>
