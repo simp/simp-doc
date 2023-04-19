@@ -38,7 +38,7 @@ on:
       - '[0-9]+\.[0-9]+\.[0-9]+\-[a-z]+[0-9]+'
 
 env:
-  PUPPET_VERSION: '~> 6'
+  PUPPET_VERSION: '~> 7'
 
 jobs:
   create-github-release:
@@ -47,6 +47,7 @@ jobs:
     runs-on: ubuntu-latest
     outputs:
       prerelease: ${{ steps.tag-check.outputs.prerelease }}
+      tag: ${{ steps.tag-check.outputs.tag }}
     steps:
       - name: Checkout code
         uses: actions/checkout@v3
@@ -74,30 +75,29 @@ jobs:
 
           echo "tag=$tag" | tee -a "$GITHUB_OUTPUT"
           echo "prerelease=$prerelease" | tee -a "$GITHUB_OUTPUT"
-          echo "annotation_title=$annotation_title" | tee -a "$GITHUB_OUTPUT"
           echo "TARGET_TAG=$tag" | tee -a "$GITHUB_ENV"
 
           # Prepare annotation body as a file for the next step
           #
           # * The GitHub Release renders the text in this file as markdown
-          # * The file is needed because GITHUB_OUTPUT only supports single lines
           # * The `perl -pe` removes RPM-style date headers from the CHANGELOG,
           #   because they don't render well as markdown on the Release page
-          #
+          echo "RELEASE_MESSAGE<<EOF$$" >> "$GITHUB_ENV"
+          printf '%s\n\n' "$annotation_title" >> "$GITHUB_ENV"
           echo "$annotation" |  tail -n +2 | \
-            perl -pe 'BEGIN{undef $/;} s/\n\* (Mon|Tue|Wed|Thu|Fri|Sat|Sun) .*?\n//smg;' > /tmp/annotation.body
+            perl -pe 'BEGIN{undef $/;} s/\n\* (Mon|Tue|Wed|Thu|Fri|Sat|Sun) .*?\n//smg;' >> "$GITHUB_ENV"
+          echo "EOF$$" >> "$GITHUB_ENV"
 
       - name: Create Release
-        uses: actions/create-release@v1
         id: create_release
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        with:
-          tag_name: ${{ github.ref }}
-          release_name: ${{ steps.tag-check.outputs.annotation_title }}
-          body_path: /tmp/annotation.body
-          prerelease: ${{ steps.tag-check.outputs.prerelease  == 'yes'}}
-          draft: false
+        run: |
+          echo "${RELEASE_MESSAGE}" > /tmp/.commit-msg.txt
+          args=(--file /tmp/.commit-msg.txt)
+          [[ ${{ steps.tag-check.outputs.prerelease }} == yes ]] && args+=(--prerelease)
+
+          hub release create ${args[@]} "$TARGET_TAG"
 
   build-and-attach-rpms:
     name: Trigger RPM release
@@ -112,16 +112,11 @@ jobs:
           - centos7
           - centos8
     steps:
-      - name: Get tag & annotation info (${{github.ref}})
-        id: tag-check
-        run: |
-          tag="${GITHUB_REF/refs\/tags\//}"
-          echo "tag=$tag" >> $GITHUB_OUTPUT
       - name: Trigger RPM release workflow (${{ matrix.os }})
         uses: actions/github-script@v6
         env:
           DEFAULT_BRANCH: ${{ github.event.repository.default_branch }}
-          TARGET_TAG: ${{ steps.tag-check.outputs.tag }}
+          TARGET_TAG: ${{ needs.create-github-release.outputs.tag }}
         with:
           github-token: ${{ secrets.SIMP_AUTO_GITHUB_TOKEN__REPO_SCOPE }}
           script: |
