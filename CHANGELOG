@@ -1,4 +1,7 @@
-* Tue Mar 28 2023 Mike Riddle <mike@sicura.us>
+* Tue May 09 Mike Riddle <mike@sicura.us>
+- Updated puppetdb instructions with correct postgresql version
+
+* Tue Mar 28 Mike Riddle <mike@sicura.us>
 - Updated ISO Build instructions
 
 * Fri Nov 11 2022 Trevor Vaughan <tvaughan@sicura.us>

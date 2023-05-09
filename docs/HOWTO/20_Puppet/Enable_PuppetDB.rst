@@ -29,7 +29,9 @@ Use the following YAML as a guide to the :term:`hiera` settings required to enab
    ## Optional Settings
 
    # The version of PuppetDB that should be installed
-   puppetdb::globals::version: 'latest'
+   # Note: SIMP does not yet support postgresql 11 so we suggest a value of '9.6' instead of 'latest'
+   # SIMP will be able to support postgresql 11 in a future release
+   puppetdb::globals::version: '9.6'
 
    # Set up node report storage
    puppetdb::master::config::manage_report_processor: true
