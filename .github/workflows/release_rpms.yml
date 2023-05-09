@@ -71,10 +71,15 @@ on:
         description: "Dry run (Test-build RPMs)"
         required: false
         default: 'no'
-      verbose:
-        description: 'Verbose RPM builds when "yes"'
+      #verbose:
+      #  description: 'Verbose RPM builds when "yes"'
+      #  required: false
+      #  default: 'no'
+      rebuild_number:
+        description: 'If this is an RPM rebuild, put the number of the rebuild here'
         required: false
-        default: 'no'
+        default: ''
+
 
 env:
   TARGET_REPO: ${{ (github.event.inputs.target_repo != null && format('{0}/{1}', github.repository_owner, github.event.inputs.target_repo)) || github.repository }}
@@ -99,13 +104,13 @@ jobs:
 
           if [[ "$RELEASE_TAG" =~ ^(simp-|v)?([0-9]+\.[0-9]+\.[0-9]+)(-(rc|RC|[Aa]lpha|[Bb]eta|pre|post)?([0-9]+)?)?$ ]]; then
             if [ -n "${BASH_REMATCH[5]}" ]; then
-              echo "::set-output name=prebuild_number::${BASH_REMATCH[5]#-}"
+              echo "{prebuild_number}={${BASH_REMATCH[5]#-}}" >> $GITHUB_OUTPUT
             fi
             if [ -n "${BASH_REMATCH[3]}" ]; then
-              echo "::set-output name=prebuild_suffix::${BASH_REMATCH[3]#-}"
+              echo "{prebuild_suffix}={${BASH_REMATCH[3]#-}}" >> $GITHUB_OUTPUT
             fi
             if [ -n "${BASH_REMATCH[2]}" ]; then
-              echo "::set-output name=build_semver::${BASH_REMATCH[2]}"
+              echo "{build_semver}={${BASH_REMATCH[2]}}" >> $GITHUB_OUTPUT
             fi
           else
             printf '::error ::Release Tag format is not SemVer, X.Y.Z-R, X.Y.Z-<prerelease>: "%s"\n' "$RELEASE_TAG"
@@ -121,7 +126,7 @@ jobs:
         env:
           AUTOCREATE_RELEASE: ${{ github.event.inputs.autocreate_release }}
           PREBUILD_TAG: ${{ steps.validate-inputs.outputs.prebuild_suffix }}
-        uses: actions/github-script@v4
+        uses: actions/github-script@v6
         with:
           github-token: ${{ github.event.inputs.target_repo_token || secrets.GITHUB_TOKEN }}
           script: |
@@ -189,7 +194,7 @@ jobs:
             )
 
       - name: Checkout code
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
         with:
           repository: ${{ env.TARGET_REPO }}
           ref: ${{ env.RELEASE_TAG }}
@@ -221,6 +226,22 @@ jobs:
             printf '::warning ::Added file build/rpm_metadata/release with content "%s"\n' "$(cat build/rpm_metadata/release)"
           fi
 
+      - name: 'Customize RPM Release tag via build/rpm_metadata/release (RPM rebuild)'
+        if: ${{ github.event.inputs.rebuild_number != '' }}
+        env:
+          BUILD_SEMVER: ${{ steps.validate-inputs.outputs.build_semver }}
+          REBUILD_NUMBER: ${{ github.event.inputs.rebuild_number }}
+        run: |
+          mkdir -p build/rpm_metadata
+          # simp-doc uses a unique data format in /release
+          if [[ "$TARGET_REPO" =~ ^simp\/simp-doc$ ]]; then
+            echo "version: $BUILD_SEMVER" > build/rpm_metadata/release
+            echo "release: $REBUILD_NUMBER" > build/rpm_metadata/release
+          else
+            echo "$REBUILD_NUMBER" > build/rpm_metadata/release
+          fi
+          printf '::warning ::Added file build/rpm_metadata/release with content "%s"\n' "$(cat build/rpm_metadata/release)"
+
       - name: >
           Build & Sign RPMs for
           ${{ github.event.inputs.release_tag }}
@@ -234,11 +255,11 @@ jobs:
           simp_core_ref_for_building_rpms: ${{ secrets.SIMP_CORE_REF_FOR_BUILDING_RPMS }}
           simp_builder_docker_image: 'docker.io/simpproject/simp_build_${{ github.event.inputs.build_container_os }}:latest'
           path_to_build: "${{ (github.event.inputs.path_to_build != null && format('{0}/{1}', github.workspace, github.event.inputs.path_to_build)) || github.workspace }}"
-          verbose: ${{ github.event.inputs.verbose }}
+          verbose: 'no'  #${{ github.event.inputs.verbose }}
 
       - name: "Wipe all previous assets from GitHub Release (when clean == 'yes')"
         if: ${{ github.event.inputs.clean == 'yes' && github.event.inputs.dry_run != 'yes' }}
-        uses: actions/github-script@v4
+        uses: actions/github-script@v6
         env:
           release_id:  ${{ steps.release-api.outputs.id }}
         with:
@@ -246,18 +267,18 @@ jobs:
           script: |
             const release_id = process.env.release_id
             const [owner, repo] = process.env.TARGET_REPO.split('/')
-            const existingAssets = await github.repos.listReleaseAssets({ owner, repo, release_id })
+            const existingAssets = await github.rest.repos.listReleaseAssets({ owner, repo, release_id })
 
             console.log( `  !! !! Wiping ALL uploaded assets for ${owner}/${repo} release (id: ${release_id})`)
             existingAssets.data.forEach(async function(asset){
               asset_id = asset.id
               console.log( `  !! !! !! Wiping existing asset for ${asset.name} (id: ${asset_id})`)
-              await github.repos.deleteReleaseAsset({ owner, repo, asset_id })
+              await github.rest.repos.deleteReleaseAsset({ owner, repo, asset_id })
             })
 
       - name: "Upload RPM file(s) to GitHub Release (dry_run != 'yes')"
         if: ${{ github.event.inputs.dry_run != 'yes' }}
-        uses: actions/github-script@v4
+        uses: actions/github-script@v6
         env:
           rpm_file_paths: ${{ steps.build-and-sign-rpm.outputs.rpm_file_paths }}
           rpm_gpg_file: ${{ steps.build-and-sign-rpm.outputs.rpm_gpg_file }}
@@ -274,12 +295,12 @@ jobs:
             async function clobberAsset (name, owner, repo, release_id ){
               console.log( `  -- clobber asset ${name}: owner: ${owner}  repo: ${repo}  release_id: ${release_id}` )
 
-              const existingAssets = await github.repos.listReleaseAssets({ owner, repo, release_id })
+              const existingAssets = await github.rest.repos.listReleaseAssets({ owner, repo, release_id })
               const matchingAssets = existingAssets.data.filter(item => item.name == name);
               if ( matchingAssets.length > 0 ){
                 asset_id = matchingAssets[0].id
                 console.log( `  !! !! Clobbering existing asset for ${name} (id: ${asset_id})`)
-                await github.repos.deleteReleaseAsset({ owner, repo, asset_id })
+                await github.rest.repos.deleteReleaseAsset({ owner, repo, asset_id })
                 return(true)
               }
               return(false)
@@ -297,7 +318,7 @@ jobs:
               };
 
               console.log( `  == Uploading asset ${name}: ${assetContentType}` )
-              const uploadAssetResponse = await github.repos.uploadReleaseAsset({
+              const uploadAssetResponse = await github.rest.repos.uploadReleaseAsset({
                 owner, repo, release_id, data, name, headers,
               })
               return( uploadAssetResponse );
