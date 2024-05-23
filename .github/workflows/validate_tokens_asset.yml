@@ -13,9 +13,7 @@
 #
 #   GitHub Secret variable    Type      Notes
 #   ------------------------  --------  ----------------------------------------
-#   GITLAB_API_PRIVATE_TOKEN  Required  GitLab token (should have `api` scope)
 #   NO_SCOPE_GITHUB_TOKEN     Required  GitHub token (should have no scopes)
-#   GITLAB_SERVER_URL         Optional  Specify a GL server other than gitlab.com
 #   The secure vars will be filtered in GitHub Actions log output, and aren't
 #   provided to untrusted builds (i.e, triggered by PR from another repository)
 #
@@ -26,21 +24,6 @@ on:
   - workflow_dispatch
 
 jobs:
-  gitlab:
-    name: 'GitLab token has scope for developer'
-    runs-on: ubuntu-latest
-    env:
-      GITLAB_API_PRIVATE_TOKEN: ${{ secrets.GITLAB_API_PRIVATE_TOKEN }}
-      GITLAB_API_URL: ${{ secrets.GITLAB_API_URL }}
-      GITLAB_ORG: ${{ github.event.organization.login }}
-    steps:
-      - run: |
-          GITLAB_API_URL="${GITLAB_API_URL:-https://gitlab.com/api/v4}"
-          curl -I --http1.1 --fail --silent --show-error \
-            --header 'Content-Type: application/json' \
-            --header "Authorization: Bearer $GITLAB_API_PRIVATE_TOKEN" \
-            "${CURL_CMD[@]}" "${GITLAB_API_URL}/groups/$GITLAB_ORG/audit_events"
-
   github-no-scope:
     name: 'No-scope GitHub token has NO scopes'
     runs-on: ubuntu-latest

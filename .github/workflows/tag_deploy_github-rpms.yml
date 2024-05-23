@@ -94,10 +94,10 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           echo "${RELEASE_MESSAGE}" > /tmp/.commit-msg.txt
-          args=(--file /tmp/.commit-msg.txt)
+          args=(-F /tmp/.commit-msg.txt)
           [[ ${{ steps.tag-check.outputs.prerelease }} == yes ]] && args+=(--prerelease)
 
-          hub release create ${args[@]} "$TARGET_TAG"
+          gh release create ${args[@]} "$TARGET_TAG"
 
   build-and-attach-rpms:
     name: Trigger RPM release
