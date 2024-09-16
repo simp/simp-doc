@@ -31,7 +31,7 @@
 ---
 name: 'RELENG: Build + attach RPMs to GitHub Release'
 
-on:
+'on':
   workflow_dispatch:
     inputs:
       release_tag:
@@ -71,10 +71,10 @@ on:
         description: "Dry run (Test-build RPMs)"
         required: false
         default: 'no'
-      #verbose:
-      #  description: 'Verbose RPM builds when "yes"'
-      #  required: false
-      #  default: 'no'
+      # verbose:
+      #   description: 'Verbose RPM builds when "yes"'
+      #   required: false
+      #   default: 'no'
       rebuild_number:
         description: 'If this is an RPM rebuild, put the number of the rebuild here'
         required: false
@@ -255,13 +255,13 @@ jobs:
           simp_core_ref_for_building_rpms: ${{ secrets.SIMP_CORE_REF_FOR_BUILDING_RPMS }}
           simp_builder_docker_image: 'docker.io/simpproject/simp_build_${{ github.event.inputs.build_container_os }}:latest'
           path_to_build: "${{ (github.event.inputs.path_to_build != null && format('{0}/{1}', github.workspace, github.event.inputs.path_to_build)) || github.workspace }}"
-          verbose: 'no'  #${{ github.event.inputs.verbose }}
+          verbose: 'no'  # ${{ github.event.inputs.verbose }}
 
       - name: "Wipe all previous assets from GitHub Release (when clean == 'yes')"
         if: ${{ github.event.inputs.clean == 'yes' && github.event.inputs.dry_run != 'yes' }}
         uses: actions/github-script@v6
         env:
-          release_id:  ${{ steps.release-api.outputs.id }}
+          release_id: ${{ steps.release-api.outputs.id }}
         with:
           github-token: ${{ github.event.inputs.target_repo_token || secrets.GITHUB_TOKEN }}
           script: |
@@ -282,7 +282,7 @@ jobs:
         env:
           rpm_file_paths: ${{ steps.build-and-sign-rpm.outputs.rpm_file_paths }}
           rpm_gpg_file: ${{ steps.build-and-sign-rpm.outputs.rpm_gpg_file }}
-          release_id:  ${{ steps.release-api.outputs.id }}
+          release_id: ${{ steps.release-api.outputs.id }}
           clobber: ${{ github.event.inputs.clobber }}
           clean: ${{ github.event.inputs.clean }}
           dry_run: ${{ github.event.inputs.dry_run }}
