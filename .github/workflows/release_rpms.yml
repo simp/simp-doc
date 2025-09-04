@@ -126,7 +126,7 @@ jobs:
         env:
           AUTOCREATE_RELEASE: ${{ github.event.inputs.autocreate_release }}
           PREBUILD_TAG: ${{ steps.validate-inputs.outputs.prebuild_suffix }}
-        uses: actions/github-script@v6
+        uses: actions/github-script@v7
         with:
           github-token: ${{ github.event.inputs.target_repo_token || secrets.GITHUB_TOKEN }}
           script: |
@@ -259,7 +259,7 @@ jobs:
 
       - name: "Wipe all previous assets from GitHub Release (when clean == 'yes')"
         if: ${{ github.event.inputs.clean == 'yes' && github.event.inputs.dry_run != 'yes' }}
-        uses: actions/github-script@v6
+        uses: actions/github-script@v7
         env:
           release_id:  ${{ steps.release-api.outputs.id }}
         with:
@@ -278,7 +278,7 @@ jobs:
 
       - name: "Upload RPM file(s) to GitHub Release (dry_run != 'yes')"
         if: ${{ github.event.inputs.dry_run != 'yes' }}
-        uses: actions/github-script@v6
+        uses: actions/github-script@v7
         env:
           rpm_file_paths: ${{ steps.build-and-sign-rpm.outputs.rpm_file_paths }}
           rpm_gpg_file: ${{ steps.build-and-sign-rpm.outputs.rpm_gpg_file }}
