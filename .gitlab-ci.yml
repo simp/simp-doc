@@ -1,6 +1,6 @@
 ---
 
-image: python:3.6-alpine
+image: python:3.13-alpine
 
 variables:
   BUILD_PDF: 'no'
