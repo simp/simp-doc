@@ -194,7 +194,7 @@ jobs:
             )
 
       - name: Checkout code
-        uses: actions/checkout@v5
+        uses: actions/checkout@v6
         with:
           repository: ${{ env.TARGET_REPO }}
           ref: ${{ env.RELEASE_TAG }}
