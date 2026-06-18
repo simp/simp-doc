@@ -50,7 +50,7 @@ jobs:
       tag: ${{ steps.tag-check.outputs.tag }}
     steps:
       - name: Checkout code
-        uses: actions/checkout@v6
+        uses: actions/checkout@v7
         with:
           ref: ${{ github.ref }}
           clean: true
