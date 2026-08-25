@@ -4,6 +4,7 @@ rst2pdf
 sphinx-csv-filter>=0.3.0
 sphinx-rtd-theme
 # Sphinx and sphinx-rtd-theme both cap the docutils version they support
-# (sphinx-rtd-theme 3.x requires docutils < 0.22), so let pip resolve a
-# compatible version instead of pinning one that conflicts.
+# (Sphinx 9 and sphinx-rtd-theme 3.1 both require docutils < 0.23), so
+# this range only needs to stay at least as wide as those caps; pip will
+# resolve the newest docutils they both accept.
 docutils<0.24
