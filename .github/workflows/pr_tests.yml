@@ -1,0 +1,60 @@
+# Run test matrix on Pull Requests
+#
+# ==============================================================================
+#
+# These jobs replace the checks that ran under GitLab CI before it was
+# dropped: the Python unit tests for the Sphinx conf helpers and a full
+# HTML build of the documentation, plus the standard SIMP RELENG checks.
+#
+# https://docs.github.com/en/actions/reference/events-that-trigger-workflows
+#
+
+name: PR Tests
+on:
+  pull_request:
+    types: [opened, reopened, synchronize]
+
+jobs:
+  releng-checks:
+    name: 'RELENG checks'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+      - name: 'Install Ruby 4.0'
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: 4.0.6
+          bundler-cache: true
+      - run: 'command -v rpm || if command -v apt-get; then sudo apt-get update; sudo apt-get install -y rpm; fi ||:'
+      - name: 'Tags and changelogs'
+        # NOTE: `pkg:compare_latest_tag` is intentionally not run here.  This
+        # repo's version comes from simp-core's simp.spec (via `munge:prep`),
+        # so that check can only pass when simp-core has bumped its version,
+        # not on every PR.
+        run: |
+          bundle exec rake pkg:check_version
+          bundle exec rake pkg:create_tag_changelog
+
+  python-tests:
+    name: 'Python unit tests'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/setup-python@v6
+        with:
+          python-version: '3.13'
+          cache: 'pip'
+      - run: pip install -r requirements.txt pytest
+      - run: pytest -x --capture=no docs/conflib/get_simp_version_test.py
+
+  build-html-docs:
+    name: 'Build HTML docs'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/setup-python@v6
+        with:
+          python-version: '3.13'
+          cache: 'pip'
+      - run: pip install -r requirements.txt
+      - run: sphinx-build -n -b html -d sphinx_cache docs html

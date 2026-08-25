@@ -3,7 +3,7 @@
 #
 #             NOTICE: **This file is maintained with puppetsync**
 #
-# This file is updated automatically as part of a puppet module baseline.
+# This file is updated automatically as part of a standardized asset baseline.
 #
 # The next baseline sync will overwrite any local changes to this file!
 #
@@ -51,10 +51,14 @@ on:
         description: "Create release if missing? (tag must exist)"
         required: false
         default: 'yes'
-      build_container_os:
-        description: "Build container OS"
-        required: true
-        default: 'centos8'
+      build_container_oses:
+        description: "Build container OSes (JSON list)"
+        required: false
+        default: '["el8","el9","el10"]'
+      build_container_tag:
+        description: "Build container tag"
+        required: false
+        default: 'latest'
       target_repo:
         description: "Target repo (instead of this one)"
         required: false
@@ -86,13 +90,20 @@ env:
   RELEASE_TAG: ${{ github.event.inputs.release_tag }}
 
 jobs:
-  create-and-attach-rpms-to-github-release:
+  # Per-release work (resolve or create the release, optionally wipe its
+  # assets) runs ONCE; the per-OS builds fan out from it below.
+  # See simp/puppetsync#84
+  resolve-release:
     name: >
-      Build and attach RPMs to Release:
+      Resolve GitHub Release:
       ${{ (github.event.inputs.target_repo != null && format('{0}/{1}', github.repository_owner, github.event.inputs.target_repo)) || github.repository }}
       ${{ github.event.inputs.release_tag }}
-      (build os: ${{ github.event.inputs.build_container_os }})
     runs-on: ubuntu-24.04
+    outputs:
+      release_id: ${{ steps.release-api.outputs.id }}
+      build_semver: ${{ steps.validate-inputs.outputs.build_semver }}
+      prebuild_suffix: ${{ steps.validate-inputs.outputs.prebuild_suffix }}
+      prebuild_number: ${{ steps.validate-inputs.outputs.prebuild_number }}
     steps:
       - name: "Validate inputs"
         id: validate-inputs
@@ -104,13 +115,13 @@ jobs:
 
           if [[ "$RELEASE_TAG" =~ ^(simp-|v)?([0-9]+\.[0-9]+\.[0-9]+)(-(rc|RC|[Aa]lpha|[Bb]eta|pre|post)?([0-9]+)?)?$ ]]; then
             if [ -n "${BASH_REMATCH[5]}" ]; then
-              echo "{prebuild_number}={${BASH_REMATCH[5]#-}}" >> $GITHUB_OUTPUT
+              echo "prebuild_number=${BASH_REMATCH[5]#-}" >> $GITHUB_OUTPUT
             fi
             if [ -n "${BASH_REMATCH[3]}" ]; then
-              echo "{prebuild_suffix}={${BASH_REMATCH[3]#-}}" >> $GITHUB_OUTPUT
+              echo "prebuild_suffix=${BASH_REMATCH[3]#-}" >> $GITHUB_OUTPUT
             fi
             if [ -n "${BASH_REMATCH[2]}" ]; then
-              echo "{build_semver}={${BASH_REMATCH[2]}}" >> $GITHUB_OUTPUT
+              echo "build_semver=${BASH_REMATCH[2]}" >> $GITHUB_OUTPUT
             fi
           else
             printf '::error ::Release Tag format is not SemVer, X.Y.Z-R, X.Y.Z-<prerelease>: "%s"\n' "$RELEASE_TAG"
@@ -120,7 +131,6 @@ jobs:
       - name: >
           Query info for ${{ env.TARGET_REPO }}
           release ${{ github.event.inputs.release_tag }} ${{ steps.validate-inputs.outputs.prebuild_suffix }}
-          build os ${{ github.event.inputs.build_container_os }}
           (autocreate_release = '${{ github.event.inputs.autocreate_release }}')
         id: release-api
         env:
@@ -193,6 +203,37 @@ jobs:
               err => { throw err }
             )
 
+      - name: "Wipe all previous assets from GitHub Release (when clean == 'yes')"
+        if: ${{ github.event.inputs.clean == 'yes' && github.event.inputs.dry_run != 'yes' }}
+        uses: actions/github-script@v9
+        env:
+          release_id:  ${{ steps.release-api.outputs.id }}
+        with:
+          github-token: ${{ github.event.inputs.target_repo_token || secrets.GITHUB_TOKEN }}
+          script: |
+            const release_id = process.env.release_id
+            const [owner, repo] = process.env.TARGET_REPO.split('/')
+            const existingAssets = await github.rest.repos.listReleaseAssets({ owner, repo, release_id })
+
+            console.log( `  !! !! Wiping ALL uploaded assets for ${owner}/${repo} release (id: ${release_id})`)
+            existingAssets.data.forEach(async function(asset){
+              asset_id = asset.id
+              console.log( `  !! !! !! Wiping existing asset for ${asset.name} (id: ${asset_id})`)
+              await github.rest.repos.deleteReleaseAsset({ owner, repo, asset_id })
+            })
+
+  create-and-attach-rpms-to-github-release:
+    name: >
+      Build and attach RPMs to Release:
+      ${{ (github.event.inputs.target_repo != null && format('{0}/{1}', github.repository_owner, github.event.inputs.target_repo)) || github.repository }}
+      ${{ github.event.inputs.release_tag }}
+      (build os: ${{ matrix.os }})
+    needs: [ resolve-release ]
+    runs-on: ubuntu-24.04
+    strategy:
+      matrix:
+        os: ${{ fromJSON(github.event.inputs.build_container_oses) }}
+    steps:
       - name: Checkout code
         uses: actions/checkout@v7
         with:
@@ -202,11 +243,11 @@ jobs:
           fetch-depth: 0
 
       - name: 'Customize RPM Release tag via build/rpm_metadata/release (pre-release only)'
-        if: steps.validate-inputs.outputs.prebuild_suffix
+        if: needs.resolve-release.outputs.prebuild_suffix
         env:
-          BUILD_SEMVER: ${{ steps.validate-inputs.outputs.build_semver }}
-          PREBUILD_TAG: ${{ steps.validate-inputs.outputs.prebuild_suffix }}
-          PREBUILD_NUMBER: ${{ steps.validate-inputs.outputs.prebuild_number }}
+          BUILD_SEMVER: ${{ needs.resolve-release.outputs.build_semver }}
+          PREBUILD_TAG: ${{ needs.resolve-release.outputs.prebuild_suffix }}
+          PREBUILD_NUMBER: ${{ needs.resolve-release.outputs.prebuild_number }}
         # Note: To accomodate the capabilities of EL7's version of RPM, the
         # release number is formatted according to the Fedora Packaging
         # Guidelines' "Traditional versioning" conventions:
@@ -229,7 +270,7 @@ jobs:
       - name: 'Customize RPM Release tag via build/rpm_metadata/release (RPM rebuild)'
         if: ${{ github.event.inputs.rebuild_number != '' }}
         env:
-          BUILD_SEMVER: ${{ steps.validate-inputs.outputs.build_semver }}
+          BUILD_SEMVER: ${{ needs.resolve-release.outputs.build_semver }}
           REBUILD_NUMBER: ${{ github.event.inputs.rebuild_number }}
         run: |
           mkdir -p build/rpm_metadata
@@ -245,7 +286,7 @@ jobs:
       - name: >
           Build & Sign RPMs for
           ${{ github.event.inputs.release_tag }}
-          Release (${{ github.event.inputs.build_container_os }})
+          Release (${{ matrix.os }})
         uses: simp/github-action-build-and-sign-pkg-single-rpm@v2
         id: build-and-sign-rpm
         with:
@@ -253,28 +294,9 @@ jobs:
           gpg_signing_key_id: ${{ secrets.SIMP_DEV_GPG_SIGNING_KEY_ID }}
           gpg_signing_key_passphrase: ${{ secrets.SIMP_DEV_GPG_SIGNING_KEY_PASSPHRASE }}
           simp_core_ref_for_building_rpms: ${{ secrets.SIMP_CORE_REF_FOR_BUILDING_RPMS }}
-          simp_builder_docker_image: 'docker.io/simpproject/simp_build_${{ github.event.inputs.build_container_os }}:latest'
+          simp_builder_docker_image: 'ghcr.io/simp/simp-${{ matrix.os }}-build:${{ github.event.inputs.build_container_tag }}'
           path_to_build: "${{ (github.event.inputs.path_to_build != null && format('{0}/{1}', github.workspace, github.event.inputs.path_to_build)) || github.workspace }}"
           verbose: 'no'  #${{ github.event.inputs.verbose }}
-
-      - name: "Wipe all previous assets from GitHub Release (when clean == 'yes')"
-        if: ${{ github.event.inputs.clean == 'yes' && github.event.inputs.dry_run != 'yes' }}
-        uses: actions/github-script@v9
-        env:
-          release_id:  ${{ steps.release-api.outputs.id }}
-        with:
-          github-token: ${{ github.event.inputs.target_repo_token || secrets.GITHUB_TOKEN }}
-          script: |
-            const release_id = process.env.release_id
-            const [owner, repo] = process.env.TARGET_REPO.split('/')
-            const existingAssets = await github.rest.repos.listReleaseAssets({ owner, repo, release_id })
-
-            console.log( `  !! !! Wiping ALL uploaded assets for ${owner}/${repo} release (id: ${release_id})`)
-            existingAssets.data.forEach(async function(asset){
-              asset_id = asset.id
-              console.log( `  !! !! !! Wiping existing asset for ${asset.name} (id: ${asset_id})`)
-              await github.rest.repos.deleteReleaseAsset({ owner, repo, asset_id })
-            })
 
       - name: "Upload RPM file(s) to GitHub Release (dry_run != 'yes')"
         if: ${{ github.event.inputs.dry_run != 'yes' }}
@@ -282,7 +304,7 @@ jobs:
         env:
           rpm_file_paths: ${{ steps.build-and-sign-rpm.outputs.rpm_file_paths }}
           rpm_gpg_file: ${{ steps.build-and-sign-rpm.outputs.rpm_gpg_file }}
-          release_id:  ${{ steps.release-api.outputs.id }}
+          release_id:  ${{ needs.resolve-release.outputs.release_id }}
           clobber: ${{ github.event.inputs.clobber }}
           clean: ${{ github.event.inputs.clean }}
           dry_run: ${{ github.event.inputs.dry_run }}
