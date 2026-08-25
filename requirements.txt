@@ -6,4 +6,4 @@ sphinx-rtd-theme
 # Sphinx and sphinx-rtd-theme both cap the docutils version they support
 # (sphinx-rtd-theme 3.x requires docutils < 0.22), so let pip resolve a
 # compatible version instead of pinning one that conflicts.
-docutils<0.22
+docutils<0.24
