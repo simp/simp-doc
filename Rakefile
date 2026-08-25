@@ -5,6 +5,7 @@ ENV['SIMP_INTERNAL_pkg_ignore'] = 'build/rpm_metadata'
 require 'ostruct'
 require 'rake/clean'
 require 'simp/rake'
+require 'tempfile'
 require 'yaml'
 require 'find'
 
@@ -90,7 +91,7 @@ EOM
       require 'open-uri'
       begin
         warn("Downloading '#{spec_url}'")
-        open(spec_url) do |specfile|
+        URI.open(spec_url) do |specfile|
           tmpspec.write(specfile.read)
         end
       rescue OpenURI::HTTPError => e
