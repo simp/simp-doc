@@ -5,7 +5,6 @@ This section will describe the release procedures for the SIMP Ruby gems
 used to build and test SIMP components. The relevant components include
 
 * ``rubygem-simp-beaker-helpers``
-* ``rubygem-simp-build-helpers``
 * ``rubygem-simp-rake-helpers``
 * ``rubygem-simp-rspec-puppet-facts``
 
