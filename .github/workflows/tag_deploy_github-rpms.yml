@@ -54,7 +54,7 @@ jobs:
           clean: true
       - uses: ruby/setup-ruby@v1
         with:
-          ruby-version: 3.4.9
+          ruby-version: 4.0.6
           bundler-cache: true
       - run: 'command -v rpm || if command -v apt-get; then sudo apt-get update; sudo apt-get install -y rpm; fi ||:'
       - run: bundle exec rake pkg:check_version
