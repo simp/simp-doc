@@ -23,7 +23,7 @@ jobs:
       - name: 'Install Ruby 4.0'
         uses: ruby/setup-ruby@v1
         with:
-          ruby-version: 4.0.6
+          ruby-version: 4.0.7
           bundler-cache: true
       - run: 'command -v rpm || if command -v apt-get; then sudo apt-get update; sudo apt-get install -y rpm; fi ||:'
       - name: 'Tags and changelogs'
