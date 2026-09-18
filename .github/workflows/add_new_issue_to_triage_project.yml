@@ -1,3 +1,37 @@
+# Add newly opened issues and pull requests to the Org Triage board
+# ------------------------------------------------------------------------------
+#             NOTICE: **This file is maintained with puppetsync**
+#
+# This file is updated automatically as part of a puppet module baseline.
+#
+# The next baseline sync will overwrite any local changes to this file!
+#
+# ==============================================================================
+#
+# Board: https://github.com/orgs/simp/projects/11
+#
+# Intake is filtered (simp/puppetsync#97): automated traffic never needs a
+# human to triage it, and letting it in buried the items that do.
+#
+#   * Renovate (and Dependabot, pre-emptively) are matched by actor.
+#   * puppetsync's own sync PRs are matched by the `[puppetsync]` title prefix.
+#     That prefix is a CONVENTION set by the `commit_message` in each sync
+#     config, not something enforced -- a config that drops it would silently
+#     start adding sync PRs to the board again.
+#
+# PRs in general are deliberately NOT filtered: drive-by PRs from outside
+# contributors are exactly what the board must catch.
+#
+# This workflow does not check out any code, which is what makes its use of
+# `pull_request_target` safe. Keep it that way.
+#
+# Labelling (`community` for outside contributions, `needs-attention` for
+# stalled items) is NOT done here: the event payload's `author_association`
+# reports private org members as CONTRIBUTOR, so a per-repo step would mislabel
+# most of the team. It lives in the scheduled org job
+# simp/gha-workflows/.github/workflows/org_reconcile_board_status.yml, which
+# resolves membership from the org member list (simp/puppetsync#98, #99).
+#
 ---
 name: Add new issues to triage project
 
@@ -14,6 +48,14 @@ jobs:
   add-to-project:
     name: Add issue to project
     runs-on: ubuntu-latest
+    # `github.event.pull_request` is null on `issues` events, so the title test
+    # is guarded by event_name rather than relying on startsWith(null, ...)
+    # evaluating false.
+    if: >-
+      github.actor != 'renovate[bot]' &&
+      github.actor != 'dependabot[bot]' &&
+      !(github.event_name == 'pull_request_target' &&
+        startsWith(github.event.pull_request.title, '[puppetsync]'))
     steps:
       - uses: actions/add-to-project@v2
         with:
