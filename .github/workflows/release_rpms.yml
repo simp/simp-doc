@@ -98,7 +98,7 @@ jobs:
       Resolve GitHub Release:
       ${{ (github.event.inputs.target_repo != null && format('{0}/{1}', github.repository_owner, github.event.inputs.target_repo)) || github.repository }}
       ${{ github.event.inputs.release_tag }}
-    runs-on: ubuntu-24.04
+    runs-on: ubuntu-26.04
     outputs:
       release_id: ${{ steps.release-api.outputs.id }}
       build_semver: ${{ steps.validate-inputs.outputs.build_semver }}
@@ -229,7 +229,7 @@ jobs:
       ${{ github.event.inputs.release_tag }}
       (build os: ${{ matrix.os }})
     needs: [ resolve-release ]
-    runs-on: ubuntu-24.04
+    runs-on: ubuntu-26.04
     strategy:
       matrix:
         os: ${{ fromJSON(github.event.inputs.build_container_oses) }}
