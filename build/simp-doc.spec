@@ -118,7 +118,10 @@ BuildRequires: fontconfig
 BuildRequires: dejavu-sans-fonts
 BuildRequires: dejavu-sans-mono-fonts
 BuildRequires: dejavu-serif-fonts
+%if 0%{?rhel} < 9
+# Folded into the individual font packages on EL9+
 BuildRequires: dejavu-fonts-common
+%endif
 BuildRequires: libjpeg-devel
 BuildRequires: zlib-devel
 
