@@ -58,3 +58,22 @@ jobs:
           cache: 'pip'
       - run: pip install -r requirements.txt
       - run: sphinx-build -n -b html -d sphinx_cache docs html
+
+  # The one check for branch protection to require: GitHub only blocks a
+  # merge on checks listed by name, and this job fails unless every job it
+  # needs succeeded. Add any new job in this workflow to `needs:`.
+  all-checks:
+    name: 'All checks'
+    if: always()
+    needs:
+      - releng-checks
+      - python-tests
+      - build-html-docs
+    runs-on: ubuntu-latest
+    steps:
+      - name: 'Fail unless every needed job succeeded'
+        env:
+          NEEDS: ${{ toJSON(needs) }}
+        run: |
+          jq -r 'to_entries[] | "\(.key): \(.value.result)"' <<< "$NEEDS"
+          jq -e 'all(.[]; .result == "success")' <<< "$NEEDS" > /dev/null
