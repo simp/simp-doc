@@ -304,6 +304,11 @@ jobs:
         env:
           rpm_file_paths: ${{ steps.build-and-sign-rpm.outputs.rpm_file_paths }}
           rpm_gpg_file: ${{ steps.build-and-sign-rpm.outputs.rpm_gpg_file }}
+          # Every OS leg signs with the same key and produces an identically
+          # named .pub.asc; attach it from one leg only, or the legs' parallel
+          # clobber+upload of that one asset race each other
+          # ("already_exists" / "Not Found" from the releases API).
+          upload_gpg_file: ${{ matrix.os == fromJSON(github.event.inputs.build_container_oses)[0] }}
           release_id:  ${{ needs.resolve-release.outputs.release_id }}
           clobber: ${{ github.event.inputs.clobber }}
           clean: ${{ github.event.inputs.clean }}
@@ -352,8 +357,9 @@ jobs:
             const clobber = process.env.clobber == 'yes';
             const rpm_files = process.env.rpm_file_paths.split(/[\r\n]+/);
             const rpm_gpg_file = process.env.rpm_gpg_file;
+            const upload_files = process.env.upload_gpg_file == 'true' ? rpm_files.concat(rpm_gpg_file) : rpm_files;
 
-            let uploaded_files = rpm_files.concat(rpm_gpg_file).map(function(file){
+            let uploaded_files = upload_files.map(function(file){
               const name = path.basename(file)
               var content_type = 'application/pgp-keys'
               if( name.match(/\.rpm$/) ){
