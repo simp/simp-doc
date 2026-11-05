@@ -1,8 +1,31 @@
 HOWTO Enable Core Dumps
 =======================
 
-SIMP disables system :term:`core dump` capabilities by default for improved
-system security.
+The ``simp::sysctl`` class can restrict system :term:`core dump` capabilities
+for improved system security.
+
+As of ``simp-simp`` 11.0.0, a bare ``include simp::sysctl`` does not manage
+core dumps. Core dumps are restricted only when
+``simp::sysctl::core_dumps`` is ``false`` and ``simp_options::pam`` is
+``true``. ``core_dumps`` is set to ``false`` either directly in :term:`Hiera`
+or by enforcing the ``simp:defaults`` compliance profile (see
+:ref:`SIMP Compliance Engine`):
+
+.. code-block:: yaml
+
+   ---
+   # Use compliance_markup::enforcement instead if your Hiera configuration
+   # uses the older compliance_markup backend
+   compliance_engine::enforcement:
+     - simp:defaults
+
+In that case, ``simp::sysctl`` adds a ``prevent_core`` :term:`PAM` limits rule
+(``* hard core 0``).
+
+On nodes where ``pam::limits`` manages ``/etc/security/limits.conf`` (for
+example, the ``simp``, ``simp_lite`` and ``one_shot`` scenarios), upgrading
+without setting ``core_dumps`` to ``false`` removes an existing
+``prevent_core`` line on the next Puppet run.
 
 At times, users may need to re-enable core dumps for system troubleshooting.
 
@@ -21,7 +44,24 @@ Overall system core dumps can be enabled by setting the following in
    # Set the core dump output directory
    simp::sysctl::core_dump_dir: /fully/qualified/path
 
-This will also disable enforcement of core dump restrictions in :term:`PAM`.
+   # Write core dumps into that directory
+   simp::sysctl::kernel__core_pattern: '/fully/qualified/path/%u_%g_%p_%t_%h_%e.core'
+
+``simp::sysctl::core_dump_dir`` only creates the directory (mode ``0640``). The
+kernel writes core dumps to the location set by ``kernel.core_pattern``, so
+``simp::sysctl::kernel__core_pattern`` must point inside ``core_dump_dir``.
+
+.. NOTE::
+
+   If the node enforces ``simp:defaults``, set these keys at a Hiera level
+   above the compliance engine. Otherwise the profile's values win. See
+   :ref:`SIMP Compliance Engine`.
+
+This will also disable enforcement of core dump restrictions in :term:`PAM`:
+with ``core_dumps: true``, no ``prevent_core`` rule is declared. On nodes where
+``pam::limits`` manages ``/etc/security/limits.conf`` (for example, the
+``simp``, ``simp_lite`` and ``one_shot`` scenarios), that file is rebuilt from
+the rules in the catalog, so an existing ``prevent_core`` line is removed.
 
 Preventing Core Dumps via PAM
 -----------------------------
