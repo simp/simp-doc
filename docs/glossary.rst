@@ -678,6 +678,15 @@ Glossary of Terms
 
       See: `OpenLDAP website <https://www.openldap.org>`__
 
+   OpenVox
+      The community-maintained fork of :term:`Puppet`, developed by Vox
+      Pupuli. Its packages (:package:`openvox-agent`,
+      :package:`openvox-server` and :package:`openvoxdb`) replace
+      :package:`puppet-agent`, :package:`puppetserver` and
+      :package:`puppetdb`, and it runs the same Puppet language and modules.
+
+      See: `OpenVox documentation <https://docs.openvoxproject.org>`__
+
    OPSEC
    Operations Security
       A process that identifies critical information to determine if friendly
