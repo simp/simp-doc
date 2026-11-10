@@ -10,7 +10,7 @@ Style Guides
 ------------
 
 SIMP documentation (:github:`simp-doc`)
-"""""""""""""""""""""""""""""""""""""""
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 SIMP documentation uses `ReStructuredText roles`_ to keep formatting
 consistent, automatically cross-reference glossary terms, and generate external
@@ -45,18 +45,72 @@ formatting such as bold ``*text*`` or double-backticks (``````):
      :included_cols: 0,1,2,3
      :include: {4: '(?i)^inline$'}
 
-Markup conventions
-^^^^^^^^^^^^^^^^^^
+Files and page structure
+""""""""""""""""""""""""
 
-* Write admonitions in upper case (``.. NOTE::``, ``.. WARNING::``).
-* Use ``.. code-block:: bash`` for shell commands.
+* Put a new page in the directory of the guide it belongs to, and name the
+  file the way the files next to it are named.
+* Make sure a ``toctree`` reaches the new page.  Some :file:`index.rst` files
+  use ``:glob:`` and pick up new files on their own.  Others list each page,
+  and you have to add yours.
+* Start every page with a label, such as ``.. _howto-upgrade-simp:``.  Use
+  the prefix of the guide: ``gsg-`` (Getting Started Guide), ``ug-`` (User
+  Guide), ``howto-``, ``faq-``, ``cm-`` (certificate management) or
+  ``changelog-``.
+* Link to other pages with ``:ref:`` and the label, not with a file path.
+  Do not rename a label that already exists, because other pages link to it.
+* Put text that several pages share in a :file:`.inc` file and pull it in
+  with ``.. include::``.  The build skips :file:`.inc` files as pages.
+* Do not edit :file:`docs/dynamic`.  The build generates it.
+* Underline headings in this order: ``=`` for the page title, then ``-``,
+  ``^`` and ``"``.
+* Wrap text at 80 characters.  Long URLs and tables are exempt.
+
+Markup conventions
+""""""""""""""""""
+
+* Write admonitions in upper case: ``.. NOTE::``, ``.. WARNING::``,
+  ``.. IMPORTANT::`` and ``.. TIP::``.
+* Give every code block a language.  Use ``bash`` for shell commands, and
+  ``yaml``, ``puppet``, ``ruby`` or ``ini`` for content in those languages.
+  Use ``none`` for command output.
+* Do not put a prompt (``$`` or ``#``) in front of a command.  It gets
+  copied along with the command.
 * A named hyperlink reference needs a trailing underscore
   (```hardware requirements`_``).  Without it, the text renders as italics
   and links nowhere.
+* Define named link targets at the bottom of the file, in alphabetical
+  order.
+* End an inline link with two underscores
+  (```OpenVox documentation <https://docs.openvoxproject.org>`__``).  With
+  one underscore, a second link with the same text on the page causes a
+  duplicate target warning.
 * Fix broken markup on the lines next to the ones you change.
 
+Wording
+"""""""
+
+* Address the reader as "you".
+* Write OS releases as ``EL8`` and ``EL8+``, with no space.  Use lower case
+  (``el8``) only where a package or file name does.
+* Name a distribution, such as RHEL or Oracle Linux, only when the text
+  applies to that distribution alone.
+* Use the ``|simp_version|`` substitution for the current SIMP version.  Do
+  not type the number.
+
+Glossary
+""""""""
+
+* Use ``:term:`` the first time a page mentions a glossary term.
+* Add an entry to :file:`docs/glossary.rst` when you introduce a product,
+  acronym or concept that is not there yet.
+* Put each alternate name of a term on its own line above the definition.
+  The list sorts itself, so the position of the entry does not matter.
+* Link other glossary terms inside a definition with ``:term:``, and end the
+  entry with a ``See:`` link to the upstream site.
+
 Commands
-^^^^^^^^
+""""""""
 
 Readers copy and paste commands, so each one has to work exactly as written.
 
@@ -73,7 +127,7 @@ Readers copy and paste commands, so each one has to work exactly as written.
 * Use :program:`dnf`, not :program:`yum`, on pages that cover EL8+.
 
 Technical claims
-^^^^^^^^^^^^^^^^
+""""""""""""""""
 
 * Check a claim against the system before you write it down.  For package
   relationships, run :command:`dnf repoquery --provides --obsoletes --conflicts
@@ -85,7 +139,7 @@ Technical claims
   to set.
 
 Product and package names
-^^^^^^^^^^^^^^^^^^^^^^^^^
+"""""""""""""""""""""""""
 
 * The products are OpenVox, OpenVox Server and OpenVoxDB.
 * The packages are :package:`openvox-agent`, :package:`openvox-server` and
@@ -95,7 +149,7 @@ Product and package names
   are.
 
 Links
-^^^^^
+"""""
 
 * Link to the ``latest`` version of external documentation.  Pin a version
   only when the text is about that version.
@@ -105,7 +159,7 @@ Links
 * Check that every link you add or change resolves.
 
 Following the reader
-^^^^^^^^^^^^^^^^^^^^
+""""""""""""""""""""
 
 When you change the OS releases or the packages that a page covers, read
 every page that it sends the reader to as a next step.
@@ -115,7 +169,7 @@ every page that it sends the reader to as a next step.
   yet.  Do not leave the reader to find the gap by running into it.
 
 Before you submit
-^^^^^^^^^^^^^^^^^
+"""""""""""""""""
 
 * Build the docs with :command:`bundle exec rake docs:html`.
 * The CI build does not fail on warnings, and a reStructuredText error can
@@ -125,14 +179,14 @@ Before you submit
   you intended.
 
 SIMP Puppet modules
-"""""""""""""""""""
+^^^^^^^^^^^^^^^^^^^
 
 Documentation for Puppet modules should follow the `Puppet Strings Style Guide`_.
 
 .. _Puppet Strings Style Guide: https://puppet.com/docs/puppet/latest/puppet_strings_style.html
 
 SIMP git repositories
-"""""""""""""""""""""
+^^^^^^^^^^^^^^^^^^^^^
 
 SIMP project git repositories should contain a :file:`README.md` file at their
 top level.
