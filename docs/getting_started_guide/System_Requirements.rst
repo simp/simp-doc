@@ -12,7 +12,7 @@ including:
 * Number of modules in your module path
 * Amount of hieradata
 
-Official `hardware requirements` **for your SIMP server**:
+Official `hardware requirements`_ **for your SIMP server**:
 
 * At least 3.4 GB of RAM + swap.
 
@@ -35,4 +35,4 @@ may not leave adequate room for logs, applications, rsync data, etc.
    is a good place to start.
 
 .. _OpenVox Server tuning guide: https://docs.openvoxproject.org/openvox-server/latest/tuning_guide.html
-.. _hardware requirements: https://docs.openvoxproject.org/openvox/8.x/system_requirements.html
+.. _hardware requirements: https://docs.openvoxproject.org/openvox/latest/system_requirements.html

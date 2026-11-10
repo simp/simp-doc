@@ -680,9 +680,10 @@ Glossary of Terms
 
    OpenVox
       The community-maintained fork of :term:`Puppet`, developed by Vox
-      Pupuli. Its packages (``openvox-agent``, ``openvox-server`` and
-      ``openvoxdb``) replace ``puppet-agent``, ``puppetserver`` and
-      ``puppetdb``, and it runs the same Puppet language and modules.
+      Pupuli. Its packages (:package:`openvox-agent`,
+      :package:`openvox-server` and :package:`openvoxdb`) replace
+      :package:`puppet-agent`, :package:`puppetserver` and
+      :package:`puppetdb`, and it runs the same Puppet language and modules.
 
       See: `OpenVox documentation <https://docs.openvoxproject.org>`__
 

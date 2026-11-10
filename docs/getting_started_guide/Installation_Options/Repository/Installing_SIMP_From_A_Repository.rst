@@ -13,29 +13,53 @@ your own internal VM stack, this is the method that you will want to use.
    This method does **not** modify your system's partitioning scheme or
    encryption scheme to meet any regulatory policies. If you want an example of
    what that should look like see the :term:`Kickstart` files in the
-   `simp-core Git repository`_.
+   `simp-core Git repository`_. Those examples were written for EL8. There are
+   no EL9 or EL10 examples yet.
 
 
 Enable EPEL
 -----------
 
-.. NOTE::
+Some :term:`EPEL` packages depend on the CodeReady Builder (CRB) repository,
+which is named PowerTools on EL8 and is disabled by default. Enable it, then
+install the EPEL release package. Run the commands for your distribution.
 
-   On RHEL, enable the :term:`EPEL` repositories as described in
-   `Getting started with EPEL`_. On Oracle Linux, install
-   ``oracle-epel-release-el<N>`` (for example ``oracle-epel-release-el9``)
-   instead of ``epel-release``.
+AlmaLinux, Rocky Linux and CentOS Stream, EL9 and EL10:
 
 .. code-block:: bash
 
+   sudo dnf config-manager --set-enabled crb
    sudo dnf install -y epel-release
+
+AlmaLinux and Rocky Linux, EL8:
+
+.. code-block:: bash
+
+   sudo dnf config-manager --set-enabled powertools
+   sudo dnf install -y epel-release
+
+RHEL:
+
+.. code-block:: bash
+
+   sudo subscription-manager repos --enable codeready-builder-for-rhel-$(rpm -E %rhel)-$(arch)-rpms
+   sudo dnf install -y https://dl.fedoraproject.org/pub/epel/epel-release-latest-$(rpm -E %rhel).noarch.rpm
+
+Oracle Linux:
+
+.. code-block:: bash
+
+   sudo dnf config-manager --set-enabled ol$(rpm -E %rhel)_codeready_builder
+   sudo dnf install -y oracle-epel-release-el$(rpm -E %rhel)
+
+See `Getting started with EPEL`_ for details.
 
 Install The OpenVox Repository
 ------------------------------
 
 SIMP runs on :term:`OpenVox`, the community fork of Puppet. Install the OpenVox
-release package for your OS major version, which adds the OpenVox repository
-at https://yum.voxpupuli.org:
+9 release package, which adds the OpenVox repository at
+https://yum.voxpupuli.org:
 
 .. code-block:: bash
 
@@ -43,13 +67,38 @@ at https://yum.voxpupuli.org:
 
 .. NOTE::
 
-   SIMP modules support OpenVox 8 and 9. To use OpenVox 8, install
-   ``openvox8-release-el-<N>.noarch.rpm`` instead.
+   SIMP modules support OpenVox 8 and 9. To use OpenVox 8, run this instead:
+
+   .. code-block:: bash
+
+      sudo dnf install -y https://yum.voxpupuli.org/openvox8-release-el-$(rpm -E %rhel).noarch.rpm
+
+.. NOTE::
+
+   :pupmod:`simp/pupmod` defaults to OpenVox 8. If you installed OpenVox 9 and
+   later set ``pupmod::master::install::install_release_package: true`` in
+   :term:`Hiera`, also set ``pupmod::master::install::version: 9``. Otherwise
+   Puppet adds the OpenVox 8 repository next to the OpenVox 9 one.
 
 Install The SIMP-Project Repositories
 -------------------------------------
 
 Please reference :ref:`howto-use-the-simp-release-rpm`.
+
+.. WARNING::
+
+   That HOWTO has not been updated for EL8+ and OpenVox yet:
+
+   * SIMP release RPMs exist for EL7 and EL8 only. There is no release RPM
+     for EL9 or EL10, so the remaining steps on this page do not work there
+     yet.
+   * On EL8, the release RPM also enables repositories that carry the Puppet
+     packages, which conflict with the OpenVox packages. Disable them so
+     that OpenVox has a single package source:
+
+     .. code-block:: bash
+
+        sudo dnf config-manager --set-disabled puppet--simp puppet6--simp
 
 Rebuild The DNF Cache
 ---------------------
@@ -61,7 +110,7 @@ Rebuild The DNF Cache
 Install the SIMP Server
 -----------------------
 
-Install the ``openvox-server`` package as follows:
+Install the :package:`openvox-server` package as follows:
 
 .. code-block:: bash
 
@@ -69,8 +118,9 @@ Install the ``openvox-server`` package as follows:
 
 .. NOTE::
 
-   ``openvox-server`` replaces the ``puppetserver`` package but does not
-   provide it, so ``dnf install puppetserver`` does not install it.
+   There is no :package:`puppetserver` package in the OpenVox repository.
+   Install :package:`openvox-server`, which obsoletes and conflicts with
+   :package:`puppetserver`. The service is still named ``puppetserver``.
 
 Install the core SIMP packages as follows:
 
@@ -99,4 +149,4 @@ can discover what extra modules are available by searching for ``pupmod`` via
 .. _Google Cloud: https://cloud.google.com
 .. _Microsoft Azure: https://azure.microsoft.com/en-us/
 .. _official SIMP YUM repositories: https://download.simp-project.com/simp/yum
-.. _simp-core Git repository: https://github.com/simp/simp-core/tree/master/build/distributions/CentOS/8/x86_64/DVD/ks
+.. _simp-core Git repository: https://github.com/simp/simp-core/tree/master/build/distributions/RedHat/8/x86_64/DVD/ks
