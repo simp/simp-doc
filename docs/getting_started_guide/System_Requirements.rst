@@ -3,8 +3,8 @@
 System Requirements
 ===================
 
-The scalability of SIMP correlates to the scalability of Puppet.  From the
-`Puppet tuning guide`_, a number of factors contribute to scalability,
+The scalability of SIMP correlates to the scalability of :term:`OpenVox`.  From
+the `OpenVox Server tuning guide`_, a number of factors contribute to scalability,
 including:
 
 * Speed and quantity of available hardware
@@ -12,12 +12,12 @@ including:
 * Number of modules in your module path
 * Amount of hieradata
 
-Official `hardware requirements` **for your SIMP server**:
+Official `hardware requirements`_ **for your SIMP server**:
 
 * At least 3.4 GB of RAM + swap.
 
-With less than 3.4 GB it is possible for either the puppet database or
-puppet server to not start.
+With less than 3.4 GB it is possible for either OpenVoxDB or OpenVox Server
+to not start.
 
 We recommend the following `hardware requirements`_ **for your SIMP
 server**:
@@ -31,10 +31,8 @@ may not leave adequate room for logs, applications, rsync data, etc.
 
 .. NOTE::
 
-   If you want to optimize the Puppet server, the `Puppet tuning guide`_ is a
-   good place to start.  Use the `advanced memory debugging guide`_ for further
-   optimization.
+   If you want to optimize OpenVox Server, the `OpenVox Server tuning guide`_
+   is a good place to start.
 
-.. _Puppet tuning guide: https://docs.puppet.com/puppetserver/latest/tuning_guide.html
-.. _hardware requirements: https://docs.puppet.com/puppet/latest/system_requirements.html
-.. _advanced memory debugging guide: https://puppet.com/blog/puppet-server-advanced-memory-debugging
+.. _OpenVox Server tuning guide: https://docs.openvoxproject.org/openvox-server/latest/tuning_guide.html
+.. _hardware requirements: https://docs.openvoxproject.org/openvox/latest/system_requirements.html
