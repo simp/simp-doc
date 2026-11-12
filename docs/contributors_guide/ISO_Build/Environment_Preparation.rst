@@ -13,18 +13,24 @@ Getting Started
 Ensure Sufficient Entropy
 ^^^^^^^^^^^^^^^^^^^^^^^^^
 
-The SIMP build generates various keys and does quite a bit of package
-signing. As such, your system must be able to keep its entropy pool
-full at all times. If you check ``/proc/sys/kernel/random/entropy_avail``
-and it shows a number below **1024**, then you should either make sure that
-``rngd`` is running and pointed to a hardware source (preferred) or install
-and use **haveged**.
+The SIMP build generates keys and signs many packages, so it reads a lot of
+random data.  On EL9 and EL10, the kernel random number generator doesn't
+block once it has been initialized, so you rarely need to do anything here.
+On EL10, :file:`/proc/sys/kernel/random/entropy_avail` always reads 256, so
+that value doesn't tell you whether the build will be slow.
+
+If key generation or signing stalls on EL8, run :program:`rngd`.  The
+:package:`rng-tools` package is in the BaseOS repository on EL8, EL9 and
+EL10:
 
 .. code-block:: bash
 
-   sudo yum install haveged
-   sudo systemctl start haveged
-   sudo systemctl enable haveged
+   sudo dnf install -y rng-tools
+   sudo systemctl enable --now rngd
+
+Use :program:`rngd` rather than :program:`haveged`.  :package:`haveged` is
+only available from EPEL, and SIMP is replacing :pupmod:`simp/haveged` with
+:pupmod:`simp/rngd`.
 
 Setup a Container Management System
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
