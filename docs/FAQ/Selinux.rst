@@ -17,6 +17,6 @@ instructions:
 
 #. Reboot
 
-.. _EL10: https://docs.redhat.com/en/documentation/red_hat_enterprise_linux/10/html/interactively_installing_rhel_from_installation_media/troubleshooting-after-installation
+.. _EL10: https://docs.redhat.com/en/documentation/red_hat_enterprise_linux/10/install-using_rescue_mode#booting-into-rescue-mode
 .. _EL8: https://docs.redhat.com/en/documentation/red_hat_enterprise_linux/8/html/interactively_installing_rhel_from_installation_media/troubleshooting-after-installation_rhel-installer#booting-into-rescue-mode_using-rescue-mode
 .. _EL9: https://docs.redhat.com/en/documentation/red_hat_enterprise_linux/9/html/interactively_installing_rhel_from_installation_media/troubleshooting-after-installation_rhel-installer#booting-into-rescue-mode_using-rescue-mode
