@@ -1,63 +1,53 @@
 Release to GitHub and Deploy to PuppetForge
 ===========================================
 
-Each SIMP component is configured to automatically create a `GitHub`_ release
-and push the release to `PuppetForge`_, when an annotated tag is created for the
-`GitHub`_ project **and** the CI tests for the annotated tag push succeed.
+Each SIMP Puppet module releases itself when a version tag is pushed to its
+`GitHub`_ project.  The ``Tag: Release to GitHub w/RPMs + Puppet Forge``
+workflow (:file:`.github/workflows/tag_deploy.yml`) then:
 
-To create the releases from an annotated tag:
+* checks the version and the CHANGELOG, and builds the module
+* creates the GitHub release
+* starts the ``RELENG: Build + attach RPMs to GitHub Release`` workflow, which
+  attaches signed EL8, EL9 and EL10 RPMs to the release
+* deploys the module to `PuppetForge`_, unless the tag is a prerelease
 
-#. Clone the component repository and checkout the development
-   branch to be tagged
+You don't create the tag by hand.  The ``RELENG: Create release tag``
+workflow reads the version from :file:`metadata.json`, writes the tag
+annotation from the CHANGELOG, and pushes the tag.
 
-   .. code-block:: bash
+To release a module:
 
-      git clone git@github.com:simp/pupmod-simp-iptables.git
-      cd pupmod-simp-iptables
-      git checkout master # this step isn't needed for master branch
+#. Merge the pull request that bumps the version in :file:`metadata.json` and
+   adds the CHANGELOG entry.
 
-#. Generate the changelog content
-
-   .. code-block:: bash
-
-      bundle update
-      bundle exec rake pkg:create_tag_changelog > foo
-
-#. Create the annotated tag.  In this example the content of 'foo' is::
-
-      Release of 6.0.2
-
-      * Wed May 24 2017 Brandon Riden <brandon.riden@onyxpoint.com> - 6.0.2-0
-        - Added a workaround for Puppet 4.10 type issues
-          - There was a bug in Puppet where all lookup() Hash keys were being converted
-            into Strings even if they were another data type
-          - This is fixed in Puppet > 4.10.2 but this patch will remain for backwards
-            compatibility
-        - Update puppet dependency in metadata.json
-        - Remove OBE pe dependency in metadata.json
-
+#. Check the tag first with a dry run.  The dry run validates the version and
+   prints the tag annotation without pushing anything.  This example releases
+   :pupmod:`simp/iptables`:
 
    .. code-block:: bash
 
-      git tag -a 6.0.2 -F foo
-      git push origin 6.0.2
+      gh workflow run create_release_tag.yml --repo simp/pupmod-simp-iptables -f dry_run=true
 
-   .. NOTE::
+   You can also run the workflow from the **Actions** tab of the project.  Run
+   it on the default branch.
 
-       For markdown-style changelogs, you will need to specify
-       ``--cleanup=whitespace`` so comment headers are not stripped.
+#. Create and push the tag:
 
-#. Verify GitHub Actions completes successfully
+   .. code-block:: bash
+
+      gh workflow run create_release_tag.yml --repo simp/pupmod-simp-iptables
+
+#. Verify that the ``Tag: Release to GitHub w/RPMs + Puppet Forge`` and
+   ``RELENG: Build + attach RPMs to GitHub Release`` workflows complete
+   successfully.
 
    .. IMPORTANT::
 
-      If any of the required builds for the project fail, for example due to
-      intermittent connectivity problems, you can complete the release process
-      by manually restarting the failed build on the GitHub Actions page for
-      that build.
+      If a job fails, for example due to intermittent connectivity problems,
+      re-run the failed job from the GitHub Actions page.
 
-#. Verify release exists on `GitHub`_.  This release will have been
-   created by ``simp-auto``.
+#. Verify that the release exists on `GitHub`_ with the RPMs attached, and
+   that the new version is on `PuppetForge`_.
 
 .. _GitHub: https://github.com
 .. _PuppetForge: https://forge.puppet.com

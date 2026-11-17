@@ -11,9 +11,17 @@ Please have your environment prepared as specified by
 accordance with :ref:`gsg-mirroring_packages` before continuing.
 
 All of the following items assume that you are running as ``build_user`` in the
-``simp_build_centos8`` container.
+build container from :ref:`gsg-environment_preparation`.  The examples use EL8,
+because EL8 is the only release that has a :file:`release_mappings.yaml` and a
+mirroring configuration so far.
 
-Download the CentOS/RedHat installation media:
+.. WARNING::
+
+   The ISO build for EL9 and EL10 is not ready yet.  :github:`simp/simp-core`
+   has kickstart files for them, but no :file:`release_mappings.yaml` or
+   mirroring configuration.  See `simp-core#963`_.
+
+Download the RHEL installation media:
 
   * Refer to :file:`release_mappings.yaml` to determine the distribution ISO
     compatible with the version of SIMP you want to build.
@@ -22,7 +30,7 @@ Download the CentOS/RedHat installation media:
     directory.
 
 Updating release_mappings.yaml
-""""""""""""""""""""""""""""""""
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 It is very possible the versions outlined in the `release_mappings.yaml` are out of date,
 as such you may need to download a newer version of the installation media and create a new
@@ -33,11 +41,13 @@ one of the existing releases, renaming it, and modifying the iso section as nece
 The size of the iso can be obtained with:
 
 .. code-block:: bash
+
    ls -la </path/to/dvd*.iso>
 
 The checksum can be obtained with:
 
 .. code-block:: bash
+
    sha256sum </path/to/dvd*.iso>
 
 After obtaining the information necessary, ensure that the iso name is correct, modify the
@@ -54,35 +64,37 @@ Generating The ISO
 Repository Setup
 ^^^^^^^^^^^^^^^^
 
-Clone simp-core:
+The build container already has a clone of :github:`simp/simp-core` in
+:file:`/home/build_user/simp-core`:
 
 .. code-block:: bash
 
-   git clone https://github.com/simp/simp-core
-   cd simp-core
+   cd ~/simp-core
 
 Check out your desired branch of SIMP:
 
-* To check out a stable SIMP release, check out a tag (*Recommended*):
+* To check out a stable SIMP release, check out its tag (*Recommended*).
+  List the tags with :command:`git tag`:
 
-.. code-block::
+.. code-block:: bash
 
-   git checkout tags/6.6.0-1
+   git fetch --tags
+   git tag
 
 * To check out an unstable SIMP release, check out the latest ``master``:
 
-.. code-block::
+.. code-block:: bash
 
    git checkout master
 
 Run ``bundle`` to make sure that all of the build tools and dependencies are
 installed and up to date:
 
-.. code-block::
+.. code-block:: bash
 
    bundle install
 
-Make an ``ISO`` directory, and copy in the CentOS/RHEL installation media:
+Make an ``ISO`` directory, and copy in the RHEL installation media:
 
 .. code-block:: bash
 
@@ -93,15 +105,16 @@ ISO Setup
 ^^^^^^^^^
 
 Next, you need to prepare your local packages for inclusion in the final ISO.
-This example builds off of CentOS 8, but all distributions work the same way.
+This example builds EL8.
 
 Change to the target distribution directory:
 
 .. code-block:: bash
 
-   cd build/distributions/CentOS/8/x86_64
+   cd build/distributions/RedHat/8/x86_64
 
-You will see two directories :file:`DVD` and :file:`yum_data`.
+You will see the :file:`DVD` directory.  Create the :file:`yum_data` directory
+if it isn't there yet.
 
 Boot and Kickstart Customization (Optional)
 """""""""""""""""""""""""""""""""""""""""""
@@ -121,9 +134,10 @@ Change to the :file:`yum_data` directory:
 
 .. code-block:: bash
 
+   mkdir -p yum_data/reposync
    cd yum_data
 
-You will now see a :file:`reposync` directory. Any YUM repository placed into
+The :file:`reposync` directory holds the repositories for the ISO. Any YUM repository placed into
 this directory will be copied onto the final ISO using the following rules:
 
 1. If the :file:`reposync` directory has the exact same name as a directory already on the ISO
@@ -170,6 +184,7 @@ You can now add the repositories that you mirrored in
    repositories will be used by default.
 
 .. code-block:: bash
+
    mkdir reposync/SimpRepos
    mv /tmp/_download_path/*/BaseOS reposync
    mv /tmp/_download_path/*/AppStream reposync
@@ -179,6 +194,12 @@ At this point, the :file:`reposync/SimpRepos` directory may contain both a :file
 and :file:`puppet6` directory. If you wish to use ``puppet`` version 6 by
 default, move the :file:`puppet` directory to :file:`puppet7` and rename
 :file:`puppet6` to :file:`puppet`.
+
+.. WARNING::
+
+   SIMP 7 runs on :term:`OpenVox`, but the EL8 mirroring configuration still
+   mirrors Puppet 6 and Puppet 7.  This step changes when the configuration
+   moves to the OpenVox repositories.  See `simp-core#963`_.
 
 .. code-block:: bash
 
@@ -220,25 +241,25 @@ Build the ISO
 
 You are now ready to build the ISO!
 
-To do so, run the following, substituting ``6.6`` with the expected build
-version from :file:`release_mappings.yaml`:
+To do so, run the following, substituting ``<release_version>`` with the
+release number defined in :file:`release_mappings.yaml`:
 
 .. code-block:: bash
 
    cd </path/to>/simp-core
    SIMP_BUILD_prompt=yes \
    SIMP_BUILD_reposync_only=yes \
-   SIMP_BUILD_distro=CentOS,8Stream,x86_64 \
-   bundle exec rake build:auto[$PWD/ISO,<release_version>] #The release_version is the desired release number defined in release_mappings.yaml
+   SIMP_BUILD_distro=RedHat,8,x86_64 \
+   bundle exec rake build:auto[$PWD/ISO,<release_version>]
 
 Once the process completes, you should have a bootable SIMP ISO, in:
 :file:`build/distributions/<OS>/<rel>/<arch>/SIMP_ISO/`
 
-You can download it as follows (using CentOS 8 as an example):
+To copy it out of the container, run this on the container host:
 
 .. code-block:: bash
 
-   podman cp simp_build_centos8:/home/build_user/simp-core/build/distributions/CentOS/8/x86_64/SIMP_ISO .
+   podman cp simp_build_el8:/home/build_user/simp-core/build/distributions/RedHat/8/x86_64/SIMP_ISO .
 
 Rebuilding the ISO
 """"""""""""""""""
@@ -247,8 +268,9 @@ If the ISO build fails for any reason or you simply want to re-build the ISO bec
 you need to run the following commands to clean up the previous run:
 
 .. code-block:: bash
-   rm -rf build/distributions/CentOS/8/x86_64/DVD_Overlay
-   rm -rf build/distributions/CentOS/8/x86_64/SIMP*
+
+   rm -rf build/distributions/RedHat/8/x86_64/DVD_Overlay
+   rm -rf build/distributions/RedHat/8/x86_64/SIMP*
 
 After running these commands the ISO build can be safely re-run.
 
@@ -298,3 +320,4 @@ Please see the `Red Hat Guide to Configuring Yum and Yum Repositories`_ for
 additional information.
 
 .. _Red Hat Guide to Configuring Yum and Yum Repositories: https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/8/html/8.3_release_notes/distribution-of-content-in-rhel-8#package_management_with_yum_dnf
+.. _simp-core#963: https://github.com/simp/simp-core/issues/963

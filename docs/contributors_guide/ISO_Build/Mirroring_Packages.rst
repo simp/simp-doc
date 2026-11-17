@@ -14,48 +14,56 @@ done that yet.
    The following steps must be done on the container hosting system unless you
    have nested container capabilities in your build container.
 
-Install Bolt
-------------
+Install OpenBolt
+----------------
 
-See the documentation at :github:`puppetlabs/bolt` to install :program:`bolt` on
-your system.
+Install :term:`OpenBolt` as described in :ref:`gsg-environment_preparation`.
+The commands below use the :program:`bolt`, :program:`bundle` and
+:program:`ruby` executables that OpenBolt installs into
+:file:`/opt/puppetlabs/bolt/bin`.
 
 Create the Pulp Cloning System
 ------------------------------
 
-Using :github:`puppetlabs/bolt` and :github:`simp/bolt-pulp3`, set up the
-`pulp`_ container.
+Use OpenBolt and :github:`simp/bolt-pulp3` to set up the `pulp`_ container.
+:program:`bundle` installs the Ruby gems that the cloning script needs into
+:file:`vendor/bundle` in the :file:`bolt-pulp3` directory, so you don't need
+root access to the OpenBolt Ruby.
 
 .. code-block:: bash
 
    git clone https://github.com/simp/bolt-pulp3
    cd bolt-pulp3
-   rvm use system # You can skip this if not using RVM
    /opt/puppetlabs/bolt/bin/bolt module install --force
-   /opt/puppetlabs/bolt/bin/gem install --user -g gem.deps.rb
+   /opt/puppetlabs/bolt/bin/bundle config set --local path vendor/bundle
+   /opt/puppetlabs/bolt/bin/bundle install
    /opt/puppetlabs/bolt/bin/bolt plan run pulp3::in_one_container
    # Wait a few minutes for the service to get fully started
 
 Clone the Packages
 ------------------
 
-This uses a configuration file from the target version of SIMP that you are
-going to build.
+The cloning script reads a configuration file from the version of
+:github:`simp/simp-core` that you are going to build.  Download the file, or
+clone :github:`simp/simp-core` and check out the tag that you want to build.
 
-You will either need to download the file from :github:`simp/simp-core` or clone
-the repository and checkout the git tag that you wish to build.
+.. WARNING::
 
-For example, if you are going to build CentOS 8 for SIMP 6.6.0:
+   Only EL8 has a configuration file, and it still mirrors the Puppet 6 and
+   Puppet 7 repositories rather than OpenVox.  There are no EL9 or EL10
+   configuration files yet.  See `simp-core#963`_.
+
+Run the cloning script with :program:`bundle exec`, so that it uses the gems
+from :file:`vendor/bundle`.  Set ``PULP_PORT`` to the port of the `pulp`_
+container, which is ``8080`` unless you changed
+``pulp3::server_port``.  Under :program:`bundle exec`, the script can't
+look the port up by itself.
 
 .. code-block:: bash
 
-   curl -O https://raw.githubusercontent.com/simp/simp-core/6.6.0-1/build/distributions/CentOS/8/x86_64/bolt_pulp3_config.yaml
-   ./slim-pulp-repo-copy.rb -f bolt_pulp3_config.yaml
-
-or:
-
-.. code-block:: bash
-   ./slim-pulp-repo-copy.rb -f <path_to_cloned_simp-core_module>/build/distributions/<desired_distribution>/<desired_distribution_version>/x86_64/bolt_pulp3_config.yaml
+   curl -fsSLO https://raw.githubusercontent.com/simp/simp-core/master/build/distributions/RedHat/8/x86_64/bolt_pulp3_config.yaml
+   export PULP_PORT=8080
+   /opt/puppetlabs/bolt/bin/bundle exec /opt/puppetlabs/bolt/bin/ruby ./slim-pulp-repo-copy.rb -f bolt_pulp3_config.yaml
 
 .. NOTE::
 
@@ -81,7 +89,7 @@ If this occurs:
    podman stop pulp
    podman start pulp
    # Wait a few minutes for the service to get fully started
-   ./slim-pulp-repo-copy.rb -f build/6.6.0/CentOS/8/x86_64/repo_packages.yaml
+   /opt/puppetlabs/bolt/bin/bundle exec /opt/puppetlabs/bolt/bin/ruby ./slim-pulp-repo-copy.rb -f bolt_pulp3_config.yaml
 
 Updated YAML file
 """""""""""""""""
@@ -98,16 +106,17 @@ To do this:
    /opt/puppetlabs/bolt/bin/bolt plan run pulp3::in_one_container::destroy
    /opt/puppetlabs/bolt/bin/bolt plan run pulp3::in_one_container
    # Wait a few minutes for the service to get fully started
-   ./slim-pulp-repo-copy.rb -f build/6.6.0/CentOS/8/x86_64/repo_packages.yaml
+   /opt/puppetlabs/bolt/bin/bundle exec /opt/puppetlabs/bolt/bin/ruby ./slim-pulp-repo-copy.rb -f bolt_pulp3_config.yaml
 
 If the slim-pulp-repo-copy.rb Fails
-"""""""""""""""""
+"""""""""""""""""""""""""""""""""""
 
 If the slim-pulp-repo-copy.rb fails for any reason, the pulp container
 could be in an unknown state. To ensure that nothing from the failed
 run will cause issues with future runs, do the following:
 
 .. code-block:: bash
+
    /opt/puppetlabs/bolt/bin/bolt plan run pulp3::in_one_container::destroy
    /opt/puppetlabs/bolt/bin/bolt plan run pulp3::in_one_container
    # Wait a few minutes for the service to get fully started
@@ -136,8 +145,8 @@ process.
 
 .. code-block:: bash
 
-   podman cp _download_path/ simp_build_centos8:/tmp
-   podman exec -it simp_build_centos8 chown -R build_user:build_user /tmp/_download_path
+   podman cp _download_path/ simp_build_el8:/tmp
+   podman exec -it simp_build_el8 chown -R build_user:build_user /tmp/_download_path
 
 (Optional) Cleanup
 ------------------
@@ -153,3 +162,4 @@ To do this, run the following:
    /opt/puppetlabs/bolt/bin/bolt plan run pulp3::in_one_container::destroy
 
 .. _`pulp`: https://pulpproject.org
+.. _simp-core#963: https://github.com/simp/simp-core/issues/963
