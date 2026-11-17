@@ -162,10 +162,10 @@ succeeded:
      suites, you may have to run the ``acceptance`` rake task,
      instead.
 
-   * If the GitLab instance for the project is current (it is
-     sync'd every 3 hours), you can look at the latest acceptance
-     test results run by GitLab.  For our project, the results will
-     be at https://gitlab.com/simp/pupmod-simp-iptables/-/pipelines.
+   * The ``PR Tests`` workflow runs acceptance tests in GitHub Actions
+     for modules that have them configured, often for a single suite.
+     Its results are on the same page as the unit tests.  Run the full
+     set of suites yourself before you release.
 
 Verify interoperability with last SIMP release
 ----------------------------------------------

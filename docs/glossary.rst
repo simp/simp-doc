@@ -677,6 +677,13 @@ Glossary of Terms
 
       See: `OpenLDAP website <https://www.openldap.org>`__
 
+   OpenBolt
+      The community-maintained fork of :term:`Bolt`, developed by Vox Pupuli.
+      Its :package:`openbolt` package is in the :term:`OpenVox` repository and
+      installs into :file:`/opt/puppetlabs/bolt`.
+
+      See: `OpenBolt documentation <https://docs.openvoxproject.org/openbolt/latest/>`__
+
    OpenVox
       The community-maintained fork of :term:`Puppet`, developed by Vox
       Pupuli. Its packages (:package:`openvox-agent`,
