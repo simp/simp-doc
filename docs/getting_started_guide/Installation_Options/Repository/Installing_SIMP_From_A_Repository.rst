@@ -13,8 +13,8 @@ your own internal VM stack, this is the method that you will want to use.
    This method does **not** modify your system's partitioning scheme or
    encryption scheme to meet any regulatory policies. If you want an example of
    what that should look like see the :term:`Kickstart` files in the
-   `simp-core Git repository`_. Those examples were written for EL8. There are
-   no EL9 or EL10 examples yet.
+   `simp-core Git repository`_. There are examples for EL8, EL9 and EL10,
+   under :file:`RedHat/{MAJORRELEASE}/x86_64/DVD/ks`.
 
 
 Enable EPEL
@@ -149,4 +149,4 @@ can discover what extra modules are available by searching for ``pupmod`` via
 .. _Google Cloud: https://cloud.google.com
 .. _Microsoft Azure: https://azure.microsoft.com/en-us/
 .. _official SIMP YUM repositories: https://download.simp-project.com/simp/yum
-.. _simp-core Git repository: https://github.com/simp/simp-core/tree/master/build/distributions/RedHat/8/x86_64/DVD/ks
+.. _simp-core Git repository: https://github.com/simp/simp-core/tree/master/build/distributions/RedHat
