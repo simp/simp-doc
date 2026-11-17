@@ -43,9 +43,7 @@ Stunnel and Autofs
 .. WARNING::
 
    You must ensure that you are using :package:`autofs` greater than ``5.0.7-99``.
-
-To use :term:`NFS` over ``stunnel`` and ``automount`` directories with old
-CentOS 7 releases, you must use the appropriate ``autofs`` package.
+   EL8 ships :package:`autofs` 5.1.4, which meets this requirement.
 
 To determine what version of ``autofs`` is installed, run ``automount -V``.
 
@@ -500,4 +498,3 @@ disabled.
 
 .. _README: https://github.com/simp/pupmod-simp-nfs/blob/7.0.0/README.md
 .. _SIMP-1407: https://simp-project.atlassian.net/browse/SIMP-1407
-.. _autofs-5.0.7-56: http://vault.centos.org/7.3.1611/os/x86_64/Packages/autofs-5.0.7-56.el7.x86_64.rpm

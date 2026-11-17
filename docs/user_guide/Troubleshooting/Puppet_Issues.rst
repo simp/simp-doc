@@ -9,34 +9,21 @@ Puppet Issues
 Puppet Deprecation Warnings
 ---------------------------
 
-Puppet 5 has added deprecation warnings to several settings.  If one of these
-settings is present in a host's ``puppet.conf``, you may see warnings at the
-beginning of every ``puppet`` run like this:
-::
+:term:`OpenVox` prints a deprecation warning for some settings.  If one of
+these settings is present in a host's ``puppet.conf``, you may see warnings at
+the beginning of every ``puppet`` run like this:
 
-    Warning: Setting configprint is deprecated.
-    (location: /opt/puppetlabs/puppet/lib/ruby/vendor_ruby/puppet/settings.rb:1169:in 'issue_deprecation_warning')
+.. code-block:: none
 
-These messages are innocuous.  The deprecated settings can still be used until
-Puppet 6.
+   Warning: Setting <name> is deprecated.
 
-SIMP's ``pupmod`` module usually manages its settings in ``puppet.conf``
-without using deprecated settings.  However, under some circumstances it has no
-other choice, resulting in unavoidable error messages.
+These messages do not stop the run.  Remove the deprecated setting from
+``puppet.conf`` to stop the warning.
 
-
-``Warning: Setting ca is deprecated.``
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-``[master] ca`` is marked as deprecated from Puppet 5.5.6 onward.  This results
-in a harmless—but unavoidable—deprecation warning whenever ``puppet`` is run
-on Puppet Servers configured to `not` act as the Puppet CA
-(``pupmod::master::enable_ca: false``):
-::
-
-    Warning: Setting ca is deprecated.
-    (location: /opt/puppetlabs/puppet/lib/ruby/vendor_ruby/puppet/settings.rb:1169:in 'issue_deprecation_warning')
-
+SIMP's ``pupmod`` module manages its settings in ``puppet.conf`` without using
+deprecated settings.  It turns the Puppet CA on or off in the
+:file:`services.d/ca.cfg` file of OpenVox Server, not with the deprecated
+``ca`` setting in ``puppet.conf``.
 
 
 .. _ug-ts-puppet-disabling-depwarnings:

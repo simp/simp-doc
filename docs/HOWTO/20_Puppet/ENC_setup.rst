@@ -84,7 +84,6 @@ To use this script for your ENC, do the following as ``root``:
 
    .. code-block:: sh
 
-      # On EL7
       systemctl restart puppetserver
 
 For more information on ENCs, please see `Puppet's ENC documentation`_.

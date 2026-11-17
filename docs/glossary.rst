@@ -651,8 +651,7 @@ Glossary of Terms
       A networking protocol designed to keep computer systems' clocks within a few
       milliseconds of each other.
 
-      SIMP manages NTP servers and clients on EL7 using :pupmod:`simp/ntpd` and
-      on EL8 using :pupmod:`voxpopuli/chrony`.
+      SIMP manages NTP clients and servers using :pupmod:`puppet/chrony`.
 
       See: `Wikipedia: Network Time Protocol <https://en.wikipedia.org/wiki/Network_Time_Protocol>`__
 

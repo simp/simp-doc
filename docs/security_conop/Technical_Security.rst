@@ -193,7 +193,7 @@ DHCPD       In        DHCP/BOOTP TCP/UDP   546,547 DHCP pooling is disabled by d
 TFTP        In        TFTP       TCP/UDP   69      This is used for kickstart. It could also be used to update network devices. TFTP does not support encryption.
 rsyslog     Out       syslog     TCP/UDP   6514    This is encrypted when communicating with a SIMP syslog server (not installed by default).
 named       In/Out    DNS        TCP/UDP   53      Inbound connections happen to the locally managed hosts. Outbound connections happen to other domains per the normal operations of DNS.
-NTPD        Out       NTP        TCP/UDP   123     Only connects to an external time source by default.
+chronyd     Out       NTP        TCP/UDP   123     Only connects to an external time source by default.
 SSHD        In        SSH        TCP       22      SSH is always allowed from any source IP by default.
 stunnel     In        TLS        TCP       8730    Stunnel is a protected connection for rsyncing configuration files to Puppet clients.
 rsync       Localhost RSYNC      TCP       873     This accepts connections to the localhost and forwards through Stunnel.
@@ -212,7 +212,7 @@ Application Direction Protocol   Transport Ports   Comment
 Puppet      Out       HTTPS      TCP       8140    Communications to the Puppet server.
 rsyslog     Out       syslog     TCP/UDP   6514    This is encrypted when communicating with a SIMP syslog server.
 DNS Client  Out       DNS        TCP/UDP   53      Normal name resolution.
-NTPD        Out       NTP        TCP/UDP   123     Only connects to an external time source by default.
+chronyd     Out       NTP        TCP/UDP   123     Only connects to an external time source by default.
 SSHD        In        SSH        TCP       22      SSH is allowed from any source IP by default.
 LDAP        Out       LDAP       TCP       389     Connections are protected by bi-directional authenticated encryption.
 =========== ========= ========== ========= ======= =======================================================================
@@ -510,7 +510,8 @@ the log server over a TLS protected link.
 Time Synchronization
 --------------------
 
-Each SIMP client (including the Puppet Server) has ``ntpd`` enabled by default.
+Each SIMP client (including the Puppet Server) has ``chronyd`` enabled by
+default.
 Part of the installation directs the clients to a time server.  If no servers
 are available, the SIMP clients can use the Puppet Server as the central time
 source. Audit logs receive their time stamp from the local server's system

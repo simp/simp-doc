@@ -12,7 +12,7 @@ Destructive Reasoning with `svckill`
 Most security guides that have been published on the Internet strongly
 suggest disabling all services that are not necessary for system
 operation. However, to list every possible service that may be
-controlled by the ``chkconfig`` or ``systemctl`` on a given system
+controlled by ``systemctl`` on a given system
 in a manifest would not be useful and would bloat the memory space of
 the running Puppet process.
 

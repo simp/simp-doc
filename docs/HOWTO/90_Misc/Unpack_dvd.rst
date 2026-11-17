@@ -25,6 +25,14 @@ Extract the OS Packages
 
 Use :code:`unpack_dvd --help` to see all options available.
 
+.. WARNING::
+
+   The examples on this page use CentOS 7 and CentOS 8 media.
+   :program:`unpack_dvd` does not recognise AlmaLinux or Rocky Linux media
+   yet, and on EL9 and EL10 it needs :program:`isoinfo`, which only
+   :term:`EPEL` provides.  See
+   `simp-utils#103 <https://github.com/simp/simp-utils/issues/103>`__.
+
 .. NOTE::
 
   If unpack_dvd can only determine the OS major version from the ISO metadata
@@ -43,12 +51,12 @@ The following example will extract to the default location:
       # unpack_dvd -v <os version> <full path to iso>
       unpack_dvd -v 7.8.2003 /myisodir/CentOS-7-x86_64-DVD-2003.iso
 
-#. Ensure that subsequent :term:`yum` operations are aware of the new RPM
-   packages by refreshing the system's yum cache:
+#. Ensure that subsequent :program:`dnf` operations are aware of the new RPM
+   packages by refreshing the system's cache:
 
    .. code:: bash
 
-      yum clean all && yum makecache
+      dnf clean all && dnf makecache
 
 .. WARNING::
 
@@ -98,5 +106,5 @@ The following example will extract both the RPMs and PXE files to alternate dire
    # The PXE directory must follow the -X option.
    # The -d options changes the directory to extract OS files
    unpack_dvd -v 8.0.1905 -d /my/repodir /myisodir/CentOS-8-x86_64-1905-dvd1.iso -X /my/tftpboot
-   yum clean all && yum makecache
+   dnf clean all && dnf makecache
 
