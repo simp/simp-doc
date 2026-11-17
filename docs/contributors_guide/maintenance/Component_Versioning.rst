@@ -70,7 +70,7 @@ Changes to the following do not typically warrant
 a new release of a component:
 
 * Any hidden file/directory (entry that begins with a ``.`` such as
-  ``.rspec``, ``.gitignore``, ``.gitlab-ci.yml``)
+  ``.rspec``, ``.gitignore``, ``.github/``)
 * ``Gemfile``
 * ``Gemfile.lock``
 * ``Rakefile``
@@ -102,13 +102,13 @@ version/changelog-related linters for SIMP Puppet modules:
      ``CHANGELOG`` and ``metadata.json`` files.
   #. The latest version is smaller than the latest tag (version regression).
 
-* ``pkg::check_version``: Compares all files with the closest
+* ``pkg:check_version``: Compares all files with the closest
   tag and logs an error if any files have changed, but the version
   has not been updated, or the versions in the ``metadata.json`` and
   ``CHANGELOG`` files do not match.
 
 .. NOTE::
 
-   Moving forward, these linters will be enhanced to handle the
-   version/changelog nuances of the other projects SIMP releases and
-   will be included as tests in all TravisCI builds.
+   The ``RELENG checks`` job of each Puppet module's tag release workflow
+   (:file:`.github/workflows/tag_deploy.yml`) runs ``pkg:check_version``, ``pkg:compare_latest_tag`` and
+   ``pkg:create_tag_changelog``.

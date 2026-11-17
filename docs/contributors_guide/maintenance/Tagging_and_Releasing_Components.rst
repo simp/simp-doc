@@ -13,6 +13,8 @@ This section describes the release procedures for SIMP. The SIMP
 Team releases:
 
 * Individual Puppet modules as tar files to `PuppetForge`_
+* Individual Puppet modules as signed EL8, EL9 and EL10 RPMs attached to
+  their `GitHub`_ release
 * Individual Puppet modules as signed RPMs to the appropriate path at https://download.simp-project.com/simp/yum/.
 * Ruby gems for building and testing to `RubyGems.org`_
 * SIMP system dependencies as signed RPMs to the  appropriate path at https://download.simp-project.com/simp/yum/.

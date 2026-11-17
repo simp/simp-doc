@@ -1,6 +1,13 @@
 Build Signed RPM and Deploy to SIMP Download Server
 ---------------------------------------------------
 
+.. WARNING::
+
+   For SIMP Puppet modules, the ``RELENG: Build + attach RPMs to GitHub
+   Release`` workflow builds signed EL8, EL9 and EL10 RPMs and attaches them
+   to the GitHub release.  Where the SIMP 7.0.0 packages are published is
+   not decided yet.  See `simp-core#957`_.
+
 If a New RPM Needs to be Built
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
@@ -28,3 +35,5 @@ Push to SIMP Download Server
 Currently the authorized signing team member that signs the RPM will use ``scp``
 to push the file to the proper folder on the SIMP Download Server. The file will
 then be accessible by following the appropriate path at https://download.simp-project.com.
+
+.. _simp-core#957: https://github.com/simp/simp-core/issues/957

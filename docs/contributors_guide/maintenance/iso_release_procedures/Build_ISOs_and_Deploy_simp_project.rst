@@ -4,7 +4,7 @@ Build Final ISO and Deploy to simp-project
 Building the Final ISO
 ----------------------
 
-The ``build::auto`` Rake task will pull all upstream published RPMs for any
+The ``build:auto`` Rake task will pull all upstream published RPMs for any
 repositories that are listed as part of the target distribution ``yum_repos``
 metadata.
 

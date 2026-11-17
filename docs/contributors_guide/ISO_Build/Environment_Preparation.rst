@@ -56,49 +56,63 @@ container has enough space available.
 If your default location does not have enough space, you may need to change your
 :code:`graphroot` in :file:`$HOME/.config/containers/storage.conf`.
 
-Install Puppet Bolt
-^^^^^^^^^^^^^^^^^^^
+Install OpenBolt
+^^^^^^^^^^^^^^^^
 
-The latest build system uses :github:`puppetlabs/bolt` to spin up
-:program:`pulp` containers for repository mirroring.
+The build uses :term:`OpenBolt`, the community fork of Puppet Bolt, to start
+the :program:`pulp` container that mirrors the packages.  This approach handles
+modular repositories on EL8+.
 
-This was done to work with modular repositories in EL8+.
+The :package:`openbolt` package is in the OpenVox repository.  Install the
+repository release package, then OpenBolt:
 
+.. code-block:: bash
+
+   sudo dnf install -y https://yum.voxpupuli.org/openvox9-release-el-$(rpm -E %rhel).noarch.rpm
+   sudo dnf install -y openbolt
+
+OpenBolt installs its own Ruby, :program:`bundle` and :program:`bolt` into
+:file:`/opt/puppetlabs/bolt/bin`.
 
 Setup Your Build Container
 ^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 SIMP needs to be built using the **exact same distribution** that the ISO
-targets.
+targets.  The examples below use EL8, the only release that the ISO build
+supports so far.  Images for EL9 and EL10 are published as well: change
+``el8`` to ``el9`` or ``el10``.
+
+The build images run as ``build_user`` and have :github:`simp/simp-core`
+cloned into :file:`/home/build_user/simp-core`.  They have Ruby 3.2 (OpenVox 8)
+and Ruby 4.0 (OpenVox 9) installed, and Ruby 3.2 is the default.
 
 Use an Existing Image
 """""""""""""""""""""
 
-For the fastest start, use a published image if one is available that matches
-your system.
+For the fastest start, use a published image.  The images are rebuilt every
+week:
 
 .. code-block:: bash
 
-   podman pull simpproject/simp_build_centos8
+   podman pull ghcr.io/simp/simp-el8-build:latest
+   podman run -id --name simp_build_el8 ghcr.io/simp/simp-el8-build:latest
+   podman exec -it simp_build_el8 su -l build_user
 
 Build a Fresh Container
 """""""""""""""""""""""
 
-If a matching image is not available (or updates are available that have yet to
-be published) then use the build-related Dockerfiles in the
-:github:`simp/simp-core` project under the :file:`build/Dockerfiles`
-subdirectory.
-
-The following provides an example of how to build and start the image:
+If you need changes that have not been published yet, build the image from the
+Dockerfiles in the :file:`build/Dockerfiles` directory of
+:github:`simp/simp-core`.  To make Ruby 4.0 the default, add
+``--build-arg ruby_version=4.0`` to the :program:`buildah` command.
 
 .. code-block:: bash
 
    git clone https://github.com/simp/simp-core
    cd simp-core/build/Dockerfiles
-   buildah build --layers -f SIMP_EL8_Build.dockerfile -t simp_build_centos8
-   podman run -id --name simp_build_centos8 simp_build_centos8
-   podman exec -it simp_build_centos8 bash
-   su - build_user
-   cd simp-core
-   git tag
-   git checkout <tag of simp-core that you wish to build>
+   buildah build --layers -f SIMP_EL8_Build.dockerfile -t simp_build_el8 .
+   podman run -id --name simp_build_el8 simp_build_el8
+   podman exec -it simp_build_el8 su -l build_user
+
+Inside the container, check out the :github:`simp/simp-core` tag that you want
+to build, as described in :ref:`gsg-building_simp_from_source`.
