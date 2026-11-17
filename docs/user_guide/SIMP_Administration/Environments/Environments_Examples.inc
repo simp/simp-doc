@@ -49,20 +49,20 @@ of your site specific modules in your environment.
    add any new or updated SIMP module RPMs to the yum repositories using
    your sites procedures.
 
-   On your SIMP server, clear the yum cache
+   On your SIMP server, clear the dnf cache
 
    .. code-block:: sh
 
-      yum clean all; yum makecache
+      dnf clean all; dnf makecache
 
    Then install or update any modules
 
    .. code-block:: sh
 
       # For example if installing all the modules in simp-extras
-      yum install simp-extras
+      dnf install simp-extras
       # or a simp Puppet module with a patch
-      yum update pupmod-simp-aide
+      dnf update pupmod-simp-aide
 
    This will update the local git repositories on the SIMP server.
 
@@ -234,7 +234,7 @@ Before proceeding with this section, you should
 
    .. code-block:: bash
 
-      yum install rubygem-simp-cli simp-environment-skeleton simp-rsync-skeleton simp-selinux-policy
+      dnf install rubygem-simp-cli simp-environment-skeleton simp-rsync-skeleton simp-selinux-policy
 
 
 #. Create the SIMP Omni-Environment skeleton without SIMP local repository

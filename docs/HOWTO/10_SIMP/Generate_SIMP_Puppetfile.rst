@@ -97,7 +97,7 @@ Generate the :file:`Puppetfile.simp` file
 Using local SIMP git repositories
 ++++++++++++++++++++++++++++++++++
 
-     Make sure all the SIMP module RPMs are installed using yum
+     Make sure all the SIMP module RPMs are installed using dnf
      that you want to use and then run:
 
      .. code-block:: bash
@@ -113,7 +113,7 @@ Using SIMP internet repositories
 
        .. code-block:: bash
 
-          curl -o Puppetfile.simp https://github.com/simp/simp-core/blob/6.4.0-0/Puppetfile.pinned
+          curl -o Puppetfile.simp https://raw.githubusercontent.com/simp/simp-core/6.4.0-0/Puppetfile.pinned
 
      - Manually edit the :file:`Puppetfile.simp` to remove components that are not Puppet
        modules, by deleting all lines up to and including
@@ -126,7 +126,7 @@ Using SIMP internet repositories
 
        .. code-block:: bash
 
-          yum deplist simp-extras
+          dnf repoquery --requires simp-extras
 
 
 Copy the :file:`Puppetfile` and :file:`Puppetfile.simp` to top level of the environment

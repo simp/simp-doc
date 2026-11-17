@@ -177,7 +177,7 @@ obtained from one of the following sources:
 
         .. code-block:: bash
 
-           yum deplist simp-extras | grep dependency:
+           dnf repoquery --requires simp-extras
 
 #. Create the :file:`Puppetfile`:
 
@@ -250,11 +250,11 @@ Execute the following steps as ``root``:
    or ``Code Manager``.  Be sure the deployed modules are accessible to the
    ``puppet`` group.
 
-#. Install the ``puppetserver`` package:
+#. Install the :package:`openvox-server` package:
 
    .. code-block:: bash
 
-      yum install puppetserver
+      dnf install -y openvox-server
 
 #. Run :command:`simp config` with an option that tells it the SIMP Omni-Environment
    has already been created:

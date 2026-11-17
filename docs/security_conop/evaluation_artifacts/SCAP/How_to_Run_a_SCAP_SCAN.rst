@@ -1,20 +1,29 @@
 How to Run a SCAN
 -----------------
 
-#. Download the latest `SSG Release OVAL ZIP file`_ onto the target system
-#. Unzip the downloaded file and ``cd`` into the directory
-#. Make sure that you have the ``openscap-scanner`` package installed
+#. Install the scanner and the SCAP Security Guide content from the OS
+   repositories:
+
+   .. code-block:: bash
+
+      sudo dnf install -y openscap-scanner scap-security-guide
+
+   The data streams are installed in
+   :file:`/usr/share/xml/scap/ssg/content/`.  For newer content, download the
+   latest `SSG Release OVAL ZIP file`_ instead and unzip it.
+
 #. Run ``oscap xccdf eval --profile <profile_name> --results ~/scan-output.xml \``
    ``--report ~/scan-output.html ssg-<OS>-ds.xml``
 
    * You can get the list of available profiles by running
      ``oscap info ssg-<OS>-ds.xml``
-   * For example, to run the ``STIG`` profile on ``CentOS 7``, you would run
+   * For example, to run the ``STIG`` profile on AlmaLinux 9, you would run
      the following command:
 
      .. code-block:: bash
 
-        oscap xccdf eval --profile xccdf_org.ssgproject.content_profile_stig-rhel7-disa \
-        --results ~/scan-output.xml --report ~/scan-output.html ssg-centos7-ds.xml
+        sudo oscap xccdf eval --profile xccdf_org.ssgproject.content_profile_stig \
+        --results ~/scan-output.xml --report ~/scan-output.html \
+        /usr/share/xml/scap/ssg/content/ssg-almalinux9-ds.xml
 
 .. _SSG Release OVAL ZIP file: https://github.com/ComplianceAsCode/content/releases

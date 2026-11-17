@@ -9,6 +9,14 @@ HOWTO Enable PuppetDB
 
 As of SIMP 6.6.0, :term:`puppetdb` is no longer enabled or managed by default.
 
+.. WARNING::
+
+   This page has not been updated for :term:`OpenVox` yet.  The
+   ``simp::puppetdb`` class installs the :package:`puppetdb` and
+   :package:`puppetdb-termini` packages, which the OpenVox repositories do not
+   provide.  OpenVox provides :package:`openvoxdb` instead.  See
+   `simp#422 <https://github.com/simp/pupmod-simp-simp/issues/422>`__.
+
 Use the following YAML as a guide to the :term:`hiera` settings required to enable the management of :program:`puppetdb`.
 
 .. code-block:: yaml
