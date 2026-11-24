@@ -86,8 +86,8 @@ set securely, but that the Puppet Server has access to them.
      --pkcs7-public-key=/var/lib/puppet/keys/public_key.pkcs7.pem
   # cd /var/lib/
   # chown -R puppet puppet
-  # chmod 500 puppet
-  # chmod 400 puppet/*.pem
+  # chmod 500 puppet/keys
+  # chmod 400 puppet/keys/*.pem
 
 
 Make sure the keys are backed up.
