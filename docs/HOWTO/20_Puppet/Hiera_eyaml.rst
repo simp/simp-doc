@@ -29,9 +29,9 @@ environment in order to manage secrets with the :command:`eyaml` command.
    $ gem install hiera-eyaml
 
 If you are unable to install the gem from your system, you may be able to use
-the version that ships with the Puppet Agent at
+the version that ships with the OpenVox agent at
 :file:`/opt/puppetlabs/puppet/bin/eyaml`.  You may need privileged access to
-run it, depending on the :package:`puppet-agent` package and the system's umask
+run it, depending on the :package:`openvox-agent` package and the system's umask
 when it was installed.
 
 

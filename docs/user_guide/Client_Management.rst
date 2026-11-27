@@ -17,7 +17,7 @@ System Requirements
 
 Client systems should meet the following minimum requirements:
 
--  Hardware/:term:`Virtual Machine` (VM): Capable of running RHEL 7 or 8 x86_64
+-  Hardware/:term:`Virtual Machine` (VM): Capable of running EL8, EL9 or EL10 x86_64
 -  RAM: 2048 MB
 -  HDD: 22 GB
 

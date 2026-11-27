@@ -9,11 +9,9 @@ system.
 
 .. NOTE::
 
-   Prior to SSSD 1.16 (:`term:`EL 7+), there was a LOCAL provider. This has been fully deprecated as
-   on :term:`EL` 8 and should no longer be used.
-
-   If you still need to use this capability, please see the documentation for
-   :code:`sssd::provider::local` directly.
+   Prior to SSSD 1.16, there was a LOCAL provider. It is deprecated on
+   :term:`EL` 8 and should no longer be used. The SIMP ``sssd`` module no
+   longer manages it.
 
 
 This section walks you through setting up local user and group support using the
@@ -34,6 +32,17 @@ just need to set the following in :term:`Hiera`:
    ---
    sssd::enable_files_domain: true
 
+SSSD 2.10, on EL10, removed the implicit files domain and this option. On
+EL10, declare a ``LOCAL`` proxy domain for the local files instead, and list
+it in ``sssd::domains_entries``:
+
+.. code-block:: yaml
+
+   ---
+   sssd::config::manage_base_domain: true
+   sssd::domains_entries:
+     LOCAL: {}
+
 Using Alternate Files
 ---------------------
 
@@ -41,6 +50,11 @@ If you want to use your own files, as documented in the :program:`sssd-files(5)`
 page, then you will need to set up an explicit domain with the correct settings.
 
 To do this, use the following puppet code.
+
+.. WARNING::
+
+   This example uses the ``files`` ID provider, which relies on the files
+   domain that SSSD 2.10 removed. It has not been tested on EL10.
 
 .. IMPORTANT::
 

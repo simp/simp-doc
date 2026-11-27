@@ -43,6 +43,13 @@ To find the particular package list for your version of SIMP, you can go to:
 
 ``https://github.com/simp/simp-core/blob/<version>/build/distributions/<os>/<os_version>/<arch>/yum_data/packages.yaml``
 
-For example, if you are using SIMP 6.0.0-0 on CentOS 8 and x86_64 architecture, you would navigate to:
+For example, if you are using SIMP 6.5.0-1 on CentOS 7 and x86_64 architecture, you would navigate to:
 
-``https://github.com/simp/simp-core/blob/6.0.0-0/build/distributions/CentOS/8/x86_64/yum_data/packages.yaml``
+``https://github.com/simp/simp-core/blob/6.5.0-1/build/distributions/CentOS/7/x86_64/yum_data/packages.yaml``
+
+.. WARNING::
+
+   The ``packages.yaml`` files exist only for SIMP 6.5 and earlier, on EL6
+   and EL7.  SIMP 6.6 and later releases, including the EL8+ releases, do not
+   have them, and this page does not cover where those releases define their
+   external packages.

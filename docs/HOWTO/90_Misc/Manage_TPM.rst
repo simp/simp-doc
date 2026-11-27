@@ -2,8 +2,19 @@ HOWTO Manage a TPM Device with SIMP
 ===================================
 
 This document serves as a guide to enable and use TPM devices in SIMP.
-Currently, both :term:`TPM` **1.2** and **2.0** are supported, but TPM 2.0
-features are only available on EL7 systems.
+
+.. WARNING::
+
+   Parts of this page describe SIMP 6 components that are now archived and
+   are not part of SIMP 7:
+
+   * The :pupmod:`simp/tpm` module, which manages :term:`TPM` **1.2** and
+     Trusted Boot (``tboot``)
+   * The SIMP TPM 1.2 and TPM 2.0 simulator RPMs
+   * The :pupmod:`simp/hirs_provisioner` module
+
+   The :pupmod:`simp/tpm2` and :pupmod:`simp/ima` modules support EL8, EL9
+   and EL10.  The TPM 2.0 and IMA sections apply to SIMP 7.
 
 TPM features in SIMP:
 
@@ -61,13 +72,12 @@ preclude a TPM, as a software TPM may be present.
      and ``tpm2`` classes and rely upon functionality provided by the
      ``tpm-tools`` and ``tpm2-tools`` RPMs, respectively.  The RPM packages are
      automatically installed if the classes are included and a TPM is detected
-     by Puppet. To manually install these RPMs, enter the following commands
-     with root permissions, either via sudo or running as root:
+     by Puppet. To manually install :package:`tpm2-tools`, enter the following
+     command with root permissions, either via sudo or running as root:
 
      .. code-block:: bash
 
-        # yum install tpm-tools
-        # yum install tpm2-tools
+        dnf install -y tpm2-tools
 
 The commands and sample outputs for successful tests verifying a TPM is present
 include:
@@ -126,24 +136,12 @@ installing the RPMs, the TPMs can be initialized.
 Installing and Initializing the TPM 1.2 Simulator
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-The TPM 1.2 simulator RPM is included with the SIMP repositories and can
-be installed via yum with the command:
+The TPM 1.2 simulator RPM was included with the SIMP 6 repositories and could
+be installed with the command:
 
    .. code-block:: bash
 
       # yum install simp-tpm12-simulator
-
-
-To initialize the TPM 1.2 simulator on EL6, issue the following commands:
-
-   .. code-block:: bash
-
-      # service tpm12-simulator start
-      # service tpm12-tpmbios start
-      # service tpm12-simulator restart
-      # service tpm12-tpmbios start
-      # service tpm12-tpminit start
-      # service tpm12-tcsd start
 
 To initialize the TPM 1.2 simulator on EL7, issue the following commands:
 
@@ -166,8 +164,8 @@ verify the TPM 1.2 simulator has been initialized.
 Installing and Initializing the TPM 2.0 Simulator
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-The TPM 2.0 simulator RPM (EL7 only) is included with the SIMP repositories and
-can be installed via yum with the command:
+The TPM 2.0 simulator RPM (EL7 only) was included with the SIMP 6 repositories
+and could be installed with the command:
 
    .. code-block:: bash
 

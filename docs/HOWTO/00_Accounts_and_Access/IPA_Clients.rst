@@ -36,13 +36,6 @@ Adding IPA clients requires two steps:
 
 The second step is automated with the :pupmod:`simp/simp_ipa` module.
 
-   .. NOTE::
-
-      Using :program:`ipa-client-install` on EL6 with FIPS mode is not currently
-      supported and will result in the following error message:
-      ``Cannot install IPA client in FIPS mode``
-
-
 Add Hosts to IPA
 ^^^^^^^^^^^^^^^^
 

@@ -110,11 +110,11 @@ steps as ``root``:
       # are ready for these changes.
       puppet agent --disable
 
-      # Make sure yum picks up the new RPMs
-      yum clean all; yum makecache
+      # Make sure dnf picks up the new RPMs
+      dnf clean all; dnf makecache
 
       # Apply updates to the local server
-      yum update -y
+      dnf update -y
 
    For SIMP 6.4 and later, this will also update the system-local, SIMP-managed
    Puppet module :term:`Git` repositories.

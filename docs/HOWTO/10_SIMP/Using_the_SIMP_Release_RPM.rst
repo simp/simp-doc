@@ -10,22 +10,33 @@ Location
 ^^^^^^^^
 
 The latest SIMP Community Release RPMs are always available at https://download.simp-project.com/.
-Install it by running:
+Install it on EL8 by running:
 
 .. code-block:: bash
 
-   # el7 Install
-   sudo yum install https://download.simp-project.com/simp-release-community.el7.rpm
+   sudo dnf install -y https://download.simp-project.com/simp-release-community.el8.rpm
 
-   # el8 Install
-   sudo yum install https://download.simp-project.com/simp-release-community.el8.rpm
+.. WARNING::
+
+   This page describes the SIMP 6 release RPMs.  It has not been updated for
+   SIMP 7 yet:
+
+   * There is no release RPM for EL9 or EL10.  Where SIMP 7 packages will be
+     hosted has not been decided yet.
+   * On EL8, the release RPM also enables repositories that carry the Puppet
+     packages, which conflict with the :term:`OpenVox` packages.  Disable them
+     so that OpenVox has a single package source:
+
+     .. code-block:: bash
+
+        sudo dnf config-manager --set-disabled puppet--simp puppet6--simp
 
 RPM Contents and Actions
 ^^^^^^^^^^^^^^^^^^^^^^^^
 
 The RPM will do the following, which are detailed in sections below:
 
-- Create two :program:`yum` variable files to target specific SIMP releases
+- Create two :program:`dnf` variable files to target specific SIMP releases
 
 - Add the necessary repository files to the
   :file:`/etc/yum.repos.d/` folder
@@ -129,11 +140,7 @@ You can install it as ``root`` by running
 
 .. code-block:: bash
 
-   # el7 Install
-   yum install https://download.simp-project.com/simp-release-enterprise.el7.rpm
-
-   # el8 Install
-   yum install https://download.simp-project.com/simp-release-enterprise.el8.rpm
+   dnf install -y https://download.simp-project.com/simp-release-enterprise.el8.rpm
 
 The Enterprise Release RPM includes the same files as the Community version, with added repo files for SIMP Enterprise, SIMP Console, and SIMP Scanner.
 
@@ -142,4 +149,4 @@ GPG Keys
 
 The SIMP Release RPM will also add necessary GPG Keys to the :file:`/etc/simp/gpgkeys` folder.
 These GPG Keys are placed in this folder to prevent the ``simp-gpgkeys`` package from conflicting with them,
-since the SIMP and Puppet keys are required to download the package via :program:`yum`.
+since the SIMP and Puppet keys are required to download the package via :program:`dnf`.
